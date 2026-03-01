@@ -980,7 +980,7 @@
                         <a href="#">América</a>
                         <a href="#">Asia</a>
                         <a href="#">Caribe</a>
-                        <a href="#">Europa</a>
+                        <a href="escocia.html">Europa</a>
                         <a href="#">Paraísos sobre el agua</a>
                     </div>
                 </li>
@@ -1266,7 +1266,7 @@
                         <li><a href="#">Maldivas</a></li>
                         <li><a href="#">Japón</a></li>
                         <li><a href="#">Tanzania</a></li>
-                        <li><a href="#">Bora Bora</a></li>
+                        <li><a href="escocia.html">Escocia</a></li>
                         <li><a href="#">Islandia</a></li>
                     </ul>
                 </div>
@@ -1349,6 +1349,22 @@
                 e.target.reset();
             }, 3000);
         }
+    </script>
+
+    <script>
+        // Auto-fill destino desde URL
+        (function() {
+            const params = new URLSearchParams(window.location.search);
+            const destino = params.get('destino');
+            if (destino) {
+                const input = document.getElementById('destination');
+                if (input) {
+                    input.value = destino;
+                    input.style.borderColor = 'var(--gold)';
+                    input.style.background = 'rgba(201,169,110,0.08)';
+                }
+            }
+        })();
     </script>
 
     <script>

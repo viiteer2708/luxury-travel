@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escocia — Horizonte Exclusivo</title>
+    <meta name="description" content="Viaje de lujo a Escocia: Edimburgo, Tierras Altas, Isla de Skye. 8 días y 7 noches de experiencias exclusivas entre castillos y leyendas.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --gold: #c9a96e;
+            --gold-light: #e8d5a8;
+            --dark: #0a0a0a;
+            --dark-soft: #1a1a1a;
+            --dark-card: #111111;
+            --text: #e0e0e0;
+            --text-muted: #8a8a8a;
+            --white: #ffffff;
+            --radius: 12px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
+        ul { list-style: none; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 10px 0;
+            background: var(--dark);
+            border-bottom: 1px solid rgba(201,169,110,0.15);
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            background: var(--dark);
+            backdrop-filter: blur(20px);
+            padding: 6px 0;
+            box-shadow: 0 2px 40px rgba(0,0,0,0.5);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 80%;
+            padding: 0 24px;
+        }
+
+        .logo {
+            display: inline-block;
+            transition: var(--transition);
+        }
+
+        .logo img {
+            height: 80px;
+            width: auto;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled .logo img {
+            height: 60px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            color: var(--gold-light);
+            transition: var(--transition);
+            position: relative;
+            padding: 8px 18px;
+            border-radius: 50px;
+        }
+
+        .nav-links a:hover {
+            background: var(--gold);
+            color: var(--dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(201,169,110,0.3);
+        }
+
+        .nav-links li {
+            position: relative;
+            list-style: none;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            min-width: 220px;
+            background: var(--dark-soft);
+            border: 1px solid rgba(201,169,110,0.15);
+            border-radius: 8px;
+            padding: 12px 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+            z-index: 100;
+            margin-top: 8px;
+        }
+
+        .nav-links li:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 10px 24px;
+            font-size: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            transition: var(--transition);
+            white-space: nowrap;
+            border-radius: 0;
+            background: none;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .dropdown a:hover {
+            color: var(--gold);
+            background: rgba(201,169,110,0.08);
+            padding-left: 28px;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--gold);
+            transition: var(--transition);
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 36px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--dark);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(201,169,110,0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        /* ===== SECTION COMMON ===== */
+        section { padding: 120px 0; }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .divider {
+            width: 60px;
+            height: 1px;
+            background: var(--gold);
+            margin: 20px auto;
+        }
+
+        /* ===== DESTINATION HERO ===== */
+        .dest-hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 100px;
+            background-image: url('https://images.unsplash.com/photo-1506377585622-bedcbb027afc?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .dest-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.6) 50%, var(--dark) 100%);
+        }
+
+        .dest-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 24px;
+        }
+
+        .dest-hero-content .section-label {
+            font-size: 0.85rem;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease both;
+        }
+
+        .dest-hero-content h1 {
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s 0.2s ease both;
+            text-shadow:
+                -1px -1px 0 rgba(0,0,0,0.6),
+                 1px -1px 0 rgba(0,0,0,0.6),
+                -1px  1px 0 rgba(0,0,0,0.6),
+                 1px  1px 0 rgba(0,0,0,0.6);
+        }
+
+        .dest-hero-content p {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: var(--gold-light);
+            font-weight: 300;
+            margin-bottom: 8px;
+            animation: fadeInUp 0.8s 0.4s ease both;
+        }
+
+        .dest-hero-content .dest-duration {
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            animation: fadeInUp 0.8s 0.6s ease both;
+        }
+
+        /* ===== DESTINATION INTRO ===== */
+        .dest-intro-text {
+            max-width: 780px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.05rem;
+            color: var(--text);
+            line-height: 1.9;
+            font-weight: 300;
+        }
+
+        /* ===== ITINERARY BLOCKS ===== */
+        .itinerary-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        .itinerary-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .itinerary-block.reverse .itinerary-image {
+            order: 2;
+        }
+
+        .itinerary-block.reverse .itinerary-content {
+            order: 1;
+        }
+
+        .itinerary-image {
+            border-radius: var(--radius);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .itinerary-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .itinerary-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .itinerary-content .section-label {
+            text-align: left;
+            margin-bottom: 12px;
+        }
+
+        .itinerary-content h3 {
+            font-size: 1.8rem;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .itinerary-content p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .itinerary-content ul {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .itinerary-content ul li {
+            font-size: 0.88rem;
+            color: var(--text);
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .itinerary-content ul li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 0.6rem;
+            top: 4px;
+        }
+
+        /* ===== INCLUDES GRID ===== */
+        .includes-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 28px;
+        }
+
+        .include-card {
+            background: var(--dark-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: var(--radius);
+            padding: 36px 28px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .include-card:hover {
+            border-color: rgba(201,169,110,0.2);
+            transform: translateY(-4px);
+        }
+
+        .include-card .include-icon {
+            font-size: 2rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .include-card h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .include-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        /* ===== DESTINATION CTA ===== */
+        .dest-cta {
+            text-align: center;
+            background: var(--dark-soft);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .dest-cta h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .dest-cta p {
+            color: var(--text-muted);
+            font-weight: 300;
+            max-width: 540px;
+            margin: 0 auto 32px;
+            line-height: 1.8;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--dark-soft);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 80px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand .logo { margin-bottom: 16px; }
+        .footer-brand .logo img { height: 70px; }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            border-color: var(--gold);
+            background: rgba(201,169,110,0.1);
+            color: var(--gold);
+        }
+
+        .footer-column h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--white);
+            margin-bottom: 24px;
+        }
+
+        .footer-column ul { display: flex; flex-direction: column; gap: 12px; }
+
+        .footer-column a {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .footer-column a:hover { color: var(--gold); }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-bottom-links a {
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .footer-bottom-links a:hover { color: var(--gold); }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .includes-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            section { padding: 80px 0; }
+
+            .logo img {
+                height: 60px;
+            }
+
+            .navbar.scrolled .logo img {
+                height: 45px;
+            }
+
+            .hamburger { display: flex; }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: var(--dark);
+                flex-direction: column;
+                justify-content: center;
+                gap: 28px;
+                transition: var(--transition);
+                border-left: 1px solid rgba(201,169,110,0.15);
+            }
+
+            .nav-links.active { right: 0; }
+
+            .dest-hero {
+                background-attachment: scroll;
+            }
+
+            .itinerary-block {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+
+            .itinerary-block.reverse .itinerary-image,
+            .itinerary-block.reverse .itinerary-content {
+                order: unset;
+            }
+
+            .itinerary-image img {
+                height: 280px;
+            }
+
+            .includes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo img {
+                height: 48px;
+            }
+
+            .navbar.scrolled .logo img {
+                height: 36px;
+            }
+
+            .footer-brand .logo img {
+                height: 50px;
+            }
+
+            .includes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo"><img src="logo-trimmed.png" alt="Horizonte Exclusivo"></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Nuevos horizontes</a></li>
+                <li>
+                    <a href="index.html#destinos">Destinos</a>
+                    <div class="dropdown">
+                        <a href="#">Africa</a>
+                        <a href="#">América</a>
+                        <a href="#">Asia</a>
+                        <a href="#">Caribe</a>
+                        <a href="escocia.html">Europa</a>
+                        <a href="#">Paraísos sobre el agua</a>
+                    </div>
+                </li>
+                <li><a href="index.html#testimonios">¿Quién hay detrás?</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+                <li><a href="#">Pro Tips</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="dest-hero">
+        <div class="dest-hero-content">
+            <span class="section-label">Europa</span>
+            <h1>Escocia</h1>
+            <p>Tierras altas, castillos y leyendas</p>
+            <span class="dest-duration">8 días / 7 noches</span>
+        </div>
+    </section>
+
+    <!-- INTRO -->
+    <section>
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Descubre</span>
+                <h2 class="section-title">Escocia, tierra de carácter</h2>
+                <div class="divider"></div>
+            </div>
+            <p class="dest-intro-text reveal">
+                Pocos lugares en el mundo combinan paisajes tan sobrecogedores con una historia tan viva. Escocia es una tierra donde cada valle esconde una leyenda, cada castillo cuenta siglos de batallas y cada pub guarda el calor de sus gentes. Desde la elegancia de Edimburgo hasta la inmensidad salvaje de las Highlands y la magia de la Isla de Skye, este viaje te sumerge en una experiencia auténtica de lujo discreto — donde lo extraordinario es la naturaleza, la cultura y la conexión con un lugar que no se parece a ningún otro.
+            </p>
+        </div>
+    </section>
+
+    <!-- ITINERARY -->
+    <section id="itinerario" style="padding-top: 0;">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Itinerario</span>
+                <h2 class="section-title">Tu viaje día a día</h2>
+                <div class="divider"></div>
+            </div>
+
+            <!-- Días 1-2: Edimburgo -->
+            <div class="itinerary-block reveal">
+                <div class="itinerary-image">
+                    <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&q=80" alt="Castillo de Edimburgo al atardecer">
+                </div>
+                <div class="itinerary-content">
+                    <span class="section-label">Días 1 – 2</span>
+                    <h3>Edimburgo</h3>
+                    <p>Llegada a la capital escocesa, una ciudad donde lo medieval y lo contemporáneo conviven en cada esquina. Alojamiento en un hotel boutique en el corazón de la Old Town, con vistas al castillo.</p>
+                    <ul>
+                        <li>Visita privada al Castillo de Edimburgo</li>
+                        <li>Paseo guiado por la Royal Mile y los closes secretos</li>
+                        <li>Cata exclusiva de whisky escocés single malt</li>
+                        <li>Cena en restaurante con estrella Michelin</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Días 3-4: Tierras Altas -->
+            <div class="itinerary-block reverse reveal">
+                <div class="itinerary-image">
+                    <img src="https://images.unsplash.com/photo-1506377585622-bedcbb027afc?w=800&q=80" alt="Valle de Glencoe en las Tierras Altas de Escocia">
+                </div>
+                <div class="itinerary-content">
+                    <span class="section-label">Días 3 – 4</span>
+                    <h3>Las Tierras Altas</h3>
+                    <p>Ruta hacia el norte atravesando algunos de los paisajes más dramáticos de Europa. Glencoe, el Gran Valle, lagos infinitos y montañas que quitan el aliento. Estancia en un lodge de lujo con chimenea y vistas a las montañas.</p>
+                    <ul>
+                        <li>Ruta escénica por el valle de Glencoe</li>
+                        <li>Navegación privada por el Lago Ness</li>
+                        <li>Senderismo guiado por Ben Nevis</li>
+                        <li>Noche en lodge de las Highlands con spa</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Días 5-6: Isla de Skye -->
+            <div class="itinerary-block reveal">
+                <div class="itinerary-image">
+                    <img src="https://images.unsplash.com/photo-1520466809213-7b9a56adcd45?w=800&q=80" alt="Old Man of Storr en la Isla de Skye">
+                </div>
+                <div class="itinerary-content">
+                    <span class="section-label">Días 5 – 6</span>
+                    <h3>Isla de Skye</h3>
+                    <p>La joya de las Hébridas Interiores. Skye es una isla de paisajes irreales: acantilados que desafían la gravedad, formaciones rocosas de otro mundo y piscinas naturales de agua cristalina entre las montañas.</p>
+                    <ul>
+                        <li>Ruta al Old Man of Storr al amanecer</li>
+                        <li>Visita a las Fairy Pools y Quiraing</li>
+                        <li>Excursión en barco por la costa de Trotternish</li>
+                        <li>Cena con productos locales y maridaje de whisky</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Día 7: Regreso -->
+            <div class="itinerary-block reverse reveal">
+                <div class="itinerary-image">
+                    <img src="https://images.unsplash.com/photo-1548519853-4c71758de1cf?w=800&q=80" alt="Castillo de Eilean Donan en Escocia">
+                </div>
+                <div class="itinerary-content">
+                    <span class="section-label">Día 7</span>
+                    <h3>Regreso entre castillos</h3>
+                    <p>El viaje de regreso hacia Edimburgo se convierte en una experiencia en sí misma, con paradas en algunos de los castillos más icónicos de Escocia y una última noche para despedirse de esta tierra inolvidable.</p>
+                    <ul>
+                        <li>Parada en el castillo de Eilean Donan</li>
+                        <li>Ruta por el Parque Nacional de Cairngorms</li>
+                        <li>Visita a una destilería histórica de whisky</li>
+                        <li>Cena de despedida en Edimburgo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUÉ INCLUYE -->
+    <section style="background: var(--dark-soft); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Todo incluido</span>
+                <h2 class="section-title">Qué incluye tu viaje</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="includes-grid">
+                <div class="include-card reveal">
+                    <span class="include-icon">✈</span>
+                    <h4>Vuelos</h4>
+                    <p>Vuelos directos ida y vuelta en clase preferente. Traslados privados en todos los trayectos.</p>
+                </div>
+                <div class="include-card reveal">
+                    <span class="include-icon">🚗</span>
+                    <h4>Vehículo</h4>
+                    <p>SUV de lujo con conductor-guía privado durante toda la ruta por las Highlands y Skye.</p>
+                </div>
+                <div class="include-card reveal">
+                    <span class="include-icon">🏨</span>
+                    <h4>Alojamiento</h4>
+                    <p>Hoteles boutique y lodges exclusivos seleccionados por su carácter y ubicación privilegiada.</p>
+                </div>
+                <div class="include-card reveal">
+                    <span class="include-icon">⭐</span>
+                    <h4>Experiencias</h4>
+                    <p>Visitas privadas, catas de whisky, cenas gastronómicas y actividades exclusivas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="dest-cta">
+        <div class="container reveal">
+            <h2>Diseñemos <em style="color: var(--gold);">tu Escocia</em></h2>
+            <p>Cada viaje es único. Cuéntanos cómo imaginas tu aventura escocesa y crearemos un itinerario a tu medida.</p>
+            <a href="index.html?destino=Escocia#contacto" class="btn btn-primary">Solicitar presupuesto &#10230;</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo"><img src="logo-trimmed.png" alt="Horizonte Exclusivo"></a>
+                    <p>Más que viajar, vivir el mundo. Creamos experiencias de viaje de lujo a medida. Cada destino es una historia, cada viaje una obra maestra.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Instagram">IG</a>
+                        <a href="#" aria-label="Facebook">FB</a>
+                        <a href="#" aria-label="Twitter">TW</a>
+                        <a href="#" aria-label="LinkedIn">IN</a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Destinos</h4>
+                    <ul>
+                        <li><a href="#">Maldivas</a></li>
+                        <li><a href="#">Japón</a></li>
+                        <li><a href="#">Tanzania</a></li>
+                        <li><a href="escocia.html">Escocia</a></li>
+                        <li><a href="#">Islandia</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Experiencias</h4>
+                    <ul>
+                        <li><a href="#">Luna de miel</a></li>
+                        <li><a href="#">Safari de lujo</a></li>
+                        <li><a href="#">Cruceros privados</a></li>
+                        <li><a href="#">Retiros wellness</a></li>
+                        <li><a href="#">Aventura exclusiva</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Compañía</h4>
+                    <ul>
+                        <li><a href="#">Sobre nosotros</a></li>
+                        <li><a href="#">Nuestro equipo</a></li>
+                        <li><a href="#">Blog de viajes</a></li>
+                        <li><a href="#">Prensa</a></li>
+                        <li><a href="index.html#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Horizonte Exclusivo. Todos los derechos reservados.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Aviso legal</a>
+                    <a href="#">Privacidad</a>
+                    <a href="#">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 60);
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => navLinks.classList.remove('active'));
+        });
+
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
