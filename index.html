@@ -113,6 +113,57 @@
             box-shadow: 0 8px 30px rgba(201,169,110,0.3);
         }
 
+        .nav-links li {
+            position: relative;
+            list-style: none;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            min-width: 220px;
+            background: var(--dark-soft);
+            border: 1px solid rgba(201,169,110,0.15);
+            border-radius: 8px;
+            padding: 12px 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+            z-index: 100;
+            margin-top: 8px;
+        }
+
+        .nav-links li:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 10px 24px;
+            font-size: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            transition: var(--transition);
+            white-space: nowrap;
+            border-radius: 0;
+            background: none;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .dropdown a:hover {
+            color: var(--gold);
+            background: rgba(201,169,110,0.08);
+            padding-left: 28px;
+            transform: none;
+            box-shadow: none;
+        }
+
         .hamburger {
             display: none;
             flex-direction: column;
@@ -139,9 +190,28 @@
             padding-top: 80px;
             text-align: center;
             position: relative;
-            background:
-                linear-gradient(180deg, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.6) 50%, var(--dark) 100%),
-                url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=1920&q=80') center/cover no-repeat;
+            overflow: hidden;
+        }
+
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+            z-index: 0;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-slide::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.6) 50%, var(--dark) 100%);
         }
 
         .hero::before {
@@ -897,10 +967,20 @@
             <a href="#" class="logo"><img src="logo-trimmed.png" alt="Horizonte Exclusivo"></a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#">Nuevos horizontes</a></li>
-                <li><a href="#destinos">Destinos</a></li>
+                <li>
+                    <a href="#destinos">Destinos</a>
+                    <div class="dropdown">
+                        <a href="#">Asia</a>
+                        <a href="#">Africa</a>
+                        <a href="#">Europa</a>
+                        <a href="#">Paraísos sobre el agua</a>
+                        <a href="#">América</a>
+                        <a href="#">Caribe</a>
+                    </div>
+                </li>
                 <li><a href="#testimonios">¿Quién hay detrás?</a></li>
                 <li><a href="#contacto">Contacto</a></li>
-                <li><a href="#">Consejos secretos</a></li>
+                <li><a href="#">Pro Tips</a></li>
             </ul>
             <button class="hamburger" id="hamburger" aria-label="Abrir menú">
                 <span></span><span></span><span></span>
@@ -910,6 +990,13 @@
 
     <!-- HERO -->
     <section class="hero">
+        <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1476610182048-b716b8518aae?w=1920&q=80')"></div>
+        <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1608566059145-ee97cd1a9c7c?w=1920&q=80')"></div>
+        <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1522083165195-3424ed129620?w=1920&q=80')"></div>
+        <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1525220964737-6c299398493c?w=1920&q=80')"></div>
+        <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=1920&q=80')"></div>
+        <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1549035092-33b2937b075a?w=1920&q=80')"></div>
+        <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1462400362591-9ca55235346a?w=1920&q=80')"></div>
         <div class="hero-content">
             <h1>Más que viajar, vivir el <em>mundo</em></h1>
             <p>Diseñamos experiencias de viaje a medida para quienes buscan lo extraordinario. Cada destino, una obra maestra.</p>
@@ -1264,6 +1351,19 @@
                 e.target.reset();
             }, 3000);
         }
+    </script>
+
+    <script>
+        // Hero carousel
+        (function() {
+            const slides = document.querySelectorAll('.hero-slide');
+            let current = 0;
+            setInterval(() => {
+                slides[current].classList.remove('active');
+                current = (current + 1) % slides.length;
+                slides[current].classList.add('active');
+            }, 5000);
+        })();
     </script>
 
 </body>
