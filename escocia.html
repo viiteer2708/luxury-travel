@@ -344,7 +344,9 @@
             margin-bottom: 0;
         }
 
-        .itinerary-block.reverse .itinerary-image {
+        .itinerary-block.reverse .itinerary-image,
+        .itinerary-block.reverse .itinerary-gallery,
+        .itinerary-block.reverse .itinerary-carousel {
             order: 2;
         }
 
@@ -406,6 +408,84 @@
         /* 2 images: side by side */
         .itinerary-gallery.gallery-2 {
             grid-template-columns: 1fr 1fr;
+        }
+
+        /* ===== ITINERARY CAROUSEL ===== */
+        .itinerary-carousel {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            height: 400px;
+        }
+
+        .itinerary-carousel .carousel-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .itinerary-carousel .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .itinerary-carousel .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 2;
+        }
+
+        .carousel-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.4);
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(4px);
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(0,0,0,0.6);
+            border-color: rgba(255,255,255,0.7);
+        }
+
+        .carousel-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        .carousel-dot.active {
+            background: var(--gold);
+            transform: scale(1.2);
         }
 
         .itinerary-content .section-label {
@@ -664,17 +744,27 @@
                 background-attachment: scroll;
             }
 
+            .route-line {
+                display: none;
+            }
+
             .itinerary-block {
                 grid-template-columns: 1fr;
                 gap: 28px;
             }
 
             .itinerary-block.reverse .itinerary-image,
+            .itinerary-block.reverse .itinerary-gallery,
+            .itinerary-block.reverse .itinerary-carousel,
             .itinerary-block.reverse .itinerary-content {
                 order: unset;
             }
 
             .itinerary-image img {
+                height: 280px;
+            }
+
+            .itinerary-carousel {
                 height: 280px;
             }
 
@@ -785,8 +875,25 @@
 
             <!-- Días 1-2: Edimburgo -->
             <div class="itinerary-block reveal">
-                <div class="itinerary-image">
-                    <img src="https://images.unsplash.com/photo-1571044880241-95d4c9aa06f5?w=800&q=80" alt="Edimburgo al atardecer">
+                <div class="itinerary-carousel">
+                    <div class="carousel-slide active">
+                        <img src="https://images.unsplash.com/photo-1571044880241-95d4c9aa06f5?w=800&q=80" alt="Edimburgo al atardecer">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1594800083755-8fe31b2c99df?w=800&q=80" alt="Calle Victoria de Edimburgo">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1736182792109-2db1c298a703?w=800&q=80" alt="Río atravesando Edimburgo">
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
+                        <div class="carousel-dots">
+                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
+                            <button class="carousel-dot" aria-label="Imagen 2"></button>
+                            <button class="carousel-dot" aria-label="Imagen 3"></button>
+                        </div>
+                        <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
+                    </div>
                 </div>
                 <div class="itinerary-content">
                     <span class="section-label">Días 1 – 2</span>
@@ -1005,6 +1112,101 @@
         }, { threshold: 0.15 });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Route line (zigzag roadmap)
+        function drawRoute() {
+            const container = document.querySelector('#itinerario .container');
+            const blocks = container.querySelectorAll('.itinerary-block');
+            const existing = container.querySelector('.route-line');
+            if (existing) existing.remove();
+
+            if (window.innerWidth <= 768 || blocks.length < 2) return;
+
+            container.style.position = 'relative';
+            const w = container.offsetWidth;
+            const h = container.scrollHeight;
+            const centerX = w / 2;
+            const peakOffset = w * 0.22;
+
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.classList.add('route-line');
+            svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+            svg.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;';
+
+            const data = [];
+            blocks.forEach(block => {
+                data.push({
+                    top: block.offsetTop,
+                    bottom: block.offsetTop + block.offsetHeight,
+                    cy: block.offsetTop + block.offsetHeight / 2
+                });
+            });
+
+            // Path: vertical through gap + curves in margins
+            let d = `M ${centerX} ${data[0].top}`;
+            for (let i = 0; i < data.length; i++) {
+                d += ` L ${centerX} ${data[i].bottom}`;
+                if (i < data.length - 1) {
+                    const midY = (data[i].bottom + data[i + 1].top) / 2;
+                    const px = centerX + (i % 2 === 0 ? peakOffset : -peakOffset);
+                    d += ` Q ${px} ${midY}, ${centerX} ${data[i + 1].top}`;
+                }
+            }
+
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('d', d);
+            path.setAttribute('fill', 'none');
+            path.setAttribute('stroke', 'rgba(255,255,255,0.10)');
+            path.setAttribute('stroke-width', '1.5');
+            path.setAttribute('stroke-dasharray', '6 4');
+            svg.appendChild(path);
+
+            // Waypoint dots
+            data.forEach(b => {
+                const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                c.setAttribute('cx', centerX);
+                c.setAttribute('cy', b.cy);
+                c.setAttribute('r', '5');
+                c.setAttribute('fill', '#0a0a0a');
+                c.setAttribute('stroke', 'rgba(201,169,110,0.4)');
+                c.setAttribute('stroke-width', '1.5');
+                svg.appendChild(c);
+            });
+
+            container.prepend(svg);
+        }
+
+        window.addEventListener('load', drawRoute);
+        window.addEventListener('resize', drawRoute);
+
+        // Itinerary carousels
+        document.querySelectorAll('.itinerary-carousel').forEach(carousel => {
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const dots = carousel.querySelectorAll('.carousel-dot');
+            const prev = carousel.querySelector('.carousel-prev');
+            const next = carousel.querySelector('.carousel-next');
+            let current = 0;
+
+            function goTo(index) {
+                slides[current].classList.remove('active');
+                dots[current].classList.remove('active');
+                current = (index + slides.length) % slides.length;
+                slides[current].classList.add('active');
+                dots[current].classList.add('active');
+            }
+
+            prev.addEventListener('click', () => goTo(current - 1));
+            next.addEventListener('click', () => goTo(current + 1));
+            dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+            // Touch swipe
+            let startX;
+            carousel.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+            carousel.addEventListener('touchend', e => {
+                const diff = startX - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1));
+            });
+        });
     </script>
 
 </body>
