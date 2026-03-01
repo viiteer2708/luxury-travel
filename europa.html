@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escocia — Horizonte Exclusivo</title>
-    <meta name="description" content="Viaje de lujo a Escocia: Edimburgo, Tierras Altas, Isla de Skye. 8 días y 7 noches de experiencias exclusivas entre castillos y leyendas.">
+    <title>Europa — Horizonte Exclusivo</title>
+    <meta name="description" content="Descubre los mejores destinos de lujo en Europa. Viajes exclusivos a medida por los rincones más extraordinarios del continente.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -210,18 +210,6 @@
             box-shadow: 0 8px 30px rgba(201,169,110,0.3);
         }
 
-        .btn-outline {
-            background: transparent;
-            color: var(--white);
-            border: 1px solid rgba(255,255,255,0.25);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--gold);
-            color: var(--gold);
-            transform: translateY(-2px);
-        }
-
         /* ===== SECTION COMMON ===== */
         section { padding: 120px 0; }
 
@@ -252,9 +240,17 @@
             margin: 20px auto;
         }
 
-        /* ===== DESTINATION HERO ===== */
-        .dest-hero {
-            min-height: 70vh;
+        .section-subtitle {
+            font-size: 1rem;
+            color: var(--text-muted);
+            max-width: 560px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* ===== REGION HERO ===== */
+        .region-hero {
+            min-height: 50vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -262,35 +258,35 @@
             position: relative;
             overflow: hidden;
             padding-top: 100px;
-            background-image: url('https://images.unsplash.com/photo-1506377585622-bedcbb027afc?w=1920&q=80');
+            background-image: url('https://images.unsplash.com/photo-1491557345352-5929e343eb89?w=1920&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
 
-        .dest-hero::after {
+        .region-hero::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.6) 50%, var(--dark) 100%);
+            background: linear-gradient(180deg, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.7) 50%, var(--dark) 100%);
         }
 
-        .dest-hero-content {
+        .region-hero-content {
             position: relative;
             z-index: 2;
             max-width: 800px;
             padding: 0 24px;
         }
 
-        .dest-hero-content .section-label {
+        .region-hero-content .section-label {
             font-size: 0.85rem;
             letter-spacing: 5px;
             margin-bottom: 20px;
             animation: fadeInUp 0.8s ease both;
         }
 
-        .dest-hero-content h1 {
-            font-size: clamp(2.8rem, 6vw, 5rem);
+        .region-hero-content h1 {
+            font-size: clamp(2.5rem, 5.5vw, 4.5rem);
             font-weight: 700;
             color: var(--white);
             line-height: 1.1;
@@ -303,175 +299,133 @@
                  1px  1px 0 rgba(0,0,0,0.6);
         }
 
-        .dest-hero-content p {
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-            color: var(--gold-light);
+        .region-hero-content p {
+            font-size: clamp(1rem, 2.5vw, 1.15rem);
+            color: var(--text);
             font-weight: 300;
-            margin-bottom: 8px;
+            max-width: 540px;
+            margin: 0 auto;
             animation: fadeInUp 0.8s 0.4s ease both;
         }
 
-        .dest-hero-content .dest-duration {
-            font-size: 0.85rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            animation: fadeInUp 0.8s 0.6s ease both;
-        }
-
-        /* ===== DESTINATION INTRO ===== */
-        .dest-intro-text {
-            max-width: 780px;
-            margin: 0 auto;
-            text-align: center;
-            font-size: 1.05rem;
-            color: var(--text);
-            line-height: 1.9;
-            font-weight: 300;
-        }
-
-        /* ===== ITINERARY BLOCKS ===== */
-        .itinerary-block {
+        /* ===== DESTINATIONS GRID ===== */
+        .destinations-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 48px;
-            align-items: center;
-            margin-bottom: 80px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
         }
 
-        .itinerary-block:last-child {
-            margin-bottom: 0;
-        }
-
-        .itinerary-block.reverse .itinerary-image {
-            order: 2;
-        }
-
-        .itinerary-block.reverse .itinerary-content {
-            order: 1;
-        }
-
-        .itinerary-image {
+        .destination-card {
+            background: var(--dark-card);
             border-radius: var(--radius);
             overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: var(--transition);
             position: relative;
         }
 
-        .itinerary-image img {
+        .destination-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(201,169,110,0.2);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .card-image {
+            position: relative;
+            height: 280px;
+            overflow: hidden;
+        }
+
+        .card-image img {
             width: 100%;
-            height: 400px;
+            height: 100%;
             object-fit: cover;
             transition: transform 0.6s ease;
         }
 
-        .itinerary-image:hover img {
-            transform: scale(1.05);
+        .destination-card:hover .card-image img {
+            transform: scale(1.08);
         }
 
-        .itinerary-content .section-label {
-            text-align: left;
+        .card-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            padding: 6px 14px;
+            background: rgba(10,10,10,0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            border: 1px solid rgba(201,169,110,0.3);
+        }
+
+        .card-body {
+            padding: 28px;
+        }
+
+        .card-location {
+            font-size: 0.75rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .card-body h3 {
+            font-size: 1.4rem;
+            color: var(--white);
             margin-bottom: 12px;
         }
 
-        .itinerary-content h3 {
-            font-size: 1.8rem;
-            color: var(--white);
-            margin-bottom: 16px;
-        }
-
-        .itinerary-content p {
-            font-size: 0.95rem;
+        .card-body p {
+            font-size: 0.9rem;
             color: var(--text-muted);
-            line-height: 1.8;
-            font-weight: 300;
+            margin-bottom: 20px;
+            line-height: 1.7;
         }
 
-        .itinerary-content ul {
-            margin-top: 20px;
+        .card-features {
             display: flex;
-            flex-direction: column;
-            gap: 10px;
+            gap: 16px;
+            flex-wrap: wrap;
         }
 
-        .itinerary-content ul li {
-            font-size: 0.88rem;
-            color: var(--text);
-            padding-left: 20px;
-            position: relative;
+        .card-features span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            padding: 6px 12px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 50px;
         }
 
-        .itinerary-content ul li::before {
+        .card-features span::before {
             content: '✦';
-            position: absolute;
-            left: 0;
             color: var(--gold);
             font-size: 0.6rem;
-            top: 4px;
         }
 
-        /* ===== INCLUDES GRID ===== */
-        .includes-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 28px;
-        }
-
-        .include-card {
-            background: var(--dark-card);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: var(--radius);
-            padding: 36px 28px;
-            text-align: center;
+        .card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 20px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--gold);
             transition: var(--transition);
         }
 
-        .include-card:hover {
-            border-color: rgba(201,169,110,0.2);
-            transform: translateY(-4px);
-        }
-
-        .include-card .include-icon {
-            font-size: 2rem;
-            margin-bottom: 16px;
-            display: block;
-        }
-
-        .include-card h4 {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--white);
-            margin-bottom: 10px;
-            letter-spacing: 0.5px;
-        }
-
-        .include-card p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            line-height: 1.7;
-            font-weight: 300;
-        }
-
-        /* ===== DESTINATION CTA ===== */
-        .dest-cta {
-            text-align: center;
-            background: var(--dark-soft);
-            border-top: 1px solid rgba(255,255,255,0.05);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .dest-cta h2 {
-            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
-            color: var(--white);
-            margin-bottom: 16px;
-        }
-
-        .dest-cta p {
-            color: var(--text-muted);
-            font-weight: 300;
-            max-width: 540px;
-            margin: 0 auto 32px;
-            line-height: 1.8;
+        .card-link:hover {
+            color: var(--gold-light);
+            gap: 10px;
         }
 
         /* ===== FOOTER ===== */
@@ -582,7 +536,7 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
-            .includes-grid {
+            .destinations-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
@@ -620,25 +574,11 @@
 
             .nav-links.active { right: 0; }
 
-            .dest-hero {
+            .region-hero {
                 background-attachment: scroll;
             }
 
-            .itinerary-block {
-                grid-template-columns: 1fr;
-                gap: 28px;
-            }
-
-            .itinerary-block.reverse .itinerary-image,
-            .itinerary-block.reverse .itinerary-content {
-                order: unset;
-            }
-
-            .itinerary-image img {
-                height: 280px;
-            }
-
-            .includes-grid {
+            .destinations-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -665,10 +605,6 @@
 
             .footer-brand .logo img {
                 height: 50px;
-            }
-
-            .includes-grid {
-                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -703,152 +639,46 @@
     </nav>
 
     <!-- HERO -->
-    <section class="dest-hero">
-        <div class="dest-hero-content">
-            <span class="section-label">Europa</span>
-            <h1>Escocia</h1>
-            <p>Tierras altas, castillos y leyendas</p>
-            <span class="dest-duration">8 días / 7 noches</span>
+    <section class="region-hero">
+        <div class="region-hero-content">
+            <span class="section-label">Destinos</span>
+            <h1>Top Destinos Europa</h1>
+            <p>Los rincones más exclusivos del viejo continente, diseñados para viajeros que buscan lo extraordinario</p>
         </div>
     </section>
 
-    <!-- INTRO -->
+    <!-- DESTINATIONS -->
     <section>
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label">Descubre</span>
-                <h2 class="section-title">Escocia, tierra de carácter</h2>
+                <span class="section-label">Colección 2026</span>
+                <h2 class="section-title">Nuestras experiencias en Europa</h2>
                 <div class="divider"></div>
-            </div>
-            <p class="dest-intro-text reveal">
-                Pocos lugares en el mundo combinan paisajes tan sobrecogedores con una historia tan viva. Escocia es una tierra donde cada valle esconde una leyenda, cada castillo cuenta siglos de batallas y cada pub guarda el calor de sus gentes. Desde la elegancia de Edimburgo hasta la inmensidad salvaje de las Highlands y la magia de la Isla de Skye, este viaje te sumerge en una experiencia auténtica de lujo discreto — donde lo extraordinario es la naturaleza, la cultura y la conexión con un lugar que no se parece a ningún otro.
-            </p>
-        </div>
-    </section>
-
-    <!-- ITINERARY -->
-    <section id="itinerario" style="padding-top: 0;">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-label">Itinerario</span>
-                <h2 class="section-title">Tu viaje día a día</h2>
-                <div class="divider"></div>
+                <p class="section-subtitle">Cada viaje es una experiencia irrepetible, diseñada con atención artesanal al detalle</p>
             </div>
 
-            <!-- Días 1-2: Edimburgo -->
-            <div class="itinerary-block reveal">
-                <div class="itinerary-image">
-                    <img src="https://images.unsplash.com/photo-1594800083755-8fe31b2c99df?w=800&q=80" alt="Calle Victoria en Edimburgo">
-                </div>
-                <div class="itinerary-content">
-                    <span class="section-label">Días 1 – 2</span>
-                    <h3>Edimburgo</h3>
-                    <p>Llegada a la capital escocesa, una ciudad donde lo medieval y lo contemporáneo conviven en cada esquina. Alojamiento en un hotel boutique en el corazón de la Old Town, con vistas al castillo.</p>
-                    <ul>
-                        <li>Visita privada al Castillo de Edimburgo</li>
-                        <li>Paseo guiado por la Royal Mile y los closes secretos</li>
-                        <li>Cata exclusiva de whisky escocés single malt</li>
-                        <li>Cena en restaurante con estrella Michelin</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Días 3-4: Tierras Altas -->
-            <div class="itinerary-block reverse reveal">
-                <div class="itinerary-image">
-                    <img src="https://images.unsplash.com/photo-1506377585622-bedcbb027afc?w=800&q=80" alt="Valle de Glencoe en las Tierras Altas de Escocia">
-                </div>
-                <div class="itinerary-content">
-                    <span class="section-label">Días 3 – 4</span>
-                    <h3>Las Tierras Altas</h3>
-                    <p>Ruta hacia el norte atravesando algunos de los paisajes más dramáticos de Europa. Glencoe, el Gran Valle, lagos infinitos y montañas que quitan el aliento. Estancia en un lodge de lujo con chimenea y vistas a las montañas.</p>
-                    <ul>
-                        <li>Ruta escénica por el valle de Glencoe</li>
-                        <li>Navegación privada por el Lago Ness</li>
-                        <li>Senderismo guiado por Ben Nevis</li>
-                        <li>Noche en lodge de las Highlands con spa</li>
-                    </ul>
+            <div class="destinations-grid">
+                <!-- Escocia -->
+                <div class="destination-card reveal">
+                    <a href="escocia.html">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1506377585622-bedcbb027afc?w=600&q=80" alt="Tierras Altas de Escocia">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Escocia, Reino Unido</span>
+                            <h3>Tierras Altas y Leyendas</h3>
+                            <p>Edimburgo, Highlands, Isla de Skye y castillos centenarios. Una aventura entre paisajes dramáticos y whisky single malt.</p>
+                            <div class="card-features">
+                                <span>8 días</span>
+                                <span>Guía privado</span>
+                                <span>Lodges 5★</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
                 </div>
             </div>
-
-            <!-- Días 5-6: Isla de Skye -->
-            <div class="itinerary-block reveal">
-                <div class="itinerary-image">
-                    <img src="https://images.unsplash.com/photo-1520466809213-7b9a56adcd45?w=800&q=80" alt="Old Man of Storr en la Isla de Skye">
-                </div>
-                <div class="itinerary-content">
-                    <span class="section-label">Días 5 – 6</span>
-                    <h3>Isla de Skye</h3>
-                    <p>La joya de las Hébridas Interiores. Skye es una isla de paisajes irreales: acantilados que desafían la gravedad, formaciones rocosas de otro mundo y piscinas naturales de agua cristalina entre las montañas.</p>
-                    <ul>
-                        <li>Ruta al Old Man of Storr al amanecer</li>
-                        <li>Visita a las Fairy Pools y Quiraing</li>
-                        <li>Excursión en barco por la costa de Trotternish</li>
-                        <li>Cena con productos locales y maridaje de whisky</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Día 7: Regreso -->
-            <div class="itinerary-block reverse reveal">
-                <div class="itinerary-image">
-                    <img src="https://images.unsplash.com/photo-1548519853-4c71758de1cf?w=800&q=80" alt="Castillo de Eilean Donan en Escocia">
-                </div>
-                <div class="itinerary-content">
-                    <span class="section-label">Día 7</span>
-                    <h3>Regreso entre castillos</h3>
-                    <p>El viaje de regreso hacia Edimburgo se convierte en una experiencia en sí misma, con paradas en algunos de los castillos más icónicos de Escocia y una última noche para despedirse de esta tierra inolvidable.</p>
-                    <ul>
-                        <li>Parada en el castillo de Eilean Donan</li>
-                        <li>Ruta por el Parque Nacional de Cairngorms</li>
-                        <li>Visita a una destilería histórica de whisky</li>
-                        <li>Cena de despedida en Edimburgo</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- QUÉ INCLUYE -->
-    <section style="background: var(--dark-soft); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-label">Todo incluido</span>
-                <h2 class="section-title">Qué incluye tu viaje</h2>
-                <div class="divider"></div>
-            </div>
-
-            <div class="includes-grid">
-                <div class="include-card reveal">
-                    <span class="include-icon">✈</span>
-                    <h4>Vuelos</h4>
-                    <p>Vuelos directos ida y vuelta en clase preferente. Traslados privados en todos los trayectos.</p>
-                </div>
-                <div class="include-card reveal">
-                    <span class="include-icon">🚗</span>
-                    <h4>Vehículo</h4>
-                    <p>SUV de lujo con conductor-guía privado durante toda la ruta por las Highlands y Skye.</p>
-                </div>
-                <div class="include-card reveal">
-                    <span class="include-icon">🏨</span>
-                    <h4>Alojamiento</h4>
-                    <p>Hoteles boutique y lodges exclusivos seleccionados por su carácter y ubicación privilegiada.</p>
-                </div>
-                <div class="include-card reveal">
-                    <span class="include-icon">⭐</span>
-                    <h4>Experiencias</h4>
-                    <p>Visitas privadas, catas de whisky, cenas gastronómicas y actividades exclusivas.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="dest-cta">
-        <div class="container reveal">
-            <h2>Diseñemos <em style="color: var(--gold);">tu Escocia</em></h2>
-            <p>Cada viaje es único. Cuéntanos cómo imaginas tu aventura escocesa y crearemos un itinerario a tu medida.</p>
-            <a href="index.html?destino=Escocia#contacto" class="btn btn-primary">Solicitar presupuesto &#10230;</a>
         </div>
     </section>
 
