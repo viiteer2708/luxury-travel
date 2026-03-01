@@ -46,6 +46,9 @@ Pagina web especializada en viajes de lujo personalizados.
 - Playwright / browser testing
 - npm run dev / levantar servidores
 
+**PROHIBIDO SIEMPRE:**
+- No mostrar precios en NINGUNA parte de la web (ni en HTML, ni en CSS, ni en comentarios). Sin excepciones.
+
 
 ## Variables de Entorno
 (Lista aquí tus env vars SIN valores)
