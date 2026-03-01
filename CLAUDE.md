@@ -65,4 +65,46 @@ Pagina web especializada en viajes de lujo personalizados.
 - Borrar archivos
 - Levantar servidores
 
+## Plantilla de páginas de destino
+
+### Arquitectura de navegación
+- Cada región del dropdown (Europa, Asia, Africa, etc.) tiene su página `[region].html` con título "Top Destinos [Región]"
+- Cada destino individual tiene su página `[destino].html` (ej: `escocia.html`)
+- Las páginas de región muestran tarjetas que enlazan a los destinos individuales
+- El CTA de cada destino enlaza a `index.html?destino=[Nombre]#contacto` (auto-fill JS)
+
+### Estructura de página de región (`europa.html` como referencia)
+1. **Hero** — `min-height: calc(50vh - 50px)`, `padding-top: 120px`, `padding-bottom: 40px`
+2. **Grid de destinos** — `padding-top: 30px`, section-header con `margin-bottom: 40px`
+3. **Footer**
+
+### Estructura de página de destino (`escocia.html` como referencia)
+1. **Hero** — `min-height: calc(70vh - 50px)`, `padding-top: 100px`, parallax (`background-attachment: fixed`), `background-position: center calc(50% + 60px)` (ajustar por destino)
+2. **Intro** — `padding-top: 30px`, `padding-bottom: 10px` — texto descriptivo centrado (`dest-intro-text`)
+3. **Itinerario** — `padding-top: 10px` — bloques en zigzag (`.itinerary-block` / `.itinerary-block.reverse`), imágenes 400px con hover scale(1.05)
+4. **Qué incluye** — grid 4 columnas (`.includes-grid` / `.include-card`), fondo `var(--dark-soft)`
+5. **CTA** — centrado, enlaza a `index.html?destino=[Nombre]#contacto`
+6. **Footer** — idéntico con enlace al destino en la lista
+
+### Márgenes y espaciados estándar (NO cambiar)
+| Transición | Valor |
+|------------|-------|
+| Hero → Intro | `padding-top: 30px` |
+| Intro → Itinerario | `padding-bottom: 10px` (intro) + `padding-top: 10px` (itinerario) |
+| Itinerario bloques entre sí | `margin-bottom: 80px` |
+| Section-header → contenido | `margin-bottom: 64px` (default) o `40px` (región) |
+
+### CSS reutilizado de index.html
+Variables, navbar, footer, botones, tipografía, `.reveal`, `.section-header`, `.section-title`, `.section-label`, `.divider`, responsive breakpoints.
+
+### Navbar en subpáginas
+- Logo y enlaces apuntan a `index.html` o `index.html#seccion`
+- Dropdown Europa apunta a `europa.html`
+- Logo usa `logo-trimmed.png`
+
+### Imágenes
+- Hero: Unsplash 1920px, `?w=1920&q=80`
+- Itinerario: Unsplash 800px, `?w=800&q=80`
+- Tarjetas región: Unsplash 600px, `?w=600&q=80`
+
 ## Referencias
