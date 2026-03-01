@@ -11,7 +11,6 @@ Pagina web especializada en viajes de lujo personalizados.
 
 ## Estructura de Carpetas
 ```
-> Deep-dive: /docs/SPEC.md | UI: /docs/UI_DESIGN_RULES.md
 
 ```
 
@@ -67,4 +66,3 @@ Pagina web especializada en viajes de lujo personalizados.
 - Levantar servidores
 
 ## Referencias
-(Apunta a otros docs de tu proyecto aquí)
