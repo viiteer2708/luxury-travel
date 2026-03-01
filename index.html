@@ -371,6 +371,29 @@
             transform: translateY(-2px);
         }
 
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            animation: pulse 2s ease infinite;
+            z-index: 2;
+        }
+
+        .scroll-indicator .line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+        }
+
         /* ===== SECTION COMMON ===== */
         section { padding: 120px 0; }
 
@@ -1006,6 +1029,10 @@
                 <a href="#contacto" class="btn btn-outline">Viaje a medida</a>
             </div>
         </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="line"></div>
+        </div>
     </section>
 
     <!-- STATS -->
@@ -1042,13 +1069,6 @@
                 <p class="section-subtitle">Cada viaje es una experiencia irrepetible, diseñada con atención artesanal al detalle</p>
             </div>
 
-            <div class="dest-tabs reveal">
-                <a href="#" class="active">Africa</a>
-                <a href="#">Asia</a>
-                <a href="#">Europa</a>
-                <a href="#">Paraísos sobre el agua</a>
-                <a href="#">América</a>
-            </div>
 
             <div class="destinations-grid">
                 <!-- Card 1 -->
@@ -1184,21 +1204,21 @@
                             <div class="contact-icon">📞</div>
                             <div>
                                 <span>Teléfono</span>
-                                <strong>+34 900 123 456</strong>
+                                <strong>+34 605 794 305</strong>
                             </div>
                         </div>
                         <div class="contact-item">
                             <div class="contact-icon">✉️</div>
                             <div>
                                 <span>Email</span>
-                                <strong>reservas@horizonteexclusivo.com</strong>
+                                <strong>viajes@horizonteexclusivo.es</strong>
                             </div>
                         </div>
                         <div class="contact-item">
                             <div class="contact-icon">📍</div>
                             <div>
                                 <span>Oficina</span>
-                                <strong>Paseo de la Castellana 50, Madrid</strong>
+                                <strong>Calle Major 37, Molins de Rei 08750, Barcelona</strong>
                             </div>
                         </div>
                         <div class="contact-item">
@@ -1229,18 +1249,12 @@
                         </div>
                         <div class="form-group">
                             <label for="destination">Destino de interés</label>
-                            <select id="destination">
-                                <option value="">Selecciona un destino</option>
-                                <option value="maldivas">Maldivas</option>
-                                <option value="japon">Japón</option>
-                                <option value="tanzania">Tanzania - Safari</option>
-                                <option value="otro">Otro destino</option>
-                            </select>
+                            <input type="text" id="destination" placeholder="¿A dónde quieres viajar?">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="message">Cuéntanos tu viaje ideal</label>
-                        <textarea id="message" placeholder="Fechas, número de viajeros, experiencias que te gustaría vivir..." rows="4"></textarea>
+                        <textarea id="message" placeholder="Buscas desconexión y paz o experiencias trepidantes...? Cuéntanos más..." rows="4"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Solicitar presupuesto &#10230;</button>
                 </form>
