@@ -248,6 +248,74 @@
             font-weight: 300;
         }
 
+        /* ===== REGION INTRO ===== */
+        .region-intro {
+            padding: 100px 0 60px;
+        }
+
+        .region-intro .container {
+            max-width: 820px;
+        }
+
+        .region-intro-lead {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+            color: var(--white);
+            text-align: center;
+            line-height: 1.7;
+            margin-bottom: 48px;
+            font-weight: 400;
+        }
+
+        .region-intro-body p {
+            font-size: 1rem;
+            color: var(--text);
+            line-height: 1.9;
+            font-weight: 300;
+            margin-bottom: 28px;
+            text-align: center;
+        }
+
+        .region-intro-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .region-intro-highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+            margin: 32px 0;
+        }
+
+        .region-intro-highlights li {
+            font-size: 0.92rem;
+            color: var(--gold-light);
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .region-intro-highlights li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 0.6rem;
+            top: 4px;
+        }
+
+        .region-intro-closing {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: var(--gold);
+            text-align: center;
+            line-height: 1.7;
+            margin-top: 48px;
+            font-style: italic;
+        }
+
         /* ===== REGION HERO ===== */
         .region-hero {
             min-height: calc(50vh - 50px);
@@ -257,7 +325,8 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            padding-top: 100px;
+            padding-top: 120px;
+            padding-bottom: 40px;
             background-image: url('https://images.unsplash.com/photo-1491557345352-5929e343eb89?w=1920&q=80');
             background-size: cover;
             background-position: center;
@@ -643,6 +712,40 @@
         <div class="region-hero-content">
             <h1>Top Destinos Europa</h1>
             <p>Los rincones más exclusivos del viejo continente, diseñados para viajeros que buscan lo extraordinario</p>
+        </div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="region-intro">
+        <div class="container">
+            <p class="region-intro-lead reveal">
+                Europa no es solo un destino.<br>
+                Es una colección de historias, ciudades y paisajes que han marcado el mundo.
+            </p>
+
+            <div class="region-intro-body reveal">
+                <p>Aquí cada rincón tiene carácter. Desde avenidas elegantes hasta pueblos que parecen detenidos en el tiempo.</p>
+
+                <p>Desde un hotel boutique en la Toscana hasta un ático con vistas a París, pasando por los fiordos del norte, las islas griegas o los mercados navideños de Centroeuropa. Europa es diversidad, sofisticación y tradición.</p>
+
+                <p>Diseñamos cada viaje con un equilibrio perfecto entre cultura, confort y experiencias memorables.</p>
+            </div>
+
+            <ul class="region-intro-highlights reveal">
+                <li>Hoteles con personalidad</li>
+                <li>Experiencias privadas y acceso exclusivo</li>
+                <li>Itinerarios cuidados al detalle</li>
+            </ul>
+
+            <div class="region-intro-body reveal">
+                <p>Porque viajar por Europa no consiste en hacer turismo.<br>
+                Consiste en vivir cada ciudad como si fuera tuya.</p>
+            </div>
+
+            <p class="region-intro-closing reveal">
+                Si buscas una escapada con estilo, autenticidad y equilibrio,<br>
+                Europa es el punto de partida.
+            </p>
         </div>
     </section>
 
