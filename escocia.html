@@ -1126,7 +1126,6 @@
             const w = container.offsetWidth;
             const h = container.scrollHeight;
             const centerX = w / 2;
-            const peakOffset = w * 0.22;
 
             const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
             svg.classList.add('route-line');
@@ -1142,16 +1141,8 @@
                 });
             });
 
-            // Path: vertical through gap + curves in margins
-            let d = `M ${centerX} ${data[0].top}`;
-            for (let i = 0; i < data.length; i++) {
-                d += ` L ${centerX} ${data[i].bottom}`;
-                if (i < data.length - 1) {
-                    const midY = (data[i].bottom + data[i + 1].top) / 2;
-                    const px = centerX + (i % 2 === 0 ? peakOffset : -peakOffset);
-                    d += ` Q ${px} ${midY}, ${centerX} ${data[i + 1].top}`;
-                }
-            }
+            // Path: straight vertical line through the center gap
+            const d = `M ${centerX} ${data[0].top} L ${centerX} ${data[data.length - 1].bottom}`;
 
             const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
             path.setAttribute('d', d);
