@@ -369,6 +369,45 @@
             transform: scale(1.05);
         }
 
+        /* ===== MULTI-IMAGE GALLERY ===== */
+        .itinerary-gallery {
+            display: grid;
+            gap: 6px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            height: 400px;
+        }
+
+        .itinerary-gallery .gallery-item {
+            overflow: hidden;
+        }
+
+        .itinerary-gallery .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .itinerary-gallery .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* 4 images: featured left + 3 stacked right */
+        .itinerary-gallery.gallery-4 {
+            grid-template-columns: 1.2fr 1fr;
+            grid-template-rows: repeat(3, 1fr);
+        }
+
+        .itinerary-gallery.gallery-4 .gallery-item:first-child {
+            grid-row: 1 / -1;
+        }
+
+        /* 2 images: side by side */
+        .itinerary-gallery.gallery-2 {
+            grid-template-columns: 1fr 1fr;
+        }
+
         .itinerary-content .section-label {
             text-align: left;
             margin-bottom: 12px;
@@ -639,6 +678,19 @@
                 height: 280px;
             }
 
+            .itinerary-gallery {
+                height: 300px;
+            }
+
+            .itinerary-gallery.gallery-4 {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 1fr 1fr;
+            }
+
+            .itinerary-gallery.gallery-4 .gallery-item:first-child {
+                grid-row: auto;
+            }
+
             .includes-grid {
                 grid-template-columns: 1fr;
             }
@@ -734,7 +786,7 @@
             <!-- Días 1-2: Edimburgo -->
             <div class="itinerary-block reveal">
                 <div class="itinerary-image">
-                    <img src="https://images.unsplash.com/photo-1594800083755-8fe31b2c99df?w=800&q=80" alt="Calle Victoria en Edimburgo">
+                    <img src="https://images.unsplash.com/photo-1571044880241-95d4c9aa06f5?w=800&q=80" alt="Edimburgo al atardecer">
                 </div>
                 <div class="itinerary-content">
                     <span class="section-label">Días 1 – 2</span>
@@ -751,8 +803,19 @@
 
             <!-- Días 3-4: Tierras Altas -->
             <div class="itinerary-block reverse reveal">
-                <div class="itinerary-image">
-                    <img src="https://images.unsplash.com/photo-1506377585622-bedcbb027afc?w=800&q=80" alt="Valle de Glencoe en las Tierras Altas de Escocia">
+                <div class="itinerary-gallery gallery-4">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1480241352829-e1573ff2414e?w=800&q=80" alt="Valle de Glencoe con lago al pie de la montaña">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1568665070033-c425669e6605?w=800&q=80" alt="Montañas de las Tierras Altas de Escocia">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1735093661171-22af5a2ff4c6?w=800&q=80" alt="Montaña con lago en Glencoe">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1700485639640-a26f9b4aabc0?w=800&q=80" alt="Lago Ness con montañas al fondo">
+                    </div>
                 </div>
                 <div class="itinerary-content">
                     <span class="section-label">Días 3 – 4</span>
@@ -769,8 +832,13 @@
 
             <!-- Días 5-6: Isla de Skye -->
             <div class="itinerary-block reveal">
-                <div class="itinerary-image">
-                    <img src="https://images.unsplash.com/photo-1520466809213-7b9a56adcd45?w=800&q=80" alt="Old Man of Storr en la Isla de Skye">
+                <div class="itinerary-gallery gallery-2">
+                    <div class="gallery-item">
+                        <img src="ISLA DE SYKE.jpeg" alt="Paisaje de la Isla de Skye">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1649270087311-a3403ca5da31?w=800&q=80" alt="Costa rocosa de la Isla de Skye">
+                    </div>
                 </div>
                 <div class="itinerary-content">
                     <span class="section-label">Días 5 – 6</span>
@@ -788,7 +856,7 @@
             <!-- Día 7: Regreso -->
             <div class="itinerary-block reverse reveal">
                 <div class="itinerary-image">
-                    <img src="https://images.unsplash.com/photo-1548519853-4c71758de1cf?w=800&q=80" alt="Castillo de Eilean Donan en Escocia">
+                    <img src="https://images.unsplash.com/photo-1628946329352-4b4e9fcbfa6a?w=800&q=80" alt="Castillo de Eilean Donan junto al lago">
                 </div>
                 <div class="itinerary-content">
                     <span class="section-label">Día 7</span>

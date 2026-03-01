@@ -78,21 +78,36 @@ Pagina web especializada en viajes de lujo personalizados.
 2. **Grid de destinos** — `padding-top: 30px`, section-header con `margin-bottom: 40px`
 3. **Footer**
 
-### Estructura de página de destino (`escocia.html` como referencia)
-1. **Hero** — `min-height: calc(70vh - 50px)`, `padding-top: 100px`, parallax (`background-attachment: fixed`), `background-position: center calc(50% + 60px)` (ajustar por destino)
-2. **Intro** — `padding-top: 30px`, `padding-bottom: 10px` — texto descriptivo centrado (`dest-intro-text`)
-3. **Itinerario** — `padding-top: 10px` — bloques en zigzag (`.itinerary-block` / `.itinerary-block.reverse`), imágenes 400px con hover scale(1.05)
+### Estructura de página de destino (`escocia.html` como referencia CANÓNICA)
+1. **Hero** — `min-height: calc(70vh - 110px)`, `padding-top: 100px`, `padding-bottom: 20px`, parallax (`background-attachment: fixed`), `background-position: center calc(50% + 60px)` (ajustar por destino)
+2. **Intro** — `padding-top: 30px`, `padding-bottom: 10px` — texto descriptivo centrado (`dest-intro-text`, max-width 780px)
+3. **Itinerario** — `padding-top: 10px` — bloques en zigzag (`.itinerary-block` / `.itinerary-block.reverse`), imágenes 400px con hover scale(1.05), gap 48px, margin-bottom 80px entre bloques
 4. **Qué incluye** — grid 4 columnas (`.includes-grid` / `.include-card`), fondo `var(--dark-soft)`
 5. **CTA** — centrado, enlaza a `index.html?destino=[Nombre]#contacto`
 6. **Footer** — idéntico con enlace al destino en la lista
 
-### Márgenes y espaciados estándar (NO cambiar)
-| Transición | Valor |
-|------------|-------|
-| Hero → Intro | `padding-top: 30px` |
-| Intro → Itinerario | `padding-bottom: 10px` (intro) + `padding-top: 10px` (itinerario) |
-| Itinerario bloques entre sí | `margin-bottom: 80px` |
-| Section-header → contenido | `margin-bottom: 64px` (default) o `40px` (región) |
+### Márgenes y espaciados estándar — OBLIGATORIOS para TODOS los destinos (NO cambiar)
+> **IMPORTANTE:** Estos valores provienen de `escocia.html` y son la referencia canónica.
+> Aplicar EXACTAMENTE estos mismos márgenes en cada nuevo destino que se cree.
+
+| Sección / Transición | Propiedad | Valor |
+|----------------------|-----------|-------|
+| Hero | `min-height` | `calc(70vh - 110px)` |
+| Hero | `padding-top` | `100px` |
+| Hero | `padding-bottom` | `20px` |
+| Hero content | `max-width` | `800px` |
+| Hero content | `padding` | `0 24px` |
+| Hero h1 | `margin-bottom` | `20px` |
+| Hero label | `margin-bottom` | `20px` |
+| Hero p | `margin-bottom` | `8px` |
+| Hero → Intro | `padding-top` (intro) | `30px` |
+| Intro | `padding-bottom` | `10px` |
+| Intro text | `max-width` | `780px` |
+| Intro → Itinerario | `padding-top` (itinerario) | `10px` |
+| Itinerario grid | `gap` | `48px` |
+| Itinerario bloques entre sí | `margin-bottom` | `80px` |
+| Itinerario último bloque | `margin-bottom` | `0` |
+| Section-header → contenido | `margin-bottom` | `64px` (destino) / `40px` (región) |
 
 ### CSS reutilizado de index.html
 Variables, navbar, footer, botones, tipografía, `.reveal`, `.section-header`, `.section-title`, `.section-label`, `.divider`, responsive breakpoints.
