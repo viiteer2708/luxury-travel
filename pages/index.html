@@ -1021,6 +1021,30 @@
             transition: opacity 0.3s;
         }
         .modal-close:hover { opacity: 0.85; }
+        .form-success {
+            text-align: center;
+            padding: 60px 24px;
+        }
+        .form-success-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: #fff;
+            font-size: 40px;
+            line-height: 80px;
+            margin: 0 auto 24px;
+        }
+        .form-success-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 1px;
+            line-height: 1.6;
+            max-width: 480px;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
@@ -1292,6 +1316,10 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Solicitar presupuesto &#10230;</button>
                 </form>
+                <div class="form-success" id="formSuccess" style="display:none;">
+                    <div class="form-success-icon">✓</div>
+                    <p class="form-success-text">SOLICITUD RECIBIDA, NOS PONDREMOS EN CONTACTO VIA WHATSAPP PARA EMPEZAR A CREAR TU VIAJE</p>
+                </div>
             </div>
         </div>
     </section>
@@ -1404,8 +1432,8 @@
                     pagina_origen: window.location.href
                 };
                 // Confirmación inmediata al usuario
-                form.reset();
-                document.getElementById('modalConfirmacion').classList.add('active');
+                form.style.display = 'none';
+                document.getElementById('formSuccess').style.display = 'block';
                 // Enviar a Make en segundo plano
                 fetch('https://hook.eu2.make.com/1hk9mobvb0pblxgx1xrguaasbe19d7t9', {
                     method: 'POST',
@@ -1447,15 +1475,6 @@
         })();
     </script>
 
-    <!-- Modal confirmación envío -->
-    <div class="modal-overlay" id="modalConfirmacion" onclick="if(event.target===this)this.classList.remove('active')">
-        <div class="modal-box">
-            <div class="modal-icon">✓</div>
-            <h3>¡Solicitud enviada!</h3>
-            <p>Gracias por confiar en nosotros. Nuestro equipo revisará tu solicitud y te contactará en las próximas 24 horas para empezar a diseñar tu viaje.</p>
-            <button class="modal-close" onclick="document.getElementById('modalConfirmacion').classList.remove('active')">Cerrar</button>
-        </div>
-    </div>
 
 </body>
 </html>
