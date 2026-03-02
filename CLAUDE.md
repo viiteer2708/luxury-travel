@@ -74,7 +74,7 @@ Pagina web especializada en viajes de lujo personalizados.
 - El CTA de cada destino enlaza a `index.html?destino=[Nombre]#contacto` (auto-fill JS)
 
 ### Estructura de página de región (`europa.html` como referencia)
-1. **Hero** — `min-height: calc(70vh - 110px)`, `padding-top: 120px`, `padding-bottom: 40px`
+1. **Hero** — `min-height: calc(70vh - 110px)`, `padding-top: 100px`, `padding-bottom: 20px`
 2. **Grid de destinos** — `padding-top: 30px`, section-header con `margin-bottom: 40px`
 3. **Footer**
 
