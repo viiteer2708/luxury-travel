@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Europa — Horizonte Exclusivo</title>
-    <meta name="description" content="Descubre los mejores destinos de lujo en Europa. Viajes exclusivos a medida por los rincones más extraordinarios del continente.">
+    <title>Pro Tips de Viaje — Horizonte Exclusivo</title>
+    <meta name="description" content="Consejos exclusivos de viaje por destino: qué llevar, cuándo ir, gastronomía, cultura y secretos de cada rincón del mundo.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -259,9 +259,9 @@
             overflow: hidden;
             padding-top: 100px;
             padding-bottom: 20px;
-            background-image: url('https://images.unsplash.com/photo-1483972117325-ce4920ff780b?w=1920&q=80');
+            background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1920&q=80');
             background-size: cover;
-            background-position: center calc(50% - 100px);
+            background-position: center 60%;
             background-attachment: fixed;
         }
 
@@ -309,124 +309,76 @@
             animation: fadeInUp 0.8s 0.4s ease both;
         }
 
-        /* ===== DESTINATIONS GRID ===== */
-        .destinations-grid {
+        /* ===== TIP CARDS ===== */
+        .tips-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 28px;
         }
 
-        .destination-card {
+        .tip-card {
             background: var(--dark-card);
             border-radius: var(--radius);
-            overflow: hidden;
+            padding: 32px 28px;
             border: 1px solid rgba(255,255,255,0.05);
             transition: var(--transition);
             position: relative;
         }
 
-        .destination-card:hover {
-            transform: translateY(-8px);
+        .tip-card:hover {
+            transform: translateY(-6px);
             border-color: rgba(201,169,110,0.2);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.4);
         }
 
-        .card-image {
-            position: relative;
-            height: 280px;
-            overflow: hidden;
-        }
-
-        .card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .destination-card:hover .card-image img {
-            transform: scale(1.08);
-        }
-
-        .card-badge {
-            position: absolute;
-            top: 16px;
-            left: 16px;
-            padding: 6px 14px;
-            background: rgba(10,10,10,0.7);
-            backdrop-filter: blur(10px);
+        .tip-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(201,169,110,0.12);
+            border: 1px solid rgba(201,169,110,0.25);
             border-radius: 50px;
             font-size: 0.7rem;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             color: var(--gold);
-            border: 1px solid rgba(201,169,110,0.3);
+            margin-bottom: 16px;
         }
 
-        .card-body {
-            padding: 28px;
+        .tip-icon {
+            font-size: 2rem;
+            margin-bottom: 16px;
+            display: block;
         }
 
-        .card-location {
-            font-size: 0.75rem;
-            color: var(--gold);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-
-        .card-body h3 {
-            font-size: 1.4rem;
+        .tip-card h4 {
+            font-size: 1.15rem;
             color: var(--white);
             margin-bottom: 12px;
         }
 
-        .card-body p {
+        .tip-card p {
             font-size: 0.9rem;
             color: var(--text-muted);
-            margin-bottom: 20px;
             line-height: 1.7;
         }
 
-        .card-features {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
+        /* ===== CTA ===== */
+        .tips-cta {
+            text-align: center;
+            padding-top: 30px;
         }
 
-        .card-features span {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.78rem;
+        .tips-cta h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .tips-cta p {
             color: var(--text-muted);
-            padding: 6px 12px;
-            background: rgba(255,255,255,0.04);
-            border-radius: 50px;
-        }
-
-        .card-features span::before {
-            content: '✦';
-            color: var(--gold);
-            font-size: 0.6rem;
-        }
-
-        .card-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 20px;
-            font-size: 0.82rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: var(--gold);
-            transition: var(--transition);
-        }
-
-        .card-link:hover {
-            color: var(--gold-light);
-            gap: 10px;
+            max-width: 540px;
+            margin: 0 auto 32px;
+            font-weight: 300;
         }
 
         /* ===== FOOTER ===== */
@@ -537,7 +489,7 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
-            .destinations-grid {
+            .tips-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
@@ -584,7 +536,7 @@
                 background-attachment: scroll;
             }
 
-            .destinations-grid {
+            .tips-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -647,82 +599,198 @@
     <!-- HERO -->
     <section class="region-hero">
         <div class="region-hero-content">
-            <h1>Top Destinos Europa</h1>
-            <p>Los rincones más exclusivos del viejo continente, diseñados para viajeros que buscan lo extraordinario</p>
+            <span class="section-label">Horizonte Exclusivo</span>
+            <h1>Pro Tips de Viaje</h1>
+            <p>Consejos esenciales de nuestros expertos para que cada detalle de tu viaje sea perfecto</p>
         </div>
     </section>
 
-    <!-- DESTINATIONS -->
+    <!-- TIPS GENERALES -->
     <section style="padding-top: 30px;">
         <div class="container">
             <div class="section-header reveal" style="margin-bottom: 40px;">
-                <span class="section-label">Colección 2026</span>
-                <h2 class="section-title">Nuestras experiencias en Europa</h2>
+                <span class="section-label">Esenciales</span>
+                <h2 class="section-title">Consejos generales</h2>
                 <div class="divider"></div>
-                <p class="section-subtitle">Cada viaje es una experiencia irrepetible, diseñada con atención artesanal al detalle</p>
+                <p class="section-subtitle">Aplica estos tips en cualquier destino para una experiencia sin contratiempos</p>
             </div>
 
-            <div class="destinations-grid">
-                <!-- Escocia -->
-                <div class="destination-card reveal">
-                    <a href="escocia.html">
-                        <div class="card-image">
-                            <img src="https://images.unsplash.com/photo-1506377585622-bedcbb027afc?w=600&q=80" alt="Tierras Altas de Escocia">
-                            <span class="card-badge">Nuevo</span>
-                        </div>
-                        <div class="card-body">
-                            <span class="card-location">Escocia, Reino Unido</span>
-                            <h3>Tierras Altas y Leyendas</h3>
-                            <p>Edimburgo, Highlands, Isla de Skye y castillos centenarios. Una aventura entre paisajes dramáticos y whisky single malt.</p>
-                            <div class="card-features">
-                                <span>8 días</span>
-                                <span>Guía privado</span>
-                                <span>Lodges 5★</span>
-                            </div>
-                            <span class="card-link">Ver itinerario &#10230;</span>
-                        </div>
-                    </a>
+            <div class="tips-grid">
+                <div class="tip-card reveal">
+                    <span class="tip-icon">🧳</span>
+                    <h4>Equipaje inteligente</h4>
+                    <p>Lleva siempre una muda completa en el equipaje de mano. Invierte en organizadores de compresión y limita los zapatos a tres pares máximo. Menos es más cuando viajas con estilo.</p>
                 </div>
-                <!-- Italia -->
-                <div class="destination-card reveal">
-                    <a href="italia.html">
-                        <div class="card-image">
-                            <img src="https://images.unsplash.com/photo-1529260830199-42c24126f198?w=600&q=80" alt="Roma al atardecer">
-                            <span class="card-badge">Nuevo</span>
-                        </div>
-                        <div class="card-body">
-                            <span class="card-location">Italia</span>
-                            <h3>Dolce Vita</h3>
-                            <p>Roma, Florencia, Toscana y Venecia. Arte, gastronomía y paisajes que parecen pintados a mano en un viaje equilibrado y sin prisas.</p>
-                            <div class="card-features">
-                                <span>10–12 días</span>
-                                <span>Guía privado</span>
-                                <span>Hoteles boutique</span>
-                            </div>
-                            <span class="card-link">Ver itinerario &#10230;</span>
-                        </div>
-                    </a>
+                <div class="tip-card reveal">
+                    <span class="tip-icon">📅</span>
+                    <h4>Reservas con antelación</h4>
+                    <p>Los restaurantes exclusivos y experiencias privadas se agotan meses antes. Reserva con al menos 60 días de antelación, especialmente en temporada alta. Tu asesor lo gestiona por ti.</p>
                 </div>
-                <div class="destination-card reveal">
-                    <a href="islandia.html">
-                        <div class="card-image">
-                            <img src="https://images.unsplash.com/photo-1488415032361-b7e238421f1b?w=600&q=80" alt="Islandia">
-                            <span class="card-badge">Nuevo</span>
-                        </div>
-                        <div class="card-body">
-                            <span class="card-location">Islandia</span>
-                            <h3>Fuego, hielo y auroras</h3>
-                            <p>Glaciares infinitos, cascadas imponentes, playas de arena negra y auroras boreales en un escenario casi irreal.</p>
-                            <div class="card-features">
-                                <span>8 días</span>
-                                <span>Guía privado</span>
-                                <span>Lodges exclusivos</span>
-                            </div>
-                            <span class="card-link">Ver itinerario &#10230;</span>
-                        </div>
-                    </a>
+                <div class="tip-card reveal">
+                    <span class="tip-icon">📶</span>
+                    <h4>Conectividad global</h4>
+                    <p>Hazte con una eSIM internacional antes de salir. Evitarás cargos de roaming y tendrás datos desde que aterrices. Airalo y Holafly son opciones fiables para viajeros frecuentes.</p>
+                </div>
+                <div class="tip-card reveal">
+                    <span class="tip-icon">💳</span>
+                    <h4>Dinero y tarjetas</h4>
+                    <p>Lleva siempre una tarjeta sin comisiones por cambio de divisa (Revolut, Wise). Ten algo de efectivo local para mercados y propinas. Avisa a tu banco antes de viajar.</p>
+                </div>
+                <div class="tip-card reveal">
+                    <span class="tip-icon">📸</span>
+                    <h4>Fotografía de viaje</h4>
+                    <p>La hora dorada (amanecer y atardecer) es tu mejor aliada. Dispara en RAW si puedes, y no olvides una batería extra. Los mejores recuerdos se capturan cuando dejas de posar.</p>
+                </div>
+                <div class="tip-card reveal">
+                    <span class="tip-icon">🛡️</span>
+                    <h4>Seguro de viaje</h4>
+                    <p>Nunca viajes sin seguro médico internacional con cobertura de evacuación. Revisa que cubra actividades de aventura si las incluye tu itinerario. Es lo primero que contratar.</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- TIPS EUROPA -->
+    <section style="padding-top: 30px; background: var(--dark-soft); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <div class="container">
+            <div class="section-header reveal" style="margin-bottom: 40px;">
+                <span class="section-label">Europa</span>
+                <h2 class="section-title">Tips por destino europeo</h2>
+                <div class="divider"></div>
+                <p class="section-subtitle">Secretos y recomendaciones para sacar el máximo partido a cada destino</p>
+            </div>
+
+            <div class="tips-grid">
+                <div class="tip-card reveal">
+                    <span class="tip-badge">Escocia</span>
+                    <span class="tip-icon">🌧️</span>
+                    <h4>Capas y más capas</h4>
+                    <p>El clima escocés cambia en minutos. Lleva siempre una chaqueta impermeable y viste por capas. De mayo a septiembre los días son largos y luminosos, ideales para las Highlands.</p>
+                </div>
+                <div class="tip-card reveal">
+                    <span class="tip-badge">Escocia</span>
+                    <span class="tip-icon">🥃</span>
+                    <h4>Whisky con criterio</h4>
+                    <p>Cada región produce un estilo distinto: ahumado en Islay, afrutado en Speyside, floral en Lowlands. Pide siempre un dram en las destilerías locales — la experiencia es única.</p>
+                </div>
+                <div class="tip-card reveal">
+                    <span class="tip-badge">Italia</span>
+                    <span class="tip-icon">🍝</span>
+                    <h4>Comer como un local</h4>
+                    <p>Evita restaurantes frente a monumentos. Busca las trattorias donde comen los italianos. El cappuccino solo se toma por la mañana — después del almuerzo, solo espresso.</p>
+                </div>
+                <div class="tip-card reveal">
+                    <span class="tip-badge">Italia</span>
+                    <span class="tip-icon">🏛️</span>
+                    <h4>Entradas anticipadas</h4>
+                    <p>El Vaticano, los Uffizi y el Coliseo requieren reserva previa obligatoria. Compra las entradas con semanas de antelación o tu asesor las gestionará con acceso prioritario.</p>
+                </div>
+                <div class="tip-card reveal">
+                    <span class="tip-badge">Islandia</span>
+                    <span class="tip-icon">🌋</span>
+                    <h4>Conducción en Islandia</h4>
+                    <p>Las carreteras F requieren 4x4 obligatorio. En invierno, consulta road.is antes de salir. Los días de verano son eternos (sol de medianoche), pero en invierno apenas hay luz.</p>
+                </div>
+                <div class="tip-card reveal">
+                    <span class="tip-badge">Islandia</span>
+                    <span class="tip-icon">♨️</span>
+                    <h4>Aguas termales secretas</h4>
+                    <p>Más allá de la Blue Lagoon, Islandia esconde hot pots naturales por todo el país. Lleva siempre bañador en la mochila. La etiqueta local: dúchate sin ropa antes de entrar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIPS ASIA -->
+    <section style="padding-top: 30px;">
+        <div class="container">
+            <div class="section-header reveal" style="margin-bottom: 40px;">
+                <span class="section-label">Asia</span>
+                <h2 class="section-title">Tips por destino asiático</h2>
+                <div class="divider"></div>
+                <p class="section-subtitle">Claves culturales y prácticas para disfrutar de Oriente con respeto y plenitud</p>
+            </div>
+
+            <div class="tips-grid">
+                <div class="tip-card reveal">
+                    <span class="tip-badge">Tailandia</span>
+                    <span class="tip-icon">🙏</span>
+                    <h4>Templos y etiqueta</h4>
+                    <p>Cubre hombros y rodillas en todos los templos. Quítate los zapatos antes de entrar. Nunca toques la cabeza a nadie ni señales con los pies — es una ofensa cultural grave.</p>
+                </div>
+                <div class="tip-card reveal">
+                    <span class="tip-badge">Japón</span>
+                    <span class="tip-icon">🚄</span>
+                    <h4>Japan Rail Pass</h4>
+                    <p>Si vas a moverte entre ciudades, el JR Pass ahorra tiempo y dinero. Actívalo en la estación al llegar. Los shinkansen son puntuales al segundo — no llegues tarde al andén.</p>
+                </div>
+                <div class="tip-card reveal">
+                    <span class="tip-badge">Bali</span>
+                    <span class="tip-icon">🛵</span>
+                    <h4>Moverse en Bali</h4>
+                    <p>El tráfico en Bali es caótico. Contrata conductor privado para rutas largas. Si alquilas moto, usa casco siempre y conduce con extrema precaución. Las apps de ride-hailing funcionan bien.</p>
+                </div>
+                <div class="tip-card reveal">
+                    <span class="tip-badge">Vietnam</span>
+                    <span class="tip-icon">🍜</span>
+                    <h4>Street food seguro</h4>
+                    <p>El mejor pho y banh mi está en puestos callejeros. Busca los más concurridos por locales — alta rotación significa frescura. Evita el hielo en zonas rurales y lleva siempre probióticos.</p>
+                </div>
+                <div class="tip-card reveal">
+                    <span class="tip-badge">Malasia</span>
+                    <span class="tip-icon">🌴</span>
+                    <h4>Diversidad cultural</h4>
+                    <p>Malasia mezcla culturas malaya, china e india. Respeta las costumbres de cada comunidad. En zonas musulmanas, viste con modestia. Los hawker centres son el paraíso gastronómico.</p>
+                </div>
+                <div class="tip-card reveal">
+                    <span class="tip-badge">Filipinas</span>
+                    <span class="tip-icon">🏝️</span>
+                    <h4>Island hopping</h4>
+                    <p>Reserva los tours de isla en isla con antelación en temporada alta. Lleva reef-safe sunscreen para proteger los corales. El mejor snorkel está en Coron y El Nido al amanecer.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIPS AFRICA -->
+    <section style="padding-top: 30px; background: var(--dark-soft); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <div class="container">
+            <div class="section-header reveal" style="margin-bottom: 40px;">
+                <span class="section-label">África</span>
+                <h2 class="section-title">Tips por destino africano</h2>
+                <div class="divider"></div>
+                <p class="section-subtitle">Preparación esencial para vivir el continente más salvaje con seguridad y emoción</p>
+            </div>
+
+            <div class="tips-grid">
+                <div class="tip-card reveal">
+                    <span class="tip-badge">Egipto</span>
+                    <span class="tip-icon">🏺</span>
+                    <h4>Visitas a templos</h4>
+                    <p>Madruga para las pirámides y el Valle de los Reyes — el calor a mediodía es brutal. Lleva agua, protección solar y ropa ligera de manga larga. Un guía egiptólogo transforma la experiencia.</p>
+                </div>
+                <div class="tip-card reveal">
+                    <span class="tip-badge">Egipto</span>
+                    <span class="tip-icon">🐪</span>
+                    <h4>Regateo con arte</h4>
+                    <p>En los zocos, el regateo es parte de la cultura. Empieza ofreciendo un tercio del precio inicial. Sonríe, sé firme pero respetuoso. Si no te interesa, un simple «la shukran» basta.</p>
+                </div>
+                <div class="tip-card reveal">
+                    <span class="tip-badge">Kenia & Zanzíbar</span>
+                    <span class="tip-icon">🦁</span>
+                    <h4>Safari perfecto</h4>
+                    <p>Los game drives al amanecer son los más espectaculares. Lleva prismáticos, ropa en colores neutros y una buena cámara con zoom. La gran migración (julio-octubre) es un espectáculo único en el mundo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="tips-cta">
+        <div class="container reveal">
+            <h2>¿Listo para <em style="color: var(--gold);">tu próxima aventura</em>?</h2>
+            <p>Cuéntanos tu destino soñado y diseñaremos un viaje a tu medida con todos estos tips ya integrados.</p>
+            <a href="../index.html?destino=Consulta%20general#contacto" class="btn btn-primary">Solicitar presupuesto &#10230;</a>
         </div>
     </section>
 

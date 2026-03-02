@@ -24,6 +24,7 @@ pages/              — Todas las páginas HTML
   italia.html       — Destino: Italia
   tailandia.html    — Destino: Tailandia
   ...               — (y demás destinos)
+  pro-tips.html     — Página de Pro Tips de viaje
 images/             — Todas las imágenes locales
   logo-trimmed.png  — Logo del sitio
   *.jpeg / *.jpg    — Imágenes locales del repositorio
@@ -54,27 +55,28 @@ images/             — Todas las imágenes locales
 - Cada región del dropdown (Europa, Asia, Africa, etc.) tiene su página `[region].html` con título "Top Destinos [Región]"
 - Cada destino individual tiene su página `[destino].html` (ej: `escocia.html`)
 - Las páginas de región muestran tarjetas que enlazan a los destinos individuales
-- El CTA de cada destino enlaza a `index.html?destino=[Nombre]#contacto` (auto-fill JS)
+- El CTA de cada destino enlaza a `../index.html?destino=[Nombre]#contacto` (auto-fill JS)
 
-### Navbar (IDÉNTICA en TODAS las páginas)
+### Navbar (IDÉNTICA en TODAS las páginas de `pages/`)
 ```html
-<li><a href="index.html">Nuevos horizontes</a></li>
+<li><a href="../index.html">Nuevos horizontes</a></li>
 <li>
-    <a href="index.html#destinos">Destinos</a>
+    <a href="../index.html#destinos">Destinos</a>
     <div class="dropdown">
-        <a href="#">Africa</a>
-        <a href="#">América</a>
+        <a href="africa.html">Africa</a>
+        <a href="america.html">América</a>
         <a href="asia.html">Asia</a>
-        <a href="#">Caribe</a>
+        <a href="caribe.html">Caribe</a>
         <a href="europa.html">Europa</a>
-        <a href="#">Paraísos sobre el agua</a>
+        <a href="paraisos.html">Paraísos sobre el agua</a>
     </div>
 </li>
-<li><a href="index.html#testimonios">¿Quién hay detrás?</a></li>
-<li><a href="index.html#contacto">Contacto</a></li>
-<li><a href="#">Pro Tips</a></li>
+<li><a href="../index.html#testimonios">¿Quién hay detrás?</a></li>
+<li><a href="../index.html#contacto">Contacto</a></li>
+<li><a href="pro-tips.html">Pro Tips</a></li>
 ```
-- En `index.html` los enlaces usan `#seccion` (sin `index.html`)
+- En `index.html` (raíz): los enlaces internos usan `#seccion`, los de páginas usan `pages/[pagina].html`
+- Desde `pages/`: enlaces a index usan `../index.html`, entre páginas se referencian directamente
 - Logo usa `../images/logo-trimmed.png`
 - Mobile (≤768px): `.navbar .container { max-width: 100%; padding: 0 16px; }`
 
