@@ -6,18 +6,30 @@ Página web estática especializada en viajes de lujo personalizados.
 - CSS embebido (variables CSS, sin frameworks)
 - JavaScript vanilla (sin dependencias)
 - Fuentes: Google Fonts (Playfair Display + Inter)
+- Make (webhooks para automatización de formularios)
 
 ## Estructura de Archivos
 ```
-index.html          — Página principal (hero, destinos, quiénes somos, contacto)
-europa.html         — Página de región Europa
-asia.html           — Página de región Asia
-escocia.html        — Destino: Escocia (REFERENCIA CANÓNICA)
-italia.html         — Destino: Italia
-tailandia.html      — Destino: Tailandia
-logo-trimmed.png    — Logo del sitio
-*.jpeg              — Imágenes locales del repositorio
+pages/              — Todas las páginas HTML
+  index.html        — Página principal (hero, destinos, quiénes somos, contacto)
+  europa.html       — Página de región Europa
+  asia.html         — Página de región Asia
+  africa.html       — Página de región África
+  america.html      — Página de región América
+  caribe.html       — Página de región Caribe
+  paraisos.html     — Página de región Paraísos sobre el agua
+  escocia.html      — Destino: Escocia (REFERENCIA CANÓNICA)
+  italia.html       — Destino: Italia
+  tailandia.html    — Destino: Tailandia
+  ...               — (y demás destinos)
+images/             — Todas las imágenes locales
+  logo-trimmed.png  — Logo del sitio
+  *.jpeg / *.jpg    — Imágenes locales del repositorio
 ```
+
+### Rutas relativas
+- Desde `pages/`: las imágenes se referencian como `../images/nombre.ext`
+- Entre páginas: se referencian directamente (ej: `europa.html`, `escocia.html`)
 
 ## Reglas de Ejecución
 
@@ -61,7 +73,7 @@ logo-trimmed.png    — Logo del sitio
 <li><a href="#">Pro Tips</a></li>
 ```
 - En `index.html` los enlaces usan `#seccion` (sin `index.html`)
-- Logo usa `logo-trimmed.png`
+- Logo usa `../images/logo-trimmed.png`
 - Mobile (≤768px): `.navbar .container { max-width: 100%; padding: 0 16px; }`
 
 ---
@@ -104,7 +116,8 @@ logo-trimmed.png    — Logo del sitio
 ```
 
 ### 3. Añadir imágenes locales al repositorio
-- `git add [imagen].jpeg` para cada imagen local
+- Guardar imágenes en `images/` y referenciarlas como `../images/[imagen].jpeg`
+- `git add images/[imagen].jpeg` para cada imagen local
 - Las imágenes que NO son de Unsplash SIEMPRE deben estar en el repositorio
 
 ### 4. No olvidar
@@ -214,4 +227,4 @@ logo-trimmed.png    — Logo del sitio
 - Hero: Unsplash `?w=1920&q=80`
 - Itinerario: Unsplash `?w=800&q=80`
 - Tarjetas región: Unsplash `?w=600&q=80`
-- **Las imágenes locales (no Unsplash) SIEMPRE van en el repositorio** — hacer `git add` antes de commit
+- **Las imágenes locales (no Unsplash) SIEMPRE van en `images/`** — referenciar como `../images/nombre.ext` desde `pages/`, hacer `git add` antes de commit
