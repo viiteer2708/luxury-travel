@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islandia — Horizonte Exclusivo</title>
+    <meta name="description" content="Viaje de lujo a Islandia: Reykjavík, Snaefellsnes, Círculo Dorado, Costa Sur, Jökulsárlón y Laguna Azul. Fuego, hielo y paisajes de otro planeta.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --gold: #c9a96e;
+            --gold-light: #e8d5a8;
+            --dark: #0a0a0a;
+            --dark-soft: #1a1a1a;
+            --dark-card: #111111;
+            --text: #e0e0e0;
+            --text-muted: #8a8a8a;
+            --white: #ffffff;
+            --radius: 12px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
+        ul { list-style: none; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 10px 0; background: var(--dark); border-bottom: 1px solid rgba(201,169,110,0.15); transition: var(--transition); }
+        .navbar.scrolled { background: var(--dark); backdrop-filter: blur(20px); padding: 6px 0; box-shadow: 0 2px 40px rgba(0,0,0,0.5); }
+        .navbar .container { display: flex; justify-content: space-between; align-items: center; max-width: 80%; padding: 0 24px; }
+        .logo { display: inline-block; transition: var(--transition); }
+        .logo img { height: 80px; width: auto; transition: var(--transition); }
+        .navbar.scrolled .logo img { height: 60px; }
+        .nav-links { display: flex; gap: 36px; align-items: center; }
+        .nav-links a { font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 400; letter-spacing: 0.5px; color: var(--gold-light); transition: var(--transition); position: relative; padding: 8px 18px; border-radius: 50px; }
+        .nav-links a:hover { background: var(--gold); color: var(--dark); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,169,110,0.3); }
+        .nav-links li { position: relative; list-style: none; }
+        .dropdown { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); min-width: 220px; background: var(--dark-soft); border: 1px solid rgba(201,169,110,0.15); border-radius: 8px; padding: 12px 0; opacity: 0; visibility: hidden; transition: var(--transition); box-shadow: 0 16px 40px rgba(0,0,0,0.4); z-index: 100; margin-top: 8px; }
+        .nav-links li:hover .dropdown { opacity: 1; visibility: visible; }
+        .dropdown a { display: block; padding: 10px 24px; font-size: 0.8rem; font-weight: 400; letter-spacing: 1px; color: var(--text-muted); transition: var(--transition); white-space: nowrap; border-radius: 0; background: none; transform: none; box-shadow: none; }
+        .dropdown a:hover { color: var(--gold); background: rgba(201,169,110,0.08); padding-left: 28px; transform: none; box-shadow: none; }
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+        .hamburger span { width: 24px; height: 2px; background: var(--gold); transition: var(--transition); }
+
+        /* ===== BUTTONS ===== */
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 16px 36px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; transition: var(--transition); cursor: pointer; border: none; font-family: 'Inter', sans-serif; }
+        .btn-primary { background: var(--gold); color: var(--dark); }
+        .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,169,110,0.3); }
+        .btn-outline { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.25); }
+        .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+        /* ===== SECTION COMMON ===== */
+        section { padding: 120px 0; }
+        .section-header { text-align: center; margin-bottom: 64px; }
+        .section-label { font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; display: block; }
+        .section-title { font-size: clamp(2rem, 4vw, 3rem); color: var(--white); margin-bottom: 16px; }
+        .divider { width: 60px; height: 1px; background: var(--gold); margin: 20px auto; }
+
+        /* ===== DESTINATION HERO ===== */
+        .dest-hero {
+            min-height: calc(70vh - 110px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 100px;
+            padding-bottom: 20px;
+            background-image: url('https://images.unsplash.com/photo-1532586733327-54ac07aa1154?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .dest-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.6) 50%, var(--dark) 100%); }
+        .dest-hero-content { position: relative; z-index: 2; max-width: 800px; padding: 0 24px; }
+        .dest-hero-content .section-label { font-size: 0.85rem; letter-spacing: 5px; margin-bottom: 20px; animation: fadeInUp 0.8s ease both; }
+        .dest-hero-content h1 { font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 700; color: var(--white); line-height: 1.1; margin-bottom: 20px; animation: fadeInUp 0.8s 0.2s ease both; text-shadow: -1px -1px 0 rgba(0,0,0,0.6), 1px -1px 0 rgba(0,0,0,0.6), -1px 1px 0 rgba(0,0,0,0.6), 1px 1px 0 rgba(0,0,0,0.6); }
+        .dest-hero-content p { font-size: clamp(1rem, 2.5vw, 1.2rem); color: var(--gold-light); font-weight: 300; margin-bottom: 8px; animation: fadeInUp 0.8s 0.4s ease both; }
+        .dest-hero-content .dest-duration { font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); animation: fadeInUp 0.8s 0.6s ease both; }
+
+        /* ===== DESTINATION INTRO ===== */
+        .dest-intro-text { max-width: 780px; margin: 0 auto; text-align: center; font-size: 1.05rem; color: var(--text); line-height: 1.9; font-weight: 300; }
+
+        /* ===== ITINERARY BLOCKS ===== */
+        .itinerary-block { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-bottom: 80px; }
+        .itinerary-block:last-child { margin-bottom: 0; }
+        .itinerary-block.reverse .itinerary-image, .itinerary-block.reverse .itinerary-gallery, .itinerary-block.reverse .itinerary-carousel { order: 2; }
+        .itinerary-block.reverse .itinerary-content { order: 1; }
+        .itinerary-image { border-radius: var(--radius); overflow: hidden; position: relative; }
+        .itinerary-image img { width: 100%; height: 400px; object-fit: cover; transition: transform 0.6s ease; }
+        .itinerary-image:hover img { transform: scale(1.05); }
+
+        /* ===== MULTI-IMAGE GALLERY ===== */
+        .itinerary-gallery { display: grid; gap: 6px; border-radius: var(--radius); overflow: hidden; height: 400px; }
+        .itinerary-gallery .gallery-item { overflow: hidden; }
+        .itinerary-gallery .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .itinerary-gallery .gallery-item:hover img { transform: scale(1.05); }
+        .itinerary-gallery.gallery-4 { grid-template-columns: 1.2fr 1fr; grid-template-rows: repeat(3, 1fr); }
+        .itinerary-gallery.gallery-4 .gallery-item:first-child { grid-row: 1 / -1; }
+        .itinerary-gallery.gallery-2 { grid-template-columns: 1fr 1fr; }
+
+        /* ===== ITINERARY CAROUSEL ===== */
+        .itinerary-carousel { position: relative; border-radius: var(--radius); overflow: hidden; height: 400px; }
+        .itinerary-carousel .carousel-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.6s ease; }
+        .itinerary-carousel .carousel-slide.active { opacity: 1; }
+        .itinerary-carousel .carousel-slide img { width: 100%; height: 100%; object-fit: cover; }
+        .carousel-controls { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 12px; z-index: 2; }
+        .carousel-btn { width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.4); background: rgba(0,0,0,0.3); backdrop-filter: blur(4px); color: white; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
+        .carousel-btn:hover { background: rgba(0,0,0,0.6); border-color: rgba(255,255,255,0.7); }
+        .carousel-dots { display: flex; gap: 8px; }
+        .carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.4); border: none; cursor: pointer; transition: all 0.3s ease; padding: 0; }
+        .carousel-dot.active { background: var(--gold); transform: scale(1.2); }
+
+        .itinerary-content .section-label { text-align: left; margin-bottom: 12px; }
+        .itinerary-content h3 { font-size: 1.8rem; color: var(--white); margin-bottom: 16px; }
+        .itinerary-content p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; font-weight: 300; }
+        .itinerary-content ul { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+        .itinerary-content ul li { font-size: 0.88rem; color: var(--text); padding-left: 20px; position: relative; }
+        .itinerary-content ul li::before { content: '\2726'; position: absolute; left: 0; color: var(--gold); font-size: 0.6rem; top: 4px; }
+
+        /* ===== INCLUDES GRID ===== */
+        .includes-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+        .include-card { background: var(--dark-card); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius); padding: 36px 28px; text-align: center; transition: var(--transition); }
+        .include-card:hover { border-color: rgba(201,169,110,0.2); transform: translateY(-4px); }
+        .include-card .include-icon { font-size: 2rem; margin-bottom: 16px; display: block; }
+        .include-card h4 { font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--white); margin-bottom: 10px; letter-spacing: 0.5px; }
+        .include-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; font-weight: 300; }
+
+        /* ===== DESTINATION CTA ===== */
+        .dest-cta { text-align: center; padding-top: 30px; background: var(--dark-soft); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .dest-cta h2 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); color: var(--white); margin-bottom: 16px; }
+        .dest-cta p { color: var(--text-muted); font-weight: 300; max-width: 540px; margin: 0 auto 32px; line-height: 1.8; }
+
+        /* ===== FOOTER ===== */
+        footer { background: var(--dark-soft); border-top: 1px solid rgba(255,255,255,0.05); padding: 80px 0 0; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 60px; }
+        .footer-brand .logo { margin-bottom: 16px; }
+        .footer-brand .logo img { height: 70px; }
+        .footer-brand p { color: var(--text-muted); font-size: 0.9rem; font-weight: 300; line-height: 1.8; margin-bottom: 24px; }
+        .social-links { display: flex; gap: 12px; }
+        .social-links a { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; transition: var(--transition); }
+        .social-links a:hover { border-color: var(--gold); background: rgba(201,169,110,0.1); color: var(--gold); }
+        .footer-column h4 { font-family: 'Inter', sans-serif; font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; color: var(--white); margin-bottom: 24px; }
+        .footer-column ul { display: flex; flex-direction: column; gap: 12px; }
+        .footer-column a { font-size: 0.9rem; color: var(--text-muted); transition: var(--transition); }
+        .footer-column a:hover { color: var(--gold); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--text-muted); }
+        .footer-bottom-links { display: flex; gap: 24px; }
+        .footer-bottom-links a { color: var(--text-muted); transition: var(--transition); }
+        .footer-bottom-links a:hover { color: var(--gold); }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .includes-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .navbar .container { max-width: 100%; padding: 0 16px; }
+            section { padding: 80px 0; }
+            .logo img { height: 60px; }
+            .navbar.scrolled .logo img { height: 45px; }
+            .hamburger { display: flex; }
+            .nav-links { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--dark); flex-direction: column; justify-content: center; gap: 28px; transition: var(--transition); border-left: 1px solid rgba(201,169,110,0.15); }
+            .nav-links.active { right: 0; }
+            .dest-hero { background-attachment: scroll; }
+            .route-line { display: none; }
+            .itinerary-block { grid-template-columns: 1fr; gap: 28px; }
+            .itinerary-block.reverse .itinerary-image, .itinerary-block.reverse .itinerary-gallery, .itinerary-block.reverse .itinerary-carousel, .itinerary-block.reverse .itinerary-content { order: unset; }
+            .itinerary-image img { height: 280px; }
+            .itinerary-carousel { height: 280px; }
+            .itinerary-gallery { height: 300px; }
+            .itinerary-gallery.gallery-4 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+            .itinerary-gallery.gallery-4 .gallery-item:first-child { grid-row: auto; }
+            .includes-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+            .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+        }
+
+        @media (max-width: 480px) {
+            .logo img { height: 48px; }
+            .navbar.scrolled .logo img { height: 36px; }
+            .footer-brand .logo img { height: 50px; }
+            .includes-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo"><img src="logo-trimmed.png" alt="Horizonte Exclusivo"></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Nuevos horizontes</a></li>
+                <li>
+                    <a href="index.html#destinos">Destinos</a>
+                    <div class="dropdown">
+                        <a href="africa.html">Africa</a>
+                        <a href="america.html">América</a>
+                        <a href="asia.html">Asia</a>
+                        <a href="caribe.html">Caribe</a>
+                        <a href="europa.html">Europa</a>
+                        <a href="paraisos.html">Paraísos sobre el agua</a>
+                    </div>
+                </li>
+                <li><a href="index.html#testimonios">¿Quién hay detrás?</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+                <li><a href="#">Pro Tips</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="dest-hero">
+        <div class="dest-hero-content">
+            <span class="section-label">Europa</span>
+            <h1>Islandia</h1>
+            <p>Fuego, hielo y paisajes que parecen de otro planeta</p>
+            <span class="dest-duration">8 días / 7 noches</span>
+        </div>
+    </section>
+
+    <!-- INTRO -->
+    <section style="padding-top: 30px; padding-bottom: 10px;">
+        <div class="container">
+            <p class="dest-intro-text reveal">
+                Islandia es naturaleza en estado puro. Glaciares infinitos, cascadas imponentes, playas de arena negra y campos de lava crean un escenario casi irreal. Un viaje para quienes buscan amplitud, silencio y experiencias intensas en un entorno salvaje pero cuidadosamente organizado.
+            </p>
+        </div>
+    </section>
+
+    <!-- ITINERARY -->
+    <section id="itinerario" style="padding-top: 10px;">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Itinerario</span>
+                <h2 class="section-title">Tu viaje día a día</h2>
+                <div class="divider"></div>
+            </div>
+
+            <!-- REYKJAVÍK -->
+            <div class="itinerary-block reveal">
+                <div class="itinerary-carousel">
+                    <div class="carousel-slide active">
+                        <img src="https://images.unsplash.com/photo-1606130503037-6a8ef67c9d2d?w=800&q=80" alt="Vista aérea de Reykjavík">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1474690870753-1b92efa1f2d8?w=800&q=80" alt="Hallgrímskirkja en Reykjavík">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1655666272067-f6c942e9a547?w=800&q=80" alt="Ciudad de Reykjavík">
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
+                        <div class="carousel-dots">
+                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
+                            <button class="carousel-dot" aria-label="Imagen 2"></button>
+                            <button class="carousel-dot" aria-label="Imagen 3"></button>
+                        </div>
+                        <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
+                    </div>
+                </div>
+                <div class="itinerary-content">
+                    <span class="section-label">1 – 2 noches</span>
+                    <h3>Reykjavík</h3>
+                    <p>Pequeña, creativa y sorprendente, la capital islandesa es el punto de partida ideal. Moderna pero íntima, combina diseño nórdico, cultura y gastronomía local.</p>
+                    <ul>
+                        <li>Hallgrímskirkja y vistas panorámicas</li>
+                        <li>Puerto antiguo y arquitectura contemporánea</li>
+                        <li>Centro de auroras boreales</li>
+                        <li>Cena en restaurante de cocina nórdica</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SNAEFELLSNES -->
+            <div class="itinerary-block reverse reveal">
+                <div class="itinerary-carousel">
+                    <div class="carousel-slide active">
+                        <img src="https://images.unsplash.com/photo-1545140976-8c17471ba12d?w=800&q=80" alt="Península de Snaefellsnes">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1596466529159-a23dd25bc108?w=800&q=80" alt="Cascada en Snaefellsnes">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1562170824-b547dae88b97?w=800&q=80" alt="Montaña Kirkjufell">
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
+                        <div class="carousel-dots">
+                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
+                            <button class="carousel-dot" aria-label="Imagen 2"></button>
+                            <button class="carousel-dot" aria-label="Imagen 3"></button>
+                        </div>
+                        <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
+                    </div>
+                </div>
+                <div class="itinerary-content">
+                    <span class="section-label">Excursión o 1 noche</span>
+                    <h3>Península de Snaefellsnes</h3>
+                    <p>Conocida como "Islandia en miniatura", concentra volcanes, campos de lava, glaciares y acantilados en un solo recorrido.</p>
+                    <ul>
+                        <li>Parque Nacional Snæfellsjökull</li>
+                        <li>Montaña Kirkjufell</li>
+                        <li>Playas negras y formaciones rocosas</li>
+                        <li>Miradores sobre el océano Atlántico</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- CÍRCULO DORADO -->
+            <div class="itinerary-block reveal">
+                <div class="itinerary-carousel">
+                    <div class="carousel-slide active">
+                        <img src="https://images.unsplash.com/photo-1643228370582-1398486a3929?w=800&q=80" alt="Cascada Gullfoss">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1513170632614-7263b83fe0b3?w=800&q=80" alt="Geysir">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1608984075444-0e67cd80f696?w=800&q=80" alt="Thingvellir">
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
+                        <div class="carousel-dots">
+                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
+                            <button class="carousel-dot" aria-label="Imagen 2"></button>
+                            <button class="carousel-dot" aria-label="Imagen 3"></button>
+                        </div>
+                        <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
+                    </div>
+                </div>
+                <div class="itinerary-content">
+                    <span class="section-label">1 noche</span>
+                    <h3>Círculo Dorado</h3>
+                    <p>La ruta clásica que revela la fuerza geológica del país. Tres paradas imprescindibles en un recorrido compacto e impactante.</p>
+                    <ul>
+                        <li>Parque Nacional Thingvellir</li>
+                        <li>Área geotérmica de Geysir</li>
+                        <li>Cascada Gullfoss</li>
+                        <li>Degustación de pan de centeno tradicional</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- COSTA SUR -->
+            <div class="itinerary-block reverse reveal">
+                <div class="itinerary-carousel">
+                    <div class="carousel-slide active">
+                        <img src="https://images.unsplash.com/photo-1540327032271-a2861b78eb89?w=800&q=80" alt="Acantilados de la Costa Sur">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1561234910-5a98dba1ed6a?w=800&q=80" alt="Playa negra de Reynisfjara">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1532586733327-54ac07aa1154?w=800&q=80" alt="Cascada Seljalandsfoss">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1555019173-edd4b0be4d2d?w=800&q=80" alt="Cascada Skógafoss">
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
+                        <div class="carousel-dots">
+                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
+                            <button class="carousel-dot" aria-label="Imagen 2"></button>
+                            <button class="carousel-dot" aria-label="Imagen 3"></button>
+                            <button class="carousel-dot" aria-label="Imagen 4"></button>
+                        </div>
+                        <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
+                    </div>
+                </div>
+                <div class="itinerary-content">
+                    <span class="section-label">2 noches</span>
+                    <h3>Costa Sur</h3>
+                    <p>Una de las regiones más espectaculares del país. Cascadas monumentales, playas volcánicas y paisajes abiertos dominan el horizonte.</p>
+                    <ul>
+                        <li>Seljalandsfoss y Skógafoss</li>
+                        <li>Playa negra de Reynisfjara</li>
+                        <li>Centro interactivo Lava Center</li>
+                        <li>Campos de lava cubiertos de musgo</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- VATNAJÖKULL & JÖKULSÁRLÓN -->
+            <div class="itinerary-block reveal">
+                <div class="itinerary-carousel">
+                    <div class="carousel-slide active">
+                        <img src="https://images.unsplash.com/photo-1567251704400-6637d54d13b3?w=800&q=80" alt="Icebergs en Jökulsárlón">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1664094173238-e4b63eb889db?w=800&q=80" alt="Laguna glaciar">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1663416784642-b3a8149badad?w=800&q=80" alt="Playa de los Diamantes">
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
+                        <div class="carousel-dots">
+                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
+                            <button class="carousel-dot" aria-label="Imagen 2"></button>
+                            <button class="carousel-dot" aria-label="Imagen 3"></button>
+                        </div>
+                        <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
+                    </div>
+                </div>
+                <div class="itinerary-content">
+                    <span class="section-label">1 noche</span>
+                    <h3>Vatnajökull y Jökulsárlón</h3>
+                    <p>Glaciares majestuosos y la icónica laguna glaciar donde flotan enormes bloques de hielo. Un paisaje ártico de belleza sobrecogedora.</p>
+                    <ul>
+                        <li>Laguna glaciar Jökulsárlón</li>
+                        <li>Playa de los Diamantes</li>
+                        <li>Caminata ligera por entorno glaciar</li>
+                        <li>Fotografía en paisajes árticos</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- LAGUNA AZUL Y REYKJANES -->
+            <div class="itinerary-block reverse reveal">
+                <div class="itinerary-carousel">
+                    <div class="carousel-slide active">
+                        <img src="https://images.unsplash.com/photo-1462993340984-49bd9e0f32dd?w=800&q=80" alt="Laguna Azul">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1728256869137-7a187d121f3c?w=800&q=80" alt="Baño en la Laguna Azul">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1732470879062-e21dffc564b9?w=800&q=80" alt="Aurora boreal en Islandia">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1488415032361-b7e238421f1b?w=800&q=80" alt="Aurora boreal sobre montañas nevadas">
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
+                        <div class="carousel-dots">
+                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
+                            <button class="carousel-dot" aria-label="Imagen 2"></button>
+                            <button class="carousel-dot" aria-label="Imagen 3"></button>
+                            <button class="carousel-dot" aria-label="Imagen 4"></button>
+                        </div>
+                        <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
+                    </div>
+                </div>
+                <div class="itinerary-content">
+                    <span class="section-label">Última noche</span>
+                    <h3>Laguna Azul y Reykjanes</h3>
+                    <p>Cierre perfecto con una experiencia relajante en aguas termales ricas en minerales. Entre septiembre y marzo, posibilidad de observación de auroras boreales.</p>
+                    <ul>
+                        <li>Baño en la Laguna Azul</li>
+                        <li>Paisajes volcánicos de Reykjanes</li>
+                        <li>Cena de despedida en Reykjavík</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUÉ INCLUYE -->
+    <section style="padding-top: 30px; background: var(--dark-soft); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Todo incluido</span>
+                <h2 class="section-title">Qué incluye tu viaje</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="includes-grid">
+                <div class="include-card reveal">
+                    <span class="include-icon">&#9992;</span>
+                    <h4>Vuelos</h4>
+                    <p>Vuelos directos ida y vuelta en clase preferente. Traslados privados en todos los trayectos.</p>
+                </div>
+                <div class="include-card reveal">
+                    <span class="include-icon">&#128663;</span>
+                    <h4>Vehículo</h4>
+                    <p>SUV 4x4 de lujo con conductor-guía privado durante toda la ruta por Islandia.</p>
+                </div>
+                <div class="include-card reveal">
+                    <span class="include-icon">&#127976;</span>
+                    <h4>Alojamiento</h4>
+                    <p>Hoteles boutique y lodges exclusivos seleccionados por su ubicación privilegiada y diseño nórdico.</p>
+                </div>
+                <div class="include-card reveal">
+                    <span class="include-icon">&#11088;</span>
+                    <h4>Experiencias</h4>
+                    <p>Laguna Azul, caminatas glaciares, cenas gastronómicas y observación de auroras boreales (en temporada).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="dest-cta">
+        <div class="container reveal">
+            <h2>Diseñemos <em style="color: var(--gold);">tu Islandia</em></h2>
+            <p>Cada viaje es único. Cuéntanos cómo imaginas tu aventura islandesa y crearemos un itinerario a tu medida.</p>
+            <a href="index.html?destino=Islandia#contacto" class="btn btn-primary">Solicitar presupuesto &#10230;</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo"><img src="logo-trimmed.png" alt="Horizonte Exclusivo"></a>
+                    <p>Más que viajar, vivir el mundo. Creamos experiencias de viaje de lujo a medida. Cada destino es una historia, cada viaje una obra maestra.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Instagram">IG</a>
+                        <a href="#" aria-label="Facebook">FB</a>
+                        <a href="#" aria-label="Twitter">TW</a>
+                        <a href="#" aria-label="LinkedIn">IN</a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Destinos</h4>
+                    <ul>
+                        <li><a href="escocia.html">Escocia</a></li>
+                        <li><a href="italia.html">Italia</a></li>
+                        <li><a href="islandia.html">Islandia</a></li>
+                        <li><a href="tailandia.html">Tailandia</a></li>
+                        <li><a href="bali.html">Bali</a></li>
+                        <li><a href="japon.html">Japón</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Experiencias</h4>
+                    <ul>
+                        <li><a href="#">Luna de miel</a></li>
+                        <li><a href="#">Safari de lujo</a></li>
+                        <li><a href="#">Cruceros privados</a></li>
+                        <li><a href="#">Retiros wellness</a></li>
+                        <li><a href="#">Aventura exclusiva</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Compañía</h4>
+                    <ul>
+                        <li><a href="#">Sobre nosotros</a></li>
+                        <li><a href="#">Nuestro equipo</a></li>
+                        <li><a href="#">Blog de viajes</a></li>
+                        <li><a href="#">Prensa</a></li>
+                        <li><a href="index.html#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Horizonte Exclusivo. Todos los derechos reservados.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Aviso legal</a>
+                    <a href="#">Privacidad</a>
+                    <a href="#">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 60);
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => navLinks.classList.remove('active'));
+        });
+
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Route line
+        function drawRoute() {
+            const container = document.querySelector('#itinerario .container');
+            const blocks = container.querySelectorAll('.itinerary-block');
+            const existing = container.querySelector('.route-line');
+            if (existing) existing.remove();
+
+            if (window.innerWidth <= 768 || blocks.length < 2) return;
+
+            container.style.position = 'relative';
+            const w = container.offsetWidth;
+            const h = container.scrollHeight;
+            const centerX = w / 2;
+
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.classList.add('route-line');
+            svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+            svg.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;';
+
+            const data = [];
+            blocks.forEach(block => {
+                data.push({
+                    top: block.offsetTop,
+                    bottom: block.offsetTop + block.offsetHeight,
+                    cy: block.offsetTop + block.offsetHeight / 2
+                });
+            });
+
+            const d = `M ${centerX} ${data[0].top} L ${centerX} ${data[data.length - 1].bottom}`;
+
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('d', d);
+            path.setAttribute('fill', 'none');
+            path.setAttribute('stroke', 'rgba(255,255,255,0.10)');
+            path.setAttribute('stroke-width', '1.5');
+            path.setAttribute('stroke-dasharray', '6 4');
+            svg.appendChild(path);
+
+            data.forEach(b => {
+                const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                c.setAttribute('cx', centerX);
+                c.setAttribute('cy', b.cy);
+                c.setAttribute('r', '5');
+                c.setAttribute('fill', '#0a0a0a');
+                c.setAttribute('stroke', 'rgba(201,169,110,0.4)');
+                c.setAttribute('stroke-width', '1.5');
+                svg.appendChild(c);
+            });
+
+            container.prepend(svg);
+        }
+
+        window.addEventListener('load', drawRoute);
+        window.addEventListener('resize', drawRoute);
+
+        // Itinerary carousels
+        document.querySelectorAll('.itinerary-carousel').forEach(carousel => {
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const dots = carousel.querySelectorAll('.carousel-dot');
+            const prev = carousel.querySelector('.carousel-prev');
+            const next = carousel.querySelector('.carousel-next');
+            let current = 0;
+
+            function goTo(index) {
+                slides[current].classList.remove('active');
+                dots[current].classList.remove('active');
+                current = (index + slides.length) % slides.length;
+                slides[current].classList.add('active');
+                dots[current].classList.add('active');
+            }
+
+            prev.addEventListener('click', () => goTo(current - 1));
+            next.addEventListener('click', () => goTo(current + 1));
+            dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+            // Touch swipe
+            let startX;
+            carousel.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+            carousel.addEventListener('touchend', e => {
+                const diff = startX - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1));
+            });
+        });
+    </script>
+
+</body>
+</html>
