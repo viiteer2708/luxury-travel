@@ -10,8 +10,10 @@ Página web estática especializada en viajes de lujo personalizados.
 
 ## Estructura de Archivos
 ```
+/raíz   
+index.html        — Página principal (hero, destinos, quiénes somos, contacto)
+
 pages/              — Todas las páginas HTML
-  index.html        — Página principal (hero, destinos, quiénes somos, contacto)
   europa.html       — Página de región Europa
   asia.html         — Página de región Asia
   africa.html       — Página de región África
