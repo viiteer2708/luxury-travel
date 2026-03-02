@@ -135,7 +135,22 @@ images/             — Todas las imágenes locales
 - `git add images/[imagen].jpeg` para cada imagen local
 - Las imágenes que NO son de Unsplash SIEMPRE deben estar en el repositorio
 
-### 4. No olvidar
+### 4. Añadir sección Pro Tips en `[destino].html`
+- Después del CTA (`.dest-cta`) y antes del footer, añadir:
+```html
+<!-- PRO TIPS -->
+<section class="dest-protips">
+    <div class="container reveal">
+        <span class="section-label">Pro Tips</span>
+        <h2>Consejos de experto para <em style="color: var(--gold);">[Destino]</em></h2>
+        <p>Todo lo que necesitas saber antes, durante y después de tu viaje: checklist, dinero, transporte, seguridad, cultura, comida y hacks de experto.</p>
+        <a href="pro-tips-[destino].html" class="btn btn-primary">Ver Pro Tips &#10230;</a>
+    </div>
+</section>
+```
+- Añadir CSS `.dest-protips` (copiar de `escocia.html`, bloque `/* ===== PRO TIPS LINK ===== */`)
+
+### 5. No olvidar
 - Alternancia de bloques: normal → reverse → normal → reverse
 - Un dot por cada slide en el carrusel
 - Footer: añadir enlace al destino en la columna "Destinos"
