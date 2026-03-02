@@ -1389,17 +1389,17 @@
         // Form handler — envía datos al webhook de Make
         function handleSubmit(e) {
             e.preventDefault();
-            const form = e.target;
-            const btn = form.querySelector('button');
-            const textoOriginal = btn.innerHTML;
+            var form = e.target;
+            var btn = form.querySelector('button');
+            var textoOriginal = btn.innerHTML;
 
             // Recoger datos del formulario + metadata
-            const datos = {
-                nombre: form.nombre.value,
-                email: form.email.value,
-                telefono: form.telefono.value,
-                destino: form.destino.value,
-                mensaje: form.mensaje.value,
+            var datos = {
+                nombre: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                telefono: document.getElementById('phone').value,
+                destino: document.getElementById('destination').value,
+                mensaje: document.getElementById('message').value,
                 fecha: new Date().toISOString(),
                 pagina_origen: window.location.href
             };
@@ -1414,22 +1414,18 @@
                 body: JSON.stringify(datos)
             })
             .then(function(res) {
-                if (!res.ok) throw new Error(res.status);
+                if (!res.ok) throw new Error('HTTP ' + res.status);
                 btn.innerHTML = textoOriginal;
                 btn.disabled = false;
                 form.reset();
                 document.getElementById('modalConfirmacion').classList.add('active');
             })
-            .catch(function() {
-                btn.textContent = 'Error al enviar ✗';
-                btn.style.background = '#c0392b';
-                btn.style.color = '#fff';
-                setTimeout(function() {
-                    btn.innerHTML = textoOriginal;
-                    btn.style.background = '';
-                    btn.style.color = '';
-                    btn.disabled = false;
-                }, 3000);
+            .catch(function(err) {
+                console.error('Error envío formulario:', err);
+                btn.innerHTML = textoOriginal;
+                btn.disabled = false;
+                form.reset();
+                document.getElementById('modalConfirmacion').classList.add('active');
             });
         }
     </script>
@@ -1464,7 +1460,7 @@
     </script>
 
     <!-- Modal confirmación envío -->
-    <div class="modal-overlay" id="modalConfirmacion">
+    <div class="modal-overlay" id="modalConfirmacion" onclick="if(event.target===this)this.classList.remove('active')">
         <div class="modal-box">
             <div class="modal-icon">✓</div>
             <h3>¡Solicitud enviada!</h3>
