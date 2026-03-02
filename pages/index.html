@@ -958,6 +958,69 @@
             .btn { width: 100%; justify-content: center; }
             .stats-grid { grid-template-columns: 1fr; }
         }
+
+        /* Modal de confirmación */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(4px);
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-box {
+            background: var(--dark-soft, #1a1a2e);
+            border: 1px solid var(--gold, #c5a47e);
+            border-radius: 16px;
+            padding: 48px 40px;
+            max-width: 480px;
+            width: 90%;
+            text-align: center;
+            animation: modalIn 0.4s ease;
+        }
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .modal-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--gold, #c5a47e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 32px;
+            color: var(--dark, #0a0a1a);
+        }
+        .modal-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+        .modal-box p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+        .modal-close {
+            background: var(--gold, #c5a47e);
+            color: var(--dark, #0a0a1a);
+            border: none;
+            padding: 12px 36px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        .modal-close:hover { opacity: 0.85; }
     </style>
 </head>
 <body>
@@ -1352,16 +1415,10 @@
             })
             .then(function(res) {
                 if (!res.ok) throw new Error(res.status);
-                btn.textContent = 'Solicitud enviada ✓';
-                btn.style.background = '#2d8a4e';
-                btn.style.color = '#fff';
-                setTimeout(function() {
-                    btn.innerHTML = textoOriginal;
-                    btn.style.background = '';
-                    btn.style.color = '';
-                    btn.disabled = false;
-                    form.reset();
-                }, 3000);
+                btn.innerHTML = textoOriginal;
+                btn.disabled = false;
+                form.reset();
+                document.getElementById('modalConfirmacion').classList.add('active');
             })
             .catch(function() {
                 btn.textContent = 'Error al enviar ✗';
@@ -1405,6 +1462,16 @@
             }, 5000);
         })();
     </script>
+
+    <!-- Modal confirmación envío -->
+    <div class="modal-overlay" id="modalConfirmacion">
+        <div class="modal-box">
+            <div class="modal-icon">✓</div>
+            <h3>¡Solicitud enviada!</h3>
+            <p>Gracias por confiar en nosotros. Nuestro equipo revisará tu solicitud y te contactará en las próximas 24 horas para empezar a diseñar tu viaje.</p>
+            <button class="modal-close" onclick="document.getElementById('modalConfirmacion').classList.remove('active')">Cerrar</button>
+        </div>
+    </div>
 
 </body>
 </html>
