@@ -1265,7 +1265,7 @@
                     </div>
                 </div>
 
-                <form class="contact-form" onsubmit="handleSubmit(event)">
+                <form class="contact-form" id="contactForm">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name">Nombre completo</label>
@@ -1389,48 +1389,33 @@
     </script>
 
     <script>
-        // Form handler — envía datos al webhook de Make
-        function handleSubmit(e) {
-            e.preventDefault();
-            var form = e.target;
-            var btn = form.querySelector('button');
-            var textoOriginal = btn.innerHTML;
-
-            // Recoger datos del formulario + metadata
-            var datos = {
-                nombre: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                telefono: document.getElementById('phone').value,
-                destino: document.getElementById('destination').value,
-                mensaje: document.getElementById('message').value,
-                fecha: new Date().toISOString(),
-                pagina_origen: window.location.href
-            };
-
-            // Estado: enviando
-            btn.disabled = true;
-            btn.textContent = 'Enviando...';
-
-            fetch('https://hook.eu2.make.com/1hk9mobvb0pblxgx1xrguaasbe19d7t9', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(datos)
-            })
-            .then(function(res) {
-                if (!res.ok) throw new Error('HTTP ' + res.status);
-                btn.innerHTML = textoOriginal;
-                btn.disabled = false;
+        (function() {
+            var form = document.getElementById('contactForm');
+            if (!form) return;
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var datos = {
+                    nombre: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    telefono: document.getElementById('phone').value,
+                    destino: document.getElementById('destination').value,
+                    mensaje: document.getElementById('message').value,
+                    fecha: new Date().toISOString(),
+                    pagina_origen: window.location.href
+                };
+                // Confirmación inmediata al usuario
                 form.reset();
                 document.getElementById('modalConfirmacion').classList.add('active');
-            })
-            .catch(function(err) {
-                console.error('Error envío formulario:', err);
-                btn.innerHTML = textoOriginal;
-                btn.disabled = false;
-                form.reset();
-                document.getElementById('modalConfirmacion').classList.add('active');
+                // Enviar a Make en segundo plano
+                fetch('https://hook.eu2.make.com/1hk9mobvb0pblxgx1xrguaasbe19d7t9', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(datos)
+                }).catch(function(err) {
+                    console.error('Error envío formulario:', err);
+                });
             });
-        }
+        })();
     </script>
 
     <script>
