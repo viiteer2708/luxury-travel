@@ -82,8 +82,8 @@ Pagina web especializada en viajes de lujo personalizados.
 1. **Hero** — `min-height: calc(70vh - 110px)`, `padding-top: 100px`, `padding-bottom: 20px`, parallax (`background-attachment: fixed`), `background-position: center calc(50% + 60px)` (ajustar por destino)
 2. **Intro** — `padding-top: 30px`, `padding-bottom: 10px` — texto descriptivo centrado (`dest-intro-text`, max-width 780px)
 3. **Itinerario** — `padding-top: 10px` — bloques alternados (`.itinerary-block` / `.itinerary-block.reverse`), gap 48px, margin-bottom 80px entre bloques
-4. **Qué incluye** — grid 4 columnas (`.includes-grid` / `.include-card`), fondo `var(--dark-soft)`
-5. **CTA** — centrado, enlaza a `index.html?destino=[Nombre]#contacto`
+4. **Qué incluye** — `padding-top: 30px`, grid 4 columnas (`.includes-grid` / `.include-card`), fondo `var(--dark-soft)`
+5. **CTA** — `padding-top: 30px`, centrado, enlaza a `index.html?destino=[Nombre]#contacto`
 6. **Footer** — idéntico con enlace al destino en la lista
 
 ### Sistema de carrusel en itinerario (OBLIGATORIO en todos los destinos)
@@ -149,6 +149,8 @@ Pagina web especializada en viajes de lujo personalizados.
 | Itinerario bloques entre sí | `margin-bottom` | `80px` |
 | Itinerario último bloque | `margin-bottom` | `0` |
 | Section-header → contenido | `margin-bottom` | `64px` (destino) / `40px` (región) |
+| Qué incluye | `padding-top` | `30px` |
+| CTA (`.dest-cta`) | `padding-top` | `30px` |
 
 ### CSS reutilizado de index.html
 Variables, navbar, footer, botones, tipografía, `.reveal`, `.section-header`, `.section-title`, `.section-label`, `.divider`, responsive breakpoints.
