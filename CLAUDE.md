@@ -24,7 +24,18 @@ pages/              — Todas las páginas HTML
   italia.html       — Destino: Italia
   tailandia.html    — Destino: Tailandia
   ...               — (y demás destinos)
-  pro-tips.html     — Página de Pro Tips de viaje
+  pro-tips.html     — Hub de Pro Tips (grid de tarjetas por destino)
+  pro-tips-tailandia.html  — Pro Tips: Tailandia (REFERENCIA CANÓNICA)
+  pro-tips-escocia.html    — Pro Tips: Escocia
+  pro-tips-italia.html     — Pro Tips: Italia
+  pro-tips-islandia.html   — Pro Tips: Islandia
+  pro-tips-bali.html       — Pro Tips: Bali
+  pro-tips-vietnam.html    — Pro Tips: Vietnam
+  pro-tips-malasia.html    — Pro Tips: Malasia
+  pro-tips-japon.html      — Pro Tips: Japón
+  pro-tips-filipinas.html  — Pro Tips: Filipinas
+  pro-tips-egipto.html     — Pro Tips: Egipto
+  pro-tips-kenia-zanzibar.html — Pro Tips: Kenia & Zanzíbar
 images/             — Todas las imágenes locales
   logo-trimmed.png  — Logo del sitio
   *.jpeg / *.jpg    — Imágenes locales del repositorio
@@ -147,6 +158,45 @@ images/             — Todas las imágenes locales
 
 ---
 
+## Checklist para crear un nuevo PRO TIPS de destino
+
+> Usar `pro-tips-tailandia.html` como referencia CANÓNICA. Copiar estructura completa.
+
+### 1. Crear `pro-tips-[destino].html`
+- Copiar estructura exacta de `pro-tips-tailandia.html`
+- Cambiar: título, meta description, hero (imagen + label región + h1)
+- Cambiar: texto intro + enlace "← Todos los Pro Tips" (ya apunta a `pro-tips.html`)
+- Cambiar: los 10 bloques de contenido (tips específicos del destino)
+- Cambiar: CTA → `Diseñemos tu [Destino]`, enlace a `../index.html?destino=[Destino]#contacto`
+- Verificar: navbar idéntica (ver sección Navbar arriba)
+
+### 2. Añadir tarjeta en `pro-tips.html` (hub)
+- Añadir tarjeta en la sección de región correspondiente (Europa / Asia / África)
+- Usar imagen hero del destino con `?w=600&q=80`
+- Badge con nombre de la región
+- Enlace a `pro-tips-[destino].html`
+
+### 3. Estructura de los 10 bloques (OBLIGATORIA)
+1. Antes de viajar (Checklist)
+2. Dinero y pagos
+3. Transporte
+4. Zonas y logística
+5. Seguridad y estafas
+6. Salud y clima
+7. Cultura y etiqueta
+8. Comida y experiencias
+9. Hacks PRO
+10. Top 5 (resumen rápido) + CTA
+
+### 4. Reglas de contenido
+- Cada tip: beneficio + acción (máx. 1-2 líneas)
+- Iconos: ✅ (recomendación), ⚠️ (advertencia), 💡 (hack/truco)
+- Máximo 4-8 tips por bloque
+- Alternancia: `.tips-section` / `.tips-section.alt-bg`
+- Bloque 10 (Top 5): usa `.top5-grid` con `.top5-card`
+
+---
+
 ## Estructura de página de región
 
 1. **Hero** — `.region-hero`, `min-height: calc(70vh - 110px)`, `padding-top: 100px`, `padding-bottom: 20px`, parallax, `background-position` ajustar por imagen
@@ -161,6 +211,14 @@ images/             — Todas las imágenes locales
 4. **Qué incluye** — `padding-top: 30px`, grid 4 columnas (`.includes-grid` / `.include-card`), fondo `var(--dark-soft)`
 5. **CTA** — `.dest-cta`, `padding-top: 30px`, centrado, enlaza a `index.html?destino=[Nombre]#contacto`
 6. **Footer** — idéntico con enlace al destino en la lista
+
+## Estructura de página de Pro Tips (`pro-tips-tailandia.html` CANÓNICA)
+
+1. **Hero** — `.dest-hero`, misma estructura que destinos, imagen hero del destino, label región, h1 "Pro Tips: [Destino]"
+2. **Intro** — `padding-top: 30px`, `padding-bottom: 10px` — texto centrado + enlace "← Todos los Pro Tips" a `pro-tips.html`
+3. **10 bloques** — `.tips-section` / `.tips-section.alt-bg` alternando, `padding: 80px 0`
+4. **CTA** — `.tips-cta`, `padding: 80px 0`, enlaza a `../index.html?destino=[Nombre]#contacto`
+5. **Footer** — idéntico al resto
 
 ---
 
