@@ -563,76 +563,68 @@
         }
 
         /* ===== TESTIMONIALS ===== */
-        .testimonials { background: var(--dark-soft); }
+        .about-section { background: var(--dark-soft); }
 
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 28px;
+        .about-content {
+            max-width: 780px;
+            margin: 0 auto;
         }
 
-        .testimonial-card {
-            background: var(--dark-card);
-            padding: 36px;
-            border-radius: var(--radius);
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .testimonial-card:hover {
-            border-color: rgba(201,169,110,0.15);
-        }
-
-        .quote-mark {
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
-            color: var(--gold);
-            opacity: 0.3;
-            line-height: 1;
-            margin-bottom: -12px;
-        }
-
-        .testimonial-card p {
-            font-size: 0.95rem;
+        .about-content p {
+            font-size: 1.05rem;
             color: var(--text);
+            line-height: 1.9;
+            font-weight: 300;
+            margin-bottom: 24px;
+        }
+
+        .about-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-highlight {
+            border-left: 3px solid var(--gold);
+            padding-left: 24px;
+            margin: 32px 0;
+        }
+
+        .about-highlight p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            color: var(--gold-light);
             font-style: italic;
             line-height: 1.8;
-            margin-bottom: 24px;
-            font-weight: 300;
+            margin-bottom: 12px;
         }
 
-        .stars {
-            color: var(--gold);
-            font-size: 0.85rem;
-            letter-spacing: 2px;
+        .about-highlight p:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-top: 40px;
             margin-bottom: 16px;
         }
 
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 14px;
+        .about-closing {
+            text-align: center;
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
 
-        .author-avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--gold);
+        .about-closing p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--gold-light);
+            font-weight: 400;
         }
 
-        .author-info h4 {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--white);
-        }
-
-        .author-info span {
-            font-size: 0.78rem;
-            color: var(--text-muted);
+        .about-closing p strong {
+            color: var(--gold);
         }
 
         /* ===== CONTACT ===== */
@@ -878,8 +870,7 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
-            .destinations-grid,
-            .testimonials-grid {
+            .destinations-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
@@ -922,8 +913,7 @@
 
             .nav-links.active { right: 0; }
 
-            .destinations-grid,
-            .testimonials-grid {
+            .destinations-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -1123,53 +1113,43 @@
     </section>
 
     <!-- TESTIMONIALS -->
-    <section class="testimonials" id="testimonios">
+    <section class="about-section" id="testimonios">
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label">Testimonios</span>
-                <h2 class="section-title">Lo que dicen nuestros viajeros</h2>
+                <span class="section-label">Quiénes somos</span>
+                <h2 class="section-title">Horizonte Exclusivo</h2>
                 <div class="divider"></div>
-                <p class="section-subtitle">Historias reales de quienes confiaron en nosotros para sus momentos más especiales</p>
             </div>
 
-            <div class="testimonials-grid">
-                <div class="testimonial-card reveal">
-                    <div class="quote-mark">"</div>
-                    <div class="stars">★ ★ ★ ★ ★</div>
-                    <p>Cada detalle fue perfecto. Desde el traslado en hidroavión hasta la cena privada en la playa, superaron todas mis expectativas. Una experiencia que recordaremos toda la vida.</p>
-                    <div class="testimonial-author">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&q=80" alt="Elena Martínez" class="author-avatar">
-                        <div class="author-info">
-                            <h4>Elena Martínez</h4>
-                            <span>Viaje a Maldivas</span>
-                        </div>
-                    </div>
+            <div class="about-content reveal">
+                <p>Cuando alguien me habla de un viaje, de unas vacaciones o de una escapada —aunque no me lo pida— mi cabeza empieza a trabajar. Busco vuelos, analizo hoteles, leo reseñas y afino cada decisión. No puedo evitarlo. Siempre ha sido así.</p>
+
+                <p>Desde que tengo uso de razón siento una necesidad casi automática de anticiparme, organizar y cuidar cada detalle. Montar viajes no es solo algo que se me da bien: es mi pasión. Disfruto tanto diseñándolos como viviéndolos.</p>
+
+                <p>Durante años he creado viajes para familiares, amigos y personas cercanas con un único objetivo: que todo salga perfecto.</p>
+
+                <div class="about-highlight">
+                    <p>Que cada elección tenga un porqué.</p>
+                    <p>Que cada momento merezca la pena.</p>
+                    <p>Que no sufras aglomeraciones, decepciones ocultas ni sorpresas desagradables al llegar.</p>
                 </div>
 
-                <div class="testimonial-card reveal">
-                    <div class="quote-mark">"</div>
-                    <div class="stars">★ ★ ★ ★ ★</div>
-                    <p>El safari fue una experiencia transformadora. Nuestro guía conocía cada rincón del Serengeti. Los lodges eran espectaculares y la atención personalizada, inigualable.</p>
-                    <div class="testimonial-author">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&q=80" alt="Carlos Rodríguez" class="author-avatar">
-                        <div class="author-info">
-                            <h4>Carlos Rodríguez</h4>
-                            <span>Safari en Tanzania</span>
-                        </div>
-                    </div>
-                </div>
+                <h3 class="about-subtitle">El origen de Horizonte Exclusivo</h3>
+                <p>Horizonte Exclusivo es la materialización de ese sueño. Un proyecto profundamente personal en el que cada viaje se concibe como una obra única, no como un producto en serie.</p>
 
-                <div class="testimonial-card reveal">
-                    <div class="quote-mark">"</div>
-                    <div class="stars">★ ★ ★ ★ ★</div>
-                    <p>Japón fue un sueño hecho realidad. La selección de ryokans, las experiencias culturales privadas y la gastronomía fueron absolutamente excepcionales. Volveremos sin duda.</p>
-                    <div class="testimonial-author">
-                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=96&q=80" alt="Lucía Fernández" class="author-avatar">
-                        <div class="author-info">
-                            <h4>Lucía Fernández</h4>
-                            <span>Viaje a Japón</span>
-                        </div>
-                    </div>
+                <p>Aquí no encontrarás viajes prefabricados ni experiencias copiadas y pegadas. Cada propuesta se crea desde cero, escuchándote, anticipando tus necesidades y cuidando cada detalle con mimo.</p>
+
+                <p>Porque el verdadero lujo no es pagar más, sino ganar tranquilidad, tiempo y la certeza de que todo está pensado única y exclusivamente para ti.</p>
+
+                <h3 class="about-subtitle">Para quién es Horizonte Exclusivo</h3>
+                <p>Trabajo con personas que valoran su tiempo, que no viven para comparar precios ni juegan a ser expertos, y que buscan a alguien de absoluta confianza en quien delegar algo tan importante como sus vacaciones. Personas que quieren disfrutar sin estrés, sabiendo que detrás hay criterio, exigencia máxima y alguien que responde siempre.</p>
+
+                <h3 class="about-subtitle">Mi compromiso</h3>
+                <p>Estoy construyendo este proyecto con una dedicación absoluta y con un nivel de exigencia muy alto. Quiero que cada viaje lleve mi sello. Que quien confíe en Horizonte Exclusivo sienta que su experiencia ha sido tratada como algo personal, cuidado y verdaderamente exclusivo.</p>
+
+                <div class="about-closing">
+                    <p>Porque viajar puede hacerlo cualquiera.<br><strong>Pero crear recuerdos inolvidables, no.</strong></p>
+                    <p style="margin-top: 16px; font-size: 0.95rem; color: var(--text-muted); font-family: 'Inter', sans-serif; font-weight: 300;">Más que viajar, vivir el mundo.</p>
                 </div>
             </div>
         </div>
