@@ -164,5 +164,6 @@ Variables, navbar, footer, botones, tipografía, `.reveal`, `.section-header`, `
 - Hero: Unsplash 1920px, `?w=1920&q=80`
 - Itinerario: Unsplash 800px, `?w=800&q=80`
 - Tarjetas región: Unsplash 600px, `?w=600&q=80`
+- **Las imágenes que no van enlazadas (no Unsplash) SIEMPRE estarán en el repositorio**
 
 ## Referencias
