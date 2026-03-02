@@ -958,6 +958,93 @@
             .btn { width: 100%; justify-content: center; }
             .stats-grid { grid-template-columns: 1fr; }
         }
+
+        /* Modal de confirmación */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(4px);
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-box {
+            background: var(--dark-soft, #1a1a2e);
+            border: 1px solid var(--gold, #c5a47e);
+            border-radius: 16px;
+            padding: 48px 40px;
+            max-width: 480px;
+            width: 90%;
+            text-align: center;
+            animation: modalIn 0.4s ease;
+        }
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .modal-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--gold, #c5a47e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 32px;
+            color: var(--dark, #0a0a1a);
+        }
+        .modal-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+        .modal-box p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+        .modal-close {
+            background: var(--gold, #c5a47e);
+            color: var(--dark, #0a0a1a);
+            border: none;
+            padding: 12px 36px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        .modal-close:hover { opacity: 0.85; }
+        .form-success {
+            text-align: center;
+            padding: 60px 24px;
+        }
+        .form-success-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: #fff;
+            font-size: 40px;
+            line-height: 80px;
+            margin: 0 auto 24px;
+        }
+        .form-success-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 1px;
+            line-height: 1.6;
+            max-width: 480px;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
@@ -965,7 +1052,7 @@
     <!-- NAVBAR -->
     <nav class="navbar" id="navbar">
         <div class="container">
-            <a href="#" class="logo"><img src="logo-trimmed.png" alt="Horizonte Exclusivo"></a>
+            <a href="#" class="logo"><img src="images/logo-trimmed.png" alt="Horizonte Exclusivo"></a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#">Nuevos horizontes</a></li>
                 <li>
@@ -1001,10 +1088,10 @@
         <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1659944984855-776187144baf?w=1920&q=80')"></div>
         <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1623941000199-7176fa973212?w=1920&q=80')"></div>
         <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1693260741045-2c136abbb95f?w=1920&q=80')"></div>
-        <div class="hero-slide" style="background-image:url('nieve_portada.jpeg')"></div>
+        <div class="hero-slide" style="background-image:url('images/nieve_portada.jpeg')"></div>
         <div class="hero-content">
             <h1>Más que viajar, <em>vivir</em> el mundo</h1>
-            <p>Diseñamos experiencias de viaje a medida para quienes buscan lo extraordinario. Cada destino, una obra maestra.</p>
+            <p>Diseñamos experiencias de viaje a medida para quienes buscan lo extraordinario. Cada destino, una obra tallada a mano.</p>
             <div class="hero-buttons">
                 <a href="#destinos" class="btn btn-primary">Explorar destinos &#10230;</a>
                 <a href="#contacto" class="btn btn-outline">Viaje a medida</a>
@@ -1202,33 +1289,37 @@
                     </div>
                 </div>
 
-                <form class="contact-form" onsubmit="handleSubmit(event)">
+                <form class="contact-form" id="contactForm">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name">Nombre completo</label>
-                            <input type="text" id="name" placeholder="Tu nombre" required>
+                            <input type="text" id="name" name="nombre" placeholder="Tu nombre" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" placeholder="tu@email.com" required>
+                            <input type="email" id="email" name="email" placeholder="tu@email.com" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="phone">Teléfono</label>
-                            <input type="tel" id="phone" placeholder="+34 600 000 000">
+                            <input type="tel" id="phone" name="telefono" placeholder="+34 600 000 000">
                         </div>
                         <div class="form-group">
                             <label for="destination">Destino de interés</label>
-                            <input type="text" id="destination" placeholder="¿A dónde quieres viajar?">
+                            <input type="text" id="destination" name="destino" placeholder="¿A dónde quieres viajar?">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="message">Cuéntanos tu viaje ideal</label>
-                        <textarea id="message" placeholder="¿Buscas desconexión y paz... O experiencias trepidantes...? Cuéntanos cuál es tu viaje soñado y lo haremos realidad." rows="4"></textarea>
+                        <textarea id="message" name="mensaje" placeholder="¿Buscas desconexión y paz... O experiencias trepidantes...? Cuéntanos cuál es tu viaje soñado y lo haremos realidad." rows="4"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Solicitar presupuesto &#10230;</button>
+                    <button type="button" class="btn btn-primary" onclick="enviarFormulario()">Solicitar presupuesto &#10230;</button>
                 </form>
+                <div class="form-success" id="formSuccess" style="display:none;">
+                    <div class="form-success-icon">✓</div>
+                    <p class="form-success-text">SOLICITUD RECIBIDA, NOS PONDREMOS EN CONTACTO VIA WHATSAPP PARA EMPEZAR A CREAR TU VIAJE</p>
+                </div>
             </div>
         </div>
     </section>
@@ -1238,7 +1329,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="#" class="logo"><img src="logo-trimmed.png" alt="Horizonte Exclusivo"></a>
+                    <a href="#" class="logo"><img src="images/logo-trimmed.png" alt="Horizonte Exclusivo"></a>
                     <p>Más que viajar, vivir el mundo. Creamos experiencias de viaje de lujo a medida. Cada destino es una historia, cada viaje una obra maestra.</p>
                     <div class="social-links">
                         <a href="#" aria-label="Instagram">IG</a>
@@ -1323,19 +1414,35 @@
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Form handler
-        function handleSubmit(e) {
-            e.preventDefault();
-            const btn = e.target.querySelector('button');
-            btn.textContent = 'Solicitud enviada ✓';
-            btn.style.background = '#2d8a4e';
-            btn.style.color = '#fff';
-            setTimeout(() => {
-                btn.innerHTML = 'Solicitar presupuesto &#10230;';
-                btn.style.background = '';
-                btn.style.color = '';
-                e.target.reset();
-            }, 3000);
+    </script>
+
+    <script>
+        function enviarFormulario() {
+            var nombre = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            if (!nombre || !email) {
+                document.getElementById('name').reportValidity();
+                document.getElementById('email').reportValidity();
+                return;
+            }
+            var datos = {
+                nombre: nombre,
+                email: email,
+                telefono: document.getElementById('phone').value,
+                destino: document.getElementById('destination').value,
+                mensaje: document.getElementById('message').value,
+                fecha: new Date().toISOString(),
+                pagina_origen: window.location.href
+            };
+            document.getElementById('contactForm').style.display = 'none';
+            document.getElementById('formSuccess').style.display = 'block';
+            fetch('https://hook.eu2.make.com/1hk9mobvb0pblxgx1xrguaasbe19d7t9', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(datos)
+            }).catch(function(err) {
+                console.error('Error envío formulario:', err);
+            });
         }
     </script>
 
@@ -1367,6 +1474,7 @@
             }, 5000);
         })();
     </script>
+
 
 </body>
 </html>

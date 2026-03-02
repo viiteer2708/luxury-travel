@@ -20,6 +20,7 @@ jobs:
       - name: Preparar sitio
         run: |
           mkdir _site
+          cp index.html _site/
           cp pages/*.html _site/
           cp -r images _site/images
           sed -i 's|\.\./images/|images/|g' _site/*.html

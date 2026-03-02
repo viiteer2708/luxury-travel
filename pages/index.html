@@ -1314,7 +1314,7 @@
                         <label for="message">Cuéntanos tu viaje ideal</label>
                         <textarea id="message" name="mensaje" placeholder="¿Buscas desconexión y paz... O experiencias trepidantes...? Cuéntanos cuál es tu viaje soñado y lo haremos realidad." rows="4"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Solicitar presupuesto &#10230;</button>
+                    <button type="button" class="btn btn-primary" onclick="enviarFormulario()">Solicitar presupuesto &#10230;</button>
                 </form>
                 <div class="form-success" id="formSuccess" style="display:none;">
                     <div class="form-success-icon">✓</div>
@@ -1417,33 +1417,33 @@
     </script>
 
     <script>
-        (function() {
-            var form = document.getElementById('contactForm');
-            if (!form) return;
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                var datos = {
-                    nombre: document.getElementById('name').value,
-                    email: document.getElementById('email').value,
-                    telefono: document.getElementById('phone').value,
-                    destino: document.getElementById('destination').value,
-                    mensaje: document.getElementById('message').value,
-                    fecha: new Date().toISOString(),
-                    pagina_origen: window.location.href
-                };
-                // Confirmación inmediata al usuario
-                form.style.display = 'none';
-                document.getElementById('formSuccess').style.display = 'block';
-                // Enviar a Make en segundo plano
-                fetch('https://hook.eu2.make.com/1hk9mobvb0pblxgx1xrguaasbe19d7t9', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(datos)
-                }).catch(function(err) {
-                    console.error('Error envío formulario:', err);
-                });
+        function enviarFormulario() {
+            var nombre = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            if (!nombre || !email) {
+                document.getElementById('name').reportValidity();
+                document.getElementById('email').reportValidity();
+                return;
+            }
+            var datos = {
+                nombre: nombre,
+                email: email,
+                telefono: document.getElementById('phone').value,
+                destino: document.getElementById('destination').value,
+                mensaje: document.getElementById('message').value,
+                fecha: new Date().toISOString(),
+                pagina_origen: window.location.href
+            };
+            document.getElementById('contactForm').style.display = 'none';
+            document.getElementById('formSuccess').style.display = 'block';
+            fetch('https://hook.eu2.make.com/1hk9mobvb0pblxgx1xrguaasbe19d7t9', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(datos)
+            }).catch(function(err) {
+                console.error('Error envío formulario:', err);
             });
-        })();
+        }
     </script>
 
     <script>
