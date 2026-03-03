@@ -85,6 +85,7 @@ images/             — Todas las imágenes locales
 <li><a href="../index.html#testimonios">¿Quién hay detrás?</a></li>
 <li><a href="../index.html#contacto">Contacto</a></li>
 <li><a href="pro-tips.html">Pro Tips</a></li>
+<li><a href="blog.html">Blog</a></li>
 ```
 - En `index.html` (raíz): los enlaces internos usan `#seccion`, los de páginas usan `pages/[pagina].html`
 - Desde `pages/`: enlaces a index usan `../index.html`, entre páginas se referencian directamente
