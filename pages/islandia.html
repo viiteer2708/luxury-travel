@@ -64,6 +64,45 @@
         .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
         .hamburger span { width: 24px; height: 2px; background: var(--gold); transition: var(--transition); }
 
+        /* Auto-collapse navbar */
+        .navbar.collapsed .hamburger { display: flex; }
+
+        .navbar.collapsed .nav-links {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background: var(--dark);
+            flex-direction: column;
+            justify-content: center;
+            gap: 28px;
+            transition: var(--transition);
+            border-left: 1px solid rgba(201,169,110,0.15);
+        }
+
+        .navbar.collapsed .nav-links.active { right: 0; }
+
+        .navbar.collapsed .nav-links .dropdown {
+            position: static;
+            transform: none;
+            min-width: 0;
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            padding: 8px 0 0 20px;
+            opacity: 1;
+            visibility: visible;
+            box-shadow: none;
+            margin-top: 0;
+        }
+
+        .navbar.collapsed .nav-links .dropdown a {
+            padding: 6px 0;
+            font-size: 0.75rem;
+        }
+
+
         /* ===== BUTTONS ===== */
         .btn { display: inline-flex; align-items: center; gap: 8px; padding: 16px 36px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; transition: var(--transition); cursor: pointer; border: none; font-family: 'Inter', sans-serif; }
         .btn-primary { background: var(--gold); color: var(--dark); }
@@ -205,55 +244,6 @@
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
 
-            .navbar .container {
-                max-width: 100%;
-                padding: 0 16px;
-            }
-
-            .logo img {
-                height: 60px;
-            }
-
-            .navbar.scrolled .logo img {
-                height: 45px;
-            }
-
-            .hamburger { display: flex; }
-
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 280px;
-                height: 100vh;
-                background: var(--dark);
-                flex-direction: column;
-                justify-content: center;
-                gap: 28px;
-                transition: var(--transition);
-                border-left: 1px solid rgba(201,169,110,0.15);
-            }
-
-            .nav-links.active { right: 0; }
-
-            .nav-links .dropdown {
-                position: static;
-                transform: none;
-                min-width: 0;
-                background: transparent;
-                border: none;
-                border-radius: 0;
-                padding: 8px 0 0 20px;
-                opacity: 1;
-                visibility: visible;
-                box-shadow: none;
-                margin-top: 0;
-            }
-
-            .nav-links .dropdown a {
-                padding: 6px 0;
-                font-size: 0.75rem;
-            }
 
             .includes-grid { grid-template-columns: repeat(2, 1fr); }
             .footer-grid { grid-template-columns: repeat(2, 1fr); }
@@ -692,6 +682,28 @@
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => navLinks.classList.remove('active'));
         });
+
+        // Auto-collapse navbar when items don't fit
+        function checkNavOverflow() {
+            const navbar = document.getElementById('navbar');
+            const navLinks = document.getElementById('navLinks');
+            const container = navbar.querySelector('.container');
+
+            navLinks.classList.remove('active');
+            navbar.classList.remove('collapsed');
+            navLinks.style.flexShrink = '0';
+            void navbar.offsetHeight;
+
+            if (container.scrollWidth > container.clientWidth + 2) {
+                navbar.classList.add('collapsed');
+            }
+
+            navLinks.style.flexShrink = '';
+        }
+
+        checkNavOverflow();
+        window.addEventListener('resize', checkNavOverflow);
+
 
         // Scroll reveal
         const observer = new IntersectionObserver((entries) => {
