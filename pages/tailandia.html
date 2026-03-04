@@ -727,36 +727,9 @@
         @media (max-width: 1024px) {
 
             .navbar .container {
-                max-width: 90%;
-                padding: 0 16px;
-            }
-
-            .nav-links {
-                gap: 16px;
-            }
-
-            .nav-links a {
-                font-size: 0.78rem;
-                padding: 6px 12px;
-                letter-spacing: 0.3px;
-            }
-
-            .includes-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .navbar .container {
                 max-width: 100%;
                 padding: 0 16px;
             }
-
-            section { padding: 80px 0; }
 
             .logo img {
                 height: 60px;
@@ -783,6 +756,37 @@
             }
 
             .nav-links.active { right: 0; }
+
+            .nav-links .dropdown {
+                position: static;
+                transform: none;
+                min-width: 0;
+                background: transparent;
+                border: none;
+                border-radius: 0;
+                padding: 8px 0 0 20px;
+                opacity: 1;
+                visibility: visible;
+                box-shadow: none;
+                margin-top: 0;
+            }
+
+            .nav-links .dropdown a {
+                padding: 6px 0;
+                font-size: 0.75rem;
+            }
+
+            .includes-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            section { padding: 80px 0; }
 
             .dest-hero {
                 background-attachment: scroll;
