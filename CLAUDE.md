@@ -53,6 +53,9 @@ images/             — Todas las imágenes locales
 - git add y git commit
 - git push
 
+**OBLIGATORIO SIEMPRE:**
+- Al crear un nuevo destino, SIEMPRE crear también su página de Pro Tips (`pro-tips-[destino].html`) y añadir la tarjeta en el hub `pro-tips.html`. Nunca crear un destino sin sus Pro Tips.
+
 **PROHIBIDO SIEMPRE:**
 - No mostrar precios en NINGUNA parte de la web (ni en HTML, ni en CSS, ni en comentarios). Sin excepciones.
 
