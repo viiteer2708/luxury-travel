@@ -22,7 +22,7 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
         .navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 10px 0; background: var(--dark); border-bottom: 1px solid rgba(201,169,110,0.15); transition: var(--transition); }
         .navbar.scrolled { background: var(--dark); backdrop-filter: blur(20px); padding: 6px 0; box-shadow: 0 2px 40px rgba(0,0,0,0.5); }
-        .navbar .container { display: flex; justify-content: space-between; align-items: center; max-width: 80%; padding: 0 24px; }
+        .navbar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: nowrap; max-width: 80%; padding: 0 24px; }
         .logo { display: inline-block; transition: var(--transition); } .logo img { height: 80px; width: auto; transition: var(--transition); }
         .navbar.scrolled .logo img { height: 60px; }
         .nav-links { display: flex; gap: 36px; align-items: center; }
@@ -103,7 +103,7 @@
         .footer-column ul { display: flex; flex-direction: column; gap: 12px; }
         .footer-column a { font-size: 0.9rem; color: var(--text-muted); transition: var(--transition); }
         .footer-column a:hover { color: var(--gold); }
-        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--text-muted); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: nowrap; font-size: 0.8rem; color: var(--text-muted); }
         .footer-bottom-links { display: flex; gap: 24px; }
         .footer-bottom-links a { color: var(--text-muted); transition: var(--transition); }
         .footer-bottom-links a:hover { color: var(--gold); }
@@ -357,7 +357,8 @@
         const navLinks = document.getElementById('navLinks');
         hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); });
         navLinks.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => navLinks.classList.remove('active')); });
-        function checkNavOverflow() { const navbar = document.getElementById('navbar'); const navLinks = document.getElementById('navLinks'); const container = navbar.querySelector('.container'); navLinks.classList.remove('active'); navbar.classList.remove('collapsed'); navLinks.style.flexShrink = '0'; void navbar.offsetHeight; if (window.innerWidth <= 1100 || container.scrollWidth > container.clientWidth + 2) { navbar.classList.add('collapsed'); } navLinks.style.flexShrink = ''; }
+        function checkNavOverflow() { const navbar = document.getElementById('navbar'); const navLinks = document.getElementById('navLinks'); const container = navbar.querySelector('.container'); navLinks.classList.remove('active'); navbar.classList.remove('collapsed'); navLinks.style.flexShrink = '0'; void navbar.offsetHeight; var bp = navbar.classList.contains('scrolled') ? 1150 : 1100;
+            if (window.innerWidth <= bp || container.scrollWidth > container.clientWidth + 2) { navbar.classList.add('collapsed'); } navLinks.style.flexShrink = ''; }
         checkNavOverflow(); window.addEventListener('resize', checkNavOverflow);
         const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } }); }, { threshold: 0.15 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));

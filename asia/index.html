@@ -75,6 +75,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: nowrap;
             max-width: 80%;
             padding: 0 24px;
         }
@@ -1000,7 +1001,8 @@
             navLinks.style.flexShrink = '0';
             void navbar.offsetHeight;
 
-            if (window.innerWidth <= 1100 || container.scrollWidth > container.clientWidth + 2) {
+            var bp = navbar.classList.contains('scrolled') ? 1150 : 1100;
+            if (window.innerWidth <= bp || container.scrollWidth > container.clientWidth + 2) {
                 navbar.classList.add('collapsed');
             }
 
