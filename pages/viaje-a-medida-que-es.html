@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Caribe — Horizonte Exclusivo</title>
-    <meta name="description" content="Descubre los mejores destinos de lujo en el Caribe. Playas de ensueño, aguas cristalinas y resorts exclusivos en el paraíso tropical.">
+    <title>Viaje a medida: qué es, qué incluye y por qué merece la pena — Horizonte Exclusivo</title>
+    <meta name="description" content="¿Qué es exactamente un viaje a medida? Te explicamos qué incluye, cómo se diseña paso a paso y por qué un viaje personalizado se disfruta (mucho) más que uno estándar.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -220,7 +220,6 @@
             font-size: 0.75rem;
         }
 
-
         /* ===== BUTTONS ===== */
         .btn {
             display: inline-flex;
@@ -249,46 +248,8 @@
             box-shadow: 0 8px 30px rgba(201,169,110,0.3);
         }
 
-        /* ===== SECTION COMMON ===== */
-        section { padding: 120px 0; }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 64px;
-        }
-
-        .section-label {
-            font-size: 0.75rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 16px;
-            display: block;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            color: var(--white);
-            margin-bottom: 16px;
-        }
-
-        .divider {
-            width: 60px;
-            height: 1px;
-            background: var(--gold);
-            margin: 20px auto;
-        }
-
-        .section-subtitle {
-            font-size: 1rem;
-            color: var(--text-muted);
-            max-width: 560px;
-            margin: 0 auto;
-            font-weight: 300;
-        }
-
-        /* ===== REGION HERO ===== */
-        .region-hero {
+        /* ===== HERO ===== */
+        .dest-hero {
             min-height: calc(70vh - 110px);
             display: flex;
             align-items: center;
@@ -298,35 +259,40 @@
             overflow: hidden;
             padding-top: 100px;
             padding-bottom: 20px;
-            background-image: url('https://images.unsplash.com/photo-1618064541372-289bdb6f5b7b?w=1920&q=80');
+            background-image: url('https://images.unsplash.com/photo-1512100356356-de1b84283e18?w=1920&q=80');
             background-size: cover;
-            background-position: center center;
+            background-position: center;
             background-attachment: fixed;
         }
 
-        .region-hero::after {
+        .dest-hero::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.4) 50%, var(--dark) 100%);
+            background: linear-gradient(180deg, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.45) 50%, var(--dark) 100%);
         }
 
-        .region-hero-content {
+        .dest-hero-content {
             position: relative;
             z-index: 2;
             max-width: 800px;
             padding: 0 24px;
         }
 
-        .region-hero-content .section-label {
-            font-size: 0.85rem;
-            letter-spacing: 5px;
+        .section-label {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
             margin-bottom: 20px;
             animation: fadeInUp 0.8s ease both;
         }
 
-        .region-hero-content h1 {
-            font-size: clamp(2.8rem, 6vw, 5rem);
+        .dest-hero-content h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
             font-weight: 700;
             color: var(--white);
             line-height: 1.1;
@@ -339,133 +305,191 @@
                  1px  1px 0 rgba(0,0,0,0.6);
         }
 
-        .region-hero-content p {
+        .dest-hero-content p {
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             color: var(--gold-light);
             font-weight: 300;
             max-width: 540px;
             margin: 0 auto;
+            margin-bottom: 8px;
             animation: fadeInUp 0.8s 0.4s ease both;
         }
 
-        /* ===== DESTINATIONS GRID ===== */
-        .destinations-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 28px;
+        /* ===== INTRO ===== */
+        .tips-intro {
+            padding-top: 30px;
+            padding-bottom: 10px;
         }
 
-        .destination-card {
-            background: var(--dark-card);
-            border-radius: var(--radius);
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: var(--transition);
-            position: relative;
+        .tips-intro-content {
+            max-width: 780px;
+            margin: 0 auto;
+            text-align: center;
         }
 
-        .destination-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(201,169,110,0.2);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-        }
-
-        .card-image {
-            position: relative;
-            height: 280px;
-            overflow: hidden;
-        }
-
-        .card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .destination-card:hover .card-image img {
-            transform: scale(1.08);
-        }
-
-        .card-badge {
-            position: absolute;
-            top: 16px;
-            left: 16px;
-            padding: 6px 14px;
-            background: rgba(10,10,10,0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 50px;
-            font-size: 0.7rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--gold);
-            border: 1px solid rgba(201,169,110,0.3);
-        }
-
-        .card-body {
-            padding: 28px;
-        }
-
-        .card-location {
-            font-size: 0.75rem;
-            color: var(--gold);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-
-        .card-body h3 {
-            font-size: 1.4rem;
-            color: var(--white);
-            margin-bottom: 12px;
-        }
-
-        .card-body p {
-            font-size: 0.9rem;
+        .tips-intro-content p {
+            font-size: 1.05rem;
             color: var(--text-muted);
-            margin-bottom: 20px;
-            line-height: 1.7;
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 16px;
         }
 
-        .card-features {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .card-features span {
+        .tips-back-link {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            padding: 6px 12px;
-            background: rgba(255,255,255,0.04);
-            border-radius: 50px;
-        }
-
-        .card-features span::before {
-            content: '✦';
+            gap: 8px;
+            font-size: 0.85rem;
             color: var(--gold);
-            font-size: 0.6rem;
-        }
-
-        .card-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 20px;
-            font-size: 0.82rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: var(--gold);
+            letter-spacing: 0.5px;
             transition: var(--transition);
+            margin-top: 8px;
         }
 
-        .card-link:hover {
+        .tips-back-link:hover {
             color: var(--gold-light);
-            gap: 10px;
+            gap: 12px;
+        }
+
+        /* ===== ARTICLE SECTIONS ===== */
+        .tips-section {
+            padding: 80px 0;
+        }
+
+        .tips-section.alt-bg {
+            background: var(--dark-soft);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .tips-section-header {
+            margin-bottom: 40px;
+        }
+
+        .tips-section-title {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--white);
+            line-height: 1.2;
+        }
+
+        .tips-section-subtitle {
+            font-size: 0.9rem;
+            color: var(--gold-light);
+            font-weight: 300;
+            margin-top: 4px;
+        }
+
+        .tip-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text);
+        }
+
+        .tip-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .tip-icon {
+            flex-shrink: 0;
+            font-size: 1.1rem;
+            margin-top: 2px;
+        }
+
+        .tip-item strong {
+            color: var(--white);
+        }
+
+        .tips-list {
+            max-width: 780px;
+        }
+
+        .article-text {
+            max-width: 780px;
+            font-size: 1.05rem;
+            color: var(--text);
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        .article-text p {
+            margin-bottom: 16px;
+        }
+
+        .article-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ===== STEPS GRID ===== */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 32px;
+        }
+
+        .step-card {
+            background: var(--dark-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: var(--radius);
+            padding: 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            transition: var(--transition);
+        }
+
+        .step-card:hover {
+            border-color: rgba(201,169,110,0.2);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 36px rgba(0,0,0,0.3);
+        }
+
+        .step-number {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            background: var(--gold);
+            color: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .step-card p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: var(--text);
+        }
+
+        .step-card strong {
+            color: var(--white);
+        }
+
+        /* ===== CTA ===== */
+        .tips-cta {
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .tips-cta h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .tips-cta p {
+            color: var(--text-muted);
+            max-width: 540px;
+            margin: 0 auto 32px;
+            font-weight: 300;
         }
 
         /* ===== FOOTER ===== */
@@ -576,27 +600,29 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
-
-
-            .destinations-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
             .footer-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (max-width: 768px) {
-            section { padding: 80px 0; } .navbar .container { max-width: 100%; width: 100%; padding: 0 12px; }
-
-            .region-hero {
+            .dest-hero {
                 background-attachment: scroll;
+                background-position: center center;
+                background-repeat: no-repeat;
             }
 
-            .region-hero { background-position: center center; background-repeat: no-repeat; }
+            .navbar .container {
+                max-width: 100%;
+                width: 100%;
+                padding: 0 12px;
+            }
 
-            .destinations-grid {
+            .tips-section {
+                padding: 48px 0;
+            }
+
+            .steps-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -650,7 +676,6 @@
                 <li><a href="../index.html#contacto">Contacto</a></li>
                 <li><a href="pro-tips.html">Travel Hacks</a></li>
                 <li><a href="blog.html">Blog</a></li>
-
             </ul>
             <button class="hamburger" id="hamburger" aria-label="Abrir menú">
                 <span></span><span></span><span></span>
@@ -659,26 +684,179 @@
     </nav>
 
     <!-- HERO -->
-    <section class="region-hero">
-        <div class="region-hero-content">
-            <h1>Top Destinos Caribe</h1>
-            <p>Playas de ensueño, aguas cristalinas y resorts exclusivos en el paraíso tropical</p>
+    <section class="dest-hero">
+        <div class="dest-hero-content">
+            <span class="section-label">Blog</span>
+            <h1>Viaje a medida: qué es, qué incluye y por qué se disfruta mucho más</h1>
+            <p>Todo lo que necesitas saber antes de diseñar tu próximo viaje personalizado</p>
         </div>
     </section>
 
-    <!-- DESTINATIONS -->
-    <section style="padding-top: 30px;">
+    <!-- INTRO -->
+    <section class="tips-intro">
         <div class="container">
-            <div class="section-header reveal" style="margin-bottom: 40px;">
-                <span class="section-label">Colección 2026</span>
-                <h2 class="section-title">Nuestras experiencias en el Caribe</h2>
-                <div class="divider"></div>
-                <p class="section-subtitle">Cada viaje es una experiencia irrepetible, diseñada con atención artesanal al detalle</p>
+            <div class="tips-intro-content reveal">
+                <p>Cada vez más viajeros eligen diseñar sus viajes a medida en lugar de comprar paquetes cerrados. Y no es por capricho: es porque la diferencia entre un viaje "correcto" y uno que recuerdas toda la vida está en los detalles. En este artículo te explicamos qué es exactamente un viaje a medida, qué incluye y por qué merece la pena.</p>
+                <a href="blog.html" class="tips-back-link">&#8592; Volver al Blog</a>
             </div>
+        </div>
+    </section>
 
-            <div class="destinations-grid">
-                <!-- Los destinos se irán añadiendo aquí -->
+    <!-- 01 QUÉ ES UN VIAJE A MEDIDA -->
+    <div class="tips-section reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">¿Qué es un viaje a medida?</h2>
+                <p class="tips-section-subtitle">La diferencia entre "ir de viaje" y "vivir un viaje"</p>
             </div>
+            <div class="article-text">
+                <p>Un viaje a medida es una experiencia diseñada desde cero para ti. No eliges entre opciones predefinidas: <strong>tú decides el destino, el ritmo, los alojamientos, las experiencias y cada detalle del itinerario.</strong></p>
+                <p>A diferencia de un paquete turístico, donde el programa es fijo y compartido con otros viajeros, un viaje personalizado se adapta a tus intereses, tu presupuesto y tu forma de viajar. Quieres madrugar para ver un templo vacío y dedicar la tarde a un spa, o prefieres dormir hasta tarde y cenar en un restaurante con estrella Michelin: todo es posible.</p>
+                <p>No es un lujo reservado a unos pocos. Es, sencillamente, <strong>la forma más inteligente de viajar</strong> cuando quieres que cada día cuente.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 02 QUÉ INCLUYE -->
+    <div class="tips-section alt-bg reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">¿Qué incluye un viaje a medida?</h2>
+                <p class="tips-section-subtitle">Mucho más de lo que imaginas</p>
+            </div>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Itinerario personalizado:</strong> diseñado día a día según tus intereses, ritmo y estilo de viaje. Nada de "día libre" sin sentido.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Alojamientos seleccionados:</strong> hoteles boutique, lodges exclusivos, riads con encanto o resorts de referencia — elegidos uno a uno, no por catálogo.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Transporte resuelto:</strong> vuelos internos, transfers privados, trenes panorámicos, barcos… todo coordinado y confirmado antes de salir.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Experiencias únicas:</strong> guías locales privados, accesos especiales, cenas en ubicaciones exclusivas, actividades que no aparecen en Google.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Asistencia 24/7:</strong> un equipo disponible durante todo el viaje. Si algo cambia, se resuelve en el momento.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Documentación completa:</strong> roadbook con mapas, recomendaciones, contactos locales y consejos prácticos para cada etapa.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 03 ¿SOLO PARA VIAJES LARGOS? -->
+    <div class="tips-section reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">¿Solo para viajes largos o lejanos?</h2>
+                <p class="tips-section-subtitle">Spoiler: no</p>
+            </div>
+            <div class="article-text">
+                <p>Uno de los mitos más comunes es que un viaje a medida solo tiene sentido para destinos exóticos o estancias de varias semanas. <strong>No es así.</strong></p>
+                <p>Un fin de semana largo en la Toscana, una escapada de 5 días a Escocia o un road trip de 10 días por la costa oeste de Estados Unidos se benefician igual de un diseño personalizado. La clave no es la duración ni la distancia, sino la calidad de la experiencia.</p>
+                <p>De hecho, cuanto más corto es el viaje, más importante es que cada día esté bien aprovechado. Y eso es exactamente lo que consigue un itinerario hecho a medida: <strong>cero tiempo perdido, máxima experiencia.</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 04 VENTAJAS -->
+    <div class="tips-section alt-bg reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Ventajas de viajar a medida</h2>
+                <p class="tips-section-subtitle">Por qué se disfruta mucho más</p>
+            </div>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Flexibilidad total:</strong> cambias de plan sobre la marcha si descubres algo mejor. Sin horarios de grupo ni compromisos rígidos.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Privacidad:</strong> sin autobuses compartidos, sin grupos de 40 personas, sin esperar a nadie. Tu viaje es solo tuyo.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Acceso a lo auténtico:</strong> los mejores guías locales, restaurantes que no están en TripAdvisor, experiencias que solo se consiguen con contactos sobre el terreno.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Tranquilidad:</strong> todo está organizado, pero sin sensación de "tour". Tienes un plan, pero no una obligación.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Recuerdos reales:</strong> los viajes que más se recuerdan no son los más caros, sino los que tienen momentos únicos. Un viaje a medida está diseñado para crearlos.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 05 CÓMO SE DISEÑA -->
+    <div class="tips-section reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">¿Cómo se diseña un viaje a medida?</h2>
+                <p class="tips-section-subtitle">El proceso en 4 pasos</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <span class="step-number">1</span>
+                    <div>
+                        <p><strong>Conversación inicial.</strong> Nos cuentas qué tienes en mente: destino, fechas, estilo de viaje, intereses, quién viaja. Sin compromiso.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <span class="step-number">2</span>
+                    <div>
+                        <p><strong>Propuesta a medida.</strong> Diseñamos un itinerario personalizado con alojamientos, experiencias y logística. Lo revisamos juntos y ajustamos lo que haga falta.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <span class="step-number">3</span>
+                    <div>
+                        <p><strong>Confirmación y reservas.</strong> Una vez que el plan es perfecto, nos encargamos de todas las reservas, coordinación y preparación del viaje.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <span class="step-number">4</span>
+                    <div>
+                        <p><strong>Tu viaje, con soporte.</strong> Recibes toda la documentación y tienes asistencia durante el viaje. Solo queda disfrutar.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 06 HORIZONTE EXCLUSIVO + CTA -->
+    <div class="tips-section alt-bg reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Diseñar con Horizonte Exclusivo</h2>
+                <p class="tips-section-subtitle">Esto es lo que hacemos</p>
+            </div>
+            <div class="article-text">
+                <p>En Horizonte Exclusivo llevamos años diseñando viajes a medida para viajeros que quieren algo más que un hotel y un vuelo. Trabajamos con una red de colaboradores locales en cada destino, seleccionamos cada alojamiento personalmente y creamos itinerarios que combinan <strong>experiencias auténticas, logística impecable y atención al detalle.</strong></p>
+                <p>No vendemos paquetes. No tenemos catálogo. Cada viaje empieza con una conversación y termina con una experiencia que se recuerda durante años.</p>
+                <p>Si tienes un destino en mente — o simplemente ganas de viajar y no sabes por dónde empezar — <strong>cuéntanoslo.</strong> Diseñar el viaje es parte de la experiencia.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <section class="tips-cta">
+        <div class="container reveal">
+            <h2>¿Diseñamos tu próximo <em style="color: var(--gold);">viaje a medida</em>?</h2>
+            <p>Cuéntanos tu destino soñado y creamos una experiencia única para ti.</p>
+            <a href="../index.html#contacto" class="btn btn-primary">Solicitar presupuesto &#10230;</a>
         </div>
     </section>
 
@@ -791,7 +969,6 @@
 
         checkNavOverflow();
         window.addEventListener('resize', checkNavOverflow);
-
 
         // Scroll reveal
         const observer = new IntersectionObserver((entries) => {

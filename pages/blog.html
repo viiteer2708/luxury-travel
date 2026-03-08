@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Caribe — Horizonte Exclusivo</title>
-    <meta name="description" content="Descubre los mejores destinos de lujo en el Caribe. Playas de ensueño, aguas cristalinas y resorts exclusivos en el paraíso tropical.">
+    <title>Blog de Viajes — Horizonte Exclusivo</title>
+    <meta name="description" content="Artículos, guías y reflexiones sobre viajes de lujo a medida. Descubre cómo diseñar experiencias únicas en los destinos más exclusivos del mundo.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -220,7 +220,6 @@
             font-size: 0.75rem;
         }
 
-
         /* ===== BUTTONS ===== */
         .btn {
             display: inline-flex;
@@ -249,45 +248,7 @@
             box-shadow: 0 8px 30px rgba(201,169,110,0.3);
         }
 
-        /* ===== SECTION COMMON ===== */
-        section { padding: 120px 0; }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 64px;
-        }
-
-        .section-label {
-            font-size: 0.75rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 16px;
-            display: block;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            color: var(--white);
-            margin-bottom: 16px;
-        }
-
-        .divider {
-            width: 60px;
-            height: 1px;
-            background: var(--gold);
-            margin: 20px auto;
-        }
-
-        .section-subtitle {
-            font-size: 1rem;
-            color: var(--text-muted);
-            max-width: 560px;
-            margin: 0 auto;
-            font-weight: 300;
-        }
-
-        /* ===== REGION HERO ===== */
+        /* ===== HERO ===== */
         .region-hero {
             min-height: calc(70vh - 110px);
             display: flex;
@@ -298,9 +259,9 @@
             overflow: hidden;
             padding-top: 100px;
             padding-bottom: 20px;
-            background-image: url('https://images.unsplash.com/photo-1618064541372-289bdb6f5b7b?w=1920&q=80');
+            background-image: url('https://images.unsplash.com/photo-1512100356356-de1b84283e18?w=1920&q=80');
             background-size: cover;
-            background-position: center center;
+            background-position: center;
             background-attachment: fixed;
         }
 
@@ -308,7 +269,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.4) 50%, var(--dark) 100%);
+            background: linear-gradient(180deg, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.45) 50%, var(--dark) 100%);
         }
 
         .region-hero-content {
@@ -318,9 +279,14 @@
             padding: 0 24px;
         }
 
-        .region-hero-content .section-label {
-            font-size: 0.85rem;
-            letter-spacing: 5px;
+        .section-label {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
             margin-bottom: 20px;
             animation: fadeInUp 0.8s ease both;
         }
@@ -345,14 +311,34 @@
             font-weight: 300;
             max-width: 540px;
             margin: 0 auto;
+            margin-bottom: 8px;
             animation: fadeInUp 0.8s 0.4s ease both;
         }
 
-        /* ===== DESTINATIONS GRID ===== */
+        /* ===== SECTION HEADER ===== */
+        .section-header {
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+            margin: 0 auto;
+        }
+
+        /* ===== BLOG GRID ===== */
         .destinations-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 28px;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 32px;
+            padding-bottom: 60px;
         }
 
         .destination-card {
@@ -361,18 +347,17 @@
             overflow: hidden;
             border: 1px solid rgba(255,255,255,0.05);
             transition: var(--transition);
-            position: relative;
         }
 
         .destination-card:hover {
             transform: translateY(-8px);
             border-color: rgba(201,169,110,0.2);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
 
         .card-image {
             position: relative;
-            height: 280px;
+            height: 220px;
             overflow: hidden;
         }
 
@@ -384,78 +369,50 @@
         }
 
         .destination-card:hover .card-image img {
-            transform: scale(1.08);
+            transform: scale(1.05);
         }
 
         .card-badge {
             position: absolute;
             top: 16px;
             left: 16px;
-            padding: 6px 14px;
-            background: rgba(10,10,10,0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 50px;
+            background: var(--gold);
+            color: var(--dark);
             font-size: 0.7rem;
-            letter-spacing: 2px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: var(--gold);
-            border: 1px solid rgba(201,169,110,0.3);
+            padding: 6px 14px;
+            border-radius: 50px;
         }
 
         .card-body {
-            padding: 28px;
-        }
-
-        .card-location {
-            font-size: 0.75rem;
-            color: var(--gold);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 8px;
+            padding: 24px;
         }
 
         .card-body h3 {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: var(--white);
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
 
         .card-body p {
             font-size: 0.9rem;
             color: var(--text-muted);
-            margin-bottom: 20px;
+            font-weight: 300;
             line-height: 1.7;
+            margin-bottom: 16px;
         }
 
-        .card-features {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .card-features span {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
+        .card-meta {
             font-size: 0.78rem;
             color: var(--text-muted);
-            padding: 6px 12px;
-            background: rgba(255,255,255,0.04);
-            border-radius: 50px;
-        }
-
-        .card-features span::before {
-            content: '✦';
-            color: var(--gold);
-            font-size: 0.6rem;
+            font-weight: 300;
+            margin-bottom: 16px;
         }
 
         .card-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 20px;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 600;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -463,9 +420,27 @@
             transition: var(--transition);
         }
 
-        .card-link:hover {
+        .destination-card:hover .card-link {
             color: var(--gold-light);
-            gap: 10px;
+        }
+
+        /* ===== CTA ===== */
+        .blog-cta {
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .blog-cta h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .blog-cta p {
+            color: var(--text-muted);
+            max-width: 540px;
+            margin: 0 auto 32px;
+            font-weight: 300;
         }
 
         /* ===== FOOTER ===== */
@@ -576,25 +551,23 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
-
-
-            .destinations-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
             .footer-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (max-width: 768px) {
-            section { padding: 80px 0; } .navbar .container { max-width: 100%; width: 100%; padding: 0 12px; }
-
             .region-hero {
                 background-attachment: scroll;
+                background-position: center center;
+                background-repeat: no-repeat;
             }
 
-            .region-hero { background-position: center center; background-repeat: no-repeat; }
+            .navbar .container {
+                max-width: 100%;
+                width: 100%;
+                padding: 0 12px;
+            }
 
             .destinations-grid {
                 grid-template-columns: 1fr;
@@ -650,7 +623,6 @@
                 <li><a href="../index.html#contacto">Contacto</a></li>
                 <li><a href="pro-tips.html">Travel Hacks</a></li>
                 <li><a href="blog.html">Blog</a></li>
-
             </ul>
             <button class="hamburger" id="hamburger" aria-label="Abrir menú">
                 <span></span><span></span><span></span>
@@ -661,24 +633,45 @@
     <!-- HERO -->
     <section class="region-hero">
         <div class="region-hero-content">
-            <h1>Top Destinos Caribe</h1>
-            <p>Playas de ensueño, aguas cristalinas y resorts exclusivos en el paraíso tropical</p>
+            <span class="section-label">Horizonte Exclusivo</span>
+            <h1>Blog</h1>
+            <p>Ideas, guías y reflexiones para diseñar viajes que se recuerdan toda la vida</p>
         </div>
     </section>
 
-    <!-- DESTINATIONS -->
+    <!-- ARTÍCULOS -->
     <section style="padding-top: 30px;">
         <div class="container">
             <div class="section-header reveal" style="margin-bottom: 40px;">
-                <span class="section-label">Colección 2026</span>
-                <h2 class="section-title">Nuestras experiencias en el Caribe</h2>
+                <span class="section-label">Artículos</span>
+                <h2 class="section-title">Últimas publicaciones</h2>
                 <div class="divider"></div>
-                <p class="section-subtitle">Cada viaje es una experiencia irrepetible, diseñada con atención artesanal al detalle</p>
             </div>
 
             <div class="destinations-grid">
-                <!-- Los destinos se irán añadiendo aquí -->
+                <div class="destination-card reveal">
+                    <a href="viaje-a-medida-que-es.html">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1512100356356-de1b84283e18?w=600&q=80" alt="Viaje a medida">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <h3>Viaje a medida: qué es, qué incluye y por qué se disfruta mucho más</h3>
+                            <p>Todo lo que necesitas saber antes de contratar un viaje personalizado: qué incluye, cómo se diseña y por qué marca la diferencia.</p>
+                            <span class="card-link">Leer artículo &#10230;</span>
+                        </div>
+                    </a>
+                </div>
             </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="blog-cta">
+        <div class="container reveal">
+            <h2>¿Listo para vivir tu próximo <em style="color: var(--gold);">viaje</em>?</h2>
+            <p>Cuéntanos tu destino soñado y diseñamos una experiencia a tu medida.</p>
+            <a href="../index.html#contacto" class="btn btn-primary">Contactar &#10230;</a>
         </div>
     </section>
 
@@ -791,7 +784,6 @@
 
         checkNavOverflow();
         window.addEventListener('resize', checkNavOverflow);
-
 
         // Scroll reveal
         const observer = new IntersectionObserver((entries) => {
