@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alaska — Horizonte Exclusivo</title>
-    <meta name="description" content="Viaje de lujo a Alaska: Anchorage, Kenai Fjords, Denali y Fairbanks. 13 días de glaciares, fauna salvaje, auroras boreales y naturaleza indómita.">
+    <title>Ecuador & Galápagos — Horizonte Exclusivo</title>
+    <meta name="description" content="Viaje de lujo a Ecuador y Galápagos: Quito colonial, Amazonía profunda, Baños de aventura y las islas Galápagos. 13 noches de volcanes, selva y evolución.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -15,8 +15,6 @@
         h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
         a { text-decoration: none; color: inherit; } img { max-width: 100%; display: block; } ul { list-style: none; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-
-        /* NAVBAR */
         .navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 10px 0; background: var(--dark); border-bottom: 1px solid rgba(201,169,110,0.15); transition: var(--transition); }
         .navbar.scrolled { background: var(--dark); backdrop-filter: blur(20px); padding: 6px 0; box-shadow: 0 2px 40px rgba(0,0,0,0.5); }
         .navbar .container { display: flex; justify-content: space-between; align-items: center; max-width: 80%; padding: 0 24px; }
@@ -37,38 +35,29 @@
         .navbar.collapsed .nav-links.active { right: 0; }
         .navbar.collapsed .nav-links .dropdown { position: static; transform: none; min-width: 0; background: transparent; border: none; border-radius: 0; padding: 8px 0 0 20px; opacity: 1; visibility: visible; box-shadow: none; margin-top: 0; }
         .navbar.collapsed .nav-links .dropdown a { padding: 6px 0; font-size: 0.75rem; }
-
-        /* BUTTONS */
         .btn { display: inline-flex; align-items: center; gap: 8px; padding: 16px 36px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; transition: var(--transition); cursor: pointer; border: none; font-family: 'Inter', sans-serif; }
         .btn-primary { background: var(--gold); color: var(--dark); }
         .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,169,110,0.3); }
-
-        /* SECTION COMMON */
         section { padding: 120px 0; }
         .section-header { text-align: center; margin-bottom: 64px; }
         .section-label { font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; display: block; }
         .section-title { font-size: clamp(2rem, 4vw, 3rem); color: var(--white); margin-bottom: 16px; }
         .divider { width: 60px; height: 1px; background: var(--gold); margin: 20px auto; }
-
-        /* DESTINATION HERO */
-        .dest-hero { min-height: calc(70vh - 110px); display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; padding-top: 100px; padding-bottom: 20px; background-image: url('https://images.unsplash.com/photo-1549517771-aa105e8da34f?w=1920&q=80'); background-size: cover; background-position: center calc(50% + 60px); background-attachment: fixed; }
+        .dest-hero { min-height: calc(70vh - 110px); display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; padding-top: 100px; padding-bottom: 20px; background-image: url('https://images.unsplash.com/photo-1645571049250-7eb982250f86?w=1920&q=80'); background-size: cover; background-position: center calc(50% + 60px); background-attachment: fixed; }
         .dest-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.4) 50%, var(--dark) 100%); }
         .dest-hero-content { position: relative; z-index: 2; max-width: 800px; padding: 0 24px; }
         .dest-hero-content .section-label { font-size: 0.85rem; letter-spacing: 5px; margin-bottom: 20px; animation: fadeInUp 0.8s ease both; }
         .dest-hero-content h1 { font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 700; color: var(--white); line-height: 1.1; margin-bottom: 20px; animation: fadeInUp 0.8s 0.2s ease both; text-shadow: -1px -1px 0 rgba(0,0,0,0.6), 1px -1px 0 rgba(0,0,0,0.6), -1px 1px 0 rgba(0,0,0,0.6), 1px 1px 0 rgba(0,0,0,0.6); }
         .dest-hero-content p { font-size: clamp(1rem, 2.5vw, 1.2rem); color: var(--gold-light); font-weight: 300; margin-bottom: 8px; animation: fadeInUp 0.8s 0.4s ease both; }
         .dest-hero-content .dest-duration { font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); animation: fadeInUp 0.8s 0.6s ease both; }
-
-        /* DESTINATION INTRO */
         .dest-intro-text { max-width: 780px; margin: 0 auto; text-align: center; font-size: 1.05rem; color: var(--text); line-height: 1.9; font-weight: 300; }
-
-        /* ITINERARY BLOCKS */
         .itinerary-block { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-bottom: 80px; }
         .itinerary-block:last-child { margin-bottom: 0; }
-        .itinerary-block.reverse .itinerary-carousel { order: 2; }
+        .itinerary-block.reverse .itinerary-image, .itinerary-block.reverse .itinerary-carousel { order: 2; }
         .itinerary-block.reverse .itinerary-content { order: 1; }
-
-        /* ITINERARY CAROUSEL */
+        .itinerary-image { border-radius: var(--radius); overflow: hidden; position: relative; }
+        .itinerary-image img { width: 100%; height: 400px; object-fit: cover; transition: transform 0.6s ease; }
+        .itinerary-image:hover img { transform: scale(1.05); }
         .itinerary-carousel { position: relative; border-radius: var(--radius); overflow: hidden; height: 400px; }
         .itinerary-carousel .carousel-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.6s ease; }
         .itinerary-carousel .carousel-slide.active { opacity: 1; }
@@ -79,34 +68,25 @@
         .carousel-dots { display: flex; gap: 8px; }
         .carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.4); border: none; cursor: pointer; transition: all 0.3s ease; padding: 0; }
         .carousel-dot.active { background: var(--gold); transform: scale(1.2); }
-
         .itinerary-content .section-label { text-align: left; margin-bottom: 12px; }
         .itinerary-content h3 { font-size: 1.8rem; color: var(--white); margin-bottom: 16px; }
         .itinerary-content p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; font-weight: 300; }
         .itinerary-content ul { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
         .itinerary-content ul li { font-size: 0.88rem; color: var(--text); padding-left: 20px; position: relative; }
         .itinerary-content ul li::before { content: '✦'; position: absolute; left: 0; color: var(--gold); font-size: 0.6rem; top: 4px; }
-
-        /* INCLUDES GRID */
         .includes-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
         .include-card { background: var(--dark-card); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius); padding: 36px 28px; text-align: center; transition: var(--transition); }
         .include-card:hover { border-color: rgba(201,169,110,0.2); transform: translateY(-4px); }
         .include-card .include-icon { font-size: 2rem; margin-bottom: 16px; display: block; }
         .include-card h4 { font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--white); margin-bottom: 10px; letter-spacing: 0.5px; }
         .include-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; font-weight: 300; }
-
-        /* DESTINATION CTA */
         .dest-cta { text-align: center; padding-top: 30px; background: var(--dark-soft); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
         .dest-cta h2 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); color: var(--white); margin-bottom: 16px; }
         .dest-cta p { color: var(--text-muted); font-weight: 300; max-width: 540px; margin: 0 auto 32px; line-height: 1.8; }
-
-        /* PRO TIPS LINK */
         .dest-protips { text-align: center; padding: 80px 0; }
         .dest-protips .section-label { margin-bottom: 16px; }
         .dest-protips h2 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); color: var(--white); margin-bottom: 16px; }
         .dest-protips p { color: var(--text-muted); font-weight: 300; max-width: 540px; margin: 0 auto 32px; line-height: 1.8; }
-
-        /* FOOTER */
         footer { background: var(--dark-soft); border-top: 1px solid rgba(255,255,255,0.05); padding: 80px 0 0; }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 60px; }
         .footer-brand .logo { margin-bottom: 16px; } .footer-brand .logo img { height: 70px; }
@@ -122,64 +102,45 @@
         .footer-bottom-links { display: flex; gap: 24px; }
         .footer-bottom-links a { color: var(--text-muted); transition: var(--transition); }
         .footer-bottom-links a:hover { color: var(--gold); }
-
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
         .reveal.visible { opacity: 1; transform: translateY(0); }
-
         @media (max-width: 1024px) { .includes-grid { grid-template-columns: repeat(2, 1fr); } .footer-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 768px) { section { padding: 80px 0; } .navbar .container { max-width: 100%; width: 100%; padding: 0 12px; } .dest-hero { background-attachment: scroll; background-position: center center; background-repeat: no-repeat; } .route-line { display: none; } .itinerary-block { grid-template-columns: 1fr; gap: 28px; } .itinerary-block.reverse .itinerary-carousel, .itinerary-block.reverse .itinerary-content { order: unset; } .itinerary-carousel { height: 280px; } .includes-grid { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr; gap: 36px; } .footer-bottom { flex-direction: column; gap: 12px; text-align: center; } }
+        @media (max-width: 768px) { section { padding: 80px 0; } .navbar .container { max-width: 100%; width: 100%; padding: 0 12px; } .dest-hero { background-attachment: scroll; background-position: center center; background-repeat: no-repeat; } .route-line { display: none; } .itinerary-block { grid-template-columns: 1fr; gap: 28px; } .itinerary-block.reverse .itinerary-image, .itinerary-block.reverse .itinerary-carousel, .itinerary-block.reverse .itinerary-content { order: unset; } .itinerary-image img { height: 280px; } .itinerary-carousel { height: 280px; } .includes-grid { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr; gap: 36px; } .footer-bottom { flex-direction: column; gap: 12px; text-align: center; } }
         @media (max-width: 480px) { .logo img { height: 48px; } .navbar.scrolled .logo img { height: 36px; } .footer-brand .logo img { height: 50px; } .includes-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-
-    <!-- NAVBAR -->
     <nav class="navbar" id="navbar">
         <div class="container">
             <a href="../index.html" class="logo"><img src="../images/logo-trimmed.png" alt="Horizonte Exclusivo"></a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="../index.html">Nuevos horizontes</a></li>
-                <li>
-                    <a href="../index.html#destinos">Destinos</a>
-                    <div class="dropdown">
-                        <a href="africa.html">Africa</a>
-                        <a href="america.html">América</a>
-                        <a href="asia.html">Asia</a>
-                        <a href="caribe.html">Caribe</a>
-                        <a href="europa.html">Europa</a>
-                        <a href="paraisos.html">Paraísos sobre el agua</a>
-                    </div>
-                </li>
+                <li><a href="../index.html#destinos">Destinos</a><div class="dropdown"><a href="africa.html">Africa</a><a href="america.html">América</a><a href="asia.html">Asia</a><a href="caribe.html">Caribe</a><a href="europa.html">Europa</a><a href="paraisos.html">Paraísos sobre el agua</a></div></li>
                 <li><a href="../index.html#testimonios">¿Quién hay detrás?</a></li>
                 <li><a href="../index.html#contacto">Contacto</a></li>
                 <li><a href="pro-tips.html">Travel Hacks</a></li>
-                
+
             </ul>
             <button class="hamburger" id="hamburger" aria-label="Abrir menú"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
-    <!-- HERO -->
     <section class="dest-hero">
         <div class="dest-hero-content">
             <span class="section-label">América</span>
-            <h1>Alaska</h1>
-            <p>Naturaleza indómita y paisajes infinitos</p>
-            <span class="dest-duration">13 días / 12 noches</span>
+            <h1>Ecuador & Galápagos</h1>
+            <p>Volcanes, selva y evolución en estado puro</p>
+            <span class="dest-duration">14 días / 13 noches</span>
         </div>
     </section>
 
-    <!-- INTRO -->
     <section style="padding-top: 30px; padding-bottom: 10px;">
         <div class="container">
-            <p class="dest-intro-text reveal">
-                Alaska es uno de los últimos grandes territorios salvajes del planeta. Glaciares que crujen frente al mar, montañas que parecen no tener fin, bosques interminables y una fauna que se mueve libre entre ríos y fiordos. Un viaje a Alaska es una experiencia de conexión profunda con la naturaleza en su estado más puro.
-            </p>
+            <p class="dest-intro-text reveal">Ecuador es un país compacto pero inmenso en contrastes. Quito colonial a 2.800 metros, la Amazonía más profunda, pueblos andinos entre volcanes y las islas Galápagos, el laboratorio natural donde Darwin cambió la historia. Todo en un mismo viaje.</p>
         </div>
     </section>
 
-    <!-- ITINERARY -->
     <section id="itinerario" style="padding-top: 10px;">
         <div class="container">
             <div class="section-header reveal">
@@ -188,156 +149,108 @@
                 <div class="divider"></div>
             </div>
 
-            <!-- Anchorage -->
+            <!-- Quito -->
             <div class="itinerary-block reveal">
                 <div class="itinerary-carousel">
-                    <div class="carousel-slide active">
-                        <img src="https://images.unsplash.com/photo-1549517771-aa105e8da34f?w=800&q=80" alt="Río junto al bosque en Alaska">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1589230008870-99ce89d97cbd?w=800&q=80" alt="Lago y montañas en Anchorage">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1721685575991-9e3ec7db6b81?w=800&q=80" alt="Río en bosque verde de Alaska">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1711178095572-3dccea2e0c41?w=800&q=80" alt="Costa rocosa de Alaska">
-                    </div>
+                    <div class="carousel-slide active"><img src="https://images.unsplash.com/photo-1610226977124-9fd2755d09f2?w=800&q=80" alt="Centro histórico de Quito"></div>
+                    <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1628004581461-13dd6f81ed07?w=800&q=80" alt="Vista aérea de Quito"></div>
+                    <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1587406142264-bbda44fc1372?w=800&q=80" alt="Quito de noche"></div>
                     <div class="carousel-controls">
                         <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
-                        <div class="carousel-dots">
-                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
-                            <button class="carousel-dot" aria-label="Imagen 2"></button>
-                            <button class="carousel-dot" aria-label="Imagen 3"></button>
-                            <button class="carousel-dot" aria-label="Imagen 4"></button>
-                        </div>
+                        <div class="carousel-dots"><button class="carousel-dot active" aria-label="Imagen 1"></button><button class="carousel-dot" aria-label="Imagen 2"></button><button class="carousel-dot" aria-label="Imagen 3"></button></div>
                         <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
                     </div>
                 </div>
                 <div class="itinerary-content">
                     <span class="section-label">Días 1 – 3</span>
-                    <h3>Anchorage</h3>
-                    <p>Puerta de entrada a la gran naturaleza. Anchorage combina comodidad urbana con acceso directo a paisajes espectaculares.</p>
+                    <h3>Quito</h3>
+                    <p>Capital a 2.800 metros con uno de los centros históricos mejor conservados de América. Iglesias barrocas, plazas coloniales y una gastronomía andina que sorprende.</p>
                     <ul>
-                        <li>Senderismo en el Parque Estatal Chugach</li>
-                        <li>Excursión al glaciar Portage</li>
-                        <li>Centro de Conservación de Vida Silvestre de Alaska</li>
-                        <li>Paseo panorámico por la Seward Highway</li>
-                        <li>Avistamiento de alces en los alrededores</li>
+                        <li>Centro histórico y Plaza de la Independencia</li>
+                        <li>Iglesia de la Compañía de Jesús</li>
+                        <li>Teleférico del Pichincha con vistas a los volcanes</li>
+                        <li>Mitad del Mundo y línea ecuatorial</li>
+                        <li>Cena de autor con cocina ecuatoriana contemporánea</li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Kenai / Seward -->
+            <!-- Amazonía -->
             <div class="itinerary-block reverse reveal">
                 <div class="itinerary-carousel">
-                    <div class="carousel-slide active">
-                        <img src="https://images.unsplash.com/photo-1627668840756-157decaf5dce?w=800&q=80" alt="Puerto de Seward">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1752784153859-4cdd1a474404?w=800&q=80" alt="Paisaje de montañas en Kenai">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1752783893782-82e550e360ea?w=800&q=80" alt="Montañas nevadas reflejadas en lago">
-                    </div>
+                    <div class="carousel-slide active"><img src="https://images.unsplash.com/photo-1610413260327-ac5ffe5e0146?w=800&q=80" alt="Selva amazónica ecuatoriana"></div>
+                    <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1610413341456-e283a1c6026f?w=800&q=80" alt="Río en la Amazonía"></div>
                     <div class="carousel-controls">
                         <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
-                        <div class="carousel-dots">
-                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
-                            <button class="carousel-dot" aria-label="Imagen 2"></button>
-                            <button class="carousel-dot" aria-label="Imagen 3"></button>
-                        </div>
+                        <div class="carousel-dots"><button class="carousel-dot active" aria-label="Imagen 1"></button><button class="carousel-dot" aria-label="Imagen 2"></button></div>
                         <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
                     </div>
                 </div>
                 <div class="itinerary-content">
                     <span class="section-label">Días 4 – 6</span>
-                    <h3>Península de Kenai / Seward</h3>
-                    <p>Fiordos, ballenas y glaciares. Una de las zonas más impresionantes del estado, donde el mar y el hielo se encuentran.</p>
+                    <h3>Amazonía ecuatoriana</h3>
+                    <p>La selva más biodiversa del planeta. Lodges exclusivos en plena naturaleza, canoas por ríos serpenteantes y encuentros con comunidades indígenas.</p>
                     <ul>
-                        <li>Crucero por el Parque Nacional Kenai Fjords</li>
-                        <li>Avistamiento de ballenas, orcas y leones marinos</li>
-                        <li>Caminata hasta Exit Glacier</li>
-                        <li>Kayak entre aguas glaciares</li>
-                        <li>Pesca deportiva o excursión privada en barco</li>
+                        <li>Lodge de lujo en la selva amazónica</li>
+                        <li>Navegación en canoa por ríos secundarios</li>
+                        <li>Caminata nocturna con guía naturalista</li>
+                        <li>Visita a comunidad kichwa</li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Denali -->
+            <!-- Baños -->
             <div class="itinerary-block reveal">
                 <div class="itinerary-carousel">
-                    <div class="carousel-slide active">
-                        <img src="https://images.unsplash.com/photo-1624979757727-5de786918283?w=800&q=80" alt="Lago y bosque en Denali">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1624469681156-4114efeb85a0?w=800&q=80" alt="Tundra y montañas en Denali">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1592525106796-a12ddc7b39c7?w=800&q=80" alt="Montañas verdes del Parque Nacional Denali">
-                    </div>
+                    <div class="carousel-slide active"><img src="https://images.unsplash.com/photo-1599508056291-5e368c54d63d?w=800&q=80" alt="Baños de Agua Santa"></div>
+                    <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1698710569470-3052ea231e39?w=800&q=80" alt="Naturaleza en Baños"></div>
                     <div class="carousel-controls">
                         <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
-                        <div class="carousel-dots">
-                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
-                            <button class="carousel-dot" aria-label="Imagen 2"></button>
-                            <button class="carousel-dot" aria-label="Imagen 3"></button>
-                        </div>
+                        <div class="carousel-dots"><button class="carousel-dot active" aria-label="Imagen 1"></button><button class="carousel-dot" aria-label="Imagen 2"></button></div>
                         <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
                     </div>
                 </div>
                 <div class="itinerary-content">
-                    <span class="section-label">Días 7 – 9</span>
-                    <h3>Denali</h3>
-                    <p>El corazón salvaje de Alaska. El Parque Nacional Denali alberga el pico más alto de Norteamérica y una fauna espectacular.</p>
+                    <span class="section-label">Días 7 – 8</span>
+                    <h3>Baños de Agua Santa</h3>
+                    <p>La capital de la aventura ecuatoriana. Cascadas, aguas termales, volcán Tungurahua y paisajes andinos que quitan el aliento.</p>
                     <ul>
-                        <li>Ruta panorámica por el Parque Nacional Denali</li>
-                        <li>Avistamiento de osos, caribúes y lobos</li>
-                        <li>Sobrevuelo escénico en avioneta sobre el monte Denali</li>
-                        <li>Senderismo guiado en tundra</li>
-                        <li>Experiencia en lodge remoto rodeado de naturaleza</li>
+                        <li>Ruta de las Cascadas en bicicleta</li>
+                        <li>Pailón del Diablo</li>
+                        <li>Columpio del Fin del Mundo en la Casa del Árbol</li>
+                        <li>Termas naturales al atardecer</li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Fairbanks -->
+            <!-- Galápagos -->
             <div class="itinerary-block reverse reveal">
                 <div class="itinerary-carousel">
-                    <div class="carousel-slide active">
-                        <img src="https://images.unsplash.com/photo-1606245662638-0a9fd0233aa9?w=800&q=80" alt="Cabaña nevada en Fairbanks">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1708577265947-6b968b7638e3?w=800&q=80" alt="Camino nevado en bosque de Alaska">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1698532568834-26e122303b83?w=800&q=80" alt="Banco frente a lago en Fairbanks">
-                    </div>
+                    <div class="carousel-slide active"><img src="https://images.unsplash.com/photo-1706957614198-8d2e5f0ed6ea?w=800&q=80" alt="Isla Bartolomé, Galápagos"></div>
+                    <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1581875598938-cac706391c98?w=800&q=80" alt="Paisaje volcánico de Galápagos"></div>
+                    <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1595517930215-d2778a56ac93?w=800&q=80" alt="León marino en Galápagos"></div>
                     <div class="carousel-controls">
                         <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
-                        <div class="carousel-dots">
-                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
-                            <button class="carousel-dot" aria-label="Imagen 2"></button>
-                            <button class="carousel-dot" aria-label="Imagen 3"></button>
-                        </div>
+                        <div class="carousel-dots"><button class="carousel-dot active" aria-label="Imagen 1"></button><button class="carousel-dot" aria-label="Imagen 2"></button><button class="carousel-dot" aria-label="Imagen 3"></button></div>
                         <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
                     </div>
                 </div>
                 <div class="itinerary-content">
-                    <span class="section-label">Días 10 – 12</span>
-                    <h3>Fairbanks</h3>
-                    <p>Auroras boreales y paisajes árticos. En temporada adecuada, Fairbanks es uno de los mejores lugares del mundo para observar auroras boreales.</p>
+                    <span class="section-label">Días 9 – 13</span>
+                    <h3>Islas Galápagos</h3>
+                    <p>El archipiélago donde la naturaleza escribe las reglas. Tortugas gigantes, iguanas marinas, piqueros de patas azules y snorkel con leones marinos.</p>
                     <ul>
-                        <li>Excursión nocturna para ver auroras boreales</li>
-                        <li>Visita a aguas termales naturales</li>
-                        <li>Ruta por el río Chena</li>
-                        <li>Experiencia cultural sobre pueblos nativos de Alaska</li>
+                        <li>Crucero de expedición por las islas</li>
+                        <li>Isla Bartolomé y Pinnacle Rock</li>
+                        <li>Estación Charles Darwin y tortugas gigantes</li>
+                        <li>Snorkel con tiburones martillo y rayas</li>
+                        <li>Isla Isabela y volcán Sierra Negra</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- QUÉ INCLUYE -->
     <section style="padding-top: 30px; background: var(--dark-soft); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
         <div class="container">
             <div class="section-header reveal">
@@ -346,50 +259,31 @@
                 <div class="divider"></div>
             </div>
             <div class="includes-grid">
-                <div class="include-card reveal">
-                    <span class="include-icon">✈</span>
-                    <h4>Vuelos</h4>
-                    <p>Vuelos internacionales y vuelos internos entre etapas. Traslados privados según ruta.</p>
-                </div>
-                <div class="include-card reveal">
-                    <span class="include-icon">🚗</span>
-                    <h4>Vehículo</h4>
-                    <p>Vehículo de alquiler 4x4 o traslados privados adaptados a las condiciones de Alaska.</p>
-                </div>
-                <div class="include-card reveal">
-                    <span class="include-icon">🏨</span>
-                    <h4>Alojamiento</h4>
-                    <p>Lodges exclusivos en plena naturaleza, hoteles boutique y cabañas seleccionadas por ubicación y carácter.</p>
-                </div>
-                <div class="include-card reveal">
-                    <span class="include-icon">⭐</span>
-                    <h4>Experiencias</h4>
-                    <p>Cruceros por fiordos, sobrevuelos, excursiones de fauna, kayak glaciar y actividades premium a medida.</p>
-                </div>
+                <div class="include-card reveal"><span class="include-icon">✈</span><h4>Vuelos</h4><p>Vuelos domésticos Quito–Amazonía–Galápagos y tasas de entrada al Parque Nacional.</p></div>
+                <div class="include-card reveal"><span class="include-icon">🚐</span><h4>Traslados</h4><p>Traslados privados en todos los destinos continentales. Lanchas y transfers en Galápagos.</p></div>
+                <div class="include-card reveal"><span class="include-icon">🏨</span><h4>Alojamiento</h4><p>Hoteles boutique en Quito, lodge amazónico exclusivo y crucero de expedición en Galápagos.</p></div>
+                <div class="include-card reveal"><span class="include-icon">⭐</span><h4>Experiencias</h4><p>Guías naturalistas certificados, snorkel, kayak y experiencias culturales únicas.</p></div>
             </div>
         </div>
     </section>
 
-    <!-- CTA -->
     <section class="dest-cta">
         <div class="container reveal">
-            <h2>Diseñemos <em style="color: var(--gold);">tu Alaska</em></h2>
-            <p>Cada viaje es único. Cuéntanos cómo imaginas tu aventura en Alaska y crearemos un itinerario a tu medida.</p>
-            <a href="../index.html?destino=Alaska#contacto" class="btn btn-primary">Solicitar presupuesto &#10230;</a>
+            <h2>Diseñemos <em style="color: var(--gold);">tu Ecuador</em></h2>
+            <p>Cada viaje es único. Cuéntanos cómo imaginas tu aventura y crearemos un itinerario a tu medida.</p>
+            <a href="../index.html?destino=Ecuador%20%26%20Gal%C3%A1pagos#contacto" class="btn btn-primary">Solicitar presupuesto &#10230;</a>
         </div>
     </section>
 
-    <!-- PRO TIPS -->
     <section class="dest-protips">
         <div class="container reveal">
             <span class="section-label">Travel Hacks</span>
-            <h2>Consejos de experto para <em style="color: var(--gold);">Alaska</em></h2>
+            <h2>Consejos de experto para <em style="color: var(--gold);">Ecuador</em></h2>
             <p>Todo lo que necesitas saber antes, durante y después de tu viaje: checklist, dinero, transporte, seguridad, cultura, comida y hacks de experto.</p>
-            <a href="pro-tips-alaska.html" class="btn btn-primary">Ver Travel Hacks &#10230;</a>
+            <a href="pro-tips-ecuador.html" class="btn btn-primary">Ver Travel Hacks &#10230;</a>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -398,36 +292,11 @@
                     <p>Más que viajar, vivir el mundo. Creamos experiencias de viaje de lujo a medida. Cada destino es una historia, cada viaje una obra maestra.</p>
                     <div class="social-links"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="Facebook">FB</a><a href="#" aria-label="Twitter">TW</a><a href="#" aria-label="LinkedIn">IN</a></div>
                 </div>
-                <div class="footer-column">
-                    <h4>Destinos</h4>
-                    <ul>
-                        <li><a href="escocia.html">Escocia</a></li>
-                        <li><a href="italia.html">Italia</a></li>
-                        <li><a href="tailandia.html">Tailandia</a></li>
-                        <li><a href="costa-oeste-usa.html">Costa Oeste USA</a></li>
-                        <li><a href="florida.html">Florida</a></li>
-                        <li><a href="alaska.html">Alaska</a></li>
-                        <li><a href="canada.html">Canadá</a></li>
-                        <li><a href="brasil.html">Brasil</a></li>
-                        <li><a href="argentina.html">Argentina</a></li>
-                        <li><a href="peru.html">Perú</a></li>
-                        <li><a href="colombia.html">Colombia</a></li>
-                        <li><a href="ecuador.html">Ecuador</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Experiencias</h4>
-                    <ul><li><a href="#">Luna de miel</a></li><li><a href="#">Safari de lujo</a></li><li><a href="#">Cruceros privados</a></li><li><a href="#">Retiros wellness</a></li><li><a href="#">Aventura exclusiva</a></li></ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Compañía</h4>
-                    <ul><li><a href="#">Sobre nosotros</a></li><li><a href="#">Nuestro equipo</a></li><li><a href="#">Blog de viajes</a></li><li><a href="#">Prensa</a></li><li><a href="../index.html#contacto">Contacto</a></li></ul>
-                </div>
+                <div class="footer-column"><h4>Destinos</h4><ul><li><a href="escocia.html">Escocia</a></li><li><a href="italia.html">Italia</a></li><li><a href="tailandia.html">Tailandia</a></li><li><a href="costa-oeste-usa.html">Costa Oeste USA</a></li><li><a href="florida.html">Florida</a></li><li><a href="alaska.html">Alaska</a></li><li><a href="canada.html">Canadá</a></li><li><a href="brasil.html">Brasil</a></li><li><a href="argentina.html">Argentina</a></li><li><a href="peru.html">Perú</a></li><li><a href="colombia.html">Colombia</a></li><li><a href="ecuador.html">Ecuador</a></li></ul></div>
+                <div class="footer-column"><h4>Experiencias</h4><ul><li><a href="#">Luna de miel</a></li><li><a href="#">Safari de lujo</a></li><li><a href="#">Cruceros privados</a></li><li><a href="#">Retiros wellness</a></li><li><a href="#">Aventura exclusiva</a></li></ul></div>
+                <div class="footer-column"><h4>Compañía</h4><ul><li><a href="#">Sobre nosotros</a></li><li><a href="#">Nuestro equipo</a></li><li><a href="#">Blog de viajes</a></li><li><a href="#">Prensa</a></li><li><a href="../index.html#contacto">Contacto</a></li></ul></div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Horizonte Exclusivo. Todos los derechos reservados.</p>
-                <div class="footer-bottom-links"><a href="#">Aviso legal</a><a href="#">Privacidad</a><a href="#">Cookies</a></div>
-            </div>
+            <div class="footer-bottom"><p>&copy; 2026 Horizonte Exclusivo. Todos los derechos reservados.</p><div class="footer-bottom-links"><a href="#">Aviso legal</a><a href="#">Privacidad</a><a href="#">Cookies</a></div></div>
         </div>
     </footer>
 
@@ -446,6 +315,5 @@
         window.addEventListener('load', drawRoute); window.addEventListener('resize', drawRoute);
         document.querySelectorAll('.itinerary-carousel').forEach(carousel => { const slides = carousel.querySelectorAll('.carousel-slide'); const dots = carousel.querySelectorAll('.carousel-dot'); const prev = carousel.querySelector('.carousel-prev'); const next = carousel.querySelector('.carousel-next'); let current = 0; function goTo(index) { slides[current].classList.remove('active'); dots[current].classList.remove('active'); current = (index + slides.length) % slides.length; slides[current].classList.add('active'); dots[current].classList.add('active'); } prev.addEventListener('click', () => goTo(current - 1)); next.addEventListener('click', () => goTo(current + 1)); dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i))); let startX; carousel.addEventListener('touchstart', e => startX = e.touches[0].clientX); carousel.addEventListener('touchend', e => { const diff = startX - e.changedTouches[0].clientX; if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1)); }); });
     </script>
-
 </body>
 </html>
