@@ -326,7 +326,7 @@
         }
 
         .region-hero-content h1 {
-            font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+            font-size: clamp(2.8rem, 6vw, 5rem);
             font-weight: 700;
             color: var(--white);
             line-height: 1.1;
@@ -575,10 +575,12 @@
         }
 
         @media (max-width: 768px) {
-            section { padding: 80px 0; }
+            section { padding: 80px 0; } .navbar .container { max-width: 100%; width: 100%; padding: 0 12px; }
 
             .region-hero {
                 background-attachment: scroll;
+                background-position: center center;
+                background-repeat: no-repeat;
             }
 
             .destinations-grid {

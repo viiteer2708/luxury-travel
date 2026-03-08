@@ -326,7 +326,7 @@
         }
 
         .region-hero-content h1 {
-            font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+            font-size: clamp(2.8rem, 6vw, 5rem);
             font-weight: 700;
             color: var(--white);
             line-height: 1.1;
@@ -340,8 +340,8 @@
         }
 
         .region-hero-content p {
-            font-size: clamp(1rem, 2.5vw, 1.15rem);
-            color: var(--text);
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: var(--gold-light);
             font-weight: 300;
             max-width: 540px;
             margin: 0 auto;
@@ -588,11 +588,13 @@
         }
 
         @media (max-width: 768px) {
-            section { padding: 80px 0; }
+            section { padding: 80px 0; } .navbar .container { max-width: 100%; width: 100%; padding: 0 12px; }
 
             .region-hero {
                 background-attachment: scroll;
             }
+
+            .region-hero { background-position: center center; background-repeat: no-repeat; }
 
             .destinations-grid {
                 grid-template-columns: 1fr;
