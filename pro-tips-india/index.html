@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Hacks India — Horizonte Exclusivo</title>
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    <meta name="description" content="Consejos de experto para viajar a India: visado, rupias, transporte, seguridad, salud, cultura, comida y hacks de viajero experimentado.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --gold: #c9a96e;
+            --gold-light: #e8d5a8;
+            --dark: #0a0a0a;
+            --dark-soft: #1a1a1a;
+            --dark-card: #111111;
+            --text: #e0e0e0;
+            --text-muted: #8a8a8a;
+            --white: #ffffff;
+            --radius: 12px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
+        ul { list-style: none; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 10px 0;
+            background: var(--dark);
+            border-bottom: 1px solid rgba(201,169,110,0.15);
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            background: var(--dark);
+            backdrop-filter: blur(20px);
+            padding: 6px 0;
+            box-shadow: 0 2px 40px rgba(0,0,0,0.5);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 80%;
+            padding: 0 24px;
+        }
+
+        .logo {
+            display: inline-block;
+            transition: var(--transition);
+        }
+
+        .logo img {
+            height: 80px;
+            width: auto;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled .logo img {
+            height: 60px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            color: var(--gold-light);
+            transition: var(--transition);
+            position: relative;
+            padding: 8px 18px;
+            border-radius: 50px;
+        }
+
+        .nav-links a:hover {
+            background: var(--gold);
+            color: var(--dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(201,169,110,0.3);
+        }
+
+        .nav-links li {
+            position: relative;
+            list-style: none;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            min-width: 220px;
+            background: var(--dark-soft);
+            border: 1px solid rgba(201,169,110,0.15);
+            border-radius: 8px;
+            padding: 12px 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+            z-index: 100;
+            margin-top: 8px;
+        }
+
+        .nav-links li:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 10px 24px;
+            font-size: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            transition: var(--transition);
+            white-space: nowrap;
+            border-radius: 0;
+            background: none;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .dropdown a:hover {
+            color: var(--gold);
+            background: rgba(201,169,110,0.08);
+            padding-left: 28px;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--gold);
+            transition: var(--transition);
+        }
+
+        /* Auto-collapse navbar */
+        .navbar.collapsed .hamburger { display: flex; }
+
+        .navbar.collapsed .nav-links {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background: var(--dark);
+            flex-direction: column;
+            justify-content: center;
+            gap: 28px;
+            transition: var(--transition);
+            border-left: 1px solid rgba(201,169,110,0.15);
+        }
+
+        .navbar.collapsed .nav-links.active { right: 0; }
+
+        .navbar.collapsed .nav-links .dropdown {
+            position: static;
+            transform: none;
+            min-width: 0;
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            padding: 8px 0 0 20px;
+            opacity: 1;
+            visibility: visible;
+            box-shadow: none;
+            margin-top: 0;
+        }
+
+        .navbar.collapsed .nav-links .dropdown a {
+            padding: 6px 0;
+            font-size: 0.75rem;
+        }
+
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 36px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--dark);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(201,169,110,0.3);
+        }
+
+        /* ===== HERO ===== */
+        .dest-hero {
+            min-height: calc(70vh - 110px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 100px;
+            padding-bottom: 20px;
+            background-image: url('https://images.unsplash.com/photo-1612810436541-336b73fbcf9f?w=1920&q=80');
+            background-size: cover;
+            background-position: center calc(50% - 300px);
+            background-attachment: fixed;
+        }
+
+        .dest-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.45) 50%, var(--dark) 100%);
+        }
+
+        .dest-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 24px;
+        }
+
+        .dest-hero-content h1 {
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s 0.2s ease both;
+            text-shadow:
+                -1px -1px 0 rgba(0,0,0,0.6),
+                 1px -1px 0 rgba(0,0,0,0.6),
+                -1px  1px 0 rgba(0,0,0,0.6),
+                 1px  1px 0 rgba(0,0,0,0.6);
+        }
+
+        .dest-hero-content p {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: var(--gold-light);
+            font-weight: 300;
+            max-width: 540px;
+            margin: 0 auto;
+            margin-bottom: 8px;
+            animation: fadeInUp 0.8s 0.4s ease both;
+        }
+
+        /* ===== INTRO ===== */
+        .tips-intro {
+            padding-top: 30px;
+            padding-bottom: 10px;
+        }
+
+        .tips-intro-content {
+            max-width: 780px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .tips-intro-content p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .tips-back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--gold);
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+            margin-top: 8px;
+        }
+
+        .tips-back-link:hover {
+            color: var(--gold-light);
+            gap: 12px;
+        }
+
+        /* ===== TIPS SECTIONS ===== */
+        .tips-section {
+            padding: 80px 0;
+        }
+
+        .tips-section.alt-bg {
+            background: var(--dark-soft);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .tips-section-header {
+            margin-bottom: 40px;
+        }
+
+        .tips-section-title {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--white);
+            line-height: 1.2;
+        }
+
+        .tips-section-subtitle {
+            font-size: 0.9rem;
+            color: var(--gold-light);
+            font-weight: 300;
+            margin-top: 4px;
+        }
+
+        .tip-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text);
+        }
+
+        .tip-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .tip-icon {
+            flex-shrink: 0;
+            font-size: 1.1rem;
+            margin-top: 2px;
+        }
+
+        .tip-item strong {
+            color: var(--white);
+        }
+
+        .tips-list {
+            max-width: 780px;
+        }
+
+        /* ===== TOP 5 HIGHLIGHT ===== */
+        .top5-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 32px;
+            margin-bottom: 40px;
+        }
+
+        .top5-card {
+            background: var(--dark-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: var(--radius);
+            padding: 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            transition: var(--transition);
+        }
+
+        .top5-card:hover {
+            border-color: rgba(201,169,110,0.2);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 36px rgba(0,0,0,0.3);
+        }
+
+        .top5-card .tip-icon {
+            font-size: 1.3rem;
+        }
+
+        .top5-card p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: var(--text);
+        }
+
+        .top5-card strong {
+            color: var(--white);
+        }
+
+        /* ===== CTA ===== */
+        .tips-cta {
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .tips-cta h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .tips-cta p {
+            color: var(--text-muted);
+            max-width: 540px;
+            margin: 0 auto 32px;
+            font-weight: 300;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--dark-soft);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 80px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand .logo { margin-bottom: 16px; }
+        .footer-brand .logo img { height: 70px; }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            border-color: var(--gold);
+            background: rgba(201,169,110,0.1);
+            color: var(--gold);
+        }
+
+        .footer-column h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--white);
+            margin-bottom: 24px;
+        }
+
+        .footer-column ul { display: flex; flex-direction: column; gap: 12px; }
+
+        .footer-column a {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .footer-column a:hover { color: var(--gold); }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-bottom-links a {
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .footer-bottom-links a:hover { color: var(--gold); }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .dest-hero {
+                background-attachment: scroll;
+                background-position: center center;
+                background-repeat: no-repeat;
+            }
+
+            .navbar .container {
+                max-width: 100%;
+                width: 100%;
+                padding: 0 12px;
+            }
+
+            .tips-section {
+                padding: 48px 0;
+            }
+
+            .top5-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo img {
+                height: 48px;
+            }
+
+            .navbar.scrolled .logo img {
+                height: 36px;
+            }
+
+            .footer-brand .logo img {
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="/" class="logo"><img src="/images/logo-trimmed.png" alt="Horizonte Exclusivo"></a>
+            <ul class="nav-links" id="navLinks">
+                <li>
+                    <a href="/#destinos">Destinos</a>
+                    <div class="dropdown">
+                        <a href="/africa/">Africa</a>
+                        <a href="/america/">América</a>
+                        <a href="/asia/">Asia</a>
+                        <a href="/caribe/">Caribe</a>
+                        <a href="/europa/">Europa</a>
+                        <a href="/paraisos/">Paraísos sobre el agua</a>
+                    </div>
+                </li>
+                <li><a href="/#testimonios">¿Quién hay detrás?</a></li>
+                <li><a href="/#contacto">Contacto</a></li>
+                <li><a href="/pro-tips/">Travel Hacks</a></li>
+                <li><a href="/blog/">Blog</a></li>
+
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="dest-hero">
+        <div class="dest-hero-content">
+            <h1>Travel Hacks: India</h1>
+            <p>Todo lo que necesitas saber antes, durante y después de tu viaje</p>
+        </div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="tips-intro">
+        <div class="container">
+            <div class="tips-intro-content reveal">
+                <p>India es intensidad, espiritualidad, color y contrastes. Estos consejos están pensados para que vivas cada momento al máximo, desde el Taj Mahal hasta los backwaters de Kerala.</p>
+                <a href="/pro-tips/" class="tips-back-link">&#8592; Todos los Travel Hacks</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 01 ANTES DE VIAJAR -->
+    <div class="tips-section reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Antes de viajar</h2>
+                    <p class="tips-section-subtitle">Checklist imprescindible</p>
+            </div>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Visado:</strong> e-Visa obligatorio para ciudadanos españoles. Tramítalo al menos 4 días antes (idealmente 2 semanas). Coste ~25 USD.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Pasaporte:</strong> vigente al menos 6 meses desde la fecha de entrada, con 2 páginas en blanco.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Seguro médico:</strong> obligatorio con cobertura amplia (mínimo 50.000 €). India tiene buenas clínicas privadas pero caras.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Vacunas:</strong> hepatitis A y fiebre tifoidea recomendadas. Consulta centro de vacunación internacional 6 semanas antes.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Copia digital:</strong> pasaporte + visado + seguro + reservas en Drive/Correo y copia offline en el móvil.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 02 DINERO Y PAGOS -->
+    <div class="tips-section alt-bg reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Dinero y pagos</h2>
+                    <p class="tips-section-subtitle">Rupias y efectivo</p>
+            </div>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Moneda:</strong> rupia india (INR). 1 € ≈ 90–95 INR aprox.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Efectivo imprescindible:</strong> muchos comercios, rickshaws y mercados solo aceptan efectivo.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Cajeros:</strong> abundantes en ciudades. Usa cajeros dentro de bancos (SBI, HDFC, ICICI). Comisión habitual 200–500 INR.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">⚠️</span>
+                    <p><strong>Billetes rotos o sucios:</strong> no los aceptes, pueden ser rechazados. Revisa el cambio.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Lleva billetes pequeños</strong> (50, 100 INR) para propinas, rickshaws y compras en mercado.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 03 TRANSPORTE -->
+    <div class="tips-section reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Transporte</h2>
+                    <p class="tips-section-subtitle">Moverse por India</p>
+            </div>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Conductor privado:</strong> la opción más cómoda y segura para moverse entre ciudades. Incluido en nuestros itinerarios.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Vuelos internos:</strong> para trayectos largos (Delhi–Varanasi, Delhi–Kerala). IndiGo y Air India.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Trenes:</strong> experiencia auténtica. Reserva en clase AC (aire acondicionado) siempre que sea posible.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">⚠️</span>
+                    <p><strong>Tráfico:</strong> caótico en todas las ciudades. No conduzcas tú mismo — confía en conductores locales.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Uber y Ola</strong> funcionan en ciudades grandes. Más fiable que regatear con rickshaws.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 04 ZONAS Y LOGÍSTICA -->
+    <div class="tips-section alt-bg reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Zonas y logística</h2>
+                    <p class="tips-section-subtitle">Para tu ruta</p>
+            </div>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Triángulo de Oro:</strong> Delhi → Agra → Jaipur es la ruta clásica y la más cómoda para una primera visita.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Varanasi:</strong> zona espiritual intensa. Los ghats son el corazón — pasea por la mañana temprano.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Rajastán:</strong> extensión perfecta. Udaipur, Jodhpur y Jaisalmer merecen 3–4 noches extra.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">⚠️</span>
+                    <p><strong>Distancias:</strong> India es enorme. No intentes abarcar demasiado — mejor profundizar en menos zonas.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Kerala:</strong> el contrapunto perfecto. Backwaters, naturaleza y calma total tras la intensidad del norte.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 05 SEGURIDAD Y ESTAFAS -->
+    <div class="tips-section reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Seguridad y estafas</h2>
+                    <p class="tips-section-subtitle">Modo viajero inteligente</p>
+            </div>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <span class="tip-icon">⚠️</span>
+                    <p><strong>Estafas comunes:</strong> "el monumento está cerrado" (mentira para llevarte a tiendas), taxímetros trucados, guías no oficiales.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">⚠️</span>
+                    <p><strong>Regateo:</strong> imprescindible en mercados y con rickshaws. El primer precio suele ser 3–5 veces el real.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Seguridad general:</strong> India es segura para turistas en zonas turísticas. Sentido común básico.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Objetos de valor:</strong> usa la caja fuerte del hotel. No lleves mucho efectivo encima.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Confirma siempre el precio</strong> ANTES de subir a un rickshaw o contratar cualquier servicio.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 06 SALUD Y CLIMA -->
+    <div class="tips-section alt-bg reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Salud y clima</h2>
+                    <p class="tips-section-subtitle">Mejor prevenir</p>
+            </div>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Agua:</strong> NUNCA bebas agua del grifo. Solo agua embotellada sellada. Evita hielo en puestos callejeros.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Mejor época:</strong> octubre–marzo (invierno). Evita junio–septiembre (monzón intenso).</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">⚠️</span>
+                    <p><strong>Calor:</strong> de marzo a junio las temperaturas superan los 40°C. Protección solar, hidratación constante.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Botiquín:</strong> antidiarreico, probióticos, repelente de mosquitos, protector solar SPF50+.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>El "Delhi belly"</strong> es común los primeros días. Come en restaurantes con buena reputación y evita ensaladas crudas al principio.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 07 CULTURA Y ETIQUETA -->
+    <div class="tips-section reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Cultura y etiqueta</h2>
+                    <p class="tips-section-subtitle">Respeto que abre puertas</p>
+            </div>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Descálzate:</strong> obligatorio al entrar en templos, mezquitas y muchos hogares.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Ropa modesta:</strong> cubre hombros y rodillas en lugares religiosos. Lleva un pañuelo para cubrirte la cabeza si es necesario.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Mano derecha:</strong> usa siempre la mano derecha para comer, dar y recibir objetos. La izquierda se considera impura.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">⚠️</span>
+                    <p><strong>Fotografías:</strong> pide permiso antes de fotografiar personas, especialmente en ceremonias religiosas.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>El "head wobble"</strong> (movimiento de cabeza lateral) significa "sí" o "de acuerdo" — no confundir con "no".</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 08 COMIDA Y EXPERIENCIAS -->
+    <div class="tips-section alt-bg reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Comida y experiencias</h2>
+                    <p class="tips-section-subtitle">Sabores que sorprenden</p>
+            </div>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Alta cocina india:</strong> India tiene una escena gastronómica sofisticada increíble. No todo es curry — descubre la diversidad regional.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Street food:</strong> thali, samosas, chai, dosa... Pruébalo en puestos concurridos (más rotación = más fresco).</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Experiencias:</strong> clases de cocina, ceremonias de té chai, visitas a mercados de especias con guía local.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">⚠️</span>
+                    <p><strong>Picante:</strong> la comida india puede ser muy picante. Pide "mild" o "not spicy" si prefieres suave.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>El lassi</strong> (yogur batido) es perfecto para calmar el picante y refrescarte.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 09 HACKS PRO -->
+    <div class="tips-section reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Hacks PRO</h2>
+                    <p class="tips-section-subtitle">Trucos de experto para tu ruta</p>
+            </div>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Amanecer en el Taj:</strong> llega 30 minutos antes de la apertura. La luz dorada del amanecer es insuperable.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>SIM local:</strong> compra una eSIM antes de llegar o tarjeta SIM en el aeropuerto (Airtel o Jio). Datos baratos e imprescindibles.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Propinas:</strong> 50–100 INR para guías de monumentos, 10–20 INR para porteadores. En restaurantes, 10% si no está incluido.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Templos al amanecer:</strong> siempre menos masificados. Varanasi y Jaipur son especialmente mágicos a primera hora.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Idioma:</strong> el inglés funciona en zonas turísticas y hoteles. Aprende "Namaste" (hola) y "Dhanyavaad" (gracias).</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 10 TOP 5 -->
+    <div class="tips-section alt-bg reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Top 5</h2>
+                    <p class="tips-section-subtitle">Si solo lees 5 cosas, que sean estas</p>
+            </div>
+            <div class="top5-grid">
+                <div class="top5-card">
+                    <span class="tip-icon">🕌</span>
+                    <p><strong>Taj Mahal al amanecer</strong> — Magia pura, el monumento que lo cambia todo</p>
+                </div>
+                <div class="top5-card">
+                    <span class="tip-icon">🛕</span>
+                    <p><strong>Varanasi al anochecer</strong> — La ceremonia Aarti es una experiencia que no olvidarás</p>
+                </div>
+                <div class="top5-card">
+                    <span class="tip-icon">🏰</span>
+                    <p><strong>Fuerte Amber en Jaipur</strong> — Arquitectura rajput imponente con vistas al lago</p>
+                </div>
+                <div class="top5-card">
+                    <span class="tip-icon">🍛</span>
+                    <p><strong>Cena de alta cocina india</strong> — La gastronomía india en su máxima expresión</p>
+                </div>
+                <div class="top5-card">
+                    <span class="tip-icon">🚣</span>
+                    <p><strong>Ganges al amanecer</strong> — Paseo en barca entre rituales milenarios</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <section class="tips-cta">
+        <div class="container reveal">
+            <h2>Diseñemos tu <em style="color: var(--gold);">India</em></h2>
+            <p>Templos, espiritualidad, gastronomía y contrastes únicos — te lo organizamos a medida.</p>
+            <a href="/?destino=India#contacto" class="btn btn-primary">Solicitar presupuesto &#10230;</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo"><img src="/images/logo-trimmed.png" alt="Horizonte Exclusivo"></a>
+                    <p>Más que viajar, vivir el mundo. Creamos experiencias de viaje de lujo a medida. Cada destino es una historia, cada viaje una obra maestra.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Instagram">IG</a>
+                        <a href="#" aria-label="Facebook">FB</a>
+                        <a href="#" aria-label="Twitter">TW</a>
+                        <a href="#" aria-label="LinkedIn">IN</a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Destinos</h4>
+                    <ul>
+                        <li><a href="/escocia/">Escocia</a></li>
+                        <li><a href="/italia/">Italia</a></li>
+                        <li><a href="/tailandia/">Tailandia</a></li>
+                        <li><a href="/costa-oeste-usa/">Costa Oeste USA</a></li>
+                        <li><a href="/florida/">Florida</a></li>
+                        <li><a href="/alaska/">Alaska</a></li>
+                        <li><a href="/canada/">Canadá</a></li>
+                        <li><a href="/brasil/">Brasil</a></li>
+                        <li><a href="/argentina/">Argentina</a></li>
+                        <li><a href="/peru/">Perú</a></li>
+                        <li><a href="/colombia/">Colombia</a></li>
+                        <li><a href="/ecuador/">Ecuador</a></li>
+                        <li><a href="/chicago-nueva-orleans/">Chicago & N. Orleans</a></li>
+                        <li><a href="/dubai-abu-dhabi-maldivas/">Dubái & Maldivas</a></li>
+                        <li><a href="/sri-lanka/">Sri Lanka</a></li>
+                        <li><a href="/camboya/">Camboya</a></li>
+                        <li><a href="/singapur/">Singapur</a></li>
+                        <li><a href="/india/">India</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Experiencias</h4>
+                    <ul>
+                        <li><a href="#">Luna de miel</a></li>
+                        <li><a href="#">Safari de lujo</a></li>
+                        <li><a href="#">Cruceros privados</a></li>
+                        <li><a href="#">Retiros wellness</a></li>
+                        <li><a href="#">Aventura exclusiva</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Compañía</h4>
+                    <ul>
+                        <li><a href="#">Sobre nosotros</a></li>
+                        <li><a href="#">Nuestro equipo</a></li>
+                        <li><a href="/blog/">Blog de viajes</a></li>
+                        <li><a href="#">Prensa</a></li>
+                        <li><a href="/#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Horizonte Exclusivo. Todos los derechos reservados.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Aviso legal</a>
+                    <a href="#">Privacidad</a>
+                    <a href="#">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            const wasScrolled = navbar.classList.contains('scrolled');
+            const isScrolled = window.scrollY > 60;
+            navbar.classList.toggle('scrolled', isScrolled);
+            if (wasScrolled !== isScrolled) checkNavOverflow();
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => navLinks.classList.remove('active'));
+        });
+
+        // Auto-collapse navbar when items don't fit
+        function checkNavOverflow() {
+            const navbar = document.getElementById('navbar');
+            const navLinks = document.getElementById('navLinks');
+            const container = navbar.querySelector('.container');
+
+            navLinks.classList.remove('active');
+            navbar.classList.remove('collapsed');
+            navLinks.style.flexShrink = '0';
+            void navbar.offsetHeight;
+
+            if (window.innerWidth <= 1100 || container.scrollWidth > container.clientWidth + 2) {
+                navbar.classList.add('collapsed');
+            }
+
+            navLinks.style.flexShrink = '';
+        }
+
+        checkNavOverflow();
+        window.addEventListener('resize', checkNavOverflow);
+
+
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
