@@ -17,7 +17,8 @@
       "Bash(do sed:*)",
       "Bash(git pull:*)",
       "Bash(git:*)",
-      "Bash(awk:*)"
+      "Bash(awk:*)",
+      "Bash(find pages:*)"
     ]
   }
 }

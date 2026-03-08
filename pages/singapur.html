@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malasia — Horizonte Exclusivo</title>
-    <meta name="description" content="Viaje de lujo a Malasia: Kuala Lumpur, Cameron Highlands, Penang, Borneo y Langkawi. Modernidad, selva ancestral y playas de otro mundo.">
+    <title>Singapur — Horizonte Exclusivo</title>
+    <meta name="description" content="Viaje de lujo a Singapur: Marina Bay, Gardens by the Bay, gastronomía Michelin y arquitectura futurista. 4–6 noches de sofisticación tropical.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -249,18 +249,6 @@
             box-shadow: 0 8px 30px rgba(201,169,110,0.3);
         }
 
-        .btn-outline {
-            background: transparent;
-            color: var(--white);
-            border: 1px solid rgba(255,255,255,0.25);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--gold);
-            color: var(--gold);
-            transform: translateY(-2px);
-        }
-
         /* ===== SECTION COMMON ===== */
         section { padding: 120px 0; }
 
@@ -291,7 +279,15 @@
             margin: 20px auto;
         }
 
-        /* ===== DESTINATION HERO ===== */
+        .section-subtitle {
+            font-size: 1rem;
+            color: var(--text-muted);
+            max-width: 560px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* ===== HERO ===== */
         .dest-hero {
             min-height: calc(70vh - 110px);
             display: flex;
@@ -302,9 +298,9 @@
             overflow: hidden;
             padding-top: 100px;
             padding-bottom: 20px;
-            background-image: url('https://images.unsplash.com/photo-1574218732130-6b19257fd9db?w=1920&q=80');
+            background-image: url('https://images.unsplash.com/flagged/photo-1562503542-2a1e6f03b16b?w=1920&q=80');
             background-size: cover;
-            background-position: center;
+            background-position: center center;
             background-attachment: fixed;
         }
 
@@ -312,7 +308,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.4) 50%, var(--dark) 100%);
+            background: linear-gradient(180deg, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.45) 50%, var(--dark) 100%);
         }
 
         .dest-hero-content {
@@ -347,30 +343,33 @@
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             color: var(--gold-light);
             font-weight: 300;
+            max-width: 540px;
+            margin: 0 auto;
             margin-bottom: 8px;
             animation: fadeInUp 0.8s 0.4s ease both;
         }
 
-        .dest-hero-content .dest-duration {
+        .dest-duration {
+            display: inline-block;
             font-size: 0.85rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
             color: var(--text-muted);
+            letter-spacing: 2px;
+            margin-top: 8px;
             animation: fadeInUp 0.8s 0.6s ease both;
         }
 
-        /* ===== DESTINATION INTRO ===== */
+        /* ===== INTRO ===== */
         .dest-intro-text {
             max-width: 780px;
             margin: 0 auto;
             text-align: center;
             font-size: 1.05rem;
-            color: var(--text);
-            line-height: 1.9;
+            color: var(--text-muted);
             font-weight: 300;
+            line-height: 1.9;
         }
 
-        /* ===== ITINERARY BLOCKS ===== */
+        /* ===== ITINERARY ===== */
         .itinerary-block {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -383,20 +382,17 @@
             margin-bottom: 0;
         }
 
-        .itinerary-block.reverse .itinerary-image,
-        .itinerary-block.reverse .itinerary-gallery,
-        .itinerary-block.reverse .itinerary-carousel {
-            order: 2;
+        .itinerary-block.reverse {
+            direction: rtl;
         }
 
-        .itinerary-block.reverse .itinerary-content {
-            order: 1;
+        .itinerary-block.reverse > * {
+            direction: ltr;
         }
 
         .itinerary-image {
             border-radius: var(--radius);
             overflow: hidden;
-            position: relative;
         }
 
         .itinerary-image img {
@@ -408,43 +404,6 @@
 
         .itinerary-image:hover img {
             transform: scale(1.05);
-        }
-
-        /* ===== MULTI-IMAGE GALLERY ===== */
-        .itinerary-gallery {
-            display: grid;
-            gap: 6px;
-            border-radius: var(--radius);
-            overflow: hidden;
-            height: 400px;
-        }
-
-        .itinerary-gallery .gallery-item {
-            overflow: hidden;
-        }
-
-        .itinerary-gallery .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .itinerary-gallery .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-
-        .itinerary-gallery.gallery-4 {
-            grid-template-columns: 1.2fr 1fr;
-            grid-template-rows: repeat(3, 1fr);
-        }
-
-        .itinerary-gallery.gallery-4 .gallery-item:first-child {
-            grid-row: 1 / -1;
-        }
-
-        .itinerary-gallery.gallery-2 {
-            grid-template-columns: 1fr 1fr;
         }
 
         /* ===== ITINERARY CAROUSEL ===== */
@@ -558,7 +517,7 @@
         }
 
         .itinerary-content ul li::before {
-            content: '\2726';
+            content: '✦';
             position: absolute;
             left: 0;
             color: var(--gold);
@@ -765,7 +724,6 @@
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
 
-
             .includes-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -794,7 +752,6 @@
             }
 
             .itinerary-block.reverse .itinerary-image,
-            .itinerary-block.reverse .itinerary-gallery,
             .itinerary-block.reverse .itinerary-carousel,
             .itinerary-block.reverse .itinerary-content {
                 order: unset;
@@ -806,19 +763,6 @@
 
             .itinerary-carousel {
                 height: 280px;
-            }
-
-            .itinerary-gallery {
-                height: 300px;
-            }
-
-            .itinerary-gallery.gallery-4 {
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: 1fr 1fr;
-            }
-
-            .itinerary-gallery.gallery-4 .gallery-item:first-child {
-                grid-row: auto;
             }
 
             .includes-grid {
@@ -890,9 +834,9 @@
     <section class="dest-hero">
         <div class="dest-hero-content">
             <span class="section-label">Asia</span>
-            <h1>Malasia</h1>
-            <p>Modernidad, selva ancestral y playas de otro mundo</p>
-            <span class="dest-duration">11 – 14 días</span>
+            <h1>Singapur, futurismo tropical</h1>
+            <p>Rascacielos futuristas, jardines verticales y gastronomía multicultural</p>
+            <span class="dest-duration">4–6 noches</span>
         </div>
     </section>
 
@@ -900,7 +844,7 @@
     <section style="padding-top: 30px; padding-bottom: 10px;">
         <div class="container">
             <p class="dest-intro-text reveal">
-                Malasia es uno de los destinos más sorprendentes del sudeste asiático. Combina rascacielos futuristas, arquitectura colonial, plantaciones de té en las montañas, selva tropical milenaria y playas paradisíacas. Un viaje completo, diverso y sofisticado.
+                Singapur es una ciudad-estado impecable, sofisticada y sorprendente. Rascacielos futuristas, jardines verticales, gastronomía multicultural y una mezcla fascinante entre tradición asiática y modernidad absoluta. Perfecta como escapada urbana de lujo o como combinado con Bali, Malasia o Tailandia.
             </p>
         </div>
     </section>
@@ -914,23 +858,20 @@
                 <div class="divider"></div>
             </div>
 
-            <!-- KUALA LUMPUR -->
+            <!-- Días 1-3: Singapur -->
             <div class="itinerary-block reveal">
                 <div class="itinerary-carousel">
                     <div class="carousel-slide active">
-                        <img src="https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800&q=80" alt="Kuala Lumpur de noche">
+                        <img src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&q=80" alt="Marina Bay Sands al atardecer">
                     </div>
                     <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1574218732130-6b19257fd9db?w=800&q=80" alt="Vista aérea de Kuala Lumpur">
+                        <img src="https://images.unsplash.com/photo-1565967511849-76a60a516170?w=800&q=80" alt="Fuente del Merlion de Singapur">
                     </div>
                     <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1508062878650-88b52897f298?w=800&q=80" alt="Torres Petronas">
+                        <img src="https://images.unsplash.com/photo-1441805983468-f5a1a9f985fb?w=800&q=80" alt="Supertrees iluminados en Gardens by the Bay">
                     </div>
                     <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1712601979098-15dccb4d0996?w=800&q=80" alt="Calles de Kuala Lumpur">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1681814677030-72ab971ac45b?w=800&q=80" alt="Batu Caves">
+                        <img src="https://images.unsplash.com/photo-1580438816338-969175d4b367?w=800&q=80" alt="Calles de Singapur">
                     </div>
                     <div class="carousel-controls">
                         <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
@@ -939,35 +880,35 @@
                             <button class="carousel-dot" aria-label="Imagen 2"></button>
                             <button class="carousel-dot" aria-label="Imagen 3"></button>
                             <button class="carousel-dot" aria-label="Imagen 4"></button>
-                            <button class="carousel-dot" aria-label="Imagen 5"></button>
                         </div>
                         <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
                     </div>
                 </div>
                 <div class="itinerary-content">
-                    <span class="section-label">2 – 3 noches</span>
-                    <h3>Kuala Lumpur</h3>
-                    <p>Vibrante y cosmopolita, Kuala Lumpur es la puerta de entrada al país. Aquí conviven culturas malaya, china e india en perfecta armonía, reflejada en su arquitectura, templos y gastronomía.</p>
+                    <span class="section-label">Días 1 – 3</span>
+                    <h3>Singapur</h3>
+                    <p>Una ciudad compacta, segura y perfectamente organizada donde cada barrio tiene personalidad propia. Arquitectura icónica, cultura vibrante y una escena gastronómica sin igual.</p>
                     <ul>
-                        <li>Torres Petronas y mirador panorámico</li>
-                        <li>Templos de Batu Caves</li>
-                        <li>Barrio colonial y Plaza Merdeka</li>
-                        <li>Cena en rooftop con vistas al skyline</li>
+                        <li>Marina Bay Sands y mirador panorámico</li>
+                        <li>Gardens by the Bay y Supertrees iluminados</li>
+                        <li>Barrio colonial y Raffles Hotel</li>
+                        <li>Chinatown y Little India</li>
+                        <li>Rooftop con vistas al skyline</li>
                     </ul>
                 </div>
             </div>
 
-            <!-- CAMERON HIGHLANDS -->
+            <!-- Días 4-5: Naturaleza & Diseño -->
             <div class="itinerary-block reverse reveal">
                 <div class="itinerary-carousel">
                     <div class="carousel-slide active">
-                        <img src="https://images.unsplash.com/photo-1604631715696-5ba4c27d021f?w=800&q=80" alt="Plantaciones de té en Cameron Highlands">
+                        <img src="https://images.unsplash.com/photo-1552415274-73ad7198cb93?w=800&q=80" alt="Vista aérea de los jardines de Singapur">
                     </div>
                     <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1592080231635-58456a85c693?w=800&q=80" alt="Puente en la selva de Cameron Highlands">
+                        <img src="https://images.unsplash.com/photo-1566996674130-8932e53a598a?w=800&q=80" alt="Sentosa Island y playas urbanas">
                     </div>
                     <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1683858222142-e5596d680fe3?w=800&q=80" alt="Atardecer en plantación de té">
+                        <img src="https://images.unsplash.com/photo-1575273651223-f5aba8948659?w=800&q=80" alt="Cascada interior de Jewel Changi">
                     </div>
                     <div class="carousel-controls">
                         <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
@@ -980,115 +921,15 @@
                     </div>
                 </div>
                 <div class="itinerary-content">
-                    <span class="section-label">1 – 2 noches</span>
-                    <h3>Cameron Highlands</h3>
-                    <p>Un paisaje completamente distinto: colinas verdes, plantaciones de té infinitas y clima fresco. Una pausa natural dentro del recorrido.</p>
+                    <span class="section-label">Días 4 – 5</span>
+                    <h3>Naturaleza & Diseño</h3>
+                    <p>Singapur no es solo arquitectura; es una de las ciudades más verdes del mundo. Jardines patrimonio de la humanidad, playas urbanas y espacios que fusionan naturaleza y vanguardia.</p>
                     <ul>
-                        <li>Visita a plantaciones de té BOH</li>
-                        <li>Caminatas por senderos entre selva y cascadas</li>
-                        <li>Degustación de té local</li>
-                        <li>Mercados agrícolas de montaña</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- PENANG -->
-            <div class="itinerary-block reveal">
-                <div class="itinerary-carousel">
-                    <div class="carousel-slide active">
-                        <img src="https://images.unsplash.com/photo-1640876916541-6f865ce846b9?w=800&q=80" alt="Puerto de Penang">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1581478029134-11399708af59?w=800&q=80" alt="Templo Kek Lok Si en Penang">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1566979325154-ccb4094e665b?w=800&q=80" alt="Veleros en Penang">
-                    </div>
-                    <div class="carousel-controls">
-                        <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
-                        <div class="carousel-dots">
-                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
-                            <button class="carousel-dot" aria-label="Imagen 2"></button>
-                            <button class="carousel-dot" aria-label="Imagen 3"></button>
-                        </div>
-                        <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
-                    </div>
-                </div>
-                <div class="itinerary-content">
-                    <span class="section-label">2 noches</span>
-                    <h3>Penang</h3>
-                    <p>Penang mezcla tradición y creatividad. George Town, declarada Patrimonio de la Humanidad, combina arquitectura colonial, arte urbano y una de las mejores gastronomías del país.</p>
-                    <ul>
-                        <li>Pasear por George Town y su street art</li>
-                        <li>Visitar el Templo Kek Lok Si</li>
-                        <li>Ruta gastronómica local</li>
-                        <li>Subida a Penang Hill para vistas panorámicas</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- BORNEO -->
-            <div class="itinerary-block reverse reveal">
-                <div class="itinerary-carousel">
-                    <div class="carousel-slide active">
-                        <img src="https://images.unsplash.com/photo-1654180680389-4141e2912ef6?w=800&q=80" alt="Isla tropical en Borneo">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1630509930321-3e6e66c6cb04?w=800&q=80" alt="Orangután en Borneo">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1663168074436-c6fc315bfd61?w=800&q=80" alt="Monte Kinabalu">
-                    </div>
-                    <div class="carousel-controls">
-                        <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
-                        <div class="carousel-dots">
-                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
-                            <button class="carousel-dot" aria-label="Imagen 2"></button>
-                            <button class="carousel-dot" aria-label="Imagen 3"></button>
-                        </div>
-                        <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
-                    </div>
-                </div>
-                <div class="itinerary-content">
-                    <span class="section-label">2 – 3 noches</span>
-                    <h3>Borneo (Sabah)</h3>
-                    <p>Naturaleza en estado puro. Selva primaria, fauna exótica y paisajes vírgenes convierten esta región en una experiencia completamente diferente.</p>
-                    <ul>
-                        <li>Observación de orangutanes en centros de conservación</li>
-                        <li>Navegación por el río Kinabatangan</li>
-                        <li>Parque Nacional de Kinabalu</li>
-                        <li>Senderos en selva tropical</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- LANGKAWI -->
-            <div class="itinerary-block reveal">
-                <div class="itinerary-carousel">
-                    <div class="carousel-slide active">
-                        <img src="https://images.unsplash.com/photo-1715178724773-a243cfbc2e9e?w=800&q=80" alt="Vista aérea de Langkawi">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1582729845428-af749b248d56?w=800&q=80" alt="Sky Bridge en Langkawi">
-                    </div>
-                    <div class="carousel-controls">
-                        <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
-                        <div class="carousel-dots">
-                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
-                            <button class="carousel-dot" aria-label="Imagen 2"></button>
-                        </div>
-                        <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
-                    </div>
-                </div>
-                <div class="itinerary-content">
-                    <span class="section-label">3 noches</span>
-                    <h3>Langkawi</h3>
-                    <p>El final perfecto frente al mar. Langkawi ofrece playas tranquilas, aguas turquesa y resorts seleccionados para un cierre relajado del viaje.</p>
-                    <ul>
-                        <li>Paseo en barco entre islotes</li>
-                        <li>Teleférico panorámico y Sky Bridge</li>
-                        <li>Snorkel en aguas cristalinas</li>
-                        <li>Días de descanso en resort frente al mar</li>
+                        <li>Jardín Botánico (Patrimonio UNESCO)</li>
+                        <li>Sentosa Island y playas urbanas</li>
+                        <li>Jewel Changi y su cascada interior</li>
+                        <li>Ruta gastronómica por hawker centers</li>
+                        <li>Experiencia Michelin street food</li>
                     </ul>
                 </div>
             </div>
@@ -1106,24 +947,24 @@
 
             <div class="includes-grid">
                 <div class="include-card reveal">
-                    <span class="include-icon">&#9992;</span>
+                    <span class="include-icon">✈</span>
                     <h4>Vuelos</h4>
-                    <p>Vuelos internacionales y domésticos en clase preferente. Traslados privados en todos los trayectos.</p>
+                    <p>Vuelos internacionales. Traslados organizados en todos los trayectos.</p>
                 </div>
                 <div class="include-card reveal">
-                    <span class="include-icon">&#128663;</span>
-                    <h4>Transporte</h4>
-                    <p>Vehículo privado con conductor y guía local durante toda la ruta por Malasia.</p>
-                </div>
-                <div class="include-card reveal">
-                    <span class="include-icon">&#127976;</span>
+                    <span class="include-icon">🏨</span>
                     <h4>Alojamiento</h4>
-                    <p>Hoteles boutique, lodges en la selva y resorts de playa seleccionados por su ubicación y carácter.</p>
+                    <p>Hotel seleccionado según el estilo del cliente, desde boutique hasta resort icónico.</p>
                 </div>
                 <div class="include-card reveal">
-                    <span class="include-icon">&#11088;</span>
+                    <span class="include-icon">🗺</span>
                     <h4>Experiencias</h4>
-                    <p>Visitas guiadas, rutas gastronómicas, avistamiento de fauna y actividades exclusivas.</p>
+                    <p>Experiencias organizadas o privadas en los puntos más icónicos de la ciudad.</p>
+                </div>
+                <div class="include-card reveal">
+                    <span class="include-icon">⭐</span>
+                    <h4>A tu medida</h4>
+                    <p>Itinerario totalmente personalizable. Extensión a Bali, Borneo o Maldivas.</p>
                 </div>
             </div>
         </div>
@@ -1132,9 +973,9 @@
     <!-- CTA -->
     <section class="dest-cta">
         <div class="container reveal">
-            <h2>Diseñemos <em style="color: var(--gold);">tu Malasia</em></h2>
-            <p>Cada viaje es único. Cuéntanos cómo imaginas tu aventura malaya y crearemos un itinerario a tu medida.</p>
-            <a href="../index.html?destino=Malasia#contacto" class="btn btn-primary">Solicitar presupuesto &#10230;</a>
+            <h2>Diseñemos <em style="color: var(--gold);">tu Singapur</em></h2>
+            <p>Singapur es precisión, diseño y vanguardia. Una ciudad que mira al futuro sin olvidar sus raíces. Cuéntanos cómo lo imaginas.</p>
+            <a href="../index.html?destino=Singapur#contacto" class="btn btn-primary">Solicitar presupuesto &#10230;</a>
         </div>
     </section>
 
@@ -1142,9 +983,9 @@
     <section class="dest-protips">
         <div class="container reveal">
             <span class="section-label">Travel Hacks</span>
-            <h2>Consejos de experto para <em style="color: var(--gold);">Malasia</em></h2>
+            <h2>Consejos de experto para <em style="color: var(--gold);">Singapur</em></h2>
             <p>Todo lo que necesitas saber antes, durante y después de tu viaje: checklist, dinero, transporte, seguridad, cultura, comida y hacks de experto.</p>
-            <a href="pro-tips-malasia.html" class="btn btn-primary">Ver Travel Hacks &#10230;</a>
+            <a href="pro-tips-singapur.html" class="btn btn-primary">Ver Travel Hacks &#10230;</a>
         </div>
     </section>
 
@@ -1272,7 +1113,7 @@
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Route line
+        // Route line (zigzag roadmap)
         function drawRoute() {
             const container = document.querySelector('#itinerario .container');
             const blocks = container.querySelectorAll('.itinerary-block');
