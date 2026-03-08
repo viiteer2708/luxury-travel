@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canadá — Horizonte Exclusivo</title>
-    <meta name="description" content="Viaje de lujo a Canadá: Vancouver, Whistler, Banff, Lake Louise, Calgary, Toronto y Cataratas del Niágara. 15 días de naturaleza majestuosa y ciudades cosmopolitas.">
+    <title>Sri Lanka — Horizonte Exclusivo</title>
+    <meta name="description" content="Viaje de lujo a Sri Lanka: Colombo, Sigiriya, Kandy, Ella, Yala y Costa Sur. 12–14 noches entre templos milenarios, safari y playas doradas.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -15,8 +15,6 @@
         h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
         a { text-decoration: none; color: inherit; } img { max-width: 100%; display: block; } ul { list-style: none; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-
-        /* NAVBAR */
         .navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 10px 0; background: var(--dark); border-bottom: 1px solid rgba(201,169,110,0.15); transition: var(--transition); }
         .navbar.scrolled { background: var(--dark); backdrop-filter: blur(20px); padding: 6px 0; box-shadow: 0 2px 40px rgba(0,0,0,0.5); }
         .navbar .container { display: flex; justify-content: space-between; align-items: center; max-width: 80%; padding: 0 24px; }
@@ -37,50 +35,29 @@
         .navbar.collapsed .nav-links.active { right: 0; }
         .navbar.collapsed .nav-links .dropdown { position: static; transform: none; min-width: 0; background: transparent; border: none; border-radius: 0; padding: 8px 0 0 20px; opacity: 1; visibility: visible; box-shadow: none; margin-top: 0; }
         .navbar.collapsed .nav-links .dropdown a { padding: 6px 0; font-size: 0.75rem; }
-
-        /* BUTTONS */
         .btn { display: inline-flex; align-items: center; gap: 8px; padding: 16px 36px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; transition: var(--transition); cursor: pointer; border: none; font-family: 'Inter', sans-serif; }
         .btn-primary { background: var(--gold); color: var(--dark); }
         .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,169,110,0.3); }
-        .btn-outline { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.25); }
-        .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
-
-        /* SECTION COMMON */
         section { padding: 120px 0; }
         .section-header { text-align: center; margin-bottom: 64px; }
         .section-label { font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; display: block; }
         .section-title { font-size: clamp(2rem, 4vw, 3rem); color: var(--white); margin-bottom: 16px; }
         .divider { width: 60px; height: 1px; background: var(--gold); margin: 20px auto; }
-
-        /* HERO */
-        .dest-hero {
-            min-height: calc(70vh - 110px);
-            display: flex; align-items: center; justify-content: center; text-align: center;
-            position: relative; overflow: hidden;
-            padding-top: 100px; padding-bottom: 20px;
-            background-image: url('https://images.unsplash.com/photo-1561134643-668f9057cce4?w=1920&q=80');
-            background-size: cover; background-position: center calc(50% + 60px); background-attachment: fixed;
-        }
+        .dest-hero { min-height: calc(70vh - 110px); display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; padding-top: 100px; padding-bottom: 20px; background-image: url('https://images.unsplash.com/photo-1612862862126-865765df2ded?w=1920&q=80'); background-size: cover; background-position: center calc(50% + 60px); background-attachment: fixed; }
         .dest-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.4) 50%, var(--dark) 100%); }
         .dest-hero-content { position: relative; z-index: 2; max-width: 800px; padding: 0 24px; }
         .dest-hero-content .section-label { font-size: 0.85rem; letter-spacing: 5px; margin-bottom: 20px; animation: fadeInUp 0.8s ease both; }
         .dest-hero-content h1 { font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 700; color: var(--white); line-height: 1.1; margin-bottom: 20px; animation: fadeInUp 0.8s 0.2s ease both; text-shadow: -1px -1px 0 rgba(0,0,0,0.6), 1px -1px 0 rgba(0,0,0,0.6), -1px 1px 0 rgba(0,0,0,0.6), 1px 1px 0 rgba(0,0,0,0.6); }
         .dest-hero-content p { font-size: clamp(1rem, 2.5vw, 1.2rem); color: var(--gold-light); font-weight: 300; margin-bottom: 8px; animation: fadeInUp 0.8s 0.4s ease both; }
         .dest-hero-content .dest-duration { font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); animation: fadeInUp 0.8s 0.6s ease both; }
-
-        /* INTRO */
         .dest-intro-text { max-width: 780px; margin: 0 auto; text-align: center; font-size: 1.05rem; color: var(--text); line-height: 1.9; font-weight: 300; }
-
-        /* ITINERARY BLOCKS */
         .itinerary-block { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-bottom: 80px; }
         .itinerary-block:last-child { margin-bottom: 0; }
-        .itinerary-block.reverse .itinerary-image, .itinerary-block.reverse .itinerary-gallery, .itinerary-block.reverse .itinerary-carousel { order: 2; }
+        .itinerary-block.reverse .itinerary-image, .itinerary-block.reverse .itinerary-carousel { order: 2; }
         .itinerary-block.reverse .itinerary-content { order: 1; }
         .itinerary-image { border-radius: var(--radius); overflow: hidden; position: relative; }
         .itinerary-image img { width: 100%; height: 400px; object-fit: cover; transition: transform 0.6s ease; }
         .itinerary-image:hover img { transform: scale(1.05); }
-
-        /* CAROUSEL */
         .itinerary-carousel { position: relative; border-radius: var(--radius); overflow: hidden; height: 400px; }
         .itinerary-carousel .carousel-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.6s ease; }
         .itinerary-carousel .carousel-slide.active { opacity: 1; }
@@ -91,34 +68,25 @@
         .carousel-dots { display: flex; gap: 8px; }
         .carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.4); border: none; cursor: pointer; transition: all 0.3s ease; padding: 0; }
         .carousel-dot.active { background: var(--gold); transform: scale(1.2); }
-
         .itinerary-content .section-label { text-align: left; margin-bottom: 12px; }
         .itinerary-content h3 { font-size: 1.8rem; color: var(--white); margin-bottom: 16px; }
         .itinerary-content p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; font-weight: 300; }
         .itinerary-content ul { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
         .itinerary-content ul li { font-size: 0.88rem; color: var(--text); padding-left: 20px; position: relative; }
         .itinerary-content ul li::before { content: '✦'; position: absolute; left: 0; color: var(--gold); font-size: 0.6rem; top: 4px; }
-
-        /* INCLUDES GRID */
         .includes-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
         .include-card { background: var(--dark-card); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius); padding: 36px 28px; text-align: center; transition: var(--transition); }
         .include-card:hover { border-color: rgba(201,169,110,0.2); transform: translateY(-4px); }
         .include-card .include-icon { font-size: 2rem; margin-bottom: 16px; display: block; }
         .include-card h4 { font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--white); margin-bottom: 10px; letter-spacing: 0.5px; }
         .include-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; font-weight: 300; }
-
-        /* CTA */
         .dest-cta { text-align: center; padding-top: 30px; background: var(--dark-soft); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
         .dest-cta h2 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); color: var(--white); margin-bottom: 16px; }
         .dest-cta p { color: var(--text-muted); font-weight: 300; max-width: 540px; margin: 0 auto 32px; line-height: 1.8; }
-
-        /* PRO TIPS LINK */
         .dest-protips { text-align: center; padding: 80px 0; }
         .dest-protips .section-label { margin-bottom: 16px; }
         .dest-protips h2 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); color: var(--white); margin-bottom: 16px; }
         .dest-protips p { color: var(--text-muted); font-weight: 300; max-width: 540px; margin: 0 auto 32px; line-height: 1.8; }
-
-        /* FOOTER */
         footer { background: var(--dark-soft); border-top: 1px solid rgba(255,255,255,0.05); padding: 80px 0 0; }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 60px; }
         .footer-brand .logo { margin-bottom: 16px; } .footer-brand .logo img { height: 70px; }
@@ -134,85 +102,45 @@
         .footer-bottom-links { display: flex; gap: 24px; }
         .footer-bottom-links a { color: var(--text-muted); transition: var(--transition); }
         .footer-bottom-links a:hover { color: var(--gold); }
-
-        /* ANIMATIONS */
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
         .reveal.visible { opacity: 1; transform: translateY(0); }
-
-        /* RESPONSIVE */
-        @media (max-width: 1024px) {
-            .includes-grid { grid-template-columns: repeat(2, 1fr); }
-            .footer-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 768px) {
-            section { padding: 80px 0; } .navbar .container { max-width: 100%; width: 100%; padding: 0 12px; }
-            .dest-hero { background-attachment: scroll; background-position: center center; background-repeat: no-repeat; }
-            .route-line { display: none; }
-            .itinerary-block { grid-template-columns: 1fr; gap: 28px; }
-            .itinerary-block.reverse .itinerary-image, .itinerary-block.reverse .itinerary-gallery, .itinerary-block.reverse .itinerary-carousel, .itinerary-block.reverse .itinerary-content { order: unset; }
-            .itinerary-image img { height: 280px; }
-            .itinerary-carousel { height: 280px; }
-            .includes-grid { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: 1fr; gap: 36px; }
-            .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
-        }
-        @media (max-width: 480px) {
-            .logo img { height: 48px; }
-            .navbar.scrolled .logo img { height: 36px; }
-            .footer-brand .logo img { height: 50px; }
-            .includes-grid { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 1024px) { .includes-grid { grid-template-columns: repeat(2, 1fr); } .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) { section { padding: 80px 0; } .navbar .container { max-width: 100%; width: 100%; padding: 0 12px; } .dest-hero { background-attachment: scroll; background-position: center center; background-repeat: no-repeat; } .route-line { display: none; } .itinerary-block { grid-template-columns: 1fr; gap: 28px; } .itinerary-block.reverse .itinerary-image, .itinerary-block.reverse .itinerary-carousel, .itinerary-block.reverse .itinerary-content { order: unset; } .itinerary-image img { height: 280px; } .itinerary-carousel { height: 280px; } .includes-grid { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr; gap: 36px; } .footer-bottom { flex-direction: column; gap: 12px; text-align: center; } }
+        @media (max-width: 480px) { .logo img { height: 48px; } .navbar.scrolled .logo img { height: 36px; } .footer-brand .logo img { height: 50px; } .includes-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-
-    <!-- NAVBAR -->
     <nav class="navbar" id="navbar">
         <div class="container">
             <a href="../index.html" class="logo"><img src="../images/logo-trimmed.png" alt="Horizonte Exclusivo"></a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="../index.html">Nuevos horizontes</a></li>
-                <li>
-                    <a href="../index.html#destinos">Destinos</a>
-                    <div class="dropdown">
-                        <a href="africa.html">Africa</a>
-                        <a href="america.html">América</a>
-                        <a href="asia.html">Asia</a>
-                        <a href="caribe.html">Caribe</a>
-                        <a href="europa.html">Europa</a>
-                        <a href="paraisos.html">Paraísos sobre el agua</a>
-                    </div>
-                </li>
+                <li><a href="../index.html#destinos">Destinos</a><div class="dropdown"><a href="africa.html">Africa</a><a href="america.html">América</a><a href="asia.html">Asia</a><a href="caribe.html">Caribe</a><a href="europa.html">Europa</a><a href="paraisos.html">Paraísos sobre el agua</a></div></li>
                 <li><a href="../index.html#testimonios">¿Quién hay detrás?</a></li>
                 <li><a href="../index.html#contacto">Contacto</a></li>
                 <li><a href="pro-tips.html">Travel Hacks</a></li>
-                
+
             </ul>
             <button class="hamburger" id="hamburger" aria-label="Abrir menú"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
-    <!-- HERO -->
     <section class="dest-hero">
         <div class="dest-hero-content">
-            <span class="section-label">América</span>
-            <h1>Canadá</h1>
-            <p>Naturaleza majestuosa y ciudades cosmopolitas</p>
-            <span class="dest-duration">15 días / 14 noches</span>
+            <span class="section-label">Asia</span>
+            <h1>Sri Lanka</h1>
+            <p>La lágrima del Índico</p>
+            <span class="dest-duration">12–14 noches</span>
         </div>
     </section>
 
-    <!-- INTRO -->
     <section style="padding-top: 30px; padding-bottom: 10px;">
         <div class="container">
-            <p class="dest-intro-text reveal">
-                Canadá es equilibrio perfecto entre naturaleza imponente y elegancia urbana. Lagos turquesa rodeados de montañas, bosques infinitos, fauna salvaje y ciudades sofisticadas donde cultura y gastronomía se mezclan con un estilo de vida relajado. Un viaje ideal para quienes buscan amplitud, aire puro y paisajes que impresionan.
-            </p>
+            <p class="dest-intro-text reveal">Un viaje lleno de contrastes donde templos milenarios, naturaleza exuberante y playas doradas conviven en perfecta armonía. Sri Lanka combina cultura, safari, montaña y relax en un recorrido equilibrado y muy especial.</p>
         </div>
     </section>
 
-    <!-- ITINERARY -->
     <section id="itinerario" style="padding-top: 10px;">
         <div class="container">
             <div class="section-header reveal">
@@ -221,202 +149,160 @@
                 <div class="divider"></div>
             </div>
 
-            <!-- Vancouver -->
+            <!-- Colombo -->
             <div class="itinerary-block reveal">
                 <div class="itinerary-carousel">
-                    <div class="carousel-slide active">
-                        <img src="https://images.unsplash.com/photo-1559511260-66a654ae982a?w=800&q=80" alt="Skyline de Vancouver junto al agua">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1578961509811-1f55a380e31f?w=800&q=80" alt="Capilano Suspension Bridge en Vancouver">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1559510904-60bd53ecb973?w=800&q=80" alt="Vista aérea de Vancouver">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1611674929309-30a2c9be01f2b?w=800&q=80" alt="Paseo al atardecer en Vancouver">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1560813962-ff3d8fcf59ba?w=800&q=80" alt="Vista aérea de Stanley Park">
-                    </div>
+                    <div class="carousel-slide active"><img src="https://images.unsplash.com/photo-1653151106233-8e928c21bc1a?w=800&q=80" alt="Edificio colonial de Colombo"></div>
+                    <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1740818839456-640b49171c0e?w=800&q=80" alt="Estatua en fuente de Colombo"></div>
+                    <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1653151106220-2ce4760e03ae?w=800&q=80" alt="Estatuas de Buda en Colombo"></div>
+                    <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1426243665764-abe8f66163dc?w=800&q=80" alt="Buda dorado en Colombo"></div>
                     <div class="carousel-controls">
                         <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
-                        <div class="carousel-dots">
-                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
-                            <button class="carousel-dot" aria-label="Imagen 2"></button>
-                            <button class="carousel-dot" aria-label="Imagen 3"></button>
-                            <button class="carousel-dot" aria-label="Imagen 4"></button>
-                            <button class="carousel-dot" aria-label="Imagen 5"></button>
-                        </div>
+                        <div class="carousel-dots"><button class="carousel-dot active" aria-label="Imagen 1"></button><button class="carousel-dot" aria-label="Imagen 2"></button><button class="carousel-dot" aria-label="Imagen 3"></button><button class="carousel-dot" aria-label="Imagen 4"></button></div>
                         <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
                     </div>
                 </div>
                 <div class="itinerary-content">
-                    <span class="section-label">Días 1 – 3</span>
-                    <h3>Vancouver</h3>
-                    <p>Naturaleza y sofisticación junto al Pacífico. Vancouver combina mar, montaña y arquitectura moderna con un estilo de vida vibrante.</p>
+                    <span class="section-label">Días 1 – 2</span>
+                    <h3>Colombo</h3>
+                    <p>Primer contacto con la isla. Colombo mezcla arquitectura colonial, templos budistas y vida local vibrante.</p>
                     <ul>
-                        <li>Paseo en bicicleta por Stanley Park</li>
-                        <li>Capilano Suspension Bridge</li>
-                        <li>Excursión panorámica a Grouse Mountain</li>
-                        <li>Crucero por la bahía</li>
-                        <li>Barrio histórico de Gastown y cena gourmet</li>
+                        <li>Paseo por el barrio colonial</li>
+                        <li>Templo Gangaramaya</li>
+                        <li>Mercado de Pettah</li>
+                        <li>Cena de cocina ceilandesa contemporánea</li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Whistler -->
+            <!-- Sigiriya / Dambulla -->
             <div class="itinerary-block reverse reveal">
                 <div class="itinerary-carousel">
-                    <div class="carousel-slide active">
-                        <img src="https://images.unsplash.com/photo-1555204057-c9828fa945e7?w=800&q=80" alt="Lago azul entre montañas en Whistler">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1547663870-ef5e13a41721?w=800&q=80" alt="Cascadas en Whistler">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1599148874821-a3aa38f27ede?w=800&q=80" alt="Teleférico en Whistler">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1568386616128-d72c755a364b?w=800&q=80" alt="Lago y bosque en Whistler">
-                    </div>
+                    <div class="carousel-slide active"><img src="https://images.unsplash.com/photo-1612862862126-865765df2ded?w=800&q=80" alt="Roca del León en Sigiriya"></div>
+                    <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1580794749460-76f97b7180d8?w=800&q=80" alt="Caminos en Sigiriya"></div>
+                    <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1704798690646-92524b61ce03?w=800&q=80" alt="Buda dorado en Dambulla"></div>
+                    <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1567157802189-aadc856131dc?w=800&q=80" alt="Formación rocosa en Sigiriya"></div>
                     <div class="carousel-controls">
                         <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
-                        <div class="carousel-dots">
-                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
-                            <button class="carousel-dot" aria-label="Imagen 2"></button>
-                            <button class="carousel-dot" aria-label="Imagen 3"></button>
-                            <button class="carousel-dot" aria-label="Imagen 4"></button>
-                        </div>
+                        <div class="carousel-dots"><button class="carousel-dot active" aria-label="Imagen 1"></button><button class="carousel-dot" aria-label="Imagen 2"></button><button class="carousel-dot" aria-label="Imagen 3"></button><button class="carousel-dot" aria-label="Imagen 4"></button></div>
                         <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
                     </div>
                 </div>
                 <div class="itinerary-content">
-                    <span class="section-label">Días 4 – 6</span>
-                    <h3>Whistler</h3>
-                    <p>Montañas, bosques y paisajes alpinos. Destino perfecto para actividades al aire libre en cualquier temporada.</p>
+                    <span class="section-label">Días 3 – 4</span>
+                    <h3>Triángulo Cultural</h3>
+                    <p>Historia y legado ancestral. El corazón histórico del país alberga fortalezas, templos excavados en roca y antiguos reinos.</p>
                     <ul>
-                        <li>Teleférico Peak 2 Peak</li>
-                        <li>Senderismo o rutas panorámicas</li>
-                        <li>Actividades de aventura (helicóptero opcional)</li>
-                        <li>Relax en lodge de montaña</li>
+                        <li>Ascenso a la Roca del León en Sigiriya</li>
+                        <li>Templos de Dambulla</li>
+                        <li>Polonnaruwa o Anuradhapura</li>
+                        <li>Safari en Parque Nacional Minneriya (elefantes en libertad)</li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Banff & Lake Louise -->
+            <!-- Kandy -->
             <div class="itinerary-block reveal">
                 <div class="itinerary-carousel">
-                    <div class="carousel-slide active">
-                        <img src="https://images.unsplash.com/photo-1561134643-668f9057cce4?w=800&q=80" alt="Lago y montañas en Banff al atardecer">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1558818061-547b1114aa6a?w=800&q=80" alt="Moraine Lake en Banff">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1542298444-e33c4aa2dbd0?w=800&q=80" alt="Río entre bosques y montañas en Banff">
-                    </div>
+                    <div class="carousel-slide active"><img src="https://images.unsplash.com/photo-1626091022888-485eb96c494a?w=800&q=80" alt="Templo del Diente de Buda en Kandy"></div>
+                    <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1728626674816-9a4310514f18?w=800&q=80" alt="Lago de Kandy"></div>
+                    <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1642095012223-65ee6d570974?w=800&q=80" alt="Edificio tradicional en Kandy"></div>
                     <div class="carousel-controls">
                         <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
-                        <div class="carousel-dots">
-                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
-                            <button class="carousel-dot" aria-label="Imagen 2"></button>
-                            <button class="carousel-dot" aria-label="Imagen 3"></button>
-                        </div>
+                        <div class="carousel-dots"><button class="carousel-dot active" aria-label="Imagen 1"></button><button class="carousel-dot" aria-label="Imagen 2"></button><button class="carousel-dot" aria-label="Imagen 3"></button></div>
                         <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
                     </div>
                 </div>
                 <div class="itinerary-content">
-                    <span class="section-label">Días 7 – 9</span>
-                    <h3>Banff &amp; Lake Louise</h3>
-                    <p>El corazón de las Rocosas. Uno de los escenarios naturales más impresionantes del mundo.</p>
+                    <span class="section-label">Días 5 – 6</span>
+                    <h3>Kandy</h3>
+                    <p>Espiritualidad y tradición. Ciudad sagrada rodeada de colinas y lago, centro cultural del budismo en Sri Lanka.</p>
                     <ul>
-                        <li>Lago Louise y Moraine Lake</li>
-                        <li>Ruta Icefields Parkway</li>
-                        <li>Excursión al glaciar Athabasca</li>
-                        <li>Avistamiento de fauna salvaje</li>
-                        <li>Spa con vistas a las montañas</li>
+                        <li>Templo del Diente de Buda</li>
+                        <li>Jardines Botánicos de Peradeniya</li>
+                        <li>Espectáculo tradicional de danzas</li>
+                        <li>Paseo por el lago al atardecer</li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Calgary -->
+            <!-- Nelliya / Ella -->
             <div class="itinerary-block reverse reveal">
                 <div class="itinerary-carousel">
-                    <div class="carousel-slide active">
-                        <img src="https://images.unsplash.com/photo-1697527917667-69176428f54e?w=800&q=80" alt="Vista aérea de Calgary">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1664335692601-6560235e150d?w=800&q=80" alt="Skyline de Calgary">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1600039848955-282ecd5f80bc?w=800&q=80" alt="Puente sobre el río en Calgary">
-                    </div>
+                    <div class="carousel-slide active"><img src="https://images.unsplash.com/photo-1566766189268-ecac9118f2b7?w=800&q=80" alt="Tren azul en Sri Lanka"></div>
+                    <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1738706760635-86723ed459ef?w=800&q=80" alt="Tren sobre el Nine Arch Bridge"></div>
                     <div class="carousel-controls">
                         <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
-                        <div class="carousel-dots">
-                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
-                            <button class="carousel-dot" aria-label="Imagen 2"></button>
-                            <button class="carousel-dot" aria-label="Imagen 3"></button>
-                        </div>
+                        <div class="carousel-dots"><button class="carousel-dot active" aria-label="Imagen 1"></button><button class="carousel-dot" aria-label="Imagen 2"></button></div>
                         <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
                     </div>
                 </div>
                 <div class="itinerary-content">
-                    <span class="section-label">Días 10 – 11</span>
-                    <h3>Calgary</h3>
-                    <p>Puerta de entrada a las Rocosas. Ambiente elegante y moderno con carácter western.</p>
+                    <span class="section-label">Días 7 – 8</span>
+                    <h3>Nelliya & Ella</h3>
+                    <p>Montañas y plantaciones de té. Uno de los trayectos en tren más bonitos del mundo atraviesa esta región de colinas verdes y neblina suave.</p>
                     <ul>
-                        <li>Calgary Tower</li>
-                        <li>Paseo por Stephen Avenue</li>
-                        <li>Experiencia gastronómica local</li>
+                        <li>Trayecto en tren panorámico</li>
+                        <li>Visita a plantación de té</li>
+                        <li>Nine Arch Bridge</li>
+                        <li>Senderos suaves entre montañas</li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Toronto & Niágara -->
+            <!-- Safari en Yala -->
             <div class="itinerary-block reveal">
                 <div class="itinerary-carousel">
-                    <div class="carousel-slide active">
-                        <img src="https://images.unsplash.com/photo-1507992781348-310259076fe0?w=800&q=80" alt="Skyline de Toronto desde el lago">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1603466182843-75f713ba06b3?w=800&q=80" alt="Vista aérea de Toronto">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1511358146320-eb018ab3e22e?w=800&q=80" alt="Cataratas del Niágara vista aérea">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1598402453861-4fbcbf6ced3b?w=800&q=80" alt="Cataratas del Niágara">
-                    </div>
+                    <div class="carousel-slide active"><img src="https://images.unsplash.com/photo-1584200992694-29ca91aefde6?w=800&q=80" alt="Paisaje del Parque Nacional Yala"></div>
+                    <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1743014118271-415197f9b0ef?w=800&q=80" alt="Leopardo en Yala"></div>
+                    <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1754272817164-fde7a8e3cd8f?w=800&q=80" alt="Leopardo en árbol en Yala"></div>
+                    <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1580635849337-6083be4b133e?w=800&q=80" alt="Naturaleza salvaje en Yala"></div>
                     <div class="carousel-controls">
                         <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
-                        <div class="carousel-dots">
-                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
-                            <button class="carousel-dot" aria-label="Imagen 2"></button>
-                            <button class="carousel-dot" aria-label="Imagen 3"></button>
-                            <button class="carousel-dot" aria-label="Imagen 4"></button>
-                        </div>
+                        <div class="carousel-dots"><button class="carousel-dot active" aria-label="Imagen 1"></button><button class="carousel-dot" aria-label="Imagen 2"></button><button class="carousel-dot" aria-label="Imagen 3"></button><button class="carousel-dot" aria-label="Imagen 4"></button></div>
                         <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
                     </div>
                 </div>
                 <div class="itinerary-content">
-                    <span class="section-label">Días 12 – 15</span>
-                    <h3>Toronto &amp; Niágara</h3>
-                    <p>Ciudad cosmopolita y maravilla natural. Final urbano con contraste natural espectacular.</p>
+                    <span class="section-label">Días 9 – 10</span>
+                    <h3>Safari en Yala</h3>
+                    <p>Naturaleza salvaje. Yala ofrece la oportunidad de avistar leopardos, elefantes y fauna local en libertad.</p>
                     <ul>
-                        <li>CN Tower y vistas panorámicas</li>
-                        <li>Barrio Distillery District</li>
-                        <li>Excursión privada a las Cataratas del Niágara</li>
-                        <li>Crucero hasta la base de las cataratas</li>
-                        <li>Ruta de bodegas en Niagara-on-the-Lake</li>
+                        <li>Safari en jeep al amanecer</li>
+                        <li>Lodge en plena naturaleza</li>
+                        <li>Experiencia bajo las estrellas</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Costa Sur -->
+            <div class="itinerary-block reverse reveal">
+                <div class="itinerary-carousel">
+                    <div class="carousel-slide active"><img src="https://images.unsplash.com/photo-1687831573676-390bc27ec88b?w=800&q=80" alt="Vista del océano desde acantilado"></div>
+                    <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1589534345827-e619f9b2dd2b?w=800&q=80" alt="Playa con palmeras en Sri Lanka"></div>
+                    <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1579989197355-c2c5ff50a3f3?w=800&q=80" alt="Vista aérea de la costa sur"></div>
+                    <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1704797390682-76479a29dc9a?w=800&q=80" alt="Costa verde de Sri Lanka"></div>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
+                        <div class="carousel-dots"><button class="carousel-dot active" aria-label="Imagen 1"></button><button class="carousel-dot" aria-label="Imagen 2"></button><button class="carousel-dot" aria-label="Imagen 3"></button><button class="carousel-dot" aria-label="Imagen 4"></button></div>
+                        <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
+                    </div>
+                </div>
+                <div class="itinerary-content">
+                    <span class="section-label">Días 11 – 14</span>
+                    <h3>Costa Sur</h3>
+                    <p>Relax frente al Índico. Playas doradas, ambiente relajado y final perfecto del viaje.</p>
+                    <ul>
+                        <li>Playas de Tangalle o Mirissa</li>
+                        <li>Avistamiento de ballenas (según temporada)</li>
+                        <li>Fuerte colonial de Galle</li>
+                        <li>Hotel boutique frente al mar</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- QUÉ INCLUYE -->
     <section style="padding-top: 30px; background: var(--dark-soft); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
         <div class="container">
             <div class="section-header reveal">
@@ -424,52 +310,32 @@
                 <h2 class="section-title">Qué incluye tu viaje</h2>
                 <div class="divider"></div>
             </div>
-
             <div class="includes-grid">
-                <div class="include-card reveal">
-                    <span class="include-icon">✈</span>
-                    <h4>Vuelos</h4>
-                    <p>Vuelos internacionales ida y vuelta. Vuelos internos o trenes panorámicos según itinerario.</p>
-                </div>
-                <div class="include-card reveal">
-                    <span class="include-icon">🚗</span>
-                    <h4>Vehículo</h4>
-                    <p>Vehículo de alquiler o traslados privados según preferencia. Libertad total para explorar Canadá.</p>
-                </div>
-                <div class="include-card reveal">
-                    <span class="include-icon">🏨</span>
-                    <h4>Alojamiento</h4>
-                    <p>Hoteles boutique, lodges de montaña y resorts seleccionados cuidadosamente según estilo y preferencias.</p>
-                </div>
-                <div class="include-card reveal">
-                    <span class="include-icon">⭐</span>
-                    <h4>Experiencias</h4>
-                    <p>Actividades opcionales premium organizadas a medida: cruceros, sobrevuelos, rutas guiadas y más.</p>
-                </div>
+                <div class="include-card reveal"><span class="include-icon">✈</span><h4>Vuelos</h4><p>Vuelos internacionales incluidos en el paquete.</p></div>
+                <div class="include-card reveal"><span class="include-icon">🚐</span><h4>Traslados</h4><p>Vehículo con conductor privado durante todo el recorrido por la isla.</p></div>
+                <div class="include-card reveal"><span class="include-icon">🏨</span><h4>Alojamiento</h4><p>Hoteles y lodges seleccionados cuidadosamente según cada destino.</p></div>
+                <div class="include-card reveal"><span class="include-icon">⭐</span><h4>Experiencias</h4><p>Safaris organizados, visitas a templos y experiencias culturales únicas.</p></div>
             </div>
         </div>
     </section>
 
-    <!-- CTA -->
     <section class="dest-cta">
         <div class="container reveal">
-            <h2>Diseñemos <em style="color: var(--gold);">tu Canadá</em></h2>
-            <p>Cada viaje es único. Cuéntanos cómo imaginas tu aventura en Canadá y crearemos un itinerario a tu medida.</p>
-            <a href="../index.html?destino=Canadá#contacto" class="btn btn-primary">Solicitar presupuesto &#10230;</a>
+            <h2>Diseñemos <em style="color: var(--gold);">tu Sri Lanka</em></h2>
+            <p>Cada viaje es único. Cuéntanos cómo imaginas tu aventura y crearemos un itinerario a tu medida.</p>
+            <a href="../index.html?destino=Sri Lanka#contacto" class="btn btn-primary">Solicitar presupuesto &#10230;</a>
         </div>
     </section>
 
-    <!-- PRO TIPS -->
     <section class="dest-protips">
         <div class="container reveal">
             <span class="section-label">Travel Hacks</span>
-            <h2>Consejos de experto para <em style="color: var(--gold);">Canadá</em></h2>
+            <h2>Consejos de experto para <em style="color: var(--gold);">Sri Lanka</em></h2>
             <p>Todo lo que necesitas saber antes, durante y después de tu viaje: checklist, dinero, transporte, seguridad, cultura, comida y hacks de experto.</p>
-            <a href="pro-tips-canada.html" class="btn btn-primary">Ver Travel Hacks &#10230;</a>
+            <a href="pro-tips-sri-lanka.html" class="btn btn-primary">Ver Travel Hacks &#10230;</a>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -478,39 +344,11 @@
                     <p>Más que viajar, vivir el mundo. Creamos experiencias de viaje de lujo a medida. Cada destino es una historia, cada viaje una obra maestra.</p>
                     <div class="social-links"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="Facebook">FB</a><a href="#" aria-label="Twitter">TW</a><a href="#" aria-label="LinkedIn">IN</a></div>
                 </div>
-                <div class="footer-column">
-                    <h4>Destinos</h4>
-                    <ul>
-                        <li><a href="escocia.html">Escocia</a></li>
-                        <li><a href="italia.html">Italia</a></li>
-                        <li><a href="tailandia.html">Tailandia</a></li>
-                        <li><a href="costa-oeste-usa.html">Costa Oeste USA</a></li>
-                        <li><a href="florida.html">Florida</a></li>
-                        <li><a href="alaska.html">Alaska</a></li>
-                        <li><a href="canada.html">Canadá</a></li>
-                        <li><a href="brasil.html">Brasil</a></li>
-                        <li><a href="argentina.html">Argentina</a></li>
-                        <li><a href="peru.html">Perú</a></li>
-                        <li><a href="colombia.html">Colombia</a></li>
-                        <li><a href="ecuador.html">Ecuador</a></li>
-                        <li><a href="chicago-nueva-orleans.html">Chicago & N. Orleans</a></li>
-                        <li><a href="dubai-abu-dhabi-maldivas.html">Dubái & Maldivas</a></li>
-                        <li><a href="sri-lanka.html">Sri Lanka</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Experiencias</h4>
-                    <ul><li><a href="#">Luna de miel</a></li><li><a href="#">Safari de lujo</a></li><li><a href="#">Cruceros privados</a></li><li><a href="#">Retiros wellness</a></li><li><a href="#">Aventura exclusiva</a></li></ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Compañía</h4>
-                    <ul><li><a href="#">Sobre nosotros</a></li><li><a href="#">Nuestro equipo</a></li><li><a href="#">Blog de viajes</a></li><li><a href="#">Prensa</a></li><li><a href="../index.html#contacto">Contacto</a></li></ul>
-                </div>
+                <div class="footer-column"><h4>Destinos</h4><ul><li><a href="escocia.html">Escocia</a></li><li><a href="italia.html">Italia</a></li><li><a href="tailandia.html">Tailandia</a></li><li><a href="costa-oeste-usa.html">Costa Oeste USA</a></li><li><a href="florida.html">Florida</a></li><li><a href="alaska.html">Alaska</a></li><li><a href="canada.html">Canadá</a></li><li><a href="brasil.html">Brasil</a></li><li><a href="argentina.html">Argentina</a></li><li><a href="peru.html">Perú</a></li><li><a href="colombia.html">Colombia</a></li><li><a href="ecuador.html">Ecuador</a></li><li><a href="chicago-nueva-orleans.html">Chicago & N. Orleans</a></li><li><a href="dubai-abu-dhabi-maldivas.html">Dubái & Maldivas</a></li><li><a href="sri-lanka.html">Sri Lanka</a></li></ul></div>
+                <div class="footer-column"><h4>Experiencias</h4><ul><li><a href="#">Luna de miel</a></li><li><a href="#">Safari de lujo</a></li><li><a href="#">Cruceros privados</a></li><li><a href="#">Retiros wellness</a></li><li><a href="#">Aventura exclusiva</a></li></ul></div>
+                <div class="footer-column"><h4>Compañía</h4><ul><li><a href="#">Sobre nosotros</a></li><li><a href="#">Nuestro equipo</a></li><li><a href="#">Blog de viajes</a></li><li><a href="#">Prensa</a></li><li><a href="../index.html#contacto">Contacto</a></li></ul></div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Horizonte Exclusivo. Todos los derechos reservados.</p>
-                <div class="footer-bottom-links"><a href="#">Aviso legal</a><a href="#">Privacidad</a><a href="#">Cookies</a></div>
-            </div>
+            <div class="footer-bottom"><p>&copy; 2026 Horizonte Exclusivo. Todos los derechos reservados.</p><div class="footer-bottom-links"><a href="#">Aviso legal</a><a href="#">Privacidad</a><a href="#">Cookies</a></div></div>
         </div>
     </footer>
 
@@ -525,14 +363,9 @@
         checkNavOverflow(); window.addEventListener('resize', checkNavOverflow);
         const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } }); }, { threshold: 0.15 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // Route line
         function drawRoute() { const container = document.querySelector('#itinerario .container'); const blocks = container.querySelectorAll('.itinerary-block'); const existing = container.querySelector('.route-line'); if (existing) existing.remove(); if (window.innerWidth <= 768 || blocks.length < 2) return; container.style.position = 'relative'; const w = container.offsetWidth; const h = container.scrollHeight; const centerX = w / 2; const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); svg.classList.add('route-line'); svg.setAttribute('viewBox', `0 0 ${w} ${h}`); svg.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;'; const data = []; blocks.forEach(block => { data.push({ top: block.offsetTop, bottom: block.offsetTop + block.offsetHeight, cy: block.offsetTop + block.offsetHeight / 2 }); }); const d = `M ${centerX} ${data[0].top} L ${centerX} ${data[data.length - 1].bottom}`; const path = document.createElementNS('http://www.w3.org/2000/svg', 'path'); path.setAttribute('d', d); path.setAttribute('fill', 'none'); path.setAttribute('stroke', 'rgba(255,255,255,0.10)'); path.setAttribute('stroke-width', '1.5'); path.setAttribute('stroke-dasharray', '6 4'); svg.appendChild(path); data.forEach(b => { const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle'); c.setAttribute('cx', centerX); c.setAttribute('cy', b.cy); c.setAttribute('r', '5'); c.setAttribute('fill', '#0a0a0a'); c.setAttribute('stroke', 'rgba(201,169,110,0.4)'); c.setAttribute('stroke-width', '1.5'); svg.appendChild(c); }); container.prepend(svg); }
         window.addEventListener('load', drawRoute); window.addEventListener('resize', drawRoute);
-
-        // Carousels
         document.querySelectorAll('.itinerary-carousel').forEach(carousel => { const slides = carousel.querySelectorAll('.carousel-slide'); const dots = carousel.querySelectorAll('.carousel-dot'); const prev = carousel.querySelector('.carousel-prev'); const next = carousel.querySelector('.carousel-next'); let current = 0; function goTo(index) { slides[current].classList.remove('active'); dots[current].classList.remove('active'); current = (index + slides.length) % slides.length; slides[current].classList.add('active'); dots[current].classList.add('active'); } prev.addEventListener('click', () => goTo(current - 1)); next.addEventListener('click', () => goTo(current + 1)); dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i))); let startX; carousel.addEventListener('touchstart', e => startX = e.touches[0].clientX); carousel.addEventListener('touchend', e => { const diff = startX - e.changedTouches[0].clientX; if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1)); }); });
     </script>
-
 </body>
 </html>

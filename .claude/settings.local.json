@@ -9,7 +9,12 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(grep:*)",
-      "Bash(echo === VERIFICACIÓN FINAL ===:*)"
+      "Bash(echo === VERIFICACIÓN FINAL ===:*)",
+      "Bash(echo === $\\(basename $f\\) ===:*)",
+      "Bash(done)",
+      "Bash(__NEW_LINE_619377695820174c__:*)",
+      "Bash(__NEW_LINE_18b4a60313616e88__ echo:*)",
+      "Bash(do sed:*)"
     ]
   }
 }
