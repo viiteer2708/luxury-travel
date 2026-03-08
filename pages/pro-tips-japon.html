@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel Hacks: Japón — Horizonte Exclusivo</title>
+    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
     <meta name="description" content="Consejos exclusivos para viajar a Japón: JR Pass, onsen, etiqueta, gastronomía y hacks para vivir Japón como un local.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -1044,7 +1045,10 @@
         // Navbar scroll effect
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 60);
+            const wasScrolled = navbar.classList.contains('scrolled');
+            const isScrolled = window.scrollY > 60;
+            navbar.classList.toggle('scrolled', isScrolled);
+            if (wasScrolled !== isScrolled) checkNavOverflow();
         });
 
         // Mobile menu toggle

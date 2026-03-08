@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Horizonte Exclusivo — Más que viajar, vivir el mundo</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -1273,7 +1274,7 @@
                             <div class="contact-icon">📞</div>
                             <div>
                                 <span>Teléfono</span>
-                                <strong>+34 605 794 305</strong>
+                                <strong>+34 633 077 401</strong>
                             </div>
                         </div>
                         <div class="contact-item">
@@ -1411,7 +1412,10 @@
         // Navbar scroll effect
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 60);
+            const wasScrolled = navbar.classList.contains('scrolled');
+            const isScrolled = window.scrollY > 60;
+            navbar.classList.toggle('scrolled', isScrolled);
+            if (wasScrolled !== isScrolled) checkNavOverflow();
         });
 
         // Mobile menu toggle

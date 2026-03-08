@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chicago & Nueva Orleans — Horizonte Exclusivo</title>
+    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
     <meta name="description" content="Viaje de lujo a Chicago y Nueva Orleans: arquitectura, jazz, gastronomía y carácter americano. 11 noches de ciudades con alma propia.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -256,7 +257,7 @@
 
     <script>
         const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 60); });
+        window.addEventListener('scroll', () => { const wasScrolled = navbar.classList.contains('scrolled'); const isScrolled = window.scrollY > 60; navbar.classList.toggle('scrolled', isScrolled); if (wasScrolled !== isScrolled) checkNavOverflow(); });
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
         hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); });
