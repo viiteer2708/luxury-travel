@@ -1163,7 +1163,7 @@
             navLinks.style.flexShrink = '0';
             void navbar.offsetHeight;
 
-            if (container.scrollWidth > container.clientWidth + 2) {
+            if (window.innerWidth <= 1100 || container.scrollWidth > container.clientWidth + 2) {
                 navbar.classList.add('collapsed');
             }
 
