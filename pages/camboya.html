@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bali — Horizonte Exclusivo</title>
-    <meta name="description" content="Viaje de lujo a Bali: Ubud, Munduk, Uluwatu y las Islas Gili. 10–12 días de experiencias exclusivas entre templos, arrozales y playas paradisíacas.">
+    <title>Camboya — Horizonte Exclusivo</title>
+    <meta name="description" content="Viaje de lujo a Camboya: Angkor Wat, Phnom Penh y las islas de Koh Rong. 8–10 noches de templos eternos, historia y playas vírgenes.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -249,18 +249,6 @@
             box-shadow: 0 8px 30px rgba(201,169,110,0.3);
         }
 
-        .btn-outline {
-            background: transparent;
-            color: var(--white);
-            border: 1px solid rgba(255,255,255,0.25);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--gold);
-            color: var(--gold);
-            transform: translateY(-2px);
-        }
-
         /* ===== SECTION COMMON ===== */
         section { padding: 120px 0; }
 
@@ -291,7 +279,15 @@
             margin: 20px auto;
         }
 
-        /* ===== DESTINATION HERO ===== */
+        .section-subtitle {
+            font-size: 1rem;
+            color: var(--text-muted);
+            max-width: 560px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* ===== HERO ===== */
         .dest-hero {
             min-height: calc(70vh - 110px);
             display: flex;
@@ -302,9 +298,9 @@
             overflow: hidden;
             padding-top: 100px;
             padding-bottom: 20px;
-            background-image: url('https://images.unsplash.com/photo-1559305289-4c31700ba9cb?w=1920&q=80');
+            background-image: url('https://images.unsplash.com/photo-1571844088753-73ca0880bcd9?w=1920&q=80');
             background-size: cover;
-            background-position: center calc(50% - 150px);
+            background-position: center center;
             background-attachment: fixed;
         }
 
@@ -312,7 +308,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.4) 50%, var(--dark) 100%);
+            background: linear-gradient(180deg, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.45) 50%, var(--dark) 100%);
         }
 
         .dest-hero-content {
@@ -347,30 +343,33 @@
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             color: var(--gold-light);
             font-weight: 300;
+            max-width: 540px;
+            margin: 0 auto;
             margin-bottom: 8px;
             animation: fadeInUp 0.8s 0.4s ease both;
         }
 
-        .dest-hero-content .dest-duration {
+        .dest-duration {
+            display: inline-block;
             font-size: 0.85rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
             color: var(--text-muted);
+            letter-spacing: 2px;
+            margin-top: 8px;
             animation: fadeInUp 0.8s 0.6s ease both;
         }
 
-        /* ===== DESTINATION INTRO ===== */
+        /* ===== INTRO ===== */
         .dest-intro-text {
             max-width: 780px;
             margin: 0 auto;
             text-align: center;
             font-size: 1.05rem;
-            color: var(--text);
-            line-height: 1.9;
+            color: var(--text-muted);
             font-weight: 300;
+            line-height: 1.9;
         }
 
-        /* ===== ITINERARY BLOCKS ===== */
+        /* ===== ITINERARY ===== */
         .itinerary-block {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -383,20 +382,17 @@
             margin-bottom: 0;
         }
 
-        .itinerary-block.reverse .itinerary-image,
-        .itinerary-block.reverse .itinerary-gallery,
-        .itinerary-block.reverse .itinerary-carousel {
-            order: 2;
+        .itinerary-block.reverse {
+            direction: rtl;
         }
 
-        .itinerary-block.reverse .itinerary-content {
-            order: 1;
+        .itinerary-block.reverse > * {
+            direction: ltr;
         }
 
         .itinerary-image {
             border-radius: var(--radius);
             overflow: hidden;
-            position: relative;
         }
 
         .itinerary-image img {
@@ -408,43 +404,6 @@
 
         .itinerary-image:hover img {
             transform: scale(1.05);
-        }
-
-        /* ===== MULTI-IMAGE GALLERY ===== */
-        .itinerary-gallery {
-            display: grid;
-            gap: 6px;
-            border-radius: var(--radius);
-            overflow: hidden;
-            height: 400px;
-        }
-
-        .itinerary-gallery .gallery-item {
-            overflow: hidden;
-        }
-
-        .itinerary-gallery .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .itinerary-gallery .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-
-        .itinerary-gallery.gallery-4 {
-            grid-template-columns: 1.2fr 1fr;
-            grid-template-rows: repeat(3, 1fr);
-        }
-
-        .itinerary-gallery.gallery-4 .gallery-item:first-child {
-            grid-row: 1 / -1;
-        }
-
-        .itinerary-gallery.gallery-2 {
-            grid-template-columns: 1fr 1fr;
         }
 
         /* ===== ITINERARY CAROUSEL ===== */
@@ -794,7 +753,6 @@
             }
 
             .itinerary-block.reverse .itinerary-image,
-            .itinerary-block.reverse .itinerary-gallery,
             .itinerary-block.reverse .itinerary-carousel,
             .itinerary-block.reverse .itinerary-content {
                 order: unset;
@@ -806,19 +764,6 @@
 
             .itinerary-carousel {
                 height: 280px;
-            }
-
-            .itinerary-gallery {
-                height: 300px;
-            }
-
-            .itinerary-gallery.gallery-4 {
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: 1fr 1fr;
-            }
-
-            .itinerary-gallery.gallery-4 .gallery-item:first-child {
-                grid-row: auto;
             }
 
             .includes-grid {
@@ -891,9 +836,9 @@
     <section class="dest-hero">
         <div class="dest-hero-content">
             <span class="section-label">Asia</span>
-            <h1>Bali, la isla de los dioses</h1>
-            <p>Espiritualidad, naturaleza y belleza en estado puro</p>
-            <span class="dest-duration">10 – 12 días</span>
+            <h1>Camboya, templos eternos y alma asiática</h1>
+            <p>Espiritualidad, historia y belleza serena</p>
+            <span class="dest-duration">8–10 noches</span>
         </div>
     </section>
 
@@ -901,7 +846,7 @@
     <section style="padding-top: 30px; padding-bottom: 10px;">
         <div class="container">
             <p class="dest-intro-text reveal">
-                Bali no es solo un destino. Es una atmósfera. Templos entre arrozales, ceremonias al amanecer, selva vibrante, volcanes sagrados y playas infinitas. Un viaje donde el lujo no está en lo ostentoso, sino en el equilibrio, la calma y la conexión con lo esencial. Bali es espiritualidad, naturaleza y belleza en estado puro.
+                Camboya es espiritualidad, historia y belleza serena. Más allá de Angkor, el país ofrece tradición viva, paisajes tranquilos y una energía pausada que invita a descubrir con calma. Desde la grandeza del Imperio Khmer hasta las playas vírgenes de Koh Rong, este viaje te sumerge en una experiencia que deja huella — donde cada templo cuenta siglos de historia y cada atardecer invita a la contemplación.
             </p>
         </div>
     </section>
@@ -915,14 +860,14 @@
                 <div class="divider"></div>
             </div>
 
-            <!-- Días 1-3: Ubud -->
+            <!-- Días 1-4: Siem Reap & Angkor -->
             <div class="itinerary-block reveal">
                 <div class="itinerary-carousel">
                     <div class="carousel-slide active">
-                        <img src="https://images.unsplash.com/photo-1592364395653-83e648b20cc2?w=800&q=80" alt="Templo junto al lago en Ubud">
+                        <img src="https://images.unsplash.com/photo-1583500553362-2ae891162e78?w=800&q=80" alt="Templos de Angkor al amanecer">
                     </div>
                     <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1622833065251-be0d3ceaea04?w=800&q=80" alt="Arrozales de Tegalalang">
+                        <img src="https://images.unsplash.com/photo-1571844088753-73ca0880bcd9?w=800&q=80" alt="Entrada al templo Ta Prohm entre la selva">
                     </div>
                     <div class="carousel-controls">
                         <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
@@ -934,31 +879,30 @@
                     </div>
                 </div>
                 <div class="itinerary-content">
-                    <span class="section-label">Días 1 – 3</span>
-                    <h3>Ubud</h3>
-                    <p>El corazón cultural de Bali. Ubud es arte, tradición y naturaleza exuberante. Aquí el viaje comienza despacio, rodeado de arrozales, templos y sonidos de la selva. Ubud invita a bajar el ritmo y conectar con la esencia de la isla.</p>
+                    <span class="section-label">Días 1 – 4</span>
+                    <h3>Siem Reap & Angkor</h3>
+                    <p>Angkor es uno de los complejos arqueológicos más impresionantes del mundo. Visitarlo es una experiencia emocional que trasciende cualquier fotografía. Cuatro noches para absorber la grandeza del Imperio Khmer.</p>
                     <ul>
-                        <li>Visita al Bosque de los Monos</li>
-                        <li>Templos sagrados: Tirta Empul y Goa Gajah</li>
-                        <li>Paseo por los arrozales de Tegalalang</li>
-                        <li>Ceremonia de purificación en templo hindú</li>
-                        <li>Clase privada de cocina balinesa</li>
-                        <li>Excursión al Monte Batur al amanecer</li>
+                        <li>Amanecer en Angkor Wat</li>
+                        <li>Templo Ta Prohm, devorado por la selva</li>
+                        <li>Angkor Thom y las caras del Bayon</li>
+                        <li>Recorrido en tuk tuk privado por los templos</li>
+                        <li>Cena tradicional con espectáculo apsara</li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Días 4-5: Norte de Bali -->
+            <!-- Días 5-6: Phnom Penh -->
             <div class="itinerary-block reverse reveal">
                 <div class="itinerary-carousel">
                     <div class="carousel-slide active">
-                        <img src="https://images.unsplash.com/photo-1558501113-63514c1d51d8?w=800&q=80" alt="Puente en la selva de Munduk">
+                        <img src="https://images.unsplash.com/photo-1598533893086-db9aa7718ab2?w=800&q=80" alt="Palacio Real de Phnom Penh iluminado">
                     </div>
                     <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1582583088815-20c39c711ca3?w=800&q=80" alt="Cascada en Munduk">
+                        <img src="https://images.unsplash.com/photo-1647837397654-4666a4eb74c6?w=800&q=80" alt="Torre del reloj de Phnom Penh">
                     </div>
                     <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1587200812785-75938ce3fb35?w=800&q=80" alt="Arrozales de Sidemen">
+                        <img src="https://images.unsplash.com/photo-1706583733600-08e942012484?w=800&q=80" alt="Arquitectura colonial de Phnom Penh">
                     </div>
                     <div class="carousel-controls">
                         <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
@@ -971,29 +915,32 @@
                     </div>
                 </div>
                 <div class="itinerary-content">
-                    <span class="section-label">Días 4 – 5</span>
-                    <h3>Norte de Bali</h3>
-                    <p>Naturaleza intacta y autenticidad. Una Bali más desconocida y auténtica. Montañas, cascadas escondidas y pequeños pueblos donde la vida local sigue su curso sin prisas. Ideal para quienes buscan una experiencia más íntima y menos turística.</p>
+                    <span class="section-label">Días 5 – 6</span>
+                    <h3>Phnom Penh</h3>
+                    <p>La capital combina palacios dorados, arquitectura colonial y memoria histórica. Una ciudad que sorprende por su elegancia y su capacidad de reinvención.</p>
                     <ul>
-                        <li>Cascadas de Munduk</li>
-                        <li>Templo Ulun Danu Bratan sobre el lago</li>
-                        <li>Caminatas entre plantaciones de café</li>
-                        <li>Paisajes volcánicos y miradores naturales</li>
+                        <li>Palacio Real y Pagoda de Plata</li>
+                        <li>Museo Nacional de Camboya</li>
+                        <li>Paseo al atardecer por el Mekong</li>
+                        <li>Mercado Central Art Déco</li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Días 6-8: Uluwatu / Jimbaran -->
+            <!-- Días 7-9: Koh Rong -->
             <div class="itinerary-block reveal">
                 <div class="itinerary-carousel">
                     <div class="carousel-slide active">
-                        <img src="https://images.unsplash.com/photo-1596273214323-a8486cce7c9b?w=800&q=80" alt="Acantilados de Uluwatu">
+                        <img src="https://images.unsplash.com/photo-1651510689604-4d2d85daa479?w=800&q=80" alt="Playa de arena blanca en Koh Rong">
                     </div>
                     <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1604842937136-1648761a6256?w=800&q=80" alt="Templo sobre el acantilado">
+                        <img src="https://images.unsplash.com/photo-1651510688557-38374c863380?w=800&q=80" alt="Aguas cristalinas de Koh Rong">
                     </div>
                     <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1564981447395-903d78d49a28?w=800&q=80" alt="Playa de Uluwatu">
+                        <img src="https://images.unsplash.com/photo-1591805186175-23ad22280ced?w=800&q=80" alt="Hotel boutique frente al mar en Koh Rong">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1674017407702-5c1ee10a70c0?w=800&q=80" alt="Muelle en la playa de Koh Rong">
                     </div>
                     <div class="carousel-controls">
                         <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
@@ -1001,55 +948,20 @@
                             <button class="carousel-dot active" aria-label="Imagen 1"></button>
                             <button class="carousel-dot" aria-label="Imagen 2"></button>
                             <button class="carousel-dot" aria-label="Imagen 3"></button>
+                            <button class="carousel-dot" aria-label="Imagen 4"></button>
                         </div>
                         <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
                     </div>
                 </div>
                 <div class="itinerary-content">
-                    <span class="section-label">Días 6 – 8</span>
-                    <h3>Uluwatu y Jimbaran</h3>
-                    <p>El contraste perfecto: acantilados espectaculares y playas salvajes. Uluwatu ofrece atardeceres inolvidables y una energía más sofisticada. Aquí el viaje se vuelve más relajado, más sensorial.</p>
+                    <span class="section-label">Días 7 – 9</span>
+                    <h3>Koh Rong & Koh Rong Samloem</h3>
+                    <p>Final perfecto frente al mar en islas aún poco masificadas. Playas vírgenes, aguas cristalinas y una desconexión total para cerrar el viaje con calma.</p>
                     <ul>
-                        <li>Templo de Uluwatu al atardecer</li>
-                        <li>Cena privada frente al mar en Jimbaran</li>
-                        <li>Beach clubs exclusivos</li>
-                        <li>Clases de surf o paddle</li>
-                        <li>Masajes balineses frente al océano</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Días 9-10: Islas Gili -->
-            <div class="itinerary-block reverse reveal">
-                <div class="itinerary-carousel">
-                    <div class="carousel-slide active">
-                        <img src="https://images.unsplash.com/photo-1583022846753-83a4eba54ac1?w=800&q=80" alt="Vista aérea de las Islas Gili">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1720519610178-141f9777e9de?w=800&q=80" alt="Laguna azul en Nusa Penida">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1652872017821-3f9570c9cae6?w=800&q=80" alt="Colinas verdes de Nusa Penida">
-                    </div>
-                    <div class="carousel-controls">
-                        <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
-                        <div class="carousel-dots">
-                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
-                            <button class="carousel-dot" aria-label="Imagen 2"></button>
-                            <button class="carousel-dot" aria-label="Imagen 3"></button>
-                        </div>
-                        <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
-                    </div>
-                </div>
-                <div class="itinerary-content">
-                    <span class="section-label">Días 9 – 10</span>
-                    <h3>Islas Gili y Nusa Penida</h3>
-                    <p>Para quienes desean un final aún más paradisíaco. Un cierre perfecto para un viaje lleno de contrastes.</p>
-                    <ul>
-                        <li>Snorkel con tortugas</li>
-                        <li>Playas de arena blanca</li>
-                        <li>Agua cristalina</li>
-                        <li>Atardeceres sin multitudes</li>
+                        <li>Playas de arena blanca y agua turquesa</li>
+                        <li>Snorkel en arrecifes de coral</li>
+                        <li>Hotel boutique frente al mar</li>
+                        <li>Atardeceres tranquilos sin multitudes</li>
                     </ul>
                 </div>
             </div>
@@ -1069,22 +981,22 @@
                 <div class="include-card reveal">
                     <span class="include-icon">✈</span>
                     <h4>Vuelos</h4>
-                    <p>Vuelos internacionales y domésticos en clase preferente. Traslados privados en todos los trayectos.</p>
-                </div>
-                <div class="include-card reveal">
-                    <span class="include-icon">🚗</span>
-                    <h4>Transporte</h4>
-                    <p>Vehículo privado con conductor durante toda la ruta. Traslados entre islas incluidos.</p>
+                    <p>Vuelos internacionales y domésticos. Traslados organizados en todos los trayectos.</p>
                 </div>
                 <div class="include-card reveal">
                     <span class="include-icon">🏨</span>
                     <h4>Alojamiento</h4>
-                    <p>Villas privadas y resorts exclusivos seleccionados por su carácter y ubicación privilegiada.</p>
+                    <p>Alojamientos seleccionados según el estilo del cliente, desde boutique hasta resort.</p>
+                </div>
+                <div class="include-card reveal">
+                    <span class="include-icon">🗺</span>
+                    <h4>Guías locales</h4>
+                    <p>Guías especializados en los templos principales y experiencias culturales.</p>
                 </div>
                 <div class="include-card reveal">
                     <span class="include-icon">⭐</span>
-                    <h4>Experiencias</h4>
-                    <p>Visitas privadas, ceremonias, clases de cocina y actividades exclusivas.</p>
+                    <h4>A tu medida</h4>
+                    <p>Itinerario completamente adaptable. Extensión a Kampot, crucero por el Mekong o combinado con Vietnam o Tailandia.</p>
                 </div>
             </div>
         </div>
@@ -1093,9 +1005,9 @@
     <!-- CTA -->
     <section class="dest-cta">
         <div class="container reveal">
-            <h2>Diseñemos <em style="color: var(--gold);">tu Bali</em></h2>
-            <p>Cada viaje es único. Cuéntanos cómo imaginas tu aventura balinesa y crearemos un itinerario a tu medida.</p>
-            <a href="../index.html?destino=Bali#contacto" class="btn btn-primary">Solicitar presupuesto &#10230;</a>
+            <h2>Diseñemos <em style="color: var(--gold);">tu Camboya</em></h2>
+            <p>Camboya es historia viva y espiritualidad profunda. Un viaje que deja huella. Cuéntanos cómo lo imaginas.</p>
+            <a href="../index.html?destino=Camboya#contacto" class="btn btn-primary">Solicitar presupuesto &#10230;</a>
         </div>
     </section>
 
@@ -1103,9 +1015,9 @@
     <section class="dest-protips">
         <div class="container reveal">
             <span class="section-label">Travel Hacks</span>
-            <h2>Consejos de experto para <em style="color: var(--gold);">Bali</em></h2>
+            <h2>Consejos de experto para <em style="color: var(--gold);">Camboya</em></h2>
             <p>Todo lo que necesitas saber antes, durante y después de tu viaje: checklist, dinero, transporte, seguridad, cultura, comida y hacks de experto.</p>
-            <a href="pro-tips-bali.html" class="btn btn-primary">Ver Travel Hacks &#10230;</a>
+            <a href="pro-tips-camboya.html" class="btn btn-primary">Ver Travel Hacks &#10230;</a>
         </div>
     </section>
 
@@ -1232,7 +1144,7 @@
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Route line
+        // Route line (zigzag roadmap)
         function drawRoute() {
             const container = document.querySelector('#itinerario .container');
             const blocks = container.querySelectorAll('.itinerary-block');
@@ -1260,6 +1172,7 @@
                 });
             });
 
+            // Path: straight vertical line through the center gap
             const d = `M ${centerX} ${data[0].top} L ${centerX} ${data[data.length - 1].bottom}`;
 
             const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
@@ -1270,6 +1183,7 @@
             path.setAttribute('stroke-dasharray', '6 4');
             svg.appendChild(path);
 
+            // Waypoint dots
             data.forEach(b => {
                 const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
                 c.setAttribute('cx', centerX);
