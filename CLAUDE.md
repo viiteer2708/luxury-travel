@@ -19,7 +19,7 @@ images/                 — Todas las imágenes locales
   TAJMAJAL.jpg          — Hero India
   *.jpeg / *.jpg        — Imágenes locales del repositorio
 
-[region]/index.html     — Páginas de región (europa, asia, africa, america, caribe, paraisos)
+[region]/index.html     — Páginas de región (europa, asia, africa, america, paraisos)
 [destino]/index.html    — Destinos individuales (escocia, italia, tailandia, india, etc.)
 pro-tips/index.html     — Hub de Travel Hacks (grid de tarjetas por destino)
 pro-tips-[destino]/index.html — Travel Hacks por destino
@@ -72,7 +72,6 @@ viaje-a-medida-que-es/index.html — Artículo de blog
         <a href="/africa/">Africa</a>
         <a href="/america/">América</a>
         <a href="/asia/">Asia</a>
-        <a href="/caribe/">Caribe</a>
         <a href="/europa/">Europa</a>
         <a href="/paraisos/">Paraísos sobre el agua</a>
     </div>
