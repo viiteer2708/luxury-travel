@@ -29,7 +29,8 @@ viaje-a-medida-que-es/index.html — Artículo de blog
 
 ### URLs y rutas
 - Estructura de URLs limpias: cada página es `[slug]/index.html` → URL `/[slug]/`
-- Todos los enlaces internos usan **rutas absolutas**: `/escocia/`, `/pro-tips/`, `/blog/`, `/#contacto`
+- Todos los enlaces internos usan **rutas absolutas**: `/escocia/`, `/pro-tips/`, `/blog/`, `/contacto/`
+- **NUNCA usar `#` en rutas de navegación.** Las secciones de la home usan rutas limpias: `/contacto/`, `/destinos/`, `/quien-hay-detras/`
 - Imágenes: `/images/nombre.ext` (ruta absoluta desde cualquier página)
 - Logo: `/images/logo-trimmed.png`
 - Favicon: `/images/favicon.svg`
@@ -62,12 +63,12 @@ viaje-a-medida-que-es/index.html — Artículo de blog
 - Cada región del dropdown (Europa, Asia, Africa, etc.) tiene su página `/[region]/` con título "Top Destinos [Región]"
 - Cada destino individual tiene su página `/[destino]/` (ej: `/escocia/`)
 - Las páginas de región muestran tarjetas que enlazan a los destinos individuales
-- El CTA de cada destino enlaza a `/?destino=[Nombre]#contacto` (auto-fill JS)
+- El CTA de cada destino enlaza a `/contacto/?destino=[Nombre]` (auto-fill JS)
 
 ### Navbar (IDÉNTICA en TODAS las páginas)
 ```html
 <li>
-    <a href="/#destinos">Destinos</a>
+    <a href="/destinos/">Destinos</a>
     <div class="dropdown">
         <a href="/africa/">Africa</a>
         <a href="/america/">América</a>
@@ -76,13 +77,13 @@ viaje-a-medida-que-es/index.html — Artículo de blog
         <a href="/paraisos/">Paraísos sobre el agua</a>
     </div>
 </li>
-<li><a href="/#testimonios">¿Quién hay detrás?</a></li>
-<li><a href="/#contacto">Contacto</a></li>
+<li><a href="/quien-hay-detras/">¿Quién hay detrás?</a></li>
+<li><a href="/contacto/">Contacto</a></li>
 <li><a href="/pro-tips/">Travel Hacks</a></li>
 <li><a href="/blog/">Blog</a></li>
 ```
-- Todos los enlaces usan **rutas absolutas** (`/slug/`, `/#seccion`)
-- En `index.html` (raíz): enlaces internos usan `#seccion` (sin `/`)
+- Todos los enlaces usan **rutas absolutas** (`/slug/`, `/contacto/`, `/destinos/`, `/quien-hay-detras/`)
+- **NUNCA usar `#` en las rutas.** Siempre rutas limpias sin anclas.
 - Logo usa `/images/logo-trimmed.png`
 - Mobile (≤768px): `.navbar .container { max-width: 100%; padding: 0 12px; }`
 - Auto-collapse: colapsa a hamburguesa en `window.innerWidth <= 1100`
@@ -99,7 +100,7 @@ viaje-a-medida-que-es/index.html — Artículo de blog
 - Cambiar: texto intro
 - Cambiar: bloques de itinerario (contenido + imágenes en carruseles)
 - Cambiar: tarjetas "Qué incluye" (adaptar textos al destino)
-- Cambiar: CTA → `Diseñemos tu [Destino]`, enlace a `/?destino=[Destino]#contacto`
+- Cambiar: CTA → `Diseñemos tu [Destino]`, enlace a `/contacto/?destino=[Destino]`
 - Cambiar: footer → añadir enlace al destino en la lista de destinos
 - Verificar: navbar idéntica (ver sección Navbar arriba)
 
@@ -178,7 +179,7 @@ viaje-a-medida-que-es/index.html — Artículo de blog
 - Cambiar: título, meta description, hero (imagen + label región + h1)
 - Cambiar: texto intro + enlace "← Todos los Travel Hacks" (ya apunta a `/pro-tips/`)
 - Cambiar: los 10 bloques de contenido (tips específicos del destino)
-- Cambiar: CTA → `Diseñemos tu [Destino]`, enlace a `/?destino=[Destino]#contacto`
+- Cambiar: CTA → `Diseñemos tu [Destino]`, enlace a `/contacto/?destino=[Destino]`
 - Verificar: navbar idéntica (ver sección Navbar arriba)
 
 ### 2. Añadir tarjeta en `pro-tips/index.html` (hub)
@@ -220,7 +221,7 @@ viaje-a-medida-que-es/index.html — Artículo de blog
 2. **Intro** — `padding-top: 30px`, `padding-bottom: 10px` — texto descriptivo centrado (`dest-intro-text`, max-width 780px)
 3. **Itinerario** — `padding-top: 10px` — bloques alternados (`.itinerary-block` / `.itinerary-block.reverse`), gap 48px, margin-bottom 80px entre bloques
 4. **Qué incluye** — `padding-top: 30px`, grid 4 columnas (`.includes-grid` / `.include-card`), fondo `var(--dark-soft)`
-5. **CTA** — `.dest-cta`, `padding-top: 30px`, centrado, enlaza a `/?destino=[Nombre]#contacto`
+5. **CTA** — `.dest-cta`, `padding-top: 30px`, centrado, enlaza a `/contacto/?destino=[Nombre]`
 6. **Footer** — idéntico con enlace al destino en la lista
 
 ## Estructura de página de Travel Hacks (`pro-tips-tailandia/index.html` CANÓNICA)
@@ -228,7 +229,7 @@ viaje-a-medida-que-es/index.html — Artículo de blog
 1. **Hero** — `.dest-hero`, misma estructura que destinos, imagen hero del destino, label región, h1 "Travel Hacks: [Destino]"
 2. **Intro** — `padding-top: 30px`, `padding-bottom: 10px` — texto centrado + enlace "← Todos los Travel Hacks" a `/pro-tips/`
 3. **10 bloques** — `.tips-section` / `.tips-section.alt-bg` alternando, `padding: 80px 0`
-4. **CTA** — `.tips-cta`, `padding: 80px 0`, enlaza a `/?destino=[Nombre]#contacto`
+4. **CTA** — `.tips-cta`, `padding: 80px 0`, enlaza a `/contacto/?destino=[Nombre]`
 5. **Footer** — idéntico al resto
 
 ---
