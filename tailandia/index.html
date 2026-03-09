@@ -671,7 +671,7 @@
 
         .footer-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
             gap: 48px;
             margin-bottom: 60px;
         }
@@ -705,6 +705,27 @@
         }
 
         .footer-column a:hover { color: var(--gold); }
+
+        .footer-address {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 8px;
+        }
+
+        .footer-address:last-child {
+            margin-bottom: 0;
+        }
+
+        .footer-address a {
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .footer-address a:hover {
+            color: var(--gold);
+        }
 
         .footer-bottom {
             border-top: 1px solid rgba(255,255,255,0.05);
@@ -1141,7 +1162,7 @@
 </div>
 
                 <div class="footer-column">
-                    <h4>Destinos</h4>
+                    <h4>Horizonte</h4>
                     <ul>
                         <li><a href="/escocia/">Escocia</a></li>
                         <li><a href="/italia/">Italia</a></li>
@@ -1166,11 +1187,18 @@
                 </div>
 
                 <div class="footer-column">
-                    <h4>Compañía</h4>
+                    <h4>Exclusivo</h4>
                     <ul>
                         <li><a href="/blog/">Blog de viajes</a></li>
                         <li><a href="/contacto/">Contacto</a></li>
                     </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Barcelona</h4>
+                    <p class="footer-address">Passeig de Gràcia, 100<br>08008 Barcelona, España</p>
+                    <p class="footer-address"><a href="mailto:info@horizonteexclusivo.com">info@horizonteexclusivo.com</a></p>
+                    <p class="footer-address"><a href="tel:+34933001234">+34 933 00 12 34</a></p>
                 </div>
             </div>
 
