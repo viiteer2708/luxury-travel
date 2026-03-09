@@ -579,34 +579,6 @@
             font-size: 0.6rem;
         }
 
-        /* ===== STATS BAR ===== */
-        .stats {
-            background: var(--dark-soft);
-            border-top: 1px solid rgba(255,255,255,0.05);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            padding: 60px 0;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 32px;
-            text-align: center;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--gold);
-            margin-bottom: 8px;
-        }
-
-        .stat-item p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
         /* ===== TESTIMONIALS ===== */
         .about-section { background: var(--dark-soft); }
 
@@ -910,10 +882,6 @@
                 grid-template-columns: 1fr;
             }
 
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 40px;
-            }
 
             .contact-wrapper {
                 grid-template-columns: 1fr;
@@ -949,7 +917,6 @@
 
             .hero-buttons { flex-direction: column; align-items: center; }
             .btn { width: 100%; justify-content: center; }
-            .stats-grid { grid-template-columns: 1fr; }
         }
 
         /* Modal de confirmación */
@@ -1096,29 +1063,6 @@
         </div>
     </section>
 
-    <!-- STATS -->
-    <section class="stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item reveal">
-                    <h3>12+</h3>
-                    <p>Años de experiencia</p>
-                </div>
-                <div class="stat-item reveal">
-                    <h3>4,500+</h3>
-                    <p>Viajeros satisfechos</p>
-                </div>
-                <div class="stat-item reveal">
-                    <h3>85</h3>
-                    <p>Destinos exclusivos</p>
-                </div>
-                <div class="stat-item reveal">
-                    <h3>99%</h3>
-                    <p>Tasa de satisfacción</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- DESTINATIONS -->
     <section id="destinos">
