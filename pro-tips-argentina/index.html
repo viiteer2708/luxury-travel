@@ -380,7 +380,7 @@
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2026 Horizonte Exclusivo. Todos los derechos reservados.</p>
-                <div class="footer-bottom-links"><a href="#">Aviso legal</a><a href="#">Privacidad</a><a href="#">Cookies</a></div>
+                <div class="footer-bottom-links"><a href="/aviso-legal/">Aviso legal</a><a href="/politica-de-privacidad/">Privacidad</a><a href="/politica-de-cookies/">Cookies</a></div>
             </div>
         </div>
     </footer>
@@ -399,5 +399,20 @@
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 
+    <!-- COOKIE BANNER -->
+    <div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;width:100%;z-index:9999;background:var(--dark-soft,#1a1a1a);border-top:1px solid rgba(201,169,110,0.2);padding:16px 24px;font-family:'Inter',sans-serif;">
+        <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+            <p style="margin:0;font-size:0.85rem;color:#e0e0e0;font-weight:300;line-height:1.6;flex:1;min-width:200px;">Utilizamos cookies técnicas para garantizar el correcto funcionamiento del sitio web. <a href="/politica-de-cookies/" style="color:#c9a96e;text-decoration:underline;">Más información</a></p>
+            <div style="display:flex;gap:10px;flex-shrink:0;">
+                <button onclick="acceptCookies()" style="padding:10px 24px;border-radius:50px;border:none;background:#c9a96e;color:#0a0a0a;font-size:0.8rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;transition:0.3s;">Aceptar</button>
+                <button onclick="rejectCookies()" style="padding:10px 24px;border-radius:50px;border:1px solid rgba(201,169,110,0.4);background:transparent;color:#e0e0e0;font-size:0.8rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;transition:0.3s;">Rechazar</button>
+            </div>
+        </div>
+    </div>
+    <script>
+    function acceptCookies(){localStorage.setItem('cookieConsent','accepted');document.getElementById('cookieBanner').style.display='none';}
+    function rejectCookies(){localStorage.setItem('cookieConsent','rejected');document.getElementById('cookieBanner').style.display='none';}
+    if(!localStorage.getItem('cookieConsent')){document.getElementById('cookieBanner').style.display='block';}
+    </script>
 </body>
 </html>

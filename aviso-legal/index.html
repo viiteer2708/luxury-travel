@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog de Viajes — Horizonte Exclusivo</title>
+    <title>Aviso Legal — Horizonte Exclusivo</title>
     <link rel="icon" type="image/x-icon" href="/images/genfavicon-package/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/genfavicon-package/genfavicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/genfavicon-package/genfavicon-16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/genfavicon-package/apple-touch-icon.png">
     <link rel="manifest" href="/images/genfavicon-package/site.webmanifest">
-    <meta name="description" content="Artículos, guías y reflexiones sobre viajes de lujo a medida. Descubre cómo diseñar experiencias únicas en los destinos más exclusivos del mundo.">
+    <meta name="description" content="Aviso legal y condiciones de uso del sitio web Horizonte Exclusivo, agencia de viajes de lujo a medida.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -226,227 +226,95 @@
             font-size: 0.75rem;
         }
 
-        /* ===== BUTTONS ===== */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 16px 36px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            transition: var(--transition);
-            cursor: pointer;
-            border: none;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .btn-primary {
-            background: var(--gold);
-            color: var(--dark);
-        }
-
-        .btn-primary:hover {
-            background: var(--gold-light);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(201,169,110,0.3);
-        }
-
-        /* ===== HERO ===== */
-        .region-hero {
-            min-height: calc(70vh - 110px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            padding-top: 100px;
-            padding-bottom: 20px;
-            background-image: url('https://images.unsplash.com/photo-1576158831003-d41033ec31fd?w=1920&q=80');
-            background-size: cover;
-            background-position: center calc(50% - 260px);
-            background-attachment: fixed;
-        }
-
-        .region-hero::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.45) 50%, var(--dark) 100%);
-        }
-
-        .region-hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            padding: 0 24px;
-        }
-
+        /* ===== SECTION COMMON ===== */
         .section-label {
-            display: inline-block;
-            font-family: 'Inter', sans-serif;
             font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             text-transform: uppercase;
             color: var(--gold);
-            margin-bottom: 20px;
-            animation: fadeInUp 0.8s ease both;
+            margin-bottom: 16px;
+            display: block;
         }
 
-        .region-hero-content h1 {
-            font-size: clamp(2.8rem, 6vw, 5rem);
-            font-weight: 700;
-            color: var(--white);
-            line-height: 1.1;
-            margin-bottom: 20px;
-            animation: fadeInUp 0.8s 0.2s ease both;
-            text-shadow:
-                -1px -1px 0 rgba(0,0,0,0.6),
-                 1px -1px 0 rgba(0,0,0,0.6),
-                -1px  1px 0 rgba(0,0,0,0.6),
-                 1px  1px 0 rgba(0,0,0,0.6);
-        }
-
-        .region-hero-content p {
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-            color: var(--gold-light);
-            font-weight: 300;
-            max-width: 540px;
-            margin: 0 auto;
-            margin-bottom: 8px;
-            animation: fadeInUp 0.8s 0.4s ease both;
-        }
-
-        /* ===== SECTION HEADER ===== */
-        .section-header {
+        /* ===== LEGAL HERO ===== */
+        .legal-hero {
+            padding-top: 140px;
+            padding-bottom: 40px;
             text-align: center;
+            background: var(--dark);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        .section-title {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
+        .legal-hero h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
             color: var(--white);
             margin-bottom: 12px;
         }
 
-        .divider {
-            width: 60px;
-            height: 2px;
-            background: var(--gold);
-            margin: 0 auto;
-        }
-
-        /* ===== BLOG GRID ===== */
-        .destinations-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 32px;
-            padding-bottom: 60px;
-        }
-
-        .destination-card {
-            background: var(--dark-card);
-            border-radius: var(--radius);
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: var(--transition);
-        }
-
-        .destination-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(201,169,110,0.2);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-
-        .card-image {
-            position: relative;
-            height: 220px;
-            overflow: hidden;
-        }
-
-        .card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .destination-card:hover .card-image img {
-            transform: scale(1.05);
-        }
-
-        .card-badge {
-            position: absolute;
-            top: 16px;
-            left: 16px;
-            background: var(--gold);
-            color: var(--dark);
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            padding: 6px 14px;
-            border-radius: 50px;
-        }
-
-        .card-body {
-            padding: 24px;
-        }
-
-        .card-body h3 {
-            font-size: 1.3rem;
-            color: var(--white);
-            margin-bottom: 8px;
-        }
-
-        .card-body p {
+        .legal-hero p {
+            color: var(--text-muted);
             font-size: 0.9rem;
-            color: var(--text-muted);
             font-weight: 300;
-            line-height: 1.7;
+        }
+
+        /* ===== LEGAL CONTENT ===== */
+        .legal-content {
+            padding: 60px 0 80px;
+        }
+
+        .legal-content .container {
+            max-width: 800px;
+        }
+
+        .legal-content h2 {
+            font-size: 1.4rem;
+            color: var(--white);
+            margin-top: 48px;
             margin-bottom: 16px;
         }
 
-        .card-meta {
-            font-size: 0.78rem;
-            color: var(--text-muted);
+        .legal-content h2:first-child {
+            margin-top: 0;
+        }
+
+        .legal-content p {
+            font-size: 0.95rem;
+            color: var(--text);
+            line-height: 1.8;
             font-weight: 300;
             margin-bottom: 16px;
         }
 
-        .card-link {
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+        .legal-content ul {
+            margin-bottom: 16px;
+            padding-left: 0;
+        }
+
+        .legal-content ul li {
+            font-size: 0.95rem;
+            color: var(--text);
+            line-height: 1.8;
+            font-weight: 300;
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 8px;
+            list-style: none;
+        }
+
+        .legal-content ul li::before {
+            content: '\2022';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+        }
+
+        .legal-content a {
             color: var(--gold);
             transition: var(--transition);
         }
 
-        .destination-card:hover .card-link {
+        .legal-content a:hover {
             color: var(--gold-light);
-        }
-
-        /* ===== CTA ===== */
-        .blog-cta {
-            text-align: center;
-            padding: 80px 0;
-        }
-
-        .blog-cta h2 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            color: var(--white);
-            margin-bottom: 16px;
-        }
-
-        .blog-cta p {
-            color: var(--text-muted);
-            max-width: 540px;
-            margin: 0 auto 32px;
-            font-weight: 300;
         }
 
         /* ===== FOOTER ===== */
@@ -563,21 +431,7 @@
         }
 
         @media (max-width: 768px) {
-            .region-hero {
-                background-attachment: scroll;
-                background-position: center center;
-                background-repeat: no-repeat;
-            }
-
-            .navbar .container {
-                max-width: 100%;
-                width: 100%;
-                padding: 0 12px;
-            }
-
-            .destinations-grid {
-                grid-template-columns: 1fr;
-            }
+            .navbar .container { max-width: 100%; width: 100%; padding: 0 12px; }
 
             .footer-grid {
                 grid-template-columns: 1fr;
@@ -628,6 +482,7 @@
                 <li><a href="/#contacto">Contacto</a></li>
                 <li><a href="/pro-tips/">Travel Hacks</a></li>
                 <li><a href="/blog/">Blog</a></li>
+
             </ul>
             <button class="hamburger" id="hamburger" aria-label="Abrir menú">
                 <span></span><span></span><span></span>
@@ -636,47 +491,73 @@
     </nav>
 
     <!-- HERO -->
-    <section class="region-hero">
-        <div class="region-hero-content">
-            <span class="section-label">Horizonte Exclusivo</span>
-            <h1>Blog</h1>
-            <p>Ideas, guías y reflexiones para diseñar viajes que se recuerdan toda la vida</p>
-        </div>
-    </section>
-
-    <!-- ARTÍCULOS -->
-    <section style="padding-top: 30px;">
+    <section class="legal-hero">
         <div class="container">
-            <div class="section-header reveal" style="margin-bottom: 40px;">
-                <span class="section-label">Artículos</span>
-                <h2 class="section-title">Últimas publicaciones</h2>
-                <div class="divider"></div>
-            </div>
-
-            <div class="destinations-grid">
-                <div class="destination-card reveal">
-                    <a href="/viaje-a-medida-que-es/">
-                        <div class="card-image">
-                            <img src="https://images.unsplash.com/photo-1512100356356-de1b84283e18?w=600&q=80" alt="Viaje a medida">
-                            <span class="card-badge">Nuevo</span>
-                        </div>
-                        <div class="card-body">
-                            <h3>Viaje a medida: qué es, qué incluye y por qué se disfruta mucho más</h3>
-                            <p>Todo lo que necesitas saber antes de contratar un viaje personalizado: qué incluye, cómo se diseña y por qué marca la diferencia.</p>
-                            <span class="card-link">Leer artículo &#10230;</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
+            <span class="section-label">Legal</span>
+            <h1>Aviso Legal</h1>
+            <p>Última actualización: 8 de marzo de 2025</p>
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="blog-cta">
-        <div class="container reveal">
-            <h2>¿Listo para vivir tu próximo <em style="color: var(--gold);">viaje</em>?</h2>
-            <p>Cuéntanos tu destino soñado y diseñamos una experiencia a tu medida.</p>
-            <a href="/#contacto" class="btn btn-primary">Contactar &#10230;</a>
+    <!-- LEGAL CONTENT -->
+    <section class="legal-content">
+        <div class="container">
+            <h2>1. Responsable del tratamiento</h2>
+            <p>Titular: Endeis Prieto Valcarcel<br>
+            NIF: 47728492L<br>
+            Domicilio: Carrer Major 37, 08750 Molins de Rei (Barcelona)<br>
+            Teléfono: +34 633 07 74 01<br>
+            Email: viajes@horizonteexclusivo.es</p>
+
+            <h2>2. Finalidad del tratamiento</h2>
+            <p>Los datos personales recabados a través de los formularios del sitio web www.horizonteexclusivo.es son tratados con las siguientes finalidades:</p>
+            <ul>
+                <li>Gestionar las consultas y solicitudes de información remitidas a través del formulario de contacto.</li>
+                <li>Enviar comunicaciones comerciales y newsletter sobre viajes, destinos y promociones, únicamente cuando el usuario haya prestado su consentimiento expreso para ello.</li>
+                <li>Dar cumplimiento a las obligaciones legales aplicables a la actividad de agencia de viajes.</li>
+            </ul>
+
+            <h2>3. Base jurídica del tratamiento</h2>
+            <p>El tratamiento de sus datos personales se basa en:</p>
+            <ul>
+                <li>El consentimiento del interesado, para el envío de comunicaciones comerciales y newsletter.</li>
+                <li>La ejecución de un contrato o medidas precontractuales, para la gestión de consultas y reservas.</li>
+                <li>El cumplimiento de obligaciones legales aplicables al titular.</li>
+            </ul>
+
+            <h2>4. Conservación de los datos</h2>
+            <p>Los datos personales se conservarán durante el tiempo necesario para atender su solicitud o mientras dure la relación comercial. En caso de haber prestado consentimiento para recibir comunicaciones comerciales, sus datos se conservarán hasta que solicite la baja. Transcurridos estos plazos, los datos serán bloqueados y posteriormente suprimidos conforme a la normativa aplicable.</p>
+
+            <h2>5. Destinatarios</h2>
+            <p>Los datos personales no serán cedidos a terceros, salvo obligación legal o en los casos en que sea estrictamente necesario para la prestación de los servicios contratados (como proveedores de viajes, hoteles, aerolíneas u operadores turísticos). En tales casos, se garantizará el mismo nivel de protección exigido por el RGPD.</p>
+
+            <h2>6. Transferencias internacionales</h2>
+            <p>Endeis Prieto Valcarcel no realiza transferencias internacionales de datos fuera del Espacio Económico Europeo de forma habitual. En caso de que algún proveedor de servicios contratados implique una transferencia internacional, se garantizarán las salvaguardas adecuadas conforme al RGPD.</p>
+
+            <h2>7. Derechos de los interesados</h2>
+            <p>Usted puede ejercer en cualquier momento los siguientes derechos:</p>
+            <ul>
+                <li><strong>Acceso:</strong> conocer qué datos suyos estamos tratando.</li>
+                <li><strong>Rectificación:</strong> solicitar la corrección de datos inexactos.</li>
+                <li><strong>Supresión:</strong> solicitar la eliminación de sus datos cuando ya no sean necesarios.</li>
+                <li><strong>Oposición:</strong> oponerse al tratamiento de sus datos.</li>
+                <li><strong>Limitación:</strong> solicitar la restricción del tratamiento en determinadas circunstancias.</li>
+                <li><strong>Portabilidad:</strong> recibir sus datos en un formato estructurado y de uso común.</li>
+            </ul>
+            <p>Para ejercer estos derechos, puede dirigirse a:<br>
+            Email: viajes@horizonteexclusivo.es<br>
+            Dirección postal: Carrer Major 37, 08750 Molins de Rei (Barcelona)<br>
+            Deberá adjuntar copia de su DNI o documento acreditativo equivalente.</p>
+            <p>Asimismo, si considera que el tratamiento de sus datos no es conforme a la normativa vigente, tiene derecho a presentar una reclamación ante la Agencia Española de Protección de Datos (<a href="https://www.aepd.es" target="_blank" rel="noopener">www.aepd.es</a>).</p>
+
+            <h2>8. Formulario de contacto y newsletter</h2>
+            <p>Los datos facilitados a través del formulario de contacto serán utilizados únicamente para atender su consulta. Cuando el usuario preste su consentimiento expreso, sus datos podrán ser incluidos en la lista de distribución del newsletter de Horizonte Exclusivo para recibir información sobre viajes, destinos y promociones. En cualquier momento podrá revocar este consentimiento haciendo clic en el enlace de baja incluido en cada comunicación o contactando a través del email indicado.</p>
+
+            <h2>9. Medidas de seguridad</h2>
+            <p>Endeis Prieto Valcarcel ha adoptado las medidas técnicas y organizativas necesarias para garantizar la seguridad e integridad de los datos personales, así como para evitar su pérdida, alteración o acceso no autorizado por parte de terceros.</p>
+
+            <h2>10. Modificaciones</h2>
+            <p>Esta Política de Privacidad puede ser actualizada en cualquier momento. Cualquier cambio relevante será comunicado a los usuarios a través del sitio web o por correo electrónico cuando sea posible.</p>
         </div>
     </section>
 
@@ -700,6 +581,7 @@
                     <ul>
                         <li><a href="/escocia/">Escocia</a></li>
                         <li><a href="/italia/">Italia</a></li>
+                        <li><a href="/portugal/">Portugal</a></li>
                         <li><a href="/tailandia/">Tailandia</a></li>
                         <li><a href="/costa-oeste-usa/">Costa Oeste USA</a></li>
                         <li><a href="/florida/">Florida</a></li>
@@ -797,6 +679,7 @@
 
         checkNavOverflow();
         window.addEventListener('resize', checkNavOverflow);
+
 
         // Scroll reveal
         const observer = new IntersectionObserver((entries) => {

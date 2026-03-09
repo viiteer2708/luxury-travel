@@ -283,7 +283,7 @@
                 <div class="footer-column"><h4>Experiencias</h4><ul><li><a href="#">Luna de miel</a></li><li><a href="#">Safari de lujo</a></li><li><a href="#">Cruceros privados</a></li><li><a href="#">Retiros wellness</a></li><li><a href="#">Aventura exclusiva</a></li></ul></div>
                 <div class="footer-column"><h4>Compañía</h4><ul><li><a href="#">Sobre nosotros</a></li><li><a href="#">Nuestro equipo</a></li><li><a href="/blog/">Blog de viajes</a></li><li><a href="#">Prensa</a></li><li><a href="/#contacto">Contacto</a></li></ul></div>
             </div>
-            <div class="footer-bottom"><p>&copy; 2026 Horizonte Exclusivo. Todos los derechos reservados.</p><div class="footer-bottom-links"><a href="#">Aviso legal</a><a href="#">Privacidad</a><a href="#">Cookies</a></div></div>
+            <div class="footer-bottom"><p>&copy; 2026 Horizonte Exclusivo. Todos los derechos reservados.</p><div class="footer-bottom-links"><a href="/aviso-legal/">Aviso legal</a><a href="/politica-de-privacidad/">Privacidad</a><a href="/politica-de-cookies/">Cookies</a></div></div>
         </div>
     </footer>
 
@@ -302,6 +302,21 @@
         function drawRoute() { const container = document.querySelector('#itinerario .container'); const blocks = container.querySelectorAll('.itinerary-block'); const existing = container.querySelector('.route-line'); if (existing) existing.remove(); if (window.innerWidth <= 768 || blocks.length < 2) return; container.style.position = 'relative'; const w = container.offsetWidth; const h = container.scrollHeight; const centerX = w / 2; const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); svg.classList.add('route-line'); svg.setAttribute('viewBox', `0 0 ${w} ${h}`); svg.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;'; const data = []; blocks.forEach(block => { data.push({ top: block.offsetTop, bottom: block.offsetTop + block.offsetHeight, cy: block.offsetTop + block.offsetHeight / 2 }); }); const d = `M ${centerX} ${data[0].top} L ${centerX} ${data[data.length - 1].bottom}`; const path = document.createElementNS('http://www.w3.org/2000/svg', 'path'); path.setAttribute('d', d); path.setAttribute('fill', 'none'); path.setAttribute('stroke', 'rgba(255,255,255,0.10)'); path.setAttribute('stroke-width', '1.5'); path.setAttribute('stroke-dasharray', '6 4'); svg.appendChild(path); data.forEach(b => { const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle'); c.setAttribute('cx', centerX); c.setAttribute('cy', b.cy); c.setAttribute('r', '5'); c.setAttribute('fill', '#0a0a0a'); c.setAttribute('stroke', 'rgba(201,169,110,0.4)'); c.setAttribute('stroke-width', '1.5'); svg.appendChild(c); }); container.prepend(svg); }
         window.addEventListener('load', drawRoute); window.addEventListener('resize', drawRoute);
         document.querySelectorAll('.itinerary-carousel').forEach(carousel => { const slides = carousel.querySelectorAll('.carousel-slide'); const dots = carousel.querySelectorAll('.carousel-dot'); const prev = carousel.querySelector('.carousel-prev'); const next = carousel.querySelector('.carousel-next'); let current = 0; function goTo(index) { slides[current].classList.remove('active'); dots[current].classList.remove('active'); current = (index + slides.length) % slides.length; slides[current].classList.add('active'); dots[current].classList.add('active'); } prev.addEventListener('click', () => goTo(current - 1)); next.addEventListener('click', () => goTo(current + 1)); dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i))); let startX; carousel.addEventListener('touchstart', e => startX = e.touches[0].clientX); carousel.addEventListener('touchend', e => { const diff = startX - e.changedTouches[0].clientX; if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1)); }); });
+    </script>
+    <!-- COOKIE BANNER -->
+    <div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;width:100%;z-index:9999;background:var(--dark-soft,#1a1a1a);border-top:1px solid rgba(201,169,110,0.2);padding:16px 24px;font-family:'Inter',sans-serif;">
+        <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+            <p style="margin:0;font-size:0.85rem;color:#e0e0e0;font-weight:300;line-height:1.6;flex:1;min-width:200px;">Utilizamos cookies técnicas para garantizar el correcto funcionamiento del sitio web. <a href="/politica-de-cookies/" style="color:#c9a96e;text-decoration:underline;">Más información</a></p>
+            <div style="display:flex;gap:10px;flex-shrink:0;">
+                <button onclick="acceptCookies()" style="padding:10px 24px;border-radius:50px;border:none;background:#c9a96e;color:#0a0a0a;font-size:0.8rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;transition:0.3s;">Aceptar</button>
+                <button onclick="rejectCookies()" style="padding:10px 24px;border-radius:50px;border:1px solid rgba(201,169,110,0.4);background:transparent;color:#e0e0e0;font-size:0.8rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;transition:0.3s;">Rechazar</button>
+            </div>
+        </div>
+    </div>
+    <script>
+    function acceptCookies(){localStorage.setItem('cookieConsent','accepted');document.getElementById('cookieBanner').style.display='none';}
+    function rejectCookies(){localStorage.setItem('cookieConsent','rejected');document.getElementById('cookieBanner').style.display='none';}
+    if(!localStorage.getItem('cookieConsent')){document.getElementById('cookieBanner').style.display='block';}
     </script>
 </body>
 </html>

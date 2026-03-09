@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog de Viajes — Horizonte Exclusivo</title>
+    <title>Política de Cookies — Horizonte Exclusivo</title>
     <link rel="icon" type="image/x-icon" href="/images/genfavicon-package/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/genfavicon-package/genfavicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/genfavicon-package/genfavicon-16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/genfavicon-package/apple-touch-icon.png">
     <link rel="manifest" href="/images/genfavicon-package/site.webmanifest">
-    <meta name="description" content="Artículos, guías y reflexiones sobre viajes de lujo a medida. Descubre cómo diseñar experiencias únicas en los destinos más exclusivos del mundo.">
+    <meta name="description" content="Política de cookies del sitio web Horizonte Exclusivo. Información sobre el uso de cookies y cómo gestionarlas.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -226,227 +226,95 @@
             font-size: 0.75rem;
         }
 
-        /* ===== BUTTONS ===== */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 16px 36px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            transition: var(--transition);
-            cursor: pointer;
-            border: none;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .btn-primary {
-            background: var(--gold);
-            color: var(--dark);
-        }
-
-        .btn-primary:hover {
-            background: var(--gold-light);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(201,169,110,0.3);
-        }
-
-        /* ===== HERO ===== */
-        .region-hero {
-            min-height: calc(70vh - 110px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            padding-top: 100px;
-            padding-bottom: 20px;
-            background-image: url('https://images.unsplash.com/photo-1576158831003-d41033ec31fd?w=1920&q=80');
-            background-size: cover;
-            background-position: center calc(50% - 260px);
-            background-attachment: fixed;
-        }
-
-        .region-hero::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.45) 50%, var(--dark) 100%);
-        }
-
-        .region-hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            padding: 0 24px;
-        }
-
+        /* ===== SECTION COMMON ===== */
         .section-label {
-            display: inline-block;
-            font-family: 'Inter', sans-serif;
             font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             text-transform: uppercase;
             color: var(--gold);
-            margin-bottom: 20px;
-            animation: fadeInUp 0.8s ease both;
+            margin-bottom: 16px;
+            display: block;
         }
 
-        .region-hero-content h1 {
-            font-size: clamp(2.8rem, 6vw, 5rem);
-            font-weight: 700;
-            color: var(--white);
-            line-height: 1.1;
-            margin-bottom: 20px;
-            animation: fadeInUp 0.8s 0.2s ease both;
-            text-shadow:
-                -1px -1px 0 rgba(0,0,0,0.6),
-                 1px -1px 0 rgba(0,0,0,0.6),
-                -1px  1px 0 rgba(0,0,0,0.6),
-                 1px  1px 0 rgba(0,0,0,0.6);
-        }
-
-        .region-hero-content p {
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-            color: var(--gold-light);
-            font-weight: 300;
-            max-width: 540px;
-            margin: 0 auto;
-            margin-bottom: 8px;
-            animation: fadeInUp 0.8s 0.4s ease both;
-        }
-
-        /* ===== SECTION HEADER ===== */
-        .section-header {
+        /* ===== LEGAL HERO ===== */
+        .legal-hero {
+            padding-top: 140px;
+            padding-bottom: 40px;
             text-align: center;
+            background: var(--dark);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        .section-title {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
+        .legal-hero h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
             color: var(--white);
             margin-bottom: 12px;
         }
 
-        .divider {
-            width: 60px;
-            height: 2px;
-            background: var(--gold);
-            margin: 0 auto;
-        }
-
-        /* ===== BLOG GRID ===== */
-        .destinations-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 32px;
-            padding-bottom: 60px;
-        }
-
-        .destination-card {
-            background: var(--dark-card);
-            border-radius: var(--radius);
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: var(--transition);
-        }
-
-        .destination-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(201,169,110,0.2);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-
-        .card-image {
-            position: relative;
-            height: 220px;
-            overflow: hidden;
-        }
-
-        .card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .destination-card:hover .card-image img {
-            transform: scale(1.05);
-        }
-
-        .card-badge {
-            position: absolute;
-            top: 16px;
-            left: 16px;
-            background: var(--gold);
-            color: var(--dark);
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            padding: 6px 14px;
-            border-radius: 50px;
-        }
-
-        .card-body {
-            padding: 24px;
-        }
-
-        .card-body h3 {
-            font-size: 1.3rem;
-            color: var(--white);
-            margin-bottom: 8px;
-        }
-
-        .card-body p {
+        .legal-hero p {
+            color: var(--text-muted);
             font-size: 0.9rem;
-            color: var(--text-muted);
             font-weight: 300;
-            line-height: 1.7;
+        }
+
+        /* ===== LEGAL CONTENT ===== */
+        .legal-content {
+            padding: 60px 0 80px;
+        }
+
+        .legal-content .container {
+            max-width: 800px;
+        }
+
+        .legal-content h2 {
+            font-size: 1.4rem;
+            color: var(--white);
+            margin-top: 48px;
             margin-bottom: 16px;
         }
 
-        .card-meta {
-            font-size: 0.78rem;
-            color: var(--text-muted);
+        .legal-content h2:first-child {
+            margin-top: 0;
+        }
+
+        .legal-content p {
+            font-size: 0.95rem;
+            color: var(--text);
+            line-height: 1.8;
             font-weight: 300;
             margin-bottom: 16px;
         }
 
-        .card-link {
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+        .legal-content ul {
+            margin-bottom: 16px;
+            padding-left: 0;
+        }
+
+        .legal-content ul li {
+            font-size: 0.95rem;
+            color: var(--text);
+            line-height: 1.8;
+            font-weight: 300;
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 8px;
+            list-style: none;
+        }
+
+        .legal-content ul li::before {
+            content: '\2022';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+        }
+
+        .legal-content a {
             color: var(--gold);
             transition: var(--transition);
         }
 
-        .destination-card:hover .card-link {
+        .legal-content a:hover {
             color: var(--gold-light);
-        }
-
-        /* ===== CTA ===== */
-        .blog-cta {
-            text-align: center;
-            padding: 80px 0;
-        }
-
-        .blog-cta h2 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            color: var(--white);
-            margin-bottom: 16px;
-        }
-
-        .blog-cta p {
-            color: var(--text-muted);
-            max-width: 540px;
-            margin: 0 auto 32px;
-            font-weight: 300;
         }
 
         /* ===== FOOTER ===== */
@@ -563,21 +431,7 @@
         }
 
         @media (max-width: 768px) {
-            .region-hero {
-                background-attachment: scroll;
-                background-position: center center;
-                background-repeat: no-repeat;
-            }
-
-            .navbar .container {
-                max-width: 100%;
-                width: 100%;
-                padding: 0 12px;
-            }
-
-            .destinations-grid {
-                grid-template-columns: 1fr;
-            }
+            .navbar .container { max-width: 100%; width: 100%; padding: 0 12px; }
 
             .footer-grid {
                 grid-template-columns: 1fr;
@@ -628,6 +482,7 @@
                 <li><a href="/#contacto">Contacto</a></li>
                 <li><a href="/pro-tips/">Travel Hacks</a></li>
                 <li><a href="/blog/">Blog</a></li>
+
             </ul>
             <button class="hamburger" id="hamburger" aria-label="Abrir menú">
                 <span></span><span></span><span></span>
@@ -636,47 +491,54 @@
     </nav>
 
     <!-- HERO -->
-    <section class="region-hero">
-        <div class="region-hero-content">
-            <span class="section-label">Horizonte Exclusivo</span>
-            <h1>Blog</h1>
-            <p>Ideas, guías y reflexiones para diseñar viajes que se recuerdan toda la vida</p>
-        </div>
-    </section>
-
-    <!-- ARTÍCULOS -->
-    <section style="padding-top: 30px;">
+    <section class="legal-hero">
         <div class="container">
-            <div class="section-header reveal" style="margin-bottom: 40px;">
-                <span class="section-label">Artículos</span>
-                <h2 class="section-title">Últimas publicaciones</h2>
-                <div class="divider"></div>
-            </div>
-
-            <div class="destinations-grid">
-                <div class="destination-card reveal">
-                    <a href="/viaje-a-medida-que-es/">
-                        <div class="card-image">
-                            <img src="https://images.unsplash.com/photo-1512100356356-de1b84283e18?w=600&q=80" alt="Viaje a medida">
-                            <span class="card-badge">Nuevo</span>
-                        </div>
-                        <div class="card-body">
-                            <h3>Viaje a medida: qué es, qué incluye y por qué se disfruta mucho más</h3>
-                            <p>Todo lo que necesitas saber antes de contratar un viaje personalizado: qué incluye, cómo se diseña y por qué marca la diferencia.</p>
-                            <span class="card-link">Leer artículo &#10230;</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
+            <span class="section-label">Legal</span>
+            <h1>Política de Cookies</h1>
+            <p>Última actualización: 8 de marzo de 2025</p>
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="blog-cta">
-        <div class="container reveal">
-            <h2>¿Listo para vivir tu próximo <em style="color: var(--gold);">viaje</em>?</h2>
-            <p>Cuéntanos tu destino soñado y diseñamos una experiencia a tu medida.</p>
-            <a href="/#contacto" class="btn btn-primary">Contactar &#10230;</a>
+    <!-- CONTENT -->
+    <section class="legal-content">
+        <div class="container">
+
+            <h2>¿Qué son las cookies?</h2>
+            <p>Las cookies son pequeños archivos de texto que los sitios web almacenan en el navegador del usuario al visitar una página web. Su función es recordar información sobre la visita para facilitar la navegación y mejorar la experiencia del usuario.</p>
+
+            <h2>¿Qué cookies utiliza este sitio web?</h2>
+            <p>El sitio web www.horizonteexclusivo.es utiliza únicamente cookies técnicas o estrictamente necesarias para el correcto funcionamiento de la web. Estas cookies no requieren el consentimiento del usuario, ya que son imprescindibles para la prestación del servicio solicitado.</p>
+            <p>Las cookies técnicas utilizadas son:</p>
+            <ul>
+                <li><strong>Cookies de sesión:</strong> permiten mantener la sesión activa del usuario mientras navega por el sitio web. Se eliminan al cerrar el navegador.</li>
+                <li><strong>Cookies de preferencias:</strong> recuerdan las opciones y ajustes del usuario para mejorar su experiencia de navegación.</li>
+                <li><strong>Cookies de seguridad:</strong> contribuyen a la seguridad del sitio web y a prevenir usos fraudulentos.</li>
+            </ul>
+
+            <h2>Cookies de terceros</h2>
+            <p>En la actualidad, www.horizonteexclusivo.es no utiliza cookies de análisis, publicidad ni redes sociales de terceros. En caso de incorporarse en el futuro, esta Política de Cookies será actualizada y se solicitará el consentimiento del usuario cuando corresponda.</p>
+
+            <h2>¿Cómo gestionar o desactivar las cookies?</h2>
+            <p>El usuario puede permitir, bloquear o eliminar las cookies instaladas en su equipo mediante la configuración de su navegador. A continuación se indican los enlaces a las instrucciones de los principales navegadores:</p>
+            <ul>
+                <li><strong>Google Chrome:</strong> Configuración > Privacidad y seguridad > Cookies y otros datos de sitios.</li>
+                <li><strong>Mozilla Firefox:</strong> Opciones > Privacidad y seguridad > Cookies y datos del sitio.</li>
+                <li><strong>Safari:</strong> Preferencias > Privacidad > Gestionar datos del sitio web.</li>
+                <li><strong>Microsoft Edge:</strong> Configuración > Privacidad, búsqueda y servicios > Cookies.</li>
+            </ul>
+            <p>Tenga en cuenta que la desactivación de cookies técnicas puede afectar al correcto funcionamiento del sitio web.</p>
+
+            <h2>Actualización de la Política de Cookies</h2>
+            <p>Esta Política de Cookies puede ser modificada en función de cambios legislativos o de los servicios incorporados en el sitio web. Se recomienda al usuario que revise periódicamente esta página para estar informado de posibles cambios.</p>
+
+            <h2>Contacto</h2>
+            <p>Para cualquier consulta sobre el uso de cookies en este sitio web:</p>
+            <ul>
+                <li><strong>Email:</strong> <a href="mailto:viajes@horizonteexclusivo.es">viajes@horizonteexclusivo.es</a></li>
+                <li><strong>Teléfono:</strong> <a href="tel:+34633077401">+34 633 07 74 01</a></li>
+                <li><strong>Dirección:</strong> Carrer Major 37, 08750 Molins de Rei (Barcelona)</li>
+            </ul>
+
         </div>
     </section>
 
@@ -700,6 +562,7 @@
                     <ul>
                         <li><a href="/escocia/">Escocia</a></li>
                         <li><a href="/italia/">Italia</a></li>
+                        <li><a href="/portugal/">Portugal</a></li>
                         <li><a href="/tailandia/">Tailandia</a></li>
                         <li><a href="/costa-oeste-usa/">Costa Oeste USA</a></li>
                         <li><a href="/florida/">Florida</a></li>
@@ -797,6 +660,7 @@
 
         checkNavOverflow();
         window.addEventListener('resize', checkNavOverflow);
+
 
         // Scroll reveal
         const observer = new IntersectionObserver((entries) => {
