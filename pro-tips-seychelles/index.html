@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paraísos sobre el agua — Horizonte Exclusivo</title>
+    <title>Travel Hacks: Seychelles — Horizonte Exclusivo</title>
     <link rel="icon" type="image/x-icon" href="/images/genfavicon-package/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/genfavicon-package/genfavicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/genfavicon-package/genfavicon-16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/genfavicon-package/apple-touch-icon.png">
     <link rel="manifest" href="/images/genfavicon-package/site.webmanifest">
-    <meta name="description" content="Descubre los destinos más exclusivos sobre el agua. Maldivas, Bora Bora y los rincones más paradisíacos del planeta.">
+    <meta name="description" content="Consejos exclusivos para viajar a Seychelles: checklist, dinero, transporte, islas, seguridad, clima, cultura, comida y hacks de experto.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -255,46 +255,8 @@
             box-shadow: 0 8px 30px rgba(201,169,110,0.3);
         }
 
-        /* ===== SECTION COMMON ===== */
-        section { padding: 120px 0; }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 64px;
-        }
-
-        .section-label {
-            font-size: 0.75rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 16px;
-            display: block;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            color: var(--white);
-            margin-bottom: 16px;
-        }
-
-        .divider {
-            width: 60px;
-            height: 1px;
-            background: var(--gold);
-            margin: 20px auto;
-        }
-
-        .section-subtitle {
-            font-size: 1rem;
-            color: var(--text-muted);
-            max-width: 560px;
-            margin: 0 auto;
-            font-weight: 300;
-        }
-
-        /* ===== REGION HERO ===== */
-        .region-hero {
+        /* ===== HERO ===== */
+        .dest-hero {
             min-height: calc(70vh - 110px);
             display: flex;
             align-items: center;
@@ -304,34 +266,27 @@
             overflow: hidden;
             padding-top: 100px;
             padding-bottom: 20px;
-            background-image: url('https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?w=1920&q=80');
+            background-image: url('https://images.unsplash.com/photo-1670234069747-a66c3de1dd90?w=1920&q=80');
             background-size: cover;
             background-position: center center;
             background-attachment: fixed;
         }
 
-        .region-hero::after {
+        .dest-hero::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.4) 50%, var(--dark) 100%);
+            background: linear-gradient(180deg, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.45) 50%, var(--dark) 100%);
         }
 
-        .region-hero-content {
+        .dest-hero-content {
             position: relative;
             z-index: 2;
             max-width: 800px;
             padding: 0 24px;
         }
 
-        .region-hero-content .section-label {
-            font-size: 0.85rem;
-            letter-spacing: 5px;
-            margin-bottom: 20px;
-            animation: fadeInUp 0.8s ease both;
-        }
-
-        .region-hero-content h1 {
+.dest-hero-content h1 {
             font-size: clamp(2.8rem, 6vw, 5rem);
             font-weight: 700;
             color: var(--white);
@@ -345,133 +300,166 @@
                  1px  1px 0 rgba(0,0,0,0.6);
         }
 
-        .region-hero-content p {
+        .dest-hero-content p {
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             color: var(--gold-light);
             font-weight: 300;
             max-width: 540px;
             margin: 0 auto;
+            margin-bottom: 8px;
             animation: fadeInUp 0.8s 0.4s ease both;
         }
 
-        /* ===== DESTINATIONS GRID ===== */
-        .destinations-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 28px;
+        /* ===== INTRO ===== */
+        .tips-intro {
+            padding-top: 30px;
+            padding-bottom: 10px;
         }
 
-        .destination-card {
-            background: var(--dark-card);
-            border-radius: var(--radius);
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: var(--transition);
-            position: relative;
+        .tips-intro-content {
+            max-width: 780px;
+            margin: 0 auto;
+            text-align: center;
         }
 
-        .destination-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(201,169,110,0.2);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-        }
-
-        .card-image {
-            position: relative;
-            height: 280px;
-            overflow: hidden;
-        }
-
-        .card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .destination-card:hover .card-image img {
-            transform: scale(1.08);
-        }
-
-        .card-badge {
-            position: absolute;
-            top: 16px;
-            left: 16px;
-            padding: 6px 14px;
-            background: rgba(10,10,10,0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 50px;
-            font-size: 0.7rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--gold);
-            border: 1px solid rgba(201,169,110,0.3);
-        }
-
-        .card-body {
-            padding: 28px;
-        }
-
-        .card-location {
-            font-size: 0.75rem;
-            color: var(--gold);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-
-        .card-body h3 {
-            font-size: 1.4rem;
-            color: var(--white);
-            margin-bottom: 12px;
-        }
-
-        .card-body p {
-            font-size: 0.9rem;
+        .tips-intro-content p {
+            font-size: 1.05rem;
             color: var(--text-muted);
-            margin-bottom: 20px;
-            line-height: 1.7;
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 16px;
         }
 
-        .card-features {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .card-features span {
+        .tips-back-link {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            padding: 6px 12px;
-            background: rgba(255,255,255,0.04);
-            border-radius: 50px;
-        }
-
-        .card-features span::before {
-            content: '✦';
+            gap: 8px;
+            font-size: 0.85rem;
             color: var(--gold);
-            font-size: 0.6rem;
-        }
-
-        .card-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 20px;
-            font-size: 0.82rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: var(--gold);
+            letter-spacing: 0.5px;
             transition: var(--transition);
+            margin-top: 8px;
         }
 
-        .card-link:hover {
+        .tips-back-link:hover {
             color: var(--gold-light);
-            gap: 10px;
+            gap: 12px;
+        }
+
+        /* ===== TIPS SECTIONS ===== */
+        .tips-section {
+            padding: 80px 0;
+        }
+
+        .tips-section.alt-bg {
+            background: var(--dark-soft);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .tips-section-header {
+            margin-bottom: 40px;
+        }
+
+
+        .tips-section-title {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--white);
+            line-height: 1.2;
+        }
+
+        .tips-section-subtitle {
+            font-size: 0.9rem;
+            color: var(--gold-light);
+            font-weight: 300;
+            margin-top: 4px;
+        }
+
+        .tip-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text);
+        }
+
+        .tip-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .tip-icon {
+            flex-shrink: 0;
+            font-size: 1.1rem;
+            margin-top: 2px;
+        }
+
+        .tip-item strong {
+            color: var(--white);
+        }
+
+        .tips-list {
+            max-width: 780px;
+        }
+
+        /* ===== TOP 5 HIGHLIGHT ===== */
+        .top5-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 32px;
+            margin-bottom: 40px;
+        }
+
+        .top5-card {
+            background: var(--dark-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: var(--radius);
+            padding: 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            transition: var(--transition);
+        }
+
+        .top5-card:hover {
+            border-color: rgba(201,169,110,0.2);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 36px rgba(0,0,0,0.3);
+        }
+
+        .top5-card .tip-icon {
+            font-size: 1.3rem;
+        }
+
+        .top5-card p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: var(--text);
+        }
+
+        .top5-card strong {
+            color: var(--white);
+        }
+
+        /* ===== CTA ===== */
+        .tips-cta {
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .tips-cta h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .tips-cta p {
+            color: var(--text-muted);
+            max-width: 540px;
+            margin: 0 auto 32px;
+            font-weight: 300;
         }
 
         /* ===== FOOTER ===== */
@@ -584,9 +572,7 @@
         @media (max-width: 1024px) {
 
 
-            .destinations-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+
 
             .footer-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -594,15 +580,25 @@
         }
 
         @media (max-width: 768px) {
-            section { padding: 80px 0; } .navbar .container { max-width: 100%; width: 100%; padding: 0 12px; }
 
-            .region-hero {
+
+            .dest-hero {
                 background-attachment: scroll;
+                background-position: center center;
+                background-repeat: no-repeat;
             }
 
-            .region-hero { background-position: center center; background-repeat: no-repeat; }
+            .navbar .container {
+                max-width: 100%;
+                width: 100%;
+                padding: 0 12px;
+            }
 
-            .destinations-grid {
+            .tips-section {
+                padding: 48px 0;
+            }
+
+.top5-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -663,64 +659,317 @@
     </nav>
 
     <!-- HERO -->
-    <section class="region-hero">
-        <div class="region-hero-content">
-            <h1>Paraísos sobre el agua</h1>
-            <p>Los destinos más exclusivos del planeta donde el lujo se funde con aguas cristalinas e infinitas</p>
+    <section class="dest-hero">
+        <div class="dest-hero-content">
+            <h1>Travel Hacks: Seychelles</h1>
+            <p>Todo lo que necesitas saber antes, durante y después de tu viaje</p>
         </div>
     </section>
 
-    <!-- DESTINATIONS -->
-    <section style="padding-top: 30px;">
+    <!-- INTRO -->
+    <section class="tips-intro">
         <div class="container">
-            <div class="section-header reveal" style="margin-bottom: 40px;">
-                <span class="section-label">Colección 2026</span>
-                <h2 class="section-title">Nuestras experiencias en el paraíso</h2>
-                <div class="divider"></div>
-                <p class="section-subtitle">Cada viaje es una experiencia irrepetible, diseñada con atención artesanal al detalle</p>
+            <div class="tips-intro-content reveal">
+                <p>Seychelles es un destino donde la naturaleza marca el ritmo. Playas de ensueño, islas únicas y un ritmo de vida que invita a desconectar. Estos consejos están pensados para que disfrutes cada momento sin contratiempos, tanto si es tu primera vez como si vuelves a descubrir nuevos rincones del archipiélago.</p>
+                <a href="/pro-tips/" class="tips-back-link">&#8592; Todos los Travel Hacks</a>
             </div>
+        </div>
+    </section>
 
-            <div class="destinations-grid">
-                <div class="destination-card reveal">
-                    <a href="/maldivas/">
-                        <div class="card-image">
-                            <img src="https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=600&q=80" alt="Maldivas">
-                            <span class="card-badge">Nuevo</span>
-                        </div>
-                        <div class="card-body">
-                            <span class="card-location">Océano Índico</span>
-                            <h3>Maldivas</h3>
-                            <p>Villas sobre aguas cristalinas, arrecifes de coral y experiencias exclusivas en el paraíso del Índico.</p>
-                            <div class="card-features">
-                                <span>7 días</span>
-                                <span>Villa overwater</span>
-                                <span>Snorkel privado</span>
-                            </div>
-                            <span class="card-link">Ver itinerario &#10230;</span>
-                        </div>
-                    </a>
+    <!-- 01 ANTES DE VIAJAR -->
+    <div class="tips-section reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Antes de viajar</h2>
+                    <p class="tips-section-subtitle">Checklist imprescindible</p>
+            </div>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Pasaporte:</strong> mínimo 6 meses de validez. No se requiere visado para la mayoría de nacionalidades; se emite un permiso de entrada gratuito al llegar (hasta 3 meses).</p>
                 </div>
-
-                <div class="destination-card reveal">
-                    <a href="/seychelles/">
-                        <div class="card-image">
-                            <img src="https://images.unsplash.com/photo-1670234069747-a66c3de1dd90?w=600&q=80" alt="Seychelles">
-                            <span class="card-badge">Nuevo</span>
-                        </div>
-                        <div class="card-body">
-                            <span class="card-location">Océano Índico</span>
-                            <h3>Seychelles</h3>
-                            <p>Playas de arena blanca, rocas de granito escultóricas y naturaleza en estado puro en el archipiélago más exclusivo.</p>
-                            <div class="card-features">
-                                <span>9 días</span>
-                                <span>3 islas</span>
-                                <span>Villa privada</span>
-                            </div>
-                            <span class="card-link">Ver itinerario &#10230;</span>
-                        </div>
-                    </a>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Seguro de viaje:</strong> imprescindible. Asegúrate de que cubra actividades acuáticas y evacuación médica.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Vuelos:</strong> no hay vuelos directos desde España. Las mejores conexiones suelen ser vía Dubái, Doha o Estambul.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Reserva con antelación:</strong> los resorts boutique y las villas privadas se llenan rápido en temporada alta (abril-mayo y octubre-noviembre). Reserva ferries interislas al confirmar vuelos.</p>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- 02 DINERO Y PAGOS -->
+    <div class="tips-section alt-bg reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Dinero y pagos</h2>
+                    <p class="tips-section-subtitle">Evita comisiones innecesarias</p>
+            </div>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Moneda:</strong> rupia seychelense (SCR). Euros y dólares se aceptan ampliamente en hoteles y restaurantes turísticos.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Tarjeta:</strong> Visa y Mastercard aceptadas en la mayoría de establecimientos. Lleva algo de efectivo para mercados locales y pequeñas tiendas.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">⚠️</span>
+                    <p><strong>Cajeros:</strong> disponibles en Mahé y Praslin, pero escasos en La Digue. Retira efectivo antes de cruzar.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Propinas:</strong> no obligatorias pero apreciadas. Un 5-10% en restaurantes si no está incluido el servicio.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 03 TRANSPORTE -->
+    <div class="tips-section reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Transporte</h2>
+                    <p class="tips-section-subtitle">Moverse entre islas</p>
+            </div>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Entre islas:</strong> Cat Cocos opera el ferry rápido Mahé–Praslin (~1h). Para La Digue, ferry desde Praslin (~15 min). Reserva online con antelación.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>En Mahé:</strong> coche de alquiler recomendado (se conduce por la izquierda). Carreteras estrechas pero bien mantenidas.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>En Praslin:</strong> coche o bicicleta según tu estilo. La isla es más pequeña y tranquila.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>En La Digue:</strong> bicicleta es el transporte rey. Alquílalas nada más llegar al puerto. No hay apenas coches.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 04 ZONAS Y LOGÍSTICA -->
+    <div class="tips-section alt-bg reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Zonas y logística</h2>
+                    <p class="tips-section-subtitle">Para tu ruta</p>
+            </div>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Mahé:</strong> la isla más grande y mejor conectada. Ideal como base inicial. Victoria, la capital más pequeña del mundo, merece una mañana.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Praslin:</strong> la isla de la calma. Anse Lazio y Vallée de Mai son imprescindibles. Perfecta para desconectar.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>La Digue:</strong> la joya fotogénica. Anse Source d'Argent es la playa más fotografiada del mundo. Ritmo lento, sin prisas.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Ruta ideal:</strong> Mahé (2-3 noches) → Praslin (2-3 noches) → La Digue (2-3 noches). De lo más urbano a lo más remoto.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 05 SEGURIDAD Y ESTAFAS -->
+    <div class="tips-section reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Seguridad y estafas</h2>
+                    <p class="tips-section-subtitle">Modo viajero inteligente</p>
+            </div>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Seychelles es muy seguro:</strong> uno de los países más seguros de África. La criminalidad hacia turistas es muy baja.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">⚠️</span>
+                    <p><strong>Corrientes:</strong> algunas playas tienen corrientes fuertes según la estación. Respeta las banderas y señalizaciones.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Vida marina:</strong> no toques corales, erizos ni animales. Usa calzado acuático en playas rocosas.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Mosquitos:</strong> presentes especialmente al atardecer. Lleva repelente tropical y utilízalo antes de cenar al aire libre.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 06 SALUD Y CLIMA -->
+    <div class="tips-section alt-bg reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Salud y clima</h2>
+                    <p class="tips-section-subtitle">Lo que más fastidia si lo ignoras</p>
+            </div>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Temporada seca (mayo-septiembre):</strong> vientos alisios del sureste. Menos humedad, mar algo más movido en costas sureste. Ideal para senderismo.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Temporada húmeda (octubre-abril):</strong> más calor y humedad, lluvias cortas pero intensas. Mar más calmo, mejor visibilidad para snorkel.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Mejor época:</strong> abril-mayo y octubre-noviembre (transiciones). Menos viento, mar en calma, cielos despejados.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Protección solar:</strong> SPF50+ obligatorio. El sol ecuatorial es intenso incluso con nubes. Rehidrátate constantemente.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 07 CULTURA Y ETIQUETA -->
+    <div class="tips-section reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Cultura y etiqueta</h2>
+                    <p class="tips-section-subtitle">Te abre puertas</p>
+            </div>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Idiomas:</strong> criollo seychelense, inglés y francés. Te entenderán en inglés en todas partes.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Vestimenta:</strong> casual y cómoda. No hay códigos de vestimenta estrictos, pero cubre hombros para visitar iglesias.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Ritmo de vida:</strong> Seychelles va despacio. No te frustres si las cosas tardan más de lo esperado. Es parte de la experiencia.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Sostenibilidad:</strong> el archipiélago está muy comprometido con la conservación. Respeta las reservas naturales y llévate tu basura.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 08 COMIDA Y EXPERIENCIAS -->
+    <div class="tips-section alt-bg reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Comida y experiencias</h2>
+                    <p class="tips-section-subtitle">Aciertos seguros</p>
+            </div>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Gastronomía criolla:</strong> pescado a la plancha, curry de coco, chatini de tiburón, fruta del pan. Sabores únicos e intensos.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Mercado de Victoria:</strong> Sir Selwyn Selwyn-Clarke Market es el mejor sitio para probar sabores locales y comprar especias.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Cena en la playa:</strong> muchos restaurantes locales ofrecen mesas directamente sobre la arena. Pregunta por "catch of the day".</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Coco de mar:</strong> el fruto más grande del mundo, endémico de Praslin. Solo se puede comprar con certificado oficial (controlan en aduana).</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 09 HACKS PRO -->
+    <div class="tips-section reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Hacks PRO</h2>
+                    <p class="tips-section-subtitle">Muy específicos para tu itinerario</p>
+            </div>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Anse Lazio temprano:</strong> llega antes de las 10:00 para tener la playa casi para ti. A mediodía llegan excursiones.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Anse Source d'Argent:</strong> la entrada es por L'Union Estate (de pago). Ve a primera hora o al atardecer para las mejores fotos.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Vallée de Mai:</strong> madruga. El bosque es mágico con la luz de la mañana y hay menos visitantes.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Snorkel en Praslin:</strong> las mejores zonas están frente a Anse Lazio y en la costa norte. Lleva tu propio equipo para más libertad.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Excursión en barco:</strong> contrata un barco privado para hacer island hopping. Es la forma más exclusiva de ver el archipiélago.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 10 TOP 5 -->
+    <div class="tips-section alt-bg reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Top 5</h2>
+                    <p class="tips-section-subtitle">Si solo lees 5 cosas, que sean estas</p>
+            </div>
+            <div class="top5-grid">
+                <div class="top5-card">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Reserva ferries al confirmar vuelos</strong> — se agotan en temporada alta.</p>
+                </div>
+                <div class="top5-card">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Bicicleta en La Digue</strong> — es la forma de moverse. Alquílala al llegar.</p>
+                </div>
+                <div class="top5-card">
+                    <span class="tip-icon">⚠️</span>
+                    <p><strong>Efectivo antes de La Digue</strong> — cajeros muy escasos en la isla.</p>
+                </div>
+                <div class="top5-card">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Madruga en las playas top</strong> — Anse Lazio y Anse Source d'Argent antes de las 10:00.</p>
+                </div>
+                <div class="top5-card">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Protector solar reef-safe</strong> — protege los arrecifes de coral.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <section class="tips-cta">
+        <div class="container reveal">
+            <h2>Diseñemos tu <em style="color: var(--gold);">Seychelles</em></h2>
+            <p>Ferries, alojamientos boutique, excursiones privadas y experiencias únicas — te lo organizamos a medida.</p>
+            <a href="/contacto/?destino=Seychelles" class="btn btn-primary">Solicitar presupuesto &#10230;</a>
         </div>
     </section>
 
