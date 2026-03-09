@@ -67,7 +67,7 @@
         .navbar.scrolled {
             background: var(--dark);
             backdrop-filter: blur(20px);
-            padding: 6px 0;
+
             box-shadow: 0 2px 40px rgba(0,0,0,0.5);
         }
 
@@ -91,9 +91,6 @@
             transition: var(--transition);
         }
 
-        .navbar.scrolled .logo img {
-            height: 60px;
-        }
 
         .nav-links {
             display: flex;
@@ -796,9 +793,6 @@
                 height: 48px;
             }
 
-            .navbar.scrolled .logo img {
-                height: 36px;
-            }
 
             .footer-brand .logo img {
                 height: 50px;
@@ -1139,7 +1133,7 @@
             navLinks.style.flexShrink = '0';
             void navbar.offsetHeight;
 
-            var bp = navbar.classList.contains('scrolled') ? 1150 : 1100;
+            var bp = 1100;
             if (window.innerWidth <= bp || container.scrollWidth > container.clientWidth + 2) {
                 navbar.classList.add('collapsed');
             }
