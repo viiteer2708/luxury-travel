@@ -65,26 +65,111 @@ viaje-a-medida-que-es/index.html — Artículo de blog
 - Las páginas de región muestran tarjetas que enlazan a los destinos individuales
 - El CTA de cada destino enlaza a `/contacto/?destino=[Nombre]` (auto-fill JS)
 
-### Navbar (IDÉNTICA en TODAS las páginas)
+### Navbar — COMPONENTE FIJO E INMUTABLE EN TODAS LAS PÁGINAS
+
+> **REGLA ABSOLUTA:** El navbar (HTML + CSS + JS) es IDÉNTICO en las 79 páginas de la web. Al crear cualquier página nueva, copiar el navbar COMPLETO (HTML, CSS y JS) de `index.html` (home). NUNCA modificar, simplificar ni minificar el navbar. Si se cambia el navbar, se cambia en TODAS las páginas a la vez.
+
+#### HTML del navbar (copiar exacto)
 ```html
-<li>
-    <a href="/destinos/">Destinos</a>
-    <div class="dropdown">
-        <a href="/africa/">Africa</a>
-        <a href="/america/">América</a>
-        <a href="/asia/">Asia</a>
-        <a href="/europa/">Europa</a>
-        <a href="/paraisos/">Paraísos sobre el agua</a>
+<nav class="navbar" id="navbar">
+    <div class="container">
+        <a href="/" class="logo"><img src="/images/logo-trimmed.png" alt="Horizonte Exclusivo"></a>
+        <ul class="nav-links" id="navLinks">
+            <li>
+                <a href="/destinos/">Destinos</a>
+                <div class="dropdown">
+                    <a href="/africa/">Africa</a>
+                    <a href="/america/">América</a>
+                    <a href="/asia/">Asia</a>
+                    <a href="/europa/">Europa</a>
+                    <a href="/paraisos/">Paraísos sobre el agua</a>
+                </div>
+            </li>
+            <li><a href="/quien-hay-detras/">¿Quién hay detrás?</a></li>
+            <li><a href="/contacto/">Contacto</a></li>
+            <li><a href="/pro-tips/">Travel Hacks</a></li>
+            <li><a href="/blog/">Blog</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+            <span></span><span></span><span></span>
+        </button>
     </div>
-</li>
-<li><a href="/quien-hay-detras/">¿Quién hay detrás?</a></li>
-<li><a href="/contacto/">Contacto</a></li>
-<li><a href="/pro-tips/">Travel Hacks</a></li>
-<li><a href="/blog/">Blog</a></li>
+</nav>
 ```
+
+#### CSS del navbar — TODAS estas reglas son OBLIGATORIAS
+```css
+/* ===== NAVBAR ===== */
+.navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 10px 0; background: var(--dark); border-bottom: 1px solid rgba(201,169,110,0.15); transition: var(--transition); }
+.navbar.scrolled { background: var(--dark); backdrop-filter: blur(20px); box-shadow: 0 2px 40px rgba(0,0,0,0.5); }
+.navbar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: nowrap; max-width: 80%; padding: 0 24px; }
+.logo { display: inline-block; transition: var(--transition); }
+.logo img { height: 80px; width: auto; transition: var(--transition); }
+.nav-links { display: flex; gap: 36px; align-items: center; }
+.nav-links a { font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 400; letter-spacing: 0.5px; color: var(--gold-light); transition: var(--transition); position: relative; padding: 8px 18px; border-radius: 50px; }
+.nav-links a:hover { background: var(--gold); color: var(--dark); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,169,110,0.3); }
+.nav-links li { position: relative; list-style: none; }
+.dropdown { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); min-width: 220px; background: var(--dark-soft); border: 1px solid rgba(201,169,110,0.15); border-radius: 8px; padding: 12px 0; opacity: 0; visibility: hidden; transition: var(--transition); box-shadow: 0 16px 40px rgba(0,0,0,0.4); z-index: 100; margin-top: 8px; }
+.nav-links li:hover .dropdown { opacity: 1; visibility: visible; }
+.dropdown a { display: block; padding: 10px 24px; font-size: 0.8rem; font-weight: 400; letter-spacing: 1px; color: var(--text-muted); transition: var(--transition); white-space: nowrap; border-radius: 0; background: none; transform: none; box-shadow: none; }
+.dropdown a:hover { color: var(--gold); background: rgba(201,169,110,0.08); padding-left: 28px; transform: none; box-shadow: none; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.hamburger span { width: 24px; height: 2px; background: var(--gold); transition: var(--transition); }
+/* Auto-collapse navbar */
+.navbar.collapsed .hamburger { display: flex; }
+.navbar.collapsed .nav-links { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--dark); flex-direction: column; justify-content: center; gap: 28px; transition: var(--transition); border-left: 1px solid rgba(201,169,110,0.15); }
+.navbar.collapsed .nav-links.active { right: 0; }
+.navbar.collapsed .nav-links .dropdown { position: static; transform: none; min-width: 0; background: transparent; border: none; border-radius: 0; padding: 8px 0 0 20px; opacity: 1; visibility: visible; box-shadow: none; margin-top: 0; }
+.navbar.collapsed .nav-links .dropdown a { padding: 6px 0; font-size: 0.75rem; }
+```
+
+**IMPORTANTE — NO omitir ninguna regla:**
+- `.nav-links { display: flex; gap: 36px; align-items: center; }` → sin esta regla el menú se muestra VERTICAL
+- `.nav-links a { ... letter-spacing: 0.5px; ... }` → SIN `text-transform: uppercase`, SIN `letter-spacing: 1.5px`
+- Todas las reglas `.navbar.collapsed` → necesarias para el menú hamburguesa en móvil
+
+#### JS del navbar (en el `<script>` al final del body)
+```js
+// Navbar scroll effect
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+    const wasScrolled = navbar.classList.contains('scrolled');
+    const isScrolled = window.scrollY > 60;
+    navbar.classList.toggle('scrolled', isScrolled);
+    if (wasScrolled !== isScrolled) checkNavOverflow();
+});
+
+// Mobile menu toggle
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+
+// Close menu on link click
+navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('active'));
+});
+
+// Auto-collapse navbar when items don't fit
+function checkNavOverflow() {
+    const navbar = document.getElementById('navbar');
+    const navLinks = document.getElementById('navLinks');
+    const container = navbar.querySelector('.container');
+    navLinks.classList.remove('active');
+    navbar.classList.remove('collapsed');
+    navLinks.style.flexShrink = '0';
+    void navbar.offsetHeight;
+    var bp = 1100;
+    if (window.innerWidth <= bp || container.scrollWidth > container.clientWidth + 2) {
+        navbar.classList.add('collapsed');
+    }
+    navLinks.style.flexShrink = '';
+}
+checkNavOverflow();
+window.addEventListener('resize', checkNavOverflow);
+```
+
 - Todos los enlaces usan **rutas absolutas** (`/slug/`, `/contacto/`, `/destinos/`, `/quien-hay-detras/`)
 - **NUNCA usar `#` en las rutas.** Siempre rutas limpias sin anclas.
-- Logo usa `/images/logo-trimmed.png`
 - Mobile (≤768px): `.navbar .container { max-width: 100%; padding: 0 12px; }`
 - Auto-collapse: colapsa a hamburguesa en `window.innerWidth <= 1100`
 
