@@ -9,7 +9,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/images/genfavicon-package/genfavicon-16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/genfavicon-package/apple-touch-icon.png">
     <link rel="manifest" href="/images/genfavicon-package/site.webmanifest">
-    <meta name="description" content="Descubre nuestra colección de destinos extraordinarios. Viajes de lujo a medida diseñados con atención artesanal al detalle.">
+    <meta name="description" content="Descubre nuestra colección de destinos extraordinarios. Viajes de lujo a medida por Europa, Asia, América, África y Paraísos sobre el agua.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
@@ -53,9 +53,96 @@ section {
             font-weight: 300;
 }
 
+.region-hero {
+    min-height: calc(70vh - 50px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 100px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            background-image: url('https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1920&q=80');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+}
+
+.region-hero::after {
+    content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(10,10,10,0.05) 0%, rgba(10,10,10,0.15) 50%, var(--dark) 100%);
+}
+
+.region-hero-content {
+    position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 24px;
+}
+
+.region-hero-content .section-label {
+    font-size: 0.85rem;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease both;
+}
+
+.region-hero-content h1 {
+    font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s 0.2s ease both;
+            text-shadow:
+                0 2px 4px rgba(0, 0, 0, 0.8),
+                0 4px 20px rgba(0, 0, 0, 0.6),
+                0 8px 40px rgba(0, 0, 0, 0.4);
+}
+
+.region-hero-content p {
+    font-size: clamp(1rem, 2.5vw, 1.15rem);
+            color: var(--text);
+            font-weight: 700;
+            max-width: 540px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s 0.4s ease both; text-shadow:
+                0 2px 4px rgba(0, 0, 0, 0.8),
+                0 4px 20px rgba(0, 0, 0, 0.6),
+                0 8px 40px rgba(0, 0, 0, 0.4);
+}
+
+.dest-cta {
+    text-align: center;
+    padding-top: 30px;
+}
+
+.dest-cta h2 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: var(--white);
+    margin-bottom: 16px;
+}
+
+.dest-cta p {
+    color: var(--text-muted);
+    max-width: 540px;
+    margin: 0 auto 32px;
+    font-weight: 300;
+}
+
 @media (max-width: 768px) {
     section {
         padding: 80px 0;
+    }
+
+    .region-hero {
+        background-attachment: scroll;
+                background-position: center center;
+                background-repeat: no-repeat;
     }
 }
     </style>
@@ -78,10 +165,9 @@ section {
                     </div>
                 </li>
                 <li><a href="/quien-hay-detras/">¿Quién hay detrás?</a></li>
+                <li><a href="/contacto/">Contacto</a></li>
                 <li><a href="/pro-tips/">Travel Hacks</a></li>
                 <li><a href="/blog/">Blog</a></li>
-                <li><a href="/contacto/">Contacto</a></li>
-
             </ul>
             <button class="hamburger" id="hamburger" aria-label="Abrir menú">
                 <span></span><span></span><span></span>
@@ -89,47 +175,698 @@ section {
         </div>
     </nav>
 
-    <!-- DESTINOS -->
-    <section style="padding-top: 160px;">
+    <!-- HERO -->
+    <section class="region-hero">
+        <div class="region-hero-content">
+            <span class="section-label">Destinos</span>
+            <h1>Destinos Extraordinarios</h1>
+            <p>Cada viaje es una experiencia irrepetible, diseñada con atención artesanal al detalle</p>
+        </div>
+    </section>
+
+    <!-- EUROPA -->
+    <section style="padding-top: 30px;">
         <div class="container">
-            <div class="section-header reveal">
-                <h2 class="section-title">Destinos Extraordinarios</h2>
+            <div class="section-header reveal" style="margin-bottom: 40px;">
+                <span class="section-label">Europa</span>
+                <h2 class="section-title">Destinos Europa</h2>
                 <div class="divider"></div>
-                <p class="section-subtitle">Cada viaje es una experiencia irrepetible, diseñada con atención artesanal al detalle</p>
             </div>
 
             <div class="destinations-grid">
-                <!-- Card 1 -->
                 <div class="destination-card reveal">
-                    <a href="/maldivas/">
+                    <a href="/escocia/">
                         <div class="card-image">
-                            <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=600&q=80" alt="Dubái, Abu Dhabi & Maldivas">
-                            <span class="card-badge">Exclusivo</span>
+                            <img src="https://images.unsplash.com/photo-1506377585622-bedcbb027afc?w=600&q=80" alt="Tierras Altas de Escocia">
+                            <span class="card-badge">Nuevo</span>
                         </div>
                         <div class="card-body">
-                            <span class="card-location">Océano Índico</span>
-                            <h3>Maldivas, el paraíso del Índico</h3>
-                            <p>Villas sobre aguas cristalinas, arrecifes de coral y experiencias exclusivas en el paraíso del Índico.</p>
+                            <span class="card-location">Escocia, Reino Unido</span>
+                            <h3>Tierras Altas y Leyendas</h3>
+                            <p>Edimburgo, Highlands, Isla de Skye y castillos centenarios. Una aventura entre paisajes dramáticos y whisky single malt.</p>
                             <div class="card-features">
-                                <span>7 noches</span>
-                                <span>Villa privada</span>
-                                <span>All inclusive</span>
+                                <span>8 días</span>
+                                <span>Guía privado</span>
+                                <span>Lodges 5★</span>
                             </div>
                             <span class="card-link">Ver itinerario &#10230;</span>
                         </div>
                     </a>
                 </div>
-
-                <!-- Card 2 -->
                 <div class="destination-card reveal">
-                    <a href="/seychelles/">
+                    <a href="/italia/">
                         <div class="card-image">
-                            <img src="https://images.unsplash.com/photo-1670234069747-a66c3de1dd90?w=600&q=80" alt="Seychelles - Rocas de granito y playas vírgenes">
+                            <img src="https://images.unsplash.com/photo-1529260830199-42c24126f198?w=600&q=80" alt="Roma al atardecer">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Italia</span>
+                            <h3>Dolce Vita</h3>
+                            <p>Roma, Florencia, Toscana y Venecia. Arte, gastronomía y paisajes que parecen pintados a mano en un viaje equilibrado y sin prisas.</p>
+                            <div class="card-features">
+                                <span>10–12 días</span>
+                                <span>Guía privado</span>
+                                <span>Hoteles boutique</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="destination-card reveal">
+                    <a href="/portugal/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1585208798174-6cedd86e019a?w=600&q=80" alt="Portugal">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Portugal</span>
+                            <h3>Luz atlántica y elegancia serena</h3>
+                            <p>Lisboa, Sintra, Oporto, Valle del Douro y Algarve. Vinos centenarios, acantilados infinitos y una gastronomía que enamora.</p>
+                            <div class="card-features">
+                                <span>8 días</span>
+                                <span>Guía privado</span>
+                                <span>Hoteles boutique</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="destination-card reveal">
+                    <a href="/belgica/">
+                        <div class="card-image">
+                            <img src="/images/belgica.jpg?w=600&q=80" alt="Bélgica & Países Bajos">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Bélgica & Países Bajos</span>
+                            <h3>Canales, arte y elegancia europea</h3>
+                            <p>Bruselas, Gante, Brujas, La Haya y Ámsterdam. Arte flamenco, arquitectura monumental y el romanticismo de los canales.</p>
+                            <div class="card-features">
+                                <span>8–10 días</span>
+                                <span>Tren entre ciudades</span>
+                                <span>Hoteles boutique</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="destination-card reveal">
+                    <a href="/islandia/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1488415032361-b7e238421f1b?w=600&q=80" alt="Islandia">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Islandia</span>
+                            <h3>Fuego, hielo y auroras</h3>
+                            <p>Glaciares infinitos, cascadas imponentes, playas de arena negra y auroras boreales en un escenario casi irreal.</p>
+                            <div class="card-features">
+                                <span>8 días</span>
+                                <span>Guía privado</span>
+                                <span>Lodges exclusivos</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="destination-card reveal">
+                    <a href="/albania/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1738675326308-f4097c3405a7?w=600&q=80" alt="Riviera Albanesa">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Albania</span>
+                            <h3>El secreto del Mediterráneo</h3>
+                            <p>Tirana, Berat, Gjirokastra y la Riviera Albanesa. Naturaleza salvaje, aguas turquesa y pueblos de piedra todavía auténticos.</p>
+                            <div class="card-features">
+                                <span>8–10 noches</span>
+                                <span>Ruta personalizable</span>
+                                <span>Alojamientos con encanto</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="destination-card reveal">
+                    <a href="/malta/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1713722122973-bfa5e9ebca82?w=600&q=80" alt="Malta">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Malta</span>
+                            <h3>Historia dorada en el Mediterráneo</h3>
+                            <p>La Valeta, Mdina, Gozo y Comino. Ciudades de piedra, aguas turquesa y civilizaciones milenarias en un archipiélago compacto y sofisticado.</p>
+                            <div class="card-features">
+                                <span>6–9 noches</span>
+                                <span>Ruta personalizable</span>
+                                <span>Hoteles boutique</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ASIA -->
+    <section style="padding-top: 30px; background: var(--dark-soft); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <div class="container">
+            <div class="section-header reveal" style="margin-bottom: 40px;">
+                <span class="section-label">Asia</span>
+                <h2 class="section-title">Destinos Asia</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="destinations-grid">
+                <div class="destination-card reveal">
+                    <a href="/tailandia/">
+                        <div class="card-image">
+                            <img src="/images/phiphi1.jpeg" alt="Tailandia">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Tailandia</span>
+                            <h3>La esencia de Asia</h3>
+                            <p>Templos dorados, playas paradisíacas y una cultura milenaria en un viaje lleno de contrastes.</p>
+                            <div class="card-features">
+                                <span>14–15 días</span>
+                                <span>Guía privado</span>
+                                <span>Resorts 5★</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="destination-card reveal">
+                    <a href="/bali/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1592364395653-83e648b20cc2?w=600&q=80" alt="Bali">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Indonesia</span>
+                            <h3>La isla de los dioses</h3>
+                            <p>Templos entre arrozales, ceremónias al amanecer, selva vibrante y playas infinitas en un viaje de equilibrio y calma.</p>
+                            <div class="card-features">
+                                <span>10–12 días</span>
+                                <span>Guía privado</span>
+                                <span>Villas 5★</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="destination-card reveal">
+                    <a href="/vietnam/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1609412058473-c199497c3c5d?w=600&q=80" alt="Vietnam">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Vietnam</span>
+                            <h3>Contrastes armónicos</h3>
+                            <p>Bahías envueltas en bruma, arrozales infinitos, ciudades vibrantes y una gastronomía que sorprende en cada rincón.</p>
+                            <div class="card-features">
+                                <span>12–15 días</span>
+                                <span>Guía privado</span>
+                                <span>Hoteles boutique</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="destination-card reveal">
+                    <a href="/malasia/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1508062878650-88b52897f298?w=600&q=80" alt="Malasia">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Malasia</span>
+                            <h3>Modernidad y selva ancestral</h3>
+                            <p>Rascacielos futuristas, plantaciones de té, selva tropical milenaria y playas paradisíacas en un viaje completo.</p>
+                            <div class="card-features">
+                                <span>11–14 días</span>
+                                <span>Guía privado</span>
+                                <span>Hoteles boutique</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="destination-card reveal">
+                    <a href="/japon/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1542640244-7e672d6cef4e?w=600&q=80" alt="Japón">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Japón</span>
+                            <h3>Tradición y modernidad</h3>
+                            <p>Templos silenciosos, barrios futuristas, jardines zen y una gastronomía que eleva cada sentido.</p>
+                            <div class="card-features">
+                                <span>10–12 días</span>
+                                <span>Guía privado</span>
+                                <span>Ryokanes y boutique</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="destination-card reveal">
+                    <a href="/filipinas/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1590077211339-724573dc4121?w=600&q=80" alt="Filipinas">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Filipinas</span>
+                            <h3>Paraíso tropical</h3>
+                            <p>Playas de ensueño, lagoons escondidos, arrozales en terrazas y una hospitalidad que enamora desde el primer momento.</p>
+                            <div class="card-features">
+                                <span>10–14 días</span>
+                                <span>Guía privado</span>
+                                <span>Resorts exclusivos</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="destination-card reveal">
+                    <a href="/dubai-abu-dhabi-maldivas/">
+                        <div class="card-image">
+                            <img src="/images/dubai1.jpg" alt="Dubái, Abu Dhabi & Maldivas">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">EAU & Maldivas</span>
+                            <h3>Lujo entre desierto y océano</h3>
+                            <p>Rascacielos futuristas, desierto dorado, mezquitas deslumbrantes y atolones privados en el Índico.</p>
+                            <div class="card-features">
+                                <span>12–14 días</span>
+                                <span>Guía privado</span>
+                                <span>Resorts 5 estrellas</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="destination-card reveal">
+                    <a href="/sri-lanka/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1612862862126-865765df2ded?w=600&q=80" alt="Sri Lanka">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Sri Lanka</span>
+                            <h3>La lágrima del Índico</h3>
+                            <p>Templos milenarios, trenes panorámicos, leopardos en libertad y playas doradas en perfecta armonía.</p>
+                            <div class="card-features">
+                                <span>12–14 días</span>
+                                <span>Conductor privado</span>
+                                <span>Lodges & boutique</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="destination-card reveal">
+                    <a href="/camboya/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1571844088753-73ca0880bcd9?w=600&q=80" alt="Camboya">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Camboya</span>
+                            <h3>Templos eternos y alma asiática</h3>
+                            <p>Espiritualidad, historia y belleza serena entre los templos de Angkor, la capital colonial y playas vírgenes.</p>
+                            <div class="card-features">
+                                <span>8–10 noches</span>
+                                <span>Guía privado</span>
+                                <span>Hoteles boutique</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="destination-card reveal">
+                    <a href="/singapur/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/flagged/photo-1562503542-2a1e6f03b16b?w=600&q=80" alt="Singapur">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Singapur</span>
+                            <h3>Futurismo tropical</h3>
+                            <p>Rascacielos futuristas, jardines verticales, gastronomía multicultural y sofisticación absoluta.</p>
+                            <div class="card-features">
+                                <span>4–6 noches</span>
+                                <span>Experiencias privadas</span>
+                                <span>Hotel 5★</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="destination-card reveal">
+                    <a href="/india/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1612810436541-336b73fbcf9f?w=600&q=80" alt="India">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">India</span>
+                            <h3>Colores, espiritualidad y palacios eternos</h3>
+                            <p>Intensidad, arquitectura monumental, rituales sagrados y una riqueza cultural que transforma al viajero.</p>
+                            <div class="card-features">
+                                <span>12–14 noches</span>
+                                <span>Conductor privado</span>
+                                <span>Palacios boutique</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="destination-card reveal">
+                    <a href="/china/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?w=600&q=80" alt="China">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">China</span>
+                            <h3>Imperios, murallas y modernidad infinita</h3>
+                            <p>Historia milenaria, arquitectura imperial y ciudades futuristas en un país de contrastes monumentales.</p>
+                            <div class="card-features">
+                                <span>12–15 noches</span>
+                                <span>Guía privado</span>
+                                <span>Hoteles seleccionados</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AMÉRICA -->
+    <section style="padding-top: 30px;">
+        <div class="container">
+            <div class="section-header reveal" style="margin-bottom: 40px;">
+                <span class="section-label">América</span>
+                <h2 class="section-title">Destinos América</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="destinations-grid">
+                <div class="destination-card reveal">
+                    <a href="/costa-oeste-usa/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1575500596523-d625dd041614?w=600&q=80" alt="Costa Oeste de Estados Unidos">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Estados Unidos</span>
+                            <h3>Costa Oeste</h3>
+                            <p>Ciudades icónicas, naturaleza monumental y carreteras infinitas. De San Francisco a Los Ángeles pasando por los grandes parques del Oeste.</p>
+                            <div class="card-features">
+                                <span>15 noches</span>
+                                <span>Ruta en coche</span>
+                                <span>Hoteles boutique</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="destination-card reveal">
+                    <a href="/florida/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1589083130544-0d6a2926e519?w=600&q=80" alt="Florida">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Estados Unidos</span>
+                            <h3>Florida</h3>
+                            <p>Sol, playas infinitas, parques temáticos y ese vibrante estilo americano. De Miami a Key West y Orlando.</p>
+                            <div class="card-features">
+                                <span>10 noches</span>
+                                <span>Ruta en coche</span>
+                                <span>Resort frente al mar</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="destination-card reveal">
+                    <a href="/alaska/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1549517771-aa105e8da34f?w=600&q=80" alt="Alaska">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Estados Unidos</span>
+                            <h3>Alaska</h3>
+                            <p>Glaciares, fauna salvaje, auroras boreales y naturaleza indómita. El último gran territorio salvaje del planeta.</p>
+                            <div class="card-features">
+                                <span>12 noches</span>
+                                <span>Ruta en coche</span>
+                                <span>Lodges remotos</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="destination-card reveal">
+                    <a href="/canada/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1561134643-668f9057cce4?w=600&q=80" alt="Canadá">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Canadá</span>
+                            <h3>Canadá</h3>
+                            <p>Lagos turquesa, Rocosas imponentes, ciudades cosmopolitas y las cataratas del Niágara. Naturaleza y elegancia urbana.</p>
+                            <div class="card-features">
+                                <span>14 noches</span>
+                                <span>Ruta en coche</span>
+                                <span>Lodges de montaña</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="destination-card reveal">
+                    <a href="/brasil/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=600&q=80" alt="Brasil">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Brasil</span>
+                            <h3>Brasil</h3>
+                            <p>Río de Janeiro, cataratas de Iguazú, Salvador de Bahía y playas paradisíacas del Nordeste. Energía pura.</p>
+                            <div class="card-features">
+                                <span>14 noches</span>
+                                <span>Vuelos internos</span>
+                                <span>Pousadas exclusivas</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="destination-card reveal">
+                    <a href="/argentina/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1612294037637-ec328d0e075e?w=600&q=80" alt="Argentina & Patagonia">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Argentina & Chile</span>
+                            <h3>Argentina & Patagonia Austral</h3>
+                            <p>Del tango porteño a los glaciares milenarios, Iguazú, Bariloche, Torres del Paine y el fin del mundo en Ushuaia.</p>
+                            <div class="card-features">
+                                <span>17 noches</span>
+                                <span>Vuelos internos</span>
+                                <span>Lodges exclusivos</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="destination-card reveal">
+                    <a href="/peru/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1526392060635-9d6019884377?w=600&q=80" alt="Perú">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Perú</span>
+                            <h3>Perú</h3>
+                            <p>Lima, Valle Sagrado, Machu Picchu, Cusco, Lago Titicaca y Arequipa. Historia milenaria y paisajes sagrados.</p>
+                            <div class="card-features">
+                                <span>14 noches</span>
+                                <span>Guía privado</span>
+                                <span>Lodges exclusivos</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="destination-card reveal">
+                    <a href="/colombia/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1536308037887-165852797016?w=600&q=80" alt="Colombia">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Colombia</span>
+                            <h3>Colombia</h3>
+                            <p>Bogotá, Eje Cafetero, Medellín y Cartagena de Indias. Color, ritmo y naturaleza vibrante.</p>
+                            <div class="card-features">
+                                <span>14 noches</span>
+                                <span>Vuelos internos</span>
+                                <span>Hoteles boutique</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="destination-card reveal">
+                    <a href="/ecuador/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1645571049250-7eb982250f86?w=600&q=80" alt="Ecuador & Galápagos">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Ecuador</span>
+                            <h3>Ecuador & Galápagos</h3>
+                            <p>Quito colonial, Amazonía profunda, volcanes andinos y las islas donde Darwin cambió la historia.</p>
+                            <div class="card-features">
+                                <span>13 noches</span>
+                                <span>Crucero Galápagos</span>
+                                <span>Lodge amazónico</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="destination-card reveal">
+                    <a href="/chicago-nueva-orleans/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1581373449483-37449f962b6c?w=600&q=80" alt="Chicago & Nueva Orleans">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Estados Unidos</span>
+                            <h3>Chicago & Nueva Orleans</h3>
+                            <p>Arquitectura, jazz, gastronomía y carácter americano. Dos ciudades con alma propia.</p>
+                            <div class="card-features">
+                                <span>9–11 noches</span>
+                                <span>Vuelo interno</span>
+                                <span>Hoteles boutique</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ÁFRICA -->
+    <section style="padding-top: 30px; background: var(--dark-soft); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <div class="container">
+            <div class="section-header reveal" style="margin-bottom: 40px;">
+                <span class="section-label">África</span>
+                <h2 class="section-title">Destinos África</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="destinations-grid">
+                <div class="destination-card reveal">
+                    <a href="/egipto/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1623674587543-9c7564de99d1?w=600&q=80" alt="Egipto">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Egipto</span>
+                            <h3>El origen de la civilización</h3>
+                            <p>Pirámides milenarias, templos colosales y el río Nilo como hilo conductor de una cultura fascinante.</p>
+                            <div class="card-features">
+                                <span>10 días</span>
+                                <span>Guía egiptólogo</span>
+                                <span>Crucero por el Nilo</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="destination-card reveal">
+                    <a href="/kenia-zanzibar/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1575992042651-e35f5a391252?w=600&q=80" alt="Kenia & Zanzíbar">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Kenia & Zanzíbar</span>
+                            <h3>Safari legendario y playas del Índico</h3>
+                            <p>La emoción del safari africano combinada con la serenidad de las playas de arena blanca de Zanzíbar.</p>
+                            <div class="card-features">
+                                <span>13 días</span>
+                                <span>Safari privado</span>
+                                <span>Resort frente al mar</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PARAÍSOS SOBRE EL AGUA -->
+    <section style="padding-top: 30px;">
+        <div class="container">
+            <div class="section-header reveal" style="margin-bottom: 40px;">
+                <span class="section-label">Paraísos</span>
+                <h2 class="section-title">Paraísos sobre el agua</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="destinations-grid">
+                <div class="destination-card reveal">
+                    <a href="/maldivas/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=600&q=80" alt="Maldivas">
                             <span class="card-badge">Nuevo</span>
                         </div>
                         <div class="card-body">
                             <span class="card-location">Océano Índico</span>
-                            <h3>Seychelles, el lujo natural del Índico</h3>
+                            <h3>Maldivas</h3>
+                            <p>Villas sobre aguas cristalinas, arrecifes de coral y experiencias exclusivas en el paraíso del Índico.</p>
+                            <div class="card-features">
+                                <span>7 días</span>
+                                <span>Villa overwater</span>
+                                <span>Snorkel privado</span>
+                            </div>
+                            <span class="card-link">Ver itinerario &#10230;</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="destination-card reveal">
+                    <a href="/seychelles/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1670234069747-a66c3de1dd90?w=600&q=80" alt="Seychelles">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Océano Índico</span>
+                            <h3>Seychelles</h3>
                             <p>Playas de arena blanca, rocas de granito escultóricas y naturaleza en estado puro en el archipiélago más exclusivo.</p>
                             <div class="card-features">
                                 <span>9 días</span>
@@ -140,25 +877,16 @@ section {
                         </div>
                     </a>
                 </div>
-
-                <!-- Card 3 -->
-                <div class="destination-card reveal">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?w=600&q=80" alt="Safari de lujo en África">
-                        <span class="card-badge">Popular</span>
-                    </div>
-                    <div class="card-body">
-                        <span class="card-location">Serengeti, Tanzania</span>
-                        <h3>Safari de Lujo Africano</h3>
-                        <p>La gran migración desde lodges exclusivos con vuelos privados y cenas bajo las estrellas del Serengeti.</p>
-                        <div class="card-features">
-                            <span>12 noches</span>
-                            <span>Vuelo privado</span>
-                            <span>Lodge 5★</span>
-                        </div>
-                    </div>
-                </div>
             </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="dest-cta">
+        <div class="container reveal">
+            <h2>¿Listo para <em style="color: var(--gold);">tu próxima aventura</em>?</h2>
+            <p>Cuéntanos tu destino soñado y diseñaremos un viaje a tu medida.</p>
+            <a href="/contacto/?destino=Consulta%20general" class="btn btn-primary">Solicitar presupuesto &#10230;</a>
         </div>
     </section>
 
@@ -212,7 +940,42 @@ section {
     <script src="/scripts.js"></script>
 
     <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            const wasScrolled = navbar.classList.contains('scrolled');
+            const isScrolled = window.scrollY > 60;
+            navbar.classList.toggle('scrolled', isScrolled);
+            if (wasScrolled !== isScrolled) checkNavOverflow();
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+
+        // Close menu on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => navLinks.classList.remove('active'));
+        });
+
         // Auto-collapse navbar when items don't fit
+        function checkNavOverflow() {
+            const navbar = document.getElementById('navbar');
+            const navLinks = document.getElementById('navLinks');
+            const container = navbar.querySelector('.container');
+            navLinks.classList.remove('active');
+            navbar.classList.remove('collapsed');
+            navLinks.style.flexShrink = '0';
+            void navbar.offsetHeight;
+            var bp = 1280;
+            if (window.innerWidth <= bp || container.scrollWidth > container.clientWidth + 2) {
+                navbar.classList.add('collapsed');
+            }
+            navLinks.style.flexShrink = '';
+        }
+        checkNavOverflow();
+        window.addEventListener('resize', checkNavOverflow);
     </script>
 
     <!-- COOKIE BANNER -->
