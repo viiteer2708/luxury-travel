@@ -451,9 +451,9 @@ section {
 
 .why-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 32px;
-    max-width: 1000px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
@@ -471,13 +471,24 @@ section {
     transform: translateY(-4px);
 }
 
-.why-number {
-    font-family: 'Playfair Display', serif;
-    font-size: 3.5rem;
-    color: rgba(201,169,110,0.12);
-    font-weight: 700;
-    line-height: 1;
-    margin-bottom: 16px;
+.why-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(201,169,110,0.06);
+    border: 1px solid rgba(201,169,110,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.why-icon svg {
+    width: 28px;
+    height: 28px;
+    stroke: var(--gold);
+    stroke-width: 1.5;
+    fill: none;
 }
 
 .why-card h3 {
@@ -1811,26 +1822,39 @@ section {
         <div class="container">
             <div class="section-header reveal">
                 <span class="section-label">Por qué elegirnos</span>
-                <h2 class="section-title">Tu viaje merece algo mejor</h2>
+                <h2 class="section-title">Tu viaje no debería parecerse al de nadie más</h2>
                 <div class="divider"></div>
-                <p class="section-subtitle">No somos una agencia más. Somos tu socio de viaje.</p>
+                <p class="section-subtitle">No somos una agencia cualquiera. Diseñamos tu viaje desde cero.</p>
             </div>
 
             <div class="why-grid reveal">
                 <div class="why-card">
-                    <div class="why-number">01</div>
-                    <h3>Diseño artesanal</h3>
-                    <p>Cada itinerario se crea como una obra única. Investigamos, probamos y seleccionamos cada elemento para que encaje contigo.</p>
+                    <div class="why-icon">
+                        <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="20"/><polygon points="24,12 28,22 24,20 20,22"/><polygon points="24,36 20,26 24,28 28,26"/></svg>
+                    </div>
+                    <h3>El viaje empieza antes de viajar</h3>
+                    <p>Un buen viaje no se improvisa. Empieza con entender qué quieres vivir.</p>
                 </div>
                 <div class="why-card">
-                    <div class="why-number">02</div>
-                    <h3>Acceso privilegiado</h3>
-                    <p>Conexiones directas con hoteles boutique, guías locales y experiencias que no aparecen en buscadores.</p>
+                    <div class="why-icon">
+                        <svg viewBox="0 0 48 48"><path d="M24 4l-16 18 16 22 16-22L24 4z"/><path d="M8 22h32"/></svg>
+                    </div>
+                    <h3>Menos turismo, más experiencia</h3>
+                    <p>Lo que buscas no está en las guías. Está en los lugares que solo conoce quien ya estuvo.</p>
                 </div>
                 <div class="why-card">
-                    <div class="why-number">03</div>
-                    <h3>Tranquilidad absoluta</h3>
-                    <p>Desde la primera llamada hasta tu regreso a casa, nos encargamos de cada detalle para que solo te preocupes de vivir.</p>
+                    <div class="why-icon">
+                        <svg viewBox="0 0 48 48"><circle cx="22" cy="22" r="14"/><path d="M32 32l12 12"/><path d="M18 22h8M22 18v8"/></svg>
+                    </div>
+                    <h3>El lujo está en los detalles</h3>
+                    <p>Un transfer a tiempo, la mesa perfecta, el guía que marca la diferencia. Todo cuenta.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">
+                        <svg viewBox="0 0 48 48"><path d="M8 40c8-8 8-16 16-16s8 8 16 16"/><circle cx="40" cy="40" r="3"/><path d="M8 40l4-4M12 36l-4 0M12 36l0 4"/></svg>
+                    </div>
+                    <h3>Viajar debería ser fácil</h3>
+                    <p>Tú decides hasta dónde quieres involucrarte. Del resto, nos encargamos nosotros.</p>
                 </div>
             </div>
         </div>
