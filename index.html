@@ -99,7 +99,7 @@
 }
 
 .hero h1 em {
-    font-style: italic;
+    font-style: normal;
             color: var(--gold);
 }
 
@@ -164,16 +164,18 @@
             animation: fadeInUp 0.8s 0.6s ease both;
 }
 
-.btn-outline {
-    background: transparent;
+.btn-hero-dark {
+    background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(8px);
             color: var(--white);
-            border: 1px solid rgba(255,255,255,0.25);
+            border: 1px solid rgba(255,255,255,0.15);
 }
 
-.btn-outline:hover {
-    border-color: var(--gold);
-            color: var(--gold);
+.btn-hero-dark:hover {
+    background: rgba(0, 0, 0, 0.75);
+            border-color: rgba(255,255,255,0.3);
             transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
 }
 
 .scroll-indicator {
@@ -598,11 +600,11 @@ section {
         <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1693260741045-2c136abbb95f?w=1920&q=80')"></div>
         <div class="hero-slide" style="background-image:url('images/nieve_portada.jpeg')"></div>
         <div class="hero-content">
-            <h1>Más que viajar, <em>vivir</em> el mundo</h1>
+            <h1>Más que viajar,<br><em>VIVIR</em> el mundo</h1>
             <p>Diseñamos experiencias de viaje a medida para quienes buscan lo extraordinario. Cada destino, una obra tallada a mano.</p>
             <div class="hero-buttons">
-                <a href="/destinos/" class="btn btn-primary">Explorar destinos &#10230;</a>
-                <a href="/contacto/" class="btn btn-outline">Viaje a medida</a>
+                <a href="/destinos/" class="btn btn-hero-dark">Explorar destinos &#10230;</a>
+                <a href="/contacto/" class="btn btn-primary">Viaje a medida &#10230;</a>
             </div>
         </div>
         <div class="scroll-indicator">
