@@ -306,51 +306,460 @@ section {
     color: var(--gold);
 }
 
-/* ===== PROPUESTA DE VALOR ===== */
-.value-section {
+/* ===== PROOF SECTION ===== */
+.proof-section {
     background: var(--dark-soft);
 }
 
-.value-grid {
+.proof-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.proof-card {
+    text-align: center;
+    padding: 32px 20px;
+    border-radius: var(--radius);
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.04);
+    transition: var(--transition);
+}
+
+.proof-card:hover {
+    border-color: rgba(201,169,110,0.2);
+    transform: translateY(-4px);
+}
+
+.proof-card svg {
+    width: 40px;
+    height: 40px;
+    stroke: var(--gold);
+    stroke-width: 1.5;
+    fill: none;
+    margin-bottom: 20px;
+}
+
+.proof-card h3 {
+    font-size: 1.1rem;
+    color: var(--white);
+    margin-bottom: 8px;
+}
+
+.proof-card p {
+    font-size: 0.88rem;
+    color: var(--text);
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+/* ===== EXPERIENCES SECTION ===== */
+.experiences-section {
+    background: var(--dark);
+}
+
+.experiences-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 200px;
+    gap: 16px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.exp-card {
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.exp-card:nth-child(1),
+.exp-card:nth-child(4) {
+    grid-row: span 2;
+}
+
+.exp-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.exp-card:hover img {
+    transform: scale(1.08);
+}
+
+.exp-card .exp-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10,10,10,0.8) 0%, transparent 50%);
+    display: flex;
+    align-items: flex-end;
+    padding: 24px;
+}
+
+.exp-card .exp-overlay span {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--white);
+    font-style: italic;
+}
+
+/* ===== WHY SECTION ===== */
+.why-section {
+    background: var(--dark-soft);
+}
+
+.why-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 48px;
+    gap: 32px;
     max-width: 1000px;
     margin: 0 auto;
 }
 
-.value-item {
-    text-align: center;
+.why-card {
+    padding: 40px 32px;
+    border-radius: var(--radius);
+    border: 1px solid rgba(201,169,110,0.15);
+    background: rgba(255,255,255,0.02);
+    position: relative;
+    transition: var(--transition);
 }
 
-.value-icon {
-    width: 64px;
-    height: 64px;
-    margin: 0 auto 24px;
+.why-card:hover {
+    border-color: rgba(201,169,110,0.35);
+    transform: translateY(-4px);
+}
+
+.why-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: rgba(201,169,110,0.12);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 16px;
+}
+
+.why-card h3 {
+    font-size: 1.2rem;
+    color: var(--white);
+    margin-bottom: 12px;
+}
+
+.why-card p {
+    font-size: 0.92rem;
+    color: var(--text);
+    line-height: 1.7;
+    font-weight: 400;
+}
+
+/* ===== METHOD SECTION ===== */
+.method-section {
+    background: var(--dark);
+}
+
+.method-timeline {
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+    padding-left: 60px;
+}
+
+.method-timeline::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--gold), rgba(201,169,110,0.2));
+}
+
+.method-step {
+    position: relative;
+    margin-bottom: 56px;
+}
+
+.method-step:last-child {
+    margin-bottom: 0;
+}
+
+.method-marker {
+    position: absolute;
+    left: -60px;
+    top: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    background: var(--dark);
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+    z-index: 1;
 }
 
-.value-icon svg {
-    width: 48px;
-    height: 48px;
+.method-step h3 {
+    font-size: 1.25rem;
+    color: var(--white);
+    margin-bottom: 10px;
+}
+
+.method-step p {
+    font-size: 0.95rem;
+    color: var(--text);
+    line-height: 1.7;
+    font-weight: 400;
+}
+
+/* ===== EXPERTISE SECTION ===== */
+.expertise-section {
+    background: var(--dark-soft);
+}
+
+.expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.expertise-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.expertise-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(201,169,110,0.08);
+    border: 1px solid rgba(201,169,110,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.expertise-icon svg {
+    width: 28px;
+    height: 28px;
     stroke: var(--gold);
     stroke-width: 1.5;
     fill: none;
 }
 
-.value-item h3 {
-    font-size: 1.3rem;
+.expertise-item h3 {
+    font-size: 1.1rem;
     color: var(--white);
-    margin-bottom: 12px;
+    margin-bottom: 6px;
 }
 
-.value-item p {
-    font-size: 0.95rem;
+.expertise-item p {
+    font-size: 0.9rem;
     color: var(--text);
     line-height: 1.7;
     font-weight: 400;
+}
+
+/* ===== TESTIMONIALS SECTION ===== */
+.testimonials-section {
+    background: var(--dark);
+}
+
+.testimonials-slider {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    min-height: 250px;
+}
+
+.testimonial-slide {
+    display: none;
+    animation: fadeInTestimonial 0.6s ease;
+}
+
+.testimonial-slide.active {
+    display: block;
+}
+
+@keyframes fadeInTestimonial {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.testimonial-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+    font-style: italic;
+    color: var(--gold-light);
+    line-height: 1.8;
+    margin-bottom: 24px;
+    position: relative;
+    padding: 0 20px;
+}
+
+.testimonial-quote::before {
+    content: '\201C';
+    font-size: 4rem;
+    color: rgba(201,169,110,0.2);
+    position: absolute;
+    top: -20px;
+    left: -10px;
+    font-family: 'Playfair Display', serif;
+}
+
+.testimonial-author {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+}
+
+.testimonial-author strong {
+    color: var(--white);
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+
+.testimonial-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 32px;
+}
+
+.testimonial-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,169,110,0.4);
+    background: transparent;
+    cursor: pointer;
+    transition: var(--transition);
+    padding: 0;
+}
+
+.testimonial-dot.active {
+    background: var(--gold);
+    border-color: var(--gold);
+}
+
+/* ===== FAQ SECTION ===== */
+.faq-section {
+    background: var(--dark-soft);
+}
+
+.faq-list {
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+    cursor: pointer;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.faq-question:hover {
+    color: var(--gold);
+}
+
+.faq-chevron {
+    width: 20px;
+    height: 20px;
+    stroke: var(--gold);
+    stroke-width: 2;
+    fill: none;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    margin-left: 16px;
+}
+
+.faq-item.open .faq-chevron {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.faq-answer p {
+    padding: 0 0 24px;
+    font-size: 0.92rem;
+    color: var(--text);
+    line-height: 1.8;
+    font-weight: 400;
+}
+
+/* ===== CTA FINAL ===== */
+.cta-final {
+    background: var(--dark-soft);
+    position: relative;
+    text-align: center;
+}
+
+.cta-final::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(201,169,110,0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.cta-final-content {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.cta-final-content h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    color: var(--white);
+    margin-bottom: 16px;
+}
+
+.cta-final-content p {
+    font-size: 1.05rem;
+    color: var(--text);
+    font-weight: 400;
+    line-height: 1.7;
+    margin-bottom: 32px;
+}
+
+.cta-final-content .btn {
+    position: relative;
 }
 
 /* ===== DESTINOS HOME ===== */
@@ -377,122 +786,10 @@ section {
     margin-top: 48px;
 }
 
-/* ===== CÓMO FUNCIONA ===== */
-.process-section {
-    background: var(--dark);
-}
-
-.process-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 48px;
-    max-width: 1000px;
-    margin: 0 auto;
-    position: relative;
-}
-
-.process-grid::before {
-    content: '';
-    position: absolute;
-    top: 32px;
-    left: 15%;
-    right: 15%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    opacity: 0.3;
-}
-
-.process-step {
-    text-align: center;
-    position: relative;
-}
-
-.step-number {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    border: 1px solid rgba(201,169,110,0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 24px;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    color: var(--gold);
-    background: var(--dark);
-    position: relative;
-    z-index: 1;
-}
-
-.process-step h3 {
-    font-size: 1.3rem;
-    color: var(--white);
-    margin-bottom: 12px;
-}
-
-.process-step p {
-    font-size: 0.95rem;
-    color: var(--text);
-    line-height: 1.7;
-    font-weight: 400;
-}
-
-.process-cta {
-    text-align: center;
-    margin-top: 48px;
-}
-
-/* ===== BANNER VISUAL ===== */
-.experience-banner {
-    min-height: 60vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image: url('https://images.unsplash.com/photo-1540541338287-41700207dee6?w=1920&q=80');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    position: relative;
-}
-
-.experience-banner::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(rgba(10,10,10,0.7), rgba(10,10,10,0.7));
-}
-
-.experience-content {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    max-width: 700px;
-    padding: 0 24px;
-}
-
-.experience-quote {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.5rem, 3vw, 2.2rem);
-    font-style: italic;
-    color: var(--white);
-    line-height: 1.5;
-    margin-bottom: 24px;
-}
-
-.experience-content .divider {
-    margin: 24px auto;
-}
-
-.experience-tagline {
-    font-size: 1rem;
-    color: var(--text);
-    font-weight: 400;
-    letter-spacing: 1px;
-}
 
 /* ===== QUIÉN HAY DETRÁS (PREVIEW) ===== */
 .about-preview {
-    background: var(--dark-soft);
+    background: var(--dark);
 }
 
 .about-preview-grid {
@@ -539,65 +836,46 @@ section {
     margin-top: 8px;
 }
 
-/* ===== CTA FINAL ===== */
-.cta-section {
-    background: var(--dark);
-    padding: 80px 0;
-    position: relative;
-}
-
-.cta-content {
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto;
-    position: relative;
-}
-
-.cta-content::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(201,169,110,0.08) 0%, transparent 70%);
-    pointer-events: none;
-}
-
-.cta-content h2 {
-    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
-    color: var(--white);
-    margin-bottom: 16px;
-    position: relative;
-}
-
-.cta-content p {
-    font-size: 1.05rem;
-    color: var(--text);
-    font-weight: 400;
-    line-height: 1.7;
-    margin-bottom: 32px;
-    position: relative;
-}
-
-.cta-content .btn {
-    position: relative;
-}
 
 @media (max-width: 768px) {
-    .value-grid {
+    .proof-grid {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 20px;
     }
 
-    .process-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
+    .experiences-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 180px;
     }
 
-    .process-grid::before {
-        display: none;
+    .exp-card:nth-child(1),
+    .exp-card:nth-child(4) {
+        grid-row: span 1;
+    }
+
+    .why-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .method-timeline {
+        padding-left: 50px;
+    }
+
+    .method-marker {
+        left: -50px;
+        width: 36px;
+        height: 36px;
+        font-size: 0.95rem;
+    }
+
+    .method-timeline::before {
+        left: 17px;
+    }
+
+    .expertise-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
     }
 
     .about-preview-grid {
@@ -605,8 +883,15 @@ section {
         gap: 32px;
     }
 
-    .experience-banner {
-        background-attachment: scroll;
+    .testimonial-quote::before {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .experiences-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 200px;
     }
 }
 
@@ -1392,95 +1677,283 @@ section {
         </div>
     </section>
 
-    <!-- 2. PROPUESTA DE VALOR -->
-    <section class="value-section">
+    <!-- 2. PROOF RÁPIDO -->
+    <section class="proof-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Confianza desde el primer momento</span>
+                <h2 class="section-title">Lo que nos hace diferentes</h2>
+                <div class="divider"></div>
+                <p class="section-subtitle">Más de una década diseñando viajes que superan expectativas</p>
+            </div>
+
+            <div class="proof-grid reveal">
+                <div class="proof-card">
+                    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M24 4L6 14v20l18 10 18-10V14L24 4z"/><path d="M24 24L6 14M24 24v20M24 24l18-10"/></svg>
+                    <h3>100% a medida</h3>
+                    <p>Cada viaje se diseña desde cero, sin itinerarios prefabricados.</p>
+                </div>
+                <div class="proof-card">
+                    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="16" r="8"/><path d="M8 42c0-8.8 7.2-16 16-16s16 7.2 16 16"/></svg>
+                    <h3>Interlocutor único</h3>
+                    <p>Una sola persona que conoce tu viaje de memoria. Sin intermediarios.</p>
+                </div>
+                <div class="proof-card">
+                    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M14 24l7 7 13-13"/><circle cx="24" cy="24" r="20"/></svg>
+                    <h3>Todo resuelto</h3>
+                    <p>Vuelos, hoteles, restaurantes y experiencias. Tu única tarea: disfrutar.</p>
+                </div>
+                <div class="proof-card">
+                    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M24 4v40M4 24h40M10 10l28 28M38 10L10 38"/></svg>
+                    <h3>Disponibilidad 24/7</h3>
+                    <p>Soporte durante todo tu viaje. Siempre a una llamada de distancia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. EXPERIENCIAS -->
+    <section class="experiences-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Inspiración</span>
+                <h2 class="section-title">Experiencias que te esperan</h2>
+                <div class="divider"></div>
+                <p class="section-subtitle">Momentos que no encontrarás en ningún catálogo</p>
+            </div>
+
+            <div class="experiences-grid reveal">
+                <div class="exp-card">
+                    <img src="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=800&q=80" alt="Monte Fuji al amanecer">
+                    <div class="exp-overlay"><span>Amanecer frente al Fuji</span></div>
+                </div>
+                <div class="exp-card">
+                    <img src="https://images.unsplash.com/photo-1517824806704-9040b037703b?w=800&q=80" alt="Cena bajo estrellas en el desierto">
+                    <div class="exp-overlay"><span>Cenar bajo un millón de estrellas</span></div>
+                </div>
+                <div class="exp-card">
+                    <img src="https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=800&q=80" alt="Navegar entre islas en Tailandia">
+                    <div class="exp-overlay"><span>Navegar entre islas secretas</span></div>
+                </div>
+                <div class="exp-card">
+                    <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800&q=80" alt="Safari al amanecer en Kenia">
+                    <div class="exp-overlay"><span>Safari al amanecer</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. POR QUÉ ELEGIRNOS -->
+    <section class="why-section">
         <div class="container">
             <div class="section-header reveal">
                 <span class="section-label">Por qué elegirnos</span>
-                <h2 class="section-title">Tu viaje, tu historia</h2>
+                <h2 class="section-title">Tu viaje merece algo mejor</h2>
                 <div class="divider"></div>
-                <p class="section-subtitle">Cada detalle pensado para ti, no para las masas</p>
+                <p class="section-subtitle">No somos una agencia más. Somos tu socio de viaje.</p>
             </div>
 
-            <div class="value-grid reveal">
-                <div class="value-item">
-                    <div class="value-icon">
-                        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M24 4L6 14v20l18 10 18-10V14L24 4z" />
-                            <path d="M24 24L6 14M24 24v20M24 24l18-10" />
-                        </svg>
-                    </div>
-                    <h3>100% a medida</h3>
-                    <p>No hay itinerarios prefabricados. Cada viaje se diseña desde cero, escuchando lo que realmente quieres vivir.</p>
+            <div class="why-grid reveal">
+                <div class="why-card">
+                    <div class="why-number">01</div>
+                    <h3>Diseño artesanal</h3>
+                    <p>Cada itinerario se crea como una obra única. Investigamos, probamos y seleccionamos cada elemento para que encaje contigo.</p>
                 </div>
-                <div class="value-item">
-                    <div class="value-icon">
-                        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="24" cy="16" r="8" />
-                            <path d="M8 42c0-8.8 7.2-16 16-16s16 7.2 16 16" />
-                        </svg>
-                    </div>
-                    <h3>Dedicación personal</h3>
-                    <p>Un único interlocutor que conoce tu viaje de memoria. Sin call centers, sin intermediarios.</p>
+                <div class="why-card">
+                    <div class="why-number">02</div>
+                    <h3>Acceso privilegiado</h3>
+                    <p>Conexiones directas con hoteles boutique, guías locales y experiencias que no aparecen en buscadores.</p>
                 </div>
-                <div class="value-item">
-                    <div class="value-icon">
-                        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M14 24l7 7 13-13" />
-                            <circle cx="24" cy="24" r="20" />
-                        </svg>
-                    </div>
-                    <h3>Cada detalle, resuelto</h3>
-                    <p>Desde el vuelo hasta la reserva del restaurante. Tu única tarea es disfrutar.</p>
+                <div class="why-card">
+                    <div class="why-number">03</div>
+                    <h3>Tranquilidad absoluta</h3>
+                    <p>Desde la primera llamada hasta tu regreso a casa, nos encargamos de cada detalle para que solo te preocupes de vivir.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 3. CÓMO FUNCIONA -->
-    <section class="process-section">
+    <!-- 5. MÉTODO -->
+    <section class="method-section">
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label">Tu viaje en 3 pasos</span>
+                <span class="section-label">Nuestro método</span>
                 <h2 class="section-title">De la idea al viaje perfecto</h2>
                 <div class="divider"></div>
-                <p class="section-subtitle">Sin complicaciones. Sin letra pequeña. Solo tú y tu viaje.</p>
+                <p class="section-subtitle">Tres pasos. Sin complicaciones. Sin letra pequeña.</p>
             </div>
 
-            <div class="process-grid reveal">
-                <div class="process-step">
-                    <div class="step-number">1</div>
+            <div class="method-timeline reveal">
+                <div class="method-step">
+                    <div class="method-marker">1</div>
                     <h3>Cuéntanos tu sueño</h3>
-                    <p>Nos escribes o llamas. Hablamos de tus gustos, fechas y qué tipo de experiencia buscas. Sin compromiso.</p>
+                    <p>Nos escribes o llamas. Hablamos de tus gustos, fechas, presupuesto y qué tipo de experiencia buscas. Sin compromiso alguno.</p>
                 </div>
-                <div class="process-step">
-                    <div class="step-number">2</div>
+                <div class="method-step">
+                    <div class="method-marker">2</div>
                     <h3>Diseñamos tu viaje</h3>
-                    <p>Creamos una propuesta única: vuelos, alojamientos, experiencias y restaurantes. Todo pensado para ti.</p>
+                    <p>Creamos una propuesta única con vuelos, alojamientos, experiencias y restaurantes. Lo afinamos juntos hasta que sea perfecto.</p>
                 </div>
-                <div class="process-step">
-                    <div class="step-number">3</div>
+                <div class="method-step">
+                    <div class="method-marker">3</div>
                     <h3>Vive lo extraordinario</h3>
-                    <p>Solo tienes que hacer la maleta. Nosotros nos encargamos de todo lo demás, antes, durante y después.</p>
+                    <p>Solo tienes que hacer la maleta. Nosotros nos encargamos de todo lo demás — antes, durante y después de tu viaje.</p>
                 </div>
-            </div>
-
-            <div class="process-cta reveal">
-                <a href="/contacto/" class="btn btn-primary">Empezar ahora &#10230;</a>
             </div>
         </div>
     </section>
 
-    <!-- 4. BANNER VISUAL -->
-    <div class="experience-banner">
-        <div class="experience-content">
-            <p class="experience-quote">No vendemos viajes. Creamos recuerdos que duran toda la vida.</p>
-            <div class="divider"></div>
-            <p class="experience-tagline">Cada viaje lleva nuestro sello personal</p>
-        </div>
-    </div>
+    <!-- 6. EXPERTISE -->
+    <section class="expertise-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Expertise</span>
+                <h2 class="section-title">Conocimiento que marca la diferencia</h2>
+                <div class="divider"></div>
+                <p class="section-subtitle">Especialización real en los destinos que ofrecemos</p>
+            </div>
 
-    <!-- 5. QUIÉN HAY DETRÁS -->
+            <div class="expertise-grid reveal">
+                <div class="expertise-item">
+                    <div class="expertise-icon">
+                        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="20"/><path d="M4 24h40M24 4c-5 6-8 12.5-8 20s3 14 8 20M24 4c5 6 8 12.5 8 20s-3 14-8 20"/></svg>
+                    </div>
+                    <div>
+                        <h3>Viajados en persona</h3>
+                        <p>Conocemos de primera mano cada destino que ofrecemos. No vendemos lo que no hemos vivido.</p>
+                    </div>
+                </div>
+                <div class="expertise-item">
+                    <div class="expertise-icon">
+                        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M8 40V20l16-12 16 12v20H8z"/><path d="M18 40V28h12v12"/></svg>
+                    </div>
+                    <div>
+                        <h3>Alojamientos seleccionados</h3>
+                        <p>Hoteles boutique, lodges exclusivos y villas privadas que cumplen nuestros estándares de excelencia.</p>
+                    </div>
+                </div>
+                <div class="expertise-item">
+                    <div class="expertise-icon">
+                        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M24 4l5 10 11 2-8 8 2 11-10-5-10 5 2-11-8-8 11-2z"/></svg>
+                    </div>
+                    <div>
+                        <h3>Experiencias exclusivas</h3>
+                        <p>Acceso a actividades y momentos que no encontrarás en ningún catálogo ni plataforma online.</p>
+                    </div>
+                </div>
+                <div class="expertise-item">
+                    <div class="expertise-icon">
+                        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M6 36l10-10 8 8 8-12 10 10"/><rect x="4" y="8" width="40" height="32" rx="2"/></svg>
+                    </div>
+                    <div>
+                        <h3>Logística impecable</h3>
+                        <p>Transfers, vuelos internos, permisos y reservas — todo coordinado al milímetro para ti.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. TESTIMONIOS -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Testimonios</span>
+                <h2 class="section-title">Lo que dicen quienes ya han viajado</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="testimonials-slider reveal" id="testimonialsSlider">
+                <div class="testimonial-slide active">
+                    <p class="testimonial-quote">Fue el viaje de nuestra vida. Cada detalle estaba pensado, cada momento fue especial. No imaginábamos que viajar así fuera posible.</p>
+                    <div class="testimonial-author">
+                        <strong>María y Carlos</strong>
+                        Japón — 14 días
+                    </div>
+                </div>
+                <div class="testimonial-slide">
+                    <p class="testimonial-quote">La tranquilidad de saber que todo está organizado no tiene precio. Solo tuvimos que disfrutar. Repetiremos sin duda.</p>
+                    <div class="testimonial-author">
+                        <strong>Laura S.</strong>
+                        Tailandia — 12 días
+                    </div>
+                </div>
+                <div class="testimonial-slide">
+                    <p class="testimonial-quote">Nos recomendaron restaurantes, experiencias y rincones que jamás habríamos encontrado solos. Un nivel de personalización increíble.</p>
+                    <div class="testimonial-author">
+                        <strong>Andrés y Sofía</strong>
+                        Italia — 10 días
+                    </div>
+                </div>
+                <div class="testimonial-dots">
+                    <button class="testimonial-dot active" data-slide="0" aria-label="Testimonio 1"></button>
+                    <button class="testimonial-dot" data-slide="1" aria-label="Testimonio 2"></button>
+                    <button class="testimonial-dot" data-slide="2" aria-label="Testimonio 3"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. FAQ -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Preguntas frecuentes</span>
+                <h2 class="section-title">Todo lo que necesitas saber</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="faq-list reveal">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        ¿Cómo funciona el proceso de diseño del viaje?
+                        <svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Todo empieza con una conversación. Nos cuentas qué tipo de viaje buscas, tus fechas, gustos y expectativas. A partir de ahí, diseñamos una propuesta completamente personalizada que revisamos contigo hasta que sea perfecta.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        ¿Puedo modificar el itinerario una vez propuesto?
+                        <svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Por supuesto. La propuesta inicial es un punto de partida. La afinamos juntos tantas veces como necesites hasta que refleje exactamente lo que quieres vivir.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        ¿Qué pasa si surge un imprevisto durante el viaje?
+                        <svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Estamos disponibles durante todo tu viaje. Ante cualquier incidencia — cambio de vuelo, problema con un hotel, necesidad de asistencia — nos encargamos de resolverlo de inmediato.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        ¿Trabajáis solo con destinos de lujo?
+                        <svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Trabajamos con experiencias de calidad, que no siempre significan el hotel más caro. Nuestro concepto de lujo es la personalización, la atención al detalle y la tranquilidad de tener todo resuelto.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        ¿Con cuánta antelación debo contactaros?
+                        <svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Lo ideal es contactarnos con al menos 2-3 meses de antelación para destinos complejos. Para viajes más sencillos, podemos trabajar con menos margen, pero cuanto antes empieces, mejores opciones tendremos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. QUIÉN HAY DETRÁS -->
     <section class="about-preview">
         <div class="container">
             <div class="section-header reveal">
@@ -1508,12 +1981,14 @@ section {
         </div>
     </section>
 
-    <!-- 6. CTA FINAL -->
-    <section class="cta-section">
-        <div class="cta-content">
-            <h2>Tu próximo viaje empieza con una conversación</h2>
-            <p>Cuéntanos qué sueñas y lo convertimos en realidad. Sin compromiso, sin prisas.</p>
-            <a href="#contacto" class="btn btn-primary">Hablemos de tu viaje &#10230;</a>
+    <!-- 10. CTA FINAL -->
+    <section class="cta-final">
+        <div class="container">
+            <div class="cta-final-content reveal">
+                <h2>Tu próximo viaje empieza con una conversación</h2>
+                <p>Cuéntanos qué sueñas y lo convertimos en realidad. Sin compromiso, sin prisas, sin letra pequeña.</p>
+                <a href="/contacto/" class="btn btn-primary">Hablemos de tu viaje &#10230;</a>
+            </div>
         </div>
     </section>
 
@@ -1738,6 +2213,70 @@ section {
         })();
     </script>
 
+
+    <script>
+        // Testimonials slider
+        (function() {
+            const slider = document.getElementById('testimonialsSlider');
+            if (!slider) return;
+            const slides = slider.querySelectorAll('.testimonial-slide');
+            const dots = slider.querySelectorAll('.testimonial-dot');
+            let current = 0;
+            let timer;
+
+            function goTo(index) {
+                slides[current].classList.remove('active');
+                dots[current].classList.remove('active');
+                current = index;
+                slides[current].classList.add('active');
+                dots[current].classList.add('active');
+            }
+
+            function next() {
+                goTo((current + 1) % slides.length);
+            }
+
+            function startTimer() {
+                timer = setInterval(next, 8000);
+            }
+
+            dots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    clearInterval(timer);
+                    goTo(parseInt(this.dataset.slide));
+                    startTimer();
+                });
+            });
+
+            startTimer();
+        })();
+    </script>
+
+    <script>
+        // FAQ accordion
+        (function() {
+            const items = document.querySelectorAll('.faq-item');
+            items.forEach(item => {
+                const btn = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+                btn.addEventListener('click', function() {
+                    const isOpen = item.classList.contains('open');
+                    // Close all
+                    items.forEach(other => {
+                        other.classList.remove('open');
+                        other.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                        other.querySelector('.faq-answer').style.maxHeight = null;
+                    });
+                    // Open clicked if it was closed
+                    if (!isOpen) {
+                        item.classList.add('open');
+                        btn.setAttribute('aria-expanded', 'true');
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                    }
+                });
+            });
+        })();
+    </script>
 
     <!-- COOKIE BANNER -->
     <div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;width:100%;z-index:9999;background:var(--dark-soft,#1a1a1a);border-top:1px solid rgba(201,169,110,0.2);padding:16px 24px;font-family:'Inter',sans-serif;">
