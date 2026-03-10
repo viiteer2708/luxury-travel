@@ -25,6 +25,7 @@
 
         .navbar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: nowrap; max-width: 80%; padding: 0 24px; }
         .logo { display: inline-block; transition: var(--transition); } .logo img { height: 80px; width: auto; transition: var(--transition); }
+        .nav-links a { font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 400; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold-light); transition: var(--transition); position: relative; padding: 8px 18px; border-radius: 50px; }
         .nav-links a:hover { background: var(--gold); color: var(--dark); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,169,110,0.3); }
         .nav-links li { position: relative; list-style: none; }
         .dropdown { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); min-width: 220px; background: var(--dark-soft); border: 1px solid rgba(201,169,110,0.15); border-radius: 8px; padding: 12px 0; opacity: 0; visibility: hidden; transition: var(--transition); box-shadow: 0 16px 40px rgba(0,0,0,0.4); z-index: 100; margin-top: 8px; }
@@ -129,6 +130,8 @@
         .reveal.visible { opacity: 1; transform: translateY(0); }
         @media (max-width: 1024px) { .includes-grid { grid-template-columns: repeat(2, 1fr); } .footer-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 768px) { section { padding: 80px 0; } .navbar .container { max-width: 100%; width: 100%; padding: 0 12px; } .dest-hero { background-attachment: scroll; background-position: center center; background-repeat: no-repeat; } .route-line { display: none; } .itinerary-block { grid-template-columns: 1fr; gap: 28px; } .itinerary-block.reverse .itinerary-image, .itinerary-block.reverse .itinerary-carousel, .itinerary-block.reverse .itinerary-content { order: unset; } .itinerary-image img { height: 280px; } .itinerary-carousel { height: 280px; } .includes-grid { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr; gap: 36px; } .footer-bottom { flex-direction: column; gap: 12px; text-align: center; } }
+    </style>
+</head>
 <body>
     <nav class="navbar" id="navbar">
         <div class="container">
