@@ -319,18 +319,45 @@ section {
     margin: 0 auto;
 }
 
+.proof-section .section-subtitle {
+    max-width: 720px;
+}
+
+.proof-tagline {
+    display: block;
+    margin-top: 10px;
+    color: var(--gold-light);
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
 .proof-card {
     text-align: center;
-    padding: 32px 20px;
+    padding: 40px 28px;
     border-radius: var(--radius);
     background: rgba(255,255,255,0.02);
     border: 1px solid rgba(255,255,255,0.04);
+    border-bottom: 2px solid rgba(201,169,110,0.15);
     transition: var(--transition);
 }
 
 .proof-card:hover {
     border-color: rgba(201,169,110,0.2);
+    border-bottom-color: rgba(201,169,110,0.5);
     transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+}
+
+.proof-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(201,169,110,0.06);
+    border: 1px solid rgba(201,169,110,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
 }
 
 .proof-card svg {
@@ -339,11 +366,10 @@ section {
     stroke: var(--gold);
     stroke-width: 1.5;
     fill: none;
-    margin-bottom: 20px;
 }
 
 .proof-card h3 {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     color: var(--white);
     margin-bottom: 8px;
 }
@@ -841,6 +867,10 @@ section {
     .proof-grid {
         grid-template-columns: 1fr;
         gap: 20px;
+    }
+
+    .proof-card {
+        padding: 32px 20px;
     }
 
     .experiences-grid {
@@ -1684,27 +1714,27 @@ section {
                 <span class="section-label">Confianza desde el primer momento</span>
                 <h2 class="section-title">El lujo es viajar sin tener que pensar en nada más</h2>
                 <div class="divider"></div>
-                <p class="section-subtitle">Diseño cada viaje para que todo encaje contigo: tus gustos, tu forma de viajar y lo que realmente quieres vivir.<br>Nada se improvisa. Todo está pensado.</p>
+                <p class="section-subtitle">Diseño cada viaje para que todo encaje contigo: tus gustos, tu forma de viajar y lo que realmente quieres vivir.<span class="proof-tagline">Nada se improvisa. Todo está pensado.</span></p>
             </div>
 
             <div class="proof-grid reveal">
                 <div class="proof-card">
-                    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M24 4L6 14v20l18 10 18-10V14L24 4z"/><path d="M24 24L6 14M24 24v20M24 24l18-10"/></svg>
+                    <div class="proof-icon"><svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M24 4L6 14v20l18 10 18-10V14L24 4z"/><path d="M24 24L6 14M24 24v20M24 24l18-10"/></svg></div>
                     <h3>100% a medida</h3>
                     <p>Cada viaje se diseña desde cero.<br>Sin itinerarios prefabricados ni rutas copiadas.</p>
                 </div>
                 <div class="proof-card">
-                    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="16" r="8"/><path d="M8 42c0-8.8 7.2-16 16-16s16 7.2 16 16"/></svg>
+                    <div class="proof-icon"><svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="16" r="8"/><path d="M8 42c0-8.8 7.2-16 16-16s16 7.2 16 16"/></svg></div>
                     <h3>Diseñador único</h3>
                     <p>Hablas siempre con la misma persona.<br>Alguien que conoce tu viaje de principio a fin.</p>
                 </div>
                 <div class="proof-card">
-                    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M14 24l7 7 13-13"/><circle cx="24" cy="24" r="20"/></svg>
+                    <div class="proof-icon"><svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M14 24l7 7 13-13"/><circle cx="24" cy="24" r="20"/></svg></div>
                     <h3>Todo pensado</h3>
                     <p>Vuelos, hoteles, reservas y traslados coordinados para que el viaje fluya sin fricciones.</p>
                 </div>
                 <div class="proof-card">
-                    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M24 4c-11 0-20 9-20 20s9 20 20 20 20-9 20-20S35 4 24 4z"/><path d="M16 24l5 5 11-11"/></svg>
+                    <div class="proof-icon"><svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M24 4c-11 0-20 9-20 20s9 20 20 20 20-9 20-20S35 4 24 4z"/><path d="M16 24l5 5 11-11"/></svg></div>
                     <h3>Tranquilidad total</h3>
                     <p>Si algo cambia durante el viaje, se resuelve.<br>Tú solo tienes que disfrutar.</p>
                 </div>
