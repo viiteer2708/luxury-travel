@@ -306,6 +306,310 @@ section {
     color: var(--gold);
 }
 
+/* ===== PROPUESTA DE VALOR ===== */
+.value-section {
+    background: var(--dark);
+}
+
+.value-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.value-item {
+    text-align: center;
+}
+
+.value-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.value-icon svg {
+    width: 48px;
+    height: 48px;
+    stroke: var(--gold);
+    stroke-width: 1.5;
+    fill: none;
+}
+
+.value-item h3 {
+    font-size: 1.3rem;
+    color: var(--white);
+    margin-bottom: 12px;
+}
+
+.value-item p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-weight: 300;
+}
+
+/* ===== DESTINOS HOME ===== */
+.destinations-section {
+    background: var(--dark-soft);
+}
+
+.dest-tabs-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 48px;
+}
+
+.destinations-grid .destination-card {
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.destinations-grid .destination-card.hidden {
+    display: none;
+}
+
+.dest-view-all {
+    text-align: center;
+    margin-top: 48px;
+}
+
+/* ===== CÓMO FUNCIONA ===== */
+.process-section {
+    background: var(--dark);
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.process-grid::before {
+    content: '';
+    position: absolute;
+    top: 32px;
+    left: 15%;
+    right: 15%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.3;
+}
+
+.process-step {
+    text-align: center;
+    position: relative;
+}
+
+.step-number {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,169,110,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    background: var(--dark);
+    position: relative;
+    z-index: 1;
+}
+
+.process-step h3 {
+    font-size: 1.3rem;
+    color: var(--white);
+    margin-bottom: 12px;
+}
+
+.process-step p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-weight: 300;
+}
+
+.process-cta {
+    text-align: center;
+    margin-top: 48px;
+}
+
+/* ===== BANNER VISUAL ===== */
+.experience-banner {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('https://images.unsplash.com/photo-1540541338287-41700207dee6?w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.experience-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(10,10,10,0.7), rgba(10,10,10,0.7));
+}
+
+.experience-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 700px;
+    padding: 0 24px;
+}
+
+.experience-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.5;
+    margin-bottom: 24px;
+}
+
+.experience-content .divider {
+    margin: 24px auto;
+}
+
+.experience-tagline {
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+/* ===== QUIÉN HAY DETRÁS (PREVIEW) ===== */
+.about-preview {
+    background: var(--dark-soft);
+}
+
+.about-preview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.about-preview-image img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border-radius: var(--radius);
+    border: 1px solid rgba(201,169,110,0.2);
+}
+
+.about-preview-text p {
+    font-size: 1.05rem;
+    color: var(--text);
+    line-height: 1.9;
+    font-weight: 300;
+    margin-bottom: 24px;
+}
+
+.about-preview-text .about-quote {
+    border-left: 3px solid var(--gold);
+    padding-left: 24px;
+    margin: 32px 0;
+}
+
+.about-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--gold-light);
+    font-style: italic;
+    line-height: 1.8;
+    margin-bottom: 0;
+}
+
+.about-preview-text .btn {
+    margin-top: 8px;
+}
+
+/* ===== CTA FINAL ===== */
+.cta-section {
+    background: var(--dark);
+    padding: 80px 0;
+    position: relative;
+}
+
+.cta-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.cta-content::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(201,169,110,0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.cta-content h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    color: var(--white);
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.cta-content p {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 32px;
+    position: relative;
+}
+
+.cta-content .btn {
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    .value-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .process-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .process-grid::before {
+        display: none;
+    }
+
+    .about-preview-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .experience-banner {
+        background-attachment: scroll;
+    }
+}
+
 .contact-wrapper {
     display: grid;
             grid-template-columns: 1fr 1fr;
@@ -614,117 +918,271 @@ section {
     </section>
 
 
-    <!-- DESTINATIONS -->
-    <section id="destinos">
+    <!-- 1. PROPUESTA DE VALOR -->
+    <section class="value-section">
         <div class="container">
             <div class="section-header reveal">
-                <h2 class="section-title">Destinos Extraordinarios</h2>
+                <span class="section-label">Por qué elegirnos</span>
+                <h2 class="section-title">Tu viaje, tu historia</h2>
                 <div class="divider"></div>
-                <p class="section-subtitle">Cada viaje es una experiencia irrepetible, diseñada con atención artesanal al detalle</p>
+                <p class="section-subtitle">Cada detalle pensado para ti, no para las masas</p>
             </div>
 
-
-            <div class="destinations-grid">
-                <!-- Card 1 -->
-                <div class="destination-card reveal">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=600&q=80" alt="Maldivas - Villas sobre el agua cristalina">
-                        <span class="card-badge">Exclusivo</span>
-
+            <div class="value-grid reveal">
+                <div class="value-item">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M24 4L6 14v20l18 10 18-10V14L24 4z" />
+                            <path d="M24 24L6 14M24 24v20M24 24l18-10" />
+                        </svg>
                     </div>
-                    <div class="card-body">
-                        <span class="card-location">Maldivas, Océano Índico</span>
-                        <h3>Paraíso sobre el Agua</h3>
-                        <p>Villas privadas sobre aguas cristalinas con servicio de mayordomo personal y experiencias submarinas únicas.</p>
-                        <div class="card-features">
-                            <span>7 noches</span>
-                            <span>Villa privada</span>
-                            <span>All inclusive</span>
-                        </div>
-                    </div>
+                    <h3>100% a medida</h3>
+                    <p>No hay itinerarios prefabricados. Cada viaje se diseña desde cero, escuchando lo que realmente quieres vivir.</p>
                 </div>
-
-                <!-- Card 2 -->
-                <div class="destination-card reveal">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?w=600&q=80" alt="Japón - Templos y jardines tradicionales">
-                        <span class="card-badge">Nuevo</span>
-
+                <div class="value-item">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="24" cy="16" r="8" />
+                            <path d="M8 42c0-8.8 7.2-16 16-16s16 7.2 16 16" />
+                        </svg>
                     </div>
-                    <div class="card-body">
-                        <span class="card-location">Kioto & Tokio, Japón</span>
-                        <h3>Esencia del Sol Naciente</h3>
-                        <p>Un recorrido cultural por ryokans centenarios, templos secretos y la alta gastronomía kaiseki.</p>
-                        <div class="card-features">
-                            <span>10 noches</span>
-                            <span>Guía privado</span>
-                            <span>Ryokans 5★</span>
-                        </div>
-                    </div>
+                    <h3>Dedicación personal</h3>
+                    <p>Un único interlocutor que conoce tu viaje de memoria. Sin call centers, sin intermediarios.</p>
                 </div>
-
-                <!-- Card 3 -->
-                <div class="destination-card reveal">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?w=600&q=80" alt="Safari de lujo en África">
-                        <span class="card-badge">Popular</span>
-
+                <div class="value-item">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14 24l7 7 13-13" />
+                            <circle cx="24" cy="24" r="20" />
+                        </svg>
                     </div>
-                    <div class="card-body">
-                        <span class="card-location">Serengeti, Tanzania</span>
-                        <h3>Safari de Lujo Africano</h3>
-                        <p>La gran migración desde lodges exclusivos con vuelos privados y cenas bajo las estrellas del Serengeti.</p>
-                        <div class="card-features">
-                            <span>12 noches</span>
-                            <span>Vuelo privado</span>
-                            <span>Lodge 5★</span>
-                        </div>
-                    </div>
+                    <h3>Cada detalle, resuelto</h3>
+                    <p>Desde el vuelo hasta la reserva del restaurante. Tu única tarea es disfrutar.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- TESTIMONIALS -->
-    <section class="about-section" id="testimonios">
+    <!-- 2. DESTINOS DESTACADOS -->
+    <section class="destinations-section" id="destinos">
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label">Quiénes somos</span>
-                <h2 class="section-title">Horizonte Exclusivo</h2>
+                <span class="section-label">Destinos Extraordinarios</span>
+                <h2 class="section-title">El mundo, a tu manera</h2>
+                <div class="divider"></div>
+                <p class="section-subtitle">Una colección de experiencias únicas en los rincones más exclusivos del planeta</p>
+            </div>
+
+            <div class="dest-tabs-wrapper">
+                <div class="dest-tabs" id="destTabs">
+                    <a href="#" class="active" data-filter="todos">Todos</a>
+                    <a href="#" data-filter="asia">Asia</a>
+                    <a href="#" data-filter="europa">Europa</a>
+                    <a href="#" data-filter="africa">África</a>
+                    <a href="#" data-filter="america">América</a>
+                    <a href="#" data-filter="paraisos">Paraísos</a>
+                </div>
+            </div>
+
+            <div class="destinations-grid" id="destGrid">
+                <div class="destination-card reveal" data-region="asia">
+                    <a href="/japon/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?w=600&q=80" alt="Japón - Templos y jardines tradicionales">
+                            <span class="card-badge">Popular</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Kioto & Tokio, Japón</span>
+                            <h3>Esencia del Sol Naciente</h3>
+                            <p>Ryokans centenarios, templos secretos y alta gastronomía kaiseki en un recorrido cultural inolvidable.</p>
+                            <div class="card-features">
+                                <span>10 noches</span>
+                                <span>Guía privado</span>
+                                <span>Ryokans 5★</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="destination-card reveal" data-region="europa">
+                    <a href="/italia/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=600&q=80" alt="Italia - Costa Amalfitana y Toscana">
+                            <span class="card-badge">Exclusivo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Toscana & Amalfi, Italia</span>
+                            <h3>Dolce Vita a medida</h3>
+                            <p>Villas con viñedo privado, cenas en terrazas sobre el Mediterráneo y el arte del buen vivir italiano.</p>
+                            <div class="card-features">
+                                <span>9 noches</span>
+                                <span>Chófer privado</span>
+                                <span>Villas 5★</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="destination-card reveal" data-region="paraisos">
+                    <a href="/maldivas/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=600&q=80" alt="Maldivas - Villas sobre el agua cristalina">
+                            <span class="card-badge">Exclusivo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Maldivas, Océano Índico</span>
+                            <h3>Paraíso sobre el Agua</h3>
+                            <p>Villas privadas sobre aguas cristalinas con servicio de mayordomo y experiencias submarinas únicas.</p>
+                            <div class="card-features">
+                                <span>7 noches</span>
+                                <span>Villa privada</span>
+                                <span>All inclusive</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="destination-card reveal" data-region="africa">
+                    <a href="/kenia-zanzibar/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?w=600&q=80" alt="Kenia y Zanzíbar - Safari y playa">
+                            <span class="card-badge">Nuevo</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Masái Mara & Zanzíbar</span>
+                            <h3>Safari y Playa Africana</h3>
+                            <p>La gran migración en lodges exclusivos seguida de las playas paradisíacas de Zanzíbar.</p>
+                            <div class="card-features">
+                                <span>12 noches</span>
+                                <span>Vuelo privado</span>
+                                <span>Lodge 5★</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="destination-card reveal" data-region="america">
+                    <a href="/peru/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1526392060635-9d6019884377?w=600&q=80" alt="Perú - Machu Picchu y gastronomía">
+                            <span class="card-badge">Popular</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Cusco & Lima, Perú</span>
+                            <h3>Imperio Inca y Alta Cocina</h3>
+                            <p>Machu Picchu al amanecer, el Valle Sagrado en tren de lujo y la mejor gastronomía de Latinoamérica.</p>
+                            <div class="card-features">
+                                <span>10 noches</span>
+                                <span>Tren de lujo</span>
+                                <span>Hotels 5★</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="destination-card reveal" data-region="asia">
+                    <a href="/tailandia/">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1528181304800-259b08848526?w=600&q=80" alt="Tailandia - Templos y playas">
+                            <span class="card-badge">Popular</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-location">Bangkok & Islas, Tailandia</span>
+                            <h3>Templos, Selva y Mar</h3>
+                            <p>Templos dorados, mercados flotantes y las playas más exclusivas del sudeste asiático.</p>
+                            <div class="card-features">
+                                <span>11 noches</span>
+                                <span>Guía privado</span>
+                                <span>Resorts 5★</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="dest-view-all reveal">
+                <a href="/destinos/" class="btn btn-primary">Explorar todos los destinos &#10230;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. CÓMO FUNCIONA -->
+    <section class="process-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Tu viaje en 3 pasos</span>
+                <h2 class="section-title">De la idea al viaje perfecto</h2>
+                <div class="divider"></div>
+                <p class="section-subtitle">Sin complicaciones. Sin letra pequeña. Solo tú y tu viaje.</p>
+            </div>
+
+            <div class="process-grid reveal">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Cuéntanos tu sueño</h3>
+                    <p>Nos escribes o llamas. Hablamos de tus gustos, fechas y qué tipo de experiencia buscas. Sin compromiso.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Diseñamos tu viaje</h3>
+                    <p>Creamos una propuesta única: vuelos, alojamientos, experiencias y restaurantes. Todo pensado para ti.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Vive lo extraordinario</h3>
+                    <p>Solo tienes que hacer la maleta. Nosotros nos encargamos de todo lo demás, antes, durante y después.</p>
+                </div>
+            </div>
+
+            <div class="process-cta reveal">
+                <a href="/contacto/" class="btn btn-primary">Empezar ahora &#10230;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. BANNER VISUAL -->
+    <div class="experience-banner">
+        <div class="experience-content">
+            <p class="experience-quote">No vendemos viajes. Creamos recuerdos que duran toda la vida.</p>
+            <div class="divider"></div>
+            <p class="experience-tagline">Cada viaje lleva nuestro sello personal</p>
+        </div>
+    </div>
+
+    <!-- 5. QUIÉN HAY DETRÁS -->
+    <section class="about-preview">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Quién hay detrás</span>
+                <h2 class="section-title">Una pasión convertida en proyecto</h2>
                 <div class="divider"></div>
             </div>
 
-            <div class="about-content reveal">
-                <p>Cuando alguien me habla de un viaje, de unas vacaciones o de una escapada —aunque no me lo pida— mi cabeza empieza a trabajar. Busco vuelos, analizo hoteles, leo reseñas y afino cada decisión. No puedo evitarlo. Siempre ha sido así.</p>
-
-                <p>Desde que tengo uso de razón siento una necesidad casi automática de anticiparme, organizar y cuidar cada detalle. Montar viajes no es solo algo que se me da bien: es mi pasión. Disfruto tanto diseñándolos como viviéndolos.</p>
-
-                <p>Durante años he creado viajes para familiares, amigos y personas cercanas con un único objetivo: que todo salga perfecto.</p>
-
-                <div class="about-highlight">
-                    <p>Que cada elección tenga un porqué.</p>
-                    <p>Que cada momento merezca la pena.</p>
-                    <p>Que no sufras aglomeraciones, decepciones ocultas ni sorpresas desagradables al llegar.</p>
+            <div class="about-preview-grid reveal">
+                <div class="about-preview-image">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80" alt="Horizonte Exclusivo - Viajes de lujo a medida">
                 </div>
+                <div class="about-preview-text">
+                    <p>Cuando alguien me habla de un viaje, mi cabeza empieza a trabajar. Busco vuelos, analizo hoteles, leo reseñas y afino cada decisión. No puedo evitarlo. Montar viajes no es solo algo que se me da bien: es mi pasión.</p>
 
-                <h3 class="about-subtitle">El origen de Horizonte Exclusivo</h3>
-                <p>Horizonte Exclusivo es la materialización de ese sueño. Un proyecto profundamente personal en el que cada viaje se concibe como una obra única, no como un producto en serie.</p>
+                    <p>Horizonte Exclusivo es la materialización de ese sueño. Un proyecto profundamente personal en el que cada viaje se concibe como una obra única, no como un producto en serie.</p>
 
-                <p>Aquí no encontrarás viajes prefabricados ni experiencias copiadas y pegadas. Cada propuesta se crea desde cero, escuchándote, anticipando tus necesidades y cuidando cada detalle con mimo.</p>
+                    <div class="about-quote">
+                        <p>El verdadero lujo no es pagar más, sino ganar tranquilidad, tiempo y la certeza de que todo está pensado para ti.</p>
+                    </div>
 
-                <p>Porque el verdadero lujo no es pagar más, sino ganar tranquilidad, tiempo y la certeza de que todo está pensado única y exclusivamente para ti.</p>
-
-                <h3 class="about-subtitle">Para quién es Horizonte Exclusivo</h3>
-                <p>Trabajo con personas que valoran su tiempo, que no viven para comparar precios ni juegan a ser expertos, y que buscan a alguien de absoluta confianza en quien delegar algo tan importante como sus vacaciones. Personas que quieren disfrutar sin estrés, sabiendo que detrás hay criterio, exigencia máxima y alguien que responde siempre.</p>
-
-                <h3 class="about-subtitle">Mi compromiso</h3>
-                <p>Estoy construyendo este proyecto con una dedicación absoluta y con un nivel de exigencia muy alto. Quiero que cada viaje lleve mi sello. Que quien confíe en Horizonte Exclusivo sienta que su experiencia ha sido tratada como algo personal, cuidado y verdaderamente exclusivo.</p>
-
-                <div class="about-closing">
-                    <p>Porque viajar puede hacerlo cualquiera.<br><strong>Pero crear recuerdos inolvidables, no.</strong></p>
-                    <p style="margin-top: 16px; font-size: 0.95rem; color: var(--text-muted); font-family: 'Inter', sans-serif; font-weight: 300;">Más que viajar, vivir el mundo.</p>
+                    <a href="/quien-hay-detras/" class="btn btn-primary">Conocer mi historia &#10230;</a>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- 6. CTA FINAL -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Tu próximo viaje empieza con una conversación</h2>
+            <p>Cuéntanos qué sueñas y lo convertimos en realidad. Sin compromiso, sin prisas.</p>
+            <a href="#contacto" class="btn btn-primary">Hablemos de tu viaje &#10230;</a>
         </div>
     </section>
 
@@ -906,6 +1364,29 @@ section {
                     input.style.background = 'rgba(201,169,110,0.08)';
                 }
             }
+        })();
+    </script>
+
+    <script>
+        // Destination tabs filter
+        (function() {
+            const tabs = document.querySelectorAll('#destTabs a');
+            const cards = document.querySelectorAll('#destGrid .destination-card');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    const filter = this.dataset.filter;
+                    cards.forEach(card => {
+                        if (filter === 'todos' || card.dataset.region === filter) {
+                            card.classList.remove('hidden');
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    });
+                });
+            });
         })();
     </script>
 
