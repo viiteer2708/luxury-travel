@@ -14,11 +14,15 @@ const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('navLinks');
 hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('active');
+    navbar.classList.toggle('menu-open');
 });
 
 // Close menu on link click
 navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => navLinks.classList.remove('active'));
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        navbar.classList.remove('menu-open');
+    });
 });
 
 // Auto-collapse navbar when items don't fit
@@ -29,6 +33,7 @@ function checkNavOverflow() {
 
     navLinks.classList.remove('active');
     navbar.classList.remove('collapsed');
+    navbar.classList.remove('menu-open');
     navLinks.style.flexShrink = '0';
     void navbar.offsetHeight;
 

@@ -171,23 +171,50 @@ ul { list-style: none; }
 }
 
 /* Auto-collapse navbar */
-.navbar.collapsed .hamburger { display: flex; }
+.navbar.collapsed .hamburger {
+    display: flex;
+    z-index: 1010;
+    position: relative;
+}
 
 .navbar.collapsed .nav-links {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 280px;
+    width: 100%;
     height: 100vh;
     background: var(--dark);
     flex-direction: column;
-    justify-content: center;
-    gap: 28px;
-    transition: var(--transition);
-    border-left: 1px solid rgba(201,169,110,0.15);
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0;
+    padding: 120px 40px 40px;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-left: none;
+    z-index: 1005;
+    overflow-y: auto;
 }
 
 .navbar.collapsed .nav-links.active { right: 0; }
+
+.navbar.collapsed .nav-links > li {
+    width: 100%;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.navbar.collapsed .nav-links > li > a {
+    padding: 16px 0;
+    display: block;
+    border-radius: 0;
+    font-size: 1rem;
+}
+
+.navbar.collapsed .nav-links > li > a:hover {
+    background: none;
+    color: var(--gold);
+    transform: none;
+    box-shadow: none;
+}
 
 .navbar.collapsed .nav-links .dropdown {
     position: static;
@@ -196,7 +223,7 @@ ul { list-style: none; }
     background: transparent;
     border: none;
     border-radius: 0;
-    padding: 8px 0 0 20px;
+    padding: 0 0 12px 20px;
     opacity: 1;
     visibility: visible;
     box-shadow: none;
@@ -204,8 +231,25 @@ ul { list-style: none; }
 }
 
 .navbar.collapsed .nav-links .dropdown a {
-    padding: 6px 0;
-    font-size: 0.75rem;
+    padding: 10px 0;
+    font-size: 0.85rem;
+}
+
+/* Hamburguesa → X animada */
+.navbar.menu-open .hamburger span {
+    transition: var(--transition);
+}
+
+.navbar.menu-open .hamburger span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.navbar.menu-open .hamburger span:nth-child(2) {
+    opacity: 0;
+}
+
+.navbar.menu-open .hamburger span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
 }
 
 /* ===== BUTTONS ===== */
