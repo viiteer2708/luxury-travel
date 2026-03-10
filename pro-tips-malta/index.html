@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Hacks: Malta — Horizonte Exclusivo</title>
+    <link rel="icon" type="image/x-icon" href="/images/genfavicon-package/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/genfavicon-package/genfavicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/genfavicon-package/genfavicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/genfavicon-package/apple-touch-icon.png">
+    <link rel="manifest" href="/images/genfavicon-package/site.webmanifest">
+    <meta name="description" content="Consejos exclusivos para viajar a Malta: checklist, dinero, transporte, seguridad, cultura, comida y hacks de experto.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+.dest-hero {
+    min-height: calc(70vh - 50px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 100px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            background-image: url('https://images.unsplash.com/photo-1579430872607-e7b2b7759492?w=1920&q=80');
+            background-size: cover;
+            background-position: center calc(50% - 20px);
+            background-attachment: fixed;
+}
+
+.dest-hero::after {
+    content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(10,10,10,0.05) 0%, rgba(10,10,10,0.15) 50%, var(--dark) 100%);
+}
+
+.dest-hero-content {
+    position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 24px;
+}
+
+.dest-hero-content h1 {
+    font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s 0.2s ease both;
+            text-shadow:
+                0 2px 4px rgba(0, 0, 0, 0.8),
+                0 4px 20px rgba(0, 0, 0, 0.6),
+                0 8px 40px rgba(0, 0, 0, 0.4);
+}
+
+.dest-hero-content p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: var(--white);
+            font-weight: 700;
+            max-width: 540px;
+            margin: 0 auto;
+            margin-bottom: 8px;
+            animation: fadeInUp 0.8s 0.4s ease both; text-shadow:
+                0 2px 4px rgba(0, 0, 0, 0.8),
+                0 4px 20px rgba(0, 0, 0, 0.6),
+                0 8px 40px rgba(0, 0, 0, 0.4);
+}
+
+.tips-intro {
+    padding-top: 30px;
+            padding-bottom: 10px;
+}
+
+.tips-intro-content {
+    max-width: 780px;
+            margin: 0 auto;
+            text-align: center;
+}
+
+.tips-intro-content p {
+    font-size: 1.05rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 16px;
+}
+
+.tips-back-link {
+    display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--gold);
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+            margin-top: 8px;
+}
+
+.tips-back-link:hover {
+    color: var(--gold-light);
+            gap: 12px;
+}
+
+.tips-section {
+    padding: 80px 0;
+}
+
+.tips-section.alt-bg {
+    background: var(--dark-soft);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.tips-section-header {
+    margin-bottom: 40px;
+}
+
+.tips-section-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--white);
+            line-height: 1.2;
+}
+
+.tips-section-subtitle {
+    font-size: 0.9rem;
+            color: var(--gold-light);
+            font-weight: 300;
+            margin-top: 4px;
+}
+
+.tip-item {
+    display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text);
+}
+
+.tip-item:last-child {
+    margin-bottom: 0;
+}
+
+.tip-icon {
+    flex-shrink: 0;
+            font-size: 1.1rem;
+            margin-top: 2px;
+}
+
+.tip-item strong {
+    color: var(--white);
+}
+
+.tips-list {
+    max-width: 780px;
+}
+
+.top5-grid {
+    display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 32px;
+            margin-bottom: 40px;
+}
+
+.top5-card {
+    background: var(--dark-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: var(--radius);
+            padding: 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            transition: var(--transition);
+}
+
+.top5-card:hover {
+    border-color: rgba(201,169,110,0.2);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 36px rgba(0,0,0,0.3);
+}
+
+.top5-card .tip-icon {
+    font-size: 1.3rem;
+}
+
+.top5-card p {
+    font-size: 0.9rem;
+            line-height: 1.7;
+            color: var(--text);
+}
+
+.top5-card strong {
+    color: var(--white);
+}
+
+.tips-cta {
+    text-align: center;
+            padding: 80px 0;
+}
+
+.tips-cta h2 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--white);
+            margin-bottom: 16px;
+}
+
+.tips-cta p {
+    color: var(--text-muted);
+            max-width: 540px;
+            margin: 0 auto 32px;
+            font-weight: 300;
+}
+
+@media (max-width: 768px) {
+    .dest-hero {
+        background-attachment: scroll;
+                background-position: center center;
+                background-repeat: no-repeat;
+    }
+
+    .tips-section {
+        padding: 48px 0;
+    }
+
+    .top5-grid {
+        grid-template-columns: 1fr;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="/" class="logo"><img src="/images/logo-trimmed.png" alt="Horizonte Exclusivo"></a>
+            <ul class="nav-links" id="navLinks">
+                <li>
+                    <a href="/destinos/">Destinos</a>
+                    <div class="dropdown">
+                        <a href="/africa/">Africa</a>
+                        <a href="/america/">América</a>
+                        <a href="/asia/">Asia</a>
+                        <a href="/europa/">Europa</a>
+                        <a href="/paraisos/">Paraísos sobre el agua</a>
+                    </div>
+                </li>
+                <li><a href="/quien-hay-detras/">¿Quién hay detrás?</a></li>
+                <li><a href="/pro-tips/">Travel Hacks</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/contacto/">Contacto</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="dest-hero">
+        <div class="dest-hero-content">
+            <h1>Travel Hacks: Malta</h1>
+            <p>Todo lo que necesitas saber antes, durante y después de tu viaje</p>
+        </div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="tips-intro">
+        <div class="container">
+            <div class="tips-intro-content reveal">
+                <p>Malta combina historia milenaria, ciudades de piedra dorada, aguas turquesa y una gastronomía mediterránea irresistible. Estos consejos están pensados para que disfrutes cada momento sin contratiempos, tanto si es tu primera vez como si vuelves a descubrir nuevos rincones.</p>
+                <a href="/pro-tips/" class="tips-back-link">&#8592; Todos los Travel Hacks</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 01 ANTES DE VIAJAR -->
+    <div class="tips-section reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Antes de viajar</h2>
+                    <p class="tips-section-subtitle">Checklist imprescindible</p>
+            </div>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Pasaporte/DNI:</strong> Malta es UE, basta con DNI para ciudadanos europeos. Pasaporte válido para el resto.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Idiomas:</strong> maltés e inglés son oficiales — te entenderás sin problema.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Moneda:</strong> euro (€). No necesitas cambiar divisa si vienes de la eurozona.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Copia digital:</strong> pasaporte + seguro + reservas en Drive/Correo y una copia offline en el móvil.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 02 DINERO Y PAGOS -->
+    <div class="tips-section alt-bg reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Dinero y pagos</h2>
+                    <p class="tips-section-subtitle">Evita comisiones innecesarias</p>
+            </div>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Tarjeta aceptada:</strong> en casi todos los sitios, incluso taxis y restaurantes pequeños.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Efectivo útil:</strong> para mercados, quioscos, ferrys locales y propinas.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">⚠️</span>
+                    <p><strong>Propinas:</strong> no obligatorias pero apreciadas (5-10% en restaurantes si el servicio no está incluido).</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Precios:</strong> Malta es más asequible que la media europea, especialmente fuera de temporada alta.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 03 TRANSPORTE -->
+    <div class="tips-section reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Transporte</h2>
+                    <p class="tips-section-subtitle">Rápido, sin discusiones</p>
+            </div>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Autobuses:</strong> red extensa y económica con la Tallinja Card (tarjeta recargable).</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Ferry a Gozo:</strong> desde Ċirkewwa, sale cada 45 min aprox. No necesitas reserva.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">⚠️</span>
+                    <p><strong>Conducir:</strong> se conduce por la izquierda (herencia británica). Carreteras estrechas y señalización mejorable.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Barco privado:</strong> la mejor forma de llegar a Comino y la Laguna Azul evitando multitudes.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 04 ZONAS Y LOGÍSTICA -->
+    <div class="tips-section alt-bg reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Zonas y logística</h2>
+                    <p class="tips-section-subtitle">Para tu ruta</p>
+            </div>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>La Valeta (Días 1-3):</strong> compacta y peatonal, todo a pie. Madruga para fotos sin gente.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Mdina (Días 4-5):</strong> visita al atardecer para la mejor luz y menos turistas.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Gozo (Días 6-7):</strong> alquila quad o coche pequeño para llegar a calas escondidas.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Comino (Días 8-9):</strong> llega antes de las 10h para disfrutar la Laguna Azul sin masas.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 05 SEGURIDAD Y ESTAFAS -->
+    <div class="tips-section reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Seguridad y estafas</h2>
+                    <p class="tips-section-subtitle">Modo viajero inteligente</p>
+            </div>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Malta es muy seguro:</strong> uno de los países más seguros de Europa.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Emergencias:</strong> 112 (número europeo universal).</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">⚠️</span>
+                    <p><strong>Sol:</strong> no subestimes la radiación en verano — protector solar, sombrero y agua siempre.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Corrientes:</strong> en algunas calas el mar puede tener corrientes — respeta las banderas.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 06 SALUD Y CLIMA -->
+    <div class="tips-section alt-bg reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Salud y clima</h2>
+                    <p class="tips-section-subtitle">Lo que más fastidia si lo ignoras</p>
+            </div>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Verano (jun-sep):</strong> calor intenso, 30-35°C. Hidratación constante y siesta mediterránea.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Primavera/otoño:</strong> ideal (20-25°C), menos turistas y precios mejores.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Invierno:</strong> suave (12-16°C), perfecto para cultura y paseos sin calor.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Farmacia:</strong> bien surtidas y con horarios amplios. Medicamentos básicos sin receta disponibles.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 07 CULTURA Y ETIQUETA -->
+    <div class="tips-section reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Cultura y etiqueta</h2>
+                    <p class="tips-section-subtitle">Te abre puertas</p>
+            </div>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Iglesias:</strong> hombros y rodillas cubiertos para entrar (como en Italia).</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Festas:</strong> si coincides con una festa (fiesta patronal), no te la pierdas — fuegos artificiales, música y tradición.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">⚠️</span>
+                    <p><strong>Domingo:</strong> muchos comercios cierran. Planifica compras entre semana.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Maltés:</strong> di "Bonġu" (buenos días) o "Grazzi" (gracias) — la gente lo aprecia mucho.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 08 COMIDA Y EXPERIENCIAS -->
+    <div class="tips-section alt-bg reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Comida y experiencias</h2>
+                    <p class="tips-section-subtitle">Aciertos seguros</p>
+            </div>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Pastizzi:</strong> hojaldre relleno de ricotta o guisantes, imprescindible (menos de 1€).</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Lampuki:</strong> pescado local de temporada (sept-nov), delicioso a la plancha.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Ġbejna:</strong> queso de cabra maltés — pruébalo fresco o curado con galletas.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Ftira:</strong> pan maltés tradicional, perfecto para un almuerzo rápido tipo bocadillo.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Vino maltés:</strong> prueba las variedades locales Ġellewża (tinto) y Girgentina (blanco).</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 09 HACKS PRO -->
+    <div class="tips-section reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Hacks PRO</h2>
+                    <p class="tips-section-subtitle">Muy específicos para tu itinerario</p>
+            </div>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Concatedral de San Juan:</strong> ve a primera hora, es el tesoro de La Valeta y se llena rápido.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Upper Barrakka:</strong> el saludo de cañón es a las 12:00 y a las 16:00 — llega 15 min antes.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Hypogeum de Ħal Saflieni:</strong> reserva online con semanas de antelación (aforo muy limitado).</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Blue Grotto:</strong> mejor por la mañana cuando el sol ilumina las cuevas desde dentro.</p>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Gozo de noche:</strong> quédate a dormir — la isla cambia completamente cuando se van los excursionistas.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 10 TOP 5 -->
+    <div class="tips-section alt-bg reveal">
+        <div class="container">
+            <div class="tips-section-header">
+                <h2 class="tips-section-title">Top 5</h2>
+                    <p class="tips-section-subtitle">Si solo lees 5 cosas, que sean estas</p>
+            </div>
+            <div class="top5-grid">
+                <div class="top5-card">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Malta es UE + euro + inglés:</strong> logística facilísima para europeos.</p>
+                </div>
+                <div class="top5-card">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Conduce por la izquierda</strong> — cuidado en rotondas y cruces.</p>
+                </div>
+                <div class="top5-card">
+                    <span class="tip-icon">⚠️</span>
+                    <p><strong>Verano = calor extremo:</strong> protección solar y agua obligatorios.</p>
+                </div>
+                <div class="top5-card">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Reserva el Hypogeum con antelación:</strong> se agota semanas antes.</p>
+                </div>
+                <div class="top5-card">
+                    <span class="tip-icon">✅</span>
+                    <p><strong>Pastizzi + Ġbejna + Lampuki:</strong> la trilogía gastronómica imprescindible.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <section class="tips-cta">
+        <div class="container reveal">
+            <h2>Diseñemos tu <em style="color: var(--gold);">Malta</em></h2>
+            <p>Vuelos internos, transfers, hoteles boutique y excursiones privadas — te lo organizamos a medida.</p>
+            <a href="/contacto/?destino=Malta" class="btn btn-primary">Solicitar presupuesto &#10230;</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo"><img src="/images/logo-trimmed.png" alt="Horizonte Exclusivo"></a>
+                    <p>Más que viajar, vivir el mundo. Creamos experiencias de viaje de lujo a medida. Cada destino es una historia, cada viaje una obra maestra.</p>
+</div>
+                <div class="footer-column">
+                    <h4>Horizonte</h4>
+                    <ul>
+                        <li><a href="/destinos/">Destinos Extraordinarios</a></li>
+                        <li><a href="/europa/">Europa</a></li>
+                        <li><a href="/asia/">Asia</a></li>
+                        <li><a href="/america/">América</a></li>
+                        <li><a href="/africa/">Africa</a></li>
+                        <li><a href="/paraisos/">Paraísos sobre el agua</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Exclusivo</h4>
+                    <ul>
+                        <li><a href="/blog/">Blog de viajes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Barcelona</h4>
+                    <p class="footer-address">Calle Major 37<br>Molins de Rei 08750, Barcelona</p>
+                    <p class="footer-address"><a href="tel:+34633077401">+34 633 077 401</a></p>
+                    <p class="footer-address"><a href="mailto:viajes@horizonteexclusivo.es">viajes@horizonteexclusivo.es</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Horizonte Exclusivo. Todos los derechos reservados.</p>
+                <div class="footer-bottom-links">
+                    <a href="/aviso-legal/">Aviso legal</a>
+                    <a href="/politica-de-privacidad/">Privacidad</a>
+                    <a href="/politica-de-cookies/">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/scripts.js"></script>
+
+    <script>
+        // Auto-collapse navbar when items don't fit
+    </script>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;width:100%;z-index:9999;background:var(--dark-soft,#1a1a1a);border-top:1px solid rgba(201,169,110,0.2);padding:16px 24px;font-family:'Inter',sans-serif;">
+        <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+            <p style="margin:0;font-size:0.85rem;color:#e0e0e0;font-weight:300;line-height:1.6;flex:1;min-width:200px;">Utilizamos cookies técnicas para garantizar el correcto funcionamiento del sitio web. <a href="/politica-de-cookies/" style="color:#c9a96e;text-decoration:underline;">Más información</a></p>
+            <div style="display:flex;gap:10px;flex-shrink:0;">
+                <button onclick="acceptCookies()" style="padding:10px 24px;border-radius:50px;border:none;background:#c9a96e;color:#0a0a0a;font-size:0.8rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;transition:0.3s;">Aceptar</button>
+                <button onclick="rejectCookies()" style="padding:10px 24px;border-radius:50px;border:1px solid rgba(201,169,110,0.4);background:transparent;color:#e0e0e0;font-size:0.8rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;transition:0.3s;">Rechazar</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

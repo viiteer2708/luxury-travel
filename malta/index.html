@@ -3,23 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Islandia — Horizonte Exclusivo</title>
+    <title>Malta — Horizonte Exclusivo</title>
     <link rel="icon" type="image/x-icon" href="/images/genfavicon-package/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/genfavicon-package/genfavicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/genfavicon-package/genfavicon-16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/genfavicon-package/apple-touch-icon.png">
     <link rel="manifest" href="/images/genfavicon-package/site.webmanifest">
-    <meta name="description" content="Viaje de lujo a Islandia: Reykjavík, Snaefellsnes, Círculo Dorado, Costa Sur, Jökulsárlón y Laguna Azul. Fuego, hielo y paisajes de otro planeta.">
+    <meta name="description" content="Viaje de lujo a Malta: La Valeta, Mdina, Gozo y Comino. 6–9 noches de historia, Mediterráneo y experiencias exclusivas en el archipiélago maltés.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
     <style>
 .btn-outline {
-    background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.25);
+    background: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.25);
 }
 
 .btn-outline:hover {
-    border-color: var(--gold); color: var(--gold); transform: translateY(-2px);
+    border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-2px);
 }
 
 section {
@@ -27,19 +31,30 @@ section {
 }
 
 .section-header {
-    text-align: center; margin-bottom: 64px;
+    text-align: center;
+            margin-bottom: 64px;
 }
 
 .section-label {
-    font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; display: block;
+    font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+            display: block;
 }
 
 .section-title {
-    font-size: clamp(2rem, 4vw, 3rem); color: var(--white); margin-bottom: 16px;
+    font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--white);
+            margin-bottom: 16px;
 }
 
 .divider {
-    width: 60px; height: 1px; background: var(--gold); margin: 20px auto;
+    width: 60px;
+            height: 1px;
+            background: var(--gold);
+            margin: 20px auto;
 }
 
 .dest-hero {
@@ -53,51 +68,84 @@ section {
             margin-top: 100px;
             padding-top: 20px;
             padding-bottom: 20px;
-            background-image: url('https://images.unsplash.com/photo-1628033892645-25983849cdaa?w=1920&q=80');
+            background-image: url('https://images.unsplash.com/photo-1579430872607-e7b2b7759492?w=1920&q=80');
             background-size: cover;
-            background-position: center calc(50% - 360px);
+            background-position: center calc(50% + 40px);
             background-attachment: fixed;
 }
 
 .dest-hero::after {
-    content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,0.05) 0%, rgba(10,10,10,0.15) 50%, var(--dark) 100%);
+    content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(10,10,10,0.05) 0%, rgba(10,10,10,0.15) 50%, var(--dark) 100%);
 }
 
 .dest-hero-content {
-    position: relative; z-index: 2; max-width: 800px; padding: 0 24px;
+    position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 24px;
 }
 
 .dest-hero-content .section-label {
-    font-size: 0.85rem; letter-spacing: 5px; margin-bottom: 20px; animation: fadeInUp 0.8s ease both;
+    font-size: 0.85rem;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease both;
 }
 
 .dest-hero-content h1 {
-    font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 700; color: var(--white); line-height: 1.1; margin-bottom: 20px; animation: fadeInUp 0.8s 0.2s ease both; text-shadow:
+    font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s 0.2s ease both;
+            text-shadow:
                 0 2px 4px rgba(0, 0, 0, 0.8),
                 0 4px 20px rgba(0, 0, 0, 0.6),
                 0 8px 40px rgba(0, 0, 0, 0.4);
 }
 
 .dest-hero-content p {
-    font-size: clamp(1rem, 2.5vw, 1.2rem); color: var(--white); font-weight: 700; margin-bottom: 8px; animation: fadeInUp 0.8s 0.4s ease both; text-shadow:
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: var(--white);
+            font-weight: 700;
+            margin-bottom: 8px;
+            animation: fadeInUp 0.8s 0.4s ease both; text-shadow:
                 0 2px 4px rgba(0, 0, 0, 0.8),
                 0 4px 20px rgba(0, 0, 0, 0.6),
                 0 8px 40px rgba(0, 0, 0, 0.4);
 }
 
 .dest-hero-content .dest-duration {
-    font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; color: var(--white); animation: fadeInUp 0.8s 0.6s ease both; font-weight: 700; text-shadow:
+    font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--white);
+            animation: fadeInUp 0.8s 0.6s ease both; font-weight: 700; text-shadow:
                 0 2px 4px rgba(0, 0, 0, 0.8),
                 0 4px 20px rgba(0, 0, 0, 0.6),
                 0 8px 40px rgba(0, 0, 0, 0.4);
 }
 
 .dest-intro-text {
-    max-width: 780px; margin: 0 auto; text-align: center; font-size: 1.05rem; color: var(--text); line-height: 1.9; font-weight: 300;
+    max-width: 780px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.05rem;
+            color: var(--text);
+            line-height: 1.9;
+            font-weight: 300;
 }
 
 .itinerary-block {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-bottom: 80px;
+    display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            margin-bottom: 80px;
 }
 
 .itinerary-block:last-child {
@@ -113,11 +161,16 @@ section {
 }
 
 .itinerary-image {
-    border-radius: var(--radius); overflow: hidden; position: relative;
+    border-radius: var(--radius);
+            overflow: hidden;
+            position: relative;
 }
 
 .itinerary-image img {
-    width: 100%; height: 400px; object-fit: cover; transition: transform 0.6s ease;
+    width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
 }
 
 .itinerary-image:hover img {
@@ -125,7 +178,11 @@ section {
 }
 
 .itinerary-gallery {
-    display: grid; gap: 6px; border-radius: var(--radius); overflow: hidden; height: 400px;
+    display: grid;
+            gap: 6px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            height: 400px;
 }
 
 .itinerary-gallery .gallery-item {
@@ -133,7 +190,10 @@ section {
 }
 
 .itinerary-gallery .gallery-item img {
-    width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease;
+    width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
 }
 
 .itinerary-gallery .gallery-item:hover img {
@@ -141,7 +201,8 @@ section {
 }
 
 .itinerary-gallery.gallery-4 {
-    grid-template-columns: 1.2fr 1fr; grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: 1.2fr 1fr;
+            grid-template-rows: repeat(3, 1fr);
 }
 
 .itinerary-gallery.gallery-4 .gallery-item:first-child {
@@ -153,11 +214,17 @@ section {
 }
 
 .itinerary-carousel {
-    position: relative; border-radius: var(--radius); overflow: hidden; height: 400px;
+    position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            height: 400px;
 }
 
 .itinerary-carousel .carousel-slide {
-    position: absolute; inset: 0; opacity: 0; transition: opacity 0.6s ease;
+    position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.6s ease;
 }
 
 .itinerary-carousel .carousel-slide.active {
@@ -165,91 +232,167 @@ section {
 }
 
 .itinerary-carousel .carousel-slide img {
-    width: 100%; height: 100%; object-fit: cover;
+    width: 100%;
+            height: 100%;
+            object-fit: cover;
 }
 
 .carousel-controls {
-    position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 12px; z-index: 2;
+    position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 2;
 }
 
 .carousel-btn {
-    width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.4); background: rgba(0,0,0,0.3); backdrop-filter: blur(4px); color: white; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;
+    width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.4);
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(4px);
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
 }
 
 .carousel-btn:hover {
-    background: rgba(0,0,0,0.6); border-color: rgba(255,255,255,0.7);
+    background: rgba(0,0,0,0.6);
+            border-color: rgba(255,255,255,0.7);
 }
 
 .carousel-dots {
-    display: flex; gap: 8px;
+    display: flex;
+            gap: 8px;
 }
 
 .carousel-dot {
-    width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.4); border: none; cursor: pointer; transition: all 0.3s ease; padding: 0;
+    width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
 }
 
 .carousel-dot.active {
-    background: var(--gold); transform: scale(1.2);
+    background: var(--gold);
+            transform: scale(1.2);
 }
 
 .itinerary-content .section-label {
-    text-align: left; margin-bottom: 12px;
+    text-align: left;
+            margin-bottom: 12px;
 }
 
 .itinerary-content h3 {
-    font-size: 1.8rem; color: var(--white); margin-bottom: 16px;
+    font-size: 1.8rem;
+            color: var(--white);
+            margin-bottom: 16px;
 }
 
 .itinerary-content p {
-    font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; font-weight: 300;
+    font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-weight: 300;
 }
 
 .itinerary-content ul {
-    margin-top: 20px; display: flex; flex-direction: column; gap: 10px;
+    margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
 }
 
 .itinerary-content ul li {
-    font-size: 0.88rem; color: var(--text); padding-left: 20px; position: relative;
+    font-size: 0.88rem;
+            color: var(--text);
+            padding-left: 20px;
+            position: relative;
 }
 
 .itinerary-content ul li::before {
-    content: '\2726'; position: absolute; left: 0; color: var(--gold); font-size: 0.6rem; top: 4px;
+    content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 0.6rem;
+            top: 4px;
 }
 
 .includes-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px;
+    display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 28px;
 }
 
 .include-card {
-    background: var(--dark-card); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius); padding: 36px 28px; text-align: center; transition: var(--transition);
+    background: var(--dark-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: var(--radius);
+            padding: 36px 28px;
+            text-align: center;
+            transition: var(--transition);
 }
 
 .include-card:hover {
-    border-color: rgba(201,169,110,0.2); transform: translateY(-4px);
+    border-color: rgba(201,169,110,0.2);
+            transform: translateY(-4px);
 }
 
 .include-card .include-icon {
-    font-size: 2rem; margin-bottom: 16px; display: block;
+    font-size: 2rem;
+            margin-bottom: 16px;
+            display: block;
 }
 
 .include-card h4 {
-    font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--white); margin-bottom: 10px; letter-spacing: 0.5px;
+    font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
 }
 
 .include-card p {
-    font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; font-weight: 300;
+    font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-weight: 300;
 }
 
 .dest-cta {
-    text-align: center; padding-top: 30px; background: var(--dark-soft); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);
+    text-align: center;
+            padding-top: 30px;
+            background: var(--dark-soft);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
 .dest-cta h2 {
-    font-size: clamp(1.8rem, 3.5vw, 2.5rem); color: var(--white); margin-bottom: 16px;
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            color: var(--white);
+            margin-bottom: 16px;
 }
 
 .dest-cta p {
-    color: var(--text-muted); font-weight: 300; max-width: 540px; margin: 0 auto 32px; line-height: 1.8;
+    color: var(--text-muted);
+            font-weight: 300;
+            max-width: 540px;
+            margin: 0 auto 32px;
+            line-height: 1.8;
 }
 
 .dest-protips {
@@ -287,7 +430,9 @@ section {
     }
 
     .dest-hero {
-        background-attachment: scroll; background-position: center center; background-repeat: no-repeat;
+        background-attachment: scroll;
+                background-position: center center;
+                background-repeat: no-repeat;
     }
 
     .route-line {
@@ -295,10 +440,14 @@ section {
     }
 
     .itinerary-block {
-        grid-template-columns: 1fr; gap: 28px;
+        grid-template-columns: 1fr;
+                gap: 28px;
     }
 
-    .itinerary-block.reverse .itinerary-image, .itinerary-block.reverse .itinerary-gallery, .itinerary-block.reverse .itinerary-carousel, .itinerary-block.reverse .itinerary-content {
+    .itinerary-block.reverse .itinerary-image,
+            .itinerary-block.reverse .itinerary-gallery,
+            .itinerary-block.reverse .itinerary-carousel,
+            .itinerary-block.reverse .itinerary-content {
         order: unset;
     }
 
@@ -315,13 +464,20 @@ section {
     }
 
     .itinerary-gallery.gallery-4 {
-        grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+                grid-template-rows: 1fr 1fr;
     }
 
     .itinerary-gallery.gallery-4 .gallery-item:first-child {
         grid-row: auto;
     }
 
+    .includes-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
     .includes-grid {
         grid-template-columns: 1fr;
     }
@@ -360,10 +516,10 @@ section {
     <!-- HERO -->
     <section class="dest-hero">
         <div class="dest-hero-content">
-            <h1>Islandia</h1>
-            <p>Fuego, hielo y paisajes que parecen de otro planeta</p>
-            <span class="dest-duration">8 días / 7 noches</span>
-            <a href="/contacto/?destino=Islandia" class="btn btn-primary hero-cta-btn" style="margin-top: 24px; animation: fadeInUp 0.8s 0.8s ease both;">Reservar ya &#10230;</a>
+            <h1>Malta, historia dorada en el Mediterráneo</h1>
+            <p>Ciudades de piedra, aguas turquesa y civilizaciones milenarias</p>
+            <span class="dest-duration">6–9 noches</span>
+            <a href="/contacto/?destino=Malta" class="btn btn-primary hero-cta-btn" style="margin-top: 24px; animation: fadeInUp 0.8s 0.8s ease both;">Reservar ya &#10230;</a>
         </div>
     </section>
 
@@ -371,7 +527,7 @@ section {
     <section style="padding-top: 30px; padding-bottom: 10px;">
         <div class="container">
             <p class="dest-intro-text reveal">
-                Islandia es naturaleza en estado puro. Glaciares infinitos, cascadas imponentes, playas de arena negra y campos de lava crean un escenario casi irreal. Un viaje para quienes buscan amplitud, silencio y experiencias intensas en un entorno salvaje pero cuidadosamente organizado.
+                Malta es un destino pequeño en tamaño pero inmenso en historia. Un archipiélago donde civilizaciones milenarias dejaron su huella, donde las ciudades de piedra color miel brillan bajo el sol y el mar azul intenso abraza cada rincón. Un viaje que combina cultura, arquitectura, paisajes mediterráneos y una atmósfera tranquila pero sofisticada. Itinerario adaptable según ritmo y estilo de viaje.
             </p>
         </div>
     </section>
@@ -385,125 +541,20 @@ section {
                 <div class="divider"></div>
             </div>
 
-            <!-- REYKJAVÍK -->
+            <!-- Días 1-3: La Valeta & Las Tres Ciudades -->
             <div class="itinerary-block reveal">
                 <div class="itinerary-carousel">
                     <div class="carousel-slide active">
-                        <img src="https://images.unsplash.com/photo-1606130503037-6a8ef67c9d2d?w=800&q=80" alt="Vista aérea de Reykjavík">
+                        <img src="https://images.unsplash.com/photo-1579430872607-e7b2b7759492?w=800&q=80" alt="Edificios de La Valeta junto al mar">
                     </div>
                     <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1474690870753-1b92efa1f2d8?w=800&q=80" alt="Hallgrímskirkja en Reykjavík">
+                        <img src="https://images.unsplash.com/photo-1603561833036-a8127a08cd31?w=800&q=80" alt="Calle de La Valeta bajo cielo azul">
                     </div>
                     <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1655666272067-f6c942e9a547?w=800&q=80" alt="Ciudad de Reykjavík">
-                    </div>
-                    <div class="carousel-controls">
-                        <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
-                        <div class="carousel-dots">
-                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
-                            <button class="carousel-dot" aria-label="Imagen 2"></button>
-                            <button class="carousel-dot" aria-label="Imagen 3"></button>
-                        </div>
-                        <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
-                    </div>
-                </div>
-                <div class="itinerary-content">
-                    <span class="section-label">1 – 2 noches</span>
-                    <h3>Reykjavík</h3>
-                    <p>Pequeña, creativa y sorprendente, la capital islandesa es el punto de partida ideal. Moderna pero íntima, combina diseño nórdico, cultura y gastronomía local.</p>
-                    <ul>
-                        <li>Hallgrímskirkja y vistas panorámicas</li>
-                        <li>Puerto antiguo y arquitectura contemporánea</li>
-                        <li>Centro de auroras boreales</li>
-                        <li>Cena en restaurante de cocina nórdica</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- SNAEFELLSNES -->
-            <div class="itinerary-block reverse reveal">
-                <div class="itinerary-carousel">
-                    <div class="carousel-slide active">
-                        <img src="https://images.unsplash.com/photo-1545140976-8c17471ba12d?w=800&q=80" alt="Península de Snaefellsnes">
+                        <img src="https://images.unsplash.com/photo-1560703174-58e4a7060677?w=800&q=80" alt="Vista nocturna de La Valeta desde el agua">
                     </div>
                     <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1596466529159-a23dd25bc108?w=800&q=80" alt="Cascada en Snaefellsnes">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1562170824-b547dae88b97?w=800&q=80" alt="Montaña Kirkjufell">
-                    </div>
-                    <div class="carousel-controls">
-                        <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
-                        <div class="carousel-dots">
-                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
-                            <button class="carousel-dot" aria-label="Imagen 2"></button>
-                            <button class="carousel-dot" aria-label="Imagen 3"></button>
-                        </div>
-                        <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
-                    </div>
-                </div>
-                <div class="itinerary-content">
-                    <span class="section-label">Excursión o 1 noche</span>
-                    <h3>Península de Snaefellsnes</h3>
-                    <p>Conocida como "Islandia en miniatura", concentra volcanes, campos de lava, glaciares y acantilados en un solo recorrido.</p>
-                    <ul>
-                        <li>Parque Nacional Snæfellsjökull</li>
-                        <li>Montaña Kirkjufell</li>
-                        <li>Playas negras y formaciones rocosas</li>
-                        <li>Miradores sobre el océano Atlántico</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- CÍRCULO DORADO -->
-            <div class="itinerary-block reveal">
-                <div class="itinerary-carousel">
-                    <div class="carousel-slide active">
-                        <img src="https://images.unsplash.com/photo-1643228370582-1398486a3929?w=800&q=80" alt="Cascada Gullfoss">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1513170632614-7263b83fe0b3?w=800&q=80" alt="Geysir">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1608984075444-0e67cd80f696?w=800&q=80" alt="Thingvellir">
-                    </div>
-                    <div class="carousel-controls">
-                        <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
-                        <div class="carousel-dots">
-                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
-                            <button class="carousel-dot" aria-label="Imagen 2"></button>
-                            <button class="carousel-dot" aria-label="Imagen 3"></button>
-                        </div>
-                        <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
-                    </div>
-                </div>
-                <div class="itinerary-content">
-                    <span class="section-label">1 noche</span>
-                    <h3>Círculo Dorado</h3>
-                    <p>La ruta clásica que revela la fuerza geológica del país. Tres paradas imprescindibles en un recorrido compacto e impactante.</p>
-                    <ul>
-                        <li>Parque Nacional Thingvellir</li>
-                        <li>Área geotérmica de Geysir</li>
-                        <li>Cascada Gullfoss</li>
-                        <li>Degustación de pan de centeno tradicional</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- COSTA SUR -->
-            <div class="itinerary-block reverse reveal">
-                <div class="itinerary-carousel">
-                    <div class="carousel-slide active">
-                        <img src="https://images.unsplash.com/photo-1540327032271-a2861b78eb89?w=800&q=80" alt="Acantilados de la Costa Sur">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1561234910-5a98dba1ed6a?w=800&q=80" alt="Playa negra de Reynisfjara">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1532586733327-54ac07aa1154?w=800&q=80" alt="Cascada Seljalandsfoss">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1555019173-edd4b0be4d2d?w=800&q=80" alt="Cascada Skógafoss">
+                        <img src="https://images.unsplash.com/photo-1558632126-8b9c8f03a8d0?w=800&q=80" alt="Cúpula y puerto de La Valeta">
                     </div>
                     <div class="carousel-controls">
                         <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
@@ -517,67 +568,30 @@ section {
                     </div>
                 </div>
                 <div class="itinerary-content">
-                    <span class="section-label">2 noches</span>
-                    <h3>Costa Sur</h3>
-                    <p>Una de las regiones más espectaculares del país. Cascadas monumentales, playas volcánicas y paisajes abiertos dominan el horizonte.</p>
+                    <span class="section-label">Días 1 – 3</span>
+                    <h3>La Valeta & Las Tres Ciudades</h3>
+                    <p>La Valeta, capital Patrimonio de la Humanidad, es una de las ciudades más fascinantes del Mediterráneo. Fundada por los Caballeros de la Orden de San Juan, sus calles rectilíneas, balcones de madera y murallas monumentales crean un escenario histórico perfectamente conservado. Las Tres Ciudades (Vittoriosa, Senglea y Cospicua) ofrecen una versión más íntima y auténtica de la historia maltesa.</p>
                     <ul>
-                        <li>Seljalandsfoss y Skógafoss</li>
-                        <li>Playa negra de Reynisfjara</li>
-                        <li>Centro interactivo Lava Center</li>
-                        <li>Campos de lava cubiertos de musgo</li>
+                        <li>Concatedral de San Juan</li>
+                        <li>Jardines Upper Barrakka al atardecer</li>
+                        <li>Paseo en barco tradicional por el puerto</li>
+                        <li>Palacio del Gran Maestre</li>
+                        <li>Cena frente al mar en el puerto deportivo</li>
                     </ul>
                 </div>
             </div>
 
-            <!-- VATNAJÖKULL & JÖKULSÁRLÓN -->
-            <div class="itinerary-block reveal">
-                <div class="itinerary-carousel">
-                    <div class="carousel-slide active">
-                        <img src="https://images.unsplash.com/photo-1567251704400-6637d54d13b3?w=800&q=80" alt="Icebergs en Jökulsárlón">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1664094173238-e4b63eb889db?w=800&q=80" alt="Laguna glaciar">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1663416784642-b3a8149badad?w=800&q=80" alt="Playa de los Diamantes">
-                    </div>
-                    <div class="carousel-controls">
-                        <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
-                        <div class="carousel-dots">
-                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
-                            <button class="carousel-dot" aria-label="Imagen 2"></button>
-                            <button class="carousel-dot" aria-label="Imagen 3"></button>
-                        </div>
-                        <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
-                    </div>
-                </div>
-                <div class="itinerary-content">
-                    <span class="section-label">1 noche</span>
-                    <h3>Vatnajökull y Jökulsárlón</h3>
-                    <p>Glaciares majestuosos y la icónica laguna glaciar donde flotan enormes bloques de hielo. Un paisaje ártico de belleza sobrecogedora.</p>
-                    <ul>
-                        <li>Laguna glaciar Jökulsárlón</li>
-                        <li>Playa de los Diamantes</li>
-                        <li>Caminata ligera por entorno glaciar</li>
-                        <li>Fotografía en paisajes árticos</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- LAGUNA AZUL Y REYKJANES -->
+            <!-- Días 4-5: Mdina & Rabat -->
             <div class="itinerary-block reverse reveal">
                 <div class="itinerary-carousel">
                     <div class="carousel-slide active">
-                        <img src="https://images.unsplash.com/photo-1462993340984-49bd9e0f32dd?w=800&q=80" alt="Laguna Azul">
+                        <img src="https://images.unsplash.com/photo-1584890979420-4b0fdbeb8271?w=800&q=80" alt="Gran edificio con torres en Mdina">
                     </div>
                     <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1728256869137-7a187d121f3c?w=800&q=80" alt="Baño en la Laguna Azul">
+                        <img src="https://images.unsplash.com/photo-1600093049498-50ed0e8e72e1?w=800&q=80" alt="Formación rocosa en la costa maltesa">
                     </div>
                     <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1732470879062-e21dffc564b9?w=800&q=80" alt="Aurora boreal en Islandia">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1488415032361-b7e238421f1b?w=800&q=80" alt="Aurora boreal sobre montañas nevadas">
+                        <img src="https://images.unsplash.com/photo-1558349699-1e1c38c05eeb?w=800&q=80" alt="Campo verde maltés">
                     </div>
                     <div class="carousel-controls">
                         <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
@@ -585,19 +599,89 @@ section {
                             <button class="carousel-dot active" aria-label="Imagen 1"></button>
                             <button class="carousel-dot" aria-label="Imagen 2"></button>
                             <button class="carousel-dot" aria-label="Imagen 3"></button>
-                            <button class="carousel-dot" aria-label="Imagen 4"></button>
                         </div>
                         <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
                     </div>
                 </div>
                 <div class="itinerary-content">
-                    <span class="section-label">Última noche</span>
-                    <h3>Laguna Azul y Reykjanes</h3>
-                    <p>Cierre perfecto con una experiencia relajante en aguas termales ricas en minerales. Entre septiembre y marzo, posibilidad de observación de auroras boreales.</p>
+                    <span class="section-label">Días 4 – 5</span>
+                    <h3>Mdina & Rabat</h3>
+                    <p>Mdina es una joya medieval amurallada donde el tiempo parece haberse detenido. Calles estrechas de piedra dorada, puertas monumentales y un ambiente casi místico hacen de esta ciudad una experiencia diferente al resto del archipiélago. A sus pies, Rabat conserva catacumbas, iglesias y rincones tradicionales que permiten comprender mejor la herencia cultural maltesa.</p>
                     <ul>
-                        <li>Baño en la Laguna Azul</li>
-                        <li>Paisajes volcánicos de Reykjanes</li>
-                        <li>Cena de despedida en Reykjavík</li>
+                        <li>Paseo al atardecer por las murallas</li>
+                        <li>Catedral de San Pablo</li>
+                        <li>Catacumbas de Rabat</li>
+                        <li>Café en terraza histórica con vistas al campo maltés</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Días 6-7: Gozo -->
+            <div class="itinerary-block reveal">
+                <div class="itinerary-carousel">
+                    <div class="carousel-slide active">
+                        <img src="https://images.unsplash.com/photo-1558788588-3ad31cc3dbac?w=800&q=80" alt="Ciudadela de Victoria en Gozo">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1533685730498-30a3cdcd5322?w=800&q=80" alt="Arco de roca sobre el océano en Gozo">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1600856209923-34372e319753?w=800&q=80" alt="Puerto de Gozo con barcos">
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
+                        <div class="carousel-dots">
+                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
+                            <button class="carousel-dot" aria-label="Imagen 2"></button>
+                            <button class="carousel-dot" aria-label="Imagen 3"></button>
+                        </div>
+                        <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
+                    </div>
+                </div>
+                <div class="itinerary-content">
+                    <span class="section-label">Días 6 – 7</span>
+                    <h3>Gozo</h3>
+                    <p>Gozo es la versión más tranquila y rural de Malta. Colinas suaves, acantilados dramáticos y pequeñas calas de aguas cristalinas definen esta isla donde el ritmo es más pausado y auténtico. Aquí se respira tradición, con pueblos pequeños, iglesias monumentales y paisajes abiertos que invitan a desconectar.</p>
+                    <ul>
+                        <li>Ciudadela de Victoria</li>
+                        <li>Acantilados de Ta' Ċenċ</li>
+                        <li>Playas y calas escondidas</li>
+                        <li>Templos megalíticos de Ġgantija</li>
+                        <li>Hotel boutique rural con encanto</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Días 8-9: Comino -->
+            <div class="itinerary-block reverse reveal">
+                <div class="itinerary-carousel">
+                    <div class="carousel-slide active">
+                        <img src="https://images.unsplash.com/photo-1601581987809-a874a3ee5023?w=800&q=80" alt="Sillas frente al mar en Comino">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1600166898405-da9535204843?w=800&q=80" alt="Gente nadando en aguas turquesa de Comino">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1600166898265-218dbcb1d603?w=800&q=80" alt="Barco en aguas cristalinas de Comino">
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
+                        <div class="carousel-dots">
+                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
+                            <button class="carousel-dot" aria-label="Imagen 2"></button>
+                            <button class="carousel-dot" aria-label="Imagen 3"></button>
+                        </div>
+                        <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
+                    </div>
+                </div>
+                <div class="itinerary-content">
+                    <span class="section-label">Días 8 – 9</span>
+                    <h3>Comino</h3>
+                    <p>Comino es un susurro del Mediterráneo: aguas turquesa imposibles, silencio absoluto y la sensación de estar en un paraíso secreto entre Malta y Gozo. El lugar perfecto para cerrar el viaje con calma y naturaleza en estado puro.</p>
+                    <ul>
+                        <li>Laguna Azul</li>
+                        <li>Día de navegación privada</li>
+                        <li>Snorkel en aguas turquesa</li>
                     </ul>
                 </div>
             </div>
@@ -615,24 +699,24 @@ section {
 
             <div class="includes-grid">
                 <div class="include-card reveal">
-                    <span class="include-icon">&#9992;</span>
+                    <span class="include-icon">✈</span>
                     <h4>Vuelos</h4>
-                    <p>Vuelos directos ida y vuelta en clase preferente. Traslados privados en todos los trayectos.</p>
+                    <p>Vuelos directos ida y vuelta si se solicitan. Traslados organizados en todos los trayectos.</p>
                 </div>
                 <div class="include-card reveal">
-                    <span class="include-icon">&#128663;</span>
-                    <h4>Vehículo</h4>
-                    <p>SUV 4x4 de lujo con conductor-guía privado durante toda la ruta por Islandia.</p>
+                    <span class="include-icon">🚗</span>
+                    <h4>Traslados</h4>
+                    <p>Traslados organizados o coche de alquiler para recorrer el archipiélago a tu ritmo.</p>
                 </div>
                 <div class="include-card reveal">
-                    <span class="include-icon">&#127976;</span>
+                    <span class="include-icon">🏨</span>
                     <h4>Alojamiento</h4>
-                    <p>Hoteles boutique y lodges exclusivos seleccionados por su ubicación privilegiada y diseño nórdico.</p>
+                    <p>Alojamientos seleccionados cuidadosamente: hoteles boutique en La Valeta y casas rurales con encanto en Gozo.</p>
                 </div>
                 <div class="include-card reveal">
-                    <span class="include-icon">&#11088;</span>
+                    <span class="include-icon">⭐</span>
                     <h4>Experiencias</h4>
-                    <p>Laguna Azul, caminatas glaciares, cenas gastronómicas y observación de auroras boreales (en temporada).</p>
+                    <p>Experiencias recomendadas y reservadas. Itinerario totalmente personalizable según tus preferencias.</p>
                 </div>
             </div>
         </div>
@@ -641,9 +725,9 @@ section {
     <!-- CTA -->
     <section class="dest-cta">
         <div class="container reveal">
-            <h2>Diseñemos <em style="color: var(--gold);">tu Islandia</em></h2>
-            <p>Cada viaje es único. Cuéntanos cómo imaginas tu aventura islandesa y crearemos un itinerario a tu medida.</p>
-            <a href="/contacto/?destino=Islandia" class="btn btn-primary">Solicitar presupuesto &#10230;</a>
+            <h2>Diseñemos <em style="color: var(--gold);">tu Malta</em></h2>
+            <p>Cada viaje es único. Cuéntanos cómo imaginas tu aventura maltesa y crearemos un itinerario a tu medida.</p>
+            <a href="/contacto/?destino=Malta" class="btn btn-primary">Solicitar presupuesto &#10230;</a>
         </div>
     </section>
 
@@ -651,9 +735,9 @@ section {
     <section class="dest-protips">
         <div class="container reveal">
             <span class="section-label">Travel Hacks</span>
-            <h2>Consejos de experto para <em style="color: var(--gold);">Islandia</em></h2>
+            <h2>Consejos de experto para <em style="color: var(--gold);">Malta</em></h2>
             <p>Todo lo que necesitas saber antes, durante y después de tu viaje: checklist, dinero, transporte, seguridad, cultura, comida y hacks de experto.</p>
-            <a href="/pro-tips-islandia/" class="btn btn-primary">Ver Travel Hacks &#10230;</a>
+            <a href="/pro-tips-malta/" class="btn btn-primary">Ver Travel Hacks &#10230;</a>
         </div>
     </section>
 
@@ -707,7 +791,7 @@ section {
     <script src="/scripts.js"></script>
 
     <script>
-        // Route line
+        // Route line (zigzag roadmap)
         function drawRoute() {
             const container = document.querySelector('#itinerario .container');
             const blocks = container.querySelectorAll('.itinerary-block');
@@ -782,7 +866,6 @@ section {
             next.addEventListener('click', () => goTo(current + 1));
             dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
 
-            // Touch swipe
             let startX;
             carousel.addEventListener('touchstart', e => startX = e.touches[0].clientX);
             carousel.addEventListener('touchend', e => {
