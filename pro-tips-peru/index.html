@@ -376,7 +376,7 @@
         const navLinks = document.getElementById('navLinks');
         hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); });
         navLinks.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => navLinks.classList.remove('active')); });
-        function checkNavOverflow() { const navbar = document.getElementById('navbar'); const navLinks = document.getElementById('navLinks'); const container = navbar.querySelector('.container'); navLinks.classList.remove('active'); navbar.classList.remove('collapsed'); navLinks.style.flexShrink = '0'; void navbar.offsetHeight; var bp = 1100;
+        function checkNavOverflow() { const navbar = document.getElementById('navbar'); const navLinks = document.getElementById('navLinks'); const container = navbar.querySelector('.container'); navLinks.classList.remove('active'); navbar.classList.remove('collapsed'); navLinks.style.flexShrink = '0'; void navbar.offsetHeight; var bp = 1280;
             if (window.innerWidth <= bp || container.scrollWidth > container.clientWidth + 2) { navbar.classList.add('collapsed'); } navLinks.style.flexShrink = ''; }
         checkNavOverflow(); window.addEventListener('resize', checkNavOverflow);
         const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } }); }, { threshold: 0.15 });

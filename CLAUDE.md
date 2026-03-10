@@ -158,7 +158,7 @@ function checkNavOverflow() {
     navbar.classList.remove('collapsed');
     navLinks.style.flexShrink = '0';
     void navbar.offsetHeight;
-    var bp = 1100;
+    var bp = 1280;
     if (window.innerWidth <= bp || container.scrollWidth > container.clientWidth + 2) {
         navbar.classList.add('collapsed');
     }
@@ -171,7 +171,7 @@ window.addEventListener('resize', checkNavOverflow);
 - Todos los enlaces usan **rutas absolutas** (`/slug/`, `/contacto/`, `/destinos/`, `/quien-hay-detras/`)
 - **NUNCA usar `#` en las rutas.** Siempre rutas limpias sin anclas.
 - Mobile (≤768px): `.navbar .container { max-width: 100%; padding: 0 12px; }`
-- Auto-collapse: colapsa a hamburguesa en `window.innerWidth <= 1100`
+- Auto-collapse: colapsa a hamburguesa en `window.innerWidth <= 1280`
 
 ---
 
