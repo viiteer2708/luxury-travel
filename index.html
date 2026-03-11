@@ -13,6 +13,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
     <style>
+@font-face {
+    font-family: 'Waltograph';
+    src: url('/font/waltograph42.otf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
 .hero {
     min-height: 100vh;
             display: flex;
@@ -855,21 +862,34 @@ section {
 
 /* ===== DISNEY BANNER ===== */
 .disney-banner {
+    position: relative;
     display: block;
     background: var(--dark);
-    text-align: center;
 }
 
 .disney-banner a {
     display: block;
+    position: relative;
 }
 
 .disney-banner img {
     width: 100%;
-    max-width: 1400px;
     height: auto;
     display: block;
-    margin: 0 auto;
+}
+
+.disney-banner-title {
+    position: absolute;
+    bottom: 24px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-family: 'Waltograph', 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--white);
+    letter-spacing: 2px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.8), 0 4px 24px rgba(0,0,0,0.6);
+    pointer-events: none;
 }
 
 /* ===== DESTINOS HOME ===== */
@@ -1174,6 +1194,7 @@ section {
     <section class="disney-banner">
         <a href="/disneyland-paris/">
             <img src="/images/DISNEY/FROZEN.jpeg" alt="World of Frozen en Disneyland Paris">
+            <span class="disney-banner-title">Disneyland Paris</span>
         </a>
     </section>
 
