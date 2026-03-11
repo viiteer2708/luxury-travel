@@ -17,12 +17,71 @@
 .dest-hero {
     margin-top: 100px;
     background: var(--dark);
+    position: relative;
+    overflow: hidden;
 }
 
 .dest-hero img {
     width: 100%;
     height: auto;
     display: block;
+}
+
+.dest-hero-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px;
+    z-index: 2;
+}
+
+.dest-hero-overlay .section-label {
+    display: inline-block;
+    margin-bottom: 18px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    padding: 10px 28px;
+    border: 2px solid rgba(0,0,0,0.7);
+    border-radius: 50px;
+    background: rgba(0,0,0,0.4);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.8), 0 4px 24px rgba(0,0,0,0.6);
+    text-transform: uppercase;
+    color: var(--gold);
+}
+
+.dest-hero-overlay h2 {
+    font-family: 'Waltograph', 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.8), 0 4px 24px rgba(0,0,0,0.6);
+}
+
+.dest-hero-overlay > p {
+    font-size: 1.05rem;
+    color: var(--white);
+    font-weight: 600;
+    line-height: 1.7;
+    margin-bottom: 16px;
+    max-width: 540px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.8), 0 4px 24px rgba(0,0,0,0.6);
+}
+
+.dest-hero-overlay .disney-micro {
+    font-size: 0.9rem;
+    color: var(--white);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 0;
+    text-shadow: 0 1px 2px rgba(0,0,0,1), 0 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.6);
+    -webkit-text-stroke: 0.3px rgba(0,0,0,0.5);
 }
 
 .tips-intro {
@@ -264,6 +323,12 @@
     <!-- HERO -->
     <section class="dest-hero">
         <img src="/images/DISNEY/FROZEN.jpeg" alt="World of Frozen en Disneyland Paris">
+        <div class="dest-hero-overlay">
+            <span class="section-label">Apertura 29 de marzo de 2026</span>
+            <h2>Disneyland Paris</h2>
+            <p>Hay viajes que se recuerdan por lo que ves... y otros por lo que sientes.</p>
+            <p class="disney-micro">Secretos bien guardados · atracciones por edades · restaurantes tematizados</p>
+        </div>
     </section>
 
     <!-- INTRO -->
