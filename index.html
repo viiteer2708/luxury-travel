@@ -863,33 +863,62 @@ section {
 /* ===== DISNEY BANNER ===== */
 .disney-banner {
     position: relative;
-    display: block;
-    background: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
 }
 
-.disney-banner a {
-    display: block;
-    position: relative;
-}
-
-.disney-banner img {
+.disney-banner-bg {
     width: 100%;
     height: auto;
     display: block;
 }
 
-.disney-banner-title {
+.disney-banner-content {
     position: absolute;
-    bottom: 24px;
-    left: 0;
-    right: 0;
-    text-align: center;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    background: rgba(10,10,10,0.45);
+    z-index: 2;
+}
+
+.disney-banner-content .section-label {
+    display: inline-block;
+    margin-bottom: 16px;
+}
+
+.disney-banner-content h2 {
     font-family: 'Waltograph', 'Playfair Display', serif;
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
     color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 12px;
     letter-spacing: 2px;
     text-shadow: 0 2px 8px rgba(0,0,0,0.8), 0 4px 24px rgba(0,0,0,0.6);
-    pointer-events: none;
+}
+
+.disney-banner-content > p {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.85);
+    font-weight: 400;
+    line-height: 1.7;
+    margin-bottom: 28px;
+    max-width: 540px;
+}
+
+.disney-micro {
+    font-size: 0.85rem !important;
+    color: var(--gold-light) !important;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    margin-top: 16px;
+    margin-bottom: 0 !important;
 }
 
 /* ===== DESTINOS HOME ===== */
@@ -1192,10 +1221,14 @@ section {
 
     <!-- DISNEY BANNER -->
     <section class="disney-banner">
-        <a href="/disneyland-paris/">
-            <img src="/images/DISNEY/FROZEN.jpeg" alt="World of Frozen en Disneyland Paris">
-            <span class="disney-banner-title">Disneyland Paris</span>
-        </a>
+        <img class="disney-banner-bg" src="/images/DISNEY/FROZEN.jpeg" alt="World of Frozen en Disneyland Paris">
+        <div class="disney-banner-content reveal">
+            <span class="section-label">Apertura 29 de marzo de 2026</span>
+            <h2>Disneyland Paris</h2>
+            <p>Hay viajes que se recuerdan por lo que ves... y otros por lo que sientes.</p>
+            <a href="/disneyland-paris/" class="btn btn-primary">Entra en el mundo Disney &#10230;</a>
+            <p class="disney-micro">Secretos bien guardados · atracciones por edades · restaurantes tematizados</p>
+        </div>
     </section>
 
     <!-- 1. DESTINOS DESTACADOS -->
