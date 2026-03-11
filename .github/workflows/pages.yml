@@ -17,16 +17,9 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - name: Preparar sitio
-        run: |
-          mkdir _site
-          cp index.html _site/
-          cp pages/*.html _site/
-          cp -r images _site/images
-          sed -i 's|\.\./images/|images/|g' _site/*.html
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: '_site'
+          path: '.'
       - id: deployment
         uses: actions/deploy-pages@v4
