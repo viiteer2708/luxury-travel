@@ -853,6 +853,71 @@ section {
     position: relative;
 }
 
+/* ===== DISNEY BANNER ===== */
+.disney-banner {
+    position: relative;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: url('/images/DISNEY/FROZEN.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+.disney-banner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.6) 50%, var(--dark) 100%);
+}
+
+.disney-banner-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    padding: 60px 24px;
+}
+
+.disney-banner-content .section-label {
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.disney-banner-content h2 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 16px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8), 0 4px 20px rgba(0,0,0,0.6);
+}
+
+.disney-banner-content > p {
+    font-size: 1.05rem;
+    color: var(--text);
+    font-weight: 400;
+    line-height: 1.7;
+    margin-bottom: 32px;
+}
+
+.disney-micro {
+    font-size: 0.78rem !important;
+    color: var(--text-muted) !important;
+    letter-spacing: 1px;
+    margin-top: 16px;
+    margin-bottom: 0 !important;
+}
+
+@media (max-width: 768px) {
+    .disney-banner {
+        min-height: 400px;
+        background-attachment: scroll;
+    }
+}
+
 /* ===== DESTINOS HOME ===== */
 .destinations-section {
     background: var(--dark);
@@ -1150,6 +1215,17 @@ section {
         </div>
     </section>
 
+
+    <!-- DISNEY BANNER -->
+    <section class="disney-banner">
+        <div class="disney-banner-content reveal">
+            <span class="section-label">Apertura 29 de marzo de 2026</span>
+            <h2>World of Frozen<br><em style="color: var(--gold);">en Disneyland Paris</em></h2>
+            <p>Hay viajes que se recuerdan por lo que ves... y otros por lo que sientes.</p>
+            <a href="/disneyland-paris/" class="btn btn-primary">Entra en el mundo Disney &#10230;</a>
+            <p class="disney-micro">Secretos bien guardados · atracciones por edades · restaurantes tematizados</p>
+        </div>
+    </section>
 
     <!-- 1. DESTINOS DESTACADOS -->
     <section class="destinations-section" id="destinos">
