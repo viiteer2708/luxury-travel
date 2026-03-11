@@ -22,81 +22,51 @@
     font-display: swap;
 }
 .dest-hero {
-    min-height: calc(70vh - 50px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
     margin-top: 100px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    min-height: calc(70vh - 50px);
     background-image: url('/images/DISNEY/FROZEN.jpeg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 }
 
-.dest-hero::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(10,10,10,0.05) 0%, rgba(10,10,10,0.15) 50%, var(--dark) 100%);
+.disney-header-section {
+    padding: 50px 0 30px;
+    background: var(--dark);
+    text-align: center;
 }
 
-.dest-hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 800px;
-    padding: 0 24px;
-}
-
-.dest-hero-content .section-label {
+.disney-header-section .section-label {
     font-size: 0.85rem;
     letter-spacing: 5px;
     margin-bottom: 20px;
-    animation: fadeInUp 0.8s ease both;
+    display: block;
 }
 
-.dest-hero-content h1 {
+.disney-title {
     font-family: 'Waltograph', 'Playfair Display', serif;
-    font-size: clamp(2.8rem, 6vw, 5rem);
-    font-weight: 700;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
     color: var(--white);
-    line-height: 1.1;
-    margin-bottom: 20px;
+    line-height: 1.15;
+    margin-bottom: 16px;
     letter-spacing: 2px;
-    animation: fadeInUp 0.8s 0.2s ease both;
-    text-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.8),
-        0 4px 20px rgba(0, 0, 0, 0.6),
-        0 8px 40px rgba(0, 0, 0, 0.4);
 }
 
-.dest-hero-content p {
-    font-size: clamp(1rem, 2.5vw, 1.2rem);
-    color: var(--white);
-    font-weight: 700;
-    margin-bottom: 8px;
-    animation: fadeInUp 0.8s 0.4s ease both;
-    text-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.8),
-        0 4px 20px rgba(0, 0, 0, 0.6),
-        0 8px 40px rgba(0, 0, 0, 0.4);
+.disney-subtitle {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    line-height: 1.7;
+    max-width: 540px;
+    margin: 0 auto 12px;
 }
 
-.dest-hero-content .dest-duration {
+.disney-tags {
     font-size: 0.85rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--white);
-    font-weight: 700;
-    animation: fadeInUp 0.8s 0.6s ease both;
-    text-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.8),
-        0 4px 20px rgba(0, 0, 0, 0.6),
-        0 8px 40px rgba(0, 0, 0, 0.4);
+    color: var(--gold);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-top: 8px;
 }
 
 .tips-intro {
@@ -306,7 +276,7 @@
     }
 
     .dest-hero {
-        min-height: auto;
+        min-height: 40vh;
         background-attachment: scroll;
     }
 }
@@ -341,12 +311,15 @@
     </nav>
 
     <!-- HERO -->
-    <section class="dest-hero">
-        <div class="dest-hero-content">
+    <section class="dest-hero"></section>
+
+    <!-- BLOQUE DISNEY -->
+    <section class="disney-header-section">
+        <div class="container">
             <span class="section-label">Apertura 29 de marzo de 2026</span>
-            <h1>Disneyland Paris</h1>
-            <p>Hay viajes que se recuerdan por lo que ves... y otros por lo que sientes.</p>
-            <span class="dest-duration">Secretos bien guardados · atracciones por edades · restaurantes tematizados</span>
+            <h2 class="disney-title">Disneyland Paris</h2>
+            <p class="disney-subtitle">Hay viajes que se recuerdan por lo que ves... y otros por lo que sientes.</p>
+            <p class="disney-tags">Secretos bien guardados · atracciones por edades · restaurantes tematizados</p>
         </div>
     </section>
 
