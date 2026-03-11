@@ -14,6 +14,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
     <style>
+@font-face {
+    font-family: 'Waltograph';
+    src: url('/font/waltograph42.otf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
 .dest-hero {
     margin-top: 100px;
     background: var(--dark);
@@ -42,16 +49,12 @@
 .dest-hero-overlay .section-label {
     display: inline-block;
     margin-bottom: 18px;
-    font-weight: 700;
-    font-size: 0.85rem;
-    letter-spacing: 3px;
-    padding: 10px 28px;
-    border: 2px solid rgba(0,0,0,0.7);
-    border-radius: 50px;
-    background: rgba(0,0,0,0.4);
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: none;
+    color: var(--white);
     text-shadow: 0 2px 8px rgba(0,0,0,0.8), 0 4px 24px rgba(0,0,0,0.6);
-    text-transform: uppercase;
-    color: var(--gold);
 }
 
 .dest-hero-overlay h2 {
@@ -59,6 +62,7 @@
     font-size: clamp(2.5rem, 6vw, 4.5rem);
     color: var(--white);
     line-height: 1.15;
+    margin-top: 20px;
     margin-bottom: 12px;
     letter-spacing: 2px;
     text-shadow: 0 2px 8px rgba(0,0,0,0.8), 0 4px 24px rgba(0,0,0,0.6);
@@ -69,17 +73,19 @@
     color: var(--white);
     font-weight: 600;
     line-height: 1.7;
-    margin-bottom: 16px;
+    margin-bottom: 28px;
     max-width: 540px;
     text-shadow: 0 2px 8px rgba(0,0,0,0.8), 0 4px 24px rgba(0,0,0,0.6);
 }
 
 .dest-hero-overlay .disney-micro {
-    font-size: 0.9rem;
-    color: var(--white);
+    font-size: 0.9rem !important;
+    color: var(--white) !important;
     font-weight: 700;
     letter-spacing: 0.5px;
-    margin-bottom: 0;
+    letter-spacing: 0.5px;
+    margin-top: 16px;
+    margin-bottom: 0 !important;
     text-shadow: 0 1px 2px rgba(0,0,0,1), 0 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.6);
     -webkit-text-stroke: 0.3px rgba(0,0,0,0.5);
 }
