@@ -22,104 +22,81 @@
     font-display: swap;
 }
 .dest-hero {
-    margin-top: 100px;
-    background: var(--dark);
-    position: relative;
-    overflow: hidden;
-}
-
-.dest-hero img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-.dest-hero-overlay {
-    position: absolute;
-    inset: 0;
+    min-height: calc(70vh - 50px);
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 100px 24px 60px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 100px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-image: url('/images/DISNEY/FROZEN.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.dest-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10,10,10,0.05) 0%, rgba(10,10,10,0.15) 50%, var(--dark) 100%);
+}
+
+.dest-hero-content {
+    position: relative;
     z-index: 2;
+    max-width: 800px;
+    padding: 0 24px;
 }
 
-.dest-hero-overlay .section-label {
-    display: inline-block;
-    margin-bottom: 18px;
-    font-size: 1.175rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: none;
-    color: var(--white);
-    text-shadow: 0 2px 8px rgba(0,0,0,0.8), 0 4px 24px rgba(0,0,0,0.6);
-}
-
-.dest-hero-overlay h2 {
-    font-family: 'Waltograph', 'Playfair Display', serif;
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    color: var(--white);
-    line-height: 1.15;
-    margin-top: 20px;
-    margin-bottom: 12px;
-    letter-spacing: 2px;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.8), 0 4px 24px rgba(0,0,0,0.6);
-}
-
-.dest-hero-overlay > p {
-    font-size: 1.05rem;
-    color: var(--white);
-    font-weight: 600;
-    line-height: 1.7;
-    margin-bottom: 28px;
-    max-width: 540px;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.8), 0 4px 24px rgba(0,0,0,0.6);
-}
-
-.dest-hero-overlay .disney-micro {
-    font-size: 0.9rem !important;
-    color: var(--white) !important;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    letter-spacing: 0.5px;
-    margin-top: 16px;
-    margin-bottom: 0 !important;
-    text-shadow: 0 1px 2px rgba(0,0,0,1), 0 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.6);
-    -webkit-text-stroke: 0.3px rgba(0,0,0,0.5);
-}
-
-.disney-intro-section {
-    padding: 50px 0 30px;
-    background: var(--dark);
-    text-align: center;
-}
-
-.disney-intro-content h2 {
-    font-family: 'Waltograph', 'Playfair Display', serif;
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    color: var(--white);
-    line-height: 1.15;
-    margin-bottom: 16px;
-    letter-spacing: 2px;
-}
-
-.disney-intro-content > p {
-    font-size: 1.05rem;
-    color: var(--text-muted);
-    font-weight: 400;
-    line-height: 1.7;
-    max-width: 540px;
-    margin: 0 auto 12px;
-}
-
-.disney-intro-content .disney-micro {
+.dest-hero-content .section-label {
     font-size: 0.85rem;
-    color: var(--gold);
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    margin-top: 8px;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+    animation: fadeInUp 0.8s ease both;
+}
+
+.dest-hero-content h1 {
+    font-family: 'Waltograph', 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    animation: fadeInUp 0.8s 0.2s ease both;
+    text-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.8),
+        0 4px 20px rgba(0, 0, 0, 0.6),
+        0 8px 40px rgba(0, 0, 0, 0.4);
+}
+
+.dest-hero-content p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: var(--white);
+    font-weight: 700;
+    margin-bottom: 8px;
+    animation: fadeInUp 0.8s 0.4s ease both;
+    text-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.8),
+        0 4px 20px rgba(0, 0, 0, 0.6),
+        0 8px 40px rgba(0, 0, 0, 0.4);
+}
+
+.dest-hero-content .dest-duration {
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--white);
+    font-weight: 700;
+    animation: fadeInUp 0.8s 0.6s ease both;
+    text-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.8),
+        0 4px 20px rgba(0, 0, 0, 0.6),
+        0 8px 40px rgba(0, 0, 0, 0.4);
 }
 
 .tips-intro {
@@ -328,8 +305,9 @@
         height: 280px;
     }
 
-    .dest-hero-overlay {
-        display: none;
+    .dest-hero {
+        min-height: auto;
+        background-attachment: scroll;
     }
 }
     </style>
@@ -364,20 +342,11 @@
 
     <!-- HERO -->
     <section class="dest-hero">
-        <img src="/images/DISNEY/FROZEN.jpeg" alt="World of Frozen en Disneyland Paris">
-        <div class="dest-hero-overlay">
+        <div class="dest-hero-content">
             <span class="section-label">Apertura 29 de marzo de 2026</span>
-        </div>
-    </section>
-
-    <!-- INTRO DISNEY -->
-    <section class="disney-intro-section">
-        <div class="container">
-            <div class="disney-intro-content">
-                <h2>Disneyland Paris</h2>
-                <p>Hay viajes que se recuerdan por lo que ves... y otros por lo que sientes.</p>
-                <p class="disney-micro">Secretos bien guardados · atracciones por edades · restaurantes tematizados</p>
-            </div>
+            <h1>Disneyland Paris</h1>
+            <p>Hay viajes que se recuerdan por lo que ves... y otros por lo que sientes.</p>
+            <span class="dest-duration">Secretos bien guardados · atracciones por edades · restaurantes tematizados</span>
         </div>
     </section>
 
