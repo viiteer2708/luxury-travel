@@ -14,73 +14,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
     <style>
-@font-face {
-    font-family: 'Waltograph';
-    src: url('/font/waltograph42.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
 .dest-hero {
-    min-height: calc(70vh - 50px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
     margin-top: 100px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    background-image: url('/images/DISNEY/FROZEN.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background: var(--dark);
+    text-align: center;
 }
 
-.dest-hero::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(10,10,10,0.05) 0%, rgba(10,10,10,0.15) 50%, var(--dark) 100%);
-}
-
-.dest-hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 800px;
-    padding: 0 24px;
-}
-
-.dest-hero-content .section-label {
-    margin-bottom: 20px;
-}
-
-.dest-hero-content h1 {
-    font-size: clamp(2.8rem, 6vw, 5rem);
-    font-weight: 700;
-    color: var(--white);
-    line-height: 1.1;
-    margin-bottom: 20px;
-    animation: fadeInUp 0.8s 0.2s ease both;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.8), 0 4px 20px rgba(0,0,0,0.6), 0 8px 40px rgba(0,0,0,0.4);
-}
-
-.dest-hero-content h1.disney-title {
-    font-family: 'Waltograph', 'Playfair Display', serif;
-    font-size: clamp(3rem, 7vw, 5.5rem);
-    letter-spacing: 2px;
-}
-
-.dest-hero-content p {
-    font-size: clamp(1rem, 2.5vw, 1.2rem);
-    color: var(--white);
-    font-weight: 700;
-    max-width: 540px;
+.dest-hero img {
+    width: 100%;
+    max-width: 1400px;
+    height: auto;
+    display: block;
     margin: 0 auto;
-    margin-bottom: 8px;
-    animation: fadeInUp 0.8s 0.4s ease both;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.8), 0 4px 20px rgba(0,0,0,0.6), 0 8px 40px rgba(0,0,0,0.4);
 }
 
 .tips-intro {
@@ -275,12 +220,6 @@
 }
 
 @media (max-width: 768px) {
-    .dest-hero {
-        background-attachment: scroll;
-        background-position: center center;
-        background-repeat: no-repeat;
-    }
-
     .itinerary-block {
         grid-template-columns: 1fr;
         gap: 28px;
@@ -327,10 +266,7 @@
 
     <!-- HERO -->
     <section class="dest-hero">
-        <div class="dest-hero-content">
-            <h1 class="disney-title">Disneyland Paris</h1>
-            <p>Apertura World of Frozen: 29 de marzo de 2026</p>
-        </div>
+        <img src="/images/DISNEY/FROZEN.jpeg" alt="World of Frozen en Disneyland Paris">
     </section>
 
     <!-- INTRO -->
