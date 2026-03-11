@@ -618,9 +618,8 @@ section {
 }
 
 .testimonials-slider {
-    max-width: 700px;
+    max-width: 760px;
     margin: 0 auto;
-    text-align: center;
     position: relative;
     min-height: 340px;
 }
@@ -631,7 +630,9 @@ section {
 }
 
 .testimonial-slide.active {
-    display: block;
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
 }
 
 @keyframes fadeInTestimonial {
@@ -639,38 +640,44 @@ section {
     to { opacity: 1; transform: translateY(0); }
 }
 
-.testimonial-quote {
+.testimonial-quote-mark {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(1.1rem, 2.2vw, 1.5rem);
-    font-style: italic;
-    color: var(--gold-light);
-    line-height: 1.8;
-    margin-bottom: 24px;
-    position: relative;
-    padding: 0 20px;
+    font-size: 6rem;
+    line-height: 1;
+    color: var(--gold);
+    opacity: 0.25;
+    flex-shrink: 0;
+    margin-top: -10px;
 }
 
-.testimonial-quote::before {
-    content: '\201C';
-    font-size: 4rem;
-    color: rgba(201,169,110,0.2);
-    position: absolute;
-    top: -20px;
-    left: -10px;
+.testimonial-content {
+    flex: 1;
+    border-left: 2px solid rgba(201,169,110,0.25);
+    padding-left: 32px;
+}
+
+.testimonial-quote {
     font-family: 'Playfair Display', serif;
+    font-size: clamp(1.05rem, 2vw, 1.35rem);
+    font-style: italic;
+    color: var(--gold-light);
+    line-height: 1.9;
+    margin-bottom: 28px;
 }
 
 .testimonial-author {
     font-size: 0.9rem;
     color: var(--text-muted);
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 
 .testimonial-author strong {
     color: var(--white);
     display: block;
     margin-bottom: 4px;
+    font-size: 1rem;
     font-weight: 500;
+    letter-spacing: 0;
 }
 
 .testimonial-location {
@@ -690,16 +697,16 @@ section {
 .testimonial-dots {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    margin-top: 32px;
+    gap: 12px;
+    margin-top: 40px;
 }
 
 .testimonial-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    border: 1px solid rgba(201,169,110,0.4);
-    background: transparent;
+    width: 32px;
+    height: 3px;
+    border-radius: 2px;
+    border: none;
+    background: rgba(201,169,110,0.2);
     cursor: pointer;
     transition: var(--transition);
     padding: 0;
@@ -707,7 +714,7 @@ section {
 
 .testimonial-dot.active {
     background: var(--gold);
-    border-color: var(--gold);
+    width: 48px;
 }
 
 /* ===== FAQ SECTION ===== */
@@ -936,8 +943,19 @@ section {
         gap: 32px;
     }
 
-    .testimonial-quote::before {
-        display: none;
+    .testimonial-slide.active {
+        flex-direction: column;
+        gap: 0;
+    }
+    .testimonial-quote-mark {
+        font-size: 4rem;
+        margin-bottom: -20px;
+    }
+    .testimonial-content {
+        border-left: none;
+        padding-left: 0;
+        border-top: 2px solid rgba(201,169,110,0.2);
+        padding-top: 20px;
     }
 }
 
@@ -1966,33 +1984,42 @@ section {
             <div class="section-header reveal">
                 <span class="section-label">Quienes ya lo han vivido</span>
                 <h2 class="section-title">Experiencias que dejan huella</h2>
-                <p class="section-subtitle">Cada viaje es único, pero hay algo que se repite: la sensación de volver sabiendo que ha merecido la pena.</p>
+                <p class="section-subtitle">Cada viaje es diferente.<br>Pero todos comparten algo: la sensación de que todo está exactamente donde debe estar.</p>
                 <div class="divider"></div>
             </div>
 
             <div class="testimonials-slider reveal" id="testimonialsSlider">
                 <div class="testimonial-slide active">
-                    <p class="testimonial-quote">Prepararon cada detalle del viaje con cariño.<br>Desde Bangkok hasta las playas del sur, cada parada tenía sentido.<br>Más de 20 días recorriendo Tailandia sin preocuparme absolutamente de nada.<br>Hacía años que no desconectaba así.</p>
-                    <div class="testimonial-author">
-                        <strong>Víctor</strong>
-                        <span class="testimonial-location">Molins de Rei (Barcelona)</span>
-                        <span class="testimonial-trip">Viaje a Tailandia</span>
+                    <span class="testimonial-quote-mark">"</span>
+                    <div class="testimonial-content">
+                        <p class="testimonial-quote">Se nota cuando alguien diseña el viaje con cariño.<br>Desde Bangkok hasta las playas del sur, cada parada tenía sentido.<br>Más de 20 días recorriendo Tailandia sin preocuparme absolutamente de nada.<br>Hacía años que no desconectaba así.</p>
+                        <div class="testimonial-author">
+                            <strong>Víctor</strong>
+                            <span class="testimonial-location">Molins de Rei (Barcelona)</span>
+                            <span class="testimonial-trip">Viaje a Tailandia</span>
+                        </div>
                     </div>
                 </div>
                 <div class="testimonial-slide">
-                    <p class="testimonial-quote">Hay viajes que recuerdas siempre.<br>Riviera Maya fue exactamente uno de esos.<br>Los peques disfrutaron como nunca entre la playa, el snorkel y los juegos en el agua.<br>Y nosotros volvimos a tener algo que hacía tiempo echábamos de menos: tiempo para estar juntos.</p>
-                    <div class="testimonial-author">
-                        <strong>Javier</strong>
-                        <span class="testimonial-location">Badalona (Barcelona)</span>
-                        <span class="testimonial-trip">Viaje a Riviera Maya</span>
+                    <span class="testimonial-quote-mark">"</span>
+                    <div class="testimonial-content">
+                        <p class="testimonial-quote">Hay viajes que recuerdas siempre.<br>Riviera Maya fue exactamente uno de esos.<br>Los peques disfrutaron como nunca entre la playa, el snorkel y los juegos en el agua.<br>Y nosotros volvimos a tener algo que hacía tiempo echábamos de menos: tiempo para estar juntos.</p>
+                        <div class="testimonial-author">
+                            <strong>Javier</strong>
+                            <span class="testimonial-location">Badalona (Barcelona)</span>
+                            <span class="testimonial-trip">Viaje a Riviera Maya</span>
+                        </div>
                     </div>
                 </div>
                 <div class="testimonial-slide">
-                    <p class="testimonial-quote">Hay lugares que parecen irreales hasta que los vives.<br>Maldivas fue exactamente eso para nosotros.<br>Despertar cada mañana frente al mar, sin prisas y sin horarios.<br>Un viaje que recordaremos siempre.</p>
-                    <div class="testimonial-author">
-                        <strong>Marta</strong>
-                        <span class="testimonial-location">Barcelona</span>
-                        <span class="testimonial-trip">Viaje a Maldivas</span>
+                    <span class="testimonial-quote-mark">"</span>
+                    <div class="testimonial-content">
+                        <p class="testimonial-quote">Hay lugares que parecen irreales hasta que los vives.<br>Maldivas fue exactamente eso para nosotros.<br>Despertar cada mañana frente al mar, sin prisas y sin horarios.<br>Un viaje que recordaremos siempre.</p>
+                        <div class="testimonial-author">
+                            <strong>Marta</strong>
+                            <span class="testimonial-location">Barcelona</span>
+                            <span class="testimonial-trip">Viaje a Maldivas</span>
+                        </div>
                     </div>
                 </div>
                 <div class="testimonial-dots">
