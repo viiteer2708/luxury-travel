@@ -14,6 +14,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
     <style>
+@font-face {
+    font-family: 'Waltograph';
+    src: url('/font/waltograph42.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
 .dest-hero {
     min-height: calc(70vh - 50px);
     display: flex;
@@ -57,6 +64,12 @@
     margin-bottom: 20px;
     animation: fadeInUp 0.8s 0.2s ease both;
     text-shadow: 0 2px 4px rgba(0,0,0,0.8), 0 4px 20px rgba(0,0,0,0.6), 0 8px 40px rgba(0,0,0,0.4);
+}
+
+.dest-hero-content h1.disney-title {
+    font-family: 'Waltograph', 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    letter-spacing: 2px;
 }
 
 .dest-hero-content p {
@@ -105,59 +118,85 @@
     gap: 12px;
 }
 
-.tips-section {
-    padding: 80px 0;
+.itinerary-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    margin-bottom: 80px;
 }
 
-.tips-section.alt-bg {
-    background: var(--dark-soft);
-    border-top: 1px solid rgba(255,255,255,0.05);
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-
-.tips-section-header {
-    margin-bottom: 40px;
-}
-
-.tips-section-title {
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    color: var(--white);
-    line-height: 1.2;
-}
-
-.tips-section-subtitle {
-    font-size: 0.9rem;
-    color: var(--gold-light);
-    font-weight: 300;
-    margin-top: 4px;
-}
-
-.tip-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    margin-bottom: 16px;
-    font-size: 0.95rem;
-    line-height: 1.7;
-    color: var(--text);
-}
-
-.tip-item:last-child {
+.itinerary-block:last-child {
     margin-bottom: 0;
 }
 
-.tip-icon {
-    flex-shrink: 0;
-    font-size: 1.1rem;
-    margin-top: 2px;
+.itinerary-block.reverse .itinerary-image {
+    order: 2;
 }
 
-.tip-item strong {
+.itinerary-block.reverse .itinerary-content {
+    order: 1;
+}
+
+.itinerary-image {
+    border-radius: var(--radius);
+    overflow: hidden;
+    position: relative;
+}
+
+.itinerary-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.itinerary-image:hover img {
+    transform: scale(1.05);
+}
+
+.itinerary-content .section-label {
+    text-align: left;
+    margin-bottom: 12px;
+}
+
+.itinerary-content h3 {
+    font-size: 1.8rem;
     color: var(--white);
+    margin-bottom: 16px;
 }
 
-.tips-list {
-    max-width: 780px;
+.itinerary-content p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    font-weight: 300;
+}
+
+.itinerary-content ul {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.itinerary-content ul li {
+    font-size: 0.88rem;
+    color: var(--text);
+    padding-left: 20px;
+    position: relative;
+}
+
+.itinerary-content ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.6;
 }
 
 .tip-magic {
@@ -176,58 +215,19 @@
 }
 
 .tip-subtitle {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--white);
     font-weight: 600;
-    margin-top: 32px;
-    margin-bottom: 16px;
+    margin-top: 24px;
+    margin-bottom: 8px;
 }
 
-.attractions-group {
-    margin-bottom: 40px;
-}
-
-.attractions-group:last-child {
-    margin-bottom: 0;
-}
-
-.attractions-group h3 {
-    font-size: 1.15rem;
-    color: var(--white);
-    margin-bottom: 16px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-}
-
-.attraction-list {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 12px;
-}
-
-.attraction-list li {
-    padding: 6px 0;
-    font-size: 0.92rem;
-    color: var(--text);
-    line-height: 1.6;
-    padding-left: 20px;
-    position: relative;
-}
-
-.attraction-list li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 14px;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--gold);
-    opacity: 0.6;
+.disney-itinerary {
+    padding-top: 10px;
 }
 
 .restaurant-card {
-    padding: 16px 0;
+    padding: 12px 0;
     border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
@@ -242,10 +242,10 @@
 
 .restaurant-card span {
     display: block;
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     color: var(--text-muted);
-    margin-top: 4px;
-    line-height: 1.6;
+    margin-top: 2px;
+    line-height: 1.5;
 }
 
 .tips-cta {
@@ -281,8 +281,18 @@
         background-repeat: no-repeat;
     }
 
-    .tips-section {
-        padding: 48px 0;
+    .itinerary-block {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .itinerary-block.reverse .itinerary-image,
+    .itinerary-block.reverse .itinerary-content {
+        order: unset;
+    }
+
+    .itinerary-image img {
+        height: 280px;
     }
 }
     </style>
@@ -318,8 +328,7 @@
     <!-- HERO -->
     <section class="dest-hero">
         <div class="dest-hero-content">
-            <span class="section-label">Europa · Francia</span>
-            <h1>World of Frozen<br>en Disneyland Paris</h1>
+            <h1 class="disney-title">World of Frozen<br>en Disneyland Paris</h1>
             <p>Apertura: 29 de marzo de 2026</p>
         </div>
     </section>
@@ -334,181 +343,110 @@
         </div>
     </section>
 
-    <!-- 01 LA CLAVE PARA VIVIR FROZEN -->
-    <div class="tips-section reveal">
+    <!-- ITINERARIO -->
+    <section class="disney-itinerary">
         <div class="container">
-            <div class="tips-section-header">
-                <h2 class="tips-section-title">La clave para vivir Frozen de verdad</h2>
-                <p class="tips-section-subtitle">Sin prisas, sin caos</p>
-            </div>
-            <div class="tips-list">
-                <div class="tip-item">
-                    <span class="tip-icon">✅</span>
+
+            <!-- 01 LA CLAVE PARA VIVIR FROZEN — FOTO IZQ + TEXTO DER -->
+            <div class="itinerary-block reveal">
+                <div class="itinerary-image">
+                    <img src="/images/DISNEY/FROZEN2.jpeg" alt="World of Frozen en Disneyland Paris">
+                </div>
+                <div class="itinerary-content">
+                    <span class="section-label">Frozen de verdad</span>
+                    <h3>La clave para vivirlo <em style="color: var(--gold);">sin prisas</em></h3>
                     <p>World of Frozen no es "una zona más". Es un lugar para entrar en una historia... y eso se nota. El mejor truco no es correr: es elegir el momento perfecto.</p>
-                </div>
-                <div class="tip-item">
-                    <span class="tip-icon">✅</span>
-                    <p><strong>Momento ideal 1:</strong> primera hora (el parque aún despierta y todo se siente más "nuevo reino").</p>
-                </div>
-                <div class="tip-item">
-                    <span class="tip-icon">✅</span>
-                    <p><strong>Momento ideal 2:</strong> última hora (luces, ambiente y menos carreras).</p>
-                </div>
-                <div class="tip-item">
-                    <span class="tip-icon">💡</span>
-                    <p><strong>Regla de oro:</strong> planifica por zonas para evitar cruzar el parque una y otra vez.</p>
-                </div>
-            </div>
-            <div class="tip-magic">
-                <strong>Tip mágico:</strong> alterna 1 atracción + 1 momento bonito (foto, paseo, helado). El día fluye como una película.
-            </div>
-        </div>
-    </div>
-
-    <!-- 02 SECRETOS BIEN GUARDADOS -->
-    <div class="tips-section alt-bg reveal">
-        <div class="container">
-            <div class="tips-section-header">
-                <h2 class="tips-section-title">Secretos bien guardados</h2>
-                <p class="tips-section-subtitle">Y totalmente útiles</p>
-            </div>
-            <div class="tips-list">
-                <p class="tip-subtitle">1) La chapa de celebración: un detalle con efecto dominó</p>
-                <div class="tip-item">
-                    <span class="tip-icon">✅</span>
-                    <p>¿Primera visita, cumpleaños, aniversario? A veces puedes conseguir un badge de celebración (según disponibilidad) si lo pides en atención al visitante o en tu hotel.</p>
-                </div>
-                <div class="tip-magic">
-                    <strong>Tip mágico:</strong> póntela desde el inicio... y deja que el parque haga el resto.
-                </div>
-
-                <p class="tip-subtitle">2) Pin Trading: un recuerdo con historia</p>
-                <div class="tip-item">
-                    <span class="tip-icon">💡</span>
-                    <p>Existe el intercambio de pins en momentos y puntos concretos. No es "gratis": es intercambio. Pero tiene algo especial: preguntas, eliges... y te llevas un recuerdo con historia.</p>
-                </div>
-                <div class="tip-magic">
-                    <strong>Tip mágico:</strong> lleva 2-3 pins "para intercambiar" y pregunta con una sonrisa.
-                </div>
-
-                <p class="tip-subtitle">3) El descanso que salva la tarde (y la noche)</p>
-                <div class="tip-item">
-                    <span class="tip-icon">💡</span>
-                    <p>El secreto de los días redondos es meter una pausa corta cuando todavía "vas bien", no cuando ya estás agotado. Un descanso inteligente evita el bajón y te devuelve la energía para la magia nocturna.</p>
-                </div>
-                <div class="tip-magic">
-                    <strong>Tip mágico:</strong> helado + sombra + 15 minutos = energía para llegar al final del día con sonrisa.
-                </div>
-
-                <p class="tip-subtitle">4) Comer con plan: el hechizo anti-bajón</p>
-                <div class="tip-item">
-                    <span class="tip-icon">⚠️</span>
-                    <p>Improvisar comidas en Disney suele salir caro en tiempo y paciencia. Una reserva bien puesta ordena el día y hace que todo encaje.</p>
-                </div>
-                <div class="tip-magic">
-                    <strong>Tip mágico:</strong> piensa en la comida como un "checkpoint": te reinicia el día.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 03 MEJORES ATRACCIONES POR EDAD -->
-    <div class="tips-section reveal">
-        <div class="container">
-            <div class="tips-section-header">
-                <h2 class="tips-section-title">Las mejores atracciones</h2>
-                <p class="tips-section-subtitle">Según edad y valentía</p>
-            </div>
-            <div class="tips-list">
-                <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:32px;">Nota: las restricciones de altura/edad pueden variar según la atracción.</p>
-
-                <div class="attractions-group">
-                    <h3>Peques (0-6) · suaves, bonitas y "cero sustos"</h3>
-                    <ul class="attraction-list">
-                        <li>"it's a small world"</li>
-                        <li>Peter Pan's Flight</li>
-                        <li>Dumbo the Flying Elephant</li>
-                        <li>Alice's Curious Labyrinth</li>
-                        <li>Le Pays des Contes de Fées</li>
-                        <li>Les Voyages de Pinocchio</li>
-                        <li>Mad Hatter's Tea Cups (si toleran un poquito de giro)</li>
+                    <ul>
+                        <li><strong>Momento ideal 1:</strong> primera hora (el parque aún despierta y todo se siente más "nuevo reino")</li>
+                        <li><strong>Momento ideal 2:</strong> última hora (luces, ambiente y menos carreras)</li>
+                        <li><strong>Regla de oro:</strong> planifica por zonas para evitar cruzar el parque una y otra vez</li>
                     </ul>
                     <div class="tip-magic">
-                        <strong>Tip mágico:</strong> después de una cola, elige una atracción tranquila para que el día respire.
+                        <strong>Tip mágico:</strong> alterna 1 atracción + 1 momento bonito (foto, paseo, helado). El día fluye como una película.
                     </div>
                 </div>
+            </div>
 
-                <div class="attractions-group">
-                    <h3>Niños (7-10) · aventura moderada + interactivas</h3>
-                    <ul class="attraction-list">
-                        <li>Buzz Lightyear Laser Blast</li>
-                        <li>Pirates of the Caribbean (ojo: alguna caída suave)</li>
-                        <li>Phantom Manor (si les gusta el "misterio" sin terror fuerte)</li>
-                        <li>Autopia</li>
-                        <li>Ratatouille: The Adventure</li>
-                        <li>Spider-Man W.E.B. Adventure</li>
-                    </ul>
+            <!-- 02 SECRETOS BIEN GUARDADOS — TEXTO IZQ + FOTO DER -->
+            <div class="itinerary-block reverse reveal">
+                <div class="itinerary-image">
+                    <img src="/images/DISNEY/DISNEY2.jpeg" alt="Mickey y Minnie en Disneyland Paris">
+                </div>
+                <div class="itinerary-content">
+                    <span class="section-label">Secretos bien guardados</span>
+                    <h3>Detalles que cambian <em style="color: var(--gold);">cómo se siente</em> tu día</h3>
+                    <p>Cosas que no salen en los folletos, pero que marcan la diferencia.</p>
+                    <p class="tip-subtitle">1) La chapa de celebración</p>
+                    <p>¿Primera visita, cumpleaños, aniversario? Pídela en atención al visitante o en tu hotel. Póntela desde el inicio... y deja que el parque haga el resto.</p>
+                    <p class="tip-subtitle">2) Pin Trading</p>
+                    <p>Intercambio de pins en puntos concretos. Lleva 2-3 pins "para intercambiar" y pregunta con una sonrisa.</p>
+                    <p class="tip-subtitle">3) El descanso inteligente</p>
+                    <p>Mete una pausa corta cuando todavía "vas bien", no cuando ya estás agotado.</p>
+                    <p class="tip-subtitle">4) Comer con plan</p>
+                    <p>Una reserva bien puesta ordena el día y hace que todo encaje.</p>
                     <div class="tip-magic">
-                        <strong>Tip mágico:</strong> mete una atracción "juego" cuando notes cansancio: cambia el chip.
+                        <strong>Tip mágico:</strong> helado + sombra + 15 minutos = energía para llegar al final del día con sonrisa.
                     </div>
                 </div>
+            </div>
 
-                <div class="attractions-group">
-                    <h3>Mayores (adolescentes y adultos) · épica + adrenalina</h3>
-                    <ul class="attraction-list">
-                        <li>Big Thunder Mountain</li>
-                        <li>Star Wars Hyperspace Mountain</li>
-                        <li>Crush's Coaster</li>
-                        <li>Avengers Assemble: Flight Force</li>
-                        <li>The Twilight Zone Tower of Terror</li>
-                        <li>Star Tours: The Adventures Continue</li>
-                        <li>Indiana Jones and the Temple of Peril</li>
-                    </ul>
+            <!-- 03 ATRACCIONES — FOTO IZQ + TEXTO DER -->
+            <div class="itinerary-block reveal">
+                <div class="itinerary-image">
+                    <img src="/images/DISNEY/DISNEY3.jpeg" alt="Big Thunder Mountain en Disneyland Paris">
+                </div>
+                <div class="itinerary-content">
+                    <span class="section-label">Según edad y valentía</span>
+                    <h3>Las mejores <em style="color: var(--gold);">atracciones</em></h3>
+                    <p class="tip-subtitle">Peques (0-6) · cero sustos</p>
+                    <p>"it's a small world", Peter Pan's Flight, Dumbo, Alice's Curious Labyrinth, Le Pays des Contes de Fées, Les Voyages de Pinocchio, Mad Hatter's Tea Cups.</p>
+                    <p class="tip-subtitle">Niños (7-10) · aventura moderada</p>
+                    <p>Buzz Lightyear Laser Blast, Pirates of the Caribbean, Phantom Manor, Autopia, Ratatouille: The Adventure, Spider-Man W.E.B. Adventure.</p>
+                    <p class="tip-subtitle">Mayores · épica + adrenalina</p>
+                    <p>Big Thunder Mountain, Star Wars Hyperspace Mountain, Crush's Coaster, Avengers Assemble: Flight Force, Tower of Terror, Indiana Jones.</p>
                     <div class="tip-magic">
                         <strong>Tip mágico:</strong> guarda 1 atracción "tocha" para el final: cerrar el día con épica se recuerda más.
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- 04 RESTAURANTES TEMATIZADOS -->
-    <div class="tips-section alt-bg reveal">
-        <div class="container">
-            <div class="tips-section-header">
-                <h2 class="tips-section-title">Restaurantes tematizados</h2>
-                <p class="tips-section-subtitle">Donde la cena también es atracción</p>
-            </div>
-            <div class="tips-list">
-                <p style="font-size:0.95rem;color:var(--text);margin-bottom:24px;line-height:1.7;">Hay sitios donde no solo comes: vives una escena.</p>
-
-                <div class="restaurant-card">
-                    <strong>Captain Jack's - Restaurant des Pirates</strong>
-                    <span>Ambiente pirata, súper inmersivo</span>
+            <!-- 04 RESTAURANTES — TEXTO IZQ + FOTO DER -->
+            <div class="itinerary-block reverse reveal">
+                <div class="itinerary-image">
+                    <img src="/images/DISNEY/DISNEY4.jpeg" alt="Remy's Ratatouille Adventure en Disneyland Paris">
                 </div>
-                <div class="restaurant-card">
-                    <strong>Bistrot Chez Remy</strong>
-                    <span>Decoración "gigante", fotazas aseguradas</span>
-                </div>
-                <div class="restaurant-card">
-                    <strong>Auberge de Cendrillon</strong>
-                    <span>Cuento elegante para un día especial</span>
-                </div>
-                <div class="restaurant-card">
-                    <strong>Plaza Gardens</strong>
-                    <span>Muy familiar; según modalidad, puede incluir personajes</span>
-                </div>
-                <div class="restaurant-card">
-                    <strong>Restaurantes de hoteles Disney</strong>
-                    <span>Una comida más tranquila sin salir del universo</span>
-                </div>
-
-                <div class="tip-magic" style="margin-top:24px;">
-                    <strong>Tip mágico:</strong> si tu prioridad es un restaurante concreto, resérvalo primero... y construye el día alrededor.
+                <div class="itinerary-content">
+                    <span class="section-label">Donde la cena también es atracción</span>
+                    <h3>Restaurantes <em style="color: var(--gold);">tematizados</em></h3>
+                    <p>Hay sitios donde no solo comes: vives una escena.</p>
+                    <div class="restaurant-card">
+                        <strong>Captain Jack's - Restaurant des Pirates</strong>
+                        <span>Ambiente pirata, súper inmersivo</span>
+                    </div>
+                    <div class="restaurant-card">
+                        <strong>Bistrot Chez Rémy</strong>
+                        <span>Decoración "gigante", fotazas aseguradas</span>
+                    </div>
+                    <div class="restaurant-card">
+                        <strong>Auberge de Cendrillon</strong>
+                        <span>Cuento elegante para un día especial</span>
+                    </div>
+                    <div class="restaurant-card">
+                        <strong>Plaza Gardens</strong>
+                        <span>Muy familiar; según modalidad, puede incluir personajes</span>
+                    </div>
+                    <div class="restaurant-card">
+                        <strong>Restaurantes de hoteles Disney</strong>
+                        <span>Una comida más tranquila sin salir del universo</span>
+                    </div>
+                    <div class="tip-magic" style="margin-top:16px;">
+                        <strong>Tip mágico:</strong> si tu prioridad es un restaurante concreto, resérvalo primero... y construye el día alrededor.
+                    </div>
                 </div>
             </div>
+
         </div>
-    </div>
+    </section>
 
     <!-- CTA -->
     <section class="tips-cta">
