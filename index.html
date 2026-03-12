@@ -1334,9 +1334,8 @@ section {
 
             <div class="dest-tabs-wrapper">
                 <div class="dest-tabs" id="destTabs">
-                    <a href="#" class="active" data-filter="todos">Todos</a>
+                    <a href="#" class="active" data-filter="europa">Europa</a>
                     <a href="#" data-filter="asia">Asia</a>
-                    <a href="#" data-filter="europa">Europa</a>
                     <a href="#" data-filter="africa">África</a>
                     <a href="#" data-filter="america">América</a>
                     <a href="#" data-filter="paraisos">Paraísos</a>
@@ -2269,29 +2268,31 @@ section {
     </script>
 
     <script>
-        // Destination tabs filter
+        // Destination tabs filter — 3 por región
         (function() {
             const tabs = document.querySelectorAll('#destTabs a');
             const cards = document.querySelectorAll('#destGrid .destination-card');
+            function showRegion(region) {
+                let count = 0;
+                cards.forEach(card => {
+                    if (card.dataset.region === region && count < 3) {
+                        card.classList.remove('hidden');
+                        count++;
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            }
             tabs.forEach(tab => {
                 tab.addEventListener('click', function(e) {
                     e.preventDefault();
                     tabs.forEach(t => t.classList.remove('active'));
                     this.classList.add('active');
-                    const filter = this.dataset.filter;
-                    cards.forEach(card => {
-                        if (filter === 'todos') {
-                            card.classList.toggle('hidden', card.dataset.featured !== 'true');
-                        } else {
-                            card.classList.toggle('hidden', card.dataset.region !== filter);
-                        }
-                    });
+                    showRegion(this.dataset.filter);
                 });
             });
-            // Estado inicial: mostrar solo featured
-            cards.forEach(card => {
-                card.classList.toggle('hidden', card.dataset.featured !== 'true');
-            });
+            // Estado inicial: Europa
+            showRegion('europa');
         })();
     </script>
 
