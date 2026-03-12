@@ -49,6 +49,11 @@ viaje-a-medida-que-es/index.html — Artículo de blog
 
 **OBLIGATORIO SIEMPRE:**
 - Al crear un nuevo destino, SIEMPRE crear también su página de Travel Hacks (`pro-tips-[destino]/index.html`) y añadir la tarjeta en el hub `pro-tips/index.html`. Nunca crear un destino sin sus Travel Hacks.
+- Al crear un nuevo destino, SIEMPRE añadir su tarjeta en **TODAS** estas páginas:
+  1. `[region]/index.html` — página de la región correspondiente (europa, asia, africa, america, paraisos)
+  2. `destinos/index.html` — hub global de destinos, en la sección de su región
+  3. `pro-tips/index.html` — hub de Travel Hacks, en la sección de su región
+  - **NUNCA** crear un destino sin añadirlo a `destinos/index.html`.
 
 **PROHIBIDO SIEMPRE:**
 - No mostrar precios en NINGUNA parte de la web (ni en HTML, ni en CSS, ni en comentarios). Sin excepciones.
@@ -189,7 +194,8 @@ window.addEventListener('resize', checkNavOverflow);
 - Cambiar: footer → añadir enlace al destino en la lista de destinos
 - Verificar: navbar idéntica (ver sección Navbar arriba)
 
-### 2. Añadir tarjeta en la página de región (`[region]/index.html`)
+### 2. Añadir tarjeta en la página de región (`[region]/index.html`) Y en `destinos/index.html`
+- Añadir la misma tarjeta en AMBAS páginas (región + hub global de destinos)
 ```html
 <div class="destination-card reveal">
     <a href="/[destino]/">
