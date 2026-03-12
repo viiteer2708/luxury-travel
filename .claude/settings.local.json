@@ -26,7 +26,8 @@
       "Bash(wc -l /mnt/c/Users/viite/Documents/GitHub/luxury-travel/*/index.html /mnt/c/Users/viite/Documents/GitHub/luxury-travel/index.html | sort -n | tail -15)",
       "Bash(wc -l /mnt/c/Users/viite/Documents/GitHub/luxury-travel/*/index.html /mnt/c/Users/viite/Documents/GitHub/luxury-travel/index.html | sort -n | head -20)",
       "Bash(for file:*)",
-      "Bash(grep -rl '<h4>Exclusivo</h4>' --include='*.html' | while read f; do if ! grep -q 'Blog de viajes' \"$f\"; then echo \"$f\"; fi; done)"
+      "Bash(grep -rl '<h4>Exclusivo</h4>' --include='*.html' | while read f; do if ! grep -q 'Blog de viajes' \"$f\"; then echo \"$f\"; fi; done)",
+      "Bash(find . -mindepth 2 -name \"index.html\" | xargs grep -l \"margin-top: 100px\" | xargs sed -i 's/margin-top: 100px/padding-top: 100px/g')"
     ]
   }
 }
