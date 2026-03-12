@@ -45,6 +45,43 @@
     background: linear-gradient(180deg, rgba(10,10,10,0.05) 0%, rgba(10,10,10,0.15) 50%, var(--dark) 100%);
 }
 
+.dest-intro-text {
+    max-width: 780px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.05rem;
+    color: var(--text);
+    line-height: 1.9;
+    font-weight: 300;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 64px;
+}
+
+.section-label {
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: block;
+}
+
+.section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--white);
+    margin-bottom: 16px;
+}
+
+.divider {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin: 20px auto;
+}
+
 .dest-hero-content {
     position: relative;
     z-index: 2;
@@ -392,18 +429,20 @@
     <section class="dest-hero"></section>
 
     <!-- INTRO -->
-    <section class="tips-intro">
+    <section style="padding-top: 30px; padding-bottom: 10px;">
         <div class="container">
-            <div class="tips-intro-content reveal">
-                <p>Con la llegada de World of Frozen, Disneyland Paris suma un nuevo reino donde la historia no se mira desde fuera: se camina, se respira y se vive.</p>
-                <a href="/" class="tips-back-link">&#8592; Volver a la home</a>
-            </div>
+            <p class="dest-intro-text reveal">Con la llegada de World of Frozen, Disneyland Paris suma un nuevo reino donde la historia no se mira desde fuera: se camina, se respira y se vive.</p>
         </div>
     </section>
 
     <!-- ITINERARIO -->
-    <section class="disney-itinerary">
+    <section id="itinerario" style="padding-top: 10px;">
         <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Guía completa</span>
+                <h2 class="section-title">Todo lo que necesitas saber</h2>
+                <div class="divider"></div>
+            </div>
 
             <!-- 01 LA CLAVE PARA VIVIR FROZEN — FOTO IZQ + TEXTO DER -->
             <div class="itinerary-block reveal">
