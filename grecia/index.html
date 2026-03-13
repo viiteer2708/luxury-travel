@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grecia — Horizonte Exclusivo</title>
+    <link rel="icon" type="image/x-icon" href="/images/genfavicon-package/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/genfavicon-package/genfavicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/genfavicon-package/genfavicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/genfavicon-package/apple-touch-icon.png">
+    <link rel="manifest" href="/images/genfavicon-package/site.webmanifest">
+    <meta name="description" content="Viaje de lujo a Grecia: Atenas, Santorini, Mykonos y Paros. 8–9 noches de historia clásica, islas y glamour mediterráneo.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+.btn-outline {
+    background: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.25);
+}
+
+.btn-outline:hover {
+    border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-2px);
+}
+
+section {
+    padding: 120px 0;
+}
+
+.section-header {
+    text-align: center;
+            margin-bottom: 64px;
+}
+
+.section-label {
+    font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+            display: block;
+}
+
+.section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--white);
+            margin-bottom: 16px;
+}
+
+.divider {
+    width: 60px;
+            height: 1px;
+            background: var(--gold);
+            margin: 20px auto;
+}
+
+.dest-hero {
+    min-height: calc(70vh - 50px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 100px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            background-image: url('/images/grecia.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+}
+
+.dest-hero::after {
+    content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(10,10,10,0.05) 0%, rgba(10,10,10,0.15) 50%, var(--dark) 100%);
+}
+
+.dest-hero-content {
+    position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 24px;
+}
+
+.dest-hero-content .section-label {
+    font-size: 0.85rem;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease both;
+}
+
+.dest-hero-content h1 {
+    font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s 0.2s ease both;
+            text-shadow:
+                0 2px 4px rgba(0, 0, 0, 0.8),
+                0 4px 20px rgba(0, 0, 0, 0.6),
+                0 8px 40px rgba(0, 0, 0, 0.4);
+}
+
+.dest-hero-content p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: var(--white);
+            font-weight: 700;
+            margin-bottom: 8px;
+            animation: fadeInUp 0.8s 0.4s ease both; text-shadow:
+                0 2px 4px rgba(0, 0, 0, 0.8),
+                0 4px 20px rgba(0, 0, 0, 0.6),
+                0 8px 40px rgba(0, 0, 0, 0.4);
+}
+
+.dest-hero-content .dest-duration {
+    font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--white);
+            animation: fadeInUp 0.8s 0.6s ease both; font-weight: 700; text-shadow:
+                0 2px 4px rgba(0, 0, 0, 0.8),
+                0 4px 20px rgba(0, 0, 0, 0.6),
+                0 8px 40px rgba(0, 0, 0, 0.4);
+}
+
+.dest-intro-text {
+    max-width: 780px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.05rem;
+            color: var(--text);
+            line-height: 1.9;
+            font-weight: 300;
+}
+
+.itinerary-block {
+    display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            margin-bottom: 80px;
+}
+
+.itinerary-block:last-child {
+    margin-bottom: 0;
+}
+
+.itinerary-block.reverse .itinerary-image, .itinerary-block.reverse .itinerary-gallery, .itinerary-block.reverse .itinerary-carousel {
+    order: 2;
+}
+
+.itinerary-block.reverse .itinerary-content {
+    order: 1;
+}
+
+.itinerary-image {
+    border-radius: var(--radius);
+            overflow: hidden;
+            position: relative;
+}
+
+.itinerary-image img {
+    width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+}
+
+.itinerary-image:hover img {
+    transform: scale(1.05);
+}
+
+.itinerary-gallery {
+    display: grid;
+            gap: 6px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            height: 400px;
+}
+
+.itinerary-gallery .gallery-item {
+    overflow: hidden;
+}
+
+.itinerary-gallery .gallery-item img {
+    width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+}
+
+.itinerary-gallery .gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.itinerary-gallery.gallery-4 {
+    grid-template-columns: 1.2fr 1fr;
+            grid-template-rows: repeat(3, 1fr);
+}
+
+.itinerary-gallery.gallery-4 .gallery-item:first-child {
+    grid-row: 1 / -1;
+}
+
+.itinerary-gallery.gallery-2 {
+    grid-template-columns: 1fr 1fr;
+}
+
+.itinerary-carousel {
+    position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            height: 400px;
+}
+
+.itinerary-carousel .carousel-slide {
+    position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+}
+
+.itinerary-carousel .carousel-slide.active {
+    opacity: 1;
+}
+
+.itinerary-carousel .carousel-slide img {
+    width: 100%;
+            height: 100%;
+            object-fit: cover;
+}
+
+.carousel-controls {
+    position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 2;
+}
+
+.carousel-btn {
+    width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.4);
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(4px);
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+}
+
+.carousel-btn:hover {
+    background: rgba(0,0,0,0.6);
+            border-color: rgba(255,255,255,0.7);
+}
+
+.carousel-dots {
+    display: flex;
+            gap: 8px;
+}
+
+.carousel-dot {
+    width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+}
+
+.carousel-dot.active {
+    background: var(--gold);
+            transform: scale(1.2);
+}
+
+.itinerary-content .section-label {
+    text-align: left;
+            margin-bottom: 12px;
+}
+
+.itinerary-content h3 {
+    font-size: 1.8rem;
+            color: var(--white);
+            margin-bottom: 16px;
+}
+
+.itinerary-content p {
+    font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-weight: 300;
+}
+
+.itinerary-content ul {
+    margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+}
+
+.itinerary-content ul li {
+    font-size: 0.88rem;
+            color: var(--text);
+            padding-left: 20px;
+            position: relative;
+}
+
+.itinerary-content ul li::before {
+    content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 0.6rem;
+            top: 4px;
+}
+
+.includes-grid {
+    display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 28px;
+}
+
+.include-card {
+    background: var(--dark-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: var(--radius);
+            padding: 36px 28px;
+            text-align: center;
+            transition: var(--transition);
+}
+
+.include-card:hover {
+    border-color: rgba(201,169,110,0.2);
+            transform: translateY(-4px);
+}
+
+.include-card .include-icon {
+    font-size: 2rem;
+            margin-bottom: 16px;
+            display: block;
+}
+
+.include-card h4 {
+    font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+}
+
+.include-card p {
+    font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-weight: 300;
+}
+
+.dest-cta {
+    text-align: center;
+            padding-top: 30px;
+            background: var(--dark-soft);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.dest-cta h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            color: var(--white);
+            margin-bottom: 16px;
+}
+
+.dest-cta p {
+    color: var(--text-muted);
+            font-weight: 300;
+            max-width: 540px;
+            margin: 0 auto 32px;
+            line-height: 1.8;
+}
+
+.dest-protips {
+    text-align: center;
+            padding: 80px 0;
+}
+
+.dest-protips .section-label {
+    margin-bottom: 16px;
+}
+
+.dest-protips h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            color: var(--white);
+            margin-bottom: 16px;
+}
+
+.dest-protips p {
+    color: var(--text-muted);
+            font-weight: 300;
+            max-width: 540px;
+            margin: 0 auto 32px;
+            line-height: 1.8;
+}
+
+@media (max-width: 1024px) {
+    .includes-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    section {
+        padding: 80px 0;
+    }
+
+    .dest-hero {
+        background-attachment: scroll;
+                background-position: center center;
+                background-repeat: no-repeat;
+    }
+
+    .route-line {
+        display: none;
+    }
+
+    .itinerary-block {
+        grid-template-columns: 1fr;
+                gap: 28px;
+    }
+
+    .itinerary-block.reverse .itinerary-image,
+            .itinerary-block.reverse .itinerary-gallery,
+            .itinerary-block.reverse .itinerary-carousel,
+            .itinerary-block.reverse .itinerary-content {
+        order: unset;
+    }
+
+    .itinerary-image img {
+        height: 280px;
+    }
+
+    .itinerary-carousel {
+        height: 280px;
+    }
+
+    .itinerary-gallery {
+        height: 300px;
+    }
+
+    .itinerary-gallery.gallery-4 {
+        grid-template-columns: 1fr 1fr;
+                grid-template-rows: 1fr 1fr;
+    }
+
+    .itinerary-gallery.gallery-4 .gallery-item:first-child {
+        grid-row: auto;
+    }
+
+    .includes-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .includes-grid {
+        grid-template-columns: 1fr;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="/" class="logo"><img src="/images/logo-trimmed.png" alt="Horizonte Exclusivo"></a>
+            <ul class="nav-links" id="navLinks">
+                <li>
+                    <a href="/destinos/">Destinos</a>
+                    <div class="dropdown">
+                        <a href="/africa/">Africa</a>
+                        <a href="/america/">América</a>
+                        <a href="/asia/">Asia</a>
+                        <a href="/europa/">Europa</a>
+                        <a href="/paraisos/">Paraísos sobre el agua</a>
+                    </div>
+                </li>
+                <li><a href="/quien-hay-detras/">¿Quién hay detrás?</a></li>
+                <li><a href="/pro-tips/">Travel Hacks</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/contacto/">Contacto</a></li>
+
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="dest-hero">
+        <div class="dest-hero-content">
+            <span class="section-label">Europa</span>
+            <h1>Grecia, historia y glamour mediterráneo</h1>
+            <p>Historia clásica y glamour mediterráneo</p>
+            <span class="dest-duration">9 días / 8–9 noches</span>
+            <a href="/contacto/?destino=Grecia" class="btn btn-primary hero-cta-btn" style="display: block; width: fit-content; margin: 24px auto 0; animation: fadeInUp 0.8s 0.8s ease both;">¿Lo diseñamos? &#10230;</a>
+        </div>
+    </section>
+
+    <!-- INTRO -->
+    <section style="padding-top: 30px; padding-bottom: 10px;">
+        <div class="container">
+            <p class="dest-intro-text reveal">
+                Grecia combina cultura milenaria, arquitectura blanca frente al mar y una energía mediterránea única. Desde la grandeza de la Acrópolis hasta las islas más icónicas del Egeo, este viaje equilibra historia, relax y ambiente cosmopolita. Un itinerario totalmente personalizable, pensado para viajeros que buscan lo mejor del Mediterráneo oriental.
+            </p>
+        </div>
+    </section>
+
+    <!-- ITINERARY -->
+    <section id="itinerario" style="padding-top: 10px;">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Itinerario</span>
+                <h2 class="section-title">Tu viaje día a día</h2>
+                <div class="divider"></div>
+            </div>
+
+            <!-- Días 1-2: Atenas -->
+            <div class="itinerary-block reveal">
+                <div class="itinerary-carousel">
+                    <div class="carousel-slide active">
+                        <img src="https://images.unsplash.com/photo-1661501760606-88ee3a22d645?w=800&q=80" alt="Acrópolis de Atenas">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1684196922832-f1caa34e6a14?w=800&q=80" alt="Calle empedrada de Plaka">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1664203183811-c313350f7f46?w=800&q=80" alt="Atenas con el Licabeto al fondo">
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
+                        <div class="carousel-dots">
+                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
+                            <button class="carousel-dot" aria-label="Imagen 2"></button>
+                            <button class="carousel-dot" aria-label="Imagen 3"></button>
+                        </div>
+                        <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
+                    </div>
+                </div>
+                <div class="itinerary-content">
+                    <span class="section-label">Días 1 – 2</span>
+                    <h3>Atenas</h3>
+                    <p>Atenas es vibrante, intensa y profundamente histórica. La Acrópolis domina la ciudad mientras los barrios históricos ofrecen vida local, terrazas animadas y gastronomía auténtica.</p>
+                    <ul>
+                        <li>Acrópolis y Partenón</li>
+                        <li>Museo de la Acrópolis</li>
+                        <li>Barrio de Plaka</li>
+                        <li>Monte Licabeto al atardecer</li>
+                        <li>Cena con vistas iluminadas al Partenón</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Días 3-4: Santorini -->
+            <div class="itinerary-block reverse reveal">
+                <div class="itinerary-carousel">
+                    <div class="carousel-slide active">
+                        <img src="https://images.unsplash.com/photo-1580502304784-8985b7eb7260?w=800&q=80" alt="Santorini casas blancas sobre la caldera">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1587464171620-796b423d9b6e?w=800&q=80" alt="Cúpulas azules de Santorini">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1587240853629-754e6107fca1?w=800&q=80" alt="Santorini al atardecer">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1469796466635-455ede028aca?w=800&q=80" alt="Terraza con vistas en Santorini">
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
+                        <div class="carousel-dots">
+                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
+                            <button class="carousel-dot" aria-label="Imagen 2"></button>
+                            <button class="carousel-dot" aria-label="Imagen 3"></button>
+                            <button class="carousel-dot" aria-label="Imagen 4"></button>
+                        </div>
+                        <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
+                    </div>
+                </div>
+                <div class="itinerary-content">
+                    <span class="section-label">Días 3 – 4</span>
+                    <h3>Santorini</h3>
+                    <p>Santorini es luz, arquitectura blanca y atardeceres sobre la caldera volcánica. Una isla escénica y elegante que no necesita presentación.</p>
+                    <ul>
+                        <li>Oia al atardecer</li>
+                        <li>Paseo por Fira</li>
+                        <li>Catamarán por la caldera</li>
+                        <li>Cata en bodega volcánica</li>
+                        <li>Hotel boutique con vistas infinitas</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Días 5-6: Mykonos -->
+            <div class="itinerary-block reveal">
+                <div class="itinerary-carousel">
+                    <div class="carousel-slide active">
+                        <img src="https://images.unsplash.com/photo-1601581875309-fafbf2d3ed3a?w=800&q=80" alt="Casas blancas de Mykonos frente al mar">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1711252133985-f8bd5a56c5f4?w=800&q=80" alt="Molinos de viento de Mykonos">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1627243014832-c1c8bbbafff5?w=800&q=80" alt="Playa de Mykonos">
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
+                        <div class="carousel-dots">
+                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
+                            <button class="carousel-dot" aria-label="Imagen 2"></button>
+                            <button class="carousel-dot" aria-label="Imagen 3"></button>
+                        </div>
+                        <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
+                    </div>
+                </div>
+                <div class="itinerary-content">
+                    <span class="section-label">Días 5 – 6</span>
+                    <h3>Mykonos</h3>
+                    <p>Mykonos combina playas espectaculares con un ambiente cosmopolita y sofisticado. Casas encaladas, molinos icónicos y una vida nocturna reconocida internacionalmente.</p>
+                    <ul>
+                        <li>Pequeña Venecia</li>
+                        <li>Molinos de viento al atardecer</li>
+                        <li>Playas como Psarou o Paraga</li>
+                        <li>Cena frente al mar</li>
+                        <li>Opcional: excursión a la isla de Delos (sitio arqueológico)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Días 7-8/9: Paros -->
+            <div class="itinerary-block reverse reveal">
+                <div class="itinerary-carousel">
+                    <div class="carousel-slide active">
+                        <img src="https://images.unsplash.com/photo-1739218671474-c66c20c1c833?w=800&q=80" alt="Puerto de Paros">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1606384572591-433f1e8c5b7d?w=800&q=80" alt="Terraza en Paros">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1756581164844-d54d2aa5baa7?w=800&q=80" alt="Costa de Paros">
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
+                        <div class="carousel-dots">
+                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
+                            <button class="carousel-dot" aria-label="Imagen 2"></button>
+                            <button class="carousel-dot" aria-label="Imagen 3"></button>
+                        </div>
+                        <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
+                    </div>
+                </div>
+                <div class="itinerary-content">
+                    <span class="section-label">Días 7 – 8/9</span>
+                    <h3>Paros</h3>
+                    <p>Paros equilibra el viaje con un ambiente más relajado y auténtico. Puerto encantador, pueblos blancos y playas cristalinas sin excesos.</p>
+                    <ul>
+                        <li>Naoussa y su puerto</li>
+                        <li>Playas como Kolymbithres</li>
+                        <li>Ruta en coche por pueblos tradicionales</li>
+                        <li>Paseo en barco por calas escondidas</li>
+                        <li>Cena tranquila frente al mar</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUÉ INCLUYE -->
+    <section style="padding-top: 30px; background: var(--dark-soft); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Todo incluido</span>
+                <h2 class="section-title">Qué incluye tu viaje</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="includes-grid">
+                <div class="include-card reveal">
+                    <span class="include-icon">✈</span>
+                    <h4>Vuelos</h4>
+                    <p>Vuelos ida y vuelta y ferris internos entre islas. Traslados organizados en todos los trayectos.</p>
+                </div>
+                <div class="include-card reveal">
+                    <span class="include-icon">⛴</span>
+                    <h4>Ferris</h4>
+                    <p>Ferris rápidos entre Santorini, Mykonos y Paros con horarios optimizados para aprovechar cada día.</p>
+                </div>
+                <div class="include-card reveal">
+                    <span class="include-icon">🏨</span>
+                    <h4>Alojamiento</h4>
+                    <p>Hoteles boutique y alojamientos cuidadosamente seleccionados con vistas al mar y ubicación privilegiada.</p>
+                </div>
+                <div class="include-card reveal">
+                    <span class="include-icon">⭐</span>
+                    <h4>Experiencias</h4>
+                    <p>Experiencias recomendadas, catas de vino, catamarán, visitas arqueológicas e itinerario personalizable.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="dest-cta">
+        <div class="container reveal">
+            <h2>Diseñemos <em style="color: var(--gold);">tu Grecia</em></h2>
+            <p>Cada viaje es único. Cuéntanos cómo imaginas tu aventura griega y crearemos un itinerario a tu medida.</p>
+            <a href="/contacto/?destino=Grecia" class="btn btn-primary">Solicitar presupuesto &#10230;</a>
+        </div>
+    </section>
+
+    <!-- PRO TIPS -->
+    <section class="dest-protips">
+        <div class="container reveal">
+            <span class="section-label">Travel Hacks</span>
+            <h2>Consejos de experto para <em style="color: var(--gold);">Grecia</em></h2>
+            <p>Todo lo que necesitas saber antes, durante y después de tu viaje: checklist, dinero, transporte, seguridad, cultura, comida y hacks de experto.</p>
+            <a href="/pro-tips-grecia/" class="btn btn-primary">Ver Travel Hacks &#10230;</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo"><img src="/images/logo-trimmed.png" alt="Horizonte Exclusivo"></a>
+                    <p>Más que viajar, vivir el mundo. Creamos experiencias de viaje de lujo a medida. Cada destino es una historia, cada viaje una obra maestra.</p>
+</div>
+
+                <div class="footer-column">
+                    <h4>Horizonte</h4>
+                    <ul>
+                        <li><a href="/destinos/">Destinos Extraordinarios</a></li>
+                        <li><a href="/europa/">Europa</a></li>
+                        <li><a href="/asia/">Asia</a></li>
+                        <li><a href="/america/">América</a></li>
+                        <li><a href="/africa/">Africa</a></li>
+                        <li><a href="/paraisos/">Paraísos sobre el agua</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Exclusivo</h4>
+                    <ul>
+                        <li><a href="/blog/">Blog de viajes</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Barcelona</h4>
+                    <p class="footer-address">Calle Major 37<br>Molins de Rei 08750, Barcelona</p>
+                    <p class="footer-address"><a href="tel:+34633077401">+34 633 077 401</a></p>
+                    <p class="footer-address"><a href="mailto:viajes@horizonteexclusivo.es">viajes@horizonteexclusivo.es</a></p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Horizonte Exclusivo. Todos los derechos reservados.</p>
+                <div class="footer-bottom-links">
+                    <a href="/aviso-legal/">Aviso legal</a>
+                    <a href="/politica-de-privacidad/">Privacidad</a>
+                    <a href="/politica-de-cookies/">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/scripts.js"></script>
+
+    <script>
+        // Route line (zigzag roadmap)
+        function drawRoute() {
+            const container = document.querySelector('#itinerario .container');
+            const blocks = container.querySelectorAll('.itinerary-block');
+            const existing = container.querySelector('.route-line');
+            if (existing) existing.remove();
+
+            if (window.innerWidth <= 768 || blocks.length < 2) return;
+
+            container.style.position = 'relative';
+            const w = container.offsetWidth;
+            const h = container.scrollHeight;
+            const centerX = w / 2;
+
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.classList.add('route-line');
+            svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+            svg.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;';
+
+            const data = [];
+            blocks.forEach(block => {
+                data.push({
+                    top: block.offsetTop,
+                    bottom: block.offsetTop + block.offsetHeight,
+                    cy: block.offsetTop + block.offsetHeight / 2
+                });
+            });
+
+            const d = `M ${centerX} ${data[0].top} L ${centerX} ${data[data.length - 1].bottom}`;
+
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('d', d);
+            path.setAttribute('fill', 'none');
+            path.setAttribute('stroke', 'rgba(255,255,255,0.10)');
+            path.setAttribute('stroke-width', '1.5');
+            path.setAttribute('stroke-dasharray', '6 4');
+            svg.appendChild(path);
+
+            data.forEach(b => {
+                const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                c.setAttribute('cx', centerX);
+                c.setAttribute('cy', b.cy);
+                c.setAttribute('r', '5');
+                c.setAttribute('fill', '#0a0a0a');
+                c.setAttribute('stroke', 'rgba(201,169,110,0.4)');
+                c.setAttribute('stroke-width', '1.5');
+                svg.appendChild(c);
+            });
+
+            container.prepend(svg);
+        }
+
+        window.addEventListener('load', drawRoute);
+        window.addEventListener('resize', drawRoute);
+
+        // Itinerary carousels
+        document.querySelectorAll('.itinerary-carousel').forEach(carousel => {
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const dots = carousel.querySelectorAll('.carousel-dot');
+            const prev = carousel.querySelector('.carousel-prev');
+            const next = carousel.querySelector('.carousel-next');
+            let current = 0;
+
+            function goTo(index) {
+                slides[current].classList.remove('active');
+                dots[current].classList.remove('active');
+                current = (index + slides.length) % slides.length;
+                slides[current].classList.add('active');
+                dots[current].classList.add('active');
+            }
+
+            prev.addEventListener('click', () => goTo(current - 1));
+            next.addEventListener('click', () => goTo(current + 1));
+            dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+            let startX;
+            carousel.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+            carousel.addEventListener('touchend', e => {
+                const diff = startX - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1));
+            });
+        });
+    </script>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;width:100%;z-index:9999;background:var(--dark-soft,#1a1a1a);border-top:1px solid rgba(201,169,110,0.2);padding:16px 24px;font-family:'Inter',sans-serif;">
+        <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+            <p style="margin:0;font-size:0.85rem;color:#e0e0e0;font-weight:300;line-height:1.6;flex:1;min-width:200px;">Utilizamos cookies técnicas para garantizar el correcto funcionamiento del sitio web. <a href="/politica-de-cookies/" style="color:#c9a96e;text-decoration:underline;">Más información</a></p>
+            <div style="display:flex;gap:10px;flex-shrink:0;">
+                <button onclick="acceptCookies()" style="padding:10px 24px;border-radius:50px;border:none;background:#c9a96e;color:#0a0a0a;font-size:0.8rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;transition:0.3s;">Aceptar</button>
+                <button onclick="rejectCookies()" style="padding:10px 24px;border-radius:50px;border:1px solid rgba(201,169,110,0.4);background:transparent;color:#e0e0e0;font-size:0.8rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;transition:0.3s;">Rechazar</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
