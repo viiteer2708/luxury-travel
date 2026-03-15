@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agencia de Viajes de Lujo en Molins de Rei | Horizonte Exclusivo</title>
+    <link rel="icon" type="image/x-icon" href="/images/genfavicon-package/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/genfavicon-package/genfavicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/genfavicon-package/genfavicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/genfavicon-package/apple-touch-icon.png">
+    <link rel="manifest" href="/images/genfavicon-package/site.webmanifest">
+    <meta name="description" content="Horizonte Exclusivo: tu agencia de viajes de lujo en Molins de Rei, Baix Llobregat, Barcelona. Viajes a medida, lunas de miel, safaris y experiencias exclusivas diseñadas con mimo desde nuestra sede local.">
+    <link rel="canonical" href="https://www.horizonteexclusivo.es/molins-de-rei/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+section {
+    padding: 120px 0;
+}
+
+.section-header {
+    text-align: center;
+            margin-bottom: 64px;
+}
+
+.section-label {
+    font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+            display: block;
+}
+
+.section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--white);
+            margin-bottom: 16px;
+}
+
+.divider {
+    width: 60px;
+            height: 1px;
+            background: var(--gold);
+            margin: 20px auto;
+}
+
+.section-subtitle {
+    font-size: 1rem;
+            color: var(--text-muted);
+            max-width: 560px;
+            margin: 0 auto;
+            font-weight: 300;
+}
+
+.about-section {
+    background: var(--dark-soft);
+}
+
+.about-content {
+    max-width: 780px;
+            margin: 0 auto;
+}
+
+.about-content p {
+    font-size: 1.05rem;
+            color: var(--text);
+            line-height: 1.9;
+            font-weight: 300;
+            margin-bottom: 24px;
+}
+
+.about-content p:last-child {
+    margin-bottom: 0;
+}
+
+.about-highlight {
+    border-left: 3px solid var(--gold);
+            padding-left: 24px;
+            margin: 32px 0;
+}
+
+.about-highlight p {
+    font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            color: var(--gold-light);
+            font-style: italic;
+            line-height: 1.8;
+            margin-bottom: 12px;
+}
+
+.about-highlight p:last-child {
+    margin-bottom: 0;
+}
+
+.about-subtitle {
+    font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-top: 40px;
+            margin-bottom: 16px;
+}
+
+.about-closing {
+    text-align: center;
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.about-closing p {
+    font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--gold-light);
+            font-weight: 400;
+}
+
+.about-closing p strong {
+    color: var(--gold);
+}
+
+/* ===== SERVICIOS GRID ===== */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 32px;
+    max-width: 780px;
+    margin: 32px auto 0;
+}
+
+.service-card {
+    background: rgba(201,169,110,0.05);
+    border: 1px solid rgba(201,169,110,0.12);
+    border-radius: 12px;
+    padding: 28px 24px;
+    text-align: center;
+}
+
+.service-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--white);
+    margin-bottom: 10px;
+}
+
+.service-card p {
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+/* ===== CTA FINAL ===== */
+.cta-final {
+    background: var(--dark-soft);
+    position: relative;
+    text-align: center;
+}
+
+.cta-final::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(201,169,110,0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.cta-final-content {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.cta-final-content h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    color: var(--white);
+    margin-bottom: 16px;
+}
+
+.cta-final-content p {
+    font-size: 1.05rem;
+    color: var(--text);
+    font-weight: 400;
+    line-height: 1.7;
+    margin-bottom: 32px;
+}
+
+.cta-final-content .btn {
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    section {
+        padding: 80px 0;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="/" class="logo"><img src="/images/logo-trimmed.png" alt="Horizonte Exclusivo"></a>
+            <ul class="nav-links" id="navLinks">
+                <li>
+                    <a href="/destinos/">Destinos</a>
+                    <div class="dropdown">
+                        <a href="/africa/">Africa</a>
+                        <a href="/america/">América</a>
+                        <a href="/asia/">Asia</a>
+                        <a href="/europa/">Europa</a>
+                        <a href="/paraisos/">Paraísos sobre el agua</a>
+                    </div>
+                </li>
+                <li><a href="/quien-hay-detras/">¿Quién hay detrás?</a></li>
+                <li><a href="/pro-tips/">Travel Hacks</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/contacto/">Contacto</a></li>
+
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- AGENCIA EN MOLINS DE REI -->
+    <section class="about-section" style="padding-top: 160px;">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Molins de Rei, Barcelona</span>
+                <h2 class="section-title">Agencia de Viajes de Lujo en Molins de Rei</h2>
+                <div class="divider"></div>
+                <p class="section-subtitle">Viajes a medida diseñados desde el corazón del Baix Llobregat</p>
+            </div>
+
+            <div class="about-content reveal">
+                <p><strong>Horizonte Exclusivo</strong> es una agencia de viajes de lujo con sede en <strong>Molins de Rei</strong>, en la comarca del <strong>Baix Llobregat</strong>, Barcelona. Desde aquí diseñamos viajes a medida para viajeros exigentes que buscan experiencias únicas en cualquier rincón del mundo.</p>
+
+                <p>Nuestra ubicación en Molins de Rei nos conecta con toda el área metropolitana de Barcelona, ofreciendo un trato cercano y personalizado a quienes valoran tener a su agencia de viajes cerca, con la confianza de poder hablar cara a cara.</p>
+
+                <div class="about-highlight">
+                    <p>Cada viaje que creamos es una obra única, pensada exclusivamente para ti.</p>
+                    <p>Sin catálogos, sin plantillas, sin experiencias copiadas.</p>
+                </div>
+
+                <h3 class="about-subtitle">Nuestros servicios desde Molins de Rei</h3>
+                <p>Desde nuestra sede en Carrer Major 37, Molins de Rei 08750, diseñamos experiencias de viaje que van mucho más allá de reservar vuelos y hoteles. Cada propuesta se construye desde cero, escuchando tus deseos y anticipando cada detalle.</p>
+
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h4>Viajes a medida</h4>
+                        <p>Itinerarios personalizados para cualquier destino del mundo, adaptados a tu ritmo y preferencias.</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Lunas de miel</h4>
+                        <p>Experiencias románticas exclusivas en destinos extraordinarios, cuidadas hasta el último detalle.</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Safaris y aventura</h4>
+                        <p>Expediciones a África, Asia y América Latina con guías privados y alojamientos de excepción.</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Viajes en familia</h4>
+                        <p>Experiencias diseñadas para que toda la familia disfrute sin preocupaciones ni estrés.</p>
+                    </div>
+                </div>
+
+                <h3 class="about-subtitle">Por qué elegirnos en el Baix Llobregat</h3>
+                <p>En Molins de Rei y en todo el Baix Llobregat hay quien valora tener cerca a alguien de confianza que se ocupe de todo. Horizonte Exclusivo ofrece exactamente eso: un servicio cercano, con criterio y exigencia máxima, donde cada viaje se trata como algo personal.</p>
+
+                <p>Trabajamos con viajeros de Molins de Rei, Sant Feliu de Llobregat, Sant Joan Despí, Esplugues, Cornellà, Sant Boi y toda la comarca del Baix Llobregat, así como del resto del área metropolitana de Barcelona.</p>
+
+                <div class="about-closing">
+                    <p>Tu agencia de viajes de lujo en Molins de Rei.<br><strong>Más que viajar, vivir el mundo.</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta-final">
+        <div class="container">
+            <div class="cta-final-content reveal">
+                <h2>Tu próximo viaje empieza con una conversación</h2>
+                <p>Visítanos en Molins de Rei o escríbenos. Sin compromiso, sin prisas, sin letra pequeña.</p>
+                <a href="/contacto/" class="btn btn-primary">Hablemos de tu viaje &#10230;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo"><img src="/images/logo-trimmed.png" alt="Horizonte Exclusivo"></a>
+                    <p>Más que viajar, vivir el mundo. Creamos experiencias de viaje de lujo a medida. Cada destino es una historia, cada viaje una obra maestra.</p>
+                    <a href="https://g.page/r/CYdKzB_9NWUOEAE/review" target="_blank" rel="noopener" class="footer-review-link">⭐ Déjanos una reseña en Google</a>
+</div>
+
+                <div class="footer-column">
+                    <h4>Horizonte</h4>
+                    <ul>
+                        <li><a href="/destinos/">Destinos Extraordinarios</a></li>
+                        <li><a href="/europa/">Europa</a></li>
+                        <li><a href="/asia/">Asia</a></li>
+                        <li><a href="/america/">América</a></li>
+                        <li><a href="/africa/">Africa</a></li>
+                        <li><a href="/paraisos/">Paraísos sobre el agua</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Exclusivo</h4>
+                    <ul>
+                        <li><a href="/blog/">Blog de viajes</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Barcelona</h4>
+                    <p class="footer-address">Calle Major 37<br>Molins de Rei 08750, Barcelona</p>
+                    <p class="footer-address"><a href="tel:+34633077401">+34 633 077 401</a></p>
+                    <p class="footer-address"><a href="mailto:viajes@horizonteexclusivo.es">viajes@horizonteexclusivo.es</a></p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Horizonte Exclusivo. Todos los derechos reservados.</p>
+                <div class="footer-bottom-links">
+                    <a href="/aviso-legal/">Aviso legal</a>
+                    <a href="/politica-de-privacidad/">Privacidad</a>
+                    <a href="/politica-de-cookies/">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/scripts.js"></script>
+
+    <script>
+        // Auto-collapse navbar when items don't fit
+    </script>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;width:100%;z-index:9999;background:var(--dark-soft,#1a1a1a);border-top:1px solid rgba(201,169,110,0.2);padding:16px 24px;font-family:'Inter',sans-serif;">
+        <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+            <p style="margin:0;font-size:0.85rem;color:#e0e0e0;font-weight:300;line-height:1.6;flex:1;min-width:200px;">Utilizamos cookies técnicas para garantizar el correcto funcionamiento del sitio web. <a href="/politica-de-cookies/" style="color:#c9a96e;text-decoration:underline;">Más información</a></p>
+            <div style="display:flex;gap:10px;flex-shrink:0;">
+                <button onclick="acceptCookies()" style="padding:10px 24px;border-radius:50px;border:none;background:#c9a96e;color:#0a0a0a;font-size:0.8rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;transition:0.3s;">Aceptar</button>
+                <button onclick="rejectCookies()" style="padding:10px 24px;border-radius:50px;border:1px solid rgba(201,169,110,0.4);background:transparent;color:#e0e0e0;font-size:0.8rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;transition:0.3s;">Rechazar</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

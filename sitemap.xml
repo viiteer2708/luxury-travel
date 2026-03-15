@@ -40,6 +40,13 @@
     <priority>0.9</priority>
   </url>
 
+  <url>
+    <loc>https://www.horizonteexclusivo.es/molins-de-rei/</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <!-- Regiones — priority 0.9 -->
   <url>
     <loc>https://www.horizonteexclusivo.es/europa/</loc>
