@@ -10,7 +10,7 @@
     --dark-soft: #1a1a1a;
     --dark-card: #111111;
     --text: #e0e0e0;
-    --text-muted: #8a8a8a;
+    --text-muted: #a0a0a0;
     --white: #ffffff;
     --radius: 12px;
     --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -296,6 +296,7 @@ ul { list-style: none; }
     border: 1px solid rgba(255,255,255,0.05);
     transition: var(--transition);
     position: relative;
+    cursor: pointer;
 }
 
 .destination-card:hover {
@@ -597,4 +598,48 @@ footer {
   width: 32px;
   height: 32px;
   fill: #fff;
+}
+
+/* ===== FOCUS STATES (Accesibilidad teclado) ===== */
+:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+}
+
+.nav-links a:focus-visible,
+.btn:focus-visible,
+.destination-card a:focus-visible,
+.hamburger:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+}
+
+.dropdown a:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: -2px;
+    color: var(--gold);
+    background: rgba(201,169,110,0.08);
+}
+
+/* ===== REDUCED MOTION (Accesibilidad movimiento) ===== */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .card-image img,
+    .exp-card img {
+        transition: none !important;
+    }
+
+    .destination-card:hover,
+    .proof-card:hover,
+    .why-card:hover,
+    .btn:hover,
+    .nav-links a:hover {
+        transform: none !important;
+    }
 }
