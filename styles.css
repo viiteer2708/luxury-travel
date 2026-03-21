@@ -127,7 +127,9 @@ ul { list-style: none; }
     margin-top: 8px;
 }
 
-.nav-links li:hover .dropdown {
+.nav-links li:hover .dropdown,
+.nav-links li:focus-within .dropdown,
+.nav-links li.dropdown-open .dropdown {
     opacity: 1;
     visibility: visible;
 }
@@ -619,4 +621,12 @@ footer {
     outline-offset: -2px;
     color: var(--gold);
     background: rgba(201,169,110,0.08);
+}
+
+/* ===== PARALLAX FIX iOS/TOUCH ===== */
+@media (hover: none) {
+    .dest-hero,
+    .region-hero {
+        background-attachment: scroll !important;
+    }
 }

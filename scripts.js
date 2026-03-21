@@ -48,6 +48,24 @@ function checkNavOverflow() {
 checkNavOverflow();
 window.addEventListener('resize', checkNavOverflow);
 
+// Touch-friendly dropdown (primer tap abre, segundo tap navega)
+const dropdownParent = document.querySelector('.nav-links li .dropdown')?.parentElement;
+if (dropdownParent) {
+    const parentLink = dropdownParent.querySelector(':scope > a');
+    parentLink.addEventListener('click', function(e) {
+        if (navbar.classList.contains('collapsed')) return;
+        if (!dropdownParent.classList.contains('dropdown-open')) {
+            e.preventDefault();
+            dropdownParent.classList.add('dropdown-open');
+        }
+    });
+    document.addEventListener('click', function(e) {
+        if (!dropdownParent.contains(e.target)) {
+            dropdownParent.classList.remove('dropdown-open');
+        }
+    });
+}
+
 // Scroll reveal
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
