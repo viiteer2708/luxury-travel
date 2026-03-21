@@ -620,26 +620,3 @@ footer {
     color: var(--gold);
     background: rgba(201,169,110,0.08);
 }
-
-/* ===== REDUCED MOTION (Accesibilidad movimiento) ===== */
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-    }
-
-    .card-image img,
-    .exp-card img {
-        transition: none !important;
-    }
-
-    .destination-card:hover,
-    .proof-card:hover,
-    .why-card:hover,
-    .btn:hover,
-    .nav-links a:hover {
-        transform: none !important;
-    }
-}
