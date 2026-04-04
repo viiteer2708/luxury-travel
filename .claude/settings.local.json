@@ -37,7 +37,8 @@
       "Bash(mkdir -p /mnt/c/Users/viite/Documents/GitHub/luxury-travel/costa-rica && mkdir -p /mnt/c/Users/viite/Documents/GitHub/luxury-travel/pro-tips-costa-rica)",
       "WebFetch(domain:source.unsplash.com)",
       "Bash(for id:*)",
-      "Bash(cd /home/victor/.claude/projects/-mnt-c-Users-viite-Documents-GitHub-luxury-travel && python3 -c \"\nimport json\n\nwith open\\('288e39c2-3420-4470-a224-15e6ac510070.jsonl', 'r'\\) as f:\n    for i, line in enumerate\\(f, 1\\):\n        try:\n            obj = json.loads\\(line\\)\n            if obj.get\\('type'\\) == 'user':\n                msg = obj.get\\('message', {}\\)\n                content = msg.get\\('content', ''\\)\n                if isinstance\\(content, str\\) and \\('blog' in content.lower\\(\\) or 'artículo' in content.lower\\(\\) or 'articulo' in content.lower\\(\\)\\):\n                    preview = content[:200].replace\\(chr\\(10\\), ' '\\)\n                    print\\(f'Line {i}: {preview}...'\\)\n        except:\n            pass\n\")"
+      "Bash(cd /home/victor/.claude/projects/-mnt-c-Users-viite-Documents-GitHub-luxury-travel && python3 -c \"\nimport json\n\nwith open\\('288e39c2-3420-4470-a224-15e6ac510070.jsonl', 'r'\\) as f:\n    for i, line in enumerate\\(f, 1\\):\n        try:\n            obj = json.loads\\(line\\)\n            if obj.get\\('type'\\) == 'user':\n                msg = obj.get\\('message', {}\\)\n                content = msg.get\\('content', ''\\)\n                if isinstance\\(content, str\\) and \\('blog' in content.lower\\(\\) or 'artículo' in content.lower\\(\\) or 'articulo' in content.lower\\(\\)\\):\n                    preview = content[:200].replace\\(chr\\(10\\), ' '\\)\n                    print\\(f'Line {i}: {preview}...'\\)\n        except:\n            pass\n\")",
+      "Bash(find . -name \"index.html\" -exec grep -l \"viajes@horizonteexclusivo.es\" {} \\\\;)"
     ]
   }
 }
