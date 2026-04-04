@@ -1,3 +1,10 @@
+
+
+// Load Schema Markup
+var schemaScript = document.createElement("script");
+schemaScript.src = "/schema-auto.js";
+schemaScript.defer = true;
+document.body.appendChild(schemaScript);
 /* ===== Horizonte Exclusivo — Scripts Globales ===== */
 
 // Navbar scroll effect
