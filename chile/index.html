@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viaje de Lujo a Chile a Medida | Atacama, Lagos y Patagonia | Horizonte Exclusivo</title>
+    <link rel="icon" type="image/x-icon" href="/images/genfavicon-package/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/genfavicon-package/genfavicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/genfavicon-package/genfavicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/genfavicon-package/apple-touch-icon.png">
+    <link rel="manifest" href="/images/genfavicon-package/site.webmanifest">
+    <meta name="description" content="Viaje de lujo a Chile: desierto de Atacama, Distrito de Lagos, Torres del Paine y viñedos de Colchagua. De norte a sur, diseñado a medida desde Barcelona.">
+    <link rel="canonical" href="https://www.horizonteexclusivo.es/chile/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+.btn-outline {
+    background: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.25);
+}
+
+.btn-outline:hover {
+    border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-2px);
+}
+
+section {
+    padding: 120px 0;
+}
+
+.section-header {
+    text-align: center;
+            margin-bottom: 64px;
+}
+
+.section-label {
+    font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+            display: block;
+}
+
+.section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--white);
+            margin-bottom: 16px;
+}
+
+.divider {
+    width: 60px;
+            height: 1px;
+            background: var(--gold);
+            margin: 20px auto;
+}
+
+.dest-hero {
+    min-height: calc(70vh - 50px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 100px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            background-image: url('https://images.unsplash.com/photo-1601000938259-9e92002320b2?w=1920&q=80');
+            background-size: cover;
+            background-position: center calc(50% - 40px);
+            background-attachment: fixed;
+}
+
+.dest-hero::after {
+    content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(10,10,10,0.05) 0%, rgba(10,10,10,0.15) 50%, var(--dark) 100%);
+}
+
+.dest-hero-content {
+    position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 24px;
+}
+
+.dest-hero-content .section-label {
+    font-size: 0.85rem;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease both;
+}
+
+.dest-hero-content h1 {
+    font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s 0.2s ease both;
+            text-shadow:
+                0 2px 4px rgba(0, 0, 0, 0.8),
+                0 4px 20px rgba(0, 0, 0, 0.6),
+                0 8px 40px rgba(0, 0, 0, 0.4);
+}
+
+.dest-hero-content p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: var(--white);
+            font-weight: 700;
+            margin-bottom: 8px;
+            animation: fadeInUp 0.8s 0.4s ease both; text-shadow:
+                0 2px 4px rgba(0, 0, 0, 0.8),
+                0 4px 20px rgba(0, 0, 0, 0.6),
+                0 8px 40px rgba(0, 0, 0, 0.4);
+}
+
+.dest-hero-content .dest-duration {
+    font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--white);
+            animation: fadeInUp 0.8s 0.6s ease both; font-weight: 700; text-shadow:
+                0 2px 4px rgba(0, 0, 0, 0.8),
+                0 4px 20px rgba(0, 0, 0, 0.6),
+                0 8px 40px rgba(0, 0, 0, 0.4);
+}
+
+.dest-intro-text {
+    max-width: 780px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.05rem;
+            color: var(--text);
+            line-height: 1.9;
+            font-weight: 300;
+}
+
+.itinerary-block {
+    display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            margin-bottom: 80px;
+}
+
+.itinerary-block:last-child {
+    margin-bottom: 0;
+}
+
+.itinerary-block.reverse .itinerary-image, .itinerary-block.reverse .itinerary-gallery, .itinerary-block.reverse .itinerary-carousel {
+    order: 2;
+}
+
+.itinerary-block.reverse .itinerary-content {
+    order: 1;
+}
+
+.itinerary-image {
+    border-radius: var(--radius);
+            overflow: hidden;
+            position: relative;
+}
+
+.itinerary-image img {
+    width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+}
+
+.itinerary-image:hover img {
+    transform: scale(1.05);
+}
+
+.itinerary-gallery {
+    display: grid;
+            gap: 6px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            height: 400px;
+}
+
+.itinerary-gallery .gallery-item {
+    overflow: hidden;
+}
+
+.itinerary-gallery .gallery-item img {
+    width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+}
+
+.itinerary-gallery .gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.itinerary-gallery.gallery-4 {
+    grid-template-columns: 1.2fr 1fr;
+            grid-template-rows: repeat(3, 1fr);
+}
+
+.itinerary-gallery.gallery-4 .gallery-item:first-child {
+    grid-row: 1 / -1;
+}
+
+.itinerary-gallery.gallery-2 {
+    grid-template-columns: 1fr 1fr;
+}
+
+.itinerary-carousel {
+    position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            height: 400px;
+}
+
+.itinerary-carousel .carousel-slide {
+    position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+}
+
+.itinerary-carousel .carousel-slide.active {
+    opacity: 1;
+}
+
+.itinerary-carousel .carousel-slide img {
+    width: 100%;
+            height: 100%;
+            object-fit: cover;
+}
+
+.carousel-controls {
+    position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 2;
+}
+
+.carousel-btn {
+    width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.4);
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(4px);
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+}
+
+.carousel-btn:hover {
+    background: rgba(0,0,0,0.6);
+            border-color: rgba(255,255,255,0.7);
+}
+
+.carousel-dots {
+    display: flex;
+            gap: 8px;
+}
+
+.carousel-dot {
+    width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+}
+
+.carousel-dot.active {
+    background: var(--gold);
+            transform: scale(1.2);
+}
+
+.itinerary-content .section-label {
+    text-align: left;
+            margin-bottom: 12px;
+}
+
+.itinerary-content h3 {
+    font-size: 1.8rem;
+            color: var(--white);
+            margin-bottom: 16px;
+}
+
+.itinerary-content p {
+    font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-weight: 300;
+}
+
+.itinerary-content ul {
+    margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+}
+
+.itinerary-content ul li {
+    font-size: 0.88rem;
+            color: var(--text);
+            padding-left: 20px;
+            position: relative;
+}
+
+.itinerary-content ul li::before {
+    content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 0.6rem;
+            top: 4px;
+}
+
+.includes-grid {
+    display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 28px;
+}
+
+.include-card {
+    background: var(--dark-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: var(--radius);
+            padding: 36px 28px;
+            text-align: center;
+            transition: var(--transition);
+}
+
+.include-card:hover {
+    border-color: rgba(201,169,110,0.2);
+            transform: translateY(-4px);
+}
+
+.include-card .include-icon {
+    font-size: 2rem;
+            margin-bottom: 16px;
+            display: block;
+}
+
+.include-card h4 {
+    font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+}
+
+.include-card p {
+    font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-weight: 300;
+}
+
+.dest-cta {
+    text-align: center;
+            padding-top: 30px;
+            background: var(--dark-soft);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.dest-cta h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            color: var(--white);
+            margin-bottom: 16px;
+}
+
+.dest-cta p {
+    color: var(--text-muted);
+            font-weight: 300;
+            max-width: 540px;
+            margin: 0 auto 32px;
+            line-height: 1.8;
+}
+
+.dest-protips {
+    text-align: center;
+            padding: 80px 0;
+}
+
+.dest-protips .section-label {
+    margin-bottom: 16px;
+}
+
+.dest-protips h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            color: var(--white);
+            margin-bottom: 16px;
+}
+
+.dest-protips p {
+    color: var(--text-muted);
+            font-weight: 300;
+            max-width: 540px;
+            margin: 0 auto 32px;
+            line-height: 1.8;
+}
+
+@media (max-width: 1024px) {
+    .includes-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    section {
+        padding: 80px 0;
+    }
+
+    .dest-hero {
+        background-attachment: scroll;
+                background-position: center center;
+                background-repeat: no-repeat;
+    }
+
+    .route-line {
+        display: none;
+    }
+
+    .itinerary-block {
+        grid-template-columns: 1fr;
+                gap: 28px;
+    }
+
+    .itinerary-block.reverse .itinerary-image,
+            .itinerary-block.reverse .itinerary-gallery,
+            .itinerary-block.reverse .itinerary-carousel,
+            .itinerary-block.reverse .itinerary-content {
+        order: unset;
+    }
+
+    .itinerary-image img {
+        height: 280px;
+    }
+
+    .itinerary-carousel {
+        height: 280px;
+    }
+
+    .itinerary-gallery {
+        height: 300px;
+    }
+
+    .itinerary-gallery.gallery-4 {
+        grid-template-columns: 1fr 1fr;
+                grid-template-rows: 1fr 1fr;
+    }
+
+    .itinerary-gallery.gallery-4 .gallery-item:first-child {
+        grid-row: auto;
+    }
+
+    .includes-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .includes-grid {
+        grid-template-columns: 1fr;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="/" class="logo"><img src="/images/logo-trimmed.png" alt="Horizonte Exclusivo"></a>
+            <ul class="nav-links" id="navLinks">
+                <li>
+                    <a href="/destinos/">Destinos</a>
+                    <div class="dropdown">
+                        <a href="/africa/">Africa</a>
+                        <a href="/america/">América</a>
+                        <a href="/asia/">Asia</a>
+                        <a href="/europa/">Europa</a>
+                        <a href="/paraisos/">Paraísos sobre el agua</a>
+                    </div>
+                </li>
+                <li><a href="/quien-hay-detras/">¿Quién hay detrás?</a></li>
+                <li><a href="/pro-tips/">Travel Hacks</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/contacto/">Contacto</a></li>
+
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="dest-hero">
+        <div class="dest-hero-content">
+            <h1>Chile, de Atacama a la Patagonia</h1>
+            <p>Desierto, lagos, glaciares y viñedos</p>
+            <span class="dest-duration">14–16 noches</span>
+            <a href="/contacto/?destino=Chile" class="btn btn-primary hero-cta-btn" style="display: block; width: fit-content; margin: 24px auto 0; animation: fadeInUp 0.8s 0.8s ease both;">¿Lo diseñamos? &#10230;</a>
+        </div>
+    </section>
+
+    <!-- INTRO -->
+    <section style="padding-top: 30px; padding-bottom: 10px;">
+        <div class="container">
+            <p class="dest-intro-text reveal">
+                Chile es un país largo y espectacular: desierto lunar, lagos de postal, glaciares y ciudades con carácter. Esta propuesta combina naturaleza extrema y experiencias cuidadas, con ritmo cómodo y opción de subir el nivel de lujo según el estilo del viajero. Desde la vibrante Santiago hasta los picos afilados de Torres del Paine, con un final entre viñedos — un viaje que asombra primero y se queda contigo después.
+            </p>
+        </div>
+    </section>
+
+    <!-- ITINERARY -->
+    <section id="itinerario" style="padding-top: 10px;">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Itinerario</span>
+                <h2 class="section-title">Tu viaje día a día</h2>
+                <div class="divider"></div>
+            </div>
+
+            <!-- Días 1-3: Santiago de Chile -->
+            <div class="itinerary-block reveal">
+                <div class="itinerary-carousel">
+                    <div class="carousel-slide active">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1569956238380-20d81e4a2e18?w=800&q=80" srcset="https://images.unsplash.com/photo-1569956238380-20d81e4a2e18?w=400&q=80 400w, https://images.unsplash.com/photo-1569956238380-20d81e4a2e18?w=800&q=80 800w, https://images.unsplash.com/photo-1569956238380-20d81e4a2e18?w=1200&q=80 1200w" sizes="(max-width: 768px) 100vw, 50vw" alt="Skyline de Santiago de Chile con los Andes">
+                    </div>
+                    <div class="carousel-slide">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1547057740-eab1c6aaf4da?w=800&q=80" srcset="https://images.unsplash.com/photo-1547057740-eab1c6aaf4da?w=400&q=80 400w, https://images.unsplash.com/photo-1547057740-eab1c6aaf4da?w=800&q=80 800w, https://images.unsplash.com/photo-1547057740-eab1c6aaf4da?w=1200&q=80 1200w" sizes="(max-width: 768px) 100vw, 50vw" alt="Barrio Lastarria en Santiago">
+                    </div>
+                    <div class="carousel-slide">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1536711884941-8e846d498e4e?w=800&q=80" srcset="https://images.unsplash.com/photo-1536711884941-8e846d498e4e?w=400&q=80 400w, https://images.unsplash.com/photo-1536711884941-8e846d498e4e?w=800&q=80 800w, https://images.unsplash.com/photo-1536711884941-8e846d498e4e?w=1200&q=80 1200w" sizes="(max-width: 768px) 100vw, 50vw" alt="Vista panorámica de Santiago al atardecer">
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
+                        <div class="carousel-dots">
+                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
+                            <button class="carousel-dot" aria-label="Imagen 2"></button>
+                            <button class="carousel-dot" aria-label="Imagen 3"></button>
+                        </div>
+                        <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
+                    </div>
+                </div>
+                <div class="itinerary-content">
+                    <span class="section-label">Días 1 – 3</span>
+                    <h3>Santiago de Chile</h3>
+                    <p>La puerta de entrada con estilo. Santiago mezcla gastronomía de vanguardia, diseño y vistas a la Cordillera de los Andes. Ideal para aterrizar con calma y empezar con buen ritmo.</p>
+                    <ul>
+                        <li>City tour premium: Lastarria, Bellavista y centro histórico</li>
+                        <li>Atardecer en Sky Costanera o rooftop con cóctel</li>
+                        <li>Excursión a Cajón del Maipo y Embalse El Yeso</li>
+                        <li>Cena de autor en barrio Vitacura</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Días 4-6: Desierto de Atacama -->
+            <div class="itinerary-block reverse reveal">
+                <div class="itinerary-carousel">
+                    <div class="carousel-slide active">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&q=80" srcset="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=400&q=80 400w, https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&q=80 800w, https://images.unsplash.com/photo-1509631179647-0177331693ae?w=1200&q=80 1200w" sizes="(max-width: 768px) 100vw, 50vw" alt="Desierto de Atacama al atardecer">
+                    </div>
+                    <div class="carousel-slide">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1531722569936-825d3dd91b15?w=800&q=80" srcset="https://images.unsplash.com/photo-1531722569936-825d3dd91b15?w=400&q=80 400w, https://images.unsplash.com/photo-1531722569936-825d3dd91b15?w=800&q=80 800w, https://images.unsplash.com/photo-1531722569936-825d3dd91b15?w=1200&q=80 1200w" sizes="(max-width: 768px) 100vw, 50vw" alt="Valle de la Luna en Atacama">
+                    </div>
+                    <div class="carousel-slide">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1552083974-186346df2e9a?w=800&q=80" srcset="https://images.unsplash.com/photo-1552083974-186346df2e9a?w=400&q=80 400w, https://images.unsplash.com/photo-1552083974-186346df2e9a?w=800&q=80 800w, https://images.unsplash.com/photo-1552083974-186346df2e9a?w=1200&q=80 1200w" sizes="(max-width: 768px) 100vw, 50vw" alt="Géiseres del Tatio en el desierto de Atacama">
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
+                        <div class="carousel-dots">
+                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
+                            <button class="carousel-dot" aria-label="Imagen 2"></button>
+                            <button class="carousel-dot" aria-label="Imagen 3"></button>
+                        </div>
+                        <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
+                    </div>
+                </div>
+                <div class="itinerary-content">
+                    <span class="section-label">Días 4 – 6</span>
+                    <h3>Desierto de Atacama</h3>
+                    <p>San Pedro es una experiencia sensorial: silencio, cielos imposibles y escenarios volcánicos. Paisajes de otro planeta bajo el mejor cielo estrellado del mundo.</p>
+                    <ul>
+                        <li>Valle de la Luna al atardecer</li>
+                        <li>Lagunas Altiplánicas y Salar de Atacama</li>
+                        <li>Géiseres del Tatio al amanecer</li>
+                        <li>Tour astronómico privado</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Días 7-9: Distrito de Lagos -->
+            <div class="itinerary-block reveal">
+                <div class="itinerary-carousel">
+                    <div class="carousel-slide active">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1478827387698-1527781a4887?w=800&q=80" srcset="https://images.unsplash.com/photo-1478827387698-1527781a4887?w=400&q=80 400w, https://images.unsplash.com/photo-1478827387698-1527781a4887?w=800&q=80 800w, https://images.unsplash.com/photo-1478827387698-1527781a4887?w=1200&q=80 1200w" sizes="(max-width: 768px) 100vw, 50vw" alt="Lago y volcán en el Distrito de Lagos de Chile">
+                    </div>
+                    <div class="carousel-slide">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1594490745316-72ceec2f6c7a?w=800&q=80" srcset="https://images.unsplash.com/photo-1594490745316-72ceec2f6c7a?w=400&q=80 400w, https://images.unsplash.com/photo-1594490745316-72ceec2f6c7a?w=800&q=80 800w, https://images.unsplash.com/photo-1594490745316-72ceec2f6c7a?w=1200&q=80 1200w" sizes="(max-width: 768px) 100vw, 50vw" alt="Puerto Varas frente al lago Llanquihue">
+                    </div>
+                    <div class="carousel-slide">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1580619305218-8423a7ef79b4?w=800&q=80" srcset="https://images.unsplash.com/photo-1580619305218-8423a7ef79b4?w=400&q=80 400w, https://images.unsplash.com/photo-1580619305218-8423a7ef79b4?w=800&q=80 800w, https://images.unsplash.com/photo-1580619305218-8423a7ef79b4?w=1200&q=80 1200w" sizes="(max-width: 768px) 100vw, 50vw" alt="Saltos del Petrohué en Chile">
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
+                        <div class="carousel-dots">
+                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
+                            <button class="carousel-dot" aria-label="Imagen 2"></button>
+                            <button class="carousel-dot" aria-label="Imagen 3"></button>
+                        </div>
+                        <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
+                    </div>
+                </div>
+                <div class="itinerary-content">
+                    <span class="section-label">Días 7 – 9</span>
+                    <h3>Distrito de Lagos</h3>
+                    <p>Entre volcanes y lagos, esta es la Chile más verde: caminos entre bosques, pueblos con encanto y gastronomía local. Puerto Varas y Frutillar son elegancia natural y calma.</p>
+                    <ul>
+                        <li>Ruta Puerto Varas–Frutillar: teatro, arquitectura y cafés</li>
+                        <li>Saltos del Petrohué y Lago Todos los Santos</li>
+                        <li>Excursión al Volcán Osorno con vistas panorámicas</li>
+                        <li>Navegación o kayak suave según clima</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Días 10-13: Patagonia Chilena -->
+            <div class="itinerary-block reverse reveal">
+                <div class="itinerary-carousel">
+                    <div class="carousel-slide active">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1601000938259-9e92002320b2?w=800&q=80" srcset="https://images.unsplash.com/photo-1601000938259-9e92002320b2?w=400&q=80 400w, https://images.unsplash.com/photo-1601000938259-9e92002320b2?w=800&q=80 800w, https://images.unsplash.com/photo-1601000938259-9e92002320b2?w=1200&q=80 1200w" sizes="(max-width: 768px) 100vw, 50vw" alt="Torres del Paine en la Patagonia chilena">
+                    </div>
+                    <div class="carousel-slide">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1535402003-0486b4ed4931?w=800&q=80" srcset="https://images.unsplash.com/photo-1535402003-0486b4ed4931?w=400&q=80 400w, https://images.unsplash.com/photo-1535402003-0486b4ed4931?w=800&q=80 800w, https://images.unsplash.com/photo-1535402003-0486b4ed4931?w=1200&q=80 1200w" sizes="(max-width: 768px) 100vw, 50vw" alt="Glaciar Grey en Torres del Paine">
+                    </div>
+                    <div class="carousel-slide">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1464278533981-50106e6176b1?w=800&q=80" srcset="https://images.unsplash.com/photo-1464278533981-50106e6176b1?w=400&q=80 400w, https://images.unsplash.com/photo-1464278533981-50106e6176b1?w=800&q=80 800w, https://images.unsplash.com/photo-1464278533981-50106e6176b1?w=1200&q=80 1200w" sizes="(max-width: 768px) 100vw, 50vw" alt="Lago y montañas en la Patagonia">
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
+                        <div class="carousel-dots">
+                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
+                            <button class="carousel-dot" aria-label="Imagen 2"></button>
+                            <button class="carousel-dot" aria-label="Imagen 3"></button>
+                        </div>
+                        <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
+                    </div>
+                </div>
+                <div class="itinerary-content">
+                    <span class="section-label">Días 10 – 13</span>
+                    <h3>Patagonia Chilena</h3>
+                    <p>Torres del Paine es intensidad pura: lagos turquesa, picos afilados y fauna salvaje. La gran joya del viaje y un cierre épico.</p>
+                    <ul>
+                        <li>Día completo en Torres del Paine: miradores y lagos principales</li>
+                        <li>Navegación al Glaciar Grey</li>
+                        <li>Trekking suave a miradores panorámicos</li>
+                        <li>Lodge con vistas y cena patagónica</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Días 14-15: Valle de Colchagua -->
+            <div class="itinerary-block reveal">
+                <div class="itinerary-carousel">
+                    <div class="carousel-slide active">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800&q=80" srcset="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=400&q=80 400w, https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800&q=80 800w, https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=1200&q=80 1200w" sizes="(max-width: 768px) 100vw, 50vw" alt="Viñedos del Valle de Colchagua en Chile">
+                    </div>
+                    <div class="carousel-slide">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1560493676-04071c5f467b?w=800&q=80" srcset="https://images.unsplash.com/photo-1560493676-04071c5f467b?w=400&q=80 400w, https://images.unsplash.com/photo-1560493676-04071c5f467b?w=800&q=80 800w, https://images.unsplash.com/photo-1560493676-04071c5f467b?w=1200&q=80 1200w" sizes="(max-width: 768px) 100vw, 50vw" alt="Bodega entre viñedos chilenos">
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn carousel-prev" aria-label="Anterior">&#8249;</button>
+                        <div class="carousel-dots">
+                            <button class="carousel-dot active" aria-label="Imagen 1"></button>
+                            <button class="carousel-dot" aria-label="Imagen 2"></button>
+                        </div>
+                        <button class="carousel-btn carousel-next" aria-label="Siguiente">&#8250;</button>
+                    </div>
+                </div>
+                <div class="itinerary-content">
+                    <span class="section-label">Días 14 – 15</span>
+                    <h3>Valle de Colchagua</h3>
+                    <p>Una forma preciosa de despedir el viaje: vino, gastronomía y paisajes suaves. Viñedos que se pierden en el horizonte y catas que educan el paladar.</p>
+                    <ul>
+                        <li>Cata privada en bodega boutique</li>
+                        <li>Maridaje y menú degustación entre viñedos</li>
+                        <li>Spa y descanso en hotel wine-relax</li>
+                        <li>Paseo a caballo o en bicicleta por viñedos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUÉ INCLUYE -->
+    <section style="padding-top: 30px; background: var(--dark-soft); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Todo incluido</span>
+                <h2 class="section-title">Qué incluye tu viaje</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="includes-grid">
+                <div class="include-card reveal">
+                    <span class="include-icon">✈</span>
+                    <h4>Vuelos</h4>
+                    <p>Vuelos internos según ruta y traslados privados en todos los trayectos del viaje.</p>
+                </div>
+                <div class="include-card reveal">
+                    <span class="include-icon">🏨</span>
+                    <h4>Alojamiento</h4>
+                    <p>Hoteles y lodges seleccionados con cuidado según estilo del cliente, de Santiago a la Patagonia.</p>
+                </div>
+                <div class="include-card reveal">
+                    <span class="include-icon">🧭</span>
+                    <h4>Excursiones</h4>
+                    <p>Guías locales expertos con posibilidad de tours completamente privados.</p>
+                </div>
+                <div class="include-card reveal">
+                    <span class="include-icon">⭐</span>
+                    <h4>Experiencias</h4>
+                    <p>Catas de vino, cenas gastronómicas, tour astronómico y experiencias exclusivas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="dest-cta">
+        <div class="container reveal">
+            <h2>Diseñemos <em style="color: var(--gold);">tu Chile</em></h2>
+            <p>Cada viaje es único. Cuéntanos cómo imaginas tu aventura chilena y crearemos un itinerario a tu medida.</p>
+            <a href="/contacto/?destino=Chile" class="btn btn-primary">Solicitar presupuesto &#10230;</a>
+        </div>
+    </section>
+
+    <!-- PRO TIPS -->
+    <section class="dest-protips">
+        <div class="container reveal">
+            <span class="section-label">Travel Hacks</span>
+            <h2>Consejos de experto para <em style="color: var(--gold);">Chile</em></h2>
+            <p>Todo lo que necesitas saber antes, durante y después de tu viaje: checklist, dinero, transporte, seguridad, cultura, comida y hacks de experto.</p>
+            <a href="/pro-tips-chile/" class="btn btn-primary">Ver Travel Hacks &#10230;</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo"><img src="/images/logo-trimmed.png" alt="Horizonte Exclusivo"></a>
+                    <p>Más que viajar, vivir el mundo. Creamos experiencias de viaje de lujo a medida. Cada destino es una historia, cada viaje una obra maestra.</p>
+                    <a href="https://g.page/r/CYdKzB_9NWUOEAE/review" target="_blank" rel="noopener" class="footer-review-link">⭐ Déjanos una reseña en Google</a>
+</div>
+
+                <div class="footer-column">
+                    <h4>Horizonte</h4>
+                    <ul>
+                        <li><a href="/destinos/">Destinos Extraordinarios</a></li>
+                        <li><a href="/europa/">Europa</a></li>
+                        <li><a href="/asia/">Asia</a></li>
+                        <li><a href="/america/">América</a></li>
+                        <li><a href="/africa/">Africa</a></li>
+                        <li><a href="/paraisos/">Paraísos sobre el agua</a></li>
+                        <li><a href="/chile/">Chile</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Exclusivo</h4>
+                    <ul>
+                        <li><a href="/blog/">Blog de viajes</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Barcelona</h4>
+                    <p class="footer-address"><a href="/molins-de-rei/" style="color:inherit;text-decoration:none;">Calle Major 37<br>Molins de Rei 08750, Barcelona</a></p>
+                    <p class="footer-address"><a href="tel:+34633077401">+34 633 077 401</a></p>
+                    <p class="footer-address"><a href="mailto:viajes@horizonteexclusivo.es">viajes@horizonteexclusivo.es</a></p>
+                    <div class="footer-hours">
+                        <p class="footer-address" style="margin-top:12px;font-size:0.8rem;"><strong>Horario de atención:</strong></p>
+                        <p class="footer-address" style="font-size:0.75rem;line-height:1.8;">L: 9:30–13:30 · 15:30–19:00<br>M: 9:30–13:30<br>X: 9:30–13:30 · 15:30–19:00<br>J: 9:30–13:30 · 15:30–19:00<br>V: 9:30–13:30 · 15:30–19:00<br>S: 10:00–13:30<br>D: Cerrado</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Horizonte Exclusivo. Todos los derechos reservados.</p>
+                <div class="footer-bottom-links">
+                    <a href="/aviso-legal/">Aviso legal</a>
+                    <a href="/politica-de-privacidad/">Privacidad</a>
+                    <a href="/politica-de-cookies/">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/scripts.js"></script>
+
+    <script>
+        // Route line (zigzag roadmap)
+        function drawRoute() {
+            const container = document.querySelector('#itinerario .container');
+            const blocks = container.querySelectorAll('.itinerary-block');
+            const existing = container.querySelector('.route-line');
+            if (existing) existing.remove();
+
+            if (window.innerWidth <= 768 || blocks.length < 2) return;
+
+            container.style.position = 'relative';
+            const w = container.offsetWidth;
+            const h = container.scrollHeight;
+            const centerX = w / 2;
+
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.classList.add('route-line');
+            svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+            svg.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;';
+
+            const data = [];
+            blocks.forEach(block => {
+                data.push({
+                    top: block.offsetTop,
+                    bottom: block.offsetTop + block.offsetHeight,
+                    cy: block.offsetTop + block.offsetHeight / 2
+                });
+            });
+
+            // Path: straight vertical line through the center gap
+            const d = `M ${centerX} ${data[0].top} L ${centerX} ${data[data.length - 1].bottom}`;
+
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('d', d);
+            path.setAttribute('fill', 'none');
+            path.setAttribute('stroke', 'rgba(255,255,255,0.10)');
+            path.setAttribute('stroke-width', '1.5');
+            path.setAttribute('stroke-dasharray', '6 4');
+            svg.appendChild(path);
+
+            // Waypoint dots
+            data.forEach(b => {
+                const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                c.setAttribute('cx', centerX);
+                c.setAttribute('cy', b.cy);
+                c.setAttribute('r', '5');
+                c.setAttribute('fill', '#0a0a0a');
+                c.setAttribute('stroke', 'rgba(201,169,110,0.4)');
+                c.setAttribute('stroke-width', '1.5');
+                svg.appendChild(c);
+            });
+
+            container.prepend(svg);
+        }
+
+        window.addEventListener('load', drawRoute);
+        window.addEventListener('resize', drawRoute);
+
+        // Itinerary carousels
+        document.querySelectorAll('.itinerary-carousel').forEach(carousel => {
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const dots = carousel.querySelectorAll('.carousel-dot');
+            const prev = carousel.querySelector('.carousel-prev');
+            const next = carousel.querySelector('.carousel-next');
+            let current = 0;
+
+            function goTo(index) {
+                slides[current].classList.remove('active');
+                dots[current].classList.remove('active');
+                current = (index + slides.length) % slides.length;
+                slides[current].classList.add('active');
+                dots[current].classList.add('active');
+            }
+
+            prev.addEventListener('click', () => goTo(current - 1));
+            next.addEventListener('click', () => goTo(current + 1));
+            dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+            // Touch swipe
+            let startX;
+            carousel.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+            carousel.addEventListener('touchend', e => {
+                const diff = startX - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1));
+            });
+        });
+    </script>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;width:100%;z-index:9999;background:var(--dark-soft,#1a1a1a);border-top:1px solid rgba(201,169,110,0.2);padding:16px 24px;font-family:'Inter',sans-serif;">
+        <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+            <p style="margin:0;font-size:0.85rem;color:#e0e0e0;font-weight:300;line-height:1.6;flex:1;min-width:200px;">Utilizamos cookies técnicas para garantizar el correcto funcionamiento del sitio web. <a href="/politica-de-cookies/" style="color:#c9a96e;text-decoration:underline;">Más información</a></p>
+            <div style="display:flex;gap:10px;flex-shrink:0;">
+                <button onclick="acceptCookies()" style="padding:10px 24px;border-radius:50px;border:none;background:#c9a96e;color:#0a0a0a;font-size:0.8rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;transition:0.3s;">Aceptar</button>
+                <button onclick="rejectCookies()" style="padding:10px 24px;border-radius:50px;border:1px solid rgba(201,169,110,0.4);background:transparent;color:#e0e0e0;font-size:0.8rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;transition:0.3s;">Rechazar</button>
+            </div>
+        </div>
+    </div>
+<!-- WhatsApp -->
+<a href="https://wa.me/34633077401" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat en WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.8-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5.1-3.9-10.6-6.9z"/></svg></a>
+</body>
+</html>
