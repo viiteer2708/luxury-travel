@@ -62,7 +62,6 @@
 ## Reglas de Ejecución
 
 **PROHIBIDO sin pedir permiso:**
-- git push (Victor hace push manualmente)
 - rm -rf / borrar archivos
 - Levantar servidores de desarrollo
 - Modificar configuración de hosting
@@ -70,7 +69,7 @@
 **PERMITIDO sin preguntar:**
 - Leer/escribir cualquier archivo de código
 - Ejecutar builds y type checks
-- git add, git commit
+- git add, git commit, git push (cuando Victor dice "commit" = commit + push)
 
 ---
 
