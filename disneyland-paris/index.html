@@ -130,6 +130,10 @@
     animation: fadeInUp 0.8s 0.6s ease both;
 }
 
+.dest-hero-mobile-img {
+    display: none;
+}
+
 .disney-header-section {
     padding: 50px 0 30px;
     background: var(--dark);
@@ -376,10 +380,23 @@
     }
 
     .dest-hero {
-        min-height: 35vh;
-        background-attachment: scroll;
-        background-image: url('/images/DISNEY/FROZEN.jpeg');
-        background-position: center;
+        min-height: 0;
+        padding-top: 80px;
+        padding-bottom: 0;
+        background-image: none;
+        background: var(--dark);
+        display: block;
+    }
+
+    .dest-hero::after {
+        display: none;
+    }
+
+    .dest-hero-mobile-img {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin-top: 8px;
     }
 
     .dest-hero-content h1 {
@@ -427,7 +444,9 @@
     </nav>
 
     <!-- HERO -->
-    <section class="dest-hero"></section>
+    <section class="dest-hero">
+        <img src="/images/DISNEY/FROZEN.jpeg" alt="World of Frozen — Disneyland Paris" class="dest-hero-mobile-img">
+    </section>
 
     <!-- INTRO -->
     <section style="padding-top: 30px; padding-bottom: 10px;">
