@@ -64,8 +64,20 @@ inj(bc([{name:"Inicio",url:B.url+"/"},{name:"Luna de Miel a Medida",url:cu}]));}
 // PRO-TIPS
 else if(p.indexOf("pro-tips-")===0){
 var ps=p.replace("pro-tips-",""),pn=D[ps]||ps;
-inj({"@context":"https://schema.org","@type":"Article","headline":pt.split("|")[0].trim(),"description":pd,"url":cu,"author":{"@type":"Person","@id":B.url+"/#founder","name":B.founder},"publisher":{"@type":"Organization","@id":B.url+"/#organization","name":B.name,"logo":{"@type":"ImageObject","url":B.logo}}});
-inj(bc([{name:"Inicio",url:B.url+"/"},{name:"Pro Tips "+pn,url:cu}]));}
+inj({"@context":"https://schema.org","@type":"Article","headline":pt.split("|")[0].trim(),"description":pd,"url":cu,"author":{"@type":"Person","@id":B.url+"/#founder","name":B.founder},"publisher":{"@type":"Organization","@id":B.url+"/#organization","name":B.name,"logo":{"@type":"ImageObject","url":B.logo}},"mainEntityOfPage":{"@type":"WebPage","@id":cu}});
+// FAQPage schema from H2 sections
+var faqItems=[];var sections=document.querySelectorAll(".tips-section-title");
+sections.forEach(function(h2){var q="";var a="";var title=h2.textContent.trim();
+if(title==="Antes de viajar"){q="¿Qué necesito saber antes de viajar a "+pn+"?";}
+else if(title==="Dinero y pagos"){q="¿Cómo funcionan el dinero y los pagos en "+pn+"?";}
+else if(title==="Transporte"){q="¿Cómo moverse por "+pn+"?";}
+else if(title==="Seguridad y estafas"){q="¿Es seguro viajar a "+pn+"?";}
+else if(title==="Salud y clima"){q="¿Qué clima tiene "+pn+" y qué precauciones de salud tomar?";}
+else if(title==="Cultura y etiqueta"){q="¿Cuáles son las costumbres y normas culturales en "+pn+"?";}
+else if(title==="Comida y experiencias"){q="¿Qué comer y qué experiencias hacer en "+pn+"?";}
+if(q){var sec=h2.closest(".tips-section")||h2.parentElement.parentElement;var tips=sec.querySelectorAll(".tip-item p, .top5-card p");var texts=[];tips.forEach(function(t){texts.push(t.textContent.trim());});a=texts.join(" ");if(a.length>0){faqItems.push({"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}});}}});
+if(faqItems.length>0){inj({"@context":"https://schema.org","@type":"FAQPage","mainEntity":faqItems});}
+inj(bc([{name:"Inicio",url:B.url+"/"},{name:"Destinos",url:B.url+"/destinos/"},{name:pn,url:B.url+"/"+ps+"/"},{name:"Travel Hacks",url:cu}]));}
 
 // EDUCATIVAS
 else if(["antes-de-reservar-viaje-grande","como-planifico-un-gran-viaje","viaje-a-medida-que-es"].indexOf(p)>=0){
