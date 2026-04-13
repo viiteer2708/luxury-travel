@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agencia de Viajes de Lujo en Barcelona | Horizonte Exclusivo</title>
+    <link rel="icon" type="image/x-icon" href="/images/genfavicon-package/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/genfavicon-package/genfavicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/genfavicon-package/genfavicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/genfavicon-package/apple-touch-icon.png">
+    <link rel="manifest" href="/images/genfavicon-package/site.webmanifest">
+    <meta name="description" content="Agencia de viajes de lujo en Barcelona especializada en viajes a medida. Más de 55 destinos exclusivos, atención personal y diseño 100% personalizado desde Molins de Rei.">
+    <link rel="canonical" href="https://www.horizonteexclusivo.es/agencia-viajes-lujo-barcelona/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+.dest-hero {
+    min-height: calc(70vh - 50px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 100px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            background-image: url('https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+}
+
+.dest-hero::after {
+    content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(10,10,10,0.05) 0%, rgba(10,10,10,0.15) 50%, var(--dark) 100%);
+}
+
+.dest-hero-content {
+    position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 24px;
+}
+
+.section-label {
+    display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease both;
+}
+
+.dest-hero-content h1 {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s 0.2s ease both;
+            text-shadow:
+                0 2px 4px rgba(0, 0, 0, 0.8),
+                0 4px 20px rgba(0, 0, 0, 0.6),
+                0 8px 40px rgba(0, 0, 0, 0.4);
+}
+
+.dest-hero-content p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: var(--white);
+            font-weight: 700;
+            max-width: 540px;
+            margin: 0 auto;
+            margin-bottom: 8px;
+            animation: fadeInUp 0.8s 0.4s ease both; text-shadow:
+                0 2px 4px rgba(0, 0, 0, 0.8),
+                0 4px 20px rgba(0, 0, 0, 0.6),
+                0 8px 40px rgba(0, 0, 0, 0.4);
+}
+
+.tips-intro {
+    padding-top: 30px;
+            padding-bottom: 10px;
+}
+
+.tips-intro-content {
+    max-width: 780px;
+            margin: 0 auto;
+            text-align: center;
+}
+
+.tips-intro-content p {
+    font-size: 1.05rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 16px;
+}
+
+.tips-back-link {
+    display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--gold);
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+            margin-top: 8px;
+}
+
+.tips-back-link:hover {
+    color: var(--gold-light);
+            gap: 12px;
+}
+
+.tips-section {
+    padding: 80px 0;
+}
+
+.tips-section.alt-bg {
+    background: var(--dark-soft);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.article-block {
+    display: grid;
+            grid-template-columns: 1fr 1.6fr;
+            gap: 64px;
+            align-items: start;
+}
+
+.article-block.reverse {
+    grid-template-columns: 1.6fr 1fr;
+}
+
+.article-block.reverse .article-block-header {
+    order: 2;
+}
+
+.article-block.reverse .article-block-content {
+    order: 1;
+}
+
+.article-block-header {
+    position: sticky;
+            top: 120px;
+}
+
+.tips-section-header {
+    margin-bottom: 40px;
+}
+
+.tips-section-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--white);
+            line-height: 1.2;
+}
+
+.tips-section-subtitle {
+    font-size: 0.9rem;
+            color: var(--gold-light);
+            font-weight: 300;
+            margin-top: 4px;
+}
+
+.section-number {
+    display: inline-block;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: rgba(201,169,110,0.15);
+            line-height: 1;
+            margin-bottom: 12px;
+}
+
+.tip-item {
+    display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text);
+}
+
+.tip-item:last-child {
+    margin-bottom: 0;
+}
+
+.tip-icon {
+    flex-shrink: 0;
+            font-size: 1.1rem;
+            margin-top: 2px;
+}
+
+.tip-item strong {
+    color: var(--white);
+}
+
+.tips-list {
+    max-width: 780px;
+}
+
+.article-text {
+    font-size: 1.05rem;
+            color: var(--text);
+            font-weight: 300;
+            line-height: 1.8;
+}
+
+.article-text p {
+    margin-bottom: 16px;
+}
+
+.article-text p:last-child {
+    margin-bottom: 0;
+}
+
+.steps-grid {
+    display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 32px;
+}
+
+.step-card {
+    background: var(--dark-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: var(--radius);
+            padding: 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            transition: var(--transition);
+}
+
+.step-card:hover {
+    border-color: rgba(201,169,110,0.2);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 36px rgba(0,0,0,0.3);
+}
+
+.step-number {
+    flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            background: var(--gold);
+            color: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 700;
+}
+
+.step-card p {
+    font-size: 0.9rem;
+            line-height: 1.7;
+            color: var(--text);
+}
+
+.step-card strong {
+    color: var(--white);
+}
+
+.step-card a {
+    color: var(--gold);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.step-card a:hover {
+    color: var(--gold-light);
+}
+
+.tips-cta {
+    text-align: center;
+            padding: 80px 0;
+}
+
+.tips-cta h2 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--white);
+            margin-bottom: 16px;
+}
+
+.tips-cta p {
+    color: var(--text-muted);
+            max-width: 540px;
+            margin: 0 auto 32px;
+            font-weight: 300;
+}
+
+.dest-links a {
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.dest-links a:hover {
+    color: var(--gold-light);
+}
+
+@media (max-width: 768px) {
+    .dest-hero {
+        background-attachment: scroll;
+                background-position: center center;
+                background-repeat: no-repeat;
+    }
+
+    .tips-section {
+        padding: 48px 0;
+    }
+
+    .article-block {
+        grid-template-columns: 1fr;
+                gap: 24px;
+    }
+
+    .article-block.reverse {
+        grid-template-columns: 1fr;
+    }
+
+    .article-block.reverse .article-block-header,
+            .article-block.reverse .article-block-content {
+        order: unset;
+    }
+
+    .article-block-header {
+        position: static;
+    }
+
+    .section-number {
+        font-size: 2rem;
+                margin-bottom: 8px;
+    }
+
+    .steps-grid {
+        grid-template-columns: 1fr;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="/" class="logo"><img src="/images/logo-trimmed.png" alt="Horizonte Exclusivo"></a>
+            <ul class="nav-links" id="navLinks">
+                <li>
+                    <a href="/destinos/">Destinos</a>
+                    <div class="dropdown">
+                        <a href="/africa/">Africa</a>
+                        <a href="/america/">América</a>
+                        <a href="/asia/">Asia</a>
+                        <a href="/europa/">Europa</a>
+                        <a href="/paraisos/">Paraísos sobre el agua</a>
+                    </div>
+                </li>
+                <li><a href="/quien-hay-detras/">¿Quién hay detrás?</a></li>
+                <li><a href="/pro-tips/">Travel Hacks</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/contacto/">Contacto</a></li>
+
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="dest-hero">
+        <div class="dest-hero-content">
+            <h1>Tu agencia de viajes de lujo en Barcelona</h1>
+            <p>Viajes exclusivos diseñados a medida para viajeros exigentes</p>
+        </div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="tips-intro">
+        <div class="container">
+            <div class="tips-intro-content reveal">
+                <p>Me llamo Victor Molins y dirijo Horizonte Exclusivo, una agencia de viajes de lujo en Barcelona con sede en Molins de Rei. Aquí no encontrarás paquetes cerrados ni itinerarios prefabricados. Cada viaje que sale de esta agencia se diseña desde cero, pensando en una sola persona: tú. No trabajo con plantillas. No delego en intermediarios. Y limito el número de viajes que acepto al mes para poder dedicar a cada uno la atención que merece.</p>
+                <a href="/" class="tips-back-link">&#8592; Volver al inicio</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 01 LUJO ES QUE ALGUIEN DISEÑE TU VIAJE PENSANDO SOLO EN TI -->
+    <div class="tips-section reveal">
+        <div class="container">
+            <div class="article-block">
+                <div class="article-block-header">
+                    <span class="section-number">01</span>
+                    <h2 class="tips-section-title">Lujo es que alguien diseñe tu viaje pensando solo en ti</h2>
+                    <p class="tips-section-subtitle">Una forma diferente de entender los viajes exclusivos</p>
+                </div>
+                <div class="article-block-content">
+                    <div class="article-text">
+                        <p>Cuando hablo de viajes de lujo no me refiero solo a hoteles de cinco estrellas o vuelos en business. Eso es una parte, claro. Pero para mí, el verdadero lujo en un viaje es otra cosa: es que alguien se siente contigo, te escuche de verdad y construya una experiencia que tenga sentido para ti. No para «el viajero medio». Para ti.</p>
+                        <p>En Horizonte Exclusivo, cada viaje a medida empieza con una conversación larga. Quiero saber cómo viajáis, qué os emociona, qué os aburre, si necesitáis ritmo o calma, si os va la aventura o preferís que todo esté resuelto antes de salir de casa. Eso es lo que marca la diferencia entre un viaje caro y un <strong>viaje extraordinario</strong>.</p>
+                        <p>Trabajo con un número limitado de clientes al mes. No por exclusividad artificial, sino porque diseñar un viaje de lujo de verdad requiere tiempo, investigación y cuidado. Cada detalle importa: el hotel que elijo, el guía que recomiendo, la conexión entre vuelos, el restaurante que reservo para esa noche especial. Y todo eso no se puede hacer en serie.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 02 QUÉ NOS HACE DIFERENTES -->
+    <div class="tips-section alt-bg reveal">
+        <div class="container">
+            <div class="article-block reverse">
+                <div class="article-block-header">
+                    <span class="section-number">02</span>
+                    <h2 class="tips-section-title">Qué nos hace diferentes</h2>
+                    <p class="tips-section-subtitle">No es marketing, es cómo trabajamos</p>
+                </div>
+                <div class="article-block-content">
+                    <div class="tips-list">
+                        <div class="tip-item">
+                            <span class="tip-icon">✅</span>
+                            <p><strong>Diseño desde cero:</strong> cada viaje es único. No tengo catálogo ni itinerarios prefabricados. Tu viaje se construye a partir de lo que tú quieres, no de lo que yo tengo preparado.</p>
+                        </div>
+                        <div class="tip-item">
+                            <span class="tip-icon">✅</span>
+                            <p><strong>Número limitado de viajes al mes:</strong> acepto pocos proyectos para poder dedicar a cada uno el tiempo que merece. Calidad, no volumen.</p>
+                        </div>
+                        <div class="tip-item">
+                            <span class="tip-icon">✅</span>
+                            <p><strong>Siempre hablas con el mismo diseñador:</strong> aquí no hay departamentos, ni turnos, ni «le paso con un compañero». Desde la primera llamada hasta el último día de viaje, hablas conmigo.</p>
+                        </div>
+                        <div class="tip-item">
+                            <span class="tip-icon">✅</span>
+                            <p><strong>Acceso a experiencias y hoteles exclusivos:</strong> trabajo con una red de proveedores premium que permiten ofrecer habitaciones, experiencias y accesos que no están en las plataformas habituales.</p>
+                        </div>
+                        <div class="tip-item">
+                            <span class="tip-icon">✅</span>
+                            <p><strong>Coordinación integral puerta a puerta:</strong> vuelos, traslados, hoteles, actividades, seguros, visados... Todo queda resuelto antes de que hagas la maleta. Tú solo tienes que disfrutar.</p>
+                        </div>
+                        <div class="tip-item">
+                            <span class="tip-icon">✅</span>
+                            <p><strong>Presupuesto transparente sin sorpresas:</strong> sabes exactamente qué incluye tu viaje, cuánto cuesta cada parte y por qué. Sin letra pequeña ni costes ocultos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 03 NUESTROS SERVICIOS -->
+    <div class="tips-section reveal">
+        <div class="container">
+            <div class="article-block">
+                <div class="article-block-header">
+                    <span class="section-number">03</span>
+                    <h2 class="tips-section-title">Nuestros servicios</h2>
+                    <p class="tips-section-subtitle">Todo lo que necesitas para un viaje perfecto</p>
+                </div>
+                <div class="article-block-content">
+                    <div class="steps-grid">
+                        <div class="step-card">
+                            <span class="step-number">✦</span>
+                            <div>
+                                <p><strong><a href="/viajes-a-medida-barcelona/">Viajes a medida de lujo</a></strong><br>El corazón de lo que hacemos. Diseño completo de tu viaje desde Barcelona: itinerario, alojamiento, experiencias, logística. Todo personalizado.</p>
+                            </div>
+                        </div>
+                        <div class="step-card">
+                            <span class="step-number">✦</span>
+                            <div>
+                                <p><strong><a href="/luna-de-miel-a-medida/">Lunas de miel exclusivas</a></strong><br>El primer gran viaje juntos merece un diseño especial. Romántico, cómodo y sin estrés. Maldivas, Bali, Polinesia, Seychelles y mucho más.</p>
+                            </div>
+                        </div>
+                        <div class="step-card">
+                            <span class="step-number">✦</span>
+                            <div>
+                                <p><strong>Viajes en familia</strong><br>Aventuras que funcionan para todos: ritmo adaptado, actividades por edades, hoteles family-friendly de nivel y cero improvisación logística.</p>
+                            </div>
+                        </div>
+                        <div class="step-card">
+                            <span class="step-number">✦</span>
+                            <div>
+                                <p><strong>Viajes de incentivo para empresas</strong><br>Experiencias premium para equipos que merecen algo diferente. Coordinación integral, actividades exclusivas y atención al detalle corporativo.</p>
+                            </div>
+                        </div>
+                        <div class="step-card">
+                            <span class="step-number">✦</span>
+                            <div>
+                                <p><strong>Experiencias exclusivas</strong><br>Safaris privados en Tanzania, cruceros boutique, rutas gastronómicas en Japón, globos en Capadocia... Lo que convierte un viaje en un recuerdo para siempre.</p>
+                            </div>
+                        </div>
+                        <div class="step-card">
+                            <span class="step-number">✦</span>
+                            <div>
+                                <p><strong>Asesoramiento personalizado de destinos</strong><br>No sabes adónde ir? Te ayudo a elegir el destino perfecto según tu estilo, fechas, presupuesto y lo que buscas sentir.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 04 MÁS DE 55 DESTINOS EXCLUSIVOS -->
+    <div class="tips-section alt-bg reveal">
+        <div class="container">
+            <div class="article-block reverse">
+                <div class="article-block-header">
+                    <span class="section-number">04</span>
+                    <h2 class="tips-section-title">Más de 55 destinos exclusivos</h2>
+                    <p class="tips-section-subtitle">El mundo entero, diseñado a tu medida</p>
+                </div>
+                <div class="article-block-content">
+                    <div class="article-text dest-links">
+                        <p>Desde nuestra agencia de viajes de lujo en Barcelona trabajamos con destinos en los cinco continentes. No importa si sueñas con perderte en los templos de <a href="/japon/">Japón</a>, recorrer la sabana africana en <a href="/tanzania/">Tanzania</a>, desconectar en una villa sobre el agua en <a href="/maldivas/">Maldivas</a>, enamorarte de la costa amalfitana en <a href="/italia/">Italia</a> o vivir la energía vibrante de <a href="/tailandia/">Tailandia</a>. Cada destino lo conozco, lo he estudiado y sé exactamente cómo sacarte el máximo partido.</p>
+                        <p>Trabajamos en cinco grandes regiones:</p>
+                        <p><strong><a href="/europa/">Europa</a></strong> — Desde Islandia hasta Grecia, pasando por Suiza, Francia, Croacia y mucho más. Viajes de lujo por el continente con acceso a hoteles boutique y experiencias auténticas.</p>
+                        <p><strong><a href="/asia/">Asia</a></strong> — Japón, Bali, Tailandia, Vietnam, India, Sri Lanka... Culturas que transforman, paisajes que impresionan y una gastronomía que enamora.</p>
+                        <p><strong><a href="/africa/">África</a></strong> — Safaris en Kenia y Tanzania, las dunas de Namibia, el desierto de Marruecos, las cataratas de Uganda. Naturaleza en estado puro con alojamientos extraordinarios.</p>
+                        <p><strong><a href="/america/">América</a></strong> — De la Patagonia argentina a los parques de Alaska, pasando por Perú, Costa Rica, Brasil y las mejores playas del Caribe.</p>
+                        <p><strong><a href="/paraisos/">Paraísos sobre el agua</a></strong> — Maldivas, Seychelles, Mauricio, Polinesia Francesa. Los destinos más exclusivos del planeta para quienes buscan lo extraordinario.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 05 DESDE BARCELONA PARA VIAJEROS DE TODA CATALUÑA -->
+    <div class="tips-section reveal">
+        <div class="container">
+            <div class="article-block">
+                <div class="article-block-header">
+                    <span class="section-number">05</span>
+                    <h2 class="tips-section-title">Desde Barcelona para viajeros de toda Cataluña</h2>
+                    <p class="tips-section-subtitle">Atención cercana, alcance global</p>
+                </div>
+                <div class="article-block-content">
+                    <div class="article-text">
+                        <p>Horizonte Exclusivo tiene su oficina en <a href="/molins-de-rei/" style="color:var(--gold);">Molins de Rei</a>, en el Carrer Major 37, a solo 20 minutos de Barcelona centro. Es un espacio donde recibo a mis clientes con calma, sin prisas, para poder hablar de su viaje como se merece: con tiempo y atención.</p>
+                        <p>Aunque mi base está en el Baix Llobregat, trabajo con viajeros de toda el área metropolitana de Barcelona y más allá. Clientes de <strong>Barcelona ciudad</strong>, <strong>Sant Feliu de Llobregat</strong>, <strong>Cornellà</strong>, <strong>L'Hospitalet</strong>, <strong>el Vallès</strong> y otras comarcas catalanas confían en Horizonte Exclusivo para diseñar sus viajes de lujo. Y para quienes no pueden acercarse a la oficina, trabajamos perfectamente por videollamada, teléfono y WhatsApp.</p>
+                        <p>Mi nombre es <strong>Victor Molins</strong>, soy el fundador y único diseñador de viajes de la agencia. Cuando contactas con Horizonte Exclusivo, hablas directamente conmigo. Sin filtros, sin intermediarios. Esa es la ventaja de una agencia boutique: la cercanía real.</p>
+                        <p>Actualmente tenemos una <strong>valoración de 5.0 en Google</strong> porque cada cliente recibe exactamente lo que le prometo: un viaje diseñado con cariño, ejecutado con precisión y con alguien al otro lado del teléfono durante todo el viaje por si necesita cualquier cosa.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 06 CÓMO EMPEZAR -->
+    <div class="tips-section alt-bg reveal">
+        <div class="container">
+            <div class="article-block reverse">
+                <div class="article-block-header">
+                    <span class="section-number">06</span>
+                    <h2 class="tips-section-title">Cómo empezar</h2>
+                    <p class="tips-section-subtitle">Cuatro pasos y ya estamos diseñando tu viaje</p>
+                </div>
+                <div class="article-block-content">
+                    <div class="steps-grid">
+                        <div class="step-card">
+                            <span class="step-number">1</span>
+                            <div>
+                                <p><strong>Contacta con nosotros.</strong> Por <a href="https://wa.me/34633077401" target="_blank" rel="noopener">WhatsApp</a>, por <a href="mailto:viajes@horizonteexclusivo.es">email</a>, por teléfono o visitándonos en nuestra oficina de Molins de Rei. Como prefieras.</p>
+                            </div>
+                        </div>
+                        <div class="step-card">
+                            <span class="step-number">2</span>
+                            <div>
+                                <p><strong>Cuéntanos tu idea.</strong> No necesitas tenerlo claro. Basta con un destino soñado, unas fechas aproximadas y lo que te gustaría sentir. Yo me encargo del resto.</p>
+                            </div>
+                        </div>
+                        <div class="step-card">
+                            <span class="step-number">3</span>
+                            <div>
+                                <p><strong>Recibe tu propuesta personalizada.</strong> Diseño un itinerario completo a medida con alojamientos, experiencias, logística y presupuesto detallado. Sin compromiso.</p>
+                            </div>
+                        </div>
+                        <div class="step-card">
+                            <span class="step-number">4</span>
+                            <div>
+                                <p><strong>Ajustamos y reservamos.</strong> Revisamos juntos cada detalle, hacemos los cambios que necesites y, cuando esté perfecto, lo reservamos todo. Tú solo haces la maleta.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <section class="tips-cta">
+        <div class="container reveal">
+            <h2>¿Empezamos a diseñar <em style="color: var(--gold);">tu viaje de lujo</em>?</h2>
+            <p>Cuéntanos tu destino soñado. Sin compromiso, sin paquetes cerrados. Solo tu viaje perfecto.</p>
+            <a href="/contacto/" class="btn btn-primary">Solicitar presupuesto &#10230;</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo"><img src="/images/logo-trimmed.png" alt="Horizonte Exclusivo"></a>
+                    <p>Más que viajar, vivir el mundo. Creamos experiencias de viaje de lujo a medida. Cada destino es una historia, cada viaje una obra maestra.</p>
+                    <a href="https://g.page/r/CYdKzB_9NWUOEAE/review" target="_blank" rel="noopener" class="footer-review-link">⭐ Déjanos una reseña en Google</a>
+</div>
+
+                <div class="footer-column">
+                    <h4>Horizonte</h4>
+                    <ul>
+                        <li><a href="/destinos/">Destinos Extraordinarios</a></li>
+                        <li><a href="/europa/">Europa</a></li>
+                        <li><a href="/asia/">Asia</a></li>
+                        <li><a href="/america/">América</a></li>
+                        <li><a href="/africa/">Africa</a></li>
+                        <li><a href="/paraisos/">Paraísos sobre el agua</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Exclusivo</h4>
+                    <ul>
+                        <li><a href="/blog/">Blog de viajes</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Barcelona</h4>
+                    <p class="footer-address"><a href="/molins-de-rei/" style="color:inherit;text-decoration:none;">Calle Major 37<br>Molins de Rei 08750, Barcelona</a></p>
+                    <p class="footer-address"><a href="tel:+34633077401">+34 633 077 401</a></p>
+                    <p class="footer-address"><a href="mailto:viajes@horizonteexclusivo.es">viajes@horizonteexclusivo.es</a></p>
+                    <div class="footer-hours">
+                        <p class="footer-address" style="margin-top:12px;font-size:0.8rem;"><strong>Horario de atención:</strong></p>
+                        <p class="footer-address" style="font-size:0.75rem;line-height:1.8;">L: 9:30–13:30 · 15:30–19:00<br>M: 9:30–13:30<br>X: 9:30–13:30 · 15:30–19:00<br>J: 9:30–13:30 · 15:30–19:00<br>V: 9:30–13:30 · 15:30–19:00<br>S: 10:00–13:30<br>D: Cerrado</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Horizonte Exclusivo. Todos los derechos reservados.</p>
+                <div class="footer-bottom-links">
+                    <a href="/aviso-legal/">Aviso legal</a>
+                    <a href="/politica-de-privacidad/">Privacidad</a>
+                    <a href="/politica-de-cookies/">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/scripts.js"></script>
+
+    <script>
+        // Auto-collapse navbar when items don't fit
+    </script>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;width:100%;z-index:9999;background:var(--dark-soft,#1a1a1a);border-top:1px solid rgba(201,169,110,0.2);padding:16px 24px;font-family:'Inter',sans-serif;">
+        <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+            <p style="margin:0;font-size:0.85rem;color:#e0e0e0;font-weight:300;line-height:1.6;flex:1;min-width:200px;">Utilizamos cookies técnicas para garantizar el correcto funcionamiento del sitio web. <a href="/politica-de-cookies/" style="color:#c9a96e;text-decoration:underline;">Más información</a></p>
+            <div style="display:flex;gap:10px;flex-shrink:0;">
+                <button onclick="acceptCookies()" style="padding:10px 24px;border-radius:50px;border:none;background:#c9a96e;color:#0a0a0a;font-size:0.8rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;transition:0.3s;">Aceptar</button>
+                <button onclick="rejectCookies()" style="padding:10px 24px;border-radius:50px;border:1px solid rgba(201,169,110,0.4);background:transparent;color:#e0e0e0;font-size:0.8rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;transition:0.3s;">Rechazar</button>
+            </div>
+        </div>
+    </div>
+<!-- WhatsApp -->
+<a href="https://wa.me/34633077401" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat en WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.8-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5.1-3.9-10.6-6.9z"/></svg></a>
+</body>
+</html>

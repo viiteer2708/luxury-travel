@@ -61,6 +61,17 @@ else if(p==="luna-de-miel-a-medida"){
 inj({"@context":"https://schema.org","@type":"Service","name":"Lunas de Miel a Medida","url":cu,"description":pd,"provider":org(),"areaServed":{"@type":"Country","name":"Espana"},"serviceType":"Luna de miel a medida"});
 inj(bc([{name:"Inicio",url:B.url+"/"},{name:"Luna de Miel a Medida",url:cu}]));}
 
+// MONEY PAGES — SERVICIO + CIUDAD
+else if(p==="viajes-a-medida-barcelona"){
+inj({"@context":"https://schema.org","@type":"Service","name":"Viajes a Medida en Barcelona","url":cu,"description":pd,"provider":org(),"areaServed":[{"@type":"City","name":"Barcelona"},{"@type":"AdministrativeArea","name":"Baix Llobregat"},{"@type":"City","name":"Molins de Rei"}],"serviceType":"Viajes a medida"});
+inj(bc([{name:"Inicio",url:B.url+"/"},{name:"Viajes a Medida Barcelona",url:cu}]));}
+else if(p==="agencia-viajes-lujo-barcelona"){
+inj({"@context":"https://schema.org","@type":"TravelAgency","name":"Horizonte Exclusivo - Agencia de Viajes de Lujo en Barcelona","url":cu,"description":pd,"telephone":B.telephone,"email":B.email,"address":{"@type":"PostalAddress","streetAddress":B.street,"addressLocality":B.city,"addressRegion":B.region,"postalCode":B.zip,"addressCountry":B.country},"geo":{"@type":"GeoCoordinates","latitude":B.lat,"longitude":B.lng},"areaServed":[{"@type":"City","name":"Barcelona"},{"@type":"AdministrativeArea","name":"Baix Llobregat"},{"@type":"AdministrativeArea","name":"Cataluna"}],"aggregateRating":{"@type":"AggregateRating","ratingValue":B.rating,"reviewCount":B.reviewCount,"bestRating":"5"}});
+inj(bc([{name:"Inicio",url:B.url+"/"},{name:"Agencia Viajes Lujo Barcelona",url:cu}]));}
+else if(p==="luna-de-miel-barcelona"){
+inj({"@context":"https://schema.org","@type":"Service","name":"Luna de Miel desde Barcelona","url":cu,"description":pd,"provider":org(),"areaServed":[{"@type":"City","name":"Barcelona"},{"@type":"AdministrativeArea","name":"Baix Llobregat"},{"@type":"City","name":"Molins de Rei"}],"serviceType":"Luna de miel a medida"});
+inj(bc([{name:"Inicio",url:B.url+"/"},{name:"Luna de Miel Barcelona",url:cu}]));}
+
 // PRO-TIPS
 else if(p.indexOf("pro-tips-")===0){
 var ps=p.replace("pro-tips-",""),pn=D[ps]||ps;

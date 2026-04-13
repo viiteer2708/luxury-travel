@@ -810,6 +810,25 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <!-- Money Pages — Servicio + Ciudad -->
+  <url>
+    <loc>https://www.horizonteexclusivo.es/viajes-a-medida-barcelona/</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.horizonteexclusivo.es/agencia-viajes-lujo-barcelona/</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.horizonteexclusivo.es/luna-de-miel-barcelona/</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
   <url>
     <loc>https://www.horizonteexclusivo.es/errores-comunes-organizar-viaje/</loc>
     <lastmod>2026-03-14</lastmod>
