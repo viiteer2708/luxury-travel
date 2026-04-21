@@ -1,0 +1,103 @@
+name: Indexing check (Horizonte Exclusivo)
+
+# Inspección automática de las 141 URLs del sitemap cada 48 horas.
+# - Corre inspect_sitemap.py con service account desde el secret GOOGLE_SA_JSON.
+# - Compara vs el último snapshot committeado en scripts_seo/latest_inspection.json.
+# - Si hay cambios (total, nuevas indexadas, caídas, cambio en las 4 vigiladas):
+#     · Committea el nuevo snapshot.
+#     · Abre un issue con el resumen en markdown.
+# - Si no hay cambios, solo actualiza el snapshot silenciosamente (sin issue).
+#
+# Primer disparo tras configurar el secret: manual via "Run workflow".
+
+on:
+  schedule:
+    # 07:00 UTC cada 2 días = 09:00 Europe/Madrid en verano (CEST)
+    # 08:00 Europe/Madrid en invierno (CET) — diferencia aceptable.
+    - cron: "0 7 */2 * *"
+  workflow_dispatch:
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install PyJWT
+        run: python -m pip install --quiet "PyJWT>=2.7,<3" cryptography
+
+      - name: Run inspection
+        env:
+          GOOGLE_SA_JSON: ${{ secrets.GOOGLE_SA_JSON }}
+        run: |
+          if [ -z "$GOOGLE_SA_JSON" ]; then
+            echo "::error::GOOGLE_SA_JSON secret no configurado. Ve a Settings → Secrets → Actions y añádelo."
+            exit 1
+          fi
+          python scripts_seo/inspect_sitemap.py --out scripts_seo/new_inspection.json
+
+      - name: Compare vs previous snapshot
+        id: compare
+        continue-on-error: true
+        run: |
+          old=scripts_seo/latest_inspection.json
+          if [ ! -f "$old" ]; then
+            old=scripts_seo/baselines/inspeccion_20260421.json
+          fi
+          python scripts_seo/compare_and_alert.py \
+            --new scripts_seo/new_inspection.json \
+            --old "$old" \
+            --summary-out scripts_seo/last_summary.md
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+
+      - name: Check alert flag
+        id: alert
+        run: |
+          if [ -f scripts_seo/.alert ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            rm scripts_seo/.alert
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Promote new inspection to latest
+        run: mv scripts_seo/new_inspection.json scripts_seo/latest_inspection.json
+
+      - name: Commit snapshot
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts_seo/latest_inspection.json scripts_seo/last_summary.md
+          if git diff --cached --quiet; then
+            echo "Sin cambios en snapshot."
+          else
+            if [ "${{ steps.alert.outputs.changed }}" = "true" ]; then
+              git commit -m "Indexing check: cambios detectados ($(date -u +%Y-%m-%d))"
+            else
+              git commit -m "Indexing check: sin cambios ($(date -u +%Y-%m-%d)) [skip ci]"
+            fi
+            git push
+          fi
+
+      - name: Open issue if changes detected
+        if: steps.alert.outputs.changed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('scripts_seo/last_summary.md', 'utf8');
+            const today = new Date().toISOString().slice(0, 10);
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Indexing check ${today}: cambios detectados`,
+              body,
+              labels: ['seo', 'indexing']
+            });

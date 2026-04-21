@@ -1,0 +1,1001 @@
+{
+  "fecha": "2026-04-21T09:32:53.177167",
+  "total": 141,
+  "indexadas": 74,
+  "no_indexadas": 67,
+  "errores": 0,
+  "detalle_indexadas": [
+    "/",
+    "/destinos/",
+    "/pro-tips/",
+    "/blog/",
+    "/contacto/",
+    "/quien-hay-detras/",
+    "/molins-de-rei/",
+    "/europa/",
+    "/asia/",
+    "/africa/",
+    "/america/",
+    "/paraisos/",
+    "/albania/",
+    "/alemania/",
+    "/aruba/",
+    "/bahamas/",
+    "/belgica/",
+    "/botsuana/",
+    "/brasil/",
+    "/canada/",
+    "/chicago-nueva-orleans/",
+    "/china/",
+    "/colombia/",
+    "/costa-rica/",
+    "/croacia/",
+    "/cuba/",
+    "/disneyland-paris/",
+    "/dubai-abu-dhabi-maldivas/",
+    "/ecuador/",
+    "/egipto/",
+    "/filipinas/",
+    "/francia/",
+    "/grecia/",
+    "/hawai/",
+    "/italia/",
+    "/japon/",
+    "/maldivas/",
+    "/marruecos/",
+    "/namibia/",
+    "/peru/",
+    "/portugal/",
+    "/praga-viena-budapest/",
+    "/pro-tips-alemania/",
+    "/pro-tips-bahamas/",
+    "/pro-tips-bali/",
+    "/pro-tips-canada/",
+    "/pro-tips-chicago-nueva-orleans/",
+    "/pro-tips-costa-oeste-usa/",
+    "/pro-tips-costa-rica/",
+    "/pro-tips-croacia/",
+    "/pro-tips-cuba/",
+    "/pro-tips-filipinas/",
+    "/pro-tips-francia/",
+    "/pro-tips-grecia/",
+    "/pro-tips-italia/",
+    "/pro-tips-japon/",
+    "/pro-tips-mauricio/",
+    "/pro-tips-noruega/",
+    "/pro-tips-tailandia/",
+    "/pro-tips-uganda/",
+    "/pro-tips-vietnam/",
+    "/viaje-a-medida-que-es/",
+    "/viaje-a-medida-vs-por-tu-cuenta/",
+    "/viaje-premium-que-es/",
+    "/viajes-pequenos-recuerdos-grandes/",
+    "/cuanto-cuesta-viaje-a-medida/",
+    "/como-planifico-un-gran-viaje/",
+    "/antes-de-reservar-viaje-grande/",
+    "/luna-de-miel-a-medida/",
+    "/errores-comunes-organizar-viaje/",
+    "/jet-lag-cambios-horarios/",
+    "/checklist-pre-viaje/",
+    "/que-reservar-primero-gran-viaje/",
+    "/politica-de-cookies/"
+  ],
+  "detalle_no_indexadas": [
+    "/alaska/",
+    "/argentina/",
+    "/bali/",
+    "/camboya/",
+    "/costa-oeste-usa/",
+    "/escocia/",
+    "/florida/",
+    "/india/",
+    "/islandia/",
+    "/jamaica/",
+    "/kenia-zanzibar/",
+    "/madagascar/",
+    "/malasia/",
+    "/malta/",
+    "/mauricio/",
+    "/noruega/",
+    "/polinesia-francesa/",
+    "/seychelles/",
+    "/singapur/",
+    "/sri-lanka/",
+    "/sudafrica/",
+    "/suiza/",
+    "/tailandia/",
+    "/tanzania/",
+    "/turquia/",
+    "/uganda/",
+    "/vietnam/",
+    "/pro-tips-alaska/",
+    "/pro-tips-albania/",
+    "/pro-tips-argentina/",
+    "/pro-tips-aruba/",
+    "/pro-tips-belgica/",
+    "/pro-tips-botsuana/",
+    "/pro-tips-brasil/",
+    "/pro-tips-camboya/",
+    "/pro-tips-china/",
+    "/pro-tips-colombia/",
+    "/pro-tips-dubai-abu-dhabi-maldivas/",
+    "/pro-tips-ecuador/",
+    "/pro-tips-egipto/",
+    "/pro-tips-escocia/",
+    "/pro-tips-florida/",
+    "/pro-tips-hawai/",
+    "/pro-tips-india/",
+    "/pro-tips-islandia/",
+    "/pro-tips-jamaica/",
+    "/pro-tips-kenia-zanzibar/",
+    "/pro-tips-madagascar/",
+    "/pro-tips-malasia/",
+    "/pro-tips-maldivas/",
+    "/pro-tips-malta/",
+    "/pro-tips-marruecos/",
+    "/pro-tips-namibia/",
+    "/pro-tips-peru/",
+    "/pro-tips-polinesia-francesa/",
+    "/pro-tips-portugal/",
+    "/pro-tips-praga-viena-budapest/",
+    "/pro-tips-seychelles/",
+    "/pro-tips-singapur/",
+    "/pro-tips-sri-lanka/",
+    "/pro-tips-sudafrica/",
+    "/pro-tips-suiza/",
+    "/pro-tips-tanzania/",
+    "/pro-tips-turquia/",
+    "/itinerario-ritmo-realista/",
+    "/aviso-legal/",
+    "/politica-de-privacidad/"
+  ],
+  "detalle_errores": [],
+  "resultados_completos": {
+    "/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-20T07:59:05Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/destinos/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-15T00:56:16Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/pro-tips/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-27T06:44:45Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/blog/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-27T06:21:42Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/contacto/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-08T00:57:37Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/quien-hay-detras/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-11T08:30:31Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/molins-de-rei/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-03T22:00:51Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/europa/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-11T06:03:24Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/asia/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-15T06:27:23Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/africa/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-03T22:11:41Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/america/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-03T22:11:41Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/paraisos/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-03T22:11:41Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/alaska/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/albania/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-12T23:40:55Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/alemania/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-14T23:54:02Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/argentina/": {
+      "verdict": "NEUTRAL",
+      "coverage": "URL is unknown to Google",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/aruba/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-14T23:25:43Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/bahamas/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-12T23:40:55Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/bali/": {
+      "verdict": "NEUTRAL",
+      "coverage": "URL is unknown to Google",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/belgica/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-12T23:45:02Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/botsuana/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-15T14:55:44Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/brasil/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-12T23:46:02Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/camboya/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/canada/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-12T23:46:02Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/chicago-nueva-orleans/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-12T23:46:02Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/china/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-12T23:48:52Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/colombia/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-04T22:52:34Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/costa-oeste-usa/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/costa-rica/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-14T23:57:59Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/croacia/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-12T23:48:52Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/cuba/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-14T23:23:45Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/disneyland-paris/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-08T18:49:10Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/dubai-abu-dhabi-maldivas/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-12T23:51:24Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/ecuador/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-12T23:53:38Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/egipto/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-09T16:00:40Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/escocia/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/filipinas/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-04T22:47:31Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/florida/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/francia/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-15T12:53:06Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/grecia/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-19T21:46:38Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/hawai/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-14T23:55:51Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/india/": {
+      "verdict": "NEUTRAL",
+      "coverage": "URL is unknown to Google",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/islandia/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Crawled - currently not indexed",
+      "crawled": "2026-03-09T15:24:01Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/italia/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-03T22:10:20Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/jamaica/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/japon/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-20T03:06:30Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/kenia-zanzibar/": {
+      "verdict": "NEUTRAL",
+      "coverage": "URL is unknown to Google",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/madagascar/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/malasia/": {
+      "verdict": "NEUTRAL",
+      "coverage": "URL is unknown to Google",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/maldivas/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-03T22:10:20Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/malta/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/marruecos/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-14T23:52:00Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/mauricio/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/namibia/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-15T01:54:25Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/noruega/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/peru/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-04T22:36:34Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/polinesia-francesa/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/portugal/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-04T22:32:02Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/praga-viena-budapest/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-12T04:56:48Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/seychelles/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/singapur/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/sri-lanka/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/sudafrica/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/suiza/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/tailandia/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/tanzania/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/turquia/": {
+      "verdict": "NEUTRAL",
+      "coverage": "URL is unknown to Google",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/uganda/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/vietnam/": {
+      "verdict": "NEUTRAL",
+      "coverage": "URL is unknown to Google",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-alaska/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-albania/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-alemania/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-14T23:29:53Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/pro-tips-argentina/": {
+      "verdict": "NEUTRAL",
+      "coverage": "URL is unknown to Google",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-aruba/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-bahamas/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-14T23:23:45Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/pro-tips-bali/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-18T02:40:33Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/pro-tips-belgica/": {
+      "verdict": "NEUTRAL",
+      "coverage": "URL is unknown to Google",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-botsuana/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-brasil/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-camboya/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-canada/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-09T15:06:57Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/pro-tips-chicago-nueva-orleans/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-19T21:17:50Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/pro-tips-china/": {
+      "verdict": "NEUTRAL",
+      "coverage": "URL is unknown to Google",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-colombia/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-costa-oeste-usa/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-14T23:23:45Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/pro-tips-costa-rica/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-14T23:54:02Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/pro-tips-croacia/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-12T04:35:02Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/pro-tips-cuba/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-14T23:33:39Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/pro-tips-dubai-abu-dhabi-maldivas/": {
+      "verdict": "NEUTRAL",
+      "coverage": "URL is unknown to Google",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-ecuador/": {
+      "verdict": "NEUTRAL",
+      "coverage": "URL is unknown to Google",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-egipto/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-escocia/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-filipinas/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-14T23:18:07Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/pro-tips-florida/": {
+      "verdict": "NEUTRAL",
+      "coverage": "URL is unknown to Google",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-francia/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-14T23:48:08Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/pro-tips-grecia/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-14T23:48:08Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/pro-tips-hawai/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-india/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-islandia/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-italia/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-19T16:10:21Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/pro-tips-jamaica/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-japon/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-14T23:39:48Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/pro-tips-kenia-zanzibar/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-madagascar/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-malasia/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-maldivas/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-malta/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-marruecos/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Crawled - currently not indexed",
+      "crawled": "2026-03-14T23:09:43Z",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-mauricio/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-26T07:15:58Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/pro-tips-namibia/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-noruega/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-14T23:29:53Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/pro-tips-peru/": {
+      "verdict": "NEUTRAL",
+      "coverage": "URL is unknown to Google",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-polinesia-francesa/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-portugal/": {
+      "verdict": "NEUTRAL",
+      "coverage": "URL is unknown to Google",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-praga-viena-budapest/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Crawled - currently not indexed",
+      "crawled": "2026-03-14T23:09:43Z",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-seychelles/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-singapur/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-sri-lanka/": {
+      "verdict": "NEUTRAL",
+      "coverage": "URL is unknown to Google",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-sudafrica/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-suiza/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-tailandia/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-19T21:26:49Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/pro-tips-tanzania/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Crawled - currently not indexed",
+      "crawled": "2026-03-14T23:09:43Z",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-turquia/": {
+      "verdict": "NEUTRAL",
+      "coverage": "URL is unknown to Google",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-uganda/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-14T23:54:02Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/pro-tips-vietnam/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-25T20:09:08Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/viaje-a-medida-que-es/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-03T22:11:41Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/viaje-a-medida-vs-por-tu-cuenta/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-14T23:37:52Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/viaje-premium-que-es/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-04T22:17:53Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/viajes-pequenos-recuerdos-grandes/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-19T20:12:00Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/cuanto-cuesta-viaje-a-medida/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-03T22:10:21Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/como-planifico-un-gran-viaje/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-04T22:24:02Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/antes-de-reservar-viaje-grande/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-04T22:14:24Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/luna-de-miel-a-medida/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-03T22:10:20Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/errores-comunes-organizar-viaje/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-14T23:55:51Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/jet-lag-cambios-horarios/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-14T23:52:00Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/checklist-pre-viaje/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-14T23:35:51Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/itinerario-ritmo-realista/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/que-reservar-primero-gran-viaje/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-04-04T22:25:23Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/aviso-legal/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/politica-de-cookies/": {
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-03-29T22:14:04Z",
+      "indexing_state": "INDEXING_ALLOWED"
+    },
+    "/politica-de-privacidad/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Discovered - currently not indexed",
+      "crawled": "N/A",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    }
+  }
+}
