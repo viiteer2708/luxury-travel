@@ -9,10 +9,18 @@
 | NUNCA mostrar precios (ni HTML, CSS, comentarios) | Política comercial — sin excepciones |
 | Navbar IDÉNTICO en las 79 páginas (HTML+CSS+JS copiado de `index.html`) | Componente inmutable; si cambia, cambia en TODAS |
 | Nuevo destino = página + Travel Hacks + tarjeta en región + `destinos/index.html` + `pro-tips/index.html` | Nunca crear destino incompleto |
+| Tras crear/editar páginas → ejecutar `node build-schema.js` para regenerar el JSON-LD | El schema (datos estructurados) es estático y NO se actualiza solo |
 | URLs limpias `/slug/` con rutas absolutas. NUNCA usar `#` en navegación | SEO y consistencia interna |
 | Idioma: español de España en UI, comentarios y commits | Audiencia objetivo |
 | Imágenes locales (no Unsplash) SIEMPRE en `images/` + `git add` antes de commit | Evitar referencias rotas |
 | Leer `docs/OPERACIONES.md` antes de crear/modificar destinos, regiones o travel hacks | Contiene checklists obligatorias paso a paso |
+
+## Datos estructurados (JSON-LD / Schema)
+- El JSON-LD de cada página está **incrustado de forma estática** en su `<head>`, entre los marcadores `<!-- schema-auto:start -->` y `<!-- schema-auto:end -->`. **No editar a mano** esos bloques.
+- Se genera con **`node build-schema.js`** (en la raíz del proyecto). Es idempotente: re-ejecutarlo regenera los bloques sin duplicar. `schema-auto.js` NO se carga en las páginas; es la **fuente de la lógica** que reutiliza `build-schema.js`.
+- **Tras crear o editar páginas (nuevo destino, pro-tip, guía…), ejecuta `node build-schema.js`** para que tengan/actualicen su schema. Si añades un destino nuevo, añádelo también a los mapas `D` y `CT` (en `build-schema.js` y `schema-auto.js`).
+- Cobertura: LocalBusiness (home, con reseñas), TouristTrip (destinos), Article+FAQPage (pro-tips), Article (guías de blog), CollectionPage (hubs/regiones), BreadcrumbList (todas).
+- Valida los cambios en el [Test de Resultados Enriquecidos de Google](https://search.google.com/test/rich-results).
 
 ## Stack
 - HTML estático + CSS embebido (variables CSS, sin frameworks)
@@ -175,3 +183,23 @@ Si el vault no está cargado: `/add-dir /mnt/c/Users/viite/Documents/OBSIDIAN/VI
 
 ### Regla
 Antes de tomar decisiones de arquitectura o negocio, consulta el vault para verificar decisiones previas o contexto relevante.
+
+---
+
+## Wiki / Segundo Cerebro
+
+Victor mantiene un wiki persistente (patrón LLM Wiki de Karpathy) en su vault de Obsidian.
+
+- **Ruta:** C:\Users\viite\Documents\OBSIDIAN\VIITEER\_Wiki\
+- **Schema:** _Wiki/CLAUDE.md (leer SIEMPRE antes de escribir en el wiki)
+- **Páginas:** _Wiki/wiki/{entities,concepts,projects,sources,syntheses,queries,reports}/
+- **Index:** _Wiki/index.md (actualizar en cada ingest)
+- **Log:** _Wiki/log.md (append-only, entrada en cada operación)
+- **Raw (inmutable):** _Wiki/raw/ — NO modificar
+
+Cuando Victor diga "actualiza el wiki", "ingesta al wiki", o "qué sabemos sobre X":
+1. Leer C:\Users\viite\Documents\OBSIDIAN\VIITEER\_Wiki\CLAUDE.md
+2. Ejecutar la operación (ingest, query, o lint) siguiendo las convenciones
+3. Actualizar index.md y log.md
+
+Todo en español. Frontmatter YAML obligatorio en cada página.
