@@ -82,10 +82,9 @@ function homeOrg() {
     'geo': { '@type': 'GeoCoordinates', 'latitude': B.lat, 'longitude': B.lng },
     'hasMap': 'https://www.google.com/maps?cid=' + B.mapCid,
     'openingHoursSpecification': [
-      { '@type': 'OpeningHoursSpecification', 'dayOfWeek': ['Monday', 'Wednesday', 'Thursday', 'Friday'], 'opens': '09:30', 'closes': '13:30' },
-      { '@type': 'OpeningHoursSpecification', 'dayOfWeek': ['Monday', 'Wednesday', 'Thursday', 'Friday'], 'opens': '15:30', 'closes': '19:00' },
+      { '@type': 'OpeningHoursSpecification', 'dayOfWeek': ['Monday', 'Wednesday', 'Thursday', 'Friday'], 'opens': '09:00', 'closes': '13:30' },
+      { '@type': 'OpeningHoursSpecification', 'dayOfWeek': ['Monday', 'Wednesday', 'Thursday', 'Friday'], 'opens': '16:00', 'closes': '19:00' },
       { '@type': 'OpeningHoursSpecification', 'dayOfWeek': 'Tuesday', 'opens': '09:30', 'closes': '13:30' },
-      { '@type': 'OpeningHoursSpecification', 'dayOfWeek': 'Saturday', 'opens': '10:00', 'closes': '13:30' },
     ],
     'areaServed': [{ '@type': 'City', 'name': 'Molins de Rei' }, { '@type': 'AdministrativeArea', 'name': 'Baix Llobregat' }, { '@type': 'City', 'name': 'Barcelona' }, { '@type': 'AdministrativeArea', 'name': 'Cataluna' }],
     'hasOfferCatalog': { '@type': 'OfferCatalog', 'name': 'Servicios de viajes de lujo', 'itemListElement': [
