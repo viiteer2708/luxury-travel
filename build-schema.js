@@ -125,6 +125,20 @@ function buildFaq(html, pn) {
   return items.length ? { '@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': items } : null;
 }
 
+// FAQPage de la home a partir de su sección .faq-item (.faq-question / .faq-answer)
+function buildHomeFaq(html) {
+  const items = [];
+  const re = /<button class="faq-question"[^>]*>([\s\S]*?)<\/button>\s*<div class="faq-answer">([\s\S]*?)<\/div>/gi;
+  let m;
+  while ((m = re.exec(html))) {
+    const q = decode(m[1]).trim(); // decode() también elimina el <svg> del chevron
+    const ps = [...m[2].matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)].map(x => decode(x[1]).trim()).filter(Boolean);
+    const a = ps.join(' ').trim();
+    if (q && a) items.push({ '@type': 'Question', 'name': q, 'acceptedAnswer': { '@type': 'Answer', 'text': a } });
+  }
+  return items.length ? { '@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': items } : null;
+}
+
 function generate(slug, html) {
   const pt = attrVal(html, /<title[^>]*>([\s\S]*?)<\/title>/i);
   const pd = attrVal(html, /<meta\s+name="description"\s+content="([^"]*)"/i);
@@ -134,7 +148,7 @@ function generate(slug, html) {
   const out = [];
   const p = slug;
 
-  if (p === '' || p === 'index.html') { out.push(homeOrg()); }
+  if (p === '' || p === 'index.html') { out.push(homeOrg()); const hf = buildHomeFaq(html); if (hf) out.push(hf); }
   else if (D[p]) {
     const dn = D[p], ct = CT[p] || '';
     out.push({ '@context': 'https://schema.org', '@type': 'TouristTrip', 'name': headline(pt), 'description': pd, 'url': cu, 'touristType': ['Luxury', 'Cultural', 'Adventure'], 'itinerary': { '@type': 'ItemList', 'name': 'Itinerario de viaje a ' + dn, 'description': 'Itinerario personalizado de lujo en ' + dn }, 'provider': org(), 'offers': { '@type': 'Offer', 'availability': 'https://schema.org/InStock', 'priceCurrency': 'EUR', 'url': B.url + '/contacto/' } });

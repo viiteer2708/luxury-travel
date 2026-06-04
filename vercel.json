@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "horizonteexclusivo.es" }],
+      "destination": "https://www.horizonteexclusivo.es/$1",
+      "permanent": true
+    }
+  ]
+}
