@@ -95,12 +95,6 @@ function homeOrg() {
       { '@type': 'Offer', 'itemOffered': { '@type': 'Service', 'name': 'Diseno de itinerarios personalizados' } },
     ] },
     'sameAs': ['https://www.google.com/maps?cid=' + B.mapCid],
-    'review': [
-      { '@type': 'Review', 'author': { '@type': 'Person', 'name': 'Víctor' }, 'reviewRating': { '@type': 'Rating', 'ratingValue': '5', 'bestRating': '5' }, 'reviewBody': 'Se nota cuando alguien diseña el viaje con cariño. Desde Bangkok hasta las playas del sur, cada parada tenía sentido. Más de 20 días recorriendo Tailandia sin preocuparme absolutamente de nada. Hacía años que no desconectaba así.' },
-      { '@type': 'Review', 'author': { '@type': 'Person', 'name': 'Javier' }, 'reviewRating': { '@type': 'Rating', 'ratingValue': '5', 'bestRating': '5' }, 'reviewBody': 'Hay viajes que recuerdas siempre. Riviera Maya fue exactamente uno de esos. Los peques disfrutaron como nunca entre la playa, el snorkel y los juegos en el agua. Y nosotros volvimos a tener algo que hacía tiempo echábamos de menos: tiempo para estar juntos.' },
-      { '@type': 'Review', 'author': { '@type': 'Person', 'name': 'Marta' }, 'reviewRating': { '@type': 'Rating', 'ratingValue': '5', 'bestRating': '5' }, 'reviewBody': 'Hay lugares que parecen irreales hasta que los vives. Maldivas fue exactamente eso para nosotros. Despertar cada mañana frente al mar, sin prisas y sin horarios. Un viaje que recordaremos siempre.' },
-    ],
-    'aggregateRating': { '@type': 'AggregateRating', 'ratingValue': '5.0', 'reviewCount': '3', 'bestRating': '5' },
   };
 }
 
@@ -148,7 +142,7 @@ function generate(slug, html) {
   const out = [];
   const p = slug;
 
-  if (p === '' || p === 'index.html') { out.push(homeOrg()); const hf = buildHomeFaq(html); if (hf) out.push(hf); }
+  if (p === '' || p === 'index.html') { out.push(homeOrg()); out.push({ '@context': 'https://schema.org', '@type': 'WebSite', '@id': B.url + '/#website', 'name': B.name, 'url': B.url, 'inLanguage': 'es-ES', 'publisher': { '@id': B.url + '/#organization' } }); const hf = buildHomeFaq(html); if (hf) out.push(hf); }
   else if (D[p]) {
     const dn = D[p], ct = CT[p] || '';
     out.push({ '@context': 'https://schema.org', '@type': 'TouristTrip', 'name': headline(pt), 'description': pd, 'url': cu, 'touristType': ['Luxury', 'Cultural', 'Adventure'], 'itinerary': { '@type': 'ItemList', 'name': 'Itinerario de viaje a ' + dn, 'description': 'Itinerario personalizado de lujo en ' + dn }, 'provider': org(), 'offers': { '@type': 'Offer', 'availability': 'https://schema.org/InStock', 'priceCurrency': 'EUR', 'url': B.url + '/contacto/' } });
@@ -196,7 +190,7 @@ function generate(slug, html) {
     out.push(bc([{ name: 'Inicio', url: B.url + '/' }, { name: 'Viajes a Medida Barcelona', url: cu }]));
   }
   else if (p === 'agencia-viajes-lujo-barcelona') {
-    out.push({ '@context': 'https://schema.org', '@type': 'TravelAgency', 'name': 'Horizonte Exclusivo - Agencia de Viajes de Lujo en Barcelona', 'url': cu, 'description': pd, 'telephone': B.telephone, 'email': B.email, 'address': { '@type': 'PostalAddress', 'streetAddress': B.street, 'addressLocality': B.city, 'addressRegion': B.region, 'postalCode': B.zip, 'addressCountry': B.country }, 'geo': { '@type': 'GeoCoordinates', 'latitude': B.lat, 'longitude': B.lng }, 'areaServed': [{ '@type': 'City', 'name': 'Barcelona' }, { '@type': 'AdministrativeArea', 'name': 'Baix Llobregat' }, { '@type': 'AdministrativeArea', 'name': 'Cataluna' }], 'aggregateRating': { '@type': 'AggregateRating', 'ratingValue': B.rating, 'reviewCount': B.reviewCount, 'bestRating': '5' } });
+    out.push({ '@context': 'https://schema.org', '@type': 'TravelAgency', 'name': 'Horizonte Exclusivo - Agencia de Viajes de Lujo en Barcelona', 'url': cu, 'description': pd, 'telephone': B.telephone, 'email': B.email, 'address': { '@type': 'PostalAddress', 'streetAddress': B.street, 'addressLocality': B.city, 'addressRegion': B.region, 'postalCode': B.zip, 'addressCountry': B.country }, 'geo': { '@type': 'GeoCoordinates', 'latitude': B.lat, 'longitude': B.lng }, 'areaServed': [{ '@type': 'City', 'name': 'Barcelona' }, { '@type': 'AdministrativeArea', 'name': 'Baix Llobregat' }, { '@type': 'AdministrativeArea', 'name': 'Cataluna' }] });
     out.push(bc([{ name: 'Inicio', url: B.url + '/' }, { name: 'Agencia Viajes Lujo Barcelona', url: cu }]));
   }
   else if (p === 'luna-de-miel-barcelona') {
@@ -205,13 +199,13 @@ function generate(slug, html) {
   }
   else if (p.indexOf('pro-tips-') === 0) {
     const ps = p.replace('pro-tips-', ''), pn = D[ps] || ps;
-    out.push({ '@context': 'https://schema.org', '@type': 'Article', 'headline': headline(pt), 'description': pd, 'url': cu, 'image': ogimg, 'datePublished': lm, 'dateModified': lm, 'author': { '@type': 'Person', '@id': B.url + '/#founder', 'name': B.founder }, 'publisher': { '@type': 'Organization', '@id': B.url + '/#organization', 'name': B.name, 'logo': { '@type': 'ImageObject', 'url': B.logo } }, 'mainEntityOfPage': { '@type': 'WebPage', '@id': cu } });
+    out.push({ '@context': 'https://schema.org', '@type': 'Article', 'headline': headline(pt), 'description': pd, 'url': cu, 'image': { '@type': 'ImageObject', 'url': ogimg, 'width': 1200, 'height': 630 }, 'datePublished': lm, 'dateModified': lm, 'author': { '@type': 'Person', '@id': B.url + '/#founder', 'name': B.founder }, 'publisher': { '@type': 'Organization', '@id': B.url + '/#organization', 'name': B.name, 'logo': { '@type': 'ImageObject', 'url': B.logo } }, 'mainEntityOfPage': { '@type': 'WebPage', '@id': cu } });
     const faq = buildFaq(html, pn);
     if (faq) out.push(faq);
     out.push(bc([{ name: 'Inicio', url: B.url + '/' }, { name: 'Destinos', url: B.url + '/destinos/' }, { name: pn, url: B.url + '/' + ps + '/' }, { name: 'Travel Hacks', url: cu }]));
   }
   else if (BLOG_GUIDES.includes(p)) {
-    out.push({ '@context': 'https://schema.org', '@type': 'Article', 'headline': headline(pt), 'description': pd, 'url': cu, 'image': ogimg, 'datePublished': lm, 'dateModified': lm, 'author': { '@type': 'Person', '@id': B.url + '/#founder', 'name': B.founder }, 'publisher': { '@type': 'Organization', '@id': B.url + '/#organization', 'name': B.name, 'logo': { '@type': 'ImageObject', 'url': B.logo } }, 'mainEntityOfPage': { '@type': 'WebPage', '@id': cu } });
+    out.push({ '@context': 'https://schema.org', '@type': 'Article', 'headline': headline(pt), 'description': pd, 'url': cu, 'image': { '@type': 'ImageObject', 'url': ogimg, 'width': 1200, 'height': 630 }, 'datePublished': lm, 'dateModified': lm, 'author': { '@type': 'Person', '@id': B.url + '/#founder', 'name': B.founder }, 'publisher': { '@type': 'Organization', '@id': B.url + '/#organization', 'name': B.name, 'logo': { '@type': 'ImageObject', 'url': B.logo } }, 'mainEntityOfPage': { '@type': 'WebPage', '@id': cu } });
     out.push(bc([{ name: 'Inicio', url: B.url + '/' }, { name: 'Blog', url: B.url + '/blog/' }, { name: headline(pt), url: cu }]));
   }
   else if (p === 'molins-de-rei') {
