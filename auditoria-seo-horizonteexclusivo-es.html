@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Auditoría SEO · Horizonte Exclusivo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--dark:#0a0a0a;--dark-soft:#15151a;--card:#1c1c22;--gold:#c9a96e;--gold-l:#e3cda0;--text:#ececf0;--muted:#9a9aa6;--line:rgba(201,169,110,.16);--red:#d9534f;--green:#2e9e6b}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--dark);color:var(--text);line-height:1.6;font-size:15px}
+h1,h2,h3,h4{font-family:'Playfair Display',Georgia,serif;line-height:1.2;font-weight:700}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+/* nav */
+.topnav{position:sticky;top:0;z-index:50;background:rgba(10,10,10,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topnav .wrap{display:flex;gap:6px;align-items:center;height:56px;overflow-x:auto}
+.topnav b{font-family:'Playfair Display',serif;color:var(--gold);margin-right:auto;white-space:nowrap;font-size:1.05rem}
+.topnav a{padding:7px 12px;border-radius:20px;color:var(--muted);font-size:.82rem;font-weight:500;white-space:nowrap;transition:.2s}
+.topnav a:hover{color:var(--gold);background:var(--dark-soft)}
+/* header */
+header.hero{background:radial-gradient(120% 100% at 80% 0%,rgba(201,169,110,.14),transparent 55%),linear-gradient(180deg,#0d0d11,#0a0a0a);border-bottom:1px solid var(--line);padding:54px 0 44px}
+.hero-flex{display:flex;gap:40px;align-items:center;flex-wrap:wrap}
+.hero-txt{flex:1;min-width:280px}
+.eyebrow{color:var(--gold);letter-spacing:2px;text-transform:uppercase;font-size:.72rem;font-weight:600}
+header h1{font-size:2.5rem;margin:10px 0 6px}
+.hero-url{color:var(--gold-l);font-size:1.05rem}
+.hero-meta{color:var(--muted);font-size:.85rem;margin-top:14px}
+.hero-meta span{display:inline-block;margin-right:18px}
+.gauge{width:190px;height:190px;flex-shrink:0}
+.g-bg{fill:none;stroke:rgba(255,255,255,.08);stroke-width:14}
+.g-fg{fill:none;stroke-width:14;stroke-linecap:round;transition:stroke-dasharray 1s ease}
+.g-num{font:700 56px 'Playfair Display',serif;text-anchor:middle}
+.g-lbl{font:500 16px Inter,sans-serif;fill:var(--muted);text-anchor:middle}
+.verdict{display:inline-block;margin-top:8px;padding:5px 16px;border-radius:20px;font-weight:600;font-size:.9rem;border:1px solid}
+/* sections */
+section{padding:40px 0}
+.sec-title{font-size:1.55rem;margin-bottom:6px}
+.sec-title .bar{display:inline-block;width:34px;height:3px;background:var(--gold);vertical-align:middle;margin-right:12px}
+.sec-sub{color:var(--muted);margin-bottom:26px;font-size:.92rem}
+/* exec cards */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;text-align:center}
+.card .big{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:700;line-height:1}
+.card .cl{color:var(--muted);font-size:.8rem;text-transform:uppercase;letter-spacing:1px;margin-top:8px}
+.note{margin-top:18px;background:rgba(201,169,110,.07);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:8px;padding:14px 18px;color:var(--gold-l);font-size:.88rem}
+/* overview bars */
+.overview{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 28px;margin-top:8px}
+.ovbar{display:block;padding:6px 0}
+.ovbar-top{display:flex;justify-content:space-between;font-size:.9rem;font-weight:600;margin-bottom:6px}
+.ovbar-w{color:var(--muted);font-size:.72rem;margin-top:4px}
+.track{height:8px;background:rgba(255,255,255,.07);border-radius:6px;overflow:hidden}
+.track span{display:block;height:100%;border-radius:6px;transition:width .9s ease}
+.track.big{height:11px}
+/* top 5 */
+.top-item{display:flex;gap:20px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;margin-bottom:18px}
+.top-n{flex-shrink:0;width:46px;height:46px;border-radius:50%;background:color-mix(in srgb,var(--c) 18%,transparent);color:var(--c);border:1.5px solid var(--c);display:flex;align-items:center;justify-content:center;font:700 1.3rem 'Playfair Display',serif}
+.top-body{flex:1;min-width:0}
+.top-tags{display:flex;gap:8px;align-items:center;margin-bottom:8px;flex-wrap:wrap}
+.cat-tag{font-size:.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted);border:1px solid var(--line);padding:3px 9px;border-radius:12px}
+.top-body h3{font-size:1.2rem;margin-bottom:14px}
+.top-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
+.lbl{display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--gold);font-weight:600;margin-bottom:5px}
+.top-grid p,.f-grid p{font-size:.85rem;color:#d2d2da}
+.sev{display:inline-flex;align-items:center;gap:5px;font-size:.72rem;font-weight:700;color:var(--c);background:color-mix(in srgb,var(--c) 14%,transparent);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);padding:3px 10px;border-radius:12px;white-space:nowrap}
+/* category */
+.cat{border-top:1px solid var(--line);padding:34px 0}
+.cat-head{display:flex;gap:22px;align-items:center;margin-bottom:14px}
+.cat-score{flex-shrink:0;width:74px;height:74px;border-radius:50%;border:3px solid var(--c);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.cat-score span{font:700 1.7rem 'Playfair Display',serif;color:var(--c);line-height:1}
+.cat-score small{color:var(--muted);font-size:.62rem}
+.cat-meta{flex:1;min-width:0}
+.cat-meta h3{font-size:1.35rem}.cat-meta h3 em{color:var(--muted);font-style:normal;font-size:.85rem;font-family:Inter}
+.cat-meta .track{margin:9px 0}
+.cat-counts{display:flex;gap:8px;flex-wrap:wrap}
+.pill{font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:12px}
+.pill.crit{color:var(--red);background:rgba(217,83,79,.13)}
+.pill.warn{color:var(--gold);background:rgba(201,169,110,.13)}
+.pill.pass{color:var(--green);background:rgba(46,158,107,.13)}
+.cat-summary{color:#c4c4cd;font-size:.9rem;background:var(--dark-soft);border-radius:10px;padding:16px 18px;margin-bottom:18px;border:1px solid var(--line)}
+/* findings */
+.finding{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:14px;border-left:3px solid var(--line)}
+.finding.critical{border-left-color:var(--red)}
+.finding.warning{border-left-color:var(--gold)}
+.finding.pass{border-left-color:var(--green)}
+.f-head{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:6px}
+.f-head h4{font-size:1.04rem;flex:1;min-width:200px;font-family:Inter;font-weight:600}
+.ver{font-size:.68rem;font-weight:600;padding:2px 8px;border-radius:10px}
+.ver.ok{color:var(--green);background:rgba(46,158,107,.12)}
+.ver.adj{color:var(--gold);background:rgba(201,169,110,.12)}
+.f-affected{color:var(--muted);font-size:.78rem;margin-bottom:14px}
+.f-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.f-grid>div:last-child{grid-column:1/-1}
+.fix{font-size:.82rem;color:#d2d2da;background:#101015;border:1px solid var(--line);border-radius:8px;padding:12px 14px;font-family:ui-monospace,'Cascadia Code',Consolas,monospace;line-height:1.55;overflow-x:auto}
+.fix code,.top-grid code,p code{background:rgba(201,169,110,.12);color:var(--gold-l);padding:1px 5px;border-radius:4px;font-family:ui-monospace,Consolas,monospace;font-size:.86em}
+.vnote{margin-top:12px;font-size:.8rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:10px}
+.vnote strong{color:var(--gold-l)}
+/* detail table */
+details.alltable{margin-top:10px}
+details.alltable>summary{cursor:pointer;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 18px;font-weight:600;color:var(--gold-l);list-style:none}
+details.alltable>summary::-webkit-details-marker{display:none}
+details.alltable>summary::before{content:'▸ ';color:var(--gold)}
+details.alltable[open]>summary::before{content:'▾ '}
+table{width:100%;border-collapse:collapse;margin-top:14px;font-size:.8rem}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--gold);text-transform:uppercase;font-size:.68rem;letter-spacing:1px}
+td .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:.8rem;text-align:center}
+@media(max-width:780px){
+  .top-grid,.f-grid,.overview,.cards{grid-template-columns:1fr}
+  header h1{font-size:1.9rem}
+  .hero-flex{justify-content:center;text-align:center}
+}
+@media print{
+  body{background:#fff;color:#111;font-size:11px}
+  .topnav{display:none}
+  header.hero{background:#fff;border-bottom:2px solid var(--gold)}
+  header h1,.eyebrow,.hero-url,.lbl{color:#000}
+  .card,.finding,.top-item,.cat-summary,.fix{background:#fff;border:1px solid #ccc;box-shadow:none;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .top-grid p,.f-grid p,.fix{color:#222}
+  section{padding:18px 0;page-break-inside:avoid}
+  .finding,.top-item{page-break-inside:avoid}
+  a{color:#000}
+}
+</style>
+</head>
+<body>
+<nav class="topnav"><div class="wrap">
+  <b>Horizonte Exclusivo · SEO</b>
+  <a href="#resumen">Resumen</a>
+  <a href="#top5">Top 5</a>
+  <a href="#categorias">Categorías</a>
+  <a href="#detalle">Detalle</a>
+</div></nav>
+
+<header class="hero"><div class="wrap hero-flex">
+  <div class="hero-txt">
+    <div class="eyebrow">Auditoría SEO completa</div>
+    <h1>Horizonte Exclusivo</h1>
+    <a class="hero-url" href="https://www.horizonteexclusivo.es">www.horizonteexclusivo.es</a>
+    <div><span class="verdict" style="color:#c9a96e;border-color:#c9a96e">Mejorable</span></div>
+    <div class="hero-meta">
+      <span>📅 4 de junio de 2026</span>
+      <span>📄 148 páginas analizadas</span>
+      <span>🔍 8 categorías · verificación adversarial</span>
+    </div>
+  </div>
+  <div><svg viewBox="0 0 200 200" class="gauge">
+  <circle cx="100" cy="100" r="84" class="g-bg"/>
+  <circle cx="100" cy="100" r="84" class="g-fg" stroke="#c9a96e" stroke-dasharray="380.0 527.8" transform="rotate(-90 100 100)"/>
+  <text x="100" y="96" class="g-num" fill="#c9a96e">72</text>
+  <text x="100" y="126" class="g-lbl">/ 100</text>
+</svg></div>
+</div></header>
+
+<section id="resumen"><div class="wrap">
+  <h2 class="sec-title"><span class="bar"></span>Resumen ejecutivo</h2>
+  <p class="sec-sub">Cada hallazgo se ha contrastado contra el código fuente, el dataset de las 148 páginas y el sitio en vivo. Solo se reportan datos reales.</p>
+  <div class="cards">
+    <div class="card"><div class="big" style="color:#c9a96e">72</div><div class="cl">Puntuación global</div></div>
+    <div class="card"><div class="big" style="color:var(--red)">12</div><div class="cl">Hallazgos críticos</div></div>
+    <div class="card"><div class="big" style="color:var(--gold)">19</div><div class="cl">Advertencias</div></div>
+    <div class="card"><div class="big" style="color:var(--green)">25</div><div class="cl">Tests aprobados</div></div>
+  </div>
+  <div class="note"><strong>Lectura rápida:</strong> el sitio tiene fundamentos sólidos (indexación, enlazado interno, contenido y técnica de servidor). De los 12 críticos, 5 provienen de una sola causa raíz —los datos estructurados no están cableados— que se arregla con una intervención barata. Las otras palancas de mayor impacto son las imágenes (Core Web Vitals) y la longitud de títulos/descripciones.</div>
+
+  <h2 class="sec-title" style="margin-top:42px"><span class="bar"></span>Puntuación por categoría</h2>
+  <p class="sec-sub">Ordenadas de menor a mayor puntuación. Haz clic para saltar al desglose.</p>
+  <div class="overview"><a class="ovbar" href="#schema-datos-estructurados">
+    <div class="ovbar-top"><span>Schema / Datos Estructurados</span><b style="color:#d9534f">28</b></div>
+    <div class="track"><span style="width:28%;background:#d9534f"></span></div>
+    <div class="ovbar-w">Peso 10%</div>
+  </a><a class="ovbar" href="#imagenes">
+    <div class="ovbar-top"><span>Imágenes</span><b style="color:#c9a96e">58</b></div>
+    <div class="track"><span style="width:58%;background:#c9a96e"></span></div>
+    <div class="ovbar-w">Peso 10%</div>
+  </a><a class="ovbar" href="#open-graph-y-social">
+    <div class="ovbar-top"><span>Open Graph y Social</span><b style="color:#c9a96e">72</b></div>
+    <div class="track"><span style="width:72%;background:#c9a96e"></span></div>
+    <div class="ovbar-w">Peso 10%</div>
+  </a><a class="ovbar" href="#meta-tags">
+    <div class="ovbar-top"><span>Meta Tags</span><b style="color:#c9a96e">74</b></div>
+    <div class="track"><span style="width:74%;background:#c9a96e"></span></div>
+    <div class="ovbar-w">Peso 20%</div>
+  </a><a class="ovbar" href="#headings">
+    <div class="ovbar-top"><span>Headings</span><b style="color:#c9a96e">78</b></div>
+    <div class="track"><span style="width:78%;background:#c9a96e"></span></div>
+    <div class="ovbar-w">Peso 15%</div>
+  </a><a class="ovbar" href="#tecnico">
+    <div class="ovbar-top"><span>Técnico</span><b style="color:#2e9e6b">82</b></div>
+    <div class="track"><span style="width:82%;background:#2e9e6b"></span></div>
+    <div class="ovbar-w">Peso 15%</div>
+  </a><a class="ovbar" href="#contenido">
+    <div class="ovbar-top"><span>Contenido</span><b style="color:#2e9e6b">84</b></div>
+    <div class="track"><span style="width:84%;background:#2e9e6b"></span></div>
+    <div class="ovbar-w">Peso 10%</div>
+  </a><a class="ovbar" href="#enlaces">
+    <div class="ovbar-top"><span>Enlaces</span><b style="color:#2e9e6b">88</b></div>
+    <div class="track"><span style="width:88%;background:#2e9e6b"></span></div>
+    <div class="ovbar-w">Peso 10%</div>
+  </a></div>
+</div></section>
+
+<section id="top5" style="background:var(--dark-soft)"><div class="wrap">
+  <h2 class="sec-title"><span class="bar"></span>Top 5 correcciones prioritarias</h2>
+  <p class="sec-sub">Ordenadas por impacto real en posicionamiento y esfuerzo de implementación.</p>
+  <div class="top-item">
+    <div class="top-n" style="--c:#d9534f">1</div>
+    <div class="top-body">
+      <div class="top-tags"><span class="sev" style="--c:#d9534f">✕ Crítico</span><span class="cat-tag">Schema</span></div>
+      <h3>Conectar los datos estructurados: 147/148 páginas no emiten ningún JSON-LD</h3>
+      <div class="top-grid">
+        <div><span class="lbl">Qué está mal</span><p>Existe <code>schema-auto.js</code>, un generador de JSON-LD completo y de calidad (TravelAgency, TouristTrip, FAQPage, BreadcrumbList, Article…), pero NO está enlazado con <code>&lt;script src&gt;</code> en ninguna de las 148 páginas: es código muerto. Solo la home tiene un JSON-LD estático (y empobrecido). Las otras 147 no tienen datos estructurados.</p></div>
+        <div><span class="lbl">Por qué importa</span><p>Es la oportunidad de mayor impacto y menor coste de toda la auditoría: la lógica ya está escrita. Sin schema se pierden rich results en casi todo el sitio — migas (BreadcrumbList) en las 148, FAQ desplegables en 58 Travel Hacks, tarjetas de viaje (TouristTrip) en los destinos y señales de autor/E-E-A-T. Menor CTR y peor comprensión de entidad frente a competidores.</p></div>
+        <div><span class="lbl">Cómo corregirlo</span><p>Recomendado (robusto): incrustar el JSON-LD ya resuelto en el <code>&lt;head&gt;</code> de cada plantilla mediante un paso de build basado en la lógica de schema-auto.js. Rápido (JS-dependiente): añadir <code>&lt;script src="/schema-auto.js" defer&gt;&lt;/script&gt;</code> en las 148 páginas. Como mínimo, cablear BreadcrumbList en todas (universal y bajo riesgo) y FAQPage + TouristTrip en las páginas de alto valor. Ampliar el mapa <code>D</code> para cubrir las ~15 páginas de destino que hoy quedan fuera. Enriquecer el JSON-LD de la home (faltan telephone, geo, logo, aggregateRating 5.0/2, founder, hasOfferCatalog). Validar con Rich Results Test.</p></div>
+      </div>
+    </div>
+  </div><div class="top-item">
+    <div class="top-n" style="--c:#d9534f">2</div>
+    <div class="top-body">
+      <div class="top-tags"><span class="sev" style="--c:#d9534f">✕ Crítico</span><span class="cat-tag">Imágenes</span></div>
+      <h3>Migrar las 932 imágenes de Unsplash a local y arreglar Core Web Vitals (LCP/CLS)</h3>
+      <div class="top-grid">
+        <div><span class="lbl">Qué está mal</span><p>932 de 1.282 <code>&lt;img&gt;</code> son hotlinks a images.unsplash.com (solo 350 locales, y 296 de ellas son el logo repetido). Además, el hero LCP de 125 páginas es un <code>background-image</code> Unsplash a 1920px (~291 KB), y 0 de 1.282 imágenes declaran <code>width/height</code> (riesgo de CLS en todo el sitio). El logo local pesa 2,25 MB y se carga en las 148 páginas.</p></div>
+        <div><span class="lbl">Por qué importa</span><p>Las fotos no son activos del dominio (no capitalizas Google Imágenes en un nicho muy visual), dependes de un tercero (un cambio de ID o rate-limit deja huecos) y añades conexiones externas en la ruta crítica. LCP y CLS son Core Web Vitals: factores de ranking directos.</p></div>
+        <div><span class="lbl">Cómo corregirlo</span><p>Descargar las 932 imágenes a <code>/images/[destino]/</code> con nombres slug, convertir a WebP (<code>cwebp -q 80</code>) y servir con <code>&lt;picture&gt;</code>. Añadir <code>width</code> y <code>height</code> intrínsecos a cada <code>&lt;img&gt;</code> (o <code>aspect-ratio</code> al contenedor). Precargar el hero: <code>&lt;link rel="preload" as="image"&gt;</code>. Optimizar el logo a SVG o PNG &lt;30 KB (ahorro de ~2,2 MB por página). Conservar los <code>alt</code> actuales (que son perfectos) y renombrar los archivos con espacios/apóstrofos.</p></div>
+      </div>
+    </div>
+  </div><div class="top-item">
+    <div class="top-n" style="--c:#d9534f">3</div>
+    <div class="top-body">
+      <div class="top-tags"><span class="sev" style="--c:#d9534f">✕ Crítico</span><span class="cat-tag">Meta Tags</span></div>
+      <h3>Recortar títulos (139) y descripciones (106) y meter la keyword principal en la home</h3>
+      <div class="top-grid">
+        <div><span class="lbl">Qué está mal</span><p>139/148 títulos superan 60 caracteres (media 73, máx 94) y se truncan en Google. 106/148 meta descriptions superan 160; la HOME llega a 354 (se corta a la mitad, perdiendo el CTA) y ese texto largo se hereda a la og:description. Además, el title y el H1 de la home no contienen la keyword comercial principal "viajes de lujo a medida".</p></div>
+        <div><span class="lbl">Por qué importa</span><p>Título y descripción son lo que el usuario ve en el SERP: si se truncan con "…", cae el CTR en cada página. La home es la URL de mayor autoridad y la más compartida; orientarla a la keyword principal refuerza relevancia para la consulta más valiosa.</p></div>
+        <div><span class="lbl">Cómo corregirlo</span><p>Mantener el patrón "Viaje de Lujo a [Destino] a Medida | Horizonte Exclusivo" (≤60) y mover los reclamos descriptivos (Círculo Dorado, etc.) a la meta description. Reescribir la description de la home a ≤160 con keyword + ubicación + CTA. Cambiar el title de la home a <code>Viajes de Lujo a Medida en Barcelona | Horizonte Exclusivo</code> (58) y reforzar el H1/intro con la keyword.</p></div>
+      </div>
+    </div>
+  </div><div class="top-item">
+    <div class="top-n" style="--c:#d9534f">4</div>
+    <div class="top-body">
+      <div class="top-tags"><span class="sev" style="--c:#d9534f">✕ Crítico</span><span class="cat-tag">Headings</span></div>
+      <h3>Añadir un H1 a las 4 páginas que no tienen ninguno</h3>
+      <div class="top-grid">
+        <div><span class="lbl">Qué está mal</span><p>/contacto/, /disneyland-paris/, /molins-de-rei/ y /quien-hay-detras/ no tienen <code>&lt;h1&gt;</code>: el primer encabezado es un <code>&lt;h2 class="section-title"&gt;</code> (o, en disneyland-paris, el hero solo lleva una imagen sin título).</p></div>
+        <div><span class="lbl">Por qué importa</span><p>El H1 es la señal de tema más fuerte tras el <code>&lt;title&gt;</code>. Especialmente grave en /molins-de-rei/ (SEO local: su keyword queda sin H1) y /disneyland-paris/ (destino comercial con búsqueda propia que arranca en H2→H3 sin raíz).</p></div>
+        <div><span class="lbl">Cómo corregirlo</span><p>Convertir el primer <code>&lt;h2 class="section-title"&gt;</code> en <code>&lt;h1&gt;</code> con keyword: molins-de-rei → "Agencia de Viajes de Lujo en Molins de Rei"; quien-hay-detras → "¿Quién hay detrás de Horizonte Exclusivo?"; contacto → "Diseña tu Viaje de Lujo a Medida". En disneyland-paris, añadir un H1 real en el hero replicando el patrón de escocia: "Viaje a Disneyland París a Medida". El CSS no se rompe (las clases ya están estiladas).</p></div>
+      </div>
+    </div>
+  </div><div class="top-item">
+    <div class="top-n" style="--c:#c9a96e">5</div>
+    <div class="top-body">
+      <div class="top-tags"><span class="sev" style="--c:#c9a96e">! Advertencia</span><span class="cat-tag">Quick wins</span></div>
+      <h3>Quick wins: og:image propia 1200×630 y redirección no-www → www permanente</h3>
+      <div class="top-grid">
+        <div><span class="lbl">Qué está mal</span><p>124/148 og:image son hotlinks de Unsplash (preview social genérico y frágil) y la home no declara og:site_name ni og:locale. Por otro lado, la redirección de horizonteexclusivo.es (no-www) a www es un 307 temporal en vez de 301/308 permanente.</p></div>
+        <div><span class="lbl">Por qué importa</span><p>La tarjeta social es el primer contacto visual al compartir el enlace (WhatsApp, etc.); una og:image propia con marca sube el CTR. El 307 impide que Google consolide de forma permanente la autoridad de los backlinks que apunten al host sin www, diluyendo link equity.</p></div>
+        <div><span class="lbl">Cómo corregirlo</span><p>Crear og:image propias 1200×630 en <code>/images/og/</code> (foto + logo + destino) y declarar <code>og:image:width/height</code>, <code>og:site_name</code> y <code>og:locale=es_ES</code>. En <code>vercel.json</code>, forzar la redirección permanente del apex: <code>{ "redirects":[{ "source":"/(.*)", "has":[{"type":"host","value":"horizonteexclusivo.es"}], "destination":"https://www.horizonteexclusivo.es/$1", "permanent":true }] }</code> (emite 308).</p></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section id="categorias"><div class="wrap">
+  <h2 class="sec-title"><span class="bar"></span>Desglose por categoría</h2>
+  <p class="sec-sub">Las 8 categorías con su puntuación, hallazgos y recomendaciones concretas.</p>
+  <section class="cat" id="schema-datos-estructurados">
+    <div class="cat-head">
+      <div class="cat-score" style="--c:#d9534f"><span>28</span><small>/100</small></div>
+      <div class="cat-meta">
+        <h3>Schema / Datos Estructurados <em>· peso 10%</em></h3>
+        <div class="track big"><span style="width:28%;background:#d9534f"></span></div>
+        <div class="cat-counts">
+          <span class="pill crit">5 críticos</span>
+          <span class="pill warn">2 advertencias</span>
+          <span class="pill pass">3 aprobados</span>
+        </div>
+      </div>
+    </div>
+    <p class="cat-summary">Verificado contra archivos, dataset y sitio en vivo: solo la home (1/148) emite JSON-LD (TravelAgency/LocalBusiness, sin errores); las otras 147 no tienen ninguno (signals.json y aggregate.missing.jsonld coinciden en 147; curl en vivo lo confirma). Existe un generador JSON-LD completo y de calidad (schema-auto.js) pero es codigo muerto: 0/148 .html lo enlazan (grep y curl). Se pierden BreadcrumbList, FAQPage, TouristTrip y Article en casi todo el sitio. La mayoria de hallazgos se sostienen; correcciones: los horarios duplicados de la home NO son un error (son turnos manana/tarde validos), el mapa D tiene 57 destinos (no 55), y el sitio clasifica 72 paginas como destino aunque el script solo cubre 57. Score 28/100 confirmado.</p>
+    <div class="findings"><div class="finding critical">
+    <div class="f-head">
+      <span class="sev" style="--c:#d9534f">✕ Crítico</span>
+      <h4>schema-auto.js es codigo muerto: no esta enlazado en ninguna pagina (0/148)</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">0/148 paginas enlazan schema-auto.js</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>Grep de &quot;schema-auto&quot; sobre los 148 .html de C:/Users/viite/Documents/GitHub/luxury-travel devuelve 0 archivos (find: 148 .html totales). Verificado en vivo con curl: home, /escocia/, /pro-tips-tailandia/, /contacto/ y /blog/ devuelven 0 referencias a schema-auto. El archivo C:/Users/viite/Documents/GitHub/luxury-travel/schema-auto.js (106 lineas) genera JSON-LD por tipo (TravelAgency/LocalBusiness, TouristTrip, CollectionPage, Article, BlogPosting, FAQPage, BreadcrumbList, AboutPage, ContactPage, Service) e inyecta via inj()/document.head.appendChild, pero ningun &lt;script src&gt; lo carga.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>El esfuerzo de ingenieria ya esta hecho pero no produce ningun beneficio SEO: Google no recibe los datos estructurados que el script generaria. Se pierden rich results y senales de entidad/E-E-A-T en 147 paginas. Es la oportunidad mas barata y de mayor impacto de la categoria.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Opcion B (recomendada, robusta): incrustar el JSON-LD estatico ya resuelto en el &lt;head&gt; de cada plantilla, generando los bloques con un paso de build a partir de la logica de schema-auto.js. Opcion A (rapida pero JS-dependiente): anadir antes de &lt;/body&gt; &lt;script src=&quot;/schema-auto.js&quot; defer&gt;&lt;/script&gt; en las 148 plantillas; Google lo lee tras renderizar, menos robusto. Validar con Rich Results Test.</div></div>
+    </div>
+    
+  </div><div class="finding critical">
+    <div class="f-head">
+      <span class="sev" style="--c:#d9534f">✕ Crítico</span>
+      <h4>147 de 148 paginas sin ningun dato estructurado</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">147/148 paginas (todas menos la home)</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>signals.json (148 entradas): solo 1 con jsonld.count&gt;0 (https://www.horizonteexclusivo.es/ con types=[&quot;TravelAgency/LocalBusiness&quot;], errors=0) y 147 con count==0. aggregate.json: missing.jsonld.length=147, totalPages=148, home NO esta en missing.jsonld. En vivo: home devuelve 1 bloque application/ld+json; /escocia/, /pro-tips-tailandia/, /contacto/ y /blog/ devuelven 0 (archivo y curl coinciden).</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Sin BreadcrumbList, TouristTrip, Article ni FAQPage, Google no puede mostrar rich results (migas en SERP, FAQ desplegables, tarjetas de viaje) en el 99% del sitio. Menor CTR y peor comprension de entidades/contenido frente a competidores que si los implementan.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Implementar la Opcion B (JSON-LD estatico por plantilla). Como minimo cablear BreadcrumbList en las 148 (universal y de bajo riesgo) y FAQPage + TouristTrip en las paginas de alto valor. Validar con Rich Results Test sobre una muestra de cada tipo.</div></div>
+    </div>
+    
+  </div><div class="finding critical">
+    <div class="f-head">
+      <span class="sev" style="--c:#d9534f">✕ Crítico</span>
+      <h4>BreadcrumbList ausente en las 148 paginas pese a estar previsto</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">148/148 paginas sin BreadcrumbList</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>schema-auto.js define la funcion bc() (linea 15) y la inyecta en cada rama (home linea 21, destinos linea 26, continentes linea 32, pro-tips linea 91, blog, etc.), pero al no estar enlazado, 0 paginas emiten BreadcrumbList. La home tampoco lo lleva en su JSON-LD estatico: index.html lineas 1276-1306 contienen un unico bloque con @type [&quot;TravelAgency&quot;,&quot;LocalBusiness&quot;] y ninguna referencia a BreadcrumbList.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Las migas de navegacion en la SERP mejoran apariencia y CTR y refuerzan la jerarquia del sitio. Su ausencia total es una perdida directa de un rich result sencillo y aplicable a todas las URLs.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Anadir en el &lt;head&gt; de cada plantilla un bloque BreadcrumbList estatico, p.ej. /escocia/: {&quot;@type&quot;:&quot;BreadcrumbList&quot;,&quot;itemListElement&quot;:[Inicio &gt; Destinos &gt; Europa &gt; Escocia]}. La logica de migas por tipo ya esta resuelta en schema-auto.js (bc() y arrays D/CT).</div></div>
+    </div>
+    
+  </div><div class="finding critical">
+    <div class="f-head">
+      <span class="sev" style="--c:#d9534f">✕ Crítico</span>
+      <h4>FAQPage perdido en 58 paginas pro-tips con FAQ real estructurada</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">0 de 58 paginas pro-tips con FAQPage</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>signals.json: 58 paginas con prefijo pro-tips- (confirmado por clasificacion de slugs y aggregate.byType.protips=58). schema-auto.js lineas 76-91 construye FAQPage a partir de los .tips-section-title del HTML mapeando 7 secciones (Antes de viajar, Dinero y pagos, Transporte, Seguridad y estafas, Salud y clima, Cultura y etiqueta, Comida y experiencias). Verificado en pro-tips-tailandia/index.html: contiene 11 .tips-section-title de los cuales 7 coinciden con el mapeo. En vivo /pro-tips-tailandia/ emite 0 bloques JSON-LD.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>El contenido FAQ ya existe en HTML; con FAQPage Google puede mostrar acordeones de preguntas en la SERP, ganando espacio y CTR en 58 paginas informativas de alta intencion.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Generar e incrustar FAQPage estatico por cada pro-tip a partir de sus secciones, reutilizando el mapeo titulo-&gt;pregunta de schema-auto.js (lineas 82-88) y el agregado de .tip-item p / .top5-card p como respuesta (linea 89).</div></div>
+    </div>
+    
+  </div><div class="finding critical">
+    <div class="f-head">
+      <span class="sev" style="--c:#d9534f">✕ Crítico</span>
+      <h4>TouristTrip perdido en las paginas de destino (57 cubiertas por el generador; 72 destino en el sitio)</h4>
+      <span class="ver adj" title="Evidencia ajustada/corregida en la verificación">↺ ajustado</span>
+    </div>
+    <div class="f-affected">0 de 57 destinos del generador con TouristTrip (y 72 paginas tipo destino en total sin schema)</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>schema-auto.js (linea 25) genera TouristTrip con itinerary, provider (@id #organization) y offers para cada slug del mapa D, que contiene 57 entradas (no 55) y que coincide exactamente con 57 paginas presentes en signals.json. /escocia/index.html: 0 bloques JSON-LD en archivo y en vivo. Nota: aggregate.byType clasifica 72 paginas como &quot;destino&quot;, por lo que ~15 paginas de destino quedarian fuera incluso del script.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>TouristTrip describe la oferta de viaje (precio, disponibilidad, tipo, itinerario) y ayuda a Google a entender estas paginas como producto turistico, mejorando relevancia para queries tipo &quot;viaje de lujo a [destino]&quot;.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Incrustar TouristTrip por destino (name, description=meta, url, touristType, itinerary, provider @id #organization, offers InStock/EUR). IMPORTANTE: ampliar el mapa D para cubrir tambien las ~15 paginas tipadas como destino que hoy no estan en D, para no dejarlas sin schema.</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> El &quot;57&quot; es correcto como subconjunto cubierto por el mapa D de schema-auto.js (D tiene 57 entradas, no 55), pero el sitio clasifica 72 paginas como destino en aggregate.byType. La afirmacion no es falsa, pero infravalora el alcance: el fix debe ampliar el mapa D para cubrir las ~15 destino restantes.</div>
+  </div><div class="finding warning">
+    <div class="f-head">
+      <span class="sev" style="--c:#c9a96e">! Advertencia</span>
+      <h4>Article perdido en 3 paginas educativas y blog index sin Blog</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">3 educativas + /blog/ sin Article/Blog</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>signals.json/aggregate confirman: existen las 3 educativas (antes-de-reservar-viaje-grande, como-planifico-un-gran-viaje, viaje-a-medida-que-es) y el indice /blog/. schema-auto.js define Article para educativas (lineas 94-96) y Blog/BlogPosting (lineas 45-52) pero no se emiten. /blog/index.html: 0 bloques JSON-LD (archivo y en vivo). No hay posts individuales bajo blog/: 0 slugs blog/ en el dataset, luego 0 BlogPosting candidatos.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Article/Blog refuerza autoria (founder Endeis Prieto), publisher y E-E-A-T y habilita posibles mejoras de aparicion para contenido informativo. Impacto medio por ser pocas paginas.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Incrustar Article estatico en las 3 educativas (headline=H1, description=meta, url=canonical, author Person Endeis Prieto, publisher Organization con logo) y usar @type Blog con publisher en /blog/.</div></div>
+    </div>
+    
+  </div><div class="finding warning">
+    <div class="f-head">
+      <span class="sev" style="--c:#c9a96e">! Advertencia</span>
+      <h4>El JSON-LD estatico de la home esta empobrecido frente a la version del script</h4>
+      <span class="ver adj" title="Evidencia ajustada/corregida en la verificación">↺ ajustado</span>
+    </div>
+    <div class="f-affected">1/148 (home)</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>index.html lineas 1276-1306: el bloque @type [&quot;TravelAgency&quot;,&quot;LocalBusiness&quot;] incluye name, url, email, address (PostalAddress completa), description, priceRange (€€€) y openingHoursSpecification, pero OMITE telephone, geo (lat/lng), logo, image, areaServed, aggregateRating, founder y hasOfferCatalog, que SI estan en la version generada por schema-auto.js (linea 20). Verificado leyendo las lineas 1276-1306.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Se desperdician propiedades que reforzarian el Knowledge Panel local (telefono, coordenadas, valoracion 5.0/2, logo, founder). aggregateRating habilitaria estrellas; geo y telephone mejoran el SEO local de Molins de Rei/Barcelona.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Sustituir el bloque estatico de la home por el objeto completo que ya define schema-auto.js linea 20 (anadiendo telephone +34633077401, geo 41.4118429/2.0181454, logo, image, areaServed, aggregateRating 5.0/2, founder, hasOfferCatalog). Mantenerlo estatico en el &lt;head&gt;.</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> La omision de propiedades es correcta y verificada, pero la afirmacion de &quot;duplicacion de horarios redundante (Monday repetido)&quot; es INEXACTA: Monday/Wednesday/etc. aparecen dos veces porque representan turnos de manana (09:30-13:30) y tarde (15:30-19:00), lo cual es schema.org valido y NO un error. Eliminar esa parte del hallazgo. El resto (propiedades omitidas) se mantiene como warning.</div>
+  </div><div class="finding pass">
+    <div class="f-head">
+      <span class="sev" style="--c:#2e9e6b">✓ Aprobado</span>
+      <h4>La home tiene JSON-LD LocalBusiness valido y bien formado</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">1/148 (home, correcta)</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>index.html lineas 1276-1306: bloque application/ld+json con @type [&quot;TravelAgency&quot;,&quot;LocalBusiness&quot;], name, url, email, PostalAddress completa (Carrer Major 37, Molins de Rei, Barcelona, 08750, ES), description, priceRange y openingHoursSpecification (turnos manana/tarde validos). Confirmado en vivo: la home devuelve 1 bloque ld+json. signals.json: jsonld.errors=0 en la home.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Da a Google una base solida de entidad local en la pagina mas importante: tipo de negocio, direccion y horarios correctos, util para SEO local en Barcelona/Molins de Rei.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Mantener. Enriquecerlo con las propiedades del hallazgo anterior (telephone, geo, aggregateRating, logo, founder, hasOfferCatalog).</div></div>
+    </div>
+    
+  </div><div class="finding pass">
+    <div class="f-head">
+      <span class="sev" style="--c:#2e9e6b">✓ Aprobado</span>
+      <h4>El generador schema-auto.js es completo y de alta calidad</h4>
+      <span class="ver adj" title="Evidencia ajustada/corregida en la verificación">↺ ajustado</span>
+    </div>
+    <div class="f-affected">1 archivo, cubre ~13-14 tipos de pagina</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>C:/Users/viite/Documents/GitHub/luxury-travel/schema-auto.js: datos centralizados (constante B con NAP, founder, rating 5.0/2, coordenadas, mapCid), mapa D (57 destinos), mapa CT (continente por destino), BreadcrumbList jerarquico (bc()), FAQPage derivado del DOM y provider referenciado por @id (#organization). Cubre ~13-14 ramas de tipo de pagina (home, destino, continente, quien-hay-detras, contacto, blog, blog post, destinos index, luna-de-miel, 3 money pages servicio+ciudad, pro-tips, educativas, molins-de-rei y fallback).</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Toda la logica de datos estructurados ya esta resuelta y mantenible; cablearlo o convertirlo a estatico es trabajo de horas, no de semanas. Reduce drasticamente el coste del fix.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Reutilizar este archivo como fuente de verdad: cargarlo con &lt;script src defer&gt; (Opcion A) o usar su logica en un paso de build para emitir JSON-LD estatico (Opcion B, recomendada). Al hacerlo, ampliar el mapa D para cubrir las ~15 paginas tipo destino no incluidas.</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> El generador es efectivamente completo y de calidad, pero las cifras del hallazgo original eran imprecisas: el mapa D tiene 57 destinos (no 55) y el script maneja ~13-14 ramas de tipo de pagina (no 9). Corregido.</div>
+  </div><div class="finding pass">
+    <div class="f-head">
+      <span class="sev" style="--c:#2e9e6b">✓ Aprobado</span>
+      <h4>Datos NAP y de entidad consistentes y correctos para schema local</h4>
+      <span class="ver adj" title="Evidencia ajustada/corregida en la verificación">↺ ajustado</span>
+    </div>
+    <div class="f-affected">Datos de entidad correctos y unificados</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>En schema-auto.js (constante B, linea 6) y en el JSON-LD estatico de la home (lineas 1283-1290) la direccion coincide: Carrer Major 37, Molins de Rei, Barcelona, 08750, ES. En B: telefono +34633077401, email viajes@horizonteexclusivo.es, coordenadas 41.4118429/2.0181454 y Google CID 18012363284776329308. El email coincide tambien en la home estatica (linea 1282).</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Cuando se desplieguen los schemas, la coherencia NAP entre paginas evita senales contradictorias y favorece el posicionamiento local y el Knowledge Panel.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Mantener una unica fuente de NAP (la constante B de schema-auto.js) para todas las plantillas al implementar el fix, evitando divergencias.</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> NAP correcto y coherente, con un matiz: el telefono (+34633077401) y las coordenadas geo SOLO existen en schema-auto.js; el bloque estatico actual de la home NO los incluye (lineas 1276-1306). La consistencia verificada es de address y email; phone/coords estan definidos unicamente en el generador (aun sin desplegar).</div>
+  </div></div>
+  </section><section class="cat" id="imagenes">
+    <div class="cat-head">
+      <div class="cat-score" style="--c:#c9a96e"><span>58</span><small>/100</small></div>
+      <div class="cat-meta">
+        <h3>Imágenes <em>· peso 10%</em></h3>
+        <div class="track big"><span style="width:58%;background:#c9a96e"></span></div>
+        <div class="cat-counts">
+          <span class="pill crit">3 críticos</span>
+          <span class="pill warn">2 advertencias</span>
+          <span class="pill pass">3 aprobados</span>
+        </div>
+      </div>
+    </div>
+    <p class="cat-summary">Tras verificar contra los HTML reales, el dataset (signals.json) y curls en vivo, los hallazgos se sostienen con tres correcciones menores de conteo (todas off-by-one). Cifras reales confirmadas: 932/1282 &lt;img&gt; son hotlinks de images.unsplash.com (no 933), 350 son locales (no 349) de los cuales 296 son el logo repetido; 133/148 páginas embeben Unsplash; 125 páginas (no 124) sirven el hero como background-image de Unsplash a w=1920; 0/1282 imágenes declaran width+height (riesgo de CLS sitewide confirmado); 0 referencias a WebP/AVIF en el HTML (aunque existen 5 .webp huérfanos en disco sin usar); logo PNG de 2.249.240 bytes (2,25 MB) cargado 296 veces; 985 lazy / 297 eager. Todos los pesos de curl en vivo son exactos (logo 2.249.240 B, japon1.jpg 279.643 B, hero w=1920 291.041 B, w=800 179.497 B, w=400 28.280 B). El favicon resuelve 200 en su ruta real /images/genfavicon-package/favicon.ico. og-image.jpg da 404 pero es código muerto (solo en schema-auto.js, no cableado). La accesibilidad (alt 100%) y el srcset/sizes responsive son ejemplares. El 58 se mantiene: base sólida lastrada por dependencia total de Unsplash, ausencia de dimensiones y de formatos modernos en uso.</p>
+    <div class="findings"><div class="finding critical">
+    <div class="f-head">
+      <span class="sev" style="--c:#d9534f">✕ Crítico</span>
+      <h4>932 imágenes son hotlinks de Unsplash (no son activos propios indexables)</h4>
+      <span class="ver adj" title="Evidencia ajustada/corregida en la verificación">↺ ajustado</span>
+    </div>
+    <div class="f-affected">932/1282 imágenes en 133/148 páginas</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>Verificado con parser de &lt;img&gt; sobre las 148 index.html: 932/1282 &lt;img&gt; apuntan a https://images.unsplash.com/photo-...?w=...&amp;q=80; 350 son locales (296 de ellas el logo repetido, 54 fotos locales reales). 133/148 páginas contienen images.unsplash.com. Confirmado en /escocia/index.html: hero línea 89 y &lt;img&gt; en líneas 566,569,572,601,604,607,639,667. curl en vivo: photo-1571044880241 (w=800) -&gt; 200, image/jpeg, 179.497 B; photo-1480241352829-e1573ff2414e (w=400, línea 601) -&gt; 200, 28.280 B.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>1) Las fotos NO son activos del dominio: el host indexable es unsplash.com, no se capitaliza el tráfico de Google Imágenes en un nicho muy visual (viajes de lujo). 2) Dependencia total de un tercero: cambio de ID, rate-limit o retirada del activo dejan huecos. 3) Conexión extra (DNS+TLS+handshake a images.unsplash.com) en la ruta de carga, penaliza LCP/FCP. 4) Roza la regla de CLAUDE.md, aunque el propio CLAUDE.md es contradictorio (ver nota).</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Descargar las 932 imágenes a /images/[destino]/ con nombres slug en minúscula y sin espacios (ej. escocia-edimburgo-atardecer.webp). Sustituir cada src/srcset por la ruta local. Partida: extraer URLs con grep -rohE 'https://images.unsplash.com[^&quot;\\ ]+' --include=index.html . | sort -u, descargar con curl, convertir a WebP y reemplazar. Atribución Unsplash recomendable. Re-deploy en Vercel.</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> Corrección de conteo: son 932 &lt;img&gt; hotlink (no 933) y 350 locales (no 349); off-by-one en ambos. El resto de la evidencia es exacta: las líneas citadas de /escocia/ son correctas y los curls en vivo confirman los bytes (w=800 179.497 B, w=400 28.280 B). Matiz sobre CLAUDE.md: contiene una regla que dice 'Imágenes locales (no Unsplash) SIEMPRE' pero OTRA línea que explícitamente permite 'Unsplash con parámetros de calidad (hero ?w=1920&amp;q=80, itinerario ?w=800&amp;q=80, tarjetas ?w=600&amp;q=80)'. El documento es contradictorio, así que afirmar que se contradice 'frontalmente' la regla está matizado.</div>
+  </div><div class="finding critical">
+    <div class="f-head">
+      <span class="sev" style="--c:#d9534f">✕ Crítico</span>
+      <h4>Hero LCP de 125 destinos servido como background-image Unsplash a 1920px</h4>
+      <span class="ver adj" title="Evidencia ajustada/corregida en la verificación">↺ ajustado</span>
+    </div>
+    <div class="f-affected">125/148 páginas (heroes de destino/región)</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>125/148 páginas (no 124) tienen background-image: url('https://images.unsplash.com/...?w=1920&amp;q=80') en el hero (verificado en /escocia/index.html línea 89: photo-1506377585622, w=1920). curl en vivo de ese hero: 200, image/jpeg, 291.041 B. Por ser background-image CSS no admite loading=lazy ni srcset y es el candidato a LCP en pantallas grandes.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>El elemento de mayor peso visual y candidato a LCP es una imagen externa de ~291 KB JPEG desde un host de tercero, sin posibilidad de preload ni de servir un tamaño adaptado al viewport móvil. Degrada el Largest Contentful Paint (Core Web Vitals, señal de ranking) y añade dependencia externa en la ruta crítica.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Descargar el hero a local en WebP a varios tamaños (/images/escocia/hero-escocia-1920.webp, -1280, -768). Servir el adecuado con image-set() o @media y añadir &lt;link rel=&quot;preload&quot; as=&quot;image&quot; href=&quot;/images/escocia/hero-escocia-1280.webp&quot;&gt; en el &lt;head&gt; de cada destino. Mantener el gradiente overlay.</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> Corrección de conteo: son 125 páginas con hero background-image Unsplash a w=1920 (no 124); off-by-one. El ejemplo de /escocia/ línea 89 y el curl en vivo (291.041 B) son exactos. El impacto y el fix se mantienen íntegros.</div>
+  </div><div class="finding critical">
+    <div class="f-head">
+      <span class="sev" style="--c:#d9534f">✕ Crítico</span>
+      <h4>0 de 1282 imágenes declaran width/height (riesgo de CLS sitewide)</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">1282/1282 imágenes (las 148 páginas)</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>Verificado con parser de &lt;img&gt; sobre las 148 index.html: 0 &lt;img&gt; con atributos width Y height (también 0 con width= y 0 con height= por separado vía grep) sobre 1282 &lt;img&gt;. El patrón usa srcset+sizes pero nunca dimensiones intrínsecas.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Sin width/height (ni aspect-ratio en CSS) el navegador no reserva espacio antes de cargar, provocando reflujo cuando llega la imagen. Eleva el Cumulative Layout Shift (CLS), una de las tres métricas Core Web Vitals que Google pondera, y empeora la experiencia percibida (texto que 'salta').</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Añadir width y height intrínsecos a cada &lt;img&gt; (ej. width=&quot;800&quot; height=&quot;600&quot;); el navegador deriva el aspect-ratio aunque escale por CSS. Alternativa global: aplicar aspect-ratio al contenedor de tarjetas/galería. Priorizar galerías de destino y tarjetas del home.</div></div>
+    </div>
+    
+  </div><div class="finding warning">
+    <div class="f-head">
+      <span class="sev" style="--c:#c9a96e">! Advertencia</span>
+      <h4>Cero formatos modernos en uso (WebP/AVIF); logo local de 2,25 MB en todas las páginas</h4>
+      <span class="ver adj" title="Evidencia ajustada/corregida en la verificación">↺ ajustado</span>
+    </div>
+    <div class="f-affected">logo en 148/148 páginas; 0 WebP/AVIF referenciados en todo el sitio</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>grep en las 148 index.html: 0 referencias a .webp y 0 a .avif en el HTML servido. Formatos en uso (signals.json): png 296 (logo), jpg 37, jpeg 15, svg 1. El logo /images/logo-trimmed.png pesa 2.249.240 bytes (2,25 MB) verificado en disco y en vivo (curl 200, image/png, 2.249.240 B), referenciado 296 veces (navbar+footer). El OG/hero local /images/japon1.jpg pesa 279.643 B (curl 200).</p></div>
+      <div><span class="lbl">Por qué importa</span><p>WebP/AVIF reducen 25-50% el peso frente a JPEG/PNG a igual calidad, mejorando LCP y consumo de datos. Un logo PNG de 2,25 MB en todas las páginas es un derroche enorme para un activo que debería pesar pocos KB (idealmente SVG). Agrava el peso total de cada página.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">1) Convertir el logo a SVG (o PNG optimizado &lt;30 KB); ahorro inmediato de ~2,2 MB por página. 2) Convertir las imágenes locales a WebP (cwebp -q 80) y servirlas con &lt;picture&gt;&lt;source type=&quot;image/webp&quot;&gt;. 3) Renombrar archivos con espacios/apóstrofos.</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> Matiz: la afirmación 'Cero formatos modernos' es cierta solo para el HTML servido (0 referencias a .webp/.avif), pero NO para el disco: existen 5 archivos .webp huérfanos en /images/ (punta cana 1/2/3/4/5.webp) que no están cableados en ninguna página. Por tanto el problema real es 'WebP creados pero no usados', además de la ausencia general. El resto (logo 2.249.240 B confirmado en disco y vivo, 296 referencias, japon1.jpg 279.643 B) es exacto. Severity warning correcta.</div>
+  </div><div class="finding warning">
+    <div class="f-head">
+      <span class="sev" style="--c:#c9a96e">! Advertencia</span>
+      <h4>297 imágenes cargan de forma eager (sin loading=lazy)</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">297/1282 imágenes</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>Verificado en signals.json y con parser de &lt;img&gt;: 985/1282 &lt;img&gt; tienen loading=&quot;lazy&quot;; 297 cargan eager (1282-985). Es correcto que heroes/above-the-fold sean eager, pero 297 sugiere imágenes below-the-fold sin diferir.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Diferir imágenes fuera del viewport inicial reduce descargas en la carga inicial, acelera el LCP y ahorra datos. Un exceso de eager compite por ancho de banda con el contenido crítico.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Revisar las 297 eager y añadir loading=&quot;lazy&quot; a las below-the-fold (galerías, tarjetas inferiores, footer). Mantener eager solo el hero/primera imagen visible y, para esa, usar fetchpriority=&quot;high&quot;.</div></div>
+    </div>
+    
+  </div><div class="finding pass">
+    <div class="f-head">
+      <span class="sev" style="--c:#2e9e6b">✓ Aprobado</span>
+      <h4>Cobertura de texto alternativo perfecta: alt en el 100% de las imágenes</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">1282/1282 imágenes</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>Verificado en signals.json agregando las 148 páginas: 1282/1282 &lt;img&gt; con alt no vacío (noAlt=0, emptyAlt=0). Alt descriptivos en español, ej. en /escocia/: 'Valle de Glencoe con lago al pie de la montaña en Escocia', 'Castillo de Eilean Donan junto al lago en Escocia'.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Excelente para accesibilidad (lectores de pantalla) y SEO de imágenes: Google usa el alt para entender e indexar la imagen y como señal de contexto. Alt con la keyword del destino refuerzan la relevancia temática.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Mantener el estándar al añadir imágenes. Al migrar a local, conservar exactamente los alt actuales.</div></div>
+    </div>
+    
+  </div><div class="finding pass">
+    <div class="f-head">
+      <span class="sev" style="--c:#2e9e6b">✓ Aprobado</span>
+      <h4>Imágenes de contenido servidas con srcset y sizes responsive</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">Imágenes de contenido en la mayoría de páginas de destino</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>Verificado en /escocia/index.html (líneas 566-667): las &lt;img&gt; de galería usan srcset con 3 anchos (400w/800w/1200w) y sizes='(max-width: 768px) 100vw, 50vw'. curl confirma pesos acordes al ancho: w=400 -&gt; 28.280 B, w=800 -&gt; 179.497 B.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>El navegador descarga el tamaño adecuado al dispositivo, evitando enviar 800-1200px a móviles. Buena práctica que ahorra datos y mejora LCP en móvil. La estructura responsive está bien planteada.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Conservar la estructura srcset/sizes al migrar a local; generar las mismas variantes (400/800/1200) en WebP localmente.</div></div>
+    </div>
+    
+  </div><div class="finding pass">
+    <div class="f-head">
+      <span class="sev" style="--c:#2e9e6b">✓ Aprobado</span>
+      <h4>Los activos locales clave resuelven 200 (OG image y favicon)</h4>
+      <span class="ver adj" title="Evidencia ajustada/corregida en la verificación">↺ ajustado</span>
+    </div>
+    <div class="f-affected">Activos locales en producción</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>curl en vivo: /images/japon1.jpg (og:image y twitter:image del home, confirmado en el HTML del home) -&gt; 200 image/jpeg 279.643 B; /images/logo-trimmed.png -&gt; 200; favicon real /images/genfavicon-package/favicon.ico -&gt; 200 image/vnd.microsoft.icon. og-image.jpg da 404 pero solo se referencia en schema-auto.js, que NO está cableado en ninguna index.html (0 referencias &lt;script&gt;), por lo que es código muerto y no afecta a producción.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Las imágenes locales que sí existen se sirven correctamente desde Vercel; el OG card del home y el favicon funcionan en redes sociales y pestañas. No hay enlaces de imagen rotos visibles en producción.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Sin acción correctiva inmediata. Al ampliar imágenes locales, mantener nombres sin espacios ni apóstrofos: se detectaron archivos frágiles como 'ISLA DE SYKE.jpeg', &quot;TAHA'A.jpg&quot;, 'ARUBA EAGLE.JPG' y 'punta cana 1.webp' que requieren URL-encoding y son propensos a 404.</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> Matiz importante: el favicon NO está en la ruta por defecto /favicon.ico (esa da 404); está en /images/genfavicon-package/favicon.ico, que SÍ resuelve 200. La conclusión 'favicon -&gt; 200' es correcta pero la ruta debe precisarse. og:image=japon1.jpg confirmado en el HTML del home y 200/279.643 B. La aseveración de og-image.jpg como código muerto es exacta (solo en schema-auto.js, 0 referencias &lt;script&gt;). Se confirma además que los 5 .webp 'punta cana' tienen espacios y son frágiles, igual que los apóstrofos de TAHA'A. Severity pass se mantiene.</div>
+  </div></div>
+  </section><section class="cat" id="open-graph-y-social">
+    <div class="cat-head">
+      <div class="cat-score" style="--c:#c9a96e"><span>72</span><small>/100</small></div>
+      <div class="cat-meta">
+        <h3>Open Graph y Social <em>· peso 10%</em></h3>
+        <div class="track big"><span style="width:72%;background:#c9a96e"></span></div>
+        <div class="cat-counts">
+          <span class="pill crit">1 críticos</span>
+          <span class="pill warn">4 advertencias</span>
+          <span class="pill pass">3 aprobados</span>
+        </div>
+      </div>
+    </div>
+    <p class="cat-summary">Verificación confirmada contra signals.json, aggregate.json, los HTML reales y el sitio en vivo. La cobertura de Open Graph y Twitter es completa al 100% en las 148 páginas (og:title/description/image/url/type y twitter:card presentes en 148/148; aggregate.json confirma listas vacías en missing.ogImage/ogTitle/twitterCard) y og:image coincide con twitter:image en todas (0 desajustes; twitter:card = summary_large_image sin excepciones). El problema central, verificado, es que 124/148 og:image son hotlinks a Unsplash y solo 24 apuntan a /images/ del propio dominio. Persisten tres detalles de pulido confirmados: la HOME es la única página (1/148) sin og:site_name ni og:locale, no se declara og:image:width/height en ninguna de las 148 páginas, y /images/TAJMAJAL.jpg pesa 3,46 MB (3.460.678 bytes en vivo) y se usa como og:image en /india/ y /pro-tips-india/. Se mantiene el score en 72: base correcta pero con dependencia crítica de un CDN externo y carencias de dimensiones/peso. Única corrección material: la og:description de /escocia/ mide 160 caracteres, no 151.</p>
+    <div class="findings"><div class="finding critical">
+    <div class="f-head">
+      <span class="sev" style="--c:#d9534f">✕ Crítico</span>
+      <h4>124/148 og:image son hotlinks a Unsplash, no imágenes propias</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">124/148 páginas (todas con og:image de Unsplash; ej. /escocia/, /japon/, /maldivas/, /pro-tips-*/)</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>signals.json (recálculo con node): 124 páginas tienen og:image en https://images.unsplash.com (patrón ?w=1200&amp;q=80) y solo 24 apuntan a /images/ del propio dominio (0 'otros'). Ej. /escocia/ usa og:image=https://images.unsplash.com/photo-1506377585622-bedcbb027afc?w=1200&amp;q=80 (curl en vivo: HTTP 200, 121.868 bytes, 1200x800). CLAUDE.md (línea 14) recoge la regla 'Imágenes locales (no Unsplash) SIEMPRE en images/'.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>La tarjeta social (WhatsApp, Facebook, LinkedIn, X) es el primer contacto visual de la marca al compartir. Depender de un CDN de terceros expone a cambios de URL, rate-limiting o retirada de la foto (preview roto), impide control de marca y da una imagen genérica de stock idéntica a la de miles de webs. Una og:image propia y coherente sube el CTR del enlace compartido.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Crear una og:image propia 1200x630 por sección/destino (foto + logo Horizonte Exclusivo + nombre del destino) y guardarla en /images/og/. Sustituir en cada plantilla: &lt;meta property=&quot;og:image&quot; content=&quot;https://www.horizonteexclusivo.es/images/og/escocia.jpg&quot;&gt; y el twitter:image gemelo. Optimizar a JPG/WebP &lt;300 KB. Priorizar HOME, /destinos/, 72 destinos y 3 landings.</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> Cifras confirmadas exactamente: 124 Unsplash + 24 dominio propio + 0 otros = 148. Matiz menor: CLAUDE.md (línea 52) sí admite Unsplash con parámetros de calidad para hero/itinerario/tarjetas, pero la regla de la línea 14 prioriza imágenes locales; la cita del hallazgo es fiel. Sigue siendo crítico para og:image.</div>
+  </div><div class="finding warning">
+    <div class="f-head">
+      <span class="sev" style="--c:#c9a96e">! Advertencia</span>
+      <h4>La HOME es la única página sin og:site_name ni og:locale</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">1/148 páginas (HOME, /)</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>signals.json: og:site_name presente en 147/148 y og:locale en 147/148; la única sin ambos es la HOME (https://www.horizonteexclusivo.es/). Confirmado en index.html: el bloque OG (líneas 11-15: og:url, og:type, og:title, og:description, og:image) NO incluye og:site_name ni og:locale. En /escocia/ sí están: og:locale=es_ES (línea 20) y og:site_name=Horizonte Exclusivo (línea 21).</p></div>
+      <div><span class="lbl">Por qué importa</span><p>La HOME es la URL más compartida y enlazada. Sin og:site_name, Facebook/LinkedIn no muestran el nombre de marca bajo la tarjeta; sin og:locale, el idioma del preview queda ambiguo. Es la página donde más cuesta la inconsistencia.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Añadir en el &lt;head&gt; de index.html, tras la línea 15 (og:image):<br>&lt;meta property=&quot;og:site_name&quot; content=&quot;Horizonte Exclusivo&quot;&gt;<br>&lt;meta property=&quot;og:locale&quot; content=&quot;es_ES&quot;&gt;</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> Verificado. Corrección menor de citación: el bloque OG de index.html ocupa las líneas 11-15 (la línea 10 es el comentario), no 10-15; no afecta a la conclusión ni al fix.</div>
+  </div><div class="finding warning">
+    <div class="f-head">
+      <span class="sev" style="--c:#c9a96e">! Advertencia</span>
+      <h4>No se declara og:image:width ni og:image:height en ninguna página</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">148/148 páginas</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>grep recursivo en todos los *.html de luxury-travel: 0 ocurrencias de og:image:width / og:image:height. Dimensiones reales medidas en vivo: home /images/japon1.jpg = 1298x730 (ratio ~1.78), escocia (Unsplash) = 1200x800 (ratio 1.5). Ninguna es 1200x630 (1.91:1).</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Sin og:image:width/height, el primer scrape de Facebook/LinkedIn suele renderizar la tarjeta sin imagen hasta recachear, y los ratios distintos de 1.91:1 provocan recorte impredecible del motivo. Empeora el primer compartido, el de mayor alcance.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Generar todas las og:image a 1200x630 y declarar en cada head:<br>&lt;meta property=&quot;og:image:width&quot; content=&quot;1200&quot;&gt;<br>&lt;meta property=&quot;og:image:height&quot; content=&quot;630&quot;&gt;<br>&lt;meta property=&quot;og:image:type&quot; content=&quot;image/jpeg&quot;&gt;</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> Verificado por grep directo sobre los HTML (0 ocurrencias) y por medición de dimensiones en vivo (1298x730 y 1200x800 confirmados).</div>
+  </div><div class="finding warning">
+    <div class="f-head">
+      <span class="sev" style="--c:#c9a96e">! Advertencia</span>
+      <h4>og:image propia de 3,46 MB sin optimizar (TAJMAJAL.jpg)</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">og:image propias sin optimizar; confirmado /images/TAJMAJAL.jpg (3.460.678 bytes = 3,46 MB) en /india/ y /pro-tips-india/</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>curl en vivo: home /images/japon1.jpg =&gt; 200, 279.643 bytes (~273 KB); escocia (Unsplash ?w=1200) =&gt; 200, 121.868 bytes (~119 KB); /images/TAJMAJAL.jpg =&gt; 200 pero 3.460.678 bytes (3,46 MB), usada como og:image en /india/ y /pro-tips-india/. Las versiones Unsplash llegan ya redimensionadas con ?w=1200; las propias se sirven a tamaño completo.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Una og:image de 3,46 MB ralentiza el scrape del bot social (timeouts en previews) y desperdicia ancho de banda; CDN/clientes pueden descartarla. Conviene servir el asset social optimizado, no la foto original a máxima resolución.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Servir todas las og:image a 1200x630 y &lt;300 KB. Para /images/TAJMAJAL.jpg crear /images/og/india.jpg redimensionada/comprimida y apuntar og:image+twitter:image a ella en /india/ y /pro-tips-india/. Auditar el resto de og:image propias de /images/*.jpg sin redimensionar y reexportarlas.</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> Tamaños confirmados al byte en vivo: TAJMAJAL.jpg = 3.460.678 bytes; japon1.jpg = 279.643; escocia = 121.868. Las cifras del hallazgo (~279 KB y 122 KB) son correctas dentro del redondeo.</div>
+  </div><div class="finding warning">
+    <div class="f-head">
+      <span class="sev" style="--c:#c9a96e">! Advertencia</span>
+      <h4>Referencia rota a og-image.jpg dentro de schema-auto.js (código muerto a limpiar)</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">0/148 en producción (solo dentro de schema-auto.js, no cargado)</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>curl: /images/og-image.jpg =&gt; HTTP 404. La referencia existe solo dentro de schema-auto.js (línea 20, como campo image del JSON-LD organization: B.url+'/images/og-image.jpg'). grep en los *.html: schema-auto.js NO se incluye con &lt;script src&gt; en ninguna de las 148 páginas (0 referencias): es código muerto y no afecta a producción (ninguna og:image en vivo apunta a og-image.jpg).</p></div>
+      <div><span class="lbl">Por qué importa</span><p>No daña los previews actuales porque el script nunca se carga. Pero deja un asset 404 latente que se activaría si algún día se cablea schema-auto.js, generando una referencia rota (en el JSON-LD, no en og:image) en todas las páginas a la vez.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Al cablear o limpiar schema-auto.js, reemplazar la referencia a og-image.jpg por un asset existente (p.ej. /images/og/default.jpg 1200x630) o eliminar el campo. Mientras el script siga muerto, no es urgente.</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> Verificado: og-image.jpg da 404 y schema-auto.js no se carga en ningún HTML. Precisión: en schema-auto.js og-image.jpg alimenta el campo 'image' del JSON-LD de organización, no una etiqueta og:image; el riesgo latente es de Schema/redes, no estrictamente de Open Graph. La clasificación como código muerto no urgente es correcta.</div>
+  </div><div class="finding pass">
+    <div class="f-head">
+      <span class="sev" style="--c:#2e9e6b">✓ Aprobado</span>
+      <h4>Cobertura completa de etiquetas OG y Twitter en las 148 páginas</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">148/148 páginas</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>signals.json: og:title, og:description, og:image, og:url y og:type en 148/148; twitter:card en 148/148 (todas summary_large_image); twitter:title, twitter:description y twitter:image en 148/148. aggregate.json confirma listas vacías en missing.ogImage, missing.ogTitle y missing.twitterCard.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Toda página compartida en WhatsApp, Facebook, LinkedIn y X genera una tarjeta enriquecida con título, descripción e imagen grande, en lugar de un enlace pelado. Es la base correcta sobre la que solo falta pulir la imagen.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Mantener. Al añadir nuevas páginas, conservar el bloque OG+Twitter completo en la plantilla.</div></div>
+    </div>
+    
+  </div><div class="finding pass">
+    <div class="f-head">
+      <span class="sev" style="--c:#2e9e6b">✓ Aprobado</span>
+      <h4>og:image y twitter:image coinciden en todas las páginas (consistencia total)</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">148/148 páginas</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>Recálculo con node sobre signals.json: páginas con og.image distinto de tw.image = 0. twitter:card = summary_large_image en las 148 (0 excepciones).</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Garantiza que la vista previa sea idéntica en redes que leen OG (WhatsApp/FB/LinkedIn) y en X, evitando incoherencias de imagen entre plataformas. La tarjeta grande maximiza el área visual y el CTR.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Mantener el patrón espejo og:image == twitter:image al migrar a las imágenes propias.</div></div>
+    </div>
+    
+  </div><div class="finding pass">
+    <div class="f-head">
+      <span class="sev" style="--c:#2e9e6b">✓ Aprobado</span>
+      <h4>og:title y og:description bien formados y alineados con el SEO de cada página</h4>
+      <span class="ver adj" title="Evidencia ajustada/corregida en la verificación">↺ ajustado</span>
+    </div>
+    <div class="f-affected">148/148 páginas (og:title/description poblados)</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>En /escocia/ (HTML líneas 17-18) og:title='Viaje de Lujo a Escocia a Medida | Castillos, Highlands y Whisky' (versión recortada del title, sin coletilla de marca, ideal para social) y og:description coincide exactamente con la meta description (og.description===meta description = true). En HOME (líneas 13-14) og:title===title y og:description===meta description (ambos true).</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Los previews muestran un titular limpio centrado en la keyword del destino y una descripción legible, lo que mejora el atractivo y el CTR del enlace compartido frente a un texto truncado o vacío.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Mantener. Vigilar que en la HOME la og:description (354 caracteres, heredada de la meta description) no se trunque feo en el preview; valorar una versión OG más corta (~110-150 caracteres).</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> Corrección: la og:description de /escocia/ mide 160 caracteres (.length en signals.json), no 151. El resto se confirma: og===meta en escocia y HOME, y la og:description de la HOME mide 354 caracteres como afirma el fix.</div>
+  </div></div>
+  </section><section class="cat" id="meta-tags">
+    <div class="cat-head">
+      <div class="cat-score" style="--c:#c9a96e"><span>74</span><small>/100</small></div>
+      <div class="cat-meta">
+        <h3>Meta Tags <em>· peso 20%</em></h3>
+        <div class="track big"><span style="width:74%;background:#c9a96e"></span></div>
+        <div class="cat-counts">
+          <span class="pill crit">2 críticos</span>
+          <span class="pill warn">2 advertencias</span>
+          <span class="pill pass">3 aprobados</span>
+        </div>
+      </div>
+    </div>
+    <p class="cat-summary">Verificado contra signals.json (148 páginas) y aggregate.json: los fundamentos son impecables y los dos problemas críticos de longitud son reales y están bien medidos. Cobertura 100% de title, description, viewport, charset, lang=&quot;es&quot; y canonical autorreferente absoluto; 0 noindex y 0 duplicados (confirmado). El problema sistémico es la longitud: 139/148 títulos &gt;60 (media 72,8; máx 94) y 106/148 descriptions &gt;160 (media 166,5; máx 354 en la HOME). El title de la HOME no contiene la frase exacta &quot;viajes de lujo a medida&quot; (confirmado false). Solo se detectaron imprecisiones cosméticas en la evidencia de los hallazgos PASS (valores de viewport/charset citados como cadenas cuando el dataset los almacena como booleanos; H1 de la home con coma sin espacio; cita parcial del title de luna-de-miel-a-medida) que no alteran ninguna métrica ni el cuadro. Score mantenido en 74: justo entre dos críticos de longitud generalizados y una base técnica de indexación perfecta.</p>
+    <div class="findings"><div class="finding critical">
+    <div class="f-head">
+      <span class="sev" style="--c:#d9534f">✕ Crítico</span>
+      <h4>139/148 títulos superan 60 caracteres: riesgo de truncado en resultados de Google</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">139/148 páginas (&gt;60 chars); 85 de ellas &gt;70</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>Confirmado en signals.json: longitud media de title 72,78; mín 33; máx 94. Solo 6 títulos caen en la franja 50-60. 139/148 superan 60 y 85/148 superan 70. Ejemplos verificados literalmente: /islandia/ (94) 'Viaje de Lujo a Islandia: Círculo Dorado, Auroras Boreales y Laguna Azul | Horizonte Exclusivo'; /malta/ (91) 'Viaje de Lujo a Malta a Medida | Historia, Mar y Arquitectura Barroca | Horizonte Exclusivo'; /quien-hay-detras/ (94) 'Quién hay detrás | Horizonte Exclusivo — Agencia de Viajes de Lujo en Molins de Rei, Barcelona'.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Google trunca los títulos alrededor de los 580px (~60 caracteres). La keyword va al frente (bien), pero la cláusula media descriptiva + la marca alargan tanto que el subtítulo y/o la marca se cortan con '…', degradando la legibilidad y el CTR en el SERP. La marca 'Horizonte Exclusivo' (20 chars) repetida en cada título consume espacio que rara vez se muestra.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Recortar a ≤60 quitando la cláusula media descriptiva y/o acortando la marca. ISLANDIA → 'Viaje de Lujo a Islandia a Medida | Horizonte Exclusivo' (55). MALTA → 'Viaje de Lujo a Malta a Medida | Horizonte Exclusivo' (52). QUIEN-HAY-DETRAS → 'Quién hay detrás de Horizonte Exclusivo | Viajes de Lujo' (56). Mantener el patrón 'Viaje de Lujo a [Destino] a Medida | Horizonte Exclusivo' y mover los reclamos (Círculo Dorado, Arquitectura Barroca, etc.) a la meta description, no al title.</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> Métricas y ejemplos confirmados al 100% contra signals.json. Único matiz: la longitud propuesta para el fix de QUIEN-HAY-DETRAS es 56 caracteres, no 55 como decía el hallazgo (sigue por debajo de 60, sin impacto). El resto de longitudes propuestas (55, 52) son exactas.</div>
+  </div><div class="finding critical">
+    <div class="f-head">
+      <span class="sev" style="--c:#d9534f">✕ Crítico</span>
+      <h4>106/148 meta descriptions superan 160 caracteres; la HOME llega a 354 (se trunca a la mitad)</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">106/148 páginas (&gt;160 chars); HOME el caso peor con 354</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>Confirmado en signals.json: longitud media 166,49; máx 354. 106/148 superan 160; solo 39 caen en la franja 140-160. Las más largas verificadas: HOME 354, /pro-tips-praga-viena-budapest/ 279, /pro-tips-tanzania/ 268, /pro-tips-marruecos/ 233, /islandia/ 212. Texto literal de la HOME (354 chars): 'La agencia de viajes de lujo, donde lo exclusivo es realidad. Diseñamos viajes a medida desde Molins de Rei, Barcelona para cualquier viajero que quiera recorrer el mundo, nos encargamos de crear una luna de miel que no olvidarás, o de que veas el atardecer más bonito en un safari trepidante. Si quieres vivir algo diferente, estás en el lugar adecuado.'</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Google corta la descripción alrededor de 155-160 caracteres en desktop. Las 106 descripciones largas se truncan con '…' y en la HOME se pierde más de la mitad del mensaje (incluida la llamada a la acción), perjudicando el CTR en la página más importante. Confirmado además que og:description hereda exactamente el mismo texto de 354 chars, afectando también las previsualizaciones sociales.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Reescribir la HOME a ≤160 con keyword + ubicación + CTA, p.ej.: 'Agencia de viajes de lujo a medida en Barcelona. Diseñamos lunas de miel, safaris y rutas exclusivas por todo el mundo. Cuéntanos tu viaje soñado.' (146). Recortar las pro-tips a ~155. Regla general: una sola frase de propuesta de valor con la keyword en los primeros 120 caracteres.</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> Todas las cifras y el texto literal de la HOME confirmados contra signals.json. Verificado adicionalmente que og.description == description en la HOME (el texto largo se propaga a redes sociales, tal como afirma el hallazgo). El texto de fix propuesto mide 146 chars (el hallazgo decía 148; sigue ≤160).</div>
+  </div><div class="finding warning">
+    <div class="f-head">
+      <span class="sev" style="--c:#c9a96e">! Advertencia</span>
+      <h4>El title de la HOME no contiene la keyword principal exacta 'viajes de lujo a medida'</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">1/148 (home, página crítica)</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>signals.json: title de la HOME = 'Agencia de Viajes de Lujo en Molins de Rei, Barcelona | Horizonte Exclusivo' (75 chars). Contiene 'viajes de lujo' y 'Barcelona' pero NO la frase exacta 'viajes de lujo a medida' (test regex = false, confirmado). El H1 de la home es 'Más que viajar,VIVIR el mundo' (branding, sin keyword). La frase 'viajes a medida' SÍ aparece en la description de la home (confirmado).</p></div>
+      <div><span class="lbl">Por qué importa</span><p>La página de mayor autoridad del dominio no orienta su title hacia la keyword comercial principal del proyecto. 'a medida' es el diferenciador del negocio y debería estar en el title de la home para reforzar relevancia y coincidencia de intención.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Ajustar el title de la HOME a, p.ej.: 'Viajes de Lujo a Medida en Barcelona | Horizonte Exclusivo' (58 chars, verificado). Cubre keyword principal + ubicación + marca dentro de los 60 caracteres. Opcionalmente reforzar el H1 (actualmente puramente emocional) con un subtítulo/intro que incluya 'viajes de lujo a medida'.</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> Confirmado: el title de la home (75 chars) no contiene 'viajes de lujo a medida' y la description sí incluye 'viajes a medida'. El fix propuesto mide 58 chars (exacto). Matiz menor: el H1 real almacenado es 'Más que viajar,VIVIR el mundo' (sin espacio tras la coma); el hallazgo lo citaba con espacio. No afecta a la conclusión.</div>
+  </div><div class="finding warning">
+    <div class="f-head">
+      <span class="sev" style="--c:#c9a96e">! Advertencia</span>
+      <h4>3 páginas legales con meta description por debajo de 120 caracteres</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">/aviso-legal/, /politica-de-cookies/, /politica-de-privacidad/ (3/148)</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>Confirmado en signals.json: /aviso-legal/ 103 chars ('Aviso legal y condiciones de uso del sitio web Horizonte Exclusivo, agencia de viajes de lujo a medida.'), /politica-de-cookies/ 111, /politica-de-privacidad/ 111. Son exactamente las 3 descripciones más cortas del sitio (la siguiente es /brasil/ con 146); solo estas 3 quedan por debajo de 120.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Impacto bajo: son páginas legales sin intención comercial ni de posicionamiento. Una descripción tan corta desaprovecha el espacio del SERP en caso de aparecer, pero no es un fallo grave.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Opcional. Ampliar a ~150-160 chars, p.ej. aviso-legal: 'Aviso legal y condiciones de uso de Horizonte Exclusivo, agencia de viajes de lujo a medida en Molins de Rei (Barcelona). Datos de la empresa y términos del sitio.' Prioridad baja frente a los dos hallazgos críticos.</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> Las tres longitudes (103, 111, 111) y el texto literal de /aviso-legal/ confirmados; son las 3 descripciones más cortas del sitio y las únicas &lt;120 (recuento exacto = 3).</div>
+  </div><div class="finding pass">
+    <div class="f-head">
+      <span class="sev" style="--c:#2e9e6b">✓ Aprobado</span>
+      <h4>Cobertura 100% de meta tags esenciales en las 148 páginas, sin noindex accidental</h4>
+      <span class="ver adj" title="Evidencia ajustada/corregida en la verificación">↺ ajustado</span>
+    </div>
+    <div class="f-affected">148/148 páginas</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>Verificado en signals.json sobre las 148 páginas: 0 sin title, 0 sin description, 0 sin viewport, 0 sin charset, lang='es' en 148/148, canonical presente en 148/148. meta robots: 148/148 sin directiva ('(none)'), por lo tanto 0 páginas con noindex e indexables por defecto.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Base técnica de indexación impecable: ninguna página queda fuera del índice por error, todas declaran idioma y viewport, y Google recibe siempre title+description que controlar.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Mantener. No se requiere acción.</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> La conclusión (cobertura 100%, 0 noindex) es CORRECTA y se mantiene. Corrección de evidencia: signals.json almacena viewport y charset como booleanos (true en las 148), NO como las cadenas literales que citaba el hallazgo ('width=device-width, initial-scale=1.0' y 'UTF-8'). Esos valores concretos no están medidos en este dataset, son una inferencia; lo verificable es que 0 páginas carecen de viewport/charset. lang='es' en 148/148 y robots sin directiva en 148/148, confirmados.</div>
+  </div><div class="finding pass">
+    <div class="f-head">
+      <span class="sev" style="--c:#2e9e6b">✓ Aprobado</span>
+      <h4>Canonical absoluto y autorreferente correcto en el 100% de las páginas</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">148/148 páginas</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>Verificado en signals.json: 0 canonical ausentes, 0 relativos, 0 que no coincidan con la URL de la página (148/148 autorreferentes y absolutos sobre el host www). Ejemplos confirmados: /escocia/ → 'https://www.horizonteexclusivo.es/escocia/', /japon/ → 'https://www.horizonteexclusivo.es/japon/', home → 'https://www.horizonteexclusivo.es/'. 0 canonicals fuera del host https://www.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Consolidación de señales perfecta a nivel de página: se previene contenido duplicado por parámetros o variantes de URL y todos los canónicos apuntan al host www correcto.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Mantener. (Nota: el único punto de mejora de consolidación es a nivel de servidor — el redirect no-www→www, que pertenece a la categoría técnica/redirecciones, no a Meta Tags.)</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> Confirmado al 100% contra signals.json: 0 ausentes, 0 relativos, 0 no autorreferentes, 0 fuera del host https://www.horizonteexclusivo.es. La nota sobre el redirect 307 no se ha re-verificado aquí por pertenecer a otra categoría, pero no afecta a la evaluación de Meta Tags.</div>
+  </div><div class="finding pass">
+    <div class="f-head">
+      <span class="sev" style="--c:#2e9e6b">✓ Aprobado</span>
+      <h4>Keyword objetivo bien colocada en title/description de las landings clave y los destinos, sin duplicados</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">Landings barcelona + luna de miel + 50 destinos</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>Verificado en signals.json: landing /agencia-viajes-lujo-barcelona/ con title 'Agencia de Viajes de Lujo en Barcelona | Horizonte Exclusivo' (60) y description que contiene 'agencia de viajes de lujo en Barcelona' + 'viajes a medida' + 'Molins de Rei'. /luna-de-miel-a-medida/ title completo 'Luna de Miel a Medida desde Barcelona | Horizonte Exclusivo' (59, descripción 153, en franja ideal). 50 títulos siguen el patrón 'Viaje de Lujo a [Destino]…' y 70 títulos incluyen 'a Medida'. 0 títulos y 0 descripciones duplicados en todo el sitio.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Buena alineación semántica keyword→página: cada landing y destino ataca su intención con la keyword en posición frontal del title, y la ausencia total de duplicados evita canibalización.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Mantener el patrón. La landing /luna-de-miel-a-medida/ ya está perfecta (59 chars); su variante /luna-de-miel-barcelona/ (title 74, desc 198) debería recortarse siguiendo la misma plantilla para no truncarse.</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> Cifras confirmadas: BCN title=60, desc=170 con los tres términos; luna-de-miel-a-medida title len=59 y desc=153; luna-de-miel-barcelona title=74 y desc=198; 50 títulos 'Viaje de Lujo a…'; 70 con 'a Medida'; 0 duplicados de title y description. Matiz cosmético: el hallazgo citaba el title de luna-de-miel-a-medida como 'Luna de Miel a Medida desde Barcelona', que es solo la primera cláusula; el title completo es '…| Horizonte Exclusivo' y la longitud 59 corresponde al título completo (correcta).</div>
+  </div></div>
+  </section><section class="cat" id="headings">
+    <div class="cat-head">
+      <div class="cat-score" style="--c:#c9a96e"><span>78</span><small>/100</small></div>
+      <div class="cat-meta">
+        <h3>Headings <em>· peso 15%</em></h3>
+        <div class="track big"><span style="width:78%;background:#c9a96e"></span></div>
+        <div class="cat-counts">
+          <span class="pill crit">1 críticos</span>
+          <span class="pill warn">1 advertencias</span>
+          <span class="pill pass">3 aprobados</span>
+        </div>
+      </div>
+    </div>
+    <p class="cat-summary">Tras re-verificar contra signals.json, los archivos reales y el sitio en vivo (curl), todos los hallazgos se sostienen con datos exactos. Estructura sólida: 144/148 páginas tienen exactamente un H1, cero multi-H1 (lista vacía confirmada) y cero saltos de jerarquía (0 páginas con H3 sin H2). Penalizan: 4 páginas sin H1 (confirmado en disco y en vivo: /contacto/, /disneyland-paris/, /molins-de-rei/, /quien-hay-detras/ devuelven 0 ocurrencias de &lt;h1&gt;) y un problema de keyword en las fichas de destino (57/70 con H1 evocador sin la palabra clave principal). Matiz menor: de las 13 fichas tipo 'destino' que sí llevan keyword, la mayoría son en realidad artículos pro-tips/blog clasificados como 'destino' en el dataset (botsuana, tanzania y viajes-a-medida-barcelona son las únicas fichas o landings reales), por lo que el margen de mejora real en fichas de destino propiamente dichas es aún mayor. Score 78 mantenido: la verificación no cambia el cuadro.</p>
+    <div class="findings"><div class="finding critical">
+    <div class="f-head">
+      <span class="sev" style="--c:#d9534f">✕ Crítico</span>
+      <h4>4 páginas sin ningún H1 (el H1 lo absorbe un H2 con clase .section-title)</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">4/148 páginas: /contacto/, /disneyland-paris/, /molins-de-rei/, /quien-hay-detras/</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>Confirmado en aggregate.json (missing.h1 lista exactamente esas 4 URLs) y en signals.json (h1count=0). Verificado en vivo con curl: /contacto/, /disneyland-paris/, /molins-de-rei/ y /quien-hay-detras/ devuelven 0 ocurrencias de &lt;h1&gt;. Conteos h2/h3 exactos en signals.json: /contacto/ (h2:2,h3:1), /disneyland-paris/ (h2:2,h3:4), /molins-de-rei/ (h2:2,h3:2), /quien-hay-detras/ (h2:2,h3:3). En disco, 0 &lt;h1&gt; en los 4 archivos. El primer título visible es un &lt;h2 class=&quot;section-title&quot;&gt;: contacto/index.html L235 '&lt;h2 class=&quot;section-title&quot;&gt;Diseñemos tu próximo viaje&lt;/h2&gt;'; molins-de-rei/index.html L253 '&lt;h2 class=&quot;section-title&quot;&gt;Agencia de Viajes de Lujo en Molins de Rei&lt;/h2&gt;'; quien-hay-detras/index.html L223 '&lt;h2 class=&quot;section-title&quot;&gt;Horizonte Exclusivo&lt;/h2&gt;'. /disneyland-paris/ es el peor caso: su hero (L463-466, &lt;section class=&quot;dest-hero&quot;&gt;) solo contiene una &lt;img&gt; (L465) sin título, y el primer encabezado es el H2 de L480 'Todo lo que necesitas saber'. La página de comparación válida escocia/index.html usa el patrón correcto en L536-537: '&lt;div class=&quot;dest-hero-content&quot;&gt;&lt;h1&gt;Escocia, tierra de carácter&lt;/h1&gt;'.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>El H1 es la señal de tema más fuerte de la página tras el &lt;title&gt;. Sin H1, Google pierde el ancla semántica principal y puede degradar el ranking del término objetivo. Especialmente grave porque dos afectadas son páginas de alto valor: /molins-de-rei/ (SEO local, su keyword 'agencia de viajes de lujo en Molins de Rei' queda sin H1) y /disneyland-paris/ (destino comercial con búsqueda propia, que además arranca en H2-&gt;H3 sin raíz H1).</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Convertir el primer &lt;h2 class=&quot;section-title&quot;&gt; de cada página en &lt;h1 class=&quot;section-title&quot;&gt; con keyword: (1) /molins-de-rei/ L253 -&gt; &lt;h1 class=&quot;section-title&quot;&gt;Agencia de Viajes de Lujo en Molins de Rei&lt;/h1&gt;. (2) /quien-hay-detras/ L223 -&gt; &lt;h1 class=&quot;section-title&quot;&gt;¿Quién hay detrás de Horizonte Exclusivo?&lt;/h1&gt;. (3) /contacto/ L235 -&gt; &lt;h1 class=&quot;section-title&quot;&gt;Diseña tu Viaje de Lujo a Medida&lt;/h1&gt;. (4) /disneyland-paris/: añadir un H1 real en el hero replicando el patrón de escocia: dentro de &lt;section class=&quot;dest-hero&quot;&gt; (L464) insertar &lt;div class=&quot;dest-hero-content&quot;&gt;&lt;h1&gt;Viaje a Disneyland París a Medida&lt;/h1&gt;&lt;/div&gt;, o como mínimo cambiar el H2 de L480 a &lt;h1&gt;. El CSS no se rompe: .section-title y .dest-hero-content están definidos y estilados (verificado en disneyland-paris/index.html).</div></div>
+    </div>
+    
+  </div><div class="finding warning">
+    <div class="f-head">
+      <span class="sev" style="--c:#c9a96e">! Advertencia</span>
+      <h4>57 de 70 fichas de destino tienen un H1 evocador SIN la keyword principal de SEO</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">57/70 fichas de tipo 'destino'</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>En signals.json, type='destino' suma 72 páginas; 70 con h1count=1 (las 2 restantes son /disneyland-paris/ y /molins-de-rei/, ya cubiertas en el hallazgo critical). De esas 70: solo 13 H1 contienen 'viaje/lujo/luna de miel/safari' y 57 no. Ejemplos verificados: /alaska/ H1='Alaska', /bahamas/ H1='Bahamas', /escocia/ H1='Escocia, tierra de carácter' (escocia/index.html L537), /bali/ H1='Bali, la isla de los dioses', /camboya/ H1='Camboya, templos eternos y alma asiática'. El &lt;title&gt; de esas mismas páginas SÍ lleva la keyword: escocia/index.html L6 '&lt;title&gt;Viaje de Lujo a Escocia a Medida | Castillos, Highlands y Whisky | Horizonte Exclusivo&lt;/title&gt;'. Hay desalineación title&lt;-&gt;H1.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>El H1 refuerza ante Google la keyword del título; un H1 que no la contiene desaprovecha la señal más visible de la página y reduce la relevancia para 'viaje de lujo a [destino]', familia de cola larga que más tráfico cualificado aporta a estas fichas. No es crítico (el title cubre la keyword), pero deja ranking sobre la mesa de forma barata.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Incluir la keyword del destino en el H1 sin perder el gancho emocional, manteniendo un único H1. Patrón recomendado: '&lt;h1&gt;Viaje de Lujo a Escocia &lt;span&gt;· tierra de carácter&lt;/span&gt;&lt;/h1&gt;' o, como mínimo, '&lt;h1&gt;Escocia, viaje de lujo a medida&lt;/h1&gt;'. Aplicar al lote de 57 fichas reemplazando el bloque &lt;div class=&quot;dest-hero-content&quot;&gt;&lt;h1&gt;...&lt;/h1&gt;. No tocar las que ya lo cumplen.</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> Números exactos según la clasificación del dataset (72 destino, 70 con h1=1, 13 con keyword, 57 sin). Matiz: de las 13 'que ya cumplen', la mayoría NO son fichas de destino reales sino artículos pro-tips/blog clasificados como type='destino' en el dataset (p.ej. 'Cómo planifico un gran viaje', 'Cuánto cuesta un viaje a medida', 'Errores comunes al organizar un viaje'). Solo botsuana ('Botsuana, safari en estado puro'), tanzania ('Tanzania, safari en el corazón de África') y viajes-a-medida-barcelona ('Viajes a medida desde Barcelona') son fichas/landings de destino genuinas con keyword. Por tanto, entre las fichas de destino estrictas el déficit de keyword es incluso mayor que 57/70; la severidad warning y el fix se mantienen.</div>
+  </div><div class="finding pass">
+    <div class="f-head">
+      <span class="sev" style="--c:#2e9e6b">✓ Aprobado</span>
+      <h4>Un único H1 por página en el 97,3% del sitio y cero multi-H1</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">144/148 páginas correctas (0 con multi-H1)</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>signals.json: h1count==1 en 144/148 páginas; h1count&gt;1 en 0 páginas (lista de multi-H1 vacía, confirmada también en aggregate.json missing.multiH1=[]). Ninguna página con dos o más H1.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Tener exactamente un H1 es la práctica recomendada por Google: una jerarquía limpia con un único título de nivel 1 facilita que el rastreador identifique el tema principal de cada URL.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Mantener la regla 'un H1 por página' al crear nuevas plantillas. Tras corregir las 4 páginas sin H1 se alcanza el 100%; conviene añadir una validación de build/CI que falle si una página tiene h1count != 1.</div></div>
+    </div>
+    
+  </div><div class="finding pass">
+    <div class="f-head">
+      <span class="sev" style="--c:#2e9e6b">✓ Aprobado</span>
+      <h4>Jerarquía de encabezados sin saltos de nivel (ninguna H3 huérfana sin H2)</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">148/148 páginas sin salto de nivel (salvo las 4 sin H1, que arrancan en H2)</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>Consulta a signals.json: 0 páginas con h3count&gt;0 y h2count==0. En las páginas correctas el orden es H1 -&gt; H2 (.section-title) -&gt; H3, p.ej. escocia/index.html: H1 L537 'Escocia, tierra de carácter', H2 L558 'Tu viaje día a día', H3 L586 'Edimburgo' (las tres líneas verificadas en disco).</p></div>
+      <div><span class="lbl">Por qué importa</span><p>No saltar niveles (H1-&gt;H2-&gt;H3) ayuda a rastreadores y lectores de pantalla a entender la estructura del contenido y evita errores de accesibilidad y de interpretación del esquema de la página.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Conservar el patrón actual. Al añadir el H1 que falta en las 4 páginas afectadas se completará la cadena H1-&gt;H2-&gt;H3 también en ellas (hoy arrancan en H2). No introducir H4 sueltos sin un H3 padre en futuras secciones.</div></div>
+    </div>
+    
+  </div><div class="finding pass">
+    <div class="f-head">
+      <span class="sev" style="--c:#2e9e6b">✓ Aprobado</span>
+      <h4>Patrones de H1 coherentes y descriptivos en Travel Hacks, landings y hubs</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">58 protips + 3 landings + 3 hubs + 5 regiones con H1 correcto</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>signals.json: las 58 páginas type='protips' usan patrón consistente 'Travel Hacks: [destino]' (verificado: /pro-tips-alaska/ 'Travel Hacks: Alaska', /pro-tips-albania/ 'Travel Hacks: Albania', etc.). Las 3 landings llevan keyword en el H1: /agencia-viajes-lujo-barcelona/ -&gt; 'Tu agencia de viajes de lujo en Barcelona', /luna-de-miel-a-medida/ -&gt; 'Luna de miel a medida...', /luna-de-miel-barcelona/ -&gt; 'Organiza tu luna de miel perfecta desde Barcelona'. Los 3 hubs: 'Blog', 'Destinos Extraordinarios', 'Travel Hacks de Viaje'.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Los H1 de las páginas estratégicas (landings de luna de miel, agencia Barcelona y guías de pro-tips) contienen las keywords objetivo y refuerzan el title, maximizando la relevancia donde más importa para la conversión y el SEO local.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Replicar este criterio keyword-first en el H1 de las fichas de destino (ver hallazgo warning). Mantener el patrón al generar nuevas guías de Travel Hacks y nuevas landings.</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> Verificado. Matiz menor: de las 5 regiones, 4 usan el patrón 'Top Destinos [Continente]' (Africa, América, Asia, Europa) pero /paraisos/ usa 'Paraísos sobre el agua' (no es un continente, es una categoría temática), por lo que el patrón 'Top Destinos [Continente]' aplica a 4/5 regiones. No afecta a la calificación pass.</div>
+  </div></div>
+  </section><section class="cat" id="tecnico">
+    <div class="cat-head">
+      <div class="cat-score" style="--c:#2e9e6b"><span>82</span><small>/100</small></div>
+      <div class="cat-meta">
+        <h3>Técnico <em>· peso 15%</em></h3>
+        <div class="track big"><span style="width:82%;background:#2e9e6b"></span></div>
+        <div class="cat-counts">
+          <span class="pill crit">0 críticos</span>
+          <span class="pill warn">3 advertencias</span>
+          <span class="pill pass">3 aprobados</span>
+        </div>
+      </div>
+    </div>
+    <p class="cat-summary">Fundamentos técnicos sólidos y verificados en fuente real: HTTPS con HSTS de 2 años (max-age=63072000), redirección http-&gt;https permanente (308), TTFB muy bajo servido por CDN de Vercel con X-Vercel-Cache: HIT, y robots.txt + sitemap.xml válidos y bien formados (148 URLs, todas con changefreq y priority). Penalizan la nota tres defectos concretos confirmados: la redirección del apex no-www -&gt; www es 307 temporal (debería ser 301/308 permanente), el sitemap no declara imágenes (image:image) ni el namespace xmlns:image pese a 1.282 &lt;img&gt; en el sitio, y la home es pesada (106.865 bytes verificados) con CSS y fuentes render-blocking y preconnect incompleto (falta fonts.gstatic.com). Todos los hallazgos se han contrastado contra los archivos del proyecto, el dataset y el sitio en vivo; las cifras coinciden salvo dos matices menores anotados. Se mantiene la puntuación en 82.</p>
+    <div class="findings"><div class="finding warning">
+    <div class="f-head">
+      <span class="sev" style="--c:#c9a96e">! Advertencia</span>
+      <h4>Redirección no-www -&gt; www es 307 (temporal) en vez de 301/308 permanente</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">Host raíz https://horizonteexclusivo.es (todas sus rutas)</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>curl -I https://horizonteexclusivo.es/ devuelve en vivo: HTTP/1.1 307 Temporary Redirect, Location: https://www.horizonteexclusivo.es/. En cambio http-&gt;https sí es correcto: curl -I http://www.horizonteexclusivo.es/ = 308 Permanent Redirect. La inconsistencia es solo en el salto de host no-www a www.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Un 307 indica a Google que la redirección es temporal, por lo que NO consolida del todo las señales de enlaces/autoridad del host raíz hacia el canónico www, y el motor puede seguir rastreando/indexando ambas variantes. Diluye link equity y desperdicia presupuesto de rastreo.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">En vercel.json forzar redirección permanente del apex al www. Ejemplo: &quot;redirects&quot;: [{ &quot;source&quot;: &quot;/(.*)&quot;, &quot;has&quot;: [{ &quot;type&quot;: &quot;host&quot;, &quot;value&quot;: &quot;horizonteexclusivo.es&quot; }], &quot;destination&quot;: &quot;https://www.horizonteexclusivo.es/$1&quot;, &quot;permanent&quot;: true }]. Con permanent:true Vercel emite 308. Verificar tras desplegar con: curl -I https://horizonteexclusivo.es/ (debe dar 301 o 308).</div></div>
+    </div>
+    
+  </div><div class="finding warning">
+    <div class="f-head">
+      <span class="sev" style="--c:#c9a96e">! Advertencia</span>
+      <h4>sitemap.xml sin extensión de imágenes (image:image) pese a 1.282 imágenes</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">sitemap.xml (148 URLs, 1.282 imágenes sin declarar)</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>C:/Users/viite/Documents/GitHub/luxury-travel/sitemap.xml: 148 &lt;loc&gt; = 148 &lt;url&gt;, 0 ocurrencias de image:image y sin xmlns:image declarado (urlset solo declara el namespace base http://www.sitemaps.org/schemas/sitemap/0.9). El sitio tiene 1.282 &lt;img&gt; (aggregate.json: images.total=1282). Sirve en vivo HTTP 200 con Content-Type application/xml y X-Vercel-Cache: HIT.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Sin la extensión de imágenes del sitemap, Google rastrea peor las imágenes y se pierde una vía de indexación en Google Imágenes. Para una agencia de viajes de lujo (negocio muy visual con heros y galerías), el tráfico desde Imágenes es relevante. Agravante confirmado: la mayoría son hotlinks de Unsplash (en la propia home, ~34 &lt;img&gt; con unas 30 apuntando a images.unsplash.com frente a solo 12 referencias a /images/ locales) que Google no atribuirá a este dominio.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Migrar primero las fotos a assets locales (regla del proyecto) y luego añadir al sitemap el namespace y bloques de imagen. En &lt;urlset&gt; añadir xmlns:image=&quot;http://www.google.com/schemas/sitemap-image/1.1&quot; y dentro de cada &lt;url&gt; incluir &lt;image:image&gt;&lt;image:loc&gt;https://www.horizonteexclusivo.es/images/japon1.jpg&lt;/image:loc&gt;&lt;/image:image&gt; por cada imagen relevante de esa página.</div></div>
+    </div>
+    
+  </div><div class="finding warning">
+    <div class="f-head">
+      <span class="sev" style="--c:#c9a96e">! Advertencia</span>
+      <h4>Home pesada (106KB) con CSS y fuentes render-blocking y preconnect incompleto</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">Home (/) y, por las fuentes/CSS comunes, todas las páginas</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>Home en vivo = 106.865 bytes (Content-Length confirmado, coincide con htmlBytes.max de aggregate.json; media del sitio 34.648). En el &lt;head&gt; hay un &lt;style&gt; inline de ~25.333 caracteres MÁS un &lt;link rel=&quot;stylesheet&quot; href=&quot;/styles.css&quot;&gt; sin defer MÁS la hoja de Google Fonts (fonts.googleapis.com/css2?family=Playfair+Display...&amp;family=Inter...&amp;display=swap) con rel=stylesheet render-blocking. Solo existe &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;; NO hay preconnect a fonts.gstatic.com (0 ocurrencias) de donde se descargan los ficheros de fuente reales, ni ningún rel=&quot;preload&quot; de fuente. scripts.js está al final del body (línea 2371, antes de &lt;/body&gt; en 2496, fuera del head que cierra en 1307) por lo que no bloquea el parser, pero el tag &lt;script src=&quot;/scripts.js&quot;&gt;&lt;/script&gt; carece de defer/async.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>El CSS externo + la hoja de fuentes bloquean el primer render; el preconnect a gstatic ausente añade un RTT extra de conexión TLS al cargar las fuentes, empeorando LCP/FCP en móvil. La home es la página de mayor valor SEO y la que más usuarios recibe.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">1) Añadir &lt;link rel=preconnect href=https://fonts.gstatic.com crossorigin&gt; junto al preconnect existente. 2) Las fuentes ya solicitan display=swap; precargar además la fuente crítica con &lt;link rel=preload as=font crossorigin&gt;. 3) Cargar /styles.css de forma no bloqueante para reglas no críticas (media=print onload, o dividir crítico/diferido) manteniendo el critical CSS inline ya existente. 4) Añadir defer a scripts.js: &lt;script src=/scripts.js defer&gt;&lt;/script&gt;.</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> Confirmado en vivo salvo dos matices menores: el &lt;style&gt; inline mide ~25.333 caracteres (no 25.346, diferencia de redondeo irrelevante) y la afirmación de que font-display:swap 'ya está presente' es correcta solo en el sentido de que se solicita vía parámetro &amp;display=swap en la URL de Google Fonts.</div>
+  </div><div class="finding pass">
+    <div class="f-head">
+      <span class="sev" style="--c:#2e9e6b">✓ Aprobado</span>
+      <h4>HTTPS con HSTS de larga duración y http-&gt;https permanente</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">Todo el dominio</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>Cabeceras en vivo: Strict-Transport-Security: max-age=63072000 (2 años) en home, apex y sitemap. curl -I http://www.horizonteexclusivo.es/ devuelve 308 Permanent Redirect a https. Handshake y certificado servidos por Vercel sin errores.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>HSTS protege contra downgrade y refuerza la confianza/seguridad que Google valora; la redirección permanente a HTTPS consolida correctamente el esquema seguro como canónico.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Mantener. Opcional: valorar enviar la directiva preload en HSTS e inscribir el dominio en la lista hstspreload.org si se quiere el máximo refuerzo (requiere también includeSubDomains).</div></div>
+    </div>
+    
+  </div><div class="finding pass">
+    <div class="f-head">
+      <span class="sev" style="--c:#2e9e6b">✓ Aprobado</span>
+      <h4>Rendimiento de servidor excelente: TTFB bajo y cache CDN activo</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">Todo el dominio</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>Medición en vivo: home X-Vercel-Cache: HIT, Cache-Control public, TTFB ~0,10-0,12s; sitemap.xml time_starttransfer ~0,10s y X-Vercel-Cache: HIT. Servido desde CDN de Vercel (Server: Vercel, X-Vercel-Id presente).</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Un TTFB bajo y el HIT de CDN favorecen el rastreo eficiente de Googlebot y son base para buenas Core Web Vitals (especialmente LCP). No hay cuello de botella de servidor.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Mantener. Trabajar solo el render del cliente (ver hallazgo de render-blocking) para optimizar LCP/FCP percibido.</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> La cifra concreta 'TTFB home 0,345s' del hallazgo original NO se reprodujo: en mi medición en vivo el TTFB de la home fue ~0,10-0,12s (cache HIT), aún mejor de lo declarado. Es una medida puntual dependiente de red/estado de caché; la conclusión (TTFB bajo, CDN activo) se mantiene plenamente.</div>
+  </div><div class="finding pass">
+    <div class="f-head">
+      <span class="sev" style="--c:#2e9e6b">✓ Aprobado</span>
+      <h4>robots.txt y sitemap.xml válidos, accesibles y bien formados</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">robots.txt y sitemap.xml (148 URLs)</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>robots.txt (C:/Users/viite/Documents/GitHub/luxury-travel/robots.txt): exactamente 'User-agent: *' + 'Allow: /' + 'Sitemap: https://www.horizonteexclusivo.es/sitemap.xml'; responde 200 en vivo. sitemap.xml: 148 &lt;loc&gt; = 148 &lt;url&gt; (coinciden con las 148 páginas de aggregate.json, 0 huérfanas), Content-Type application/xml, HTTP 200 con X-Vercel-Cache: HIT, con &lt;changefreq&gt; y &lt;priority&gt; en las 148 entradas (148 tags &lt;priority&gt;) y XML bien formado (declaración UTF-8 + urlset correcto).</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Rastreo abierto sin bloqueos accidentales, sitemap descubrible desde robots y completo, lo que facilita la indexación de las 148 URLs sin desperdiciar presupuesto en páginas inexistentes.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Mantener. Considerar variar &lt;lastmod&gt; con la fecha real de última edición de cada página (hoy 147/148 comparten 2026-04-13 y 1 tiene 2026-03-15), ya que un lastmod casi uniforme aporta poca señal de frescura, aunque no es un fallo.</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> Confirmado. Matiz al fix: el lastmod no es totalmente uniforme: 147 URLs tienen 2026-04-13 y 1 tiene 2026-03-15 (el original decía '147/148 comparten 2026-04-13', exacto). La mención original a '155 priority' era un artefacto de conteo; los tags &lt;priority&gt; reales son 148.</div>
+  </div></div>
+  </section><section class="cat" id="contenido">
+    <div class="cat-head">
+      <div class="cat-score" style="--c:#2e9e6b"><span>84</span><small>/100</small></div>
+      <div class="cat-meta">
+        <h3>Contenido <em>· peso 10%</em></h3>
+        <div class="track big"><span style="width:84%;background:#2e9e6b"></span></div>
+        <div class="cat-counts">
+          <span class="pill crit">0 críticos</span>
+          <span class="pill warn">3 advertencias</span>
+          <span class="pill pass">3 aprobados</span>
+        </div>
+      </div>
+    </div>
+    <p class="cat-summary">Verificado contra los archivos reales (C:/Users/viite/Documents/GitHub/luxury-travel), el dataset (signals.json/aggregate.json) y el sitio en vivo. El contenido sigue siendo la gran fortaleza: 148 páginas, media 806 palabras, 0 títulos y 0 meta descriptions duplicados (confirmado), voz editorial en primera persona y enlazado interno contextual 100% bidireccional destino&lt;-&gt;pro-tip (58/58 verificado en archivos). Debilidades reales: atribución de autoría EEAT casi nula (la fundadora &quot;Endeis Prieto&quot; solo se nombra completa 8 veces en 4 archivos, y la propia página de bio /quien-hay-detras/ ni siquiera incluye su nombre; 0/148 con JSON-LD de autoría porque no hay datos estructurados de autor en ninguna página) y uso casi inexistente de la keyword exacta &quot;viajes de lujo a medida&quot; en title (1), H1 (0) y meta description (1). CORRECCIÓN clave: el hallazgo de keyword afirmaba &quot;13 apariciones en el cuerpo de la home&quot;; la frase exacta solo aparece 2 veces en la home (9 si se cuenta el parcial &quot;viajes de lujo&quot;). El patrón de título por destino es 48/72 exacto (no 50; 60/72 contienen &quot;a medida&quot;). Mantengo score 84: las correcciones son menores y no alteran el cuadro general de una categoría sólida.</p>
+    <div class="findings"><div class="finding warning">
+    <div class="f-head">
+      <span class="sev" style="--c:#c9a96e">! Advertencia</span>
+      <h4>Señales EEAT débiles: la autora/fundadora apenas aparece atribuida en el sitio</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">144/148 páginas de contenido (todas menos las 4 que mencionan el nombre completo). La bio /quien-hay-detras/ tampoco nombra a la autora.</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>Verificado: &quot;Endeis Prieto&quot; (nombre completo) aparece 8 veces en 4 archivos: /agencia-viajes-lujo-barcelona/ x2, /aviso-legal/ x3, /luna-de-miel-barcelona/ x2, /politica-de-privacidad/ x1. Los 58 pro-tips y los 72 destinos están en primera persona pero no firman ni vinculan a la autora. 0/148 páginas tienen JSON-LD (no solo de autoría: ninguna página de contenido emite datos estructurados según aggregate.json). La página de bio /quien-hay-detras/ existe (about, 486 palabras, jsonld count 0) pero NI SIQUIERA contiene el nombre &quot;Endeis&quot; en su HTML, y ninguna página enlaza a ella como autor.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Google evalúa los viajes de lujo como temática YMYL-adyacente (decisiones de alto valor económico) y prioriza E-E-A-T. Un contenido claramente experto y en primera persona que no identifica al autor desperdicia la mayor ventaja del negocio (agencia boutique con diseñadora única), reduce la confianza percibida y elimina el potencial de rich results de autor.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">1) Añadir un bloque de autor al pie de cada destino, pro-tip y artículo de blog: foto de Endeis Prieto + nombre enlazado a /quien-hay-detras/ + 1 frase de credenciales (ej. &quot;Escrito por Endeis Prieto, fundadora y diseñadora de viajes de Horizonte Exclusivo&quot;). 2) Reescribir /quien-hay-detras/ para que incluya explícitamente su nombre y credenciales (actualmente la bio no la nombra). 3) Cuando se cablee el JSON-LD, incluir &quot;author&quot;:{&quot;@type&quot;:&quot;Person&quot;,&quot;name&quot;:&quot;Endeis Prieto&quot;,&quot;url&quot;:&quot;https://www.horizonteexclusivo.es/quien-hay-detras/&quot;} en Article/BlogPosting.</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> Confirmado: 8 menciones del nombre completo en 4 archivos, exacto. Matiz: hay un 5º archivo (/viajes-a-medida-barcelona/) con un &quot;Endeis&quot; suelto, pero es una cita de testimonio (&quot;Endeis se preocupó por cada detalle&quot;), no atribución de autoría, por lo que no contradice el hallazgo. Dato que REFUERZA el hallazgo: la propia página de bio /quien-hay-detras/ no contiene el nombre de la autora en su HTML.</div>
+  </div><div class="finding warning">
+    <div class="f-head">
+      <span class="sev" style="--c:#c9a96e">! Advertencia</span>
+      <h4>La keyword principal exacta &quot;viajes de lujo a medida&quot; se usa muy poco en títulos y H1</h4>
+      <span class="ver adj" title="Evidencia ajustada/corregida en la verificación">↺ ajustado</span>
+    </div>
+    <div class="f-affected">home (/) y landing principal; patrón por destino ya correcto en 48/72 (60/72 contienen &quot;a medida&quot;)</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>Verificado en signals.json: la frase exacta &quot;viaje(s) de lujo a medida&quot; aparece en title: 1, H1: 0, meta description: 1 (sobre 148 páginas). La home titula &quot;Agencia de Viajes de Lujo en Molins de Rei, Barcelona | Horizonte Exclusivo&quot; y su H1 (confirmado también en el sitio en vivo) es &quot;Más que viajar, VIVIR el mundo&quot; (branding, sin keyword). El patrón por destino sí incluye &quot;a medida&quot;: 48/72 títulos siguen el patrón exacto &quot;Viaje de Lujo a [destino] a Medida&quot; y 60/72 contienen &quot;a medida&quot;. En el cuerpo de la home la frase exacta aparece solo 2 veces (no 13).</p></div>
+      <div><span class="lbl">Por qué importa</span><p>La query comercial cabecera (&quot;viajes de lujo a medida&quot;) es la de mayor intención transaccional. No tenerla en el H1 ni en el title de la home/landing principal debilita la relevancia para esa consulta y reduce probabilidad de posicionar y de buen CTR en SERP para el término más valioso.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Añadir un H1 visible que incluya la keyword en la home (o un H2 destacado) y ajustar el title a algo como &quot;Viajes de Lujo a Medida desde Barcelona | Horizonte Exclusivo&quot;. Reforzar la densidad natural en el cuerpo de la home (actualmente solo 2 menciones exactas), sin stuffing. El patrón por destino ya está bien resuelto en 48/72.</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> title=1, H1=0, desc=1 confirmados exactos. CORRECCIÓN: el hallazgo afirmaba &quot;la home la incluye 13 veces en el cuerpo&quot;; el conteo real de la frase exacta en el HTML de la home es 2 (9 si se cuenta el parcial &quot;viajes de lujo&quot; o &quot;a medida&quot;). El &quot;13&quot; es inexacto y exageraba la densidad. El patrón por destino es 48/72 exacto, no 50/72 (60/72 si se cuenta solo &quot;a medida&quot;); aproximación aceptable pero ligeramente sobreestimada. El núcleo del hallazgo (keyword ausente de title/H1 de la home) se mantiene.</div>
+  </div><div class="finding warning">
+    <div class="f-head">
+      <span class="sev" style="--c:#c9a96e">! Advertencia</span>
+      <h4>Ratio texto/HTML bajo por CSS/SVG inline (no por contenido pobre)</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">148/148 páginas (CSS inline + SVG WhatsApp); destinos las de ratio más bajo (~0.072-0.074)</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>Verificado en signals.json: ratio (palabras*6/bytes HTML) medio 0.147; páginas de destino más bajas: /costa-oeste-usa/ 0.072 (644 palabras en 53.377 bytes), /costa-rica/ 0.073 (493 palabras en 40.670 bytes), /alemania/ 0.073, /croacia/ 0.074. Confirmado: las 148 páginas tienen un bloque &lt;style&gt; inline y referencias/SVG de WhatsApp inline; existe además un styles.css externo enlazado, por lo que el &lt;style&gt; inline es CSS duplicado/adicional. Home: 106.865 bytes. No es falta de texto: el conteo de palabras es saludable.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Impacto SEO bajo (Google renderiza y separa contenido de estilo), pero el HTML inflado encarece descarga/parseo y, junto al peso de la home (106.865 bytes), penaliza ligeramente la velocidad percibida. No es un problema de calidad de contenido en sí.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Mover el &lt;style&gt; inline repetido al styles.css ya existente (o a bloques por plantilla) y referenciar el SVG de WhatsApp como sprite/archivo externo cacheable. Reduce bytes por página y sube el ratio sin tocar el contenido.</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> Todos los números confirmados exactos (ratio medio 0.147, costa-oeste-usa 0.072, costa-rica/alemania 0.073, croacia 0.074, home 106.865 bytes, 148/148 con &lt;style&gt; inline y WhatsApp). Matiz menor: el sitio YA enlaza un styles.css externo, así que el &lt;style&gt; inline es CSS adicional/duplicado; el fix de moverlo sigue siendo válido.</div>
+  </div><div class="finding pass">
+    <div class="f-head">
+      <span class="sev" style="--c:#2e9e6b">✓ Aprobado</span>
+      <h4>Profundidad de contenido suficiente y única en todo el sitio</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">148/148 páginas (solo /contacto/ con 268 palabras es realmente breve, por diseño; las 5 páginas de región rondan 400-655)</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>Verificado en signals.json: media 806 palabras/página; por tipo: pro-tips 1088 (min 848), landings 1015, hubs 1327 (el hub /destinos/ 2028, pro-tips hub 1352), destinos 573 de media (min 399). Solo 2 páginas &lt;400 palabras: /contacto/ 268 (esperable) y /chicago-nueva-orleans/ 399. 0 títulos duplicados y 0 meta descriptions duplicadas en las 148 (confirmado).</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Contenido extenso, original y sin canibalización ni thin content da a Google material sólido para indexar y posicionar cada página por su intención, base imprescindible en una temática competitiva como viajes de lujo.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Mantener el estándar editorial. Para mejorar, ampliar los destinos más cortos (los de ~399-450 palabras) a 600+ con un párrafo de &quot;mejor época para viajar&quot; o FAQ breve, reforzando contenido sin diluir calidad.</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> Todas las cifras confirmadas exactas. Matiz: además de /contacto/, /chicago-nueva-orleans/ está justo en 399 palabras y las 5 páginas de región promedian 523 (min 409); ninguna es thin content. El hallazgo es correcto.</div>
+  </div><div class="finding pass">
+    <div class="f-head">
+      <span class="sev" style="--c:#2e9e6b">✓ Aprobado</span>
+      <h4>Enlazado interno contextual excelente y bidireccional</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">116 páginas en 58 pares destino&lt;-&gt;pro-tip (100%) + 3 hubs</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>Verificado en los archivos HTML: 58/58 páginas de destino con pro-tip enlazan a su pro-tip correspondiente y 58/58 pro-tips enlazan de vuelta a su destino (100% bidireccional, 58 pares = 116 páginas). Los hubs concentran autoridad: /destinos/ 84 enlaces internos, /pro-tips/ 83, /blog/ 38, home 57. Landings: /agencia-viajes-lujo-barcelona/ (Barcelona) 39, /viajes-a-medida-barcelona/ 34. 0 páginas con anclas genéricas tipo &quot;click aquí&quot; (confirmado en signals.json: links.generic vacío en las 148).</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Un grafo interno denso y temático distribuye PageRank, ayuda a Google a entender la relación destino-consejos-región y mejora la navegación, reforzando el posicionamiento de todo el clúster.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Mantenerlo. Como mejora incremental, añadir enlaces cruzados entre destinos relacionados dentro del cuerpo (ej. en /maldivas/ enlazar a /seychelles/ y /mauricio/ como alternativas), no solo destino&lt;-&gt;pro-tip, para densificar el clúster de &quot;paraísos&quot;.</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> Confirmado al 100%: 58 pares, 58/58 en ambos sentidos, conteos de enlaces de hubs y landings exactos (destinos 84, pro-tips 83, blog 38, home 57, Barcelona 39, viajes-a-medida-barcelona 34), 0 anclas genéricas. Nota: de los 72 destinos, solo 58 tienen pro-tip emparejado; el hallazgo se refiere correctamente a esos 58 pares.</div>
+  </div><div class="finding pass">
+    <div class="f-head">
+      <span class="sev" style="--c:#2e9e6b">✓ Aprobado</span>
+      <h4>Existe un blog editorial real con 13 artículos de guía, no relleno</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">13 artículos de guía + hub /blog/</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>Verificado: el hub /blog/ (602 palabras, 38 enlaces internos) enlaza a 13 artículos editoriales genuinos de intención informacional (al filtrar links del hub aparecen 14 candidatos, uno de ellos /molins-de-rei/ que es landing local, dejando 13 guías reales). Word counts confirmados: /como-planifico-un-gran-viaje/ 628, /cuanto-cuesta-viaje-a-medida/ 590, /errores-comunes-organizar-viaje/ 726, /checklist-pre-viaje/ 647, /itinerario-ritmo-realista/ 678, /jet-lag-cambios-horarios/ 581, /viaje-a-medida-que-es/ 608, /luna-de-miel-a-medida/ 760, entre otros, todos en primera persona.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Cubre el embudo informacional (TOFU) que atrae tráfico de descubrimiento y construye autoridad temática, complementando las landings transaccionales. Base de contenidos por encima de la media del sector.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Mantener publicando. Añadir fecha de publicación/actualización visible y autor en cada artículo, y un enlace contextual desde cada guía a la landing transaccional relevante (ej. desde /cuanto-cuesta-viaje-a-medida/ hacia /agencia-viajes-lujo-barcelona/) para canalizar la intención hacia conversión.</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> Word counts confirmados exactos uno a uno. Matiz: en signals.json estos artículos no están tipados como &quot;blog&quot; sino como destino/about/landing (no afecta a la calidad). El conteo de 13 guías editoriales es correcto (el hub lista 14 enlaces de artículo, descontando /molins-de-rei/ que es landing local).</div>
+  </div></div>
+  </section><section class="cat" id="enlaces">
+    <div class="cat-head">
+      <div class="cat-score" style="--c:#2e9e6b"><span>88</span><small>/100</small></div>
+      <div class="cat-meta">
+        <h3>Enlaces <em>· peso 10%</em></h3>
+        <div class="track big"><span style="width:88%;background:#2e9e6b"></span></div>
+        <div class="cat-counts">
+          <span class="pill crit">0 críticos</span>
+          <span class="pill warn">2 advertencias</span>
+          <span class="pill pass">4 aprobados</span>
+        </div>
+      </div>
+    </div>
+    <p class="cat-summary">Verificado contra signals.json, aggregate.json, los HTML reales y el sitio en vivo. La arquitectura de enlaces es solida y la mayoria de cifras se confirman al 100%: 4.249 enlaces internos en 148 paginas (min 24 / mediana 27 / max 84, 0 paginas con &lt;10), todos en formato absoluto /slug/ (sin un solo enlace relativo), 0 anclas genericas, 0 enlaces internos rotos (29 URLs muestreadas en vivo, todas 200) y enlaces externos con rel=&quot;noopener&quot;. Penalizan dos detalles menores reales: 5 href=&quot;#&quot; en la home (pestanas JS de filtro, lineas 1399-1403) y la redireccion no-www-&gt;www en 307 temporal (confirmada en vivo en / y /japon/). Unica correccion factual: el numero de enlaces externos no es 296 sino 300 (144 paginas x2 + 4 paginas x3); no altera el diagnostico. Score 88 mantenido.</p>
+    <div class="findings"><div class="finding warning">
+    <div class="f-head">
+      <span class="sev" style="--c:#c9a96e">! Advertencia</span>
+      <h4>5 enlaces href=&quot;#&quot; en la home (pestanas JS sin destino real)</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">1 pagina (home), 5 enlaces href=&quot;#&quot;</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>Confirmado por grep en luxury-travel/index.html lineas 1399-1403: &lt;a href=&quot;#&quot; class=&quot;active&quot; data-filter=&quot;europa&quot;&gt;Europa&lt;/a&gt; y 4 mas (asia, africa, america, paraisos), dentro de &lt;div class=&quot;dest-tabs&quot; id=&quot;destTabs&quot;&gt;. El JS (addEventListener click con e.preventDefault, ~lineas 2393-2400) filtra tarjetas por data-filter. signals.json confirma hashOnly=5 SOLO en la home; el resto de paginas tienen 0.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Impacto bajo. No son enlaces de navegacion reales (el contenido ya esta en el DOM), pero href=&quot;#&quot; sin role/handler accesible degrada la semantica: Google y lectores de pantalla los interpretan como enlaces que no llevan a ninguna parte, y href=&quot;#&quot; puede provocar un salto al inicio si el JS fallara.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Convertir las pestanas de filtro en botones reales (son controles de UI, no navegacion): sustituir &lt;a href=&quot;#&quot; data-filter=&quot;europa&quot;&gt; por &lt;button type=&quot;button&quot; class=&quot;dest-tab&quot; data-filter=&quot;europa&quot;&gt;Europa&lt;/button&gt; y ajustar el selector del JS (document.querySelectorAll('#destTabs button')). El id #destTabs existe y es el contenedor real, asi que el selector propuesto es valido. Asi se elimina el href=&quot;#&quot; y mejora la accesibilidad sin tocar la funcionalidad.</div></div>
+    </div>
+    
+  </div><div class="finding warning">
+    <div class="f-head">
+      <span class="sev" style="--c:#c9a96e">! Advertencia</span>
+      <h4>Redireccion no-www -&gt; www en 307 (temporal) diluye senales de enlaces entrantes</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">Dominio completo (host no-www, 148 rutas)</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>Curl en vivo reverificado: https://horizonteexclusivo.es/ -&gt; 307 Temporary Redirect -&gt; https://www.horizonteexclusivo.es/ ; y https://horizonteexclusivo.es/japon/ -&gt; 307 -&gt; https://www.horizonteexclusivo.es/japon/. La version www devuelve 200. Deberia ser 301/308 permanente. El canonical y todos los enlaces internos ya apuntan a www, pero la redireccion del host alternativo es temporal.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Cualquier backlink externo o mencion que apunte a la version no-www (frecuente cuando terceros enlazan sin el www) se resuelve con un 307 temporal: Google NO consolida de forma permanente esa autoridad hacia la version www canonica, repartiendo senales de enlaces entre dos hosts. Afecta directamente a la categoria de Enlaces (consolidacion de equity de backlinks).</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">En Vercel, cambiar la redireccion del dominio no-www a permanente. En vercel.json: {&quot;redirects&quot;:[{&quot;source&quot;:&quot;/(.*)&quot;,&quot;has&quot;:[{&quot;type&quot;:&quot;host&quot;,&quot;value&quot;:&quot;horizonteexclusivo.es&quot;}],&quot;destination&quot;:&quot;https://www.horizonteexclusivo.es/$1&quot;,&quot;permanent&quot;:true}]} (permanent:true emite 308). O en el panel de Vercel &gt; Domains, marcar la redireccion de horizonteexclusivo.es a www como Permanent.</div></div>
+    </div>
+    
+  </div><div class="finding pass">
+    <div class="f-head">
+      <span class="sev" style="--c:#2e9e6b">✓ Aprobado</span>
+      <h4>Cero enlaces internos rotos (verificado en vivo)</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">Muestra en vivo de las URLs clave (regiones, destinos, hubs/landings, legales, incluidas las 4 sin H1 y las 3 legales)</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>Curl en vivo a una muestra de URLs distintas (home, 5 regiones, destinos, hubs/landings, legales): TODAS devuelven HTTP 200. Muestra reverificada (29 URLs): / , /destinos/, /europa/, /asia/, /africa/, /america/, /paraisos/, /japon/, /italia/, /disneyland-paris/, /dubai-abu-dhabi-maldivas/, /pro-tips/, /pro-tips-japon/, /blog/, /quien-hay-detras/, /contacto/, /molins-de-rei/, /agencia-viajes-lujo-barcelona/, /luna-de-miel-a-medida/, /aviso-legal/, /politica-de-privacidad/, /politica-de-cookies/, /escocia/, /portugal/, /belgica/, /croacia/, /tailandia/, /bali/, /sri-lanka/. 0 respuestas no-200.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>No se desperdicia crawl budget ni se interrumpe el flujo de PageRank interno; Google indexa el sitio sin callejones sin salida. Es la senal mas importante de salud de enlaces y esta impecable.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Ninguna accion necesaria. Mantener este nivel: ante cualquier renombrado de slug, anadir redireccion 301 antes de publicar.</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> Reverificado en vivo: las 29 URLs muestreadas devuelven 200 (0 no-200). El hallazgo original citaba 53 URLs; yo confirme 29 de ellas por limite de tiempo, sin ningun fallo. La afirmacion de '0 rotos' se sostiene.</div>
+  </div><div class="finding pass">
+    <div class="f-head">
+      <span class="sev" style="--c:#2e9e6b">✓ Aprobado</span>
+      <h4>Enlaces internos con rutas absolutas y red de enlazado densa</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">148/148 paginas</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>signals.json: 4.249 enlaces internos en 148 paginas. Calculo verificado: min 24/pagina, mediana 27, maximo 84; 0 paginas con &lt;10 enlaces internos (de hecho 0 paginas con &lt;24). Verificado por grep que NO existe ningun enlace interno relativo (sin href=&quot;../&quot;, href=&quot;./&quot; ni rutas sin barra inicial en ningun index.html): todos usan formato absoluto /slug/ (ej. en destinos/index.html: href=&quot;/escocia/&quot;, href=&quot;/italia/&quot;, href=&quot;/africa/&quot;), coherente con CLAUDE.md. Footer con bloque Horizonte (Destinos/Europa/Paraisos...) presente.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>Las rutas absolutas evitan errores de resolucion relativa y enlaces rotos al mover ficheros. La densidad uniforme (mediana 27) reparte autoridad y facilita el descubrimiento: ninguna pagina queda mal enlazada, lo que refuerza el dato de 0 huerfanas.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Ninguna accion necesaria. Como mejora opcional, anadir enlaces contextuales dentro del cuerpo (no solo nav/footer) entre destino y su pagina pro-tips correspondiente para reforzar clusters tematicos.</div></div>
+    </div>
+    
+  </div><div class="finding pass">
+    <div class="f-head">
+      <span class="sev" style="--c:#2e9e6b">✓ Aprobado</span>
+      <h4>Textos ancla descriptivos (0 anclas genericas)</h4>
+      <span class="ver ok" title="Evidencia confirmada contra la fuente real">✓ verificado</span>
+    </div>
+    <div class="f-affected">148/148 paginas</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>signals.json: 0 paginas con anclas genericas (campo links.generic vacio en las 148 paginas; verificado por agregacion). Las tarjetas de destino usan ancla envolvente con texto util ('Ver itinerario' aparece 24 veces en la home, mas nombre del pais en h3) y los CTA son descriptivos: 'Conocer mi historia', 'Hablemos de tu viaje', 'Dejanos una resena en Google'. Footer legal con anclas claras.</p></div>
+      <div><span class="lbl">Por qué importa</span><p>El texto ancla descriptivo da contexto semantico a Google sobre la pagina destino y mejora accesibilidad y CTR de los enlaces internos.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Ninguna accion necesaria. Refinamiento opcional: el ancla envuelve toda la tarjeta y el texto visible es 'Ver itinerario' generico; podrias enriquecer con aria-label tipo aria-label=&quot;Ver itinerario de viaje a Japon&quot; (verificado: actualmente 0 aria-label de ese tipo en la home) para reforzar la senal por destino.</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> Confirmado que no existe ningun aria-label='Ver itinerario...' en la home (0 coincidencias), por lo que la mejora opcional sugerida es valida y aun no esta implementada.</div>
+  </div><div class="finding pass">
+    <div class="f-head">
+      <span class="sev" style="--c:#2e9e6b">✓ Aprobado</span>
+      <h4>Enlaces externos correctamente asegurados con rel=&quot;noopener&quot;</h4>
+      <span class="ver adj" title="Evidencia ajustada/corregida en la verificación">↺ ajustado</span>
+    </div>
+    <div class="f-affected">148/148 paginas (300 enlaces externos: resena Google + WhatsApp)</div>
+    <div class="f-grid">
+      <div><span class="lbl">Evidencia</span><p>signals.json: distribucion 144 paginas con 2 enlaces externos y 4 paginas con 3 -&gt; total 300 enlaces externos. Los 2 base son resena de Google (https://g.page/r/CYdKzB_9NWUOEAE/review) y WhatsApp (https://wa.me/34633077401), ambos con target=&quot;_blank&quot; rel=&quot;noopener&quot; en index.html (lineas 2326 y 2495) y replicados en japon/index.html (g.page linea 790, WhatsApp linea 935). contacto/index.html anade un 2o CTA de resena (linea 317) tambien con rel=&quot;noopener&quot;. Verificado en vivo: g.page 302-&gt;/review/ y wa.me 302-&gt;api.whatsapp.com (redirecciones normales del proveedor, NO rotos).</p></div>
+      <div><span class="lbl">Por qué importa</span><p>rel=&quot;noopener&quot; evita el ataque tabnabbing y la fuga de rendimiento al abrir en pestana nueva. Mantener un perfil de salida minimo y limpio es positivo y evita fugas de autoridad innecesarias.</p></div>
+      <div><span class="lbl">Cómo corregirlo</span><div class="fix">Ninguna accion necesaria. Opcional: anadir rel=&quot;noopener nofollow&quot; al enlace de WhatsApp/Google si se desea no transmitir senal a perfiles de terceros (no obligatorio: son perfiles propios de la marca).</div></div>
+    </div>
+    <div class="vnote"><strong>Nota de verificación:</strong> CORRECCION NUMERICA: el hallazgo original decia 296 enlaces externos; el conteo real de signals.json es 300 (144x2 + 4x3 = 288+12). El resto (distribucion 144/4, rel=noopener, lineas y redirecciones en vivo) es exacto. La WhatsApp en japon esta en la linea 935, no 790 (790 es la de g.page). El diagnostico no cambia.</div>
+  </div></div>
+  </section>
+</div></section>
+
+<section id="detalle"><div class="wrap">
+  <h2 class="sec-title"><span class="bar"></span>Detalle técnico completo</h2>
+  <p class="sec-sub">Todos los 56 hallazgos en una tabla. Despliega para ver el listado íntegro.</p>
+  <details class="alltable"><summary>Ver los 56 hallazgos (12 críticos · 19 advertencias · 25 aprobados)</summary>
+  <table><thead><tr><th>Categoría</th><th>Sev.</th><th>Hallazgo</th><th>Alcance</th><th>Verif.</th></tr></thead><tbody>
+  <tr><td>Schema / Datos Estructurados</td><td><span class="dot" style="background:#d9534f"></span>Crítico</td><td>schema-auto.js es codigo muerto: no esta enlazado en ninguna pagina (0/148)</td><td>0/148 paginas enlazan schema-auto.js</td><td>✓</td></tr><tr><td>Schema / Datos Estructurados</td><td><span class="dot" style="background:#d9534f"></span>Crítico</td><td>147 de 148 paginas sin ningun dato estructurado</td><td>147/148 paginas (todas menos la home)</td><td>✓</td></tr><tr><td>Schema / Datos Estructurados</td><td><span class="dot" style="background:#d9534f"></span>Crítico</td><td>BreadcrumbList ausente en las 148 paginas pese a estar previsto</td><td>148/148 paginas sin BreadcrumbList</td><td>✓</td></tr><tr><td>Schema / Datos Estructurados</td><td><span class="dot" style="background:#d9534f"></span>Crítico</td><td>FAQPage perdido en 58 paginas pro-tips con FAQ real estructurada</td><td>0 de 58 paginas pro-tips con FAQPage</td><td>✓</td></tr><tr><td>Schema / Datos Estructurados</td><td><span class="dot" style="background:#d9534f"></span>Crítico</td><td>TouristTrip perdido en las paginas de destino (57 cubiertas por el generador; 72 destino en el sitio)</td><td>0 de 57 destinos del generador con TouristTrip (y 72 paginas tipo destino en total sin schema)</td><td>↺</td></tr><tr><td>Schema / Datos Estructurados</td><td><span class="dot" style="background:#c9a96e"></span>Advertencia</td><td>Article perdido en 3 paginas educativas y blog index sin Blog</td><td>3 educativas + /blog/ sin Article/Blog</td><td>✓</td></tr><tr><td>Schema / Datos Estructurados</td><td><span class="dot" style="background:#c9a96e"></span>Advertencia</td><td>El JSON-LD estatico de la home esta empobrecido frente a la version del script</td><td>1/148 (home)</td><td>↺</td></tr><tr><td>Schema / Datos Estructurados</td><td><span class="dot" style="background:#2e9e6b"></span>Aprobado</td><td>La home tiene JSON-LD LocalBusiness valido y bien formado</td><td>1/148 (home, correcta)</td><td>✓</td></tr><tr><td>Schema / Datos Estructurados</td><td><span class="dot" style="background:#2e9e6b"></span>Aprobado</td><td>El generador schema-auto.js es completo y de alta calidad</td><td>1 archivo, cubre ~13-14 tipos de pagina</td><td>↺</td></tr><tr><td>Schema / Datos Estructurados</td><td><span class="dot" style="background:#2e9e6b"></span>Aprobado</td><td>Datos NAP y de entidad consistentes y correctos para schema local</td><td>Datos de entidad correctos y unificados</td><td>↺</td></tr><tr><td>Imágenes</td><td><span class="dot" style="background:#d9534f"></span>Crítico</td><td>932 imágenes son hotlinks de Unsplash (no son activos propios indexables)</td><td>932/1282 imágenes en 133/148 páginas</td><td>↺</td></tr><tr><td>Imágenes</td><td><span class="dot" style="background:#d9534f"></span>Crítico</td><td>Hero LCP de 125 destinos servido como background-image Unsplash a 1920px</td><td>125/148 páginas (heroes de destino/región)</td><td>↺</td></tr><tr><td>Imágenes</td><td><span class="dot" style="background:#d9534f"></span>Crítico</td><td>0 de 1282 imágenes declaran width/height (riesgo de CLS sitewide)</td><td>1282/1282 imágenes (las 148 páginas)</td><td>✓</td></tr><tr><td>Imágenes</td><td><span class="dot" style="background:#c9a96e"></span>Advertencia</td><td>Cero formatos modernos en uso (WebP/AVIF); logo local de 2,25 MB en todas las páginas</td><td>logo en 148/148 páginas; 0 WebP/AVIF referenciados en todo el sitio</td><td>↺</td></tr><tr><td>Imágenes</td><td><span class="dot" style="background:#c9a96e"></span>Advertencia</td><td>297 imágenes cargan de forma eager (sin loading=lazy)</td><td>297/1282 imágenes</td><td>✓</td></tr><tr><td>Imágenes</td><td><span class="dot" style="background:#2e9e6b"></span>Aprobado</td><td>Cobertura de texto alternativo perfecta: alt en el 100% de las imágenes</td><td>1282/1282 imágenes</td><td>✓</td></tr><tr><td>Imágenes</td><td><span class="dot" style="background:#2e9e6b"></span>Aprobado</td><td>Imágenes de contenido servidas con srcset y sizes responsive</td><td>Imágenes de contenido en la mayoría de páginas de destino</td><td>✓</td></tr><tr><td>Imágenes</td><td><span class="dot" style="background:#2e9e6b"></span>Aprobado</td><td>Los activos locales clave resuelven 200 (OG image y favicon)</td><td>Activos locales en producción</td><td>↺</td></tr><tr><td>Open Graph y Social</td><td><span class="dot" style="background:#d9534f"></span>Crítico</td><td>124/148 og:image son hotlinks a Unsplash, no imágenes propias</td><td>124/148 páginas (todas con og:image de Unsplash; ej. /escocia/, /japon/, /maldivas/, /pro-tips-*/)</td><td>✓</td></tr><tr><td>Open Graph y Social</td><td><span class="dot" style="background:#c9a96e"></span>Advertencia</td><td>La HOME es la única página sin og:site_name ni og:locale</td><td>1/148 páginas (HOME, /)</td><td>✓</td></tr><tr><td>Open Graph y Social</td><td><span class="dot" style="background:#c9a96e"></span>Advertencia</td><td>No se declara og:image:width ni og:image:height en ninguna página</td><td>148/148 páginas</td><td>✓</td></tr><tr><td>Open Graph y Social</td><td><span class="dot" style="background:#c9a96e"></span>Advertencia</td><td>og:image propia de 3,46 MB sin optimizar (TAJMAJAL.jpg)</td><td>og:image propias sin optimizar; confirmado /images/TAJMAJAL.jpg (3.460.678 bytes = 3,46 MB) en /india/ y /pro-tips-india/</td><td>✓</td></tr><tr><td>Open Graph y Social</td><td><span class="dot" style="background:#c9a96e"></span>Advertencia</td><td>Referencia rota a og-image.jpg dentro de schema-auto.js (código muerto a limpiar)</td><td>0/148 en producción (solo dentro de schema-auto.js, no cargado)</td><td>✓</td></tr><tr><td>Open Graph y Social</td><td><span class="dot" style="background:#2e9e6b"></span>Aprobado</td><td>Cobertura completa de etiquetas OG y Twitter en las 148 páginas</td><td>148/148 páginas</td><td>✓</td></tr><tr><td>Open Graph y Social</td><td><span class="dot" style="background:#2e9e6b"></span>Aprobado</td><td>og:image y twitter:image coinciden en todas las páginas (consistencia total)</td><td>148/148 páginas</td><td>✓</td></tr><tr><td>Open Graph y Social</td><td><span class="dot" style="background:#2e9e6b"></span>Aprobado</td><td>og:title y og:description bien formados y alineados con el SEO de cada página</td><td>148/148 páginas (og:title/description poblados)</td><td>↺</td></tr><tr><td>Meta Tags</td><td><span class="dot" style="background:#d9534f"></span>Crítico</td><td>139/148 títulos superan 60 caracteres: riesgo de truncado en resultados de Google</td><td>139/148 páginas (&gt;60 chars); 85 de ellas &gt;70</td><td>✓</td></tr><tr><td>Meta Tags</td><td><span class="dot" style="background:#d9534f"></span>Crítico</td><td>106/148 meta descriptions superan 160 caracteres; la HOME llega a 354 (se trunca a la mitad)</td><td>106/148 páginas (&gt;160 chars); HOME el caso peor con 354</td><td>✓</td></tr><tr><td>Meta Tags</td><td><span class="dot" style="background:#c9a96e"></span>Advertencia</td><td>El title de la HOME no contiene la keyword principal exacta 'viajes de lujo a medida'</td><td>1/148 (home, página crítica)</td><td>✓</td></tr><tr><td>Meta Tags</td><td><span class="dot" style="background:#c9a96e"></span>Advertencia</td><td>3 páginas legales con meta description por debajo de 120 caracteres</td><td>/aviso-legal/, /politica-de-cookies/, /politica-de-privacidad/ (3/148)</td><td>✓</td></tr><tr><td>Meta Tags</td><td><span class="dot" style="background:#2e9e6b"></span>Aprobado</td><td>Cobertura 100% de meta tags esenciales en las 148 páginas, sin noindex accidental</td><td>148/148 páginas</td><td>↺</td></tr><tr><td>Meta Tags</td><td><span class="dot" style="background:#2e9e6b"></span>Aprobado</td><td>Canonical absoluto y autorreferente correcto en el 100% de las páginas</td><td>148/148 páginas</td><td>✓</td></tr><tr><td>Meta Tags</td><td><span class="dot" style="background:#2e9e6b"></span>Aprobado</td><td>Keyword objetivo bien colocada en title/description de las landings clave y los destinos, sin duplicados</td><td>Landings barcelona + luna de miel + 50 destinos</td><td>✓</td></tr><tr><td>Headings</td><td><span class="dot" style="background:#d9534f"></span>Crítico</td><td>4 páginas sin ningún H1 (el H1 lo absorbe un H2 con clase .section-title)</td><td>4/148 páginas: /contacto/, /disneyland-paris/, /molins-de-rei/, /quien-hay-detras/</td><td>✓</td></tr><tr><td>Headings</td><td><span class="dot" style="background:#c9a96e"></span>Advertencia</td><td>57 de 70 fichas de destino tienen un H1 evocador SIN la keyword principal de SEO</td><td>57/70 fichas de tipo 'destino'</td><td>✓</td></tr><tr><td>Headings</td><td><span class="dot" style="background:#2e9e6b"></span>Aprobado</td><td>Un único H1 por página en el 97,3% del sitio y cero multi-H1</td><td>144/148 páginas correctas (0 con multi-H1)</td><td>✓</td></tr><tr><td>Headings</td><td><span class="dot" style="background:#2e9e6b"></span>Aprobado</td><td>Jerarquía de encabezados sin saltos de nivel (ninguna H3 huérfana sin H2)</td><td>148/148 páginas sin salto de nivel (salvo las 4 sin H1, que arrancan en H2)</td><td>✓</td></tr><tr><td>Headings</td><td><span class="dot" style="background:#2e9e6b"></span>Aprobado</td><td>Patrones de H1 coherentes y descriptivos en Travel Hacks, landings y hubs</td><td>58 protips + 3 landings + 3 hubs + 5 regiones con H1 correcto</td><td>✓</td></tr><tr><td>Técnico</td><td><span class="dot" style="background:#c9a96e"></span>Advertencia</td><td>Redirección no-www -&gt; www es 307 (temporal) en vez de 301/308 permanente</td><td>Host raíz https://horizonteexclusivo.es (todas sus rutas)</td><td>✓</td></tr><tr><td>Técnico</td><td><span class="dot" style="background:#c9a96e"></span>Advertencia</td><td>sitemap.xml sin extensión de imágenes (image:image) pese a 1.282 imágenes</td><td>sitemap.xml (148 URLs, 1.282 imágenes sin declarar)</td><td>✓</td></tr><tr><td>Técnico</td><td><span class="dot" style="background:#c9a96e"></span>Advertencia</td><td>Home pesada (106KB) con CSS y fuentes render-blocking y preconnect incompleto</td><td>Home (/) y, por las fuentes/CSS comunes, todas las páginas</td><td>✓</td></tr><tr><td>Técnico</td><td><span class="dot" style="background:#2e9e6b"></span>Aprobado</td><td>HTTPS con HSTS de larga duración y http-&gt;https permanente</td><td>Todo el dominio</td><td>✓</td></tr><tr><td>Técnico</td><td><span class="dot" style="background:#2e9e6b"></span>Aprobado</td><td>Rendimiento de servidor excelente: TTFB bajo y cache CDN activo</td><td>Todo el dominio</td><td>✓</td></tr><tr><td>Técnico</td><td><span class="dot" style="background:#2e9e6b"></span>Aprobado</td><td>robots.txt y sitemap.xml válidos, accesibles y bien formados</td><td>robots.txt y sitemap.xml (148 URLs)</td><td>✓</td></tr><tr><td>Contenido</td><td><span class="dot" style="background:#c9a96e"></span>Advertencia</td><td>Señales EEAT débiles: la autora/fundadora apenas aparece atribuida en el sitio</td><td>144/148 páginas de contenido (todas menos las 4 que mencionan el nombre completo). La bio /quien-hay-detras/ tampoco nombra a la autora.</td><td>✓</td></tr><tr><td>Contenido</td><td><span class="dot" style="background:#c9a96e"></span>Advertencia</td><td>La keyword principal exacta &quot;viajes de lujo a medida&quot; se usa muy poco en títulos y H1</td><td>home (/) y landing principal; patrón por destino ya correcto en 48/72 (60/72 contienen &quot;a medida&quot;)</td><td>↺</td></tr><tr><td>Contenido</td><td><span class="dot" style="background:#c9a96e"></span>Advertencia</td><td>Ratio texto/HTML bajo por CSS/SVG inline (no por contenido pobre)</td><td>148/148 páginas (CSS inline + SVG WhatsApp); destinos las de ratio más bajo (~0.072-0.074)</td><td>✓</td></tr><tr><td>Contenido</td><td><span class="dot" style="background:#2e9e6b"></span>Aprobado</td><td>Profundidad de contenido suficiente y única en todo el sitio</td><td>148/148 páginas (solo /contacto/ con 268 palabras es realmente breve, por diseño; las 5 páginas de región rondan 400-655)</td><td>✓</td></tr><tr><td>Contenido</td><td><span class="dot" style="background:#2e9e6b"></span>Aprobado</td><td>Enlazado interno contextual excelente y bidireccional</td><td>116 páginas en 58 pares destino&lt;-&gt;pro-tip (100%) + 3 hubs</td><td>✓</td></tr><tr><td>Contenido</td><td><span class="dot" style="background:#2e9e6b"></span>Aprobado</td><td>Existe un blog editorial real con 13 artículos de guía, no relleno</td><td>13 artículos de guía + hub /blog/</td><td>✓</td></tr><tr><td>Enlaces</td><td><span class="dot" style="background:#c9a96e"></span>Advertencia</td><td>5 enlaces href=&quot;#&quot; en la home (pestanas JS sin destino real)</td><td>1 pagina (home), 5 enlaces href=&quot;#&quot;</td><td>✓</td></tr><tr><td>Enlaces</td><td><span class="dot" style="background:#c9a96e"></span>Advertencia</td><td>Redireccion no-www -&gt; www en 307 (temporal) diluye senales de enlaces entrantes</td><td>Dominio completo (host no-www, 148 rutas)</td><td>✓</td></tr><tr><td>Enlaces</td><td><span class="dot" style="background:#2e9e6b"></span>Aprobado</td><td>Cero enlaces internos rotos (verificado en vivo)</td><td>Muestra en vivo de las URLs clave (regiones, destinos, hubs/landings, legales, incluidas las 4 sin H1 y las 3 legales)</td><td>✓</td></tr><tr><td>Enlaces</td><td><span class="dot" style="background:#2e9e6b"></span>Aprobado</td><td>Enlaces internos con rutas absolutas y red de enlazado densa</td><td>148/148 paginas</td><td>✓</td></tr><tr><td>Enlaces</td><td><span class="dot" style="background:#2e9e6b"></span>Aprobado</td><td>Textos ancla descriptivos (0 anclas genericas)</td><td>148/148 paginas</td><td>✓</td></tr><tr><td>Enlaces</td><td><span class="dot" style="background:#2e9e6b"></span>Aprobado</td><td>Enlaces externos correctamente asegurados con rel=&quot;noopener&quot;</td><td>148/148 paginas (300 enlaces externos: resena Google + WhatsApp)</td><td>↺</td></tr>
+  </tbody></table>
+  </details>
+</div></section>
+
+<footer><div class="wrap">
+  Auditoría SEO generada para <strong>Horizonte Exclusivo</strong> · https://www.horizonteexclusivo.es · 4 de junio de 2026<br>
+  Análisis multiagente con verificación adversarial · Puntuación global 72/100 (Mejorable)
+</div></footer>
+</body>
+</html>

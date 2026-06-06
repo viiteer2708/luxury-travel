@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,follow">
+<title>La guía esencial para planificar un gran viaje | Horizonte Exclusivo</title>
+<meta name="description" content="Una guía práctica y honesta de Endeis Prieto (Horizonte Exclusivo) para planificar un gran viaje sin agobios: qué reservar primero, el ritmo correcto, errores que cuestan caro y un checklist definitivo pre-viaje.">
+<link rel="icon" href="/images/genfavicon-package/favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold:#c9a96e;
+    --gold-light:#e8d5a8;
+    --dark:#0a0a0a;
+    --ink:#2b2b2b;
+    --ink-soft:#555;
+    --paper:#fbf8f2;
+    --paper-card:#ffffff;
+    --line:#e7ddc8;
+    --white:#fff;
+  }
+
+  *{box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    font-weight:400;
+    font-size:17px;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  .page{
+    max-width:820px;
+    margin:0 auto;
+    padding:56px 40px 40px;
+  }
+
+  /* ---------- Cabecera ---------- */
+  .masthead{
+    text-align:center;
+    padding-bottom:42px;
+    margin-bottom:48px;
+    border-bottom:1px solid var(--line);
+  }
+  .masthead img{
+    height:64px;
+    width:auto;
+    margin:0 auto 26px;
+    display:block;
+  }
+  .eyebrow{
+    font-family:'Inter',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.32em;
+    font-size:11.5px;
+    font-weight:500;
+    color:var(--gold);
+    margin:0 0 18px;
+  }
+  h1{
+    font-family:'Playfair Display',Georgia,serif;
+    font-weight:600;
+    font-size:clamp(2rem,5.4vw,3.05rem);
+    line-height:1.12;
+    color:var(--dark);
+    margin:0 auto;
+    max-width:14ch;
+    letter-spacing:-.01em;
+  }
+  .masthead .tagline{
+    font-family:'Playfair Display',serif;
+    font-style:italic;
+    font-size:1.15rem;
+    color:var(--gold);
+    margin:22px 0 0;
+  }
+  .byline{
+    margin:14px 0 0;
+    font-size:13.5px;
+    letter-spacing:.04em;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- Secciones ---------- */
+  section{margin-bottom:54px;}
+
+  .sec-num{
+    display:inline-block;
+    font-family:'Playfair Display',serif;
+    font-style:italic;
+    font-size:1rem;
+    color:var(--gold);
+    margin-bottom:6px;
+  }
+
+  h2{
+    font-family:'Playfair Display',serif;
+    font-weight:600;
+    font-size:clamp(1.5rem,3.6vw,2rem);
+    line-height:1.2;
+    color:var(--dark);
+    margin:0 0 8px;
+    letter-spacing:-.01em;
+  }
+  h2 + .lede{
+    color:var(--ink-soft);
+    font-size:1.02rem;
+    margin:0 0 22px;
+  }
+
+  .rule{
+    border:0;
+    height:1px;
+    background:linear-gradient(to right,var(--gold),rgba(201,169,110,.15));
+    margin:0 0 26px;
+    width:120px;
+  }
+
+  h3{
+    font-family:'Playfair Display',serif;
+    font-weight:600;
+    font-size:1.18rem;
+    color:var(--dark);
+    margin:30px 0 8px;
+  }
+
+  p{margin:0 0 18px;}
+
+  strong{font-weight:600;color:var(--ink);}
+  em{font-style:italic;}
+
+  a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,169,110,.45);}
+  a:hover{border-bottom-color:var(--gold);}
+
+  /* ---------- Intro / cita ---------- */
+  .intro{
+    background:var(--paper-card);
+    border:1px solid var(--line);
+    border-left:3px solid var(--gold);
+    padding:32px 34px;
+    border-radius:4px;
+  }
+  .intro p:last-child{margin-bottom:0;}
+  .signature{
+    font-family:'Playfair Display',serif;
+    font-style:italic;
+    font-size:1.25rem;
+    color:var(--gold);
+    margin-top:22px !important;
+  }
+  .signature small{
+    display:block;
+    font-family:'Inter',sans-serif;
+    font-style:normal;
+    font-size:12.5px;
+    letter-spacing:.05em;
+    color:var(--ink-soft);
+    margin-top:2px;
+  }
+
+  /* ---------- Listas ordenadas (qué reservar) ---------- */
+  ol.steps{
+    list-style:none;
+    counter-reset:step;
+    padding:0;
+    margin:24px 0 0;
+  }
+  ol.steps > li{
+    counter-increment:step;
+    position:relative;
+    padding:0 0 24px 58px;
+    margin:0;
+    border-bottom:1px solid var(--line);
+    margin-bottom:24px;
+  }
+  ol.steps > li:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0;}
+  ol.steps > li::before{
+    content:counter(step,decimal-leading-zero);
+    position:absolute;
+    left:0;top:-2px;
+    font-family:'Playfair Display',serif;
+    font-size:1.5rem;
+    color:var(--gold);
+    line-height:1;
+  }
+  ol.steps li h3{margin:0 0 4px;}
+  ol.steps li p{margin:0;color:var(--ink-soft);font-size:.97rem;}
+
+  /* ---------- Bullets con viñeta dorada ---------- */
+  ul.dot{list-style:none;padding:0;margin:0 0 18px;}
+  ul.dot li{
+    position:relative;
+    padding-left:24px;
+    margin-bottom:12px;
+  }
+  ul.dot li::before{
+    content:"";
+    position:absolute;
+    left:2px;top:11px;
+    width:7px;height:7px;
+    background:var(--gold);
+    border-radius:50%;
+  }
+
+  /* ---------- Errores ---------- */
+  .mistake{
+    padding:22px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .mistake:last-child{border-bottom:0;}
+  .mistake h3{margin:0 0 6px;display:flex;align-items:baseline;gap:10px;}
+  .mistake h3 .tag{
+    font-family:'Inter',sans-serif;
+    font-size:10.5px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    color:var(--gold);
+    border:1px solid var(--gold);
+    border-radius:20px;
+    padding:2px 10px;
+    flex:none;
+  }
+  .mistake p{margin:0 0 6px;}
+  .mistake .fix{
+    margin:0;
+    font-size:.96rem;
+    color:var(--ink-soft);
+  }
+  .mistake .fix strong{color:var(--gold);}
+
+  /* ---------- Checklist ---------- */
+  .checklist-block{
+    background:var(--paper-card);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:26px 30px;
+    margin-bottom:20px;
+  }
+  .checklist-block h3{
+    margin:0 0 16px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:1.1rem;
+  }
+  .checklist-block h3 .when{
+    font-family:'Inter',sans-serif;
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--white);
+    background:var(--gold);
+    border-radius:3px;
+    padding:4px 11px;
+    flex:none;
+  }
+  ul.check{list-style:none;padding:0;margin:0;}
+  ul.check li{
+    position:relative;
+    padding-left:30px;
+    margin-bottom:11px;
+    font-size:.98rem;
+    line-height:1.55;
+  }
+  ul.check li::before{
+    content:"\2610"; /* ☐ */
+    position:absolute;
+    left:0;top:-1px;
+    font-size:1.2rem;
+    color:var(--gold);
+    line-height:1.4;
+  }
+
+  /* ---------- Cierre / CTA ---------- */
+  .closing{
+    text-align:center;
+    background:var(--dark);
+    color:var(--paper);
+    border-radius:6px;
+    padding:50px 40px;
+    margin-bottom:48px;
+  }
+  .closing h2{color:var(--white);}
+  .closing p{color:#cfcabf;max-width:48ch;margin-left:auto;margin-right:auto;}
+  .closing .rule{margin:18px auto 26px;background:linear-gradient(to right,rgba(201,169,110,.15),var(--gold),rgba(201,169,110,.15));}
+  .cta{
+    display:inline-block;
+    background:var(--gold);
+    color:var(--dark);
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:14px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    padding:16px 38px;
+    border-radius:3px;
+    border:0;
+    margin-top:8px;
+    transition:background .2s ease;
+  }
+  .cta:hover{background:var(--gold-light);border-bottom:0;}
+  .whatsapp-note{
+    margin-top:22px !important;
+    font-size:13.5px;
+    color:#a8a39a !important;
+  }
+  .whatsapp-note a{color:var(--gold-light);border-bottom-color:rgba(232,213,168,.4);}
+
+  /* ---------- Pie ---------- */
+  footer{
+    text-align:center;
+    border-top:1px solid var(--line);
+    padding-top:32px;
+    color:var(--ink-soft);
+    font-size:13px;
+    letter-spacing:.02em;
+  }
+  footer .brand{
+    font-family:'Playfair Display',serif;
+    font-size:1.05rem;
+    color:var(--dark);
+    margin-bottom:8px;
+    letter-spacing:.03em;
+  }
+  footer a{color:var(--ink-soft);border-bottom-color:rgba(85,85,85,.3);}
+  footer .links{margin-top:10px;}
+  footer .links a{margin:0 8px;}
+  footer .copy{margin-top:16px;color:#9a948a;font-size:11.5px;}
+
+  /* ---------- Responsive ---------- */
+  @media(max-width:560px){
+    .page{padding:36px 22px 30px;}
+    .intro{padding:26px 22px;}
+    .checklist-block{padding:22px 20px;}
+    .closing{padding:40px 24px;}
+    ol.steps > li{padding-left:48px;}
+  }
+
+  /* ---------- Impresión / Guardar como PDF ---------- */
+  @media print{
+    @page{size:A4;margin:18mm 16mm;}
+    html,body{background:#fff !important;color:#000 !important;font-size:11.5pt;line-height:1.5;}
+    .page{max-width:none;padding:0;margin:0;}
+    .no-print,.cta,.whatsapp-note{display:none !important;}
+    a{color:inherit !important;border-bottom:0 !important;}
+    .masthead{border-color:#ccc;}
+    .intro,.checklist-block{background:#fff !important;border-color:#ccc;break-inside:avoid;}
+    .closing{background:#fff !important;color:#000 !important;border:1px solid #ccc;break-inside:avoid;}
+    .closing h2,.closing p{color:#000 !important;}
+    .checklist-block h3 .when,.mistake h3 .tag{
+      color:#000 !important;background:#fff !important;border:1px solid #999 !important;
+    }
+    section{break-inside:avoid;}
+    h2,h3{break-after:avoid;}
+    .mistake,ol.steps > li,ul.check li{break-inside:avoid;}
+    .closing .whatsapp-note{display:none !important;}
+  }
+</style>
+<!-- schema-auto:start (generado, no editar a mano) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Inicio",
+      "item": "https://www.horizonteexclusivo.es/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "La guía esencial para planificar un gran viaje",
+      "item": "https://www.horizonteexclusivo.es/recursos/guia-gran-viaje/"
+    }
+  ]
+}
+</script>
+<!-- schema-auto:end -->
+</head>
+<body>
+<div class="page">
+
+  <!-- ============ CABECERA ============ -->
+  <header class="masthead">
+    <img src="/images/logo-trimmed.png" alt="Horizonte Exclusivo">
+    <p class="eyebrow">Guía descargable · Horizonte Exclusivo</p>
+    <h1>La guía esencial para planificar un gran viaje</h1>
+    <p class="tagline">Más que viajar, vivir el mundo</p>
+    <p class="byline">Por Endeis Prieto · Molins de Rei (Barcelona)</p>
+  </header>
+
+  <!-- ============ 1. INTRO ============ -->
+  <section>
+    <span class="sec-num">i</span>
+    <h2>Antes de empezar</h2>
+    <hr class="rule">
+    <div class="intro">
+      <p>Hola, soy <strong>Endeis</strong>. Llevo años diseñando viajes a medida y, si algo he aprendido, es que un gran viaje no se improvisa: se piensa con cariño y con cabeza. La diferencia entre un viaje bonito y uno inolvidable casi nunca está en el destino, sino en cómo se planifica.</p>
+      <p>He escrito esta guía porque me hacéis siempre las mismas preguntas, y son buenísimas: ¿por dónde empiezo?, ¿qué reservo primero?, ¿cuánto meto en cada día? Aquí te dejo, sin rodeos, el mismo método que sigo yo cuando me siento a diseñar un viaje. Es práctica, es honesta y está pensada para que la uses de verdad.</p>
+      <p>Léela con calma, marca tus casillas y vuelve a ella cuando lo necesites. Y si en algún momento prefieres que me ocupe yo de todo, ya sabes dónde encontrarme.</p>
+      <p class="signature">Con cariño, Endeis<small>Fundadora de Horizonte Exclusivo</small></p>
+    </div>
+  </section>
+
+  <!-- ============ 2. EMPIEZA POR AQUÍ ============ -->
+  <section>
+    <span class="sec-num">01</span>
+    <h2>Empieza por aquí</h2>
+    <p class="lede">El marco mental para planificar sin agobios.</p>
+    <hr class="rule">
+    <p>El error más común es abrir el ordenador y empezar a mirar hoteles y vuelos a la vez, con quince pestañas abiertas. Así solo se llega al cansancio. Antes de reservar nada, párate y responde a tres preguntas. Son la brújula de todo lo demás:</p>
+    <ul class="dot">
+      <li><strong>¿Qué tipo de viaje queremos?</strong> No es lo mismo desconectar que descubrir, ni viajar en pareja que con niños o con amigos. Ponle una palabra: descanso, aventura, cultura, celebración. Esa palabra ordena todas las decisiones que vienen después.</li>
+      <li><strong>¿Cuántos días reales tenemos?</strong> Reales, no los del calendario. Descuenta el día de salida y el de regreso, que casi nunca cuentan para disfrutar. Tener clara esta cifra evita el 90% de los planes imposibles.</li>
+      <li><strong>¿Qué es lo innegociable?</strong> Esa experiencia, ese lugar o esa cena por la que harías el viaje aunque no hubiera nada más. Apunta una o dos cosas. Todo lo demás se construye alrededor de ellas.</li>
+    </ul>
+    <p>Con esas tres respuestas tienes el esqueleto. Y un consejo que repito siempre: <strong>planifica al ritmo de quien menos energía tenga</strong> del grupo. Un viaje a medida no es el que más cosas hace, es el que mejor le sienta a quien viaja.</p>
+  </section>
+
+  <!-- ============ 3. QUÉ RESERVAR PRIMERO ============ -->
+  <section>
+    <span class="sec-num">02</span>
+    <h2>Qué reservar primero</h2>
+    <p class="lede">El orden importa más de lo que crees. Reservar en el orden equivocado es la causa número uno de los disgustos.</p>
+    <hr class="rule">
+    <ol class="steps">
+      <li>
+        <h3>Las fechas y el gran transporte</h3>
+        <p>Vuelos de larga distancia, trenes nocturnos, travesías o cruceros: todo lo que fija el esqueleto de los días. Es lo que menos margen de cambio tiene, así que se cierra primero. Hasta que esto no está confirmado, el resto del viaje no existe de verdad.</p>
+      </li>
+      <li>
+        <h3>Los alojamientos clave</h3>
+        <p>No todos por igual. Reserva primero los que son irrepetibles: ese hotel con encanto de pocas habitaciones, el lodge en plena naturaleza, la casa con vistas. Los sitios especiales vuelan; los hoteles "normales" siempre estarán ahí.</p>
+      </li>
+      <li>
+        <h3>Las experiencias con cupo limitado</h3>
+        <p>Lo que tiene aforo, temporada o lista de espera: una mesa muy buscada, una visita privada, una actividad de un solo día a la semana, ciertos espectáculos o entradas. Si dependen de tus fechas, se reservan antes que lo flexible.</p>
+      </li>
+      <li>
+        <h3>Todo lo demás</h3>
+        <p>Traslados internos, alquiler de coche, restaurantes del día a día, paseos sueltos. Esto es lo flexible y, precisamente por eso, lo último. Resérvalo cuando el esqueleto ya esté firme: te ahorra rehacer planes diez veces.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ============ 4. EL RITMO CORRECTO ============ -->
+  <section>
+    <span class="sec-num">03</span>
+    <h2>El ritmo correcto</h2>
+    <p class="lede">El error que más arrepentimientos genera: querer verlo todo.</p>
+    <hr class="rule">
+    <p>Lo entiendo perfectamente: cuesta dinero y tiempo llegar lejos, y la tentación es aprovechar cada minuto. Pero un viaje con la agenda llena hasta arriba no se disfruta, se sufre. Volver agotado no es señal de buen viaje. Estas son mis reglas para encontrar el ritmo:</p>
+    <ul class="dot">
+      <li><strong>Menos destinos, más profundidad.</strong> Tres lugares vividos con calma valen más que siete vistos de pasada. Cambiar de hotel cada noche convierte las vacaciones en una mudanza permanente.</li>
+      <li><strong>Una experiencia grande al día.</strong> Como mucho dos. La mente no guarda diez recuerdos en una jornada: guarda uno bueno. Deja espacio para que ese recuerdo respire.</li>
+      <li><strong>Cuenta los traslados como lo que son.</strong> Un trayecto "de dos horas" rara vez es de dos horas: hay que sumar el camino al transporte, las esperas, los retrasos y el llegar y orientarse. Un día de traslado largo es eso, un día de traslado. No le encajes nada más.</li>
+      <li><strong>Reserva días de respiro.</strong> Uno cada cuatro o cinco, sin plan fijo. Para una piscina, un mercado sin prisa o, simplemente, no hacer nada. Son los días que luego más se recuerdan.</li>
+      <li><strong>Deja margen entre conexiones.</strong> Vuelos, trenes y traslados encadenados con prisa son una fuente segura de estrés. El tiempo de más casi nunca se nota; el de menos, siempre.</li>
+      <li><strong>Respeta el primer y el último día.</strong> El primero suele irse en llegar, deshacer maletas y aclimatarse; el último, en preparar la vuelta. No los cargues de planes importantes.</li>
+    </ul>
+  </section>
+
+  <!-- ============ 5. ERRORES QUE CUESTAN CARO ============ -->
+  <section>
+    <span class="sec-num">04</span>
+    <h2>Errores que cuestan caro</h2>
+    <p class="lede">No hablo de dinero, sino de lo que de verdad duele: tiempo perdido, disgustos y experiencias que se quedan fuera.</p>
+    <hr class="rule">
+
+    <div class="mistake">
+      <h3>Dejar lo especial para el final <span class="tag">01</span></h3>
+      <p>Reservar primero lo fácil y "ya veremos" lo importante. Cuando vas a por la experiencia que de verdad querías, ya está completa.</p>
+      <p class="fix"><strong>El arreglo:</strong> bloquea lo irrepetible primero y construye el resto alrededor.</p>
+    </div>
+
+    <div class="mistake">
+      <h3>No revisar la validez del pasaporte <span class="tag">02</span></h3>
+      <p>Muchos países exigen el pasaporte vigente seis meses después de la fecha de regreso. Es el descuido que más viajes ha frustrado en la puerta de embarque.</p>
+      <p class="fix"><strong>El arreglo:</strong> compruébalo el mismo día que empiezas a planificar, no la semana antes.</p>
+    </div>
+
+    <div class="mistake">
+      <h3>Olvidar visados, vacunas y trámites <span class="tag">03</span></h3>
+      <p>Hay autorizaciones electrónicas, visados y certificados sanitarios que tardan en tramitarse. Descubrirlo tarde puede dejarte sin viaje.</p>
+      <p class="fix"><strong>El arreglo:</strong> infórmate de los requisitos del destino en cuanto tengas las fechas y reserva cita con tiempo.</p>
+    </div>
+
+    <div class="mistake">
+      <h3>Ignorar la temporada y el clima <span class="tag">04</span></h3>
+      <p>El mismo destino es paraíso o decepción según el mes: lluvias, calor extremo, cierres por temporada o multitudes en plena ola turística.</p>
+      <p class="fix"><strong>El arreglo:</strong> elige las fechas pensando en cómo es el lugar en ese momento, no solo en cuándo tienes libre.</p>
+    </div>
+
+    <div class="mistake">
+      <h3>Llenar la agenda hasta el último hueco <span class="tag">05</span></h3>
+      <p>El miedo a "desaprovechar" lleva a planes imposibles. El resultado es agotamiento y la sensación de no haber disfrutado de nada.</p>
+      <p class="fix"><strong>El arreglo:</strong> una experiencia grande al día y días de respiro programados. Menos es más.</p>
+    </div>
+
+    <div class="mistake">
+      <h3>Viajar sin seguro adecuado <span class="tag">06</span></h3>
+      <p>Un imprevisto médico, una cancelación o una maleta perdida lejos de casa son mucho más que una molestia si no estás cubierto.</p>
+      <p class="fix"><strong>El arreglo:</strong> contrata un seguro que cubra de verdad tu destino y tus actividades, y guarda los teléfonos de asistencia a mano.</p>
+    </div>
+
+    <div class="mistake">
+      <h3>Confiar toda la documentación al móvil <span class="tag">07</span></h3>
+      <p>Un teléfono se queda sin batería, se pierde o se moja en el peor momento. Quedarte sin tus reservas y billetes justo cuando los necesitas es un mal trago.</p>
+      <p class="fix"><strong>El arreglo:</strong> lleva copias en papel de lo esencial y guarda copias digitales en la nube, accesibles sin conexión.</p>
+    </div>
+
+    <div class="mistake">
+      <h3>No avisar al banco ni preparar el dinero <span class="tag">08</span></h3>
+      <p>Tarjetas bloqueadas por seguridad al usarlas en el extranjero, o llegar a un destino donde tu medio de pago habitual no funciona. Pasa más de lo que parece.</p>
+      <p class="fix"><strong>El arreglo:</strong> avisa a tu banco de las fechas y el destino, lleva un medio de pago alternativo y algo de efectivo local para los primeros días.</p>
+    </div>
+  </section>
+
+  <!-- ============ 6. CHECKLIST ============ -->
+  <section>
+    <span class="sec-num">05</span>
+    <h2>Checklist definitivo pre-viaje</h2>
+    <p class="lede">Imprime esta sección o márcala desde la pantalla. Cuando todas las casillas estén marcadas, puedes salir tranquila.</p>
+    <hr class="rule">
+
+    <div class="checklist-block">
+      <h3><span class="when">8 – 10 semanas antes</span></h3>
+      <ul class="check">
+        <li>Comprobar la validez del pasaporte de todos los viajeros (vigencia mínima de seis meses tras el regreso).</li>
+        <li>Revisar requisitos de entrada del destino: visados, autorizaciones electrónicas, formularios.</li>
+        <li>Consultar vacunas o certificados sanitarios recomendados y pedir cita si hace falta.</li>
+        <li>Cerrar fechas y el gran transporte (vuelos, trenes, travesías).</li>
+        <li>Reservar los alojamientos clave e irrepetibles.</li>
+        <li>Apuntar y reservar las experiencias con cupo o lista de espera.</li>
+        <li>Contratar el seguro de viaje adecuado al destino y a las actividades previstas.</li>
+      </ul>
+    </div>
+
+    <div class="checklist-block">
+      <h3><span class="when">4 semanas antes</span></h3>
+      <ul class="check">
+        <li>Confirmar traslados internos, alquiler de coche y conexiones.</li>
+        <li>Reservar restaurantes y experiencias del día a día.</li>
+        <li>Avisar al banco de las fechas y el destino del viaje.</li>
+        <li>Preparar un medio de pago alternativo y pensar en el efectivo local.</li>
+        <li>Revisar la cobertura del móvil en el extranjero o una eSIM / SIM local.</li>
+        <li>Renovar el carné de conducir o tramitar el permiso internacional si procede.</li>
+        <li>Organizar el cuidado de casa, mascotas o plantas mientras no estás.</li>
+        <li>Empezar a descargar mapas, guías y traductor para uso sin conexión.</li>
+      </ul>
+    </div>
+
+    <div class="checklist-block">
+      <h3><span class="when">1 semana antes</span></h3>
+      <ul class="check">
+        <li>Comprobar el estado de los vuelos y horarios; hacer el check-in online cuando se abra.</li>
+        <li>Imprimir en papel billetes, reservas y datos de contacto esenciales.</li>
+        <li>Guardar copias digitales de toda la documentación en la nube y en el móvil.</li>
+        <li>Revisar la previsión del tiempo y ajustar la maleta en consecuencia.</li>
+        <li>Preparar la medicación necesaria y sus recetas.</li>
+        <li>Anotar teléfonos de asistencia del seguro y de la embajada o consulado.</li>
+        <li>Confirmar el traslado al aeropuerto o estación el día de salida.</li>
+      </ul>
+    </div>
+
+    <div class="checklist-block">
+      <h3><span class="when">48 horas antes</span></h3>
+      <ul class="check">
+        <li>Confirmar de nuevo horario y terminal de salida.</li>
+        <li>Cargar todos los dispositivos y preparar la batería externa y los adaptadores.</li>
+        <li>Pesar las maletas y revisar los límites de equipaje permitidos.</li>
+        <li>Comprobar las normas de líquidos y objetos en el equipaje de mano.</li>
+        <li>Sacar algo de efectivo local para los primeros gastos al llegar.</li>
+        <li>Vaciar la nevera, bajar la basura y dejar la casa cerrada y segura.</li>
+        <li>Tener a mano el documento de identidad y dejar la maleta lista la noche anterior.</li>
+      </ul>
+    </div>
+
+    <div class="checklist-block">
+      <h3><span class="when">Maleta esencial</span></h3>
+      <ul class="check">
+        <li>Documentación: pasaporte / DNI, billetes, reservas, seguro y permisos.</li>
+        <li>Medios de pago: tarjetas, algo de efectivo y un monedero pequeño aparte.</li>
+        <li>Neceser con medicación habitual, botiquín básico y artículos de aseo.</li>
+        <li>Cargadores, batería externa, auriculares y adaptador de enchufe del país.</li>
+        <li>Ropa por capas adaptada al clima y un conjunto cómodo para el trayecto.</li>
+        <li>Calzado cómodo ya usado (nunca estrenes zapatos en un viaje largo).</li>
+        <li>Una muda y lo imprescindible en el equipaje de mano, por si se retrasa la maleta.</li>
+        <li>Gafas de sol, protección solar y una botella reutilizable.</li>
+        <li>Un pequeño detalle de casa: un libro, una libreta o lo que te haga sentir bien.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 7. CIERRE / CTA ============ -->
+  <section class="closing">
+    <span class="sec-num" style="color:var(--gold)">vi</span>
+    <h2>Cuando quieras, lo diseñamos juntos</h2>
+    <hr class="rule">
+    <p>Esta guía te da el método. Si prefieres que el viaje lo piense yo de principio a fin, contándome solo cómo lo imaginas, encantada. Diseño cada viaje a medida para que no tengas que preocuparte de nada: tú vives el mundo, de lo demás me ocupo yo.</p>
+    <a class="cta no-print" href="https://www.horizonteexclusivo.es/contacto/" rel="noopener">Cuéntame tu viaje</a>
+    <p class="whatsapp-note no-print">¿Lo prefieres por <strong>WhatsApp</strong>? Escríbeme cuando quieras desde la web y hablamos con calma, sin compromiso.</p>
+  </section>
+
+  <!-- ============ PIE ============ -->
+  <footer>
+    <div class="brand">Horizonte Exclusivo</div>
+    <p>Viajes de lujo 100% a medida · Molins de Rei (Barcelona)</p>
+    <div class="links">
+      <a href="https://www.horizonteexclusivo.es" rel="noopener">www.horizonteexclusivo.es</a>
+      <span aria-hidden="true">·</span>
+      <a href="/politica-de-privacidad/">Política de privacidad</a>
+    </div>
+    <p class="copy">Más que viajar, vivir el mundo.</p>
+  </footer>
+
+</div>
+</body>
+</html>

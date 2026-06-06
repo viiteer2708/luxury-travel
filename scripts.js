@@ -1,10 +1,22 @@
 
 
-// Load Schema Markup
-var schemaScript = document.createElement("script");
-schemaScript.src = "/schema-auto.js";
-schemaScript.defer = true;
-document.body.appendChild(schemaScript);
+/* ===== Carga de Schema =====
+   El JSON-LD ahora se "hornea" de forma estática en cada página con
+   `node build-schema.js`. Ya NO se inyecta schema-auto.js en cliente:
+   evita el schema DUPLICADO en las 147 páginas internas y el override
+   con assets rotos (logo.png 404) en la home. schema-auto.js se conserva
+   únicamente como fuente de la lógica para build-schema.js. */
+
+/* ===== Configuración de medición =====
+   Rellena estos IDs y la analítica se activará automáticamente DESPUÉS
+   del consentimiento del usuario. Mientras tengan los valores de ejemplo
+   NO se carga absolutamente nada (la web funciona igual). */
+window.HE_CONFIG = {
+    GA4_ID: 'G-XXXXXXXXXX',            // ← pega aquí tu ID de Google Analytics 4
+    META_PIXEL_ID: 'XXXXXXXXXXXXXXX',  // ← pega aquí tu ID de píxel de Meta
+    LEAD_WEBHOOK: 'https://hook.eu2.make.com/REEMPLAZAR_LEAD_MAGNET' // ← webhook de Make para la guía
+};
+
 /* ===== Horizonte Exclusivo — Scripts Globales ===== */
 
 // Navbar scroll effect
@@ -84,17 +96,80 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// Cookie banner
+// ===== Medición con consentimiento (RGPD) =====
+// La analítica SOLO se carga tras "Aceptar". Sin consentimiento no se
+// instala ninguna cookie de terceros (modelo de consentimiento previo, AEPD).
+function heLoadAnalytics() {
+    if (window.__heAnalyticsLoaded) return;
+    var cfg = window.HE_CONFIG || {};
+    // Google Analytics 4
+    if (cfg.GA4_ID && cfg.GA4_ID.indexOf('G-') === 0 && cfg.GA4_ID !== 'G-XXXXXXXXXX') {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + cfg.GA4_ID;
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { dataLayer.push(arguments); };
+        gtag('js', new Date());
+        gtag('config', cfg.GA4_ID);
+    }
+    // Meta Pixel
+    if (cfg.META_PIXEL_ID && cfg.META_PIXEL_ID !== 'XXXXXXXXXXXXXXX') {
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments) };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
+            t = b.createElement(e); t.async = !0; t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+        }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', cfg.META_PIXEL_ID); fbq('track', 'PageView');
+    }
+    window.__heAnalyticsLoaded = true;
+}
+
+// Helper global para registrar conversiones (formulario, WhatsApp, guía)
+window.heTrack = function (name, params, fbEvent) {
+    try { if (window.gtag) gtag('event', name, params || {}); } catch (e) {}
+    try { if (window.fbq) fbq('track', fbEvent || 'Lead', params || {}); } catch (e) {}
+};
+
+// Click en WhatsApp = evento de contacto
+document.addEventListener('click', function (e) {
+    var t = e.target.closest ? e.target.closest('a.whatsapp-float, a[href^="https://wa.me"], a[href*="api.whatsapp.com"]') : null;
+    if (t) window.heTrack('whatsapp_click', { method: 'whatsapp' }, 'Contact');
+});
+
+// Envío del lead magnet (formulario de captación de email de la guía)
+window.enviarLeadMagnet = function (form) {
+    var emailInput = form.querySelector('input[type="email"]');
+    var email = emailInput ? emailInput.value.trim() : '';
+    if (!email) { if (emailInput) emailInput.reportValidity(); return false; }
+    var cfg = window.HE_CONFIG || {};
+    var datos = { email: email, tipo: 'lead-magnet-guia', fecha: new Date().toISOString(), pagina_origen: window.location.href };
+    var box = form.closest('.lead-capture') || document;
+    var ok = box.querySelector('.lead-success');
+    form.style.display = 'none';
+    if (ok) ok.style.display = 'block';
+    window.heTrack('subscribe', { content_name: 'guia-gran-viaje' }, 'Lead');
+    if (cfg.LEAD_WEBHOOK && cfg.LEAD_WEBHOOK.indexOf('REEMPLAZAR') === -1) {
+        fetch(cfg.LEAD_WEBHOOK, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(datos) }).catch(function (err) { console.error('Error envío guía:', err); });
+    }
+    return false;
+};
+
+// ===== Banner de cookies =====
 function acceptCookies() {
     localStorage.setItem('cookieConsent', 'accepted');
-    document.getElementById('cookieBanner').style.display = 'none';
+    var b = document.getElementById('cookieBanner'); if (b) b.style.display = 'none';
+    heLoadAnalytics();
 }
 
 function rejectCookies() {
     localStorage.setItem('cookieConsent', 'rejected');
-    document.getElementById('cookieBanner').style.display = 'none';
+    var b = document.getElementById('cookieBanner'); if (b) b.style.display = 'none';
 }
 
-if (!localStorage.getItem('cookieConsent')) {
-    document.getElementById('cookieBanner').style.display = 'block';
-}
+(function () {
+    var consent = localStorage.getItem('cookieConsent');
+    var banner = document.getElementById('cookieBanner');
+    if (!consent) { if (banner) banner.style.display = 'block'; }
+    else if (consent === 'accepted') { heLoadAnalytics(); }
+})();
