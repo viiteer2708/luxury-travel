@@ -12,8 +12,8 @@
    del consentimiento del usuario. Mientras tengan los valores de ejemplo
    NO se carga absolutamente nada (la web funciona igual). */
 window.HE_CONFIG = {
-    GA4_ID: 'G-XXXXXXXXXX',            // ← pega aquí tu ID de Google Analytics 4
-    META_PIXEL_ID: 'XXXXXXXXXXXXXXX',  // ← pega aquí tu ID de píxel de Meta
+    GA4_ID: 'G-QT9YWGGQ7M',            // ← ID de Google Analytics 4 (flujo "Horizonte")
+    META_PIXEL_ID: '2029103258000507',  // ← ID del píxel de Meta (Horizonte Exclusivo)
     LEAD_WEBHOOK: 'https://hook.eu2.make.com/REEMPLAZAR_LEAD_MAGNET' // ← webhook de Make para la guía
 };
 
