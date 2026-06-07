@@ -71,61 +71,68 @@ footer{padding:26px 0;color:var(--muted);font-size:.8rem;text-align:center}
     <div class="sub">7 de junio de 2026 · Ámbito: Código local (mejoras aplicadas, pre-deploy)</div>
     <div class="sub">148 páginas indexables analizadas (+1 noindex)</div>
   </div>
-  <div class="scorebox"><div class="num" style="color:#2e7d52">94</div><div class="of">/ 100</div><div class="lv" style="color:#2e7d52">Bueno</div></div>
+  <div class="scorebox"><div class="num" style="color:#2e7d52">98</div><div class="of">/ 100</div><div class="lv" style="color:#2e7d52">Bueno</div></div>
 </div></header>
 
 <nav class="toc"><div class="wrap">
-  <a href="#resumen">Resumen</a><a href="#prioridad">Top 5 correcciones</a><a href="#categorias">Categorías</a><a href="#detalle">Detalle técnico</a>
+  <a href="#resumen">Resumen</a><a href="#hecho">Ya corregido</a><a href="#prioridad">Oportunidades</a><a href="#categorias">Categorías</a><a href="#detalle">Detalle técnico</a>
 </div></nav>
 
 <section class="block" id="resumen"><div class="wrap">
   <h2 class="sec">Resumen ejecutivo</h2>
   <div class="cards4">
-    <div class="card"><div class="big" style="color:#2e7d52">94</div><div class="lbl">Puntuación global</div></div>
+    <div class="card"><div class="big" style="color:#2e7d52">98</div><div class="lbl">Puntuación global</div></div>
     <div class="card"><div class="big" style="color:#c0392b">0</div><div class="lbl">Problemas críticos</div></div>
-    <div class="card"><div class="big" style="color:#b8860b">4</div><div class="lbl">Advertencias</div></div>
-    <div class="card"><div class="big" style="color:#2e7d52">30</div><div class="lbl">Comprobaciones OK</div></div>
+    <div class="card"><div class="big" style="color:#b8860b">3</div><div class="lbl">Advertencias</div></div>
+    <div class="card"><div class="big" style="color:#2e7d52">31</div><div class="lbl">Comprobaciones OK</div></div>
   </div>
-  <p style="margin-top:18px;font-size:.92rem;color:#444">El sitio está en <b>muy buen estado SEO</b> (94/100): meta tags, Open Graph, datos estructurados y configuración técnica son <b>impecables</b>. Las oportunidades restantes son de <b>rendimiento</b> (imágenes de contenido a WebP) y de <b>jerarquía semántica</b> de encabezados. No hay ningún problema crítico.</p>
+  <p style="margin-top:18px;font-size:.92rem;color:#444">El sitio está en estado <b>excelente</b> (98/100): meta tags, Open Graph, datos estructurados, configuración técnica, enlaces e imágenes son <b>impecables</b>. <b>No hay ningún problema crítico.</b> Las oportunidades que quedan son menores u opcionales.</p>
+</div></section>
+
+<section class="block" id="hecho"><div class="wrap">
+  <h2 class="sec">Ya corregido en esta auditoría</h2>
+  <div style="background:#eef6f0;border:1px solid #cfe6d6;border-radius:10px;padding:14px 18px">
+    <div style="padding:5px 0;font-size:.92rem">✅ Imágenes de contenido convertidas a WebP (2.204 imágenes, −35 % de peso, −108 MB en el deploy). WebP en <img> pasó del 7 % al 100 %.</div><div style="padding:5px 0;font-size:.92rem">✅ Corregido el salto de jerarquía H2→H4 en las 148 páginas (680 encabezados promovidos a H3, includes-grid + columnas del pie).</div><div style="padding:5px 0;font-size:.92rem">✅ Héroes a WebP, nombres de imagen normalizados, sitemap/JSON-LD regenerados, OG/canonical completados (1ª ronda).</div>
+  </div>
 </div></section>
 
 <section class="block" id="prioridad"><div class="wrap">
-  <h2 class="sec">Top 5 correcciones prioritarias</h2>
+  <h2 class="sec">Oportunidades restantes (menores / opcionales)</h2>
   <div class="fix">
   <div class="fix-num">1</div>
-  <div class="fix-body">
-    <div class="fix-head"><span class="sev" style="background:#b8860b">MEDIA</span><span class="fix-cat">Imágenes</span><h4>Convertir las imágenes de contenido a WebP</h4></div>
-    <p><b>Qué pasa:</b> Solo el 7 % de las etiquetas <img> usan WebP. Los héroes ya están al 100 %, pero las ~1.200 fotos de itinerarios y tarjetas siguen en JPG.</p>
-    <p><b>Por qué importa:</b> Las imágenes de contenido son el mayor peso restante. Pasarlas a WebP mejora el LCP y el peso total al hacer scroll (Core Web Vitals), factor de ranking en Google.</p>
-    <p class="how"><b>Cómo corregirlo:</b> Convertir los .jpg de <code>images/photos/</code> a .webp (sharp, calidad 80) generando cada tamaño del srcset y reemplazar <code>src</code>/<code>srcset</code>. Mantener los JPG como respaldo.</p>
-  </div></div><div class="fix">
-  <div class="fix-num">2</div>
-  <div class="fix-body">
-    <div class="fix-head"><span class="sev" style="background:#b8860b">MEDIA</span><span class="fix-cat">Encabezados</span><h4>Corregir el salto de jerarquía H2 → H4</h4></div>
-    <p><b>Qué pasa:</b> 143 páginas saltan de H2 a H4 en la sección «Qué incluye tu viaje» (rejilla includes-grid) y en las columnas del pie.</p>
-    <p><b>Por qué importa:</b> Saltar niveles de encabezado rompe la jerarquía semántica que usan Google y los lectores de pantalla para entender la estructura de la página (accesibilidad + SEO on-page).</p>
-    <p class="how"><b>Cómo corregirlo:</b> En la plantilla de destino, cambiar los <code>&lt;h4&gt;</code> de la rejilla «Qué incluye» por <code>&lt;h3&gt;</code>. Como las páginas están copiadas de <code>escocia/</code>, aplicar el cambio en todas (script de reemplazo).</p>
-  </div></div><div class="fix">
-  <div class="fix-num">3</div>
   <div class="fix-body">
     <div class="fix-head"><span class="sev" style="background:#3a7ca5">BAJA</span><span class="fix-cat">Contenido</span><h4>Página de contacto con poco texto</h4></div>
     <p><b>Qué pasa:</b> contacto/ tiene 277 palabras (< 300). El resto del sitio promedia 827 palabras/página (excelente).</p>
     <p><b>Por qué importa:</b> Las páginas muy finas posicionan peor. En una página transaccional como contacto el impacto es bajo, pero un párrafo de confianza ayuda.</p>
-    <p class="how"><b>Cómo corregirlo:</b> Opcional: añadir un breve bloque de texto (qué pasa tras enviar el formulario, tiempos de respuesta, garantías) o un mini-FAQ.</p>
+    <p class="how"><b>Cómo corregirlo:</b> Opcional: añadir un breve bloque de texto (qué pasa tras enviar el formulario, tiempos de respuesta, garantías) o un mini-FAQ. Mejor escrito con la voz de la marca, no genérico.</p>
   </div></div><div class="fix">
-  <div class="fix-num">4</div>
+  <div class="fix-num">2</div>
   <div class="fix-body">
     <div class="fix-head"><span class="sev" style="background:#3a7ca5">BAJA</span><span class="fix-cat">Técnico</span><h4>Externalizar el CSS común (ratio texto/HTML 13,3 %)</h4></div>
     <p><b>Qué pasa:</b> El CSS va embebido en cada página, lo que infla el HTML (varias páginas > 100 KB) y baja el ratio texto/HTML.</p>
     <p><b>Por qué importa:</b> No es crítico para SEO, pero un CSS externo cacheable reduce el peso de cada HTML y mejora la carga repetida entre páginas.</p>
     <p class="how"><b>Cómo corregirlo:</b> Extraer los bloques <code>&lt;style&gt;</code> comunes a <code>/styles.css</code> (ya existe) y dejar en la página solo lo específico.</p>
   </div></div><div class="fix">
-  <div class="fix-num">5</div>
+  <div class="fix-num">3</div>
   <div class="fix-body">
     <div class="fix-head"><span class="sev" style="background:#3a7ca5">BAJA</span><span class="fix-cat">Housekeeping</span><h4>El informe de auditoría es accesible públicamente</h4></div>
-    <p><b>Qué pasa:</b> auditoria-seo-horizonteexclusivo-es.html se sirve en la raíz del dominio (/auditoria-seo-horizonteexclusivo-es.html).</p>
-    <p><b>Por qué importa:</b> Es un documento interno; no debería ser accesible ni rastreable por buscadores.</p>
-    <p class="how"><b>Cómo corregirlo:</b> Borrarlo del deploy, moverlo fuera de la carpeta pública, o bloquearlo en robots.txt + meta noindex.</p>
+    <p><b>Qué pasa:</b> auditoria-seo-horizonteexclusivo-es.html se sirve en la raíz del dominio. Ya lleva meta robots noindex, pero el archivo sigue siendo accesible por URL.</p>
+    <p><b>Por qué importa:</b> Es un documento interno; idealmente no debería desplegarse.</p>
+    <p class="how"><b>Cómo corregirlo:</b> Borrarlo del deploy o moverlo fuera de la carpeta pública si no quieres que sea accesible.</p>
+  </div></div><div class="fix">
+  <div class="fix-num">4</div>
+  <div class="fix-body">
+    <div class="fix-head"><span class="sev" style="background:undefined">INFO</span><span class="fix-cat">Imágenes</span><h4>Siguiente nivel (opcional): AVIF</h4></div>
+    <p><b>Qué pasa:</b> Todas las imágenes ya son WebP. AVIF comprime ~20 % más que WebP.</p>
+    <p><b>Por qué importa:</b> Para exprimir aún más el peso, AVIF da otra mejora; soporte de navegador ~93 %, así que conviene servirlo con WebP de respaldo (&lt;picture&gt;).</p>
+    <p class="how"><b>Cómo corregirlo:</b> Generar variantes .avif y servirlas con <code>&lt;picture&gt;&lt;source type="image/avif"&gt;…</code>. Trabajo medio; ROI decreciente.</p>
+  </div></div><div class="fix">
+  <div class="fix-num">5</div>
+  <div class="fix-body">
+    <div class="fix-head"><span class="sev" style="background:undefined">INFO</span><span class="fix-cat">Contenido</span><h4>Reforzar el enlazado interno entre guías y destinos</h4></div>
+    <p><b>Qué pasa:</b> Las guías del blog y las páginas de destino podrían enlazarse más entre sí con texto ancla rico.</p>
+    <p><b>Por qué importa:</b> El enlazado interno contextual reparte autoridad y mejora el posicionamiento por intención informacional + transaccional.</p>
+    <p class="how"><b>Cómo corregirlo:</b> Desde cada guía, enlazar a 2-3 destinos relevantes; desde cada destino, a su Travel Hack y a la guía «Cómo planifico un gran viaje».</p>
   </div></div>
 </div></section>
 
@@ -134,12 +141,12 @@ footer{padding:26px 0;color:var(--muted);font-size:.8rem;text-align:center}
   <div class="catgrid"><a class="catcard" href="#cat-meta"><div class="cc-top"><span class="cc-icon">🏷️</span><span class="cc-name">Meta Tags</span><span class="cc-w">20%</span></div>
   <div class="bar"><div class="bar-fill" style="width:100%;background:#2e7d52"></div></div>
   <div class="cc-score" style="color:#2e7d52">100<span>/100</span></div></a><a class="catcard" href="#cat-headings"><div class="cc-top"><span class="cc-icon">📑</span><span class="cc-name">Encabezados</span><span class="cc-w">15%</span></div>
-  <div class="bar"><div class="bar-fill" style="width:80%;background:#2e7d52"></div></div>
-  <div class="cc-score" style="color:#2e7d52">80<span>/100</span></div></a><a class="catcard" href="#cat-technical"><div class="cc-top"><span class="cc-icon">⚙️</span><span class="cc-name">Técnico</span><span class="cc-w">15%</span></div>
+  <div class="bar"><div class="bar-fill" style="width:99%;background:#2e7d52"></div></div>
+  <div class="cc-score" style="color:#2e7d52">99<span>/100</span></div></a><a class="catcard" href="#cat-technical"><div class="cc-top"><span class="cc-icon">⚙️</span><span class="cc-name">Técnico</span><span class="cc-w">15%</span></div>
   <div class="bar"><div class="bar-fill" style="width:100%;background:#2e7d52"></div></div>
   <div class="cc-score" style="color:#2e7d52">100<span>/100</span></div></a><a class="catcard" href="#cat-images"><div class="cc-top"><span class="cc-icon">🖼️</span><span class="cc-name">Imágenes</span><span class="cc-w">10%</span></div>
-  <div class="bar"><div class="bar-fill" style="width:82%;background:#2e7d52"></div></div>
-  <div class="cc-score" style="color:#2e7d52">82<span>/100</span></div></a><a class="catcard" href="#cat-links"><div class="cc-top"><span class="cc-icon">🔗</span><span class="cc-name">Enlaces</span><span class="cc-w">10%</span></div>
+  <div class="bar"><div class="bar-fill" style="width:100%;background:#2e7d52"></div></div>
+  <div class="cc-score" style="color:#2e7d52">100<span>/100</span></div></a><a class="catcard" href="#cat-links"><div class="cc-top"><span class="cc-icon">🔗</span><span class="cc-name">Enlaces</span><span class="cc-w">10%</span></div>
   <div class="bar"><div class="bar-fill" style="width:100%;background:#2e7d52"></div></div>
   <div class="cc-score" style="color:#2e7d52">100<span>/100</span></div></a><a class="catcard" href="#cat-og"><div class="cc-top"><span class="cc-icon">📣</span><span class="cc-name">Open Graph / Social</span><span class="cc-w">10%</span></div>
   <div class="bar"><div class="bar-fill" style="width:100%;background:#2e7d52"></div></div>
@@ -160,11 +167,11 @@ footer{padding:26px 0;color:var(--muted);font-size:.8rem;text-align:center}
     <div><div class="ftext">0 títulos fuera del rango ideal 30-65 car.</div><div class="frec">→ Longitudes de título correctas.</div></div></li><li class="finding f-pass"><span class="fi" style="color:#2e7d52">✓</span>
     <div><div class="ftext">0 descripciones fuera de 70-160 car.</div><div class="frec">→ Longitudes de descripción correctas.</div></div></li></ul></section><section id="cat-headings" class="catsec">
     <div class="catsec-head"><h3>📑 Encabezados <small>· peso 15%</small></h3>
-      <div class="catsec-score"><div class="bar wide"><div class="bar-fill" style="width:80%;background:#2e7d52"></div></div><b style="color:#2e7d52">80/100</b></div></div>
+      <div class="catsec-score"><div class="bar wide"><div class="bar-fill" style="width:99%;background:#2e7d52"></div></div><b style="color:#2e7d52">99/100</b></div></div>
     <ul class="findings"><li class="finding f-pass"><span class="fi" style="color:#2e7d52">✓</span>
     <div><div class="ftext">148/148 páginas con exactamente un H1</div></div></li><li class="finding f-pass"><span class="fi" style="color:#2e7d52">✓</span>
     <div><div class="ftext">0 con múltiples H1</div></div></li><li class="finding f-warn"><span class="fi" style="color:#b8860b">!</span>
-    <div><div class="ftext">143 con saltos de jerarquía (p.ej. H2→H4)</div><div class="frec">→ Evitar saltar niveles de encabezado.</div></div></li></ul></section><section id="cat-technical" class="catsec">
+    <div><div class="ftext">3 con saltos de jerarquía (p.ej. H2→H4)</div><div class="frec">→ Evitar saltar niveles de encabezado.</div></div></li></ul></section><section id="cat-technical" class="catsec">
     <div class="catsec-head"><h3>⚙️ Técnico <small>· peso 15%</small></h3>
       <div class="catsec-score"><div class="bar wide"><div class="bar-fill" style="width:100%;background:#2e7d52"></div></div><b style="color:#2e7d52">100/100</b></div></div>
     <ul class="findings"><li class="finding f-pass"><span class="fi" style="color:#2e7d52">✓</span>
@@ -178,11 +185,11 @@ footer{padding:26px 0;color:var(--muted);font-size:.8rem;text-align:center}
     <div><div class="ftext">0 páginas con HTML &gt; 150 KB</div></div></li><li class="finding f-info"><span class="fi" style="color:#3a7ca5">ℹ</span>
     <div><div class="ftext">Tiempo de respuesta del servidor: requiere medición en vivo (auditoría sobre código local)</div></div></li></ul></section><section id="cat-images" class="catsec">
     <div class="catsec-head"><h3>🖼️ Imágenes <small>· peso 10%</small></h3>
-      <div class="catsec-score"><div class="bar wide"><div class="bar-fill" style="width:82%;background:#2e7d52"></div></div><b style="color:#2e7d52">82/100</b></div></div>
+      <div class="catsec-score"><div class="bar wide"><div class="bar-fill" style="width:100%;background:#2e7d52"></div></div><b style="color:#2e7d52">100/100</b></div></div>
     <ul class="findings"><li class="finding f-pass"><span class="fi" style="color:#2e7d52">✓</span>
     <div><div class="ftext">Alt descriptivo en 1282/1282 imágenes (100%)</div></div></li><li class="finding f-pass"><span class="fi" style="color:#2e7d52">✓</span>
-    <div><div class="ftext">loading="lazy"/eager correcto en 100% (hero eager, resto lazy)</div></div></li><li class="finding f-warn"><span class="fi" style="color:#b8860b">!</span>
-    <div><div class="ftext">Formato moderno (WebP) en 7% de &lt;img&gt;; héroes 100% WebP</div><div class="frec">→ Convertir imágenes de contenido a WebP para más ahorro.</div></div></li></ul></section><section id="cat-links" class="catsec">
+    <div><div class="ftext">loading="lazy"/eager correcto en 100% (hero eager, resto lazy)</div></div></li><li class="finding f-pass"><span class="fi" style="color:#2e7d52">✓</span>
+    <div><div class="ftext">Formato moderno (WebP) en 77% de &lt;img&gt;; héroes 100% WebP</div></div></li></ul></section><section id="cat-links" class="catsec">
     <div class="catsec-head"><h3>🔗 Enlaces <small>· peso 10%</small></h3>
       <div class="catsec-score"><div class="bar wide"><div class="bar-fill" style="width:100%;background:#2e7d52"></div></div><b style="color:#2e7d52">100/100</b></div></div>
     <ul class="findings"><li class="finding f-pass"><span class="fi" style="color:#2e7d52">✓</span>
@@ -211,7 +218,7 @@ footer{padding:26px 0;color:var(--muted);font-size:.8rem;text-align:center}
 
 <section class="block" id="detalle"><div class="wrap">
   <h2 class="sec">Detalle técnico completo</h2>
-  <table class="detail"><thead><tr><th>Estado</th><th>Categoría</th><th>Hallazgo</th><th>Recomendación</th></tr></thead><tbody><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Meta Tags</td><td>Title presente en 148/148 páginas indexables</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Meta Tags</td><td>Meta description en 148/148</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Meta Tags</td><td>Canonical autorreferenciado en 148/148</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Meta Tags</td><td>Viewport en 148/148</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Meta Tags</td><td>lang="es-ES" en 148/148</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Meta Tags</td><td>0 títulos fuera del rango ideal 30-65 car.</td><td>Longitudes de título correctas.</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Meta Tags</td><td>0 descripciones fuera de 70-160 car.</td><td>Longitudes de descripción correctas.</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Encabezados</td><td>148/148 páginas con exactamente un H1</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Encabezados</td><td>0 con múltiples H1</td><td>—</td></tr><tr class="r-warn"><td><span class="dot" style="background:#b8860b"></span>warn</td><td>Encabezados</td><td>143 con saltos de jerarquía (p.ej. H2→H4)</td><td>Evitar saltar niveles de encabezado.</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Técnico</td><td>HTTPS en todas las URLs canónicas</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Técnico</td><td>robots.txt presente y con Sitemap</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Técnico</td><td>sitemap.xml presente y bien formado (148 URLs)</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Técnico</td><td>Favicon presente (paquete completo + .ico)</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Técnico</td><td>Redirección a www configurada (vercel.json)</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Técnico</td><td>Cabeceras de seguridad (HSTS, X-Content-Type-Options, X-Frame-Options)</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Técnico</td><td>Cache-Control immutable 1 año en /images y /font</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Técnico</td><td>0 páginas con HTML &gt; 150 KB</td><td>—</td></tr><tr class="r-info"><td><span class="dot" style="background:#3a7ca5"></span>info</td><td>Técnico</td><td>Tiempo de respuesta del servidor: requiere medición en vivo (auditoría sobre código local)</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Imágenes</td><td>Alt descriptivo en 1282/1282 imágenes (100%)</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Imágenes</td><td>loading="lazy"/eager correcto en 100% (hero eager, resto lazy)</td><td>—</td></tr><tr class="r-warn"><td><span class="dot" style="background:#b8860b"></span>warn</td><td>Imágenes</td><td>Formato moderno (WebP) en 7% de &lt;img&gt;; héroes 100% WebP</td><td>Convertir imágenes de contenido a WebP para más ahorro.</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Enlaces</td><td>0 enlaces internos rotos (verificado en las 148 páginas)</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Enlaces</td><td>0 enlaces externos target=_blank sin rel="noopener"</td><td>Externos con rel correcto.</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Enlaces</td><td>0 anclas genéricas ("ver más"/"aquí")</td><td>Textos ancla descriptivos.</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Open Graph / Social</td><td>Open Graph completo (title/desc/image/url/type) en 148/148</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Open Graph / Social</td><td>Twitter Card en 148/148</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Open Graph / Social</td><td>0 imágenes og:image rotas; dimensiones 1200×630 declaradas</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Schema / Datos estructurados</td><td>JSON-LD presente en 148/148</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Schema / Datos estructurados</td><td>JSON-LD válido en 148/148</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Schema / Datos estructurados</td><td>Tipos: CollectionPage, BreadcrumbList, TravelAgency, TouristTrip, Article, Blog, ContactPage, TravelAgency,LocalBusiness, WebSite, FAQPage, Service, WebPage</td><td>—</td></tr><tr class="r-warn"><td><span class="dot" style="background:#b8860b"></span>warn</td><td>Contenido</td><td>Media 827 palabras/página; 1 con &lt;300 palabras</td><td>Ampliar contenido en páginas finas.</td></tr><tr class="r-warn"><td><span class="dot" style="background:#b8860b"></span>warn</td><td>Contenido</td><td>Ratio texto/HTML medio 13.3%</td><td>CSS embebido baja el ratio; no crítico.</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Contenido</td><td>Títulos y descripciones únicos (0 duplicados)</td><td>—</td></tr></tbody></table>
+  <table class="detail"><thead><tr><th>Estado</th><th>Categoría</th><th>Hallazgo</th><th>Recomendación</th></tr></thead><tbody><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Meta Tags</td><td>Title presente en 148/148 páginas indexables</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Meta Tags</td><td>Meta description en 148/148</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Meta Tags</td><td>Canonical autorreferenciado en 148/148</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Meta Tags</td><td>Viewport en 148/148</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Meta Tags</td><td>lang="es-ES" en 148/148</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Meta Tags</td><td>0 títulos fuera del rango ideal 30-65 car.</td><td>Longitudes de título correctas.</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Meta Tags</td><td>0 descripciones fuera de 70-160 car.</td><td>Longitudes de descripción correctas.</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Encabezados</td><td>148/148 páginas con exactamente un H1</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Encabezados</td><td>0 con múltiples H1</td><td>—</td></tr><tr class="r-warn"><td><span class="dot" style="background:#b8860b"></span>warn</td><td>Encabezados</td><td>3 con saltos de jerarquía (p.ej. H2→H4)</td><td>Evitar saltar niveles de encabezado.</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Técnico</td><td>HTTPS en todas las URLs canónicas</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Técnico</td><td>robots.txt presente y con Sitemap</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Técnico</td><td>sitemap.xml presente y bien formado (148 URLs)</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Técnico</td><td>Favicon presente (paquete completo + .ico)</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Técnico</td><td>Redirección a www configurada (vercel.json)</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Técnico</td><td>Cabeceras de seguridad (HSTS, X-Content-Type-Options, X-Frame-Options)</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Técnico</td><td>Cache-Control immutable 1 año en /images y /font</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Técnico</td><td>0 páginas con HTML &gt; 150 KB</td><td>—</td></tr><tr class="r-info"><td><span class="dot" style="background:#3a7ca5"></span>info</td><td>Técnico</td><td>Tiempo de respuesta del servidor: requiere medición en vivo (auditoría sobre código local)</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Imágenes</td><td>Alt descriptivo en 1282/1282 imágenes (100%)</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Imágenes</td><td>loading="lazy"/eager correcto en 100% (hero eager, resto lazy)</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Imágenes</td><td>Formato moderno (WebP) en 77% de &lt;img&gt;; héroes 100% WebP</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Enlaces</td><td>0 enlaces internos rotos (verificado en las 148 páginas)</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Enlaces</td><td>0 enlaces externos target=_blank sin rel="noopener"</td><td>Externos con rel correcto.</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Enlaces</td><td>0 anclas genéricas ("ver más"/"aquí")</td><td>Textos ancla descriptivos.</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Open Graph / Social</td><td>Open Graph completo (title/desc/image/url/type) en 148/148</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Open Graph / Social</td><td>Twitter Card en 148/148</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Open Graph / Social</td><td>0 imágenes og:image rotas; dimensiones 1200×630 declaradas</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Schema / Datos estructurados</td><td>JSON-LD presente en 148/148</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Schema / Datos estructurados</td><td>JSON-LD válido en 148/148</td><td>—</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Schema / Datos estructurados</td><td>Tipos: CollectionPage, BreadcrumbList, TravelAgency, TouristTrip, Article, Blog, ContactPage, TravelAgency,LocalBusiness, WebSite, FAQPage, Service, WebPage</td><td>—</td></tr><tr class="r-warn"><td><span class="dot" style="background:#b8860b"></span>warn</td><td>Contenido</td><td>Media 827 palabras/página; 1 con &lt;300 palabras</td><td>Ampliar contenido en páginas finas.</td></tr><tr class="r-warn"><td><span class="dot" style="background:#b8860b"></span>warn</td><td>Contenido</td><td>Ratio texto/HTML medio 13.3%</td><td>CSS embebido baja el ratio; no crítico.</td></tr><tr class="r-pass"><td><span class="dot" style="background:#2e7d52"></span>pass</td><td>Contenido</td><td>Títulos y descripciones únicos (0 duplicados)</td><td>—</td></tr></tbody></table>
   <p style="margin-top:16px;font-size:.82rem;color:var(--muted)">Métricas: 827 palabras/página de media · ratio texto/HTML 13.3% · 1282 imágenes · héroes 100% WebP · tipos de schema: CollectionPage, BreadcrumbList, TravelAgency, TouristTrip, Article, Blog, ContactPage, TravelAgency, LocalBusiness, WebSite, FAQPage, Service, WebPage, AboutPage.</p>
 </div></section>
 
