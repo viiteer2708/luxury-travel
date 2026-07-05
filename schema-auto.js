@@ -100,6 +100,11 @@ else if(p==="molins-de-rei"){
 inj({"@context":"https://schema.org","@type":"TravelAgency","name":"Horizonte Exclusivo - Agencia de Viajes de Lujo en Molins de Rei","url":cu,"description":pd,"telephone":B.telephone,"email":B.email,"address":{"@type":"PostalAddress","streetAddress":B.street,"addressLocality":B.city,"addressRegion":B.region,"postalCode":B.zip,"addressCountry":B.country},"geo":{"@type":"GeoCoordinates","latitude":B.lat,"longitude":B.lng},"hasMap":"https://www.google.com/maps?cid="+B.mapCid,"areaServed":[{"@type":"City","name":"Molins de Rei"},{"@type":"AdministrativeArea","name":"Baix Llobregat"},{"@type":"City","name":"Sant Feliu de Llobregat"},{"@type":"City","name":"Sant Joan Despi"},{"@type":"City","name":"Esplugues de Llobregat"},{"@type":"City","name":"Cornella de Llobregat"},{"@type":"City","name":"Sant Boi de Llobregat"},{"@type":"City","name":"Barcelona"}]});
 inj(bc([{name:"Inicio",url:B.url+"/"},{name:"Molins de Rei",url:cu}]));}
 
+// BAIX LLOBREGAT (servicio + comarca)
+else if(p==="baix-llobregat"){
+inj({"@context":"https://schema.org","@type":"TravelAgency","name":"Horizonte Exclusivo - Agencia de Viajes de Lujo en el Baix Llobregat","url":cu,"description":pd,"telephone":B.telephone,"email":B.email,"address":{"@type":"PostalAddress","streetAddress":B.street,"addressLocality":B.city,"addressRegion":B.region,"postalCode":B.zip,"addressCountry":B.country},"geo":{"@type":"GeoCoordinates","latitude":B.lat,"longitude":B.lng},"hasMap":"https://www.google.com/maps?cid="+B.mapCid,"areaServed":[{"@type":"AdministrativeArea","name":"Baix Llobregat"},{"@type":"City","name":"Molins de Rei"},{"@type":"City","name":"Sant Feliu de Llobregat"},{"@type":"City","name":"Sant Just Desvern"},{"@type":"City","name":"Sant Joan Despi"},{"@type":"City","name":"Esplugues de Llobregat"},{"@type":"City","name":"Cornella de Llobregat"},{"@type":"City","name":"Sant Boi de Llobregat"},{"@type":"City","name":"El Prat de Llobregat"},{"@type":"City","name":"Castelldefels"},{"@type":"City","name":"Gava"},{"@type":"City","name":"Viladecans"},{"@type":"City","name":"Martorell"},{"@type":"City","name":"Barcelona"}]});
+inj(bc([{name:"Inicio",url:B.url+"/"},{name:"Baix Llobregat",url:cu}]));}
+
 // FALLBACK
 else{inj(bc([{name:"Inicio",url:B.url+"/"},{name:pt.split("|")[0].trim(),url:cu}]));}
 })();

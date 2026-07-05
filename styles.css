@@ -284,6 +284,15 @@ ul { list-style: none; }
     box-shadow: 0 8px 30px rgba(201,169,110,0.3);
 }
 
+/* ===== TRUST BADGE (reseñas Google + teléfono) ===== */
+.hero-trust { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px 20px; margin-top: 24px; }
+.review-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border: 1px solid rgba(201,169,110,0.35); border-radius: 50px; background: rgba(201,169,110,0.06); color: var(--gold-light); font-size: 0.85rem; letter-spacing: 0.3px; transition: var(--transition); }
+.review-badge:hover { background: rgba(201,169,110,0.14); border-color: var(--gold); transform: translateY(-1px); }
+.review-badge .stars { color: var(--gold); letter-spacing: 2px; }
+.review-badge strong { color: var(--white); font-weight: 700; }
+.hero-phone { display: inline-flex; align-items: center; gap: 6px; color: var(--gold-light); font-size: 0.9rem; font-weight: 600; letter-spacing: 0.3px; transition: var(--transition); }
+.hero-phone:hover { color: var(--gold); }
+
 /* ===== DESTINATION CARDS ===== */
 .destinations-grid {
     display: grid;
