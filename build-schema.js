@@ -83,9 +83,8 @@ function homeOrg() {
     'geo': { '@type': 'GeoCoordinates', 'latitude': B.lat, 'longitude': B.lng },
     'hasMap': 'https://www.google.com/maps?cid=' + B.mapCid,
     'openingHoursSpecification': [
-      { '@type': 'OpeningHoursSpecification', 'dayOfWeek': ['Monday', 'Wednesday', 'Thursday', 'Friday'], 'opens': '09:00', 'closes': '13:30' },
+      { '@type': 'OpeningHoursSpecification', 'dayOfWeek': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], 'opens': '09:30', 'closes': '13:30' },
       { '@type': 'OpeningHoursSpecification', 'dayOfWeek': ['Monday', 'Wednesday', 'Thursday', 'Friday'], 'opens': '16:00', 'closes': '19:00' },
-      { '@type': 'OpeningHoursSpecification', 'dayOfWeek': 'Tuesday', 'opens': '09:30', 'closes': '13:30' },
     ],
     'areaServed': [{ '@type': 'City', 'name': 'Molins de Rei' }, { '@type': 'AdministrativeArea', 'name': 'Baix Llobregat' }, { '@type': 'City', 'name': 'Barcelona' }, { '@type': 'AdministrativeArea', 'name': 'Cataluna' }],
     'hasOfferCatalog': { '@type': 'OfferCatalog', 'name': 'Servicios de viajes de lujo', 'itemListElement': [
@@ -96,7 +95,9 @@ function homeOrg() {
       { '@type': 'Offer', 'itemOffered': { '@type': 'Service', 'name': 'Diseno de itinerarios personalizados' } },
     ] },
     'sameAs': ['https://www.google.com/maps?cid=' + B.mapCid, B.instagram],
-    'aggregateRating': { '@type': 'AggregateRating', 'ratingValue': B.rating, 'reviewCount': B.reviewCount, 'bestRating': '5' },
+    // NOTA SEO: NO añadir aquí un aggregateRating auto-referido (puntuarte a ti mismo).
+    // Google no pinta estrellas con eso en tu propio LocalBusiness y lo trata como spam/self-serving.
+    // La nota real (5,0 · nº reseñas) ya la muestra Google Maps a partir de las reseñas verdaderas.
   };
 }
 
@@ -211,7 +212,7 @@ function generate(slug, html) {
     out.push(bc([{ name: 'Inicio', url: B.url + '/' }, { name: 'Blog', url: B.url + '/blog/' }, { name: headline(pt), url: cu }]));
   }
   else if (p === 'molins-de-rei') {
-    out.push({ '@context': 'https://schema.org', '@type': 'WebPage', 'name': pt, 'url': cu, 'description': pd, 'about': org() });
+    out.push({ '@context': 'https://schema.org', '@type': 'TravelAgency', 'name': 'Horizonte Exclusivo - Agencia de Viajes de Lujo en Molins de Rei', 'url': cu, 'description': pd, 'telephone': B.telephone, 'email': B.email, 'address': { '@type': 'PostalAddress', 'streetAddress': B.street, 'addressLocality': B.city, 'addressRegion': B.region, 'postalCode': B.zip, 'addressCountry': B.country }, 'geo': { '@type': 'GeoCoordinates', 'latitude': B.lat, 'longitude': B.lng }, 'hasMap': 'https://www.google.com/maps?cid=' + B.mapCid, 'areaServed': [{ '@type': 'City', 'name': 'Molins de Rei' }, { '@type': 'AdministrativeArea', 'name': 'Baix Llobregat' }, { '@type': 'City', 'name': 'Sant Feliu de Llobregat' }, { '@type': 'City', 'name': 'Sant Joan Despi' }, { '@type': 'City', 'name': 'Esplugues de Llobregat' }, { '@type': 'City', 'name': 'Cornella de Llobregat' }, { '@type': 'City', 'name': 'Sant Boi de Llobregat' }, { '@type': 'City', 'name': 'Barcelona' }] });
     out.push(bc([{ name: 'Inicio', url: B.url + '/' }, { name: 'Molins de Rei', url: cu }]));
   }
   else { out.push(bc([{ name: 'Inicio', url: B.url + '/' }, { name: headline(pt), url: cu }])); }

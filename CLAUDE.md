@@ -173,7 +173,7 @@ Victor trabaja desde varios PCs (casa, oficina, portátil). El código se sincro
 ## Vault de Obsidian (contexto transversal)
 Este proyecto es **Horizonte Exclusivo** — agencia de viajes de lujo, Molins de Rei.
 
-Si el vault no está cargado: `/add-dir /mnt/c/Users/viite/Documents/OBSIDIAN/VIITEER`
+Si el vault no está cargado: `/add-dir "C:\Users\Victor\Documents\VITER VAULT"` (WSL: `/mnt/c/Users/Victor/Documents/VITER VAULT`)
 
 ### Contexto de negocio
 - SEO foundation y estrategia de posicionamiento para viajes de lujo
@@ -186,20 +186,14 @@ Antes de tomar decisiones de arquitectura o negocio, consulta el vault para veri
 
 ---
 
-## Wiki / Segundo Cerebro
+## Conocimiento (Segundo Cerebro)
 
-Victor mantiene un wiki persistente (patrón LLM Wiki de Karpathy) en su vault de Obsidian.
+Wiki persistente de Victor (patrón LLM Wiki de Karpathy): `C:\Users\Victor\Documents\VITER VAULT\_Wiki\`
+— índice en `_Wiki\index.md`, contrato completo en `_Wiki\CLAUDE.md` (leer SIEMPRE antes de escribir en el wiki).
 
-- **Ruta:** C:\Users\viite\Documents\OBSIDIAN\VIITEER\_Wiki\
-- **Schema:** _Wiki/CLAUDE.md (leer SIEMPRE antes de escribir en el wiki)
-- **Páginas:** _Wiki/wiki/{entities,concepts,projects,sources,syntheses,queries,reports}/
-- **Index:** _Wiki/index.md (actualizar en cada ingest)
-- **Log:** _Wiki/log.md (append-only, entrada en cada operación)
-- **Raw (inmutable):** _Wiki/raw/ — NO modificar
+**Páginas del wiki de este repo** (leer antes de trabajo estratégico o de negocio):
+- `wiki/projects/horizonte-exclusivo.md` — el proyecto
+- `wiki/concepts/framework-lujo.md` · `wiki/concepts/seo-local.md`
 
-Cuando Victor diga "actualiza el wiki", "ingesta al wiki", o "qué sabemos sobre X":
-1. Leer C:\Users\viite\Documents\OBSIDIAN\VIITEER\_Wiki\CLAUDE.md
-2. Ejecutar la operación (ingest, query, o lint) siguiendo las convenciones
-3. Actualizar index.md y log.md
-
-Todo en español. Frontmatter YAML obligatorio en cada página.
+Ancla todo claim de negocio en una página del wiki; si no existe página, dilo.
+Cuando Victor diga "actualiza el wiki" o "qué sabemos sobre X": leer `_Wiki\CLAUDE.md` y ejecutar la operación (ingest/query/lint) siguiendo sus convenciones. Todo en español.
