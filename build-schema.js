@@ -154,6 +154,11 @@ function generate(slug, html) {
     if (ct && ['europa', 'asia', 'africa', 'america', 'paraisos'].includes(contSlug(ct))) bcs.push({ name: ct, url: B.url + '/' + contSlug(ct) + '/' });
     bcs.push({ name: dn, url: cu });
     out.push(bc(bcs));
+    // Si la página de destino tiene fusionados los Travel Hacks (sección #consejos-viaje con
+    // el mismo marcado tips-section-title que usaban las antiguas pro-tips-[destino]), añade
+    // también el FAQPage — no aplica a los destinos que no han fusionado nada (buildFaq devuelve null).
+    const faq = buildFaq(html, dn);
+    if (faq) out.push(faq);
   }
   else if (['europa', 'asia', 'africa', 'america', 'paraisos'].includes(p)) {
     const cn = { europa: 'Europa', asia: 'Asia', africa: 'África', america: 'América', paraisos: 'Paraísos sobre el agua' };
