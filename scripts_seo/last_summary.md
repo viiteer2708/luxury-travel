@@ -1,21 +1,19 @@
-# Inspección 2026-07-15T09:26
+# Inspección 2026-07-17T09:26
 
 - **Total:** 119 URLs
-- **Indexadas:** 71
-- **No indexadas:** 48
+- **Indexadas:** 69
+- **No indexadas:** 50
 - **Errores:** 0
 
-**Cambio vs snapshot previo (2026-07-13T10:45):** indexadas -4, no indexadas +4.
+**Cambio vs snapshot previo (2026-07-15T09:26):** indexadas -2, no indexadas +2.
 
 ## 🆕 Nuevas indexadas (1)
-- `/aviso-legal/`
+- `/seychelles/`
 
-## ⚠️ Salieron del índice (5)
-- `/pro-tips-botsuana/`
-- `/pro-tips-camboya/`
-- `/pro-tips-grecia/`
-- `/pro-tips-polinesia-francesa/`
-- `/pro-tips-praga-viena-budapest/`
+## ⚠️ Salieron del índice (3)
+- `/pro-tips-francia/`
+- `/pro-tips-sudafrica/`
+- `/pro-tips-uganda/`
 
 ## 🎯 Las 4 URLs vigiladas (reescritas el 21 abr 2026)
 
@@ -23,15 +21,14 @@
 |---|---|---|
 | `/islandia/` | ✅ INDEXADA | ✅ INDEXADA |
 | `/pro-tips-marruecos/` | ? | ? |
-| `/pro-tips-praga-viena-budapest/` | **Crawled - currently not indexed** (cambió) | ✅ INDEXADA |
+| `/pro-tips-praga-viena-budapest/` | Crawled - currently not indexed | Crawled - currently not indexed |
 | `/pro-tips-tanzania/` | Crawled - currently not indexed | Crawled - currently not indexed |
 
 ## Desglose no indexadas
-- **Crawled - currently not indexed:** 32
-- **Discovered - currently not indexed:** 13
-- **URL is unknown to Google:** 3
+- **Crawled - currently not indexed:** 35
+- **Discovered - currently not indexed:** 15
 
-## 🔴 Crawled - currently not indexed (32)
+## 🔴 Crawled - currently not indexed (35)
 - `/antes-de-reservar-viaje-grande/`
 - `/chicago-nueva-orleans/`
 - `/como-planifico-un-gran-viaje/`
@@ -49,6 +46,7 @@
 - `/pro-tips-canada/`
 - `/pro-tips-costa-oeste-usa/`
 - `/pro-tips-filipinas/`
+- `/pro-tips-francia/`
 - `/pro-tips-grecia/`
 - `/pro-tips-india/`
 - `/pro-tips-italia/`
@@ -58,7 +56,9 @@
 - `/pro-tips-polinesia-francesa/`
 - `/pro-tips-portugal/`
 - `/pro-tips-praga-viena-budapest/`
+- `/pro-tips-sudafrica/`
 - `/pro-tips-tanzania/`
+- `/pro-tips-uganda/`
 - `/pro-tips-vietnam/`
 - `/que-reservar-primero-gran-viaje/`
 - `/viaje-a-medida-que-es/`
