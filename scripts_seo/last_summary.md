@@ -1,19 +1,15 @@
-# Inspección 2026-07-17T09:26
+# Inspección 2026-07-19T09:22
 
 - **Total:** 119 URLs
-- **Indexadas:** 69
-- **No indexadas:** 50
-- **Errores:** 0
+- **Indexadas:** 71
+- **No indexadas:** 47
+- **Errores:** 1
 
-**Cambio vs snapshot previo (2026-07-15T09:26):** indexadas -2, no indexadas +2.
+**Cambio vs snapshot previo (2026-07-17T09:26):** indexadas +2, no indexadas -3.
 
-## 🆕 Nuevas indexadas (1)
-- `/seychelles/`
-
-## ⚠️ Salieron del índice (3)
-- `/pro-tips-francia/`
-- `/pro-tips-sudafrica/`
-- `/pro-tips-uganda/`
+## 🆕 Nuevas indexadas (2)
+- `/florida/`
+- `/malta/`
 
 ## 🎯 Las 4 URLs vigiladas (reescritas el 21 abr 2026)
 
@@ -25,10 +21,10 @@
 | `/pro-tips-tanzania/` | Crawled - currently not indexed | Crawled - currently not indexed |
 
 ## Desglose no indexadas
-- **Crawled - currently not indexed:** 35
-- **Discovered - currently not indexed:** 15
+- **Crawled - currently not indexed:** 34
+- **Discovered - currently not indexed:** 13
 
-## 🔴 Crawled - currently not indexed (35)
+## 🔴 Crawled - currently not indexed (34)
 - `/antes-de-reservar-viaje-grande/`
 - `/chicago-nueva-orleans/`
 - `/como-planifico-un-gran-viaje/`
@@ -46,7 +42,6 @@
 - `/pro-tips-canada/`
 - `/pro-tips-costa-oeste-usa/`
 - `/pro-tips-filipinas/`
-- `/pro-tips-francia/`
 - `/pro-tips-grecia/`
 - `/pro-tips-india/`
 - `/pro-tips-italia/`

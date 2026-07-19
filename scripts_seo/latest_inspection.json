@@ -1,9 +1,9 @@
 {
-  "fecha": "2026-07-17T09:26:50.431675",
+  "fecha": "2026-07-19T09:22:08.302873",
   "total": 119,
-  "indexadas": 69,
-  "no_indexadas": 50,
-  "errores": 0,
+  "indexadas": 71,
+  "no_indexadas": 47,
+  "errores": 1,
   "detalle_indexadas": [
     "/",
     "/destinos/",
@@ -35,6 +35,7 @@
     "/egipto/",
     "/escocia/",
     "/filipinas/",
+    "/florida/",
     "/francia/",
     "/grecia/",
     "/islandia/",
@@ -43,6 +44,7 @@
     "/kenia-zanzibar/",
     "/madagascar/",
     "/maldivas/",
+    "/malta/",
     "/marruecos/",
     "/namibia/",
     "/noruega/",
@@ -83,12 +85,10 @@
     "/chicago-nueva-orleans/",
     "/costa-rica/",
     "/ecuador/",
-    "/florida/",
     "/hawai/",
     "/india/",
     "/jamaica/",
     "/malasia/",
-    "/malta/",
     "/mauricio/",
     "/suiza/",
     "/tailandia/",
@@ -104,7 +104,6 @@
     "/pro-tips-colombia/",
     "/pro-tips-costa-oeste-usa/",
     "/pro-tips-filipinas/",
-    "/pro-tips-francia/",
     "/pro-tips-grecia/",
     "/pro-tips-india/",
     "/pro-tips-italia/",
@@ -127,7 +126,15 @@
     "/que-reservar-primero-gran-viaje/",
     "/politica-de-privacidad/"
   ],
-  "detalle_errores": [],
+  "detalle_errores": [
+    {
+      "url": "/pro-tips-francia/",
+      "error": {
+        "code": 500,
+        "message": "{\n  \"error\": {\n    \"code\": 500,\n    \"message\": \"Internal error encountered.\",\n    \"status\": \"INTERNAL\"\n  }\n}\n"
+      }
+    }
+  ],
   "resultados_completos": {
     "/": {
       "verdict": "PASS",
@@ -162,7 +169,7 @@
     "/quien-hay-detras/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-06-25T07:26:32Z",
+      "crawled": "2026-07-17T10:51:39Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/molins-de-rei/": {
@@ -352,10 +359,10 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/florida/": {
-      "verdict": "NEUTRAL",
-      "coverage": "Discovered - currently not indexed",
-      "crawled": "N/A",
-      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-07-17T17:31:07Z",
+      "indexing_state": "INDEXING_ALLOWED"
     },
     "/francia/": {
       "verdict": "PASS",
@@ -430,10 +437,10 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/malta/": {
-      "verdict": "NEUTRAL",
-      "coverage": "Discovered - currently not indexed",
-      "crawled": "N/A",
-      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-07-19T05:03:40Z",
+      "indexing_state": "INDEXING_ALLOWED"
     },
     "/marruecos/": {
       "verdict": "PASS",
@@ -650,12 +657,6 @@
       "coverage": "Crawled - currently not indexed",
       "crawled": "2026-03-14T23:18:07Z",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
-    },
-    "/pro-tips-francia/": {
-      "verdict": "NEUTRAL",
-      "coverage": "Crawled - currently not indexed",
-      "crawled": "2026-06-03T12:49:42Z",
-      "indexing_state": "INDEXING_ALLOWED"
     },
     "/pro-tips-grecia/": {
       "verdict": "NEUTRAL",
