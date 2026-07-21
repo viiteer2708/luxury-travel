@@ -1,9 +1,9 @@
 {
-  "fecha": "2026-07-19T09:22:08.302873",
+  "fecha": "2026-07-21T09:45:04.491589",
   "total": 119,
   "indexadas": 71,
-  "no_indexadas": 47,
-  "errores": 1,
+  "no_indexadas": 48,
+  "errores": 0,
   "detalle_indexadas": [
     "/",
     "/destinos/",
@@ -104,6 +104,7 @@
     "/pro-tips-colombia/",
     "/pro-tips-costa-oeste-usa/",
     "/pro-tips-filipinas/",
+    "/pro-tips-francia/",
     "/pro-tips-grecia/",
     "/pro-tips-india/",
     "/pro-tips-italia/",
@@ -126,20 +127,12 @@
     "/que-reservar-primero-gran-viaje/",
     "/politica-de-privacidad/"
   ],
-  "detalle_errores": [
-    {
-      "url": "/pro-tips-francia/",
-      "error": {
-        "code": 500,
-        "message": "{\n  \"error\": {\n    \"code\": 500,\n    \"message\": \"Internal error encountered.\",\n    \"status\": \"INTERNAL\"\n  }\n}\n"
-      }
-    }
-  ],
+  "detalle_errores": [],
   "resultados_completos": {
     "/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-07-14T10:49:18Z",
+      "crawled": "2026-07-19T17:06:05Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/destinos/": {
@@ -409,7 +402,7 @@
     "/japon/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-05-26T15:08:02Z",
+      "crawled": "2026-07-20T14:46:32Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/kenia-zanzibar/": {
@@ -612,7 +605,7 @@
     },
     "/pro-tips-china/": {
       "verdict": "NEUTRAL",
-      "coverage": "Discovered - currently not indexed",
+      "coverage": "URL is unknown to Google",
       "crawled": "N/A",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
     },
@@ -657,6 +650,12 @@
       "coverage": "Crawled - currently not indexed",
       "crawled": "2026-03-14T23:18:07Z",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+    },
+    "/pro-tips-francia/": {
+      "verdict": "NEUTRAL",
+      "coverage": "Crawled - currently not indexed",
+      "crawled": "2026-06-03T12:49:42Z",
+      "indexing_state": "INDEXING_ALLOWED"
     },
     "/pro-tips-grecia/": {
       "verdict": "NEUTRAL",
