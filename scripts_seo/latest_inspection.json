@@ -1,5 +1,5 @@
 {
-  "fecha": "2026-07-21T09:45:04.491589",
+  "fecha": "2026-07-23T09:41:25.504374",
   "total": 119,
   "indexadas": 71,
   "no_indexadas": 48,
@@ -156,7 +156,7 @@
     "/contacto/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-06-28T06:04:20Z",
+      "crawled": "2026-07-22T18:12:18Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/quien-hay-detras/": {
@@ -318,7 +318,7 @@
     "/disneyland-paris/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-05-20T15:40:10Z",
+      "crawled": "2026-07-22T19:22:19Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/dubai-abu-dhabi-maldivas/": {
@@ -515,14 +515,14 @@
     },
     "/tailandia/": {
       "verdict": "NEUTRAL",
-      "coverage": "Discovered - currently not indexed",
+      "coverage": "URL is unknown to Google",
       "crawled": "N/A",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
     },
     "/tanzania/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-06-23T13:30:04Z",
+      "crawled": "2026-07-22T22:13:39Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/turquia/": {
@@ -533,7 +533,7 @@
     },
     "/uganda/": {
       "verdict": "NEUTRAL",
-      "coverage": "Discovered - currently not indexed",
+      "coverage": "URL is unknown to Google",
       "crawled": "N/A",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
     },
@@ -605,7 +605,7 @@
     },
     "/pro-tips-china/": {
       "verdict": "NEUTRAL",
-      "coverage": "URL is unknown to Google",
+      "coverage": "Discovered - currently not indexed",
       "crawled": "N/A",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
     },
@@ -839,7 +839,7 @@
     },
     "/politica-de-privacidad/": {
       "verdict": "NEUTRAL",
-      "coverage": "Discovered - currently not indexed",
+      "coverage": "URL is unknown to Google",
       "crawled": "N/A",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
     }
