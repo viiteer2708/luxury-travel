@@ -1,11 +1,11 @@
-# Inspección 2026-07-23T09:41
+# Inspección 2026-07-25T09:17
 
 - **Total:** 119 URLs
 - **Indexadas:** 71
 - **No indexadas:** 48
 - **Errores:** 0
 
-**Cambio vs snapshot previo (2026-07-21T09:45):** indexadas +0, no indexadas +0.
+**Cambio vs snapshot previo (2026-07-23T09:41):** indexadas +0, no indexadas +0.
 
 ## 🎯 Las 4 URLs vigiladas (reescritas el 21 abr 2026)
 
@@ -17,11 +17,11 @@
 | `/pro-tips-tanzania/` | Crawled - currently not indexed | Crawled - currently not indexed |
 
 ## Desglose no indexadas
-- **Crawled - currently not indexed:** 35
-- **Discovered - currently not indexed:** 10
-- **URL is unknown to Google:** 3
+- **Crawled - currently not indexed:** 37
+- **Discovered - currently not indexed:** 9
+- **URL is unknown to Google:** 2
 
-## 🔴 Crawled - currently not indexed (35)
+## 🔴 Crawled - currently not indexed (37)
 - `/antes-de-reservar-viaje-grande/`
 - `/chicago-nueva-orleans/`
 - `/como-planifico-un-gran-viaje/`
@@ -37,6 +37,7 @@
 - `/pro-tips-brasil/`
 - `/pro-tips-camboya/`
 - `/pro-tips-canada/`
+- `/pro-tips-colombia/`
 - `/pro-tips-costa-oeste-usa/`
 - `/pro-tips-filipinas/`
 - `/pro-tips-francia/`
@@ -54,6 +55,7 @@
 - `/pro-tips-uganda/`
 - `/pro-tips-vietnam/`
 - `/que-reservar-primero-gran-viaje/`
+- `/suiza/`
 - `/viaje-a-medida-que-es/`
 - `/viaje-premium-que-es/`
 - `/viajes-pequenos-recuerdos-grandes/`
