@@ -1,5 +1,5 @@
 {
-  "fecha": "2026-07-25T09:17:10.717135",
+  "fecha": "2026-07-27T11:01:50.348301",
   "total": 119,
   "indexadas": 71,
   "no_indexadas": 48,
@@ -203,7 +203,7 @@
     },
     "/alaska/": {
       "verdict": "NEUTRAL",
-      "coverage": "URL is unknown to Google",
+      "coverage": "Discovered - currently not indexed",
       "crawled": "N/A",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
     },
@@ -377,7 +377,7 @@
     },
     "/india/": {
       "verdict": "NEUTRAL",
-      "coverage": "Discovered - currently not indexed",
+      "coverage": "URL is unknown to Google",
       "crawled": "N/A",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
     },
@@ -515,7 +515,7 @@
     },
     "/tailandia/": {
       "verdict": "NEUTRAL",
-      "coverage": "Discovered - currently not indexed",
+      "coverage": "URL is unknown to Google",
       "crawled": "N/A",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
     },
@@ -533,7 +533,7 @@
     },
     "/uganda/": {
       "verdict": "NEUTRAL",
-      "coverage": "URL is unknown to Google",
+      "coverage": "Discovered - currently not indexed",
       "crawled": "N/A",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
     },
@@ -828,7 +828,7 @@
     "/aviso-legal/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-07-14T21:15:38Z",
+      "crawled": "2026-07-17T08:46:12Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/politica-de-cookies/": {
@@ -839,7 +839,7 @@
     },
     "/politica-de-privacidad/": {
       "verdict": "NEUTRAL",
-      "coverage": "Discovered - currently not indexed",
+      "coverage": "URL is unknown to Google",
       "crawled": "N/A",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
     }
