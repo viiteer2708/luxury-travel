@@ -147,6 +147,20 @@
 - Normal: foto izq + texto der | Reverse: texto izq + foto der
 - Móvil ≤768px: 1 col, `order: unset`
 
+### Agente virtual (chat con IA) — añadido 1-ago-2026
+- `/chat.js` = widget autocontenido (inyecta su CSS y su DOM; clases `he-chat-*`). Lo carga
+  `scripts.js` al final, así llega a las 147 páginas que incluyen el JS global sin tocar ningún HTML.
+  Burbuja dorada en bottom:100px right:24px (encima del WhatsApp flotante), z-index 1001.
+- `api/chat.js` = función Edge de Vercel, proxy a la **API de Gemini** (free tier, modelo
+  `gemini-3.5-flash-lite`, cambiable con env var `GEMINI_MODEL`). Única función serverless del repo.
+- **`GEMINI_API_KEY` SOLO como env var en Vercel** (Production+Preview) — este repo es PÚBLICO,
+  la clave jamás en el código. Sin clave el chat responde 503 amable que deriva a WhatsApp.
+- El system prompt (en `api/chat.js`) cumple la Regla de Oro nº1: **CERO PRECIOS, sin excepciones**,
+  siguiendo el guion de `/cuanto-cuesta-viaje-a-medida/` (6 variables + pedir días/fechas/viajeros/
+  presupuesto orientativo). Tampoco inventa disponibilidad ni infla reseñas ni menciona datos
+  internos (la cara pública es Endeis). Si cambias claims de negocio, coteja con
+  `wiki/projects/horizonte-exclusivo.md` y `contexto-negocio.md`.
+
 ## Espaciados obligatorios
 | Elemento | Valor |
 |----------|-------|

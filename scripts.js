@@ -173,3 +173,12 @@ function rejectCookies() {
     if (!consent) { if (banner) banner.style.display = 'block'; }
     else if (consent === 'accepted') { heLoadAnalytics(); }
 })();
+
+/* ---------- Agente virtual (chat con IA) ---------- */
+/* Carga /chat.js en todas las páginas; el widget se monta solo. */
+(function () {
+    var s = document.createElement('script');
+    s.src = '/chat.js';
+    s.defer = true;
+    document.body.appendChild(s);
+})();

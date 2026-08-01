@@ -1,0 +1,7 @@
+# Este repo es PÚBLICO: nada de credenciales ni artefactos locales en git.
+.env
+.env*.local
+.vercel
+node_modules
+.DS_Store
+.env*
