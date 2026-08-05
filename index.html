@@ -7,7 +7,8 @@
     <title>Viajes de Lujo a Medida en Barcelona | Horizonte Exclusivo</title>
     <meta name="description" content="Agencia de viajes de lujo a medida en Barcelona. Diseñamos lunas de miel, safaris y rutas exclusivas por todo el mundo. Cuéntanos tu viaje soñado.">
     <link rel="canonical" href="https://www.horizonteexclusivo.es/">
-    <link rel="preload" as="image" href="/images/photos/photo-1476610182048-b716b8518aae-1920.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/images/photos/photo-1476610182048-b716b8518aae-900.webp" fetchpriority="high" media="(max-width: 768px)">
+    <link rel="preload" as="image" href="/images/photos/photo-1476610182048-b716b8518aae-1920.webp" fetchpriority="high" media="(min-width: 769px)">
 
     <!-- Open Graph (WhatsApp, Facebook, LinkedIn) -->
     <meta property="og:url" content="https://www.horizonteexclusivo.es/">
@@ -68,6 +69,13 @@
 
 .hero-slide.active {
     opacity: 1;
+}
+
+/* En móvil el primer slide baja a la variante de 900px (!important porque el fondo viene inline) */
+@media (max-width: 768px) {
+    .hero-slide:first-child {
+        background-image: url('/images/photos/photo-1476610182048-b716b8518aae-900.webp') !important;
+    }
 }
 
 .hero-slide::after {
@@ -1541,12 +1549,12 @@ section {
     <!-- HERO -->
     <section class="hero">
         <div class="hero-slide active" style="background-image:url('/images/photos/photo-1476610182048-b716b8518aae-1920.webp')"></div>
-        <div class="hero-slide" style="background-image:url('/images/photos/photo-1608566059145-ee97cd1a9c7c-1920.webp')"></div>
-        <div class="hero-slide" style="background-image:url('/images/photos/photo-1522083165195-3424ed129620-1920.webp')"></div>
-        <div class="hero-slide" style="background-image:url('/images/photos/photo-1525220964737-6c299398493c-1920.webp')"></div>
-        <div class="hero-slide" style="background-image:url('/images/photos/photo-1516026672322-bc52d61a55d5-1920.webp')"></div>
-        <div class="hero-slide" style="background-image:url('/images/photos/photo-1549035092-33b2937b075a-1920.webp')"></div>
-        <div class="hero-slide" style="background-image:url('/images/photos/photo-1462400362591-9ca55235346a-1920.webp')"></div>
+        <div class="hero-slide" data-bg="/images/photos/photo-1608566059145-ee97cd1a9c7c-1920.webp"></div>
+        <div class="hero-slide" data-bg="/images/photos/photo-1522083165195-3424ed129620-1920.webp"></div>
+        <div class="hero-slide" data-bg="/images/photos/photo-1525220964737-6c299398493c-1920.webp"></div>
+        <div class="hero-slide" data-bg="/images/photos/photo-1516026672322-bc52d61a55d5-1920.webp"></div>
+        <div class="hero-slide" data-bg="/images/photos/photo-1549035092-33b2937b075a-1920.webp"></div>
+        <div class="hero-slide" data-bg="/images/photos/photo-1462400362591-9ca55235346a-1920.webp"></div>
         <div class="hero-slide" style="background-image:url('/images/photos/photo-1659944984855-776187144baf-1920.webp')"></div>
         <div class="hero-slide" style="background-image:url('/images/photos/photo-1623941000199-7176fa973212-1920.webp')"></div>
         <div class="hero-slide" style="background-image:url('/images/photos/photo-1693260741045-2c136abbb95f-1920.webp')"></div>
@@ -2531,7 +2539,7 @@ section {
                 <div class="about-preview-text">
                     <p>Cuando alguien me habla de un viaje, mi cabeza empieza a trabajar. Busco vuelos, analizo hoteles, leo reseñas y afino cada decisión. No puedo evitarlo. Montar viajes no es solo algo que se me da bien: es mi pasión.</p>
 
-                    <p>Horizonte Exclusivo es la materialización de ese sueño. Un proyecto profundamente personal en el que cada viaje se concibe como una obra única, no como un producto en serie.</p>
+                    <p>Horizonte Exclusivo es la materialización de ese sueño: una <a href="/agencia-viajes-lujo-barcelona/" style="color: var(--gold); text-decoration: underline;">agencia de viajes de lujo a medida en Barcelona</a>. Un proyecto profundamente personal en el que cada viaje se concibe como una obra única, no como un producto en serie.</p>
 
                     <div class="about-quote">
                         <p>El verdadero lujo no es pagar más, sino ganar tranquilidad, tiempo y la certeza de que todo está pensado para ti.</p>
@@ -2667,6 +2675,15 @@ section {
         // Hero carousel
         (function() {
             const slides = document.querySelectorAll('.hero-slide');
+            // Los fondos 2-7 vienen en data-bg y se aplican tras el load para no competir con el primer pintado
+            const cargarFondos = () => {
+                const sufijo = window.matchMedia('(max-width: 768px)').matches ? '-900.webp' : '-1920.webp';
+                slides.forEach(s => {
+                    if (s.dataset.bg) s.style.backgroundImage = "url('" + s.dataset.bg.replace('-1920.webp', sufijo) + "')";
+                });
+            };
+            if (document.readyState === 'complete') cargarFondos();
+            else window.addEventListener('load', cargarFondos);
             let current = 0;
             setInterval(() => {
                 slides[current].classList.remove('active');
