@@ -1555,10 +1555,10 @@ section {
         <div class="hero-slide" data-bg="/images/photos/photo-1516026672322-bc52d61a55d5-1920.webp"></div>
         <div class="hero-slide" data-bg="/images/photos/photo-1549035092-33b2937b075a-1920.webp"></div>
         <div class="hero-slide" data-bg="/images/photos/photo-1462400362591-9ca55235346a-1920.webp"></div>
-        <div class="hero-slide" style="background-image:url('/images/photos/photo-1659944984855-776187144baf-1920.webp')"></div>
-        <div class="hero-slide" style="background-image:url('/images/photos/photo-1623941000199-7176fa973212-1920.webp')"></div>
-        <div class="hero-slide" style="background-image:url('/images/photos/photo-1693260741045-2c136abbb95f-1920.webp')"></div>
-        <div class="hero-slide" style="background-image:url('/images/nieve-portada.webp')"></div>
+        <div class="hero-slide" data-bg="/images/photos/photo-1659944984855-776187144baf-1920.webp"></div>
+        <div class="hero-slide" data-bg="/images/photos/photo-1623941000199-7176fa973212-1920.webp"></div>
+        <div class="hero-slide" data-bg="/images/photos/photo-1693260741045-2c136abbb95f-1920.webp"></div>
+        <div class="hero-slide" data-bg="/images/nieve-portada.webp"></div>
         <div class="hero-content">
             <h1>Más que viajar,<br><em>VIVIR</em> el mundo</h1>
             <p>Diseño viajes a medida para quienes quieren descubrir el mundo sin preocuparse absolutamente de nada.</p>
@@ -2675,11 +2675,14 @@ section {
         // Hero carousel
         (function() {
             const slides = document.querySelectorAll('.hero-slide');
-            // Los fondos 2-7 vienen en data-bg y se aplican tras el load para no competir con el primer pintado
+            // Los fondos 2-11 vienen en data-bg y se aplican tras el load para no competir con el primer pintado
             const cargarFondos = () => {
-                const sufijo = window.matchMedia('(max-width: 768px)').matches ? '-900.webp' : '-1920.webp';
+                const movil = window.matchMedia('(max-width: 768px)').matches;
                 slides.forEach(s => {
-                    if (s.dataset.bg) s.style.backgroundImage = "url('" + s.dataset.bg.replace('-1920.webp', sufijo) + "')";
+                    let bg = s.dataset.bg;
+                    if (!bg) return;
+                    if (movil) bg = bg.replace(/(-1920)?\.webp$/, '-900.webp');
+                    s.style.backgroundImage = "url('" + bg + "')";
                 });
             };
             if (document.readyState === 'complete') cargarFondos();
