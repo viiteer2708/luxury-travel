@@ -1,5 +1,5 @@
 {
-  "fecha": "2026-08-03T11:02:19.497961",
+  "fecha": "2026-08-05T09:54:06.343710",
   "total": 119,
   "indexadas": 71,
   "no_indexadas": 48,
@@ -203,7 +203,7 @@
     },
     "/alaska/": {
       "verdict": "NEUTRAL",
-      "coverage": "URL is unknown to Google",
+      "coverage": "Discovered - currently not indexed",
       "crawled": "N/A",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
     },
@@ -377,7 +377,7 @@
     },
     "/india/": {
       "verdict": "NEUTRAL",
-      "coverage": "URL is unknown to Google",
+      "coverage": "Discovered - currently not indexed",
       "crawled": "N/A",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
     },
@@ -533,7 +533,7 @@
     },
     "/uganda/": {
       "verdict": "NEUTRAL",
-      "coverage": "URL is unknown to Google",
+      "coverage": "Discovered - currently not indexed",
       "crawled": "N/A",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
     },
@@ -630,7 +630,7 @@
     "/pro-tips-croacia/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-06-08T07:03:09Z",
+      "crawled": "2026-08-05T02:03:28Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/pro-tips-cuba/": {
