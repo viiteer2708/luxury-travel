@@ -479,10 +479,12 @@ section {
     height: 100%;
     object-fit: cover;
     transition: transform 0.6s ease;
+    /* --par la fija el JS del parallax; la escala deja margen para el desplazamiento */
+    transform: translateY(var(--par, 0px)) scale(1.12);
 }
 
 .exp-card:hover img {
-    transform: scale(1.05);
+    transform: translateY(var(--par, 0px)) scale(1.17);
 }
 
 .exp-card .exp-overlay {
@@ -820,6 +822,59 @@ section {
 }
 
 /* ===== FAQ SECTION ===== */
+
+.stats-band {
+    padding: 72px 0;
+    border-top: 1px solid rgba(201,169,110,0.12);
+    border-bottom: 1px solid rgba(201,169,110,0.12);
+}
+
+.stats-grid {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: clamp(28px, 6vw, 72px);
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 6vw, 3.8rem);
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.stat-label {
+    font-size: 0.78rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    transition: var(--transition);
+}
+
+a.stat-item:hover .stat-label {
+    color: var(--gold-light);
+}
+
+.stat-sep {
+    width: 1px;
+    background: rgba(255,255,255,0.1);
+}
+
+@media (max-width: 640px) {
+    .stats-band { padding: 48px 0; }
+    .stat-sep { display: none; }
+}
+
 .faq-section {
     background: var(--dark-soft);
 }
@@ -1081,12 +1136,19 @@ section {
     margin: 0 auto;
 }
 
+.about-preview-image {
+    overflow: hidden;
+    border-radius: var(--radius);
+    border: 1px solid rgba(201,169,110,0.2);
+}
+
 .about-preview-image img {
+    display: block;
     width: 100%;
     aspect-ratio: 3 / 4;
     object-fit: cover;
-    border-radius: var(--radius);
-    border: 1px solid rgba(201,169,110,0.2);
+    transform: translateY(var(--par, 0px)) scale(1.1);
+    transition: transform 0.6s ease;
 }
 
 .about-preview-text p {
@@ -2420,6 +2482,28 @@ section {
     </section>
 
     <!-- 8. FAQ -->
+    <!-- CIFRAS -->
+    <section class="stats-band">
+        <div class="container">
+            <div class="stats-grid reveal">
+                <a href="/destinos/" class="stat-item">
+                    <span class="stat-number" data-target="59">0</span>
+                    <span class="stat-label">Destinos a medida</span>
+                </a>
+                <div class="stat-sep" aria-hidden="true"></div>
+                <a href="/pro-tips/" class="stat-item">
+                    <span class="stat-number" data-target="56">0</span>
+                    <span class="stat-label">Guías Travel Hacks</span>
+                </a>
+                <div class="stat-sep" aria-hidden="true"></div>
+                <a href="https://g.page/r/CYdKzB_9NWUOEAE/review" target="_blank" rel="noopener" class="stat-item">
+                    <span class="stat-number" data-target="5" data-decimales="1">0</span>
+                    <span class="stat-label">Valoración en Google</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <section class="faq-section">
         <div class="container">
             <div class="section-header reveal">
@@ -2780,6 +2864,60 @@ section {
                     }
                 });
             });
+        })();
+    </script>
+
+
+    <script>
+        // Contadores animados de la banda de cifras
+        (function() {
+            const nums = document.querySelectorAll('.stat-number');
+            if (!nums.length) return;
+            const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const fmt = (v, d) => v.toLocaleString('es-ES', { minimumFractionDigits: d, maximumFractionDigits: d });
+            const obs = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    obs.unobserve(entry.target);
+                    const el = entry.target;
+                    const objetivo = parseFloat(el.dataset.target);
+                    const dec = parseInt(el.dataset.decimales || '0', 10);
+                    if (reduce) { el.textContent = fmt(objetivo, dec); return; }
+                    const t0 = performance.now(), dur = 1400;
+                    (function paso(t) {
+                        const p = Math.min((t - t0) / dur, 1);
+                        const suavizado = 1 - Math.pow(1 - p, 3);
+                        el.textContent = fmt(objetivo * suavizado, dec);
+                        if (p < 1) requestAnimationFrame(paso);
+                    })(t0);
+                });
+            }, { threshold: 0.4 });
+            nums.forEach(n => obs.observe(n));
+        })();
+    </script>
+
+    <script>
+        // Parallax sutil en las fotos de sección (fija --par, que el CSS compone con el hover)
+        (function() {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            const cajas = document.querySelectorAll('.exp-card, .about-preview-image');
+            if (!cajas.length) return;
+            let pendiente = false;
+            function aplicar() {
+                pendiente = false;
+                const vh = window.innerHeight;
+                const movil = window.innerWidth <= 768;
+                cajas.forEach(c => {
+                    if (movil) { c.style.setProperty('--par', '0px'); return; }
+                    const r = c.getBoundingClientRect();
+                    if (r.bottom < 0 || r.top > vh) return;
+                    const progreso = (r.top + r.height / 2 - vh / 2) / vh;
+                    c.style.setProperty('--par', (progreso * 26).toFixed(1) + 'px');
+                });
+            }
+            window.addEventListener('scroll', () => { if (!pendiente) { pendiente = true; requestAnimationFrame(aplicar); } }, { passive: true });
+            window.addEventListener('resize', aplicar);
+            aplicar();
         })();
     </script>
 
