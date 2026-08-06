@@ -287,7 +287,7 @@ ul { list-style: none; }
 /* ===== BARRA DE CONFIANZA (reseñas Google + teléfono, una sola cápsula de vidrio) ===== */
 .hero-trust { display: flex; justify-content: center; margin-top: 24px; }
 .trust-bar { display: inline-flex; align-items: center; flex-wrap: wrap; justify-content: center; gap: 10px 18px; padding: 13px 28px; border-radius: 999px; background: rgba(12,11,9,0.52); -webkit-backdrop-filter: blur(16px) saturate(140%); backdrop-filter: blur(16px) saturate(140%); border: 1px solid rgba(201,169,110,0.5); box-shadow: 0 8px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.08); }
-.trust-item { display: inline-flex; align-items: center; gap: 8px; color: var(--white); font-size: 0.9rem; letter-spacing: 0.4px; transition: var(--transition); }
+.trust-item { display: inline-flex; align-items: center; gap: 8px; color: var(--white); font-size: 0.9rem; letter-spacing: 0.4px; transition: var(--transition); white-space: nowrap; }
 .trust-item strong { font-weight: 700; color: var(--white); }
 .trust-sub { color: rgba(255,255,255,0.72); }
 a.trust-item:hover .trust-sub { color: var(--gold-light); }
@@ -297,8 +297,8 @@ a.trust-item:hover .trust-sub { color: var(--gold-light); }
 .trust-tel { color: var(--gold-light); font-weight: 600; letter-spacing: 0.5px; font-variant-numeric: tabular-nums; }
 .trust-tel:hover { color: var(--gold); }
 .trust-tel svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-@media (max-width: 480px) { .trust-bar { padding: 11px 18px; gap: 8px 12px; } .trust-item { font-size: 0.85rem; } }
-@media (max-width: 400px) { .trust-sep { display: none; } }
+@media (max-width: 480px) { .trust-bar { padding: 10px 16px; gap: 8px 10px; } .trust-item { font-size: 0.8rem; gap: 6px; } .stars-svg { gap: 2px; } .stars-svg svg { width: 11px; height: 11px; } .trust-tel svg { width: 13px; height: 13px; } .trust-tel { letter-spacing: 0.3px; } }
+@media (max-width: 360px) { .trust-sep { display: none; } }
 
 /* ===== DESTINATION CARDS ===== */
 .destinations-grid {

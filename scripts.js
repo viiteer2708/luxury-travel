@@ -87,9 +87,15 @@ if (dropdownParent) {
 
 // Scroll reveal
 const observer = new IntersectionObserver((entries) => {
+    let lote = 0;
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+            const el = entry.target;
+            // Escalonado: los elementos que entran a la vez aparecen en cascada;
+            // el retardo se limpia al acabar para no ralentizar el hover
+            el.style.transitionDelay = (lote++ * 80) + 'ms';
+            el.classList.add('visible');
+            el.addEventListener('transitionend', () => { el.style.transitionDelay = ''; }, { once: true });
         }
     });
 }, { threshold: 0.15 });

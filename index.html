@@ -65,10 +65,24 @@
             opacity: 0;
             transition: opacity 1.5s ease;
             z-index: 0;
+            transform: scale(1.08);
 }
 
 .hero-slide.active {
     opacity: 1;
+    animation: heroKenBurns 14s ease-out both;
+}
+
+/* Ken Burns: zoom lentísimo de la foto activa; el resto espera ya ampliado
+   para que el crossfade de salida no dé un salto de escala */
+@keyframes heroKenBurns {
+    from { transform: scale(1); }
+    to { transform: scale(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-slide { transform: none; }
+    .hero-slide.active { animation: none; }
 }
 
 /* En móvil el primer slide baja a la variante de 900px (!important porque el fondo viene inline) */
