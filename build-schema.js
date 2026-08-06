@@ -193,6 +193,12 @@ function generate(slug, html) {
     out.push({ '@context': 'https://schema.org', '@type': 'Service', 'name': 'Lunas de Miel a Medida', 'url': cu, 'description': pd, 'provider': org(), 'areaServed': { '@type': 'Country', 'name': 'Espana' }, 'serviceType': 'Luna de miel a medida' });
     out.push(bc([{ name: 'Inicio', url: B.url + '/' }, { name: 'Luna de Miel a Medida', url: cu }]));
   }
+  else if (p === 'safari-de-lujo-a-medida') {
+    out.push({ '@context': 'https://schema.org', '@type': 'Service', 'name': 'Safaris de Lujo a Medida', 'url': cu, 'description': pd, 'provider': org(), 'areaServed': { '@type': 'Country', 'name': 'Espana' }, 'serviceType': 'Safari de lujo a medida' });
+    const faqSafari = buildHomeFaq(html);
+    if (faqSafari) out.push(faqSafari);
+    out.push(bc([{ name: 'Inicio', url: B.url + '/' }, { name: 'Safari de Lujo a Medida', url: cu }]));
+  }
   else if (p === 'viajes-a-medida-barcelona') {
     out.push({ '@context': 'https://schema.org', '@type': 'Service', 'name': 'Viajes a Medida en Barcelona', 'url': cu, 'description': pd, 'provider': org(), 'areaServed': [{ '@type': 'City', 'name': 'Barcelona' }, { '@type': 'AdministrativeArea', 'name': 'Baix Llobregat' }, { '@type': 'City', 'name': 'Molins de Rei' }], 'serviceType': 'Viajes a medida' });
     out.push(bc([{ name: 'Inicio', url: B.url + '/' }, { name: 'Viajes a Medida Barcelona', url: cu }]));
