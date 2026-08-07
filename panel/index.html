@@ -247,6 +247,53 @@ footer.pie { text-align: center; color: var(--text-muted); font-size: 0.78rem; m
     });
   }
 
+  // Crear un presupuesto tarda más de lo que una función Edge puede estar
+  // callada, así que /api/ppto-crear responde por partes: una línea JSON por
+  // paso y la última con el resultado. Si algo falla antes de empezar (la
+  // contraseña, por ejemplo), llega un JSON normal y se lee tal cual.
+  function llamarPorPasos(ruta, datos, alPaso) {
+    return fetch(ruta, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', 'x-ppto-clave': clave },
+      body: JSON.stringify(datos)
+    }).then(function (r) {
+      var tipo = r.headers.get('content-type') || '';
+      if (tipo.indexOf('ndjson') === -1 || !r.body || !r.body.getReader) {
+        return r.json().catch(function () { return { ok: false, error: 'La respuesta ha venido rota (' + r.status + ').' }; });
+      }
+      var lector = r.body.getReader();
+      var deco = new TextDecoder();
+      var resto = '';
+      var ultimo = null;
+
+      function tragar(linea) {
+        var t = linea.trim();
+        if (!t) return;
+        var o;
+        try { o = JSON.parse(t); } catch (e) { return; }
+        if (o.paso && alPaso) alPaso(o.paso);
+        if (typeof o.ok !== 'undefined') ultimo = o;
+      }
+
+      function seguir() {
+        return lector.read().then(function (trozo) {
+          if (trozo.done) {
+            tragar(resto);
+            return ultimo || { ok: false, error: 'La respuesta se ha cortado antes de terminar.' };
+          }
+          resto += deco.decode(trozo.value, { stream: true });
+          var lineas = resto.split('\n');
+          resto = lineas.pop();
+          lineas.forEach(tragar);
+          return seguir();
+        });
+      }
+      return seguir();
+    }).catch(function () {
+      return { ok: false, error: 'No he podido conectar. Mira la conexión y prueba otra vez.' };
+    });
+  }
+
   /* ── puerta ── */
 
   function entrar() {
@@ -309,13 +356,15 @@ footer.pie { text-align: center; color: var(--text-muted); font-size: 0.78rem; m
       ocupado(boton, true, 'Leyendo el presupuesto…');
       $('progresoCrear').classList.remove('oculto');
 
-      return llamar('/api/ppto-crear', {
+      return llamarPorPasos('/api/ppto-crear', {
         cliente: cliente,
         cliente_email: $('clienteEmail').value.trim(),
         cliente_telefono: $('clienteTel').value.trim(),
         texto: texto,
         indicaciones: $('indicaciones').value.trim(),
         archivo: archivo
+      }, function (paso) {
+        $('progresoCrear').textContent = paso;
       }).then(function (r) {
         ocupado(boton, false);
         $('progresoCrear').classList.add('oculto');

@@ -222,7 +222,13 @@ export default async function handler(req) {
     return json({ ok: false, error: 'Falta la conexión con la base de datos en Vercel.' }, 503);
   }
 
-  /* ── 1. El modelo lee el presupuesto ── */
+  /* ── A partir de aquí se responde en streaming ──
+     Una función Edge tiene que EMPEZAR a responder en 25 segundos, y leer un
+     presupuesto entero con Gemini se pasa de ahí con facilidad (un PDF largo
+     puede irse a 40). Así que la respuesta arranca en el acto con una línea de
+     "voy por aquí" y el resultado llega por el mismo canal cuando está. De paso
+     Victor ve el avance en vez de un botón parado. Formato NDJSON: una línea
+     JSON por paso, la última es el resultado. */
 
   const partes = [];
   partes.push({ text: `El presupuesto va para: ${cliente}.` });
@@ -230,83 +236,126 @@ export default async function handler(req) {
   if (original) partes.push({ text: `\n--- PRESUPUESTO RECIBIDO ---\n${original}` });
   if (parteArchivo) partes.push(parteArchivo);
 
-  let crudo;
-  try {
-    crudo = await pedirAGemini(apiKey, partes);
-  } catch (e) {
-    console.error('[ppto-crear] Gemini:', e && e.message);
-    const lento = /timeout|abort/i.test(String(e && e.message));
-    return json({
-      ok: false,
-      error: lento
-        ? 'El presupuesto ha tardado demasiado en leerse. Si has subido un PDF, prueba a pegar el texto: va mucho más rápido.'
-        : 'No he podido leer el presupuesto. Revisa que el texto se entienda y prueba otra vez.',
-    }, 502);
-  }
+  return flujo(async (manda) => {
+    manda({ paso: parteArchivo ? 'Leyendo el archivo…' : 'Leyendo el presupuesto…' });
 
-  let datos;
-  try { datos = JSON.parse(limpiarVallas(crudo)); }
-  catch (_) {
-    console.error('[ppto-crear] JSON ilegible del modelo:', String(crudo).slice(0, 400));
-    return json({ ok: false, error: 'He leído el presupuesto pero me ha salido mal estructurado. Vuelve a darle al botón.' }, 502);
-  }
-  if (!datos || typeof datos !== 'object') {
-    return json({ ok: false, error: 'El presupuesto ha vuelto vacío. Revisa que el texto tenga el viaje.' }, 502);
-  }
+    /* ── 1. El modelo lee el presupuesto ── */
 
-  /* ── 2. Se normaliza a lo que la base y la página esperan ── */
+    let crudo;
+    try {
+      crudo = await pedirAGemini(apiKey, partes);
+    } catch (e) {
+      console.error('[ppto-crear] Gemini:', e && e.message);
+      const lento = /timeout|abort/i.test(String(e && e.message));
+      return manda({
+        ok: false,
+        error: lento
+          ? 'El presupuesto ha tardado demasiado en leerse. Si has subido un PDF, prueba a pegar el texto: va mucho más rápido.'
+          : 'No he podido leer el presupuesto. Revisa que el texto se entienda y prueba otra vez.',
+      });
+    }
 
-  const { fila, consultas } = normalizar(datos, { cliente, clienteEmail, clienteTelefono, original, indicaciones });
-  if (!fila.destino || !fila.titulo) {
-    return json({ ok: false, error: 'No he encontrado el viaje en lo que me has pasado. ¿Seguro que es el presupuesto?' }, 422);
-  }
-  if (!(Number(fila.precio_total) > 0)) {
-    return json({ ok: false, error: 'No he encontrado el precio del cliente. Dímelo en las indicaciones y vuelve a intentarlo.' }, 422);
-  }
+    let datos;
+    try { datos = JSON.parse(limpiarVallas(crudo)); }
+    catch (_) {
+      console.error('[ppto-crear] JSON ilegible del modelo:', String(crudo).slice(0, 400));
+      return manda({ ok: false, error: 'He leído el presupuesto pero me ha salido mal estructurado. Vuelve a darle al botón.' });
+    }
+    if (!datos || typeof datos !== 'object') {
+      return manda({ ok: false, error: 'El presupuesto ha vuelto vacío. Revisa que el texto tenga el viaje.' });
+    }
 
-  /* ── 3. La limpieza se COMPRUEBA, no se da por hecha ── */
+    /* ── 2. Se normaliza a lo que la base y la página esperan ── */
 
-  const hallazgos = revisar(fila, datos && datos.interno);
-  const avisos = listaTextos(datos && datos.avisos, 12, 300);
-  const estado = hallazgos.length ? 'borrador' : 'enviado';
+    manda({ paso: 'Comprobando que no se cuela nada del proveedor…' });
 
-  /* ── 4. Alta ── */
+    const { fila, consultas } = normalizar(datos, { cliente, clienteEmail, clienteTelefono, original, indicaciones });
+    if (!fila.destino || !fila.titulo) {
+      return manda({ ok: false, error: 'No he encontrado el viaje en lo que me has pasado. ¿Seguro que es el presupuesto?' });
+    }
+    if (!(Number(fila.precio_total) > 0)) {
+      return manda({ ok: false, error: 'No he encontrado el precio del cliente. Dímelo en las indicaciones y vuelve a intentarlo.' });
+    }
 
-  let id = generarId();
-  let alta = await insertar(base, key, id, fila, estado);
-  if (alta.conflicto) { id = generarId(); alta = await insertar(base, key, id, fila, estado); }
-  if (!alta.ok) {
-    console.error('[ppto-crear] Alta fallida:', alta.detalle);
-    return json({ ok: false, error: 'He preparado la propuesta pero no he podido guardarla. Vuelve a intentarlo.' }, 502);
-  }
+    /* ── 3. La limpieza se COMPRUEBA, no se da por hecha ── */
 
-  const url = `${WEB}/ppto/${id}/`;
+    const hallazgos = revisar(fila, datos && datos.interno);
+    const avisos = listaTextos(datos && datos.avisos, 12, 300);
+    const estado = hallazgos.length ? 'borrador' : 'enviado';
 
-  return json({
-    ok: true,
-    id,
-    url,
-    estado,
-    hallazgos,
-    avisos,
-    resumen: {
-      cliente,
-      destino: fila.destino,
-      titulo: fila.titulo,
-      fechas: fila.fecha_salida && fila.fecha_regreso ? `${fila.fecha_salida} → ${fila.fecha_regreso}` : (fila.fecha_salida || ''),
-      noches: fila.noches,
-      viajeros: fila.viajeros,
-      dias_itinerario: fila.itinerario.length,
-      alojamientos: fila.alojamientos.map(a => a.nombre).filter(Boolean),
-      precio_total: Number(fila.precio_total),
-      precio_por_persona: fila.precio_por_persona == null ? null : Number(fila.precio_por_persona),
-      moneda: fila.moneda,
-      valido_hasta: fila.valido_hasta,
-      enlace_alojamiento: fila.alojamientos.map(a => a.enlace).filter(Boolean)[0] || null,
+    /* ── 4. Alta ── */
+
+    manda({ paso: 'Guardando la propuesta…' });
+
+    let id = generarId();
+    let alta = await insertar(base, key, id, fila, estado);
+    if (alta.conflicto) { id = generarId(); alta = await insertar(base, key, id, fila, estado); }
+    if (!alta.ok) {
+      console.error('[ppto-crear] Alta fallida:', alta.detalle);
+      return manda({ ok: false, error: 'He preparado la propuesta pero no he podido guardarla. Vuelve a intentarlo.' });
+    }
+
+    const url = `${WEB}/ppto/${id}/`;
+
+    manda({
+      ok: true,
+      id,
+      url,
+      estado,
+      hallazgos,
+      avisos,
+      resumen: {
+        cliente,
+        destino: fila.destino,
+        titulo: fila.titulo,
+        fechas: fila.fecha_salida && fila.fecha_regreso ? `${fila.fecha_salida} → ${fila.fecha_regreso}` : (fila.fecha_salida || ''),
+        noches: fila.noches,
+        viajeros: fila.viajeros,
+        dias_itinerario: fila.itinerario.length,
+        alojamientos: fila.alojamientos.map(a => a.nombre).filter(Boolean),
+        precio_total: Number(fila.precio_total),
+        precio_por_persona: fila.precio_por_persona == null ? null : Number(fila.precio_por_persona),
+        moneda: fila.moneda,
+        valido_hasta: fila.valido_hasta,
+        enlace_alojamiento: fila.alojamientos.map(a => a.enlace).filter(Boolean)[0] || null,
+      },
+      fotos: consultas,
+      mensajes: mensajes({ cliente, url, fila }),
+    });
+  });
+}
+
+// Envuelve el trabajo largo en una respuesta que empieza YA. Ojo con una cosa:
+// a partir del primer byte la respuesta es un 200 pase lo que pase, así que los
+// errores viajan dentro del cuerpo (`ok:false`) y el panel no puede fiarse del
+// código HTTP. Es el precio de no chocar con el límite de los 25 segundos.
+function flujo(trabajo) {
+  const codificador = new TextEncoder();
+  const cuerpo = new ReadableStream({
+    async start(control) {
+      const manda = (o) => control.enqueue(codificador.encode(JSON.stringify(o) + '\n'));
+      try {
+        await trabajo(manda);
+      } catch (e) {
+        console.error('[ppto-crear] Error inesperado:', e && e.message);
+        manda({ ok: false, error: 'Algo ha fallado por el camino. Vuelve a intentarlo.' });
+      }
+      control.close();
     },
-    fotos: consultas,
-    mensajes: mensajes({ cliente, url, fila }),
-  }, 200);
+  });
+
+  return new Response(cuerpo, {
+    status: 200,
+    headers: {
+      'content-type': 'application/x-ndjson; charset=utf-8',
+      'cache-control': 'private, no-store',
+      'x-robots-tag': 'noindex, nofollow',
+      // Que ningún intermediario acumule la respuesta antes de soltarla: si se
+      // almacena en búfer, el primer byte deja de salir pronto y volvemos al
+      // problema que este streaming venía a resolver.
+      'x-accel-buffering': 'no',
+    },
+  });
 }
 
 /* ═══════════════════════ Gemini ═══════════════════════ */
@@ -330,7 +379,10 @@ async function pedirAGemini(apiKey, partes) {
             responseMimeType: 'application/json',
           },
         }),
-        signal: AbortSignal.timeout(21_000),
+        // Holgado a propósito: la respuesta ya va en streaming, así que aquí no
+        // manda el límite de los 25 segundos de la función sino la paciencia
+        // de Victor mirando la barra de avance.
+        signal: AbortSignal.timeout(70_000),
       }
     );
 
