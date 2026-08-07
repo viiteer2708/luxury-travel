@@ -215,6 +215,16 @@ async function barrer(consulta, salto, extra) {
     Object.assign({ license: LICENCIAS }, extra),
   ];
 
+  // Los candidatos se ACUMULAN entre variantes en vez de devolver el primero y
+  // parar. El motivo es el botón «otra foto» del panel: con «Canal du Midi
+  // mooring village» Openverse devuelve un único resultado, así que elegir
+  // res[salto % res.length] daba tres veces la misma foto y el botón parecía
+  // roto. Recorriendo las variantes hasta juntar suficientes candidatos, cada
+  // pulsación enseña una foto distinta de verdad, y las más específicas siguen
+  // yendo primero porque se recorren en ese orden.
+  const candidatos = [];
+  const vistas = new Set();
+
   for (const q of variantesConsulta(consulta)) {
     for (const f of filtros) {
       const p = new URLSearchParams(Object.assign({ q, mature: 'false', page_size: '16' }, f));
@@ -230,23 +240,31 @@ async function barrer(consulta, salto, extra) {
 
       const res = (data && Array.isArray(data.results) ? data.results : [])
         .filter(x => x && typeof x.url === 'string' && EXT_OK.test(x.url));
-      if (!res.length) continue;
 
-      const elegido = res[salto % res.length];
-      return {
-        url: elegido.url,
-        thumbnail: elegido.thumbnail || '',
-        titulo: limpiarTitulo(elegido.title),
-        autor: String(elegido.creator || 'Autor desconocido').slice(0, 90),
-        licencia: elegido.license || '',
-        version: elegido.license_version || '',
-        licenciaUrl: elegido.license_url || 'https://creativecommons.org/',
-        origen: elegido.foreign_landing_url || elegido.url,
-        buscado: q,
-      };
+      for (const x of res) {
+        if (vistas.has(x.url)) continue;
+        vistas.add(x.url);
+        candidatos.push(convertir(x, q));
+      }
+      if (candidatos.length > salto) return candidatos[salto];
     }
   }
-  return null;
+
+  return candidatos.length ? candidatos[salto % candidatos.length] : null;
+}
+
+function convertir(x, q) {
+  return {
+    url: x.url,
+    thumbnail: x.thumbnail || '',
+    titulo: limpiarTitulo(x.title),
+    autor: String(x.creator || 'Autor desconocido').slice(0, 90),
+    licencia: x.license || '',
+    version: x.license_version || '',
+    licenciaUrl: x.license_url || 'https://creativecommons.org/',
+    origen: x.foreign_landing_url || x.url,
+    buscado: q,
+  };
 }
 
 // Algunos proveedores devuelven el título con HTML dentro
