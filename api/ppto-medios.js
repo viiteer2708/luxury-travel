@@ -131,8 +131,7 @@ async function accionFoto(base, key, id, fila, cuerpo) {
   }
 
   const tope = esHero ? MAX_HERO : MAX_TRAMO;
-  const descarga = await descargarImagen(hallazgo.url, tope) ||
-                   (hallazgo.thumbnail ? await descargarImagen(hallazgo.thumbnail, tope) : null);
+  const descarga = await bajarLaMejor(hallazgo, esHero ? [1920, 1280] : [1280, 1920], tope);
   if (!descarga) {
     return json({ ok: false, error: 'He encontrado la foto pero no he podido traérmela. Prueba con «otra foto».' }, 502);
   }
@@ -553,6 +552,34 @@ async function accionPublicar(base, key, id) {
 }
 
 /* ═══════════════════════ descarga y almacén ═══════════════════════ */
+
+// Wikimedia Commons es la mitad de lo que devuelve Openverse y sirve el ORIGINAL
+// sin ningún límite: la primera foto de Capestang pesaba 7 MB y se descartaba
+// entera por tamaño, dejando el tramo sin foto. Pero Commons publica también
+// versiones redimensionadas en una ruta previsible, así que se pide esa primero.
+// Pesa lo que tiene que pesar y, de paso, la propuesta del cliente carga antes.
+// Ojo con los anchos: Commons NO genera una miniatura a medida para cualquier
+// número. Pedir 800, 1024 o 1200 devuelve 400; 1280 y 1920 responden porque son
+// los que su propia web ya tiene renderizados. Así que se piden esos dos y
+// nada más, en el orden que convenga al hueco.
+function versionesDescargables(url, anchos) {
+  const m = /^https:\/\/upload\.wikimedia\.org\/wikipedia\/([a-z]+)\/([0-9a-f])\/([0-9a-f]{2})\/([^/]+\.(?:jpe?g|png))$/i.exec(url);
+  if (!m) return [url];
+  const [, proyecto, a, ab, archivo] = m;
+  return anchos
+    .map(w => `https://upload.wikimedia.org/wikipedia/${proyecto}/thumb/${a}/${ab}/${archivo}/${w}px-${archivo}`)
+    .concat([url]);
+}
+
+async function bajarLaMejor(hallazgo, anchos, tope) {
+  for (const u of versionesDescargables(hallazgo.url, anchos)) {
+    const d = await descargarImagen(u, tope);
+    if (d) return d;
+  }
+  // Último recurso: la miniatura que sirve el propio Openverse. No siempre
+  // responde (algunos elementos devuelven 424), por eso va la última.
+  return hallazgo.thumbnail ? await descargarImagen(hallazgo.thumbnail, tope) : null;
+}
 
 async function descargarImagen(url, tope, minimo) {
   try {
