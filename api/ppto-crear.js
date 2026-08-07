@@ -355,6 +355,11 @@ function flujo(trabajo) {
       'content-type': 'application/x-ndjson; charset=utf-8',
       'cache-control': 'private, no-store',
       'x-robots-tag': 'noindex, nofollow',
+      // Qué versión del código ha atendido la petición. Sin esto, comprobar un
+      // arreglo en producción es adivinar: durante esta misma sesión tres
+      // pruebas dieron por bueno o por malo un cambio que todavía no estaba
+      // desplegado, porque la respuesta de la versión vieja es indistinguible.
+      'x-ppto-build': (getEnv('VERCEL_GIT_COMMIT_SHA') || 'local').slice(0, 8),
       // Que ningún intermediario acumule la respuesta antes de soltarla: si se
       // almacena en búfer, el primer byte deja de salir pronto y volvemos al
       // problema que este streaming venía a resolver.
@@ -788,6 +793,11 @@ function json(obj, status) {
       'content-type': 'application/json; charset=utf-8',
       'cache-control': 'private, no-store',
       'x-robots-tag': 'noindex, nofollow',
+      // Qué versión del código ha atendido la petición. Sin esto, comprobar un
+      // arreglo en producción es adivinar: durante esta misma sesión tres
+      // pruebas dieron por bueno o por malo un cambio que todavía no estaba
+      // desplegado, porque la respuesta de la versión vieja es indistinguible.
+      'x-ppto-build': (getEnv('VERCEL_GIT_COMMIT_SHA') || 'local').slice(0, 8),
     },
   });
 }
