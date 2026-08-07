@@ -102,6 +102,7 @@ export default async function handler(req) {
     if (accion === 'enlace') return await accionEnlace(base, key, id, fila, cuerpo);
     if (accion === 'publicar') return await accionPublicar(base, key, id);
     if (accion === 'borrar') return await accionBorrar(base, key, id);
+    if (accion === 'limpiar') return await accionLimpiar(base, key, id, fila);
   } catch (e) {
     console.error('[ppto-medios]', accion, e && e.message);
     return json({ ok: false, error: 'Algo ha fallado por el camino. Vuelve a intentarlo.' }, 502);
@@ -572,6 +573,33 @@ async function accionPublicar(base, key, id) {
   return ok ? json({ ok: true, estado: 'enviado' }, 200) : json({ ok: false, error: 'No he podido publicarlo.' }, 502);
 }
 
+// Barre las fotos que ya no usa nadie. Hace falta porque cada «otra foto» del
+// panel deja la anterior en el almacén: sin esto, un presupuesto que se ha
+// retocado un rato acumula veinte imágenes de las que se ven cuatro, y entre
+// ellas pueden estar las del proveedor con su marca que el portero descartó.
+async function accionLimpiar(base, key, id, fila) {
+  const enUso = new Set();
+  if (fila.hero_imagen) enUso.add(fila.hero_imagen);
+  (Array.isArray(fila.itinerario) ? fila.itinerario : []).forEach(d => {
+    (Array.isArray(d.imagenes) ? d.imagenes : []).forEach(u => enUso.add(u));
+    if (d.imagen) enUso.add(d.imagen);
+  });
+  (Array.isArray(fila.alojamientos) ? fila.alojamientos : []).forEach(a => {
+    (Array.isArray(a.galeria) ? a.galeria : []).forEach(u => enUso.add(u));
+  });
+
+  const objetos = await listarFotos(base, key, id);
+  const prefijo = `${base}/storage/v1/object/public/${BUCKET}/`;
+  const sobran = objetos
+    .map(o => `${id}/${o.name}`)
+    .filter(ruta => !enUso.has(prefijo + ruta));
+
+  if (!sobran.length) return json({ ok: true, borradas: 0 }, 200);
+
+  const ok = await borrarFotos(base, key, sobran);
+  return json({ ok: true, borradas: ok ? sobran.length : 0 }, 200);
+}
+
 // Borrar de verdad: la fila y las fotos. Para presupuestos de prueba, no para
 // los de clientes — a un cliente se le CADUCA el presupuesto, que deja la
 // página en pie con un mensaje, en vez de dejarle un 404 el día que vuelva a
@@ -582,38 +610,17 @@ async function accionPublicar(base, key, id) {
 // Y hay que quitarlas, porque entre ellas puede haber fotos del proveedor con
 // su marca que se descartaron; dejarlas accesibles por URL sería raro.
 async function accionBorrar(base, key, id) {
-  const cabeceras = { apikey: key, authorization: `Bearer ${key}`, 'content-type': 'application/json' };
-  let borradas = 0;
-
-  try {
-    const r = await fetch(`${base}/storage/v1/object/list/${BUCKET}`, {
-      method: 'POST',
-      headers: cabeceras,
-      body: JSON.stringify({ prefix: `${id}/`, limit: 500 }),
-      signal: AbortSignal.timeout(12_000),
-    });
-    if (r.ok) {
-      const objetos = await r.json();
-      const rutas = (Array.isArray(objetos) ? objetos : []).map(o => `${id}/${o.name}`);
-      if (rutas.length) {
-        const d = await fetch(`${base}/storage/v1/object/${BUCKET}`, {
-          method: 'DELETE',
-          headers: cabeceras,
-          body: JSON.stringify({ prefixes: rutas }),
-          signal: AbortSignal.timeout(15_000),
-        });
-        if (d.ok) borradas = rutas.length;
-        else console.error('[ppto-medios] Storage no borró:', d.status, (await d.text().catch(() => '')).slice(0, 200));
-      }
-    }
-  } catch (e) {
-    console.error('[ppto-medios] Listando fotos:', e && e.message);
-  }
+  const objetos = await listarFotos(base, key, id);
+  const rutas = objetos.map(o => `${id}/${o.name}`);
+  const borradas = rutas.length && await borrarFotos(base, key, rutas) ? rutas.length : 0;
 
   try {
     const r = await fetch(`${base}/rest/v1/presupuestos?id=eq.${encodeURIComponent(id)}`, {
       method: 'DELETE',
-      headers: Object.assign({ prefer: 'return=minimal' }, cabeceras),
+      headers: {
+        apikey: key, authorization: `Bearer ${key}`,
+        'content-type': 'application/json', prefer: 'return=minimal',
+      },
       signal: AbortSignal.timeout(10_000),
     });
     if (!r.ok) return json({ ok: false, error: 'He borrado las fotos pero no la ficha.' }, 502);
@@ -622,6 +629,40 @@ async function accionBorrar(base, key, id) {
   }
 
   return json({ ok: true, borrado: id, fotos_borradas: borradas }, 200);
+}
+
+async function listarFotos(base, key, id) {
+  try {
+    const r = await fetch(`${base}/storage/v1/object/list/${BUCKET}`, {
+      method: 'POST',
+      headers: { apikey: key, authorization: `Bearer ${key}`, 'content-type': 'application/json' },
+      body: JSON.stringify({ prefix: `${id}/`, limit: 500 }),
+      signal: AbortSignal.timeout(12_000),
+    });
+    if (!r.ok) return [];
+    const objetos = await r.json();
+    return Array.isArray(objetos) ? objetos.filter(o => o && o.name) : [];
+  } catch (e) {
+    console.error('[ppto-medios] Listando fotos:', e && e.message);
+    return [];
+  }
+}
+
+async function borrarFotos(base, key, rutas) {
+  try {
+    const r = await fetch(`${base}/storage/v1/object/${BUCKET}`, {
+      method: 'DELETE',
+      headers: { apikey: key, authorization: `Bearer ${key}`, 'content-type': 'application/json' },
+      body: JSON.stringify({ prefixes: rutas }),
+      signal: AbortSignal.timeout(15_000),
+    });
+    if (r.ok) return true;
+    console.error('[ppto-medios] Storage no borró:', r.status, (await r.text().catch(() => '')).slice(0, 200));
+    return false;
+  } catch (e) {
+    console.error('[ppto-medios] Borrando fotos:', e && e.message);
+    return false;
+  }
 }
 
 /* ═══════════════════════ descarga y almacén ═══════════════════════ */

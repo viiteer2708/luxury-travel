@@ -534,6 +534,9 @@ footer.pie { text-align: center; color: var(--text-muted); font-size: 0.78rem; m
       if (i >= ranuras.length) {
         var p = $('progresoFotos');
         if (p) p.textContent = 'Fotos listas. Abre la propuesta y échales un vistazo.';
+        // Cada «otra foto» deja la anterior en el almacén. Se barren al final,
+        // cuando ya se sabe cuáles han quedado en pie.
+        llamar('/api/ppto-medios', { id: actual.id, accion: 'limpiar' });
         return;
       }
       var ranura = ranuras[i++];
