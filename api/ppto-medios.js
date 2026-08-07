@@ -319,8 +319,13 @@ async function accionGaleria(base, key, id, fila, cuerpo) {
       });
     }
 
+    // REEMPLAZA la galería, no añade. Concatenando y cortando a MAX_GALERIA se
+    // conservaban las fotos VIEJAS y se tiraban las recién comprobadas, mientras
+    // la respuesta informaba de las nuevas: el panel decía «cuatro fotos, sin
+    // marcas» y la propuesta seguía enseñando el casco con el nombre del
+    // proveedor. Un fallo que no se ve desde el panel es el peor de todos.
     const nuevos = alojamientos.map((a, i) => i === indice
-      ? Object.assign({}, a, { galeria: (Array.isArray(a.galeria) ? a.galeria : []).concat(puestas).slice(0, MAX_GALERIA) })
+      ? Object.assign({}, a, { galeria: puestas })
       : a);
 
     const ok = await guardar(base, key, id, { alojamientos: nuevos });
