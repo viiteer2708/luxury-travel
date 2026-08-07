@@ -14,6 +14,8 @@
 //   quitar_foto — descarta una foto concreta
 //   enlace      — muestra u oculta al cliente el enlace original del alojamiento
 //   publicar    — pasa el presupuesto de borrador a enviado
+//   borrar      — borra la ficha y sus fotos. Para pruebas: a un cliente se le
+//                 CADUCA el presupuesto, no se le deja un 404
 //
 // Las fotos NO se enlazan desde donde estén: se copian a un bucket propio de
 // Supabase Storage. Enlazar a Wikimedia o a la web del proveedor sería regalar
@@ -99,6 +101,7 @@ export default async function handler(req) {
     if (accion === 'quitar_foto') return await accionQuitarFoto(base, key, id, fila, cuerpo);
     if (accion === 'enlace') return await accionEnlace(base, key, id, fila, cuerpo);
     if (accion === 'publicar') return await accionPublicar(base, key, id);
+    if (accion === 'borrar') return await accionBorrar(base, key, id);
   } catch (e) {
     console.error('[ppto-medios]', accion, e && e.message);
     return json({ ok: false, error: 'Algo ha fallado por el camino. Vuelve a intentarlo.' }, 502);
@@ -567,6 +570,58 @@ async function accionEnlace(base, key, id, fila, cuerpo) {
 async function accionPublicar(base, key, id) {
   const ok = await guardar(base, key, id, { estado: 'enviado' });
   return ok ? json({ ok: true, estado: 'enviado' }, 200) : json({ ok: false, error: 'No he podido publicarlo.' }, 502);
+}
+
+// Borrar de verdad: la fila y las fotos. Para presupuestos de prueba, no para
+// los de clientes — a un cliente se le CADUCA el presupuesto, que deja la
+// página en pie con un mensaje, en vez de dejarle un 404 el día que vuelva a
+// abrir el enlace que le mandaste.
+//
+// Las fotos hay que quitarlas por la API de Storage: Supabase prohíbe borrarlas
+// con SQL a propósito, para que no queden archivos huérfanos ocupando sitio.
+// Y hay que quitarlas, porque entre ellas puede haber fotos del proveedor con
+// su marca que se descartaron; dejarlas accesibles por URL sería raro.
+async function accionBorrar(base, key, id) {
+  const cabeceras = { apikey: key, authorization: `Bearer ${key}`, 'content-type': 'application/json' };
+  let borradas = 0;
+
+  try {
+    const r = await fetch(`${base}/storage/v1/object/list/${BUCKET}`, {
+      method: 'POST',
+      headers: cabeceras,
+      body: JSON.stringify({ prefix: `${id}/`, limit: 500 }),
+      signal: AbortSignal.timeout(12_000),
+    });
+    if (r.ok) {
+      const objetos = await r.json();
+      const rutas = (Array.isArray(objetos) ? objetos : []).map(o => `${id}/${o.name}`);
+      if (rutas.length) {
+        const d = await fetch(`${base}/storage/v1/object/${BUCKET}`, {
+          method: 'DELETE',
+          headers: cabeceras,
+          body: JSON.stringify({ prefixes: rutas }),
+          signal: AbortSignal.timeout(15_000),
+        });
+        if (d.ok) borradas = rutas.length;
+        else console.error('[ppto-medios] Storage no borró:', d.status, (await d.text().catch(() => '')).slice(0, 200));
+      }
+    }
+  } catch (e) {
+    console.error('[ppto-medios] Listando fotos:', e && e.message);
+  }
+
+  try {
+    const r = await fetch(`${base}/rest/v1/presupuestos?id=eq.${encodeURIComponent(id)}`, {
+      method: 'DELETE',
+      headers: Object.assign({ prefer: 'return=minimal' }, cabeceras),
+      signal: AbortSignal.timeout(10_000),
+    });
+    if (!r.ok) return json({ ok: false, error: 'He borrado las fotos pero no la ficha.' }, 502);
+  } catch (_) {
+    return json({ ok: false, error: 'No he podido borrarlo.' }, 502);
+  }
+
+  return json({ ok: true, borrado: id, fotos_borradas: borradas }, 200);
 }
 
 /* ═══════════════════════ descarga y almacén ═══════════════════════ */
