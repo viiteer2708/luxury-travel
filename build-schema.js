@@ -207,6 +207,8 @@ function generate(slug, html) {
   }
   else if (p === 'viajes-a-medida-barcelona') {
     out.push({ '@context': 'https://schema.org', '@type': 'Service', 'name': 'Viajes a Medida en Barcelona', 'url': cu, 'description': pd, 'provider': org(), 'areaServed': [{ '@type': 'City', 'name': 'Barcelona' }, { '@type': 'AdministrativeArea', 'name': 'Baix Llobregat' }, { '@type': 'City', 'name': 'Molins de Rei' }], 'serviceType': 'Viajes a medida' });
+    const faqBcn = buildHomeFaq(html);
+    if (faqBcn) out.push(faqBcn);
     out.push(bc([{ name: 'Inicio', url: B.url + '/' }, { name: 'Viajes a Medida Barcelona', url: cu }]));
   }
   else if (p === 'agencia-viajes-lujo-barcelona') {
