@@ -1,0 +1,61 @@
+name: Posiciones semanales (Horizonte Exclusivo)
+
+# Cada viernes manda a Victor por Telegram la posición en Google de las consultas
+# vigiladas, leída de la Search Analytics API de Search Console (posición real,
+# incluidas las búsquedas localizadas). Las consultas se editan en
+# scripts_seo/rank_check.py (lista KEYWORDS).
+
+on:
+  schedule:
+    # 07:00 UTC de cada viernes = 09:00 Europe/Madrid en verano (CEST),
+    # 08:00 en invierno (CET) — diferencia aceptable.
+    - cron: "0 7 * * 5"
+  workflow_dispatch:
+
+jobs:
+  ranking:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install PyJWT
+        run: python -m pip install --quiet "PyJWT>=2.7,<3" cryptography
+
+      - name: Consultar posiciones
+        env:
+          GOOGLE_SA_JSON: ${{ secrets.GOOGLE_SA_JSON }}
+        run: |
+          if [ -z "$GOOGLE_SA_JSON" ]; then
+            echo "::error::GOOGLE_SA_JSON secret no configurado."
+            exit 1
+          fi
+          python scripts_seo/rank_check.py --out scripts_seo/last_ranking.txt
+
+      - name: Avisar por Telegram
+        env:
+          TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          if [ -z "$TG_TOKEN" ] || [ -z "$TG_CHAT" ]; then
+            echo "::error::Telegram sin configurar (falta TELEGRAM_BOT_TOKEN o TELEGRAM_CHAT_ID)."
+            exit 1
+          fi
+          curl -sf -X POST "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" \
+            --data-urlencode chat_id="$TG_CHAT" \
+            --data-urlencode text@scripts_seo/last_ranking.txt > /dev/null
+          echo "Informe de posiciones enviado a Telegram"
+
+      - name: Avisar si falla
+        if: failure()
+        env:
+          TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          if [ -z "$TG_TOKEN" ] || [ -z "$TG_CHAT" ]; then echo "Telegram sin configurar"; exit 0; fi
+          curl -s -X POST "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" \
+            --data-urlencode chat_id="$TG_CHAT" \
+            --data-urlencode text="🔴 El informe semanal de posiciones de Horizonte ha FALLADO. Revisar: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" > /dev/null
