@@ -23,7 +23,7 @@ const B = {
   description: 'Agencia de viajes de lujo a medida en Molins de Rei, Barcelona. Viajes exclusivos y 100% personalizados a mas de 55 destinos.',
   lat: 41.4118429, lng: 2.0181454, street: 'Carrer Major, 37', city: 'Molins de Rei',
   region: 'Barcelona', zip: '08750', country: 'ES', mapCid: '18012363284776329308',
-  founder: 'Endeis Prieto', founderTitle: 'Fundadora y CEO', rating: '5.0', reviewCount: '2',
+  founder: 'Endeis Prieto', founderTitle: 'Fundadora y CEO',
   instagram: 'https://www.instagram.com/viajeshorizonteexclusivo/',
 };
 const D = { 'albania': 'Albania', 'alaska': 'Alaska', 'alemania': 'Alemania', 'argentina': 'Argentina', 'aruba': 'Aruba', 'bahamas': 'Bahamas', 'bali': 'Bali', 'belgica': 'Bélgica', 'botsuana': 'Botsuana', 'brasil': 'Brasil', 'camboya': 'Camboya', 'canada': 'Canadá', 'chicago-nueva-orleans': 'Chicago y Nueva Orleans', 'china': 'China', 'colombia': 'Colombia', 'costa-oeste-usa': 'Costa Oeste USA', 'costa-rica': 'Costa Rica', 'croacia': 'Croacia', 'cuba': 'Cuba', 'disneyland-paris': 'Disneyland París', 'dubai-abu-dhabi-maldivas': 'Dubái, Abu Dhabi y Maldivas', 'ecuador': 'Ecuador', 'egipto': 'Egipto', 'escocia': 'Escocia', 'filipinas': 'Filipinas', 'florida': 'Florida', 'francia': 'Francia', 'grecia': 'Grecia', 'hawai': 'Hawái', 'india': 'India', 'islandia': 'Islandia', 'italia': 'Italia', 'jamaica': 'Jamaica', 'japon': 'Japón', 'kenia-zanzibar': 'Kenia y Zanzíbar', 'madagascar': 'Madagascar', 'malasia': 'Malasia', 'maldivas': 'Maldivas', 'malta': 'Malta', 'marruecos': 'Marruecos', 'mauricio': 'Mauricio', 'namibia': 'Namibia', 'noruega': 'Noruega', 'peru': 'Perú', 'polinesia-francesa': 'Polinesia Francesa', 'portugal': 'Portugal', 'praga-viena-budapest': 'Praga, Viena y Budapest', 'seychelles': 'Seychelles', 'singapur': 'Singapur', 'sri-lanka': 'Sri Lanka', 'sudafrica': 'Sudáfrica', 'suiza': 'Suiza', 'tailandia': 'Tailandia', 'tanzania': 'Tanzania', 'turquia': 'Turquía', 'uganda': 'Uganda', 'vietnam': 'Vietnam', 'chile': 'Chile', 'nueva-york': 'Nueva York' };
@@ -182,7 +182,7 @@ function generate(slug, html) {
     out.push(bc([{ name: 'Inicio', url: B.url + '/' }, { name: 'Blog', url: B.url + '/blog/' }, { name: headline(pt), url: cu }]));
   }
   else if (p === 'destinos') {
-    out.push({ '@context': 'https://schema.org', '@type': 'CollectionPage', 'name': 'Destinos de Lujo - Horizonte Exclusivo', 'url': cu, 'description': pd, 'provider': org() });
+    out.push({ '@context': 'https://schema.org', '@type': 'CollectionPage', 'name': 'Destinos Exclusivos de Lujo - Horizonte Exclusivo', 'url': cu, 'description': pd, 'provider': org() });
     out.push(bc([{ name: 'Inicio', url: B.url + '/' }, { name: 'Destinos', url: cu }]));
   }
   else if (p === 'pro-tips') {

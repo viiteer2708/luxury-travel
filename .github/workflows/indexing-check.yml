@@ -86,6 +86,19 @@ jobs:
             git push
           fi
 
+      - name: Notify Telegram (cambios)
+        if: steps.alert.outputs.changed == 'true'
+        env:
+          TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          if [ -z "$TG_TOKEN" ] || [ -z "$TG_CHAT" ]; then echo "Telegram sin configurar; me salto el aviso"; exit 0; fi
+          TEXTO="🔎 Vigía SEO Horizonte — cambios de indexación detectados:
+          $(head -c 3000 scripts_seo/last_summary.md)"
+          curl -s -X POST "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" \
+            --data-urlencode chat_id="$TG_CHAT" \
+            --data-urlencode text="$TEXTO" > /dev/null && echo "Aviso de cambios enviado a Telegram"
+
       - name: Open issue if changes detected
         if: steps.alert.outputs.changed == 'true'
         uses: actions/github-script@v7
@@ -101,3 +114,14 @@ jobs:
               body,
               labels: ['seo', 'indexing']
             });
+
+      - name: Notify Telegram (fallo del vigía)
+        if: failure()
+        env:
+          TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          if [ -z "$TG_TOKEN" ] || [ -z "$TG_CHAT" ]; then echo "Telegram sin configurar"; exit 0; fi
+          curl -s -X POST "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" \
+            --data-urlencode chat_id="$TG_CHAT" \
+            --data-urlencode text="🔴 El vigía SEO de Horizonte ha FALLADO. Revisar: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" > /dev/null
