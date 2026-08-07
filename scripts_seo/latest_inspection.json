@@ -1,8 +1,8 @@
 {
-  "fecha": "2026-08-05T09:54:06.343710",
+  "fecha": "2026-08-07T18:29:44.916416",
   "total": 119,
-  "indexadas": 71,
-  "no_indexadas": 48,
+  "indexadas": 70,
+  "no_indexadas": 49,
   "errores": 0,
   "detalle_indexadas": [
     "/",
@@ -72,7 +72,6 @@
     "/luna-de-miel-a-medida/",
     "/errores-comunes-organizar-viaje/",
     "/jet-lag-cambios-horarios/",
-    "/checklist-pre-viaje/",
     "/itinerario-ritmo-realista/",
     "/aviso-legal/",
     "/politica-de-cookies/"
@@ -124,6 +123,7 @@
     "/cuanto-cuesta-viaje-a-medida/",
     "/como-planifico-un-gran-viaje/",
     "/antes-de-reservar-viaje-grande/",
+    "/checklist-pre-viaje/",
     "/que-reservar-primero-gran-viaje/",
     "/politica-de-privacidad/"
   ],
@@ -132,7 +132,7 @@
     "/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-07-31T01:19:25Z",
+      "crawled": "2026-08-06T18:46:31Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/destinos/": {
@@ -168,7 +168,7 @@
     "/molins-de-rei/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-07-13T17:02:12Z",
+      "crawled": "2026-08-07T00:34:43Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/europa/": {
@@ -203,7 +203,7 @@
     },
     "/alaska/": {
       "verdict": "NEUTRAL",
-      "coverage": "Discovered - currently not indexed",
+      "coverage": "URL is unknown to Google",
       "crawled": "N/A",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
     },
@@ -221,7 +221,7 @@
     },
     "/argentina/": {
       "verdict": "NEUTRAL",
-      "coverage": "URL is unknown to Google",
+      "coverage": "Discovered - currently not indexed",
       "crawled": "N/A",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
     },
@@ -263,7 +263,7 @@
     },
     "/camboya/": {
       "verdict": "NEUTRAL",
-      "coverage": "Discovered - currently not indexed",
+      "coverage": "URL is unknown to Google",
       "crawled": "N/A",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
     },
@@ -342,7 +342,7 @@
     "/escocia/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-07-12T21:38:11Z",
+      "crawled": "2026-08-07T00:55:52Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/filipinas/": {
@@ -377,7 +377,7 @@
     },
     "/india/": {
       "verdict": "NEUTRAL",
-      "coverage": "Discovered - currently not indexed",
+      "coverage": "URL is unknown to Google",
       "crawled": "N/A",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
     },
@@ -605,7 +605,7 @@
     },
     "/pro-tips-china/": {
       "verdict": "NEUTRAL",
-      "coverage": "URL is unknown to Google",
+      "coverage": "Discovered - currently not indexed",
       "crawled": "N/A",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
     },
@@ -808,8 +808,8 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/checklist-pre-viaje/": {
-      "verdict": "PASS",
-      "coverage": "Submitted and indexed",
+      "verdict": "NEUTRAL",
+      "coverage": "Crawled - currently not indexed",
       "crawled": "2026-05-29T00:46:24Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
@@ -839,7 +839,7 @@
     },
     "/politica-de-privacidad/": {
       "verdict": "NEUTRAL",
-      "coverage": "Discovered - currently not indexed",
+      "coverage": "URL is unknown to Google",
       "crawled": "N/A",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
     }
