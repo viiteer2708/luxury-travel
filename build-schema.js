@@ -10,7 +10,9 @@ const path = require('path');
 
 // La raíz del proyecto es la carpeta donde vive este script (portable entre PCs).
 const ROOT = __dirname.replace(/\\/g, '/');
-const SKIP = new Set(['node_modules', '.git', '.claude', '.github', '.vercel', 'font', 'images', 'docs']);
+// `panel` es la herramienta interna de presupuestos: no es una página de la web,
+// va con noindex y no puede acabar con datos estructurados ni en el sitemap.
+const SKIP = new Set(['node_modules', '.git', '.claude', '.github', '.vercel', 'font', 'images', 'docs', 'panel']);
 const START = '<!-- schema-auto:start (generado, no editar a mano) -->';
 const END = '<!-- schema-auto:end -->';
 

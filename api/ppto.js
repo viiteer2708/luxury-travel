@@ -34,13 +34,19 @@ const COLUMNAS = [
   'hero_imagen', 'resumen', 'itinerario', 'alojamientos',
   'incluye', 'no_incluye',
   'precio_total', 'precio_por_persona', 'moneda',
-  'condiciones_pago', 'valido_hasta', 'notas_cliente',
+  'condiciones_pago', 'valido_hasta', 'notas_cliente', 'creditos',
 ].join(',');
 
 const ID_RE = /^HE-[23456789ABCDEFGHJKLMNPQRSTUVWXYZ]{8}$/;
 // Las imágenes solo pueden salir del propio repo: evita que un valor mal
 // guardado en la base inyecte CSS o cargue recursos de terceros.
 const RUTA_IMG_RE = /^\/images\/[A-Za-z0-9._/-]+$/;
+// Segundo origen permitido, y solo uno: el bucket `ppto-fotos` de nuestro
+// Supabase, donde api/ppto-medios.js copia las fotos de stock y las del
+// alojamiento. Se copian en vez de enlazarse a propósito — enlazar a Wikimedia
+// o a la web del proveedor sería contarle al cliente de dónde sale la propuesta
+// y quedarnos sin foto el día que la borren de allí.
+const RUTA_ALMACEN_RE = /^https:\/\/[a-z0-9-]{1,60}\.supabase\.co\/storage\/v1\/object\/public\/ppto-fotos\/[A-Za-z0-9._/-]+$/;
 
 const TEL = '+34 633 077 401';
 const TEL_WA = '34633077401';
@@ -127,7 +133,14 @@ function esc(s) {
 
 function imagen(ruta, fallback) {
   const r = typeof ruta === 'string' ? ruta.trim() : '';
-  return RUTA_IMG_RE.test(r) ? r : (fallback || '');
+  return (RUTA_IMG_RE.test(r) || RUTA_ALMACEN_RE.test(r)) ? r : (fallback || '');
+}
+
+// Enlaces que salen de la base: solo https y sin comillas ni espacios, para que
+// un valor mal guardado no pueda romperse fuera del atributo href.
+function enlaceSeguro(v) {
+  const s = typeof v === 'string' ? v.trim() : '';
+  return /^https:\/\/[^\s<>"'`]+$/i.test(s) ? s : '';
 }
 
 function lista(v) {
@@ -277,12 +290,23 @@ section { padding: 100px 0; }
 /* ── Alojamientos ── */
 .hoteles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
 .hoteles-grid.una-sola { max-width: 620px; margin: 0 auto; }
-.hotel-card { background: var(--dark-card); border: 1px solid rgba(201,169,110,0.15); border-radius: var(--radius); padding: 30px 26px; transition: var(--transition); }
+.hotel-card { background: var(--dark-card); border: 1px solid rgba(201,169,110,0.15); border-radius: var(--radius); overflow: hidden; transition: var(--transition); }
 .hotel-card:hover { border-color: rgba(201,169,110,0.35); transform: translateY(-4px); }
+/* El acolchado vive en el cuerpo, no en la tarjeta: así la galería llega a
+   sangre hasta los bordes de la ficha en vez de quedarse con un marco. */
+.hotel-cuerpo { padding: 30px 26px; }
 .hotel-card h3 { font-size: 1.25rem; color: var(--white); margin-bottom: 6px; }
 .hotel-card .hotel-meta { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
 .hotel-card .hotel-datos { font-size: 0.82rem; color: var(--text); margin-bottom: 12px; font-weight: 400; }
 .hotel-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.8; font-weight: 300; }
+.hotel-galeria { height: 260px; border-radius: 0; }
+.hoteles-grid.una-sola .hotel-galeria { height: 340px; }
+.hotel-ficha { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px 20px; margin-top: 22px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.07); }
+.hotel-ficha li { display: flex; flex-direction: column; gap: 3px; }
+.hotel-ficha li span { font-size: 0.66rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); }
+.hotel-ficha li strong { font-size: 0.92rem; color: var(--text); font-weight: 400; }
+.hotel-enlace { display: inline-block; margin-top: 20px; font-size: 0.78rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); border-bottom: 1px solid rgba(201,169,110,0.35); padding-bottom: 3px; transition: var(--transition); }
+.hotel-enlace:hover { color: var(--gold-light); border-color: var(--gold-light); }
 
 /* ── Qué incluye / qué no ── */
 .includes-wrap { background: var(--dark-soft); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
@@ -331,6 +355,10 @@ section { padding: 100px 0; }
 .ppto-footer a { color: var(--gold); }
 .ppto-footer a:hover { color: var(--gold-light); }
 .ppto-footer .horario { margin-top: 14px; font-size: 0.78rem; opacity: 0.8; }
+/* Créditos de las fotos de banco que piden atribución. Discreto, pero está:
+   una licencia Creative Commons se cumple o no se usa la foto. */
+.ppto-footer .creditos { margin-top: 22px; font-size: 0.68rem; line-height: 1.7; opacity: 0.55; }
+.ppto-footer .creditos a { color: inherit; text-decoration: underline; }
 .ppto-footer .firma { margin-top: 26px; font-family: 'Playfair Display', serif; font-style: italic; color: var(--text); font-size: 0.95rem; }
 
 /* ── Barra inferior fija en móvil: precio y CTA siempre a la vista.
@@ -422,7 +450,13 @@ section { padding: 100px 0; }
   .ppto-intro { padding: 14px 0 6px !important; }
 
   .hoteles-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
-  .hotel-card { padding: 12px 14px !important; }
+  .hotel-cuerpo { padding: 12px 14px !important; }
+  .hotel-galeria { height: 95px !important; }
+  .hotel-ficha { margin-top: 10px !important; padding-top: 8px !important; gap: 4px 12px !important; }
+  .hotel-ficha li span { font-size: 6.5pt !important; }
+  .hotel-ficha li strong { font-size: 8pt !important; }
+  .hotel-enlace { display: none !important; }
+  .ppto-footer .creditos { font-size: 6pt !important; opacity: 1 !important; margin-top: 10px !important; }
   .hotel-card h3 { font-size: 11.5pt !important; }
   .hotel-card .hotel-meta { font-size: 7pt !important; margin-bottom: 6px !important; }
   .hotel-card .hotel-datos { font-size: 8pt !important; margin-bottom: 6px !important; }
@@ -562,6 +596,7 @@ function paginaPresupuesto(p) {
     </p>
     <p class="horario">Lunes, miércoles, jueves y viernes de 9:30 a 13:30 y de 16:00 a 19:00 · Martes de 9:30 a 13:30</p>
     <p class="firma">Más que viajar, vivir el mundo</p>
+    ${bloqueCreditos(p.creditos)}
   </div>
 </footer>
 
@@ -645,19 +680,43 @@ function bloqueItinerario(its) {
   </section>`;
 }
 
+// Cuando el alojamiento ES el viaje —un barco, un tren, un lodge— el cliente
+// quiere verlo, no leerlo. De ahí la galería y la ficha de datos: es la parte
+// de la propuesta que más preguntas se ahorra por WhatsApp.
+function esNavegable(h) {
+  return /barco|boat|velero|catamar|p[eé]nich|crucero|goleta|dahabiya/i
+    .test([h.nombre, h.categoria, h.regimen].filter(Boolean).join(' '));
+}
+
 function bloqueHoteles(hoteles) {
-  const cards = hoteles.map(h => {
+  const cards = hoteles.map((h, i) => {
     const datos = [
       h.ciudad,
       h.noches ? `${h.noches} ${Number(h.noches) === 1 ? 'noche' : 'noches'}` : '',
       h.regimen,
     ].filter(Boolean).join(' · ');
+
+    const fotos = lista(h.galeria).map(x => imagen(x, '')).filter(Boolean).slice(0, 6);
+    const ficha = lista(h.ficha)
+      .filter(f => f && f.etiqueta && f.valor)
+      .slice(0, 10);
+    const enlace = enlaceSeguro(h.enlace);
+    const nombre = h.nombre || (esNavegable(h) ? 'el barco' : 'el alojamiento');
+
     return `
       <article class="hotel-card reveal">
-        <h3>${esc(h.nombre || '')}</h3>
-        ${h.categoria ? `<p class="hotel-meta">${esc(h.categoria)}</p>` : ''}
-        ${datos ? `<p class="hotel-datos">${esc(datos)}</p>` : ''}
-        ${h.nota ? `<p>${esc(h.nota)}</p>` : ''}
+        ${fotos.length ? galeriaAlojamiento(fotos, nombre) : ''}
+        <div class="hotel-cuerpo">
+          <h3>${esc(h.nombre || '')}</h3>
+          ${h.categoria ? `<p class="hotel-meta">${esc(h.categoria)}</p>` : ''}
+          ${datos ? `<p class="hotel-datos">${esc(datos)}</p>` : ''}
+          ${h.nota ? `<p>${esc(h.nota)}</p>` : ''}
+          ${ficha.length ? `
+          <ul class="hotel-ficha">
+            ${ficha.map(f => `<li><span>${esc(f.etiqueta)}</span><strong>${esc(f.valor)}</strong></li>`).join('')}
+          </ul>` : ''}
+          ${enlace ? `<a class="hotel-enlace" href="${esc(enlace)}" target="_blank" rel="noopener noreferrer nofollow">${esNavegable(h) ? 'Ver el barco por dentro' : 'Ver el alojamiento'} &#10230;</a>` : ''}
+        </div>
       </article>`;
   }).join('');
 
@@ -672,6 +731,41 @@ function bloqueHoteles(hoteles) {
       <div class="hoteles-grid${hoteles.length === 1 ? ' una-sola' : ''}">${cards}</div>
     </div>
   </section>`;
+}
+
+// Las fotos de banco con licencia cc0 o de dominio público no piden nada. Las
+// que sí piden atribución (CC BY, CC BY-SA) la llevan aquí: api/ppto-medios.js
+// solo guarda crédito de esas, así que si la lista está vacía es que ninguna
+// foto lo necesitaba, no que se nos haya olvidado.
+function bloqueCreditos(creditos) {
+  const cs = lista(creditos)
+    .filter(c => c && c.titulo)
+    .slice(0, 24)
+    .map(c => {
+      const url = enlaceSeguro(c.licencia_url);
+      const lic = esc(c.licencia || 'CC');
+      return `${esc(c.titulo)}, ${esc(c.autor || 'autor desconocido')} (${url ? `<a href="${esc(url)}" target="_blank" rel="noopener nofollow">${lic}</a>` : lic})`;
+    });
+  return cs.length ? `<p class="creditos">Fotografías con licencia libre: ${cs.join(' · ')}</p>` : '';
+}
+
+// Reutiliza la clase .itinerary-carousel a propósito: así el mismo JS que mueve
+// los carruseles del itinerario mueve también este, sin una línea de más.
+function galeriaAlojamiento(fotos, nombre) {
+  const controles = fotos.length > 1 ? `
+          <div class="carousel-controls">
+            <button class="carousel-btn carousel-prev" type="button" aria-label="Foto anterior de ${esc(nombre)}">&#8249;</button>
+            <div class="carousel-dots">
+              ${fotos.map((_, j) => `<button class="carousel-dot${j ? '' : ' active'}" type="button" aria-label="Foto ${j + 1} de ${fotos.length}"></button>`).join('')}
+            </div>
+            <button class="carousel-btn carousel-next" type="button" aria-label="Foto siguiente de ${esc(nombre)}">&#8250;</button>
+          </div>` : '';
+
+  return `
+        <div class="itinerary-carousel hotel-galeria">
+          ${fotos.map((src, j) => `<div class="carousel-slide${j ? '' : ' active'}"><img src="${esc(src)}" alt="${esc(nombre)}" width="800" height="533" loading="lazy" decoding="async"></div>`).join('')}
+          ${controles}
+        </div>`;
 }
 
 // Iconos por palabra clave: el presupuesto del mayorista no trae iconos, así

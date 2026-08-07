@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Panel de propuestas · Horizonte Exclusivo</title>
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!--
+  Panel privado para crear presupuestos. Vive fuera del sitemap, fuera del
+  navbar y fuera de build-schema.js, y NO carga /scripts.js: ese script da por
+  hecho que existe el navbar (#hamburger) y aquí no hay, así que reventaría en
+  la primera línea y se llevaría por delante todo lo demás.
+
+  Esta página no guarda ningún secreto: la contraseña se teclea, se queda en el
+  navegador de Victor y viaja en una cabecera. Quien manda es la función Edge,
+  que la comprueba antes de tocar nada. El repo es público y aquí no hay ni un
+  dato de cliente.
+-->
+<style>
+:root {
+  --dark: #0a0a0a; --dark-soft: #111; --dark-card: #161616;
+  --gold: #c9a96e; --gold-light: #e0c88f;
+  --white: #f5f3ef; --text: #d8d4cc; --text-muted: #8a857c;
+  --rojo: #e0776a; --ambar: #d9a441; --verde: #7fb069;
+  --radius: 6px; --transition: all 0.3s ease;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--dark); color: var(--text); font-family: 'Inter', sans-serif; font-weight: 300; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+a { color: var(--gold); text-decoration: none; }
+h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--white); font-weight: 700; line-height: 1.2; }
+.envoltorio { max-width: 780px; margin: 0 auto; padding: 40px 24px 100px; }
+
+header.cabecera { text-align: center; margin-bottom: 44px; }
+header.cabecera img { height: 52px; width: auto; margin-bottom: 20px; }
+header.cabecera h1 { font-size: 1.9rem; margin-bottom: 8px; }
+header.cabecera p { color: var(--text-muted); font-size: 0.9rem; }
+
+.tarjeta { background: var(--dark-card); border: 1px solid rgba(201,169,110,0.15); border-radius: var(--radius); padding: 28px 26px; margin-bottom: 22px; }
+.tarjeta > h2 { font-size: 1.15rem; margin-bottom: 6px; }
+.tarjeta > .sub { color: var(--text-muted); font-size: 0.84rem; margin-bottom: 22px; }
+
+label { display: block; font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+.campo { margin-bottom: 20px; }
+.campo .pista { font-size: 0.78rem; color: var(--text-muted); margin-top: 6px; }
+input[type=text], input[type=email], input[type=tel], input[type=password], textarea, select {
+  width: 100%; background: var(--dark-soft); border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius);
+  color: var(--white); font-family: 'Inter', sans-serif; font-size: 0.95rem; font-weight: 300; padding: 13px 14px; transition: var(--transition);
+}
+input:focus, textarea:focus { outline: none; border-color: var(--gold); }
+textarea { resize: vertical; line-height: 1.6; }
+textarea.grande { min-height: 240px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.85rem; }
+input[type=file] { color: var(--text-muted); font-size: 0.85rem; }
+input[type=file]::file-selector-button { background: var(--dark-soft); border: 1px solid rgba(201,169,110,0.3); color: var(--gold); border-radius: var(--radius); padding: 9px 16px; margin-right: 14px; cursor: pointer; font-family: inherit; font-size: 0.8rem; }
+.dos { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--gold); color: #0a0a0a; border: 1px solid var(--gold); border-radius: var(--radius); font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; padding: 15px 28px; cursor: pointer; transition: var(--transition); }
+.btn:hover:not(:disabled) { background: var(--gold-light); border-color: var(--gold-light); transform: translateY(-2px); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn.fantasma { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.25); }
+.btn.fantasma:hover:not(:disabled) { border-color: var(--gold); color: var(--gold); background: transparent; }
+.btn.chico { padding: 9px 15px; font-size: 0.68rem; letter-spacing: 1px; }
+.btn.ancho { width: 100%; }
+.botonera { display: flex; flex-wrap: wrap; gap: 12px; }
+
+.nota { border-radius: var(--radius); padding: 16px 18px; font-size: 0.86rem; line-height: 1.75; margin-bottom: 18px; }
+.nota.mal { background: rgba(224,119,106,0.08); border: 1px solid rgba(224,119,106,0.4); color: #f0b6ad; }
+.nota.ojo { background: rgba(217,164,65,0.08); border: 1px solid rgba(217,164,65,0.35); color: #e8c884; }
+.nota.bien { background: rgba(127,176,105,0.08); border: 1px solid rgba(127,176,105,0.35); color: #a9cf93; }
+.nota strong { font-weight: 600; }
+.nota ul { margin: 10px 0 0 18px; }
+.nota li { margin-bottom: 6px; }
+.nota code { font-family: ui-monospace, monospace; font-size: 0.85em; background: rgba(0,0,0,0.35); padding: 1px 5px; border-radius: 3px; }
+
+.enlace-caja { display: flex; align-items: center; gap: 12px; background: var(--dark-soft); border: 1px solid rgba(201,169,110,0.35); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 16px; flex-wrap: wrap; }
+.enlace-caja code { flex: 1 1 260px; font-family: ui-monospace, monospace; font-size: 0.9rem; color: var(--gold-light); word-break: break-all; }
+
+table.resumen { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+table.resumen th, table.resumen td { text-align: left; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.07); vertical-align: top; }
+table.resumen th { color: var(--text-muted); font-weight: 400; width: 38%; }
+table.resumen td { color: var(--text); }
+table.resumen td.destacado { color: var(--gold); font-size: 1.05rem; font-weight: 500; }
+
+.fotos { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; margin-top: 8px; }
+.foto { background: var(--dark-soft); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); overflow: hidden; }
+.foto .marco { height: 100px; background: #0d0d0d; display: flex; align-items: center; justify-content: center; }
+.foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.foto .cargando { font-size: 0.72rem; color: var(--text-muted); letter-spacing: 1px; }
+.foto .pie { padding: 9px 10px; }
+.foto .pie p { font-size: 0.74rem; color: var(--text); margin-bottom: 7px; line-height: 1.4; }
+.foto .pie .acciones { display: flex; gap: 6px; }
+.foto .pie button { background: none; border: 1px solid rgba(255,255,255,0.15); color: var(--text-muted); border-radius: 3px; font-family: inherit; font-size: 0.66rem; padding: 4px 8px; cursor: pointer; transition: var(--transition); }
+.foto .pie button:hover:not(:disabled) { border-color: var(--gold); color: var(--gold); }
+.foto .pie button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.mensaje { margin-bottom: 22px; }
+.mensaje textarea { min-height: 190px; font-size: 0.88rem; }
+.mensaje .titulo { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; flex-wrap: wrap; }
+.mensaje .titulo label { margin-bottom: 0; }
+
+.oculto { display: none !important; }
+.cargador { display: inline-block; width: 14px; height: 14px; border: 2px solid rgba(10,10,10,0.3); border-top-color: #0a0a0a; border-radius: 50%; animation: girar 0.7s linear infinite; }
+@keyframes girar { to { transform: rotate(360deg); } }
+.progreso { font-size: 0.82rem; color: var(--text-muted); margin-top: 12px; }
+
+footer.pie { text-align: center; color: var(--text-muted); font-size: 0.78rem; margin-top: 40px; }
+
+@media (max-width: 620px) { .dos { grid-template-columns: 1fr; } .envoltorio { padding: 28px 16px 80px; } }
+@media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+</style>
+</head>
+<body>
+<div class="envoltorio">
+
+  <header class="cabecera">
+    <img src="/images/logo-trimmed.png" alt="Horizonte Exclusivo">
+    <h1>Panel de propuestas</h1>
+    <p>Pega el presupuesto, pon el nombre del cliente y dale al botón.</p>
+  </header>
+
+  <!-- ── Puerta ── -->
+  <section class="tarjeta" id="cajaClave">
+    <h2>Contraseña</h2>
+    <p class="sub">Se queda guardada en este navegador. En un ordenador que no sea tuyo, cierra la sesión al terminar.</p>
+    <div class="campo">
+      <label for="clave">Contraseña del panel</label>
+      <input type="password" id="clave" autocomplete="current-password" placeholder="••••••••">
+    </div>
+    <div class="botonera">
+      <button class="btn" id="btnEntrar" type="button">Entrar</button>
+    </div>
+    <div id="errorClave"></div>
+  </section>
+
+  <!-- ── Formulario ── -->
+  <main id="cajaFormulario" class="oculto">
+    <section class="tarjeta">
+      <h2>El cliente</h2>
+      <p class="sub">El nombre es lo único imprescindible: es lo que sale en la cabecera de la propuesta y en los mensajes.</p>
+      <div class="campo">
+        <label for="cliente">Nombre del cliente *</label>
+        <input type="text" id="cliente" placeholder="Marta Ferrer  ·  Familia Ferrer" autocomplete="off">
+      </div>
+      <div class="dos">
+        <div class="campo">
+          <label for="clienteEmail">Su email (opcional)</label>
+          <input type="email" id="clienteEmail" placeholder="marta@ejemplo.com" autocomplete="off">
+        </div>
+        <div class="campo">
+          <label for="clienteTel">Su móvil (opcional)</label>
+          <input type="tel" id="clienteTel" placeholder="+34 600 000 000" autocomplete="off">
+          <p class="pista">Con el móvil, el botón de WhatsApp abre ya su chat.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tarjeta">
+      <h2>El presupuesto que te han mandado</h2>
+      <p class="sub">Pégalo tal cual, sin limpiar nada. La comisión, el neto y el nombre de quien te lo vende se quedan aquí dentro: no llegan a la página del cliente.</p>
+      <div class="campo">
+        <label for="texto">Texto del presupuesto</label>
+        <textarea id="texto" class="grande" placeholder="Pega aquí el email, el WhatsApp o el texto del PDF…"></textarea>
+      </div>
+      <div class="campo">
+        <label for="archivo">…o súbelo como PDF o foto</label>
+        <input type="file" id="archivo" accept="application/pdf,image/jpeg,image/png,image/webp">
+        <p class="pista">Máximo 3 MB. Si el PDF pesa más o va lento, copia el texto y pégalo arriba: es bastante más rápido.</p>
+      </div>
+      <div class="campo">
+        <label for="indicaciones">¿Algo que deba saber? (opcional)</label>
+        <textarea id="indicaciones" rows="3" placeholder="El precio al cliente son 1.419 €. Van 4 personas. Quítale el día libre del final…"></textarea>
+        <p class="pista">Lo que escribas aquí manda sobre lo que diga el presupuesto.</p>
+      </div>
+      <div class="botonera">
+        <button class="btn ancho" id="btnCrear" type="button">Crear la propuesta</button>
+      </div>
+      <div id="errorCrear"></div>
+      <p class="progreso oculto" id="progresoCrear">Leyendo el presupuesto… suele tardar entre 10 y 20 segundos.</p>
+    </section>
+  </main>
+
+  <!-- ── Resultado ── -->
+  <section id="cajaResultado" class="oculto"></section>
+
+  <footer class="pie">
+    <p><a href="/" >&#8592; Volver a la web</a> · <a href="#" id="btnSalir">Cerrar sesión</a></p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var LLAVE = 'he_ppto_clave';
+  var $ = function (id) { return document.getElementById(id); };
+  var clave = '';
+  var actual = null;   // el presupuesto recién creado
+
+  /* ── utilidades de DOM ── */
+
+  function crear(tag, clase, texto) {
+    var e = document.createElement(tag);
+    if (clase) e.className = clase;
+    if (texto != null) e.textContent = texto;
+    return e;
+  }
+
+  function aviso(contenedor, tipo, texto, lista) {
+    var caja = crear('div', 'nota ' + tipo);
+    caja.appendChild(crear('span', null, texto));
+    if (lista && lista.length) {
+      var ul = crear('ul');
+      lista.forEach(function (t) { ul.appendChild(crear('li', null, t)); });
+      caja.appendChild(ul);
+    }
+    contenedor.innerHTML = '';
+    contenedor.appendChild(caja);
+    return caja;
+  }
+
+  function limpiar(nodo) { nodo.innerHTML = ''; }
+
+  function ocupado(boton, si, textoOcupado) {
+    boton.disabled = si;
+    if (si) {
+      boton.dataset.texto = boton.textContent;
+      boton.textContent = textoOcupado || 'Un momento…';
+    } else if (boton.dataset.texto) {
+      boton.textContent = boton.dataset.texto;
+    }
+  }
+
+  /* ── llamadas a la API ── */
+
+  function llamar(ruta, datos) {
+    return fetch(ruta, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', 'x-ppto-clave': clave },
+      body: JSON.stringify(datos)
+    }).then(function (r) {
+      return r.json().catch(function () { return { ok: false, error: 'La respuesta ha venido rota (' + r.status + ').' }; });
+    }).catch(function () {
+      return { ok: false, error: 'No he podido conectar. Mira la conexión y prueba otra vez.' };
+    });
+  }
+
+  /* ── puerta ── */
+
+  function entrar() {
+    var v = $('clave').value.trim();
+    if (!v) { aviso($('errorClave'), 'mal', 'Escribe la contraseña.'); return; }
+    clave = v;
+    try { localStorage.setItem(LLAVE, v); } catch (e) {}
+    limpiar($('errorClave'));
+    $('cajaClave').classList.add('oculto');
+    $('cajaFormulario').classList.remove('oculto');
+    $('cliente').focus();
+  }
+
+  $('btnEntrar').addEventListener('click', entrar);
+  $('clave').addEventListener('keydown', function (e) { if (e.key === 'Enter') entrar(); });
+
+  $('btnSalir').addEventListener('click', function (e) {
+    e.preventDefault();
+    try { localStorage.removeItem(LLAVE); } catch (err) {}
+    location.reload();
+  });
+
+  try {
+    var guardada = localStorage.getItem(LLAVE);
+    if (guardada) { $('clave').value = guardada; entrar(); }
+  } catch (e) {}
+
+  /* ── crear la propuesta ── */
+
+  function leerArchivo(input) {
+    return new Promise(function (resolver) {
+      var f = input.files && input.files[0];
+      if (!f) return resolver(null);
+      if (f.size > 3 * 1024 * 1024) {
+        return resolver({ error: 'El archivo pesa ' + Math.round(f.size / 1024 / 1024 * 10) / 10 + ' MB y el máximo son 3 MB. Copia el texto y pégalo.' });
+      }
+      var lector = new FileReader();
+      lector.onload = function () {
+        var s = String(lector.result || '');
+        var coma = s.indexOf(',');
+        resolver({ mime: f.type, datos: coma === -1 ? s : s.slice(coma + 1) });
+      };
+      lector.onerror = function () { resolver({ error: 'No he podido leer el archivo.' }); };
+      lector.readAsDataURL(f);
+    });
+  }
+
+  $('btnCrear').addEventListener('click', function () {
+    var boton = this;
+    var cliente = $('cliente').value.trim();
+    if (!cliente) { aviso($('errorCrear'), 'mal', 'Falta el nombre del cliente.'); $('cliente').focus(); return; }
+    var texto = $('texto').value.trim();
+
+    limpiar($('errorCrear'));
+
+    leerArchivo($('archivo')).then(function (archivo) {
+      if (archivo && archivo.error) { aviso($('errorCrear'), 'mal', archivo.error); return; }
+      if (!texto && !archivo) { aviso($('errorCrear'), 'mal', 'Pégame el texto del presupuesto o sube el PDF.'); return; }
+
+      ocupado(boton, true, 'Leyendo el presupuesto…');
+      $('progresoCrear').classList.remove('oculto');
+
+      return llamar('/api/ppto-crear', {
+        cliente: cliente,
+        cliente_email: $('clienteEmail').value.trim(),
+        cliente_telefono: $('clienteTel').value.trim(),
+        texto: texto,
+        indicaciones: $('indicaciones').value.trim(),
+        archivo: archivo
+      }).then(function (r) {
+        ocupado(boton, false);
+        $('progresoCrear').classList.add('oculto');
+        if (!r.ok) { aviso($('errorCrear'), 'mal', r.error || 'No ha salido.'); return; }
+        actual = r;
+        pintarResultado(r);
+        $('cajaResultado').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        buscarFotos(r);
+      });
+    });
+  });
+
+  /* ── el resultado ── */
+
+  function pintarResultado(r) {
+    var caja = $('cajaResultado');
+    caja.classList.remove('oculto');
+    limpiar(caja);
+
+    /* Estado de la limpieza — lo primero, porque es lo que decide si esto se
+       manda o no se manda. */
+    var sec = crear('section', 'tarjeta');
+    sec.appendChild(crear('h2', null, 'La propuesta ' + r.id));
+
+    if (r.hallazgos && r.hallazgos.length) {
+      var caja1 = crear('div', 'nota mal');
+      caja1.appendChild(crear('strong', null, 'No la mandes todavía.'));
+      caja1.appendChild(crear('span', null, ' He encontrado ' + r.hallazgos.length + ' cosa(s) que delatan al proveedor o al margen. Está guardada como borrador; dime qué quieres que cambie y lo arreglo antes de que la vea el cliente:'));
+      var ul = crear('ul');
+      r.hallazgos.forEach(function (h) {
+        ul.appendChild(crear('li', null, '«' + h.termino + '» en ' + h.campo + ' — ' + h.motivo));
+      });
+      caja1.appendChild(ul);
+      sec.appendChild(caja1);
+    } else {
+      var ok = crear('div', 'nota bien');
+      ok.appendChild(crear('strong', null, 'Limpia. '));
+      ok.appendChild(crear('span', null, 'Ni rastro del proveedor ni del margen en lo que ve el cliente.'));
+      sec.appendChild(ok);
+    }
+
+    if (r.avisos && r.avisos.length) {
+      var caja2 = crear('div', 'nota ojo');
+      caja2.appendChild(crear('strong', null, 'Repasa esto:'));
+      var ul2 = crear('ul');
+      r.avisos.forEach(function (a) { ul2.appendChild(crear('li', null, a)); });
+      caja2.appendChild(ul2);
+      sec.appendChild(caja2);
+    }
+
+    // El enlace
+    var ec = crear('div', 'enlace-caja');
+    var code = crear('code', null, r.url);
+    ec.appendChild(code);
+    var bCopiar = crear('button', 'btn chico', 'Copiar');
+    bCopiar.type = 'button';
+    bCopiar.addEventListener('click', function () { copiar(r.url, bCopiar); });
+    ec.appendChild(bCopiar);
+    var bAbrir = crear('a', 'btn chico fantasma', 'Abrir');
+    bAbrir.href = r.url; bAbrir.target = '_blank'; bAbrir.rel = 'noopener';
+    ec.appendChild(bAbrir);
+    sec.appendChild(ec);
+
+    // Resumen de revisión
+    var s = r.resumen || {};
+    var t = crear('table', 'resumen');
+    function fila(k, v, clase) {
+      if (v == null || v === '' || v === 0) return;
+      var tr = crear('tr');
+      tr.appendChild(crear('th', null, k));
+      tr.appendChild(crear('td', clase || null, String(v)));
+      t.appendChild(tr);
+    }
+    fila('Cliente', s.cliente);
+    fila('Destino', s.destino);
+    fila('Título', s.titulo);
+    fila('Fechas', s.fechas);
+    fila('Noches', s.noches);
+    fila('Viajeros', s.viajeros ? (s.viajeros.adultos + ' adultos' + (s.viajeros.ninos ? ' y ' + s.viajeros.ninos + ' niños' : '')) : 'sin especificar');
+    fila('Días de itinerario', s.dias_itinerario);
+    fila('Alojamientos', (s.alojamientos || []).join(' · '));
+    fila('Precio al cliente', euros(s.precio_total, s.moneda), 'destacado');
+    fila('Por persona', s.precio_por_persona ? euros(s.precio_por_persona, s.moneda) : '');
+    fila('Válida hasta', s.valido_hasta);
+    sec.appendChild(t);
+
+    var recuerda = crear('div', 'nota ojo');
+    recuerda.appendChild(crear('strong', null, 'Comprueba el precio. '));
+    recuerda.appendChild(crear('span', null, 'Es lo que va a pagar el cliente y es lo único que no puedo verificar por ti: hay proveedores que llaman «precio total» a su neto.'));
+    sec.appendChild(recuerda);
+
+    $('cajaResultado').appendChild(sec);
+
+    pintarFotos(r);
+    pintarAlojamiento(r);
+    pintarMensajes(r);
+  }
+
+  function euros(n, moneda) {
+    if (n == null || isNaN(n)) return '';
+    var fijo = Number(n).toFixed(Math.abs(n % 1) > 0.004 ? 2 : 0);
+    var p = fijo.split('.');
+    return p[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.') + (p[1] ? ',' + p[1] : '') + (moneda && moneda !== 'EUR' ? ' ' + moneda : ' €');
+  }
+
+  /* ── fotos de stock ── */
+
+  var ranuras = [];   // [{slot, consulta, titulo, nodo}]
+
+  function pintarFotos(r) {
+    var sec = crear('section', 'tarjeta');
+    sec.appendChild(crear('h2', null, 'Las fotos'));
+    sec.appendChild(crear('p', 'sub', 'Busco fotos libres de los sitios del viaje y las copio a nuestro servidor. Míralas: si alguna no es del sitio que toca, dale a «otra».'));
+    var rejilla = crear('div', 'fotos');
+    sec.appendChild(rejilla);
+    var prog = crear('p', 'progreso', 'Buscando…');
+    prog.id = 'progresoFotos';
+    sec.appendChild(prog);
+    $('cajaResultado').appendChild(sec);
+
+    ranuras = [];
+    var f = r.fotos || {};
+    if (f.hero) ranuras.push({ slot: 'hero', consulta: f.hero, titulo: 'Portada' });
+    (f.tramos || []).forEach(function (t) {
+      ranuras.push({ slot: String(t.i), consulta: t.consulta, titulo: t.titulo || ('Tramo ' + (t.i + 1)) });
+    });
+
+    ranuras.forEach(function (ranura) {
+      var tarjeta = crear('div', 'foto');
+      var marco = crear('div', 'marco');
+      marco.appendChild(crear('span', 'cargando', 'en cola'));
+      tarjeta.appendChild(marco);
+      var pie = crear('div', 'pie');
+      pie.appendChild(crear('p', null, ranura.titulo));
+      var acciones = crear('div', 'acciones');
+      var otra = crear('button', null, 'otra');
+      otra.type = 'button'; otra.disabled = true;
+      var quita = crear('button', null, 'quitar');
+      quita.type = 'button'; quita.disabled = true;
+      acciones.appendChild(otra); acciones.appendChild(quita);
+      pie.appendChild(acciones);
+      tarjeta.appendChild(pie);
+      rejilla.appendChild(tarjeta);
+
+      ranura.marco = marco;
+      ranura.otra = otra;
+      ranura.quita = quita;
+      ranura.salto = 0;
+
+      otra.addEventListener('click', function () { pedirFoto(ranura, ++ranura.salto); });
+      quita.addEventListener('click', function () {
+        if (!ranura.url) return;
+        quita.disabled = true;
+        llamar('/api/ppto-medios', { id: actual.id, accion: 'quitar_foto', url: ranura.url }).then(function (res) {
+          quita.disabled = false;
+          if (res.ok) { ranura.url = null; limpiar(ranura.marco); ranura.marco.appendChild(crear('span', 'cargando', 'sin foto')); }
+        });
+      });
+    });
+  }
+
+  // Una foto cada vez, en fila india. En paralelo se dispararían ocho descargas
+  // y ocho subidas a la vez y el free tier de Openverse empieza a devolver 429.
+  function buscarFotos(r) {
+    var i = 0;
+    function siguiente() {
+      if (i >= ranuras.length) {
+        var p = $('progresoFotos');
+        if (p) p.textContent = 'Fotos listas. Abre la propuesta y échales un vistazo.';
+        return;
+      }
+      var ranura = ranuras[i++];
+      var p = $('progresoFotos');
+      if (p) p.textContent = 'Buscando foto de ' + ranura.titulo + '… (' + i + ' de ' + ranuras.length + ')';
+      pedirFoto(ranura, 0).then(siguiente);
+    }
+    siguiente();
+  }
+
+  function pedirFoto(ranura, salto) {
+    limpiar(ranura.marco);
+    ranura.marco.appendChild(crear('span', 'cargando', 'buscando…'));
+    ranura.otra.disabled = true;
+    ranura.quita.disabled = true;
+
+    return llamar('/api/ppto-medios', {
+      id: actual.id, accion: 'foto', slot: ranura.slot, consulta: ranura.consulta, salto: salto
+    }).then(function (res) {
+      limpiar(ranura.marco);
+      ranura.otra.disabled = false;
+      if (!res.ok) {
+        ranura.marco.appendChild(crear('span', 'cargando', 'sin foto'));
+        return;
+      }
+      var img = new Image();
+      img.src = res.url;
+      img.alt = ranura.titulo;
+      ranura.marco.appendChild(img);
+      ranura.url = res.url;
+      ranura.quita.disabled = false;
+    });
+  }
+
+  /* ── el alojamiento y su enlace ── */
+
+  function pintarAlojamiento(r) {
+    var enlace = r.resumen && r.resumen.enlace_alojamiento;
+    if (!enlace) return;
+
+    var sec = crear('section', 'tarjeta');
+    sec.appendChild(crear('h2', null, 'El alojamiento'));
+    sec.appendChild(crear('p', 'sub', 'En el presupuesto venía un enlace del alojamiento. Puedo traerme sus fotos y enseñarlas dentro de la propuesta.'));
+
+    var caja = crear('div', 'enlace-caja');
+    caja.appendChild(crear('code', null, enlace));
+    sec.appendChild(caja);
+
+    var advertencia = crear('div', 'nota ojo');
+    advertencia.appendChild(crear('strong', null, 'El enlace lleva a la web de quien nos vende el viaje. '));
+    advertencia.appendChild(crear('span', null, 'Si se lo pones al cliente, verá la marca del proveedor y su precio público a un clic. Por eso lo mejor es traerse las fotos y enseñarlas aquí dentro: el cliente ve el barco y no sale de tu propuesta.'));
+    sec.appendChild(advertencia);
+
+    var resultadoAloj = crear('div');
+    resultadoAloj.style.marginTop = '16px';
+
+    var botones = crear('div', 'botonera');
+
+    var bFotos = crear('button', 'btn', 'Traer las fotos del alojamiento');
+    bFotos.type = 'button';
+    bFotos.addEventListener('click', function () {
+      ocupado(bFotos, true, 'Trayendo fotos…');
+      llamar('/api/ppto-medios', { id: r.id, accion: 'galeria', url: enlace, indice: 0 }).then(function (res) {
+        ocupado(bFotos, false);
+        if (!res.ok) { aviso(resultadoAloj, 'mal', res.error || 'No ha podido ser.'); return; }
+        aviso(resultadoAloj, 'bien', res.fotos.length + ' foto(s) puestas en la ficha del alojamiento. ' + res.aviso);
+      });
+    });
+    botones.appendChild(bFotos);
+
+    var bEnlace = crear('button', 'btn fantasma', 'Enseñarle el enlace al cliente');
+    bEnlace.type = 'button';
+    var mostrando = false;
+    bEnlace.addEventListener('click', function () {
+      ocupado(bEnlace, true, 'Guardando…');
+      llamar('/api/ppto-medios', { id: r.id, accion: 'enlace', indice: 0, mostrar: !mostrando, url: enlace }).then(function (res) {
+        ocupado(bEnlace, false);
+        if (!res.ok) { aviso(resultadoAloj, 'mal', res.error || 'No ha podido ser.'); return; }
+        mostrando = res.mostrando;
+        bEnlace.textContent = mostrando ? 'Quitarle el enlace al cliente' : 'Enseñarle el enlace al cliente';
+        bEnlace.dataset.texto = bEnlace.textContent;
+        aviso(resultadoAloj, mostrando ? 'ojo' : 'bien', mostrando
+          ? 'Hecho: el enlace sale ahora en la propuesta. Recuerda que lleva fuera de tu web.'
+          : 'Quitado: el cliente ya no ve el enlace.');
+      });
+    });
+    botones.appendChild(bEnlace);
+
+    sec.appendChild(botones);
+    sec.appendChild(resultadoAloj);
+
+    $('cajaResultado').appendChild(sec);
+  }
+
+  /* ── los mensajes de envío ── */
+
+  function pintarMensajes(r) {
+    var sec = crear('section', 'tarjeta');
+    sec.appendChild(crear('h2', null, 'Mandárselo'));
+    sec.appendChild(crear('p', 'sub', 'Ya llevan el nombre y el enlace. Ninguno dice el precio: eso lo descubre dentro, después de enamorarse del viaje.'));
+
+    if (r.estado === 'borrador') {
+      var b = crear('div', 'nota ojo');
+      b.appendChild(crear('strong', null, 'Está en borrador. '));
+      b.appendChild(crear('span', null, 'La página ya funciona con ese enlace, pero repasa antes lo de arriba.'));
+      sec.appendChild(b);
+    }
+
+    var m = r.mensajes || {};
+    var tel = ($('clienteTel').value || '').replace(/[^\d]/g, '');
+    if (tel && tel.length <= 9) tel = '34' + tel;
+
+    sec.appendChild(bloqueMensaje('WhatsApp', m.whatsapp, 'Abrir WhatsApp',
+      function (t) { return 'https://wa.me/' + (tel || '') + '?text=' + encodeURIComponent(t); }));
+
+    var asunto = crear('div', 'campo');
+    asunto.appendChild(crear('label', null, 'Asunto del email'));
+    var inpAsunto = document.createElement('input');
+    inpAsunto.type = 'text';
+    inpAsunto.value = m.email_asunto || '';
+    asunto.appendChild(inpAsunto);
+    sec.appendChild(asunto);
+
+    sec.appendChild(bloqueMensaje('Email', m.email_cuerpo, 'Abrir el correo',
+      function (t) {
+        var destino = ($('clienteEmail').value || '').trim();
+        return 'mailto:' + destino +
+          '?subject=' + encodeURIComponent(inpAsunto.value) +
+          '&body=' + encodeURIComponent(t);
+      }));
+
+    if (r.estado === 'borrador') {
+      var bPub = crear('button', 'btn', 'Marcarla como enviada');
+      bPub.type = 'button';
+      bPub.addEventListener('click', function () {
+        ocupado(bPub, true, 'Guardando…');
+        llamar('/api/ppto-medios', { id: r.id, accion: 'publicar' }).then(function (res) {
+          ocupado(bPub, false);
+          if (res.ok) { bPub.textContent = 'Marcada como enviada'; bPub.disabled = true; }
+        });
+      });
+      var bot = crear('div', 'botonera');
+      bot.appendChild(bPub);
+      sec.appendChild(bot);
+    }
+
+    $('cajaResultado').appendChild(sec);
+  }
+
+  function bloqueMensaje(nombre, texto, etiquetaAbrir, hacerUrl) {
+    var caja = crear('div', 'mensaje');
+    var cab = crear('div', 'titulo');
+    cab.appendChild(crear('label', null, nombre));
+    var acciones = crear('div', 'botonera');
+
+    var area = document.createElement('textarea');
+    area.value = texto || '';
+
+    var bCopiar = crear('button', 'btn chico', 'Copiar');
+    bCopiar.type = 'button';
+    bCopiar.addEventListener('click', function () { copiar(area.value, bCopiar); });
+    acciones.appendChild(bCopiar);
+
+    var bAbrir = crear('a', 'btn chico fantasma', etiquetaAbrir);
+    bAbrir.target = '_blank';
+    bAbrir.rel = 'noopener';
+    bAbrir.href = hacerUrl(area.value);
+    // El enlace se recalcula al soltar el ratón, justo antes de que el
+    // navegador lo siga: así se lleva los retoques que Victor acabe de hacer.
+    bAbrir.addEventListener('mousedown', function () { bAbrir.href = hacerUrl(area.value); });
+    bAbrir.addEventListener('touchstart', function () { bAbrir.href = hacerUrl(area.value); }, { passive: true });
+    acciones.appendChild(bAbrir);
+
+    cab.appendChild(acciones);
+    caja.appendChild(cab);
+    caja.appendChild(area);
+    return caja;
+  }
+
+  function copiar(texto, boton) {
+    var antes = boton.textContent;
+    function bien() { boton.textContent = 'Copiado'; setTimeout(function () { boton.textContent = antes; }, 1600); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(texto).then(bien, respaldo);
+    } else { respaldo(); }
+    function respaldo() {
+      var a = document.createElement('textarea');
+      a.value = texto;
+      a.style.position = 'fixed';
+      a.style.opacity = '0';
+      document.body.appendChild(a);
+      a.select();
+      try { document.execCommand('copy'); bien(); } catch (e) { boton.textContent = 'Copia a mano'; }
+      document.body.removeChild(a);
+    }
+  }
+})();
+</script>
+</body>
+</html>

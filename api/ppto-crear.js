@@ -1,0 +1,759 @@
+// api/ppto-crear.js — alta de un presupuesto desde el panel privado /panel/.
+//
+// Victor pega el texto del presupuesto (o sube el PDF que le han mandado),
+// escribe el nombre del cliente y le da a un botón. Aquí es donde eso se
+// convierte en una fila de `presupuestos` con un ID nuevo, ya limpia de
+// proveedor y de margen, y en los dos mensajes de envío listos para copiar.
+//
+// El parseo lo hace Gemini, la misma API que ya usa api/chat.js. La LIMPIEZA
+// no: se comprueba después con expresiones regulares, en este archivo. Fiarse
+// de que el modelo ha quitado la comisión sería fiar el modelo de negocio a
+// una instrucción en lenguaje natural. El modelo redacta; el código verifica.
+//
+// Función Edge de Vercel, sin dependencias. Env vars:
+//   PPTO_PANEL_CLAVE           — contraseña del panel. Sin ella, el panel no abre.
+//   GEMINI_API_KEY             — la misma que usa el agente virtual
+//   PPTO_GEMINI_MODEL          — opcional; por defecto "gemini-3.5-flash"
+//   SUPABASE_URL
+//   SUPABASE_SERVICE_ROLE_KEY
+
+export const config = { runtime: 'edge' };
+
+const MODELO_DEFECTO = 'gemini-3.5-flash';
+const MODELO_RESERVA = 'gemini-3.5-flash-lite'; // el que ya funciona en api/chat.js
+const WEB = 'https://www.horizonteexclusivo.es';
+const TEL = '+34 633 077 401';
+const EMAIL = 'viajes@horizonteexclusivo.es';
+
+// Sin 0, O, 1, I ni L: el ID se dicta por teléfono. 32 símbolos y 8 posiciones.
+const ALFABETO = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
+
+const MIMES_OK = ['application/pdf', 'image/jpeg', 'image/png', 'image/webp', 'image/heic'];
+const MAX_ARCHIVO_B64 = 4_000_000;  // ~3 MB de archivo; el límite de cuerpo de Vercel son 4,5 MB
+const MAX_TEXTO = 60_000;
+
+const REGIONES = ['Europa', 'Asia', 'África', 'América', 'Paraísos'];
+
+// Freno por IP, mismo patrón que api/chat.js y api/ppto-evento.js.
+const VENTANA_MS = 300_000;
+const MAX_POR_VENTANA = 12;
+const vistos = new Map();
+
+/* ═══════════════════════ el guion del modelo ═══════════════════════ */
+
+const INSTRUCCIONES = `Eres el redactor de propuestas de Horizonte Exclusivo, una agencia de viajes a
+medida de Molins de Rei (Barcelona). La asesora que firma se llama Endeis.
+
+Recibes el presupuesto TAL CUAL se lo ha mandado un mayorista o un receptivo a la agencia: un email,
+un PDF, un WhatsApp. Tu trabajo es devolver un JSON con ese mismo viaje contado para el cliente
+final. Devuelves JSON y nada más: sin explicaciones, sin markdown, sin bloques de código.
+
+## La regla que manda sobre todas las demás
+
+El cliente no puede intuir ni que hay un intermediario ni que hay un margen. Todo lo que huela a
+proveedor o a negocio entre empresas sale de los campos que ve el cliente y se va al objeto
+"interno", que nunca se le enseña a nadie.
+
+Fuera de los campos visibles, sin excepción: nombre y marca del mayorista, receptivo, turoperador o
+naviera; comisión, neto, PVP neto, margen, markup, fee, rappel, over, descuento de agencia;
+localizadores, expedientes, referencias de reserva, release, cupos; teléfonos, emails y personas de
+contacto del proveedor; condiciones de pago DEL PROVEEDOR (depósitos con vencimiento a la agencia);
+y cualquier frase del estilo "tarifa confidencial" o "uso interno". Tampoco dejes el nombre del
+proveedor escondido dentro del nombre de un hotel, de un barco o de una excursión.
+
+Ojo con los nombres de producto: si el barco, el tren o el circuito llevan la marca del proveedor
+("Le Boat Clipper", "Crucero Nicko Tours"), en los campos visibles va solo el modelo o el nombre
+neutro ("Clipper"), y la marca completa se guarda en "interno".
+
+## El precio
+
+El precio que devuelves en "precio_total" es lo que PAGA EL CLIENTE. No calculas márgenes, no sumas
+ni restas comisiones y no propones otro precio.
+
+Cuidado, porque los proveedores etiquetan mal: una línea llamada "PRECIO TOTAL" o "TOTAL A PAGAR"
+puede ser el neto de la agencia, es decir, lo que la agencia le paga al proveedor después de
+descontar su comisión. El precio del cliente es el bruto, ANTES de descontar la comisión: suele ser
+la línea del producto ("precio del crucero", "total viaje", "PVP"), ya con los descuentos
+comerciales aplicados. Si hay varios números y no está claro, elige el mayor de los candidatos
+razonables, copia TODAS las líneas de precio literalmente en "interno.desglose_original" y añade un
+aviso explicando la duda. Más vale que Victor lo revise a que el cliente pague de menos.
+
+Si el presupuesto trae varias opciones (hotel A / hotel B), quédate con la primera y avisa de que
+había más de una.
+
+## Cómo se escribe
+
+Español de España. Trata de "vosotros" (o de "tú" si viaja una sola persona). Cercano, cálido y
+tranquilizador, aspiracional sin ser cursi y sin superlativos de folleto. Frases cortas. El cliente
+tiene que imaginarse el viaje, no leer una ficha técnica: donde el mayorista pone "D3: traslado
+aeropuerto-hotel en privado", tú escribes qué se siente al llegar y que no tiene que preocuparse de
+nada.
+
+Reescribir NO es añadir. No inventes servicios, hoteles, excursiones, categorías, estrellas ni
+garantías que no estén en el original. Si el mayorista pone "hotel 4 estrellas", no lo subes a
+"boutique de lujo". Un día libre se cuenta como día libre, con gracia, pero libre. Todo lo que
+prometas de más lo acaba pagando la agencia.
+
+Nunca presentes el precio como garantizado: de eso ya se encarga la página.
+
+## El JSON que devuelves
+
+{
+  "destino": "el Canal du Midi",            // como se diría en una frase, con artículo si lo lleva
+  "region": "Europa|Asia|África|América|Paraísos",
+  "titulo": "Siete noches navegando el Canal du Midi",   // sin precio, máximo 70 caracteres
+  "subtitulo": "Una frase de gancho, máximo 140 caracteres",
+  "resumen": "Párrafo de apertura de 3 a 5 frases, personal, el que enamora del viaje",
+  "fecha_salida": "AAAA-MM-DD o null",
+  "fecha_regreso": "AAAA-MM-DD o null",
+  "noches": 7,
+  "viajeros": {"adultos": 2, "ninos": 0},   // null si el presupuesto no lo dice
+  "itinerario": [
+    {
+      "dia": "1 – 3",                        // como se lee: "1", "2 – 4", "8"
+      "titulo": "Tokio",
+      "texto": "3 a 5 frases contando ese tramo del viaje",
+      "alojamiento": "Dónde se duerme ese tramo, o null",
+      "foto": "Tokyo Senso-ji temple"        // ver abajo
+    }
+  ],
+  "alojamientos": [
+    {
+      "nombre": "Nombre del hotel o del barco, sin la marca del proveedor",
+      "ciudad": "Ciudad o zona",
+      "noches": 4,
+      "categoria": "4 estrellas / Ryokan / Categoría Confort…, tal cual venga",
+      "regimen": "Alojamiento y desayuno / Media pensión / Barco completo…",
+      "nota": "2 o 3 frases de por qué este alojamiento y no otro. Es la frase que más trabaja de la página",
+      "enlace": "https://… si el texto trae un enlace de ESTE alojamiento; si no, null",
+      "ficha": [{"etiqueta": "Cabinas", "valor": "2"}]   // datos concretos del original; [] si no hay
+    }
+  ],
+  "incluye": ["Frases cortas, una por servicio incluido"],
+  "no_incluye": ["Lo que no va incluido, también en frases cortas"],
+  "precio_total": 1419,
+  "precio_por_persona": null,
+  "moneda": "EUR",
+  "condiciones_pago": "Condiciones de pago DEL CLIENTE, o null",
+  "valido_hasta": "AAAA-MM-DD o null",
+  "notas_cliente": "Fianzas, anticipos de carburante, avisos prácticos que el cliente debe saber. null si no hay",
+  "foto_hero": "Canal du Midi plane trees",
+  "interno": {
+    "proveedor": "…", "desglose_original": "…", "referencia_proveedor": "…",
+    "contacto_proveedor": "…", "condiciones_pago_proveedor": "…", "nota": "…"
+  },
+  "avisos": ["Lo que Victor tiene que revisar o completar antes de enviarlo"]
+}
+
+## Las consultas de foto
+
+"foto_hero" y el campo "foto" de cada tramo son búsquedas para un banco de imágenes libres
+(Openverse, que indexa sobre todo en inglés). Escribe el nombre propio del sitio tal cual —los
+topónimos no se traducen— y añade dos o tres palabras descriptivas en inglés de lo que debería
+verse: "Kyoto Fushimi Inari torii gates", "Canal du Midi lock plane trees", "Beziers old bridge
+river". Sitios reales del viaje, nunca genéricos tipo "beautiful landscape": una foto del sitio
+equivocado se nota y tira por tierra el resto de la propuesta.
+
+## Avisos
+
+En "avisos" pones, en español y en una frase cada uno, lo que quede pendiente: precio dudoso,
+faltan fechas, faltan viajeros, había varias opciones, el original no dice el régimen… Es lo primero
+que Victor va a leer. Si está todo claro, devuelve [].`;
+
+/* ═══════════════════════ handler ═══════════════════════ */
+
+export default async function handler(req) {
+  if (req.method !== 'POST') return json({ ok: false, error: 'method_not_allowed' }, 405);
+
+  const claveBuena = getEnv('PPTO_PANEL_CLAVE');
+  if (!claveBuena) {
+    console.error('[ppto-crear] Falta PPTO_PANEL_CLAVE: el panel queda cerrado.');
+    return json({ ok: false, error: 'El panel todavía no está configurado. Falta la contraseña en Vercel.' }, 503);
+  }
+  if (!igual(req.headers.get('x-ppto-clave') || '', claveBuena)) {
+    return json({ ok: false, error: 'La contraseña no es correcta.' }, 401);
+  }
+
+  const ip = (req.headers.get('x-forwarded-for') || 'sin-ip').split(',')[0].trim();
+  if (pasado(ip)) return json({ ok: false, error: 'Demasiadas propuestas seguidas. Espera unos minutos.' }, 429);
+
+  let cuerpo;
+  try { cuerpo = await req.json(); }
+  catch (_) { return json({ ok: false, error: 'bad_request' }, 400); }
+
+  const cliente = texto(cuerpo && cuerpo.cliente, 120);
+  const clienteEmail = texto(cuerpo && cuerpo.cliente_email, 160);
+  const clienteTelefono = texto(cuerpo && cuerpo.cliente_telefono, 40);
+  // Aquí NO se colapsan los espacios: la estructura en líneas y columnas del
+  // presupuesto es justo lo que hace que se entienda qué número es cada cosa.
+  const original = textoLargo(cuerpo && cuerpo.texto, MAX_TEXTO);
+  const indicaciones = textoLargo(cuerpo && cuerpo.indicaciones, 2000);
+  const archivo = cuerpo && cuerpo.archivo;
+
+  if (!cliente) return json({ ok: false, error: 'Falta el nombre del cliente.' }, 422);
+
+  let parteArchivo = null;
+  if (archivo && archivo.datos) {
+    const mime = texto(archivo.mime, 60).toLowerCase();
+    if (MIMES_OK.indexOf(mime) === -1) {
+      return json({ ok: false, error: 'Solo acepto PDF o una foto (JPG, PNG, WEBP).' }, 422);
+    }
+    const datos = String(archivo.datos || '');
+    if (datos.length > MAX_ARCHIVO_B64) {
+      return json({ ok: false, error: 'El archivo pesa demasiado (máximo 3 MB). Pégame el texto y listo.' }, 413);
+    }
+    parteArchivo = { inline_data: { mime_type: mime, data: datos } };
+  }
+
+  if (!original && !parteArchivo) {
+    return json({ ok: false, error: 'Pégame el texto del presupuesto o sube el PDF.' }, 422);
+  }
+
+  const apiKey = getEnv('GEMINI_API_KEY');
+  if (!apiKey) {
+    console.error('[ppto-crear] Falta GEMINI_API_KEY.');
+    return json({ ok: false, error: 'Falta la clave de Gemini en Vercel; no puedo leer el presupuesto.' }, 503);
+  }
+
+  const base = getEnv('SUPABASE_URL');
+  const key = getEnv('SUPABASE_SERVICE_ROLE_KEY');
+  if (!base || !key) {
+    console.error('[ppto-crear] Supabase sin configurar.');
+    return json({ ok: false, error: 'Falta la conexión con la base de datos en Vercel.' }, 503);
+  }
+
+  /* ── 1. El modelo lee el presupuesto ── */
+
+  const partes = [];
+  partes.push({ text: `El presupuesto va para: ${cliente}.` });
+  if (indicaciones) partes.push({ text: `Indicaciones de Victor, mandan sobre el resto: ${indicaciones}` });
+  if (original) partes.push({ text: `\n--- PRESUPUESTO RECIBIDO ---\n${original}` });
+  if (parteArchivo) partes.push(parteArchivo);
+
+  let crudo;
+  try {
+    crudo = await pedirAGemini(apiKey, partes);
+  } catch (e) {
+    console.error('[ppto-crear] Gemini:', e && e.message);
+    const lento = /timeout|abort/i.test(String(e && e.message));
+    return json({
+      ok: false,
+      error: lento
+        ? 'El presupuesto ha tardado demasiado en leerse. Si has subido un PDF, prueba a pegar el texto: va mucho más rápido.'
+        : 'No he podido leer el presupuesto. Revisa que el texto se entienda y prueba otra vez.',
+    }, 502);
+  }
+
+  let datos;
+  try { datos = JSON.parse(limpiarVallas(crudo)); }
+  catch (_) {
+    console.error('[ppto-crear] JSON ilegible del modelo:', String(crudo).slice(0, 400));
+    return json({ ok: false, error: 'He leído el presupuesto pero me ha salido mal estructurado. Vuelve a darle al botón.' }, 502);
+  }
+  if (!datos || typeof datos !== 'object') {
+    return json({ ok: false, error: 'El presupuesto ha vuelto vacío. Revisa que el texto tenga el viaje.' }, 502);
+  }
+
+  /* ── 2. Se normaliza a lo que la base y la página esperan ── */
+
+  const { fila, consultas } = normalizar(datos, { cliente, clienteEmail, clienteTelefono, original, indicaciones });
+  if (!fila.destino || !fila.titulo) {
+    return json({ ok: false, error: 'No he encontrado el viaje en lo que me has pasado. ¿Seguro que es el presupuesto?' }, 422);
+  }
+  if (!(Number(fila.precio_total) > 0)) {
+    return json({ ok: false, error: 'No he encontrado el precio del cliente. Dímelo en las indicaciones y vuelve a intentarlo.' }, 422);
+  }
+
+  /* ── 3. La limpieza se COMPRUEBA, no se da por hecha ── */
+
+  const hallazgos = revisar(fila, datos && datos.interno);
+  const avisos = listaTextos(datos && datos.avisos, 12, 300);
+  const estado = hallazgos.length ? 'borrador' : 'enviado';
+
+  /* ── 4. Alta ── */
+
+  let id = generarId();
+  let alta = await insertar(base, key, id, fila, estado);
+  if (alta.conflicto) { id = generarId(); alta = await insertar(base, key, id, fila, estado); }
+  if (!alta.ok) {
+    console.error('[ppto-crear] Alta fallida:', alta.detalle);
+    return json({ ok: false, error: 'He preparado la propuesta pero no he podido guardarla. Vuelve a intentarlo.' }, 502);
+  }
+
+  const url = `${WEB}/ppto/${id}/`;
+
+  return json({
+    ok: true,
+    id,
+    url,
+    estado,
+    hallazgos,
+    avisos,
+    resumen: {
+      cliente,
+      destino: fila.destino,
+      titulo: fila.titulo,
+      fechas: fila.fecha_salida && fila.fecha_regreso ? `${fila.fecha_salida} → ${fila.fecha_regreso}` : (fila.fecha_salida || ''),
+      noches: fila.noches,
+      viajeros: fila.viajeros,
+      dias_itinerario: fila.itinerario.length,
+      alojamientos: fila.alojamientos.map(a => a.nombre).filter(Boolean),
+      precio_total: Number(fila.precio_total),
+      precio_por_persona: fila.precio_por_persona == null ? null : Number(fila.precio_por_persona),
+      moneda: fila.moneda,
+      valido_hasta: fila.valido_hasta,
+      enlace_alojamiento: fila.alojamientos.map(a => a.enlace).filter(Boolean)[0] || null,
+    },
+    fotos: consultas,
+    mensajes: mensajes({ cliente, url, fila }),
+  }, 200);
+}
+
+/* ═══════════════════════ Gemini ═══════════════════════ */
+
+async function pedirAGemini(apiKey, partes) {
+  const modelos = [getEnv('PPTO_GEMINI_MODEL') || MODELO_DEFECTO, MODELO_RESERVA];
+  let ultimo = '';
+
+  for (let i = 0; i < modelos.length; i++) {
+    const r = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${modelos[i]}:generateContent`,
+      {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', 'x-goog-api-key': apiKey },
+        body: JSON.stringify({
+          system_instruction: { parts: [{ text: INSTRUCCIONES }] },
+          contents: [{ role: 'user', parts: partes }],
+          generationConfig: {
+            temperature: 0.4,
+            maxOutputTokens: 8192,
+            responseMimeType: 'application/json',
+          },
+        }),
+        signal: AbortSignal.timeout(21_000),
+      }
+    );
+
+    if (r.ok) {
+      const data = await r.json();
+      const cand = data && data.candidates && data.candidates[0];
+      const trozos = (cand && cand.content && cand.content.parts) || [];
+      const salida = trozos.map(p => p.text || '').join('').trim();
+      if (salida) return salida;
+      throw new Error('respuesta vacía (' + ((cand && cand.finishReason) || 'sin motivo') + ')');
+    }
+
+    ultimo = await r.text().catch(() => '');
+    // Un 404 es "ese modelo no existe en esta clave": se prueba el siguiente.
+    // Cualquier otro error se propaga tal cual; reintentar no lo arreglaría.
+    if (r.status !== 404) throw new Error(`Gemini ${r.status}: ${ultimo.slice(0, 200)}`);
+    console.warn('[ppto-crear] Modelo no disponible:', modelos[i]);
+  }
+
+  throw new Error(`ningún modelo disponible: ${ultimo.slice(0, 200)}`);
+}
+
+// Por si el modelo devuelve el JSON envuelto en ```json pese a pedirle que no.
+function limpiarVallas(s) {
+  const t = String(s || '').trim();
+  const m = /^```(?:json)?\s*([\s\S]*?)\s*```$/i.exec(t);
+  return m ? m[1] : t;
+}
+
+/* ═══════════════════════ normalización ═══════════════════════ */
+
+function normalizar(d, ctx) {
+  // La consulta de foto viaja pegada a su tramo hasta después del filtro: si se
+  // recuperase luego por índice contra el array original, un tramo descartado
+  // desplazaría todas las fotos y cada día del viaje saldría con la foto del
+  // siguiente. Eso no se ve hasta que el cliente abre la página.
+  const tramos = [];
+  const itinerario = lista(d.itinerario).slice(0, 20).map(x => {
+    const o = {
+      dia: texto(x && x.dia, 20),
+      titulo: texto(x && x.titulo, 90),
+      texto: texto(x && x.texto, 1400),
+    };
+    const al = texto(x && x.alojamiento, 200);
+    if (al) o.alojamiento = al;
+    return { fila: o, foto: texto(x && x.foto, 120) };
+  }).filter(x => x.fila.titulo || x.fila.texto)
+    .map((x, i) => {
+      tramos.push({ i, titulo: x.fila.titulo, consulta: x.foto || x.fila.titulo });
+      return x.fila;
+    });
+
+  const alojamientos = lista(d.alojamientos).slice(0, 12).map(x => {
+    const o = {
+      nombre: texto(x && x.nombre, 120),
+      ciudad: texto(x && x.ciudad, 90),
+      categoria: texto(x && x.categoria, 90),
+      regimen: texto(x && x.regimen, 90),
+      nota: texto(x && x.nota, 800),
+    };
+    const n = entero(x && x.noches);
+    if (n) o.noches = n;
+    const enlace = urlHttps(x && x.enlace);
+    if (enlace) o.enlace = enlace;
+    const ficha = lista(x && x.ficha).slice(0, 12)
+      .map(f => ({ etiqueta: texto(f && f.etiqueta, 40), valor: texto(f && f.valor, 90) }))
+      .filter(f => f.etiqueta && f.valor);
+    if (ficha.length) o.ficha = ficha;
+    return o;
+  }).filter(x => x.nombre);
+
+  const v = d.viajeros;
+  const adultos = entero(v && v.adultos);
+  const ninos = entero(v && v.ninos);
+  const viajeros = adultos ? { adultos, ninos: ninos || 0 } : null;
+
+  const region = REGIONES.indexOf(texto(d.region, 20)) !== -1 ? texto(d.region, 20) : null;
+
+  const fila = {
+    cliente_nombre: ctx.cliente,
+    cliente_email: ctx.clienteEmail || null,
+    cliente_telefono: ctx.clienteTelefono || null,
+    destino: texto(d.destino, 90),
+    region,
+    titulo: texto(d.titulo, 140),
+    subtitulo: texto(d.subtitulo, 220) || null,
+    resumen: texto(d.resumen, 1600) || null,
+    fecha_salida: fechaIso(d.fecha_salida),
+    fecha_regreso: fechaIso(d.fecha_regreso),
+    noches: entero(d.noches),
+    viajeros,
+    itinerario,
+    alojamientos,
+    incluye: listaTextos(d.incluye, 24, 220),
+    no_incluye: listaTextos(d.no_incluye, 24, 220),
+    precio_total: numero(d.precio_total),
+    precio_por_persona: numero(d.precio_por_persona),
+    moneda: /^[A-Z]{3}$/.test(texto(d.moneda, 3).toUpperCase()) ? texto(d.moneda, 3).toUpperCase() : 'EUR',
+    condiciones_pago: texto(d.condiciones_pago, 700) || null,
+    valido_hasta: fechaIso(d.valido_hasta),
+    notas_cliente: texto(d.notas_cliente, 1200) || null,
+    interno: Object.assign(
+      { origen: 'panel', creado_por: 'panel-web' },
+      objeto(d.interno),
+      {
+        // El texto de partida se guarda aquí, donde no lo ve nadie: si mañana
+        // hay una discusión sobre qué prometió el proveedor, está guardado.
+        texto_original: String(ctx.original || '').slice(0, 20000) || null,
+        indicaciones_victor: ctx.indicaciones || null,
+      }
+    ),
+  };
+
+  return {
+    fila,
+    consultas: {
+      hero: texto(d.foto_hero, 120) || fila.destino,
+      tramos,
+    },
+  };
+}
+
+function texto(v, max) {
+  if (v == null) return '';
+  const s = String(v).replace(/\s+/g, ' ').trim();
+  return s.slice(0, max || 200);
+}
+
+// Igual que texto() pero conservando los saltos de línea.
+function textoLargo(v, max) {
+  if (v == null) return '';
+  return String(v).replace(/\r\n?/g, '\n').replace(/[ \t]+/g, ' ').trim().slice(0, max || 2000);
+}
+
+function lista(v) { return Array.isArray(v) ? v : []; }
+
+function listaTextos(v, maxItems, maxLen) {
+  return lista(v).slice(0, maxItems || 20).map(x => texto(x, maxLen || 200)).filter(Boolean);
+}
+
+function objeto(v) { return (v && typeof v === 'object' && !Array.isArray(v)) ? v : {}; }
+
+function entero(v) {
+  const n = parseInt(v, 10);
+  return isFinite(n) && n > 0 && n < 1000 ? n : null;
+}
+
+function numero(v) {
+  const n = typeof v === 'number' ? v : parseFloat(String(v == null ? '' : v).replace(/[^\d.,-]/g, '').replace(/\.(?=\d{3}\b)/g, '').replace(',', '.'));
+  return isFinite(n) && n >= 0 && n < 10_000_000 ? Math.round(n * 100) / 100 : null;
+}
+
+function fechaIso(v) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(texto(v, 12));
+  if (!m) return null;
+  const mes = Number(m[2]), dia = Number(m[3]);
+  return (mes >= 1 && mes <= 12 && dia >= 1 && dia <= 31) ? m[0] : null;
+}
+
+function urlHttps(v) {
+  const s = texto(v, 500);
+  return /^https:\/\/[^\s<>"']+$/i.test(s) ? s : null;
+}
+
+/* ═══════════════════════ la comprobación de limpieza ═══════════════════════ */
+//
+// Puerto del scripts/verificar_limpieza.py de la skill. Aquí se pasa sobre los
+// datos ANTES de guardarlos; el script se sigue pasando sobre el HTML servido,
+// que es lo que de verdad ve el cliente. Las dos cosas, no una.
+
+const PATRONES = [
+  ['comisión', /\bcomision(es)?\b/, 'delata que hay un intermediario cobrando'],
+  ['comisionable', /\bcomisionable\b/, 'lenguaje interno de agencia'],
+  ['neto', /\bneto[s]?\b/, 'el neto permite restar y deducir el margen'],
+  ['margen', /\bmargen(es)?\b/, 'literalmente lo que no puede verse'],
+  ['markup', /\bmark\s?-?up\b/, 'margen en inglés'],
+  ['fee', /\bfee[s]?\b/, 'sobreprecio de agencia'],
+  ['rappel', /\brappel(es)?\b/, 'incentivo del proveedor a la agencia'],
+  ['over', /\bover\b|\bovercomision\w*\b/, 'sobrecomisión, jerga de turoperación'],
+  ['precio agencia', /\b(precio|tarifa)\s+(de\s+)?agencia\b/, 'dos precios significa que hay margen'],
+  ['confidencial', /\bconfidencial(es|idad)?\b/, 'nada de lo que ve el cliente es confidencial'],
+  ['uso interno', /\buso\s+interno\b|\bsolo\s+interno\b/, 'marca de documento interno'],
+  ['mayorista', /\bmayorista[s]?\b|\breceptivo[s]?\b|\bturoperador\w*\b|\btour\s?operador\w*\b/, 'nombra la cadena de intermediación'],
+  ['localizador', /\blocalizador(es)?\b|\bbooking\s+ref\w*\b|\bpnr\b/, 'referencias del proveedor'],
+  ['expediente', /\bexpediente\b/, 'numeración interna del proveedor'],
+  ['release / cupo', /\brelease\b|\bcupo[s]?\b|\ballotment\b|\bstop\s?sales?\b/, 'condiciones del proveedor, no del cliente'],
+  ['coste interno', /\bcoste\s+(real|neto|proveedor|interno)\b|\bcosto\s+neto\b/, 'el coste no es asunto del cliente'],
+];
+
+// Campos que acaban delante del cliente. `interno` no está, a propósito.
+function visibles(fila) {
+  const out = [];
+  const push = (campo, v) => { const s = texto(v, 2000); if (s) out.push([campo, s]); };
+  push('destino', fila.destino);
+  push('título', fila.titulo);
+  push('subtítulo', fila.subtitulo);
+  push('resumen', fila.resumen);
+  push('condiciones de pago', fila.condiciones_pago);
+  push('notas', fila.notas_cliente);
+  fila.itinerario.forEach((d, i) => {
+    push(`itinerario ${i + 1} (título)`, d.titulo);
+    push(`itinerario ${i + 1}`, d.texto);
+    push(`itinerario ${i + 1} (alojamiento)`, d.alojamiento);
+  });
+  fila.alojamientos.forEach((a, i) => {
+    push(`alojamiento ${i + 1} (nombre)`, a.nombre);
+    push(`alojamiento ${i + 1}`, a.nota);
+    (a.ficha || []).forEach(f => push(`alojamiento ${i + 1} (${f.etiqueta})`, f.valor));
+  });
+  fila.incluye.forEach((t, i) => push(`incluye ${i + 1}`, t));
+  fila.no_incluye.forEach((t, i) => push(`no incluye ${i + 1}`, t));
+  return out;
+}
+
+function revisar(fila, interno) {
+  const hallazgos = [];
+
+  // El nombre del proveedor cambia en cada presupuesto: el propio modelo dice
+  // cuál era, y se comprueba que no haya quedado suelto por ninguna parte.
+  const nombresProveedor = [];
+  const io = objeto(interno);
+  ['proveedor', 'mayorista', 'receptivo', 'operador'].forEach(k => {
+    const s = texto(io[k], 90);
+    if (s.length >= 4) nombresProveedor.push(s);
+  });
+
+  for (const [campo, valor] of visibles(fila)) {
+    const plano = sinAcentos(valor);
+    for (const [etiqueta, rx, motivo] of PATRONES) {
+      const m = rx.exec(plano);
+      if (m) hallazgos.push({ campo, termino: m[0], motivo });
+    }
+    for (const nombre of nombresProveedor) {
+      // Se prueba el nombre entero y su primera palabra ("Le Boat" → "Boat"
+      // dentro de "Le Boat Clipper" sigue delatando de quién es el barco).
+      const trozos = [nombre].concat(nombre.split(/\s+/).filter(w => w.length >= 4));
+      for (const t of trozos) {
+        if (sinAcentos(valor).indexOf(sinAcentos(t)) !== -1) {
+          hallazgos.push({ campo, termino: t, motivo: 'sigue apareciendo el nombre del proveedor' });
+          break;
+        }
+      }
+    }
+  }
+
+  // El enlace del alojamiento no se cuenta aquí: no es un descuido que haya que
+  // corregir, es una decisión de Victor. Se guarda apartado en `interno` y el
+  // panel le pregunta, con el aviso delante, si quiere enseñárselo al cliente.
+
+  // Sin duplicados: el mismo término en el mismo campo se cuenta una vez.
+  const claves = new Set();
+  return hallazgos.filter(h => {
+    const k = h.campo + '|' + h.termino;
+    if (claves.has(k)) return false;
+    claves.add(k);
+    return true;
+  }).slice(0, 30);
+}
+
+function sinAcentos(s) {
+  return String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+}
+
+/* ═══════════════════════ alta en Supabase ═══════════════════════ */
+
+function generarId() {
+  const bytes = new Uint8Array(8);
+  crypto.getRandomValues(bytes);
+  // 256 es múltiplo exacto de 32: el resto no introduce sesgo.
+  let s = '';
+  for (let i = 0; i < 8; i++) s += ALFABETO[bytes[i] % 32];
+  return 'HE-' + s;
+}
+
+async function insertar(base, key, id, fila, estado) {
+  // El enlace del alojamiento NO se guarda en el campo visible: se aparta a
+  // `interno` hasta que Victor lo autorice a mano desde el panel.
+  const alojamientos = fila.alojamientos.map(a => {
+    const copia = Object.assign({}, a);
+    delete copia.enlace;
+    return copia;
+  });
+  const enlaces = fila.alojamientos.map(a => a.enlace).filter(Boolean);
+  const interno = Object.assign({}, fila.interno);
+  if (enlaces.length) interno.enlaces_alojamiento = enlaces;
+
+  const payload = Object.assign({}, fila, { id, estado, alojamientos, interno });
+
+  try {
+    const r = await fetch(`${base}/rest/v1/presupuestos`, {
+      method: 'POST',
+      headers: {
+        apikey: key,
+        authorization: `Bearer ${key}`,
+        'content-type': 'application/json',
+        prefer: 'return=minimal',
+      },
+      body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(10_000),
+    });
+    if (r.ok) return { ok: true };
+    const detalle = await r.text().catch(() => '');
+    return { ok: false, conflicto: r.status === 409, detalle: `${r.status} ${detalle.slice(0, 300)}` };
+  } catch (e) {
+    return { ok: false, conflicto: false, detalle: String(e && e.message) };
+  }
+}
+
+/* ═══════════════════════ los dos mensajes de envío ═══════════════════════ */
+//
+// Ninguno lleva el precio. El cliente descubre el número dentro de la página,
+// después de haberse enamorado del viaje: anunciarlo en el mensaje convierte
+// la propuesta en una factura antes de que la abran.
+
+function mensajes({ cliente, url, fila }) {
+  const saludo = tratamiento(cliente);
+  const destino = fila.destino || 'tu viaje';
+  const aDestino = conPrep('a', destino);
+  const unaPersona = fila.viajeros && fila.viajeros.adultos === 1 && !fila.viajeros.ninos;
+  const vais = unaPersona ? 'vas a dormir' : 'vais a dormir';
+  const dimelo = unaPersona ? 'dime' : 'decidme';
+  const fechas = fila.fecha_salida && fila.fecha_regreso
+    ? `, del ${dia(fila.fecha_salida)} al ${dia(fila.fecha_regreso)}`
+    : '';
+
+  const whatsapp =
+`Hola ${saludo}, soy Endeis, de Horizonte Exclusivo.
+
+Ya tengo lista tu propuesta ${aDestino}${fechas}: ${fila.titulo}.
+
+Te la he preparado en una página privada para que la veas con calma, con el itinerario día a día y dónde ${vais}:
+${url}
+
+${dimelo.charAt(0).toUpperCase() + dimelo.slice(1)} qué os parece y ajustamos lo que haga falta, que para eso está hecha a medida.`;
+
+  const asunto = `Tu propuesta ${aDestino} ya está lista`;
+
+  const email =
+`Hola ${saludo}:
+
+Ya tengo lista la propuesta de tu viaje ${aDestino}${fechas}. La he preparado en una página privada, solo para ti, para que la puedas leer con calma y enseñársela a quien quieras:
+
+${url}
+
+Dentro está el itinerario día a día, dónde ${vais} y qué incluye exactamente. Si algo no encaja —una noche más, otro ritmo, otro alojamiento—, ${dimelo} y lo ajustamos: para eso está hecho a medida.
+
+Cuando lo hayas visto, me cuentas y seguimos.
+
+Un abrazo,
+
+Endeis
+Horizonte Exclusivo
+${TEL} · ${EMAIL}
+Carrer Major, 37 · 08750 Molins de Rei (Barcelona)
+Más que viajar, vivir el mundo`;
+
+  return { whatsapp, email_asunto: asunto, email_cuerpo: email };
+}
+
+// "Familia Ferrer" no se saluda como "Familia": ahí va el nombre entero.
+function tratamiento(nombre) {
+  const n = texto(nombre, 120);
+  if (/^(familia|flia|sres|sras|sr\.|sra\.|d\.|dña)/i.test(n)) return n;
+  return n.split(/\s+/)[0] || n;
+}
+
+// "a" + "el Canal du Midi" es "al Canal du Midi".
+function conPrep(prep, destino) {
+  const d = texto(destino, 90);
+  if (!d) return '';
+  if (/^el\s+/i.test(d)) {
+    const resto = d.replace(/^el\s+/i, '');
+    if (prep === 'a') return `al ${resto}`;
+    if (prep === 'de') return `del ${resto}`;
+  }
+  return `${prep} ${d}`;
+}
+
+const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio',
+  'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+
+function dia(iso) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso || ''));
+  return m ? `${Number(m[3])} de ${MESES[Number(m[2]) - 1]}` : '';
+}
+
+/* ═══════════════════════ utilidades ═══════════════════════ */
+
+function getEnv(name) {
+  try { return (typeof process !== 'undefined' && process.env && process.env[name]) || ''; }
+  catch (_) { return ''; }
+}
+
+function json(obj, status) {
+  return new Response(JSON.stringify(obj), {
+    status: status || 200,
+    headers: {
+      'content-type': 'application/json; charset=utf-8',
+      'cache-control': 'private, no-store',
+      'x-robots-tag': 'noindex, nofollow',
+    },
+  });
+}
+
+// Comparación en tiempo constante: con una comparación normal, el tiempo de
+// respuesta va diciendo cuántos caracteres se han acertado.
+function igual(a, b) {
+  const x = String(a), y = String(b);
+  let dif = x.length ^ y.length;
+  for (let i = 0; i < Math.max(x.length, y.length); i++) {
+    dif |= (x.charCodeAt(i) || 0) ^ (y.charCodeAt(i) || 0);
+  }
+  return dif === 0;
+}
+
+function pasado(ip) {
+  const ahora = Date.now();
+  const previo = vistos.get(ip);
+  if (!previo || ahora - previo.desde > VENTANA_MS) {
+    vistos.set(ip, { desde: ahora, n: 1 });
+    if (vistos.size > 500) vistos.clear();
+    return false;
+  }
+  previo.n += 1;
+  return previo.n > MAX_POR_VENTANA;
+}
