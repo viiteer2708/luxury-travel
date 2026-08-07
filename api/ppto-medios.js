@@ -193,13 +193,23 @@ function variantesConsulta(consulta) {
   return variantes;
 }
 
+// Todos los huecos de la propuesta son apaisados: la portada ocupa el ancho de
+// la pantalla y el carrusel es de 800×533. Una foto vertical ahí sale recortada
+// por el centro y casi siempre se lleva por delante lo que la hacía buena. Así
+// que primero se busca solo entre las apaisadas, con la consulta completa y con
+// todos sus recortes, y solo si no aparece nada se acepta cualquier proporción.
 async function buscarEnOpenverse(consulta, salto) {
+  return await barrer(consulta, salto, { aspect_ratio: 'wide' })
+      || await barrer(consulta, salto, {});
+}
+
+async function barrer(consulta, salto, extra) {
   // Dentro de cada consulta se relajan los filtros: primero lo grande y sin
   // atribución, y solo al final se aceptan licencias que piden crédito.
   const filtros = [
-    { license: LICENCIAS_LIBRES, size: 'large' },
-    { license: LICENCIAS_LIBRES },
-    { license: LICENCIAS_LIBRES + ',' + LICENCIAS_CON_CREDITO },
+    Object.assign({ license: LICENCIAS_LIBRES, size: 'large' }, extra),
+    Object.assign({ license: LICENCIAS_LIBRES }, extra),
+    Object.assign({ license: LICENCIAS_LIBRES + ',' + LICENCIAS_CON_CREDITO }, extra),
   ];
 
   for (const q of variantesConsulta(consulta)) {
