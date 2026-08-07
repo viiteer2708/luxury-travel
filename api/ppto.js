@@ -169,6 +169,21 @@ function fechaCorta(iso) {
   return `${Number(m[3])} ${MESES[Number(m[2]) - 1].slice(0, 3)}`;
 }
 
+// "a" + "el Canal du Midi" es "al Canal du Midi", no "a el Canal du Midi".
+// Los destinos con artículo (el Cairo, el Canal du Midi, la Toscana) son
+// bastante comunes y una preposición mal contraída canta muchísimo en una
+// propuesta que se supone escrita a mano para ese cliente.
+function conPrep(prep, destino) {
+  const d = String(destino || '').trim();
+  if (!d) return '';
+  if (/^el\s+/i.test(d)) {
+    const resto = d.replace(/^el\s+/i, '');
+    if (prep === 'a') return `al ${resto}`;
+    if (prep === 'de') return `del ${resto}`;
+  }
+  return `${prep} ${d}`;
+}
+
 function textoViajeros(v) {
   const o = objeto(v);
   const a = Number(o.adultos) || 0;
@@ -225,13 +240,14 @@ section { padding: 100px 0; }
 .ppto-top img { height: 44px; width: auto; }
 .ppto-ref { text-align: right; font-size: 0.72rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); line-height: 1.5; }
 .ppto-ref strong { display: block; color: var(--gold); font-weight: 500; letter-spacing: 2px; }
+.ppto-para { display: block; }
 
 .dest-hero { min-height: calc(70vh - 110px); display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; padding: 110px 0 40px; background-size: cover; background-position: center; background-attachment: fixed; }
 .dest-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,0.15) 0%, rgba(10,10,10,0.35) 50%, var(--dark) 100%); }
 .dest-hero-content { position: relative; z-index: 2; max-width: 860px; padding: 0 24px; }
 .dest-hero-content h1 { font-size: clamp(2.2rem, 5.5vw, 4.2rem); font-weight: 700; color: var(--white); line-height: 1.12; margin-bottom: 18px; text-shadow: 0 2px 4px rgba(0,0,0,0.8), 0 4px 20px rgba(0,0,0,0.6), 0 8px 40px rgba(0,0,0,0.4); }
 .dest-hero-content .dest-duration { font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; color: var(--white); font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.8), 0 4px 20px rgba(0,0,0,0.6); }
-.dest-hero-content .section-label { font-size: 0.85rem; letter-spacing: 5px; margin-bottom: 18px; }
+.dest-hero-content .section-label { font-size: 0.85rem; letter-spacing: 5px; margin-bottom: 18px; color: var(--gold-light); text-shadow: 0 2px 4px rgba(0,0,0,0.9), 0 4px 20px rgba(0,0,0,0.7); }
 
 .ppto-intro { padding: 80px 0 40px; }
 .dest-intro-text { max-width: 780px; margin: 0 auto; text-align: center; font-size: 1.05rem; color: var(--text); line-height: 1.9; font-weight: 300; }
@@ -260,6 +276,7 @@ section { padding: 100px 0; }
 
 /* ── Alojamientos ── */
 .hoteles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+.hoteles-grid.una-sola { max-width: 620px; margin: 0 auto; }
 .hotel-card { background: var(--dark-card); border: 1px solid rgba(201,169,110,0.15); border-radius: var(--radius); padding: 30px 26px; transition: var(--transition); }
 .hotel-card:hover { border-color: rgba(201,169,110,0.35); transform: translateY(-4px); }
 .hotel-card h3 { font-size: 1.25rem; color: var(--white); margin-bottom: 6px; }
@@ -351,6 +368,10 @@ section { padding: 100px 0; }
   .includes-grid { grid-template-columns: 1fr; }
   .ppto-top img { height: 36px; }
   .ppto-ref { font-size: 0.62rem; letter-spacing: 1px; }
+  /* En 375px el nombre del cliente no cabe junto al logo y se partía en tres
+     líneas, desbordando la barra. El cliente ya sabe que es para él: en móvil
+     basta con la referencia. */
+  .ppto-para { display: none; }
   .barra-movil { display: flex; }
   body { padding-bottom: 76px; }
   .decision-botones .btn { width: 100%; justify-content: center; }
@@ -463,14 +484,14 @@ function paginaPresupuesto(p) {
     textoViajeros(p.viajeros),
   ].filter(Boolean).join(' · ');
 
-  const mensajeWa = `Hola Endeis, te escribo por el presupuesto ${p.id} de ${destino}. Me gustaría comentar…`;
+  const mensajeWa = `Hola Endeis, te escribo por el presupuesto ${p.id} ${conPrep('de', destino)}. Me gustaría comentar…`;
   const urlWa = `https://wa.me/${TEL_WA}?text=${encodeURIComponent(mensajeWa)}`;
 
   const cuerpo = `
 <header class="ppto-top">
   <div class="container">
     <a href="/" aria-label="Horizonte Exclusivo"><img src="/images/logo-trimmed.png" alt="Horizonte Exclusivo" width="160" height="44"></a>
-    <p class="ppto-ref"><strong>Presupuesto ${esc(p.id)}</strong>${nombre ? `Preparado para ${esc(nombre)}` : ''}</p>
+    <p class="ppto-ref"><strong>Presupuesto ${esc(p.id)}</strong>${nombre ? `<span class="ppto-para">Preparado para ${esc(nombre)}</span>` : ''}</p>
   </div>
 </header>
 
@@ -503,7 +524,7 @@ function paginaPresupuesto(p) {
     <div class="container">
       <div class="section-header reveal">
         <span class="section-label">La inversión</span>
-        <h2 class="section-title">Tu viaje${destino ? ` a ${esc(destino)}` : ''}</h2>
+        <h2 class="section-title">Tu viaje${destino ? ` ${esc(conPrep('a', destino))}` : ''}</h2>
         <div class="divider" aria-hidden="true"></div>
       </div>
       <div class="reveal">
@@ -553,7 +574,7 @@ function paginaPresupuesto(p) {
   <div class="modal">
     <div id="modalPaso1">
       <h2 id="modalTitulo">¿Confirmamos${destino ? ` ${esc(destino)}` : ''}?</h2>
-      <p>Vas a confirmar el diseño de tu viaje${destino ? ` a ${esc(destino)}` : ''}. Endeis te escribirá hoy mismo para los siguientes pasos. Todavía no se te cobra nada.</p>
+      <p>Vas a confirmar el diseño de tu viaje${destino ? ` ${esc(conPrep('a', destino))}` : ''}. Endeis te escribirá hoy mismo para los siguientes pasos. Todavía no se te cobra nada.</p>
       <div class="modal-botones">
         <button type="button" class="btn btn-primary" id="btnConfirmar">Sí, adelante &#10230;</button>
         <button type="button" class="btn btn-outline" id="btnCancelar">Ahora no</button>
@@ -561,7 +582,7 @@ function paginaPresupuesto(p) {
     </div>
     <div id="modalPaso2" hidden>
       <span class="estrellas" aria-hidden="true">&#10022;</span>
-      <h2>Tu viaje${destino ? ` a ${esc(destino)}` : ''} está en marcha</h2>
+      <h2>Tu viaje${destino ? ` ${esc(conPrep('a', destino))}` : ''} está en marcha</h2>
       <p>Gracias por la confianza${nombreCorto ? `, ${esc(nombreCorto)}` : ''}. Endeis te escribe hoy mismo para concretar fechas y empezar a reservar. A partir de aquí, no tienes que preocuparte de nada más.</p>
       <div class="modal-botones">
         <a class="btn btn-primary" href="${esc(urlWa)}" target="_blank" rel="noopener">Escribir a Endeis</a>
@@ -576,7 +597,7 @@ function paginaPresupuesto(p) {
 `;
 
   return documento({
-    titulo: `Tu viaje${destino ? ` a ${destino}` : ''} · Horizonte Exclusivo`,
+    titulo: `Tu viaje${destino ? ` ${conPrep('a', destino)}` : ''} · Horizonte Exclusivo`,
     cuerpo,
     heroImg: hero,
   });
@@ -645,25 +666,29 @@ function bloqueHoteles(hoteles) {
     <div class="container">
       <div class="section-header reveal">
         <span class="section-label">Dónde dormirás</span>
-        <h2 class="section-title">Las casas que hemos elegido</h2>
+        <h2 class="section-title">${hoteles.length === 1 ? 'Tu casa durante el viaje' : 'Las casas que hemos elegido'}</h2>
         <div class="divider" aria-hidden="true"></div>
       </div>
-      <div class="hoteles-grid">${cards}</div>
+      <div class="hoteles-grid${hoteles.length === 1 ? ' una-sola' : ''}">${cards}</div>
     </div>
   </section>`;
 }
 
 // Iconos por palabra clave: el presupuesto del mayorista no trae iconos, así
 // que se deducen del propio texto. Si no encaja ninguno, una estrella dorada.
+// El ORDEN importa: gana la primera que encaja. Lo específico va antes que lo
+// genérico — "el barco durante las siete noches" es un barco, no un hotel, y
+// con la regla de "noche" por delante le tocaba el icono equivocado.
 const ICONOS = [
   [/vuelo|avi[oó]n|a[eé]re/i, '&#9992;&#65039;'],
-  [/hotel|alojamiento|noche|resort|ryokan/i, '&#127976;'],
+  [/barco|crucero|navega|velero|amarr|embarc|n[aá]utic/i, '&#128676;'],
+  [/cabina|camarote|a bordo|litera/i, '&#128719;&#65039;'],
+  [/hotel|alojamiento|noche|resort|ryokan|lodge|riad/i, '&#127976;'],
   [/traslado|transfer|coche|conductor|chofer/i, '&#128663;'],
   [/tren|ferrocarril|jr pass/i, '&#128645;'],
   [/gu[ií]a|visita|excursi[oó]n|experiencia|tour/i, '&#129517;'],
   [/desayuno|comida|cena|pensi[oó]n|gastron/i, '&#127869;&#65039;'],
   [/seguro|asisten|cobertura/i, '&#128737;&#65039;'],
-  [/barco|crucero|navega|velero/i, '&#128676;'],
   [/entrada|ticket|acceso/i, '&#127903;&#65039;'],
   [/documenta|visado|tr[aá]mite/i, '&#128220;'],
 ];
@@ -926,8 +951,8 @@ function paginaCaducada(p) {
   const destino = String(p.destino || '').trim();
   return marcoAviso(
     'Esta propuesta ya ha vencido',
-    `El itinerario${destino ? ` de tu viaje a ${esc(destino)}` : ''} sigue en pie, pero los precios de vuelos y hoteles se mueven y esta versión se ha quedado atrás. Escríbenos y te preparamos una propuesta actualizada${destino ? ' con el mismo viaje' : ''}.`,
-    botonesContacto(`Hola Endeis, mi presupuesto ${p.id}${destino ? ` de ${destino}` : ''} ha caducado. ¿Me lo puedes actualizar?`)
+    `El itinerario${destino ? ` de tu viaje ${esc(conPrep('a', destino))}` : ''} sigue en pie, pero los precios de vuelos y hoteles se mueven y esta versión se ha quedado atrás. Escríbenos y te preparamos una propuesta actualizada${destino ? ' con el mismo viaje' : ''}.`,
+    botonesContacto(`Hola Endeis, mi presupuesto ${p.id}${destino ? ` ${conPrep('de', destino)}` : ''} ha caducado. ¿Me lo puedes actualizar?`)
   );
 }
 
