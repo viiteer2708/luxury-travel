@@ -339,6 +339,12 @@
     <image:image><image:loc>https://www.horizonteexclusivo.es/images/photos/photo-1583422409516-2895a77efded-1920.webp</image:loc></image:image>
   </url>
   <url>
+    <loc>https://www.horizonteexclusivo.es/viajes-de-empresa-a-medida/</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.horizonteexclusivo.es/alaska/</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>monthly</changefreq>

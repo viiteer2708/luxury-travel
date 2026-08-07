@@ -199,6 +199,12 @@ function generate(slug, html) {
     if (faqSafari) out.push(faqSafari);
     out.push(bc([{ name: 'Inicio', url: B.url + '/' }, { name: 'Safari de Lujo a Medida', url: cu }]));
   }
+  else if (p === 'viajes-de-empresa-a-medida') {
+    out.push({ '@context': 'https://schema.org', '@type': 'Service', 'name': 'Viajes de Empresa e Incentivos a Medida', 'url': cu, 'description': pd, 'provider': org(), 'areaServed': { '@type': 'Country', 'name': 'Espana' }, 'serviceType': 'Viaje de empresa a medida' });
+    const faqEmpresa = buildHomeFaq(html);
+    if (faqEmpresa) out.push(faqEmpresa);
+    out.push(bc([{ name: 'Inicio', url: B.url + '/' }, { name: 'Viajes de Empresa a Medida', url: cu }]));
+  }
   else if (p === 'viajes-a-medida-barcelona') {
     out.push({ '@context': 'https://schema.org', '@type': 'Service', 'name': 'Viajes a Medida en Barcelona', 'url': cu, 'description': pd, 'provider': org(), 'areaServed': [{ '@type': 'City', 'name': 'Barcelona' }, { '@type': 'AdministrativeArea', 'name': 'Baix Llobregat' }, { '@type': 'City', 'name': 'Molins de Rei' }], 'serviceType': 'Viajes a medida' });
     out.push(bc([{ name: 'Inicio', url: B.url + '/' }, { name: 'Viajes a Medida Barcelona', url: cu }]));

@@ -66,6 +66,11 @@ else if(p==="safari-de-lujo-a-medida"){
 inj({"@context":"https://schema.org","@type":"Service","name":"Safaris de Lujo a Medida","url":cu,"description":pd,"provider":org(),"areaServed":{"@type":"Country","name":"Espana"},"serviceType":"Safari de lujo a medida"});
 inj(bc([{name:"Inicio",url:B.url+"/"},{name:"Safari de Lujo a Medida",url:cu}]));}
 
+// VIAJES DE EMPRESA A MEDIDA
+else if(p==="viajes-de-empresa-a-medida"){
+inj({"@context":"https://schema.org","@type":"Service","name":"Viajes de Empresa e Incentivos a Medida","url":cu,"description":pd,"provider":org(),"areaServed":{"@type":"Country","name":"Espana"},"serviceType":"Viaje de empresa a medida"});
+inj(bc([{name:"Inicio",url:B.url+"/"},{name:"Viajes de Empresa a Medida",url:cu}]));}
+
 // MONEY PAGES — SERVICIO + CIUDAD
 else if(p==="viajes-a-medida-barcelona"){
 inj({"@context":"https://schema.org","@type":"Service","name":"Viajes a Medida en Barcelona","url":cu,"description":pd,"provider":org(),"areaServed":[{"@type":"City","name":"Barcelona"},{"@type":"AdministrativeArea","name":"Baix Llobregat"},{"@type":"City","name":"Molins de Rei"}],"serviceType":"Viajes a medida"});
