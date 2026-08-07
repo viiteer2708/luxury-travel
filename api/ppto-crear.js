@@ -148,11 +148,16 @@ Nunca presentes el precio como garantizado: de eso ya se encarga la página.
 ## Las consultas de foto
 
 "foto_hero" y el campo "foto" de cada tramo son búsquedas para un banco de imágenes libres
-(Openverse, que indexa sobre todo en inglés). Escribe el nombre propio del sitio tal cual —los
-topónimos no se traducen— y añade dos o tres palabras descriptivas en inglés de lo que debería
-verse: "Kyoto Fushimi Inari torii gates", "Canal du Midi lock plane trees", "Beziers old bridge
-river". Sitios reales del viaje, nunca genéricos tipo "beautiful landscape": una foto del sitio
-equivocado se nota y tira por tierra el resto de la propuesta.
+(Openverse, que indexa sobre todo en inglés).
+
+**El topónimo va SIEMPRE al principio.** Ese buscador exige que aparezcan todas las palabras de la
+consulta, así que cuando no encuentra nada se va recortando la consulta por el final hasta que
+encuentra: lo último que puede quedar en pie tiene que ser el nombre del sitio. Detrás del topónimo
+pon dos o tres palabras descriptivas en inglés de lo que debería verse: "Kyoto Fushimi Inari torii
+gates", "Canal du Midi plane trees", "Beziers old bridge river".
+
+Sitios reales del viaje, nunca genéricos tipo "beautiful landscape": una foto del sitio equivocado
+se nota y tira por tierra el resto de la propuesta.
 
 ## Avisos
 

@@ -165,47 +165,66 @@ async function accionFoto(base, key, id, fila, cuerpo) {
       ? `${hallazgo.titulo} — ${hallazgo.autor}`
       : null,
     titulo: hallazgo.titulo,
+    buscado: hallazgo.buscado,
   }, 200);
 }
 
+// Openverse busca en Y, no en O: exige que TODAS las palabras aparezcan. Una
+// consulta descriptiva como «Canal du Midi lock plane trees» devuelve cero
+// resultados mientras que «Canal du Midi» devuelve 240. Por eso se va recortando
+// por el final: el modelo pone el topónimo delante, así que lo último en caerse
+// es el nombre del sitio, que es lo único que no se puede perder — una foto
+// preciosa del sitio equivocado hace más daño que una normalita del sitio bueno.
+function variantesConsulta(consulta) {
+  const palabras = consulta.split(/\s+/).filter(Boolean);
+  const variantes = [consulta];
+  for (const n of [4, 3, 2, 1]) {
+    if (n >= palabras.length) continue;
+    const v = palabras.slice(0, n).join(' ');
+    if (variantes.indexOf(v) === -1) variantes.push(v);
+  }
+  return variantes;
+}
+
 async function buscarEnOpenverse(consulta, salto) {
-  // Se prueba primero lo que no pide atribución y con relajaciones sucesivas:
-  // sin filtro de tamaño, sin filtro de proporción y por último sin nada.
-  const intentos = [
-    { license: LICENCIAS_LIBRES, size: 'large', aspect_ratio: 'wide' },
+  // Dentro de cada consulta se relajan los filtros: primero lo grande y sin
+  // atribución, y solo al final se aceptan licencias que piden crédito.
+  const filtros = [
     { license: LICENCIAS_LIBRES, size: 'large' },
     { license: LICENCIAS_LIBRES },
-    { license: LICENCIAS_LIBRES + ',' + LICENCIAS_CON_CREDITO, size: 'large' },
     { license: LICENCIAS_LIBRES + ',' + LICENCIAS_CON_CREDITO },
   ];
 
-  for (const filtros of intentos) {
-    const p = new URLSearchParams(Object.assign({ q: consulta, mature: 'false', page_size: '16' }, filtros));
-    let data;
-    try {
-      const r = await fetch(OPENVERSE + '?' + p.toString(), {
-        headers: { accept: 'application/json', 'user-agent': UA },
-        signal: AbortSignal.timeout(9_000),
-      });
-      if (!r.ok) continue;
-      data = await r.json();
-    } catch (_) { continue; }
+  for (const q of variantesConsulta(consulta)) {
+    for (const f of filtros) {
+      const p = new URLSearchParams(Object.assign({ q, mature: 'false', page_size: '16' }, f));
+      let data;
+      try {
+        const r = await fetch(OPENVERSE + '?' + p.toString(), {
+          headers: { accept: 'application/json', 'user-agent': UA },
+          signal: AbortSignal.timeout(9_000),
+        });
+        if (!r.ok) continue;
+        data = await r.json();
+      } catch (_) { continue; }
 
-    const res = (data && Array.isArray(data.results) ? data.results : [])
-      .filter(x => x && typeof x.url === 'string' && EXT_OK.test(x.url));
-    if (!res.length) continue;
+      const res = (data && Array.isArray(data.results) ? data.results : [])
+        .filter(x => x && typeof x.url === 'string' && EXT_OK.test(x.url));
+      if (!res.length) continue;
 
-    const elegido = res[salto % res.length];
-    return {
-      url: elegido.url,
-      thumbnail: elegido.thumbnail || '',
-      titulo: limpiarTitulo(elegido.title),
-      autor: String(elegido.creator || 'Autor desconocido').slice(0, 90),
-      licencia: elegido.license || '',
-      version: elegido.license_version || '',
-      licenciaUrl: elegido.license_url || 'https://creativecommons.org/',
-      origen: elegido.foreign_landing_url || elegido.url,
-    };
+      const elegido = res[salto % res.length];
+      return {
+        url: elegido.url,
+        thumbnail: elegido.thumbnail || '',
+        titulo: limpiarTitulo(elegido.title),
+        autor: String(elegido.creator || 'Autor desconocido').slice(0, 90),
+        licencia: elegido.license || '',
+        version: elegido.license_version || '',
+        licenciaUrl: elegido.license_url || 'https://creativecommons.org/',
+        origen: elegido.foreign_landing_url || elegido.url,
+        buscado: q,
+      };
+    }
   }
   return null;
 }
