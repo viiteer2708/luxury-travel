@@ -19,12 +19,19 @@
 // Supabase Storage. Enlazar a Wikimedia o a la web del proveedor sería regalar
 // el dato de dónde sale la propuesta y depender de que no borren la foto.
 //
-// Env vars: PPTO_PANEL_CLAVE, SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY.
+// Env vars: PPTO_PANEL_CLAVE, SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY y
+// GEMINI_API_KEY (esta última para el portero de marcas de la galería; sin ella
+// las fotos del alojamiento no se comprueban y el panel lo dice).
 
 export const config = { runtime: 'edge' };
 
 const BUCKET = 'ppto-fotos';
 const ID_RE = /^HE-[23456789ABCDEFGHJKLMNPQRSTUVWXYZ]{8}$/;
+
+// Modelo con visión para el portero de marcas de la galería. Va aparte del que
+// lee el presupuesto: aquí se pide un sí/no sobre una imagen, y para eso el
+// modelo más pequeño y rápido es el que toca.
+const MODELO_VISION = 'gemini-3.5-flash-lite';
 
 const OPENVERSE = 'https://api.openverse.org/v1/images/';
 // Licencias comercialmente seguras. cc0 y pdm no piden ni atribución; by y
@@ -271,31 +278,149 @@ async function accionGaleria(base, key, id, fila, cuerpo) {
     return json({ ok: false, error: 'En esa página no he encontrado fotos que pueda traerme.' }, 404);
   }
 
-  const puestas = [];
-  for (const src of candidatas.slice(0, MAX_GALERIA)) {
-    const descarga = await descargarImagen(src, MAX_TRAMO);
-    if (!descarga) continue;
-    const nombre = `${id}/aloj-${indice}-${sufijo()}.${descarga.ext}`;
-    const publica = await subir(base, key, nombre, descarga);
-    if (publica) puestas.push(publica);
+  const apiKey = getEnv('GEMINI_API_KEY');
+
+  // Streaming, por lo mismo que en api/ppto-crear.js: mirar seis fotos una a
+  // una se pasa de los 25 segundos que la función puede tardar en arrancar.
+  return flujo(async (manda) => {
+    const puestas = [];
+    const descartadas = [];
+    let n = 0;
+
+    for (const src of candidatas.slice(0, MAX_GALERIA + 4)) {
+      if (puestas.length >= MAX_GALERIA) break;
+      n++;
+      manda({ paso: `Mirando la foto ${n}…` });
+
+      // El mínimo de tamaño se sube: en la ficha del proveedor conviven la foto
+      // buena y su miniatura de 205 píxeles, y la miniatura no sirve de nada en
+      // una galería de 260 de alto.
+      const descarga = await descargarImagen(src, MAX_TRAMO, 25_000);
+      if (!descarga) continue;
+
+      const marca = await llevaMarca(apiKey, descarga);
+      if (marca.hayMarca) {
+        descartadas.push(marca.texto || 'lleva la marca del proveedor');
+        continue;
+      }
+
+      const nombre = `${id}/aloj-${indice}-${sufijo()}.${descarga.ext}`;
+      const publica = await subir(base, key, nombre, descarga);
+      if (publica) puestas.push(publica);
+    }
+
+    if (!puestas.length) {
+      return manda({
+        ok: false,
+        error: descartadas.length
+          ? `He mirado ${n} fotos y las he descartado todas: llevan a la vista la marca de quien nos vende el viaje (${descartadas[0]}). Enseñarlas sería contarle al cliente con quién contratas.`
+          : 'He visto las fotos pero no he podido traerme ninguna con calidad suficiente.',
+        descartadas,
+      });
+    }
+
+    const nuevos = alojamientos.map((a, i) => i === indice
+      ? Object.assign({}, a, { galeria: (Array.isArray(a.galeria) ? a.galeria : []).concat(puestas).slice(0, MAX_GALERIA) })
+      : a);
+
+    const ok = await guardar(base, key, id, { alojamientos: nuevos });
+    if (!ok) return manda({ ok: false, error: 'No he podido guardar la galería.' });
+
+    manda({
+      ok: true,
+      fotos: puestas,
+      descartadas,
+      aviso: descartadas.length
+        ? `He descartado ${descartadas.length} foto(s) porque llevaban la marca del proveedor a la vista.`
+        : (apiKey ? '' : 'Ojo: sin la clave de Gemini no he podido comprobar si llevan marcas. Míralas tú.'),
+    });
+  });
+}
+
+// La comprobación que de verdad protege la regla de oro. Las fotos de producto
+// del proveedor suelen llevar su nombre en el casco o en el rótulo, en letra
+// pequeña: en la miniatura del panel no se ve, y en la propuesta abierta en un
+// portátil sí. Un cliente que lee «leboat.com» en el barco busca el precio en
+// Google y la propuesta se convierte en una comparación de precios.
+async function llevaMarca(apiKey, descarga) {
+  if (!apiKey) return { hayMarca: false, texto: '' };
+
+  const PREGUNTA = 'Mira esta foto de un alojamiento o de un medio de transporte de un viaje. ' +
+    '¿Se lee o se ve alguna MARCA COMERCIAL: un nombre de empresa, un logotipo, una dirección web, ' +
+    'un rótulo de compañía, una matrícula con marca, una pegatina? Fíjate en cascos, fachadas, ' +
+    'toldos, uniformes y letreros, incluso si el texto es pequeño. ' +
+    'Responde solo con este JSON: {"marca": true|false, "texto": "qué se lee, o cadena vacía"}';
+
+  try {
+    const r = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${MODELO_VISION}:generateContent`,
+      {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', 'x-goog-api-key': apiKey },
+        body: JSON.stringify({
+          contents: [{
+            role: 'user',
+            parts: [
+              { text: PREGUNTA },
+              { inline_data: { mime_type: descarga.tipo, data: aBase64(descarga.datos) } },
+            ],
+          }],
+          generationConfig: { temperature: 0, maxOutputTokens: 200, responseMimeType: 'application/json' },
+        }),
+        signal: AbortSignal.timeout(15_000),
+      }
+    );
+    if (!r.ok) {
+      console.warn('[ppto-medios] Vision respondió', r.status);
+      return { hayMarca: false, texto: '' };
+    }
+    const data = await r.json();
+    const partes = (((data.candidates || [])[0] || {}).content || {}).parts || [];
+    const salida = partes.map(p => p.text || '').join('').trim();
+    const o = JSON.parse(salida.replace(/^```(?:json)?\s*|\s*```$/g, ''));
+    return { hayMarca: !!o.marca, texto: String(o.texto || '').slice(0, 120) };
+  } catch (e) {
+    // Si la comprobación falla, la foto NO pasa. Es la única postura sensata:
+    // el coste de descartar una foto buena es que Victor busque otra; el de
+    // publicar una mala es enseñarle el proveedor al cliente.
+    console.warn('[ppto-medios] No se ha podido comprobar la marca:', e && e.message);
+    return { hayMarca: true, texto: 'no he podido comprobar si lleva marca' };
   }
+}
 
-  if (!puestas.length) {
-    return json({ ok: false, error: 'He visto las fotos pero no he podido traerme ninguna.' }, 502);
+// btoa necesita una cadena binaria, y pasarle 130.000 bytes de golpe con
+// String.fromCharCode(...bytes) revienta la pila. De ahí los trozos.
+function aBase64(buffer) {
+  const bytes = new Uint8Array(buffer);
+  let binario = '';
+  for (let i = 0; i < bytes.length; i += 8192) {
+    binario += String.fromCharCode.apply(null, bytes.subarray(i, i + 8192));
   }
+  return btoa(binario);
+}
 
-  const nuevos = alojamientos.map((a, i) => i === indice
-    ? Object.assign({}, a, { galeria: (Array.isArray(a.galeria) ? a.galeria : []).concat(puestas).slice(0, MAX_GALERIA) })
-    : a);
-
-  const ok = await guardar(base, key, id, { alojamientos: nuevos });
-  if (!ok) return json({ ok: false, error: 'No he podido guardar la galería.' }, 502);
-
-  return json({
-    ok: true,
-    fotos: puestas,
-    aviso: 'Míralas antes de enviar: si alguna lleva el logo o la marca de quien nos vende el viaje, quítala.',
-  }, 200);
+function flujo(trabajo) {
+  const codificador = new TextEncoder();
+  const cuerpo = new ReadableStream({
+    async start(control) {
+      const manda = (o) => control.enqueue(codificador.encode(JSON.stringify(o) + '\n'));
+      try { await trabajo(manda); }
+      catch (e) {
+        console.error('[ppto-medios] Error inesperado:', e && e.message);
+        manda({ ok: false, error: 'Algo ha fallado por el camino. Vuelve a intentarlo.' });
+      }
+      control.close();
+    },
+  });
+  return new Response(cuerpo, {
+    status: 200,
+    headers: {
+      'content-type': 'application/x-ndjson; charset=utf-8',
+      'cache-control': 'private, no-store',
+      'x-robots-tag': 'noindex, nofollow',
+      'x-accel-buffering': 'no',
+    },
+  });
 }
 
 function extraerImagenes(html, baseUrl) {
@@ -396,7 +521,7 @@ async function accionPublicar(base, key, id) {
 
 /* ═══════════════════════ descarga y almacén ═══════════════════════ */
 
-async function descargarImagen(url, tope) {
+async function descargarImagen(url, tope, minimo) {
   try {
     const r = await fetch(url, {
       headers: { 'user-agent': UA, accept: 'image/*' },
@@ -414,7 +539,7 @@ async function descargarImagen(url, tope) {
 
     const datos = await r.arrayBuffer();
     // El Content-Length puede faltar o mentir: el tamaño de verdad se mira aquí.
-    if (datos.byteLength > tope || datos.byteLength < 2000) return null;
+    if (datos.byteLength > tope || datos.byteLength < (minimo || 2000)) return null;
 
     return { datos, tipo, ext };
   } catch (_) { return null; }

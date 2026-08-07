@@ -596,10 +596,24 @@ footer.pie { text-align: center; color: var(--text-muted); font-size: 0.78rem; m
     bFotos.type = 'button';
     bFotos.addEventListener('click', function () {
       ocupado(bFotos, true, 'Trayendo fotos…');
-      llamar('/api/ppto-medios', { id: r.id, accion: 'galeria', url: enlace, indice: 0 }).then(function (res) {
+      limpiar(resultadoAloj);
+      var progreso = crear('p', 'progreso', 'Abriendo la ficha del alojamiento…');
+      resultadoAloj.appendChild(progreso);
+
+      llamarPorPasos('/api/ppto-medios', { id: r.id, accion: 'galeria', url: enlace, indice: 0 }, function (paso) {
+        progreso.textContent = paso + ' (compruebo que no lleve marcas del proveedor)';
+      }).then(function (res) {
         ocupado(bFotos, false);
-        if (!res.ok) { aviso(resultadoAloj, 'mal', res.error || 'No ha podido ser.'); return; }
-        aviso(resultadoAloj, 'bien', res.fotos.length + ' foto(s) puestas en la ficha del alojamiento. ' + res.aviso);
+        limpiar(resultadoAloj);
+        if (!res.ok) {
+          aviso(resultadoAloj, 'mal', res.error || 'No ha podido ser.');
+          return;
+        }
+        var caja = crear('div');
+        aviso(caja, res.descartadas && res.descartadas.length ? 'ojo' : 'bien',
+          res.fotos.length + ' foto(s) en la ficha del alojamiento. ' + (res.aviso || ''));
+        resultadoAloj.appendChild(caja);
+        resultadoAloj.appendChild(rejillaGaleria(r.id, res.fotos));
       });
     });
     botones.appendChild(bFotos);
@@ -626,6 +640,41 @@ footer.pie { text-align: center; color: var(--text-muted); font-size: 0.78rem; m
     sec.appendChild(resultadoAloj);
 
     $('cajaResultado').appendChild(sec);
+  }
+
+  // Aunque la máquina ya descarta las fotos con marca, se enseñan igual y con
+  // su botón de quitar: el criterio de «esta foto no vende el viaje» es de
+  // Victor, no de un modelo.
+  function rejillaGaleria(id, fotos) {
+    var rejilla = crear('div', 'fotos');
+    fotos.forEach(function (url, i) {
+      var tarjeta = crear('div', 'foto');
+      var marco = crear('div', 'marco');
+      var img = new Image();
+      img.src = url;
+      img.alt = 'Foto ' + (i + 1) + ' del alojamiento';
+      marco.appendChild(img);
+      tarjeta.appendChild(marco);
+      var pie = crear('div', 'pie');
+      var acciones = crear('div', 'acciones');
+      var ver = crear('a', null, 'ver grande');
+      ver.href = url; ver.target = '_blank'; ver.rel = 'noopener';
+      ver.style.cssText = 'font-size:0.66rem;padding:4px 8px;border:1px solid rgba(255,255,255,0.15);border-radius:3px;';
+      var quita = crear('button', null, 'quitar');
+      quita.type = 'button';
+      quita.addEventListener('click', function () {
+        quita.disabled = true;
+        llamar('/api/ppto-medios', { id: id, accion: 'quitar_foto', url: url }).then(function (res) {
+          if (res.ok) { tarjeta.remove(); } else { quita.disabled = false; }
+        });
+      });
+      acciones.appendChild(ver);
+      acciones.appendChild(quita);
+      pie.appendChild(acciones);
+      tarjeta.appendChild(pie);
+      rejilla.appendChild(tarjeta);
+    });
+    return rejilla;
   }
 
   /* ── los mensajes de envío ── */
