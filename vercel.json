@@ -17,7 +17,18 @@
       "permanent": true
     }
   ],
+  "rewrites": [
+    { "source": "/ppto/:id", "destination": "/api/ppto?id=:id" },
+    { "source": "/ppto/:id/", "destination": "/api/ppto?id=:id" }
+  ],
   "headers": [
+    {
+      "source": "/ppto/(.*)",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" },
+        { "key": "Cache-Control", "value": "private, no-store" }
+      ]
+    },
     {
       "source": "/images/(.*)",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]

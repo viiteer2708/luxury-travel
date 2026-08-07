@@ -6,7 +6,7 @@
 ## Reglas de Oro
 | Regla | Por qué |
 |-------|---------|
-| NUNCA mostrar precios (ni HTML, CSS, comentarios) | Política comercial — sin excepciones |
+| NUNCA mostrar precios (ni HTML, CSS, comentarios) en la web pública | Política comercial. **Única excepción autorizada: las páginas `/ppto/` — ver abajo.** No la "corrijas" |
 | Navbar IDÉNTICO en las 79 páginas (HTML+CSS+JS copiado de `index.html`) | Componente inmutable; si cambia, cambia en TODAS |
 | Nuevo destino = página + Travel Hacks + tarjeta en región + `destinos/index.html` + `pro-tips/index.html` | Nunca crear destino incompleto |
 | Tras crear/editar páginas → ejecutar `node build-schema.js` para regenerar el JSON-LD | El schema (datos estructurados) es estático y NO se actualiza solo |
@@ -21,6 +21,38 @@
 - **Tras crear o editar páginas (nuevo destino, pro-tip, guía…), ejecuta `node build-schema.js`** para que tengan/actualicen su schema. Si añades un destino nuevo, añádelo también a los mapas `D` y `CT` (en `build-schema.js` y `schema-auto.js`).
 - Cobertura: LocalBusiness (home, con reseñas), TouristTrip (destinos), Article+FAQPage (pro-tips), Article (guías de blog), CollectionPage (hubs/regiones), BreadcrumbList (todas).
 - Valida los cambios en el [Test de Resultados Enriquecidos de Google](https://search.google.com/test/rich-results).
+
+## Presupuestos privados `/ppto/{ID}` — la excepción a la Regla de Oro nº1
+
+**Sí llevan precio, y es deliberado.** Son las propuestas que Endeis manda a un cliente concreto
+después de una conversación: sin precio no habría nada que decidir. Precisamente por eso viven
+fuera del índice: `noindex` en el `<meta>` y en la cabecera `X-Robots-Tag`, **fuera de
+`sitemap.xml`, fuera de `build-schema.js` y fuera del navbar**. Si un agente futuro "arregla" esto
+quitando el precio o metiendo `/ppto/` en el sitemap, está rompiendo la herramienta.
+
+Ojo con `robots.txt`: `/ppto/` **no** se añade como `Disallow`. Bloqueado ahí, Google no podría
+entrar a leer el `noindex` y una URL enlazada podría acabar indexada igualmente.
+
+- **Datos:** proyecto Supabase dedicado `horizonte-presupuestos` (ref `lxnxpkwunlqltdxnquyl`,
+  eu-west-1), tablas `presupuestos` y `presupuesto_eventos`. RLS activada **sin ninguna política**:
+  solo la `service_role` de las funciones lee. Ningún dato de cliente entra en git — este repo es
+  público.
+- **Render:** `api/ppto.js` (Edge, sin dependencias, PostgREST por `fetch`). Selecciona **columnas
+  explícitas**: la columna `interno` (comisión, neto, proveedor, localizadores) no se pide nunca,
+  así que no puede llegar al navegador. **Nunca pongas `select=*` ahí.**
+- **Eventos:** `api/ppto-evento.js` registra `vista | aceptado | pdf | whatsapp` y manda el aviso de
+  aceptación por email vía Brevo, con el mismo patrón que `grupo-new-energy-web/api/lead.js`.
+- **Rutas:** `rewrites` en `vercel.json`, con y sin barra final (la web usa URLs con barra, y un
+  `source` sin barra no captura `/ppto/HE-XXXXXXXX/`).
+- **CSS:** embebido en `api/ppto.js`, copiado de `escocia/index.html`. **No toca `styles.css`.**
+- **JS:** embebido. Estas páginas **no cargan `/scripts.js`**: ese script hace `addEventListener`
+  sobre `#hamburger` sin comprobar si existe y aquí no hay navbar, así que reventaría entero.
+- **Env vars** (Production + Preview): `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `BREVO_API_KEY`,
+  `BREVO_SENDER_EMAIL`, `PPTO_AVISO_EMAIL`. Nunca en el código.
+
+Se gestionan con la skill `presupuestos-horizonte` (`~/.claude/skills/presupuestos-horizonte/`), que
+antes de dar nada por publicado pasa `verificar_limpieza.py` sobre el HTML servido para garantizar
+que no queda ni rastro de la comisión ni del mayorista.
 
 ## Stack
 - HTML estático + CSS embebido (variables CSS, sin frameworks)
