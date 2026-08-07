@@ -47,12 +47,62 @@ entrar a leer el `noindex` y una URL enlazada podría acabar indexada igualmente
 - **CSS:** embebido en `api/ppto.js`, copiado de `escocia/index.html`. **No toca `styles.css`.**
 - **JS:** embebido. Estas páginas **no cargan `/scripts.js`**: ese script hace `addEventListener`
   sobre `#hamburger` sin comprobar si existe y aquí no hay navbar, así que reventaría entero.
-- **Env vars** (Production + Preview): `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `BREVO_API_KEY`,
-  `BREVO_SENDER_EMAIL`, `PPTO_AVISO_EMAIL`. Nunca en el código.
+- **Env vars** (Production): `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `BREVO_API_KEY`,
+  `BREVO_SENDER_EMAIL`, `PPTO_AVISO_EMAIL`, `PPTO_PANEL_CLAVE`, `GEMINI_API_KEY`. Nunca en el código.
 
 Se gestionan con la skill `presupuestos-horizonte` (`~/.claude/skills/presupuestos-horizonte/`), que
 antes de dar nada por publicado pasa `verificar_limpieza.py` sobre el HTML servido para garantizar
 que no queda ni rastro de la comisión ni del mayorista.
+
+### El panel `/panel/` — Victor se los hace solo
+
+Página privada donde Victor pega el presupuesto del mayorista (o sube el PDF), escribe el nombre del
+cliente y con un botón obtiene el enlace `/ppto/{ID}` y los mensajes de WhatsApp y email ya
+redactados. Va con `noindex`, fuera del sitemap, fuera del navbar y **fuera de `build-schema.js`**
+(está en su `SKIP`). No carga `/scripts.js`, por lo del `#hamburger`.
+
+La contraseña es la env var `PPTO_PANEL_CLAVE` y viaja en la cabecera `x-ppto-clave`. La página en sí
+no guarda ningún secreto: quien decide es la función Edge.
+
+- **`api/ppto-crear.js`** — Gemini lee el presupuesto (texto o PDF, con `inline_data`) y lo reescribe
+  con la voz de la casa. **La limpieza no se le confía al modelo**: se comprueba después, con las
+  mismas expresiones que `verificar_limpieza.py`, más el nombre del proveedor que el propio modelo
+  declara. Si algo se cuela, el presupuesto queda en `borrador` y el panel dice qué y dónde.
+- **`api/ppto-medios.js`** — acciones `foto`, `galeria`, `quitar_foto`, `enlace`, `publicar`,
+  `limpiar` y `borrar`.
+- **Ambas responden en NDJSON por streaming** cuando el trabajo es largo. Una función Edge tiene que
+  EMPEZAR a responder en 25 s y leer un presupuesto se pasa de ahí. Consecuencia a recordar: desde el
+  primer byte la respuesta es un 200 pase lo que pase, así que **los errores viajan en el cuerpo**, no
+  en el código HTTP. Cabecera `x-ppto-build` con el commit desplegado, para poder verificar en
+  producción sin adivinar.
+
+### Fotos: bucket `ppto-fotos` (Supabase Storage, público)
+
+Las fotos NO se enlazan desde donde estén: se **copian** al bucket. Enlazar a Wikimedia o a la web
+del proveedor sería regalar el dato de dónde sale la propuesta. `api/ppto.js` solo acepta rutas
+`/images/…` del repo o URLs de ese bucket (`RUTA_ALMACEN_RE`); cualquier otra cosa se descarta.
+
+Tres cosas que costaron sangre y no son evidentes:
+
+1. **Openverse busca en Y**: exige que aparezcan TODAS las palabras. «Canal du Midi lock plane trees»
+   devuelve 0 y «Canal du Midi» devuelve 240. Por eso la consulta se recorta por el final, y por eso
+   el guion del modelo pide el topónimo en primera posición.
+2. **No preferir cc0/dominio público.** Dominio público casi siempre significa ANTIGUO: preferirlo
+   traía grabados del XIX con el sello de la biblioteca en vez de fotos del sitio. Se buscan las
+   cuatro licencias seguras a la vez y se paga el crédito al pie (`creditos`, columna nueva).
+3. **Wikimedia sirve el original sin límite** (7 MB una foto normal). Se pide su versión
+   redimensionada, y solo responde a los anchos que ya tiene renderizados: **1280 y 1920**; 800, 1024
+   y 1200 devuelven 400.
+
+**El portero de marcas.** Las fotos que se traen del enlace del alojamiento pasan por Gemini con
+visión antes de publicarse, y la que lleve una marca comercial no pasa. No es paranoia: las fotos
+buenas del barco del Canal du Midi llevan «le boat» en el casco y «WWW.LEBOAT.COM» en el distintivo,
+en letra que no se ve en una miniatura pero sí en la propuesta abierta en un portátil. Si la
+comprobación falla, la foto tampoco pasa.
+
+**El enlace del alojamiento nunca sale solo.** Se guarda apartado en `interno.enlaces_alojamiento` y
+únicamente aparece en la página si Victor lo autoriza desde el panel, con el aviso delante. Lo normal
+es no enseñarlo y traerse las fotos: el cliente ve el barco sin salir de la propuesta.
 
 ## Stack
 - HTML estático + CSS embebido (variables CSS, sin frameworks)
