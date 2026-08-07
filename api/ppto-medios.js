@@ -34,10 +34,16 @@ const ID_RE = /^HE-[23456789ABCDEFGHJKLMNPQRSTUVWXYZ]{8}$/;
 const MODELO_VISION = 'gemini-3.5-flash-lite';
 
 const OPENVERSE = 'https://api.openverse.org/v1/images/';
-// Licencias comercialmente seguras. cc0 y pdm no piden ni atribución; by y
-// by-sa sí, y por eso se guarda el crédito para pintarlo al pie de la página.
-const LICENCIAS_LIBRES = 'cc0,pdm';
-const LICENCIAS_CON_CREDITO = 'by,by-sa';
+// Las cuatro licencias comercialmente seguras, y se buscan TODAS A LA VEZ.
+//
+// La primera versión probaba antes cc0 y dominio público, para ahorrarse la
+// línea de créditos. Salía mal por un motivo que no se ve venir: dominio
+// público casi siempre quiere decir ANTIGUO. Al tramo del Canal du Midi le tocó
+// un grabado del XIX con el sello de la Biblioteca de Montpellier, porque el
+// grabado es de dominio público y las fotos modernas del mismo sitio son CC BY.
+// Preferir la licencia cómoda era preferir sistemáticamente el material de
+// archivo. Pagar el crédito al pie sale mucho más barato.
+const LICENCIAS = 'cc0,pdm,by,by-sa';
 const SIN_ATRIBUCION = ['cc0', 'pdm'];
 
 const EXT_OK = /\.(jpe?g|png|webp|avif)(\?|$)/i;
@@ -204,12 +210,10 @@ async function buscarEnOpenverse(consulta, salto) {
 }
 
 async function barrer(consulta, salto, extra) {
-  // Dentro de cada consulta se relajan los filtros: primero lo grande y sin
-  // atribución, y solo al final se aceptan licencias que piden crédito.
+  // Dentro de cada consulta, primero lo grande y luego cualquier tamaño.
   const filtros = [
-    Object.assign({ license: LICENCIAS_LIBRES, size: 'large' }, extra),
-    Object.assign({ license: LICENCIAS_LIBRES }, extra),
-    Object.assign({ license: LICENCIAS_LIBRES + ',' + LICENCIAS_CON_CREDITO }, extra),
+    Object.assign({ license: LICENCIAS, size: 'large' }, extra),
+    Object.assign({ license: LICENCIAS }, extra),
   ];
 
   for (const q of variantesConsulta(consulta)) {
@@ -246,8 +250,17 @@ async function barrer(consulta, salto, extra) {
   return null;
 }
 
+// Algunos proveedores devuelven el título con HTML dentro
+// (<div class='fn'>Entrée du tunnel…</div>). Va al pie de la propuesta, así que
+// las etiquetas se quitan aquí y no se confía solo en el escapado del render.
 function limpiarTitulo(t) {
-  return String(t || 'Sin título').replace(/^File:/, '').replace(/\.\w+$/, '').slice(0, 120);
+  return String(t || 'Sin título')
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .replace(/^File:/, '')
+    .replace(/\.\w+$/, '')
+    .trim()
+    .slice(0, 120) || 'Sin título';
 }
 
 /* ═══════════════════════ galería del alojamiento ═══════════════════════ */
