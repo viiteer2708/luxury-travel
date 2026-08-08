@@ -51,7 +51,13 @@ const RUTA_ALMACEN_RE = /^https:\/\/[a-z0-9-]{1,60}\.supabase\.co\/storage\/v1\/
 const TEL = '+34 633 077 401';
 const TEL_WA = '34633077401';
 const EMAIL = 'viajes@horizonteexclusivo.es';
-const HERO_FALLBACK = '/images/photos/photo-1506377585622-bedcbb027afc-1920.webp';
+// NO hay foto de reserva, y es deliberado. Antes había una: la de las Tierras
+// Altas de Escocia que usa la web. El 8-ago salió una propuesta de Lanzarote sin
+// fotos y el cliente vio Edimburgo de portada y en cada día del viaje. Una foto
+// del sitio equivocado no es un hueco tapado, es una mentira en la primera
+// pantalla — y la regla de la casa es que el cliente que reconoce el paisaje
+// equivocado deja de creerse el resto. Sin foto, la portada se queda en el
+// oscuro de la marca y el tramo ocupa todo el ancho. Se nota menos que un error.
 
 export default async function handler(req) {
   const url = new URL(req.url);
@@ -257,6 +263,15 @@ section { padding: 100px 0; }
 
 .dest-hero { min-height: calc(70vh - 110px); display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; padding: 110px 0 40px; background-size: cover; background-position: center; background-attachment: fixed; }
 .dest-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,0.15) 0%, rgba(10,10,10,0.35) 50%, var(--dark) 100%); }
+/* Sin foto: la portada se queda en el oscuro de la casa, con un punto de dorado
+   y sin sombras de texto que aquí no hacen falta. Sobria, no rota. */
+.dest-hero.sin-foto { background: radial-gradient(120% 90% at 50% 0%, #1c1a17 0%, var(--dark) 62%); min-height: calc(52vh - 110px); }
+.dest-hero.sin-foto::after { background: none; }
+.dest-hero.sin-foto h1, .dest-hero.sin-foto .dest-duration, .dest-hero.sin-foto .section-label { text-shadow: none; }
+.dest-hero.sin-foto::before { content: ''; position: absolute; left: 50%; bottom: 0; width: 120px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); transform: translateX(-50%); }
+/* Un tramo sin foto ocupa el ancho entero en vez de dejar un hueco */
+.itinerary-block.sin-foto { grid-template-columns: 1fr; max-width: 760px; margin-left: auto; margin-right: auto; text-align: center; }
+.itinerary-block.sin-foto .section-label { text-align: center; }
 .dest-hero-content { position: relative; z-index: 2; max-width: 860px; padding: 0 24px; }
 .dest-hero-content h1 { font-size: clamp(2.2rem, 5.5vw, 4.2rem); font-weight: 700; color: var(--white); line-height: 1.12; margin-bottom: 18px; text-shadow: 0 2px 4px rgba(0,0,0,0.8), 0 4px 20px rgba(0,0,0,0.6), 0 8px 40px rgba(0,0,0,0.4); }
 .dest-hero-content .dest-duration { font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; color: var(--white); font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.8), 0 4px 20px rgba(0,0,0,0.6); }
@@ -500,7 +515,7 @@ section { padding: 100px 0; }
 /* ═══════════════════════ la página del presupuesto ═══════════════════════ */
 
 function paginaPresupuesto(p) {
-  const hero = imagen(p.hero_imagen, HERO_FALLBACK);
+  const hero = imagen(p.hero_imagen, '');
   const nombre = String(p.cliente_nombre || '').trim();
   const nombreCorto = nombre.split(/\s+/)[0] || '';
   const destino = String(p.destino || '').trim();
@@ -535,7 +550,7 @@ function paginaPresupuesto(p) {
     <span>Presupuesto ${esc(p.id)}${nombre ? ` · ${esc(nombre)}` : ''}</span>
   </div>
 
-  <section class="dest-hero" style="background-image:url('${esc(hero)}')">
+  <section class="dest-hero${hero ? '' : ' sin-foto'}"${hero ? ` style="background-image:url('${esc(hero)}')"` : ''}>
     <div class="dest-hero-content">
       ${p.region ? `<span class="section-label">${esc(p.region)}</span>` : ''}
       <h1>${esc(p.titulo || destino)}</h1>
@@ -643,21 +658,22 @@ function bloqueItinerario(its) {
     const imgs = (Array.isArray(d.imagenes) && d.imagenes.length ? d.imagenes : [d.imagen])
       .map(x => imagen(x, ''))
       .filter(Boolean);
-    const slides = imgs.length ? imgs : [HERO_FALLBACK];
+    const slides = imgs;
     const etiqueta = d.dia == null || d.dia === '' ? `Día ${i + 1}`
       : (/^d[ií]a/i.test(String(d.dia)) ? String(d.dia) : `Día ${d.dia}`);
     return `
-      <article class="itinerary-block${i % 2 ? ' reverse' : ''} reveal">
+      <article class="itinerary-block${slides.length ? (i % 2 ? ' reverse' : '') : ' sin-foto'} reveal">
+        ${slides.length ? `
         <div class="itinerary-carousel">
           ${slides.map((src, j) => `<div class="carousel-slide${j ? '' : ' active'}"><img src="${esc(src)}" alt="${esc(d.titulo || etiqueta)}" width="800" height="533" loading="lazy" decoding="async"></div>`).join('')}
-          <div class="carousel-controls">
+          ${slides.length > 1 ? `<div class="carousel-controls">
             <button class="carousel-btn carousel-prev" type="button" aria-label="Imagen anterior de ${esc(d.titulo || etiqueta)}">&#8249;</button>
             <div class="carousel-dots">
               ${slides.map((_, j) => `<button class="carousel-dot${j ? '' : ' active'}" type="button" aria-label="Imagen ${j + 1} de ${slides.length}"></button>`).join('')}
             </div>
             <button class="carousel-btn carousel-next" type="button" aria-label="Imagen siguiente de ${esc(d.titulo || etiqueta)}">&#8250;</button>
-          </div>
-        </div>
+          </div>` : ''}
+        </div>` : ''}
         <div class="itinerary-content">
           <span class="section-label">${esc(etiqueta)}</span>
           <h3>${esc(d.titulo || '')}</h3>
