@@ -80,6 +80,19 @@ no guarda ningún secreto: quien decide es la función Edge.
   en el código HTTP. Cabecera `x-ppto-build` con el commit desplegado, para poder verificar en
   producción sin adivinar.
 
+### El buzón de entrada: bucket `ppto-entrada` (Supabase Storage, PRIVADO)
+
+Los PDF y las fotos que se suben desde el panel **no viajan dentro de la petición**. El cuerpo de una
+función de Vercel tope a 4,5 MB y en base64 un archivo engorda un tercio, así que el techo real eran
+3 MB — poco para un presupuesto en PDF con fotos. Ahora el navegador pide un permiso de subida de un
+solo uso (`accion: 'subida'` en `api/ppto-medios.js`), sube el archivo **directamente al almacén**, y
+`api/ppto-crear.js` solo recibe su nombre, lo recoge y **lo borra en cuanto lo ha leído**. Tope: 12 MB.
+
+Es un buzón, no un almacén. El bucket es privado a propósito: un presupuesto lleva datos del cliente
+y del proveedor, y aunque esté ahí dos minutos no puede estar en abierto. Lo que se quede por el
+camino (una pestaña cerrada, un alta que revienta) lo barre la siguiente subida si lleva más de una
+hora: sin cron y sin mantenimiento.
+
 ### Fotos: bucket `ppto-fotos` (Supabase Storage, público)
 
 Las fotos NO se enlazan desde donde estén: se **copian** al bucket. Enlazar a Wikimedia o a la web
