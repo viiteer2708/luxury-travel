@@ -289,14 +289,20 @@ export default async function handler(req) {
     try {
       crudo = await pedirAGemini(apiKey, partes);
     } catch (e) {
-      console.error('[ppto-crear] Gemini:', e && e.message);
-      const lento = /timeout|abort/i.test(String(e && e.message));
-      return manda({
-        ok: false,
-        error: lento
-          ? 'El presupuesto ha tardado demasiado en leerse. Si has subido un PDF, prueba a pegar el texto: va mucho más rápido.'
-          : 'No he podido leer el presupuesto. Revisa que el texto se entienda y prueba otra vez.',
-      });
+      const motivo = String((e && e.message) || '');
+      console.error('[ppto-crear] Gemini:', motivo);
+
+      // Los tres fallos que de verdad ocurren, y cada uno con lo que hay que
+      // hacer. El de la cuota merece mensaje propio: decir "revisa el texto"
+      // cuando el texto está perfecto manda a Victor a reescribir un presupuesto
+      // que no tiene nada malo, y a repetirlo cinco veces.
+      let error = 'No he podido leer el presupuesto. Revisa que el texto se entienda y prueba otra vez.';
+      if (/timeout|abort/i.test(motivo)) {
+        error = 'El presupuesto ha tardado demasiado en leerse. Si has subido un PDF, prueba a pegar el texto: va mucho más rápido.';
+      } else if (/\b429\b|quota|rate.?limit/i.test(motivo)) {
+        error = 'Se ha agotado la cuota diaria de lectura de presupuestos. No es culpa del texto: hoy ya no quedan. Se renueva sola mañana; si necesitas seguir hoy, avisa a Victor para que amplíe el plan.';
+      }
+      return manda({ ok: false, error });
     }
 
     let datos;
