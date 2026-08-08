@@ -517,29 +517,38 @@ async function accionGaleria(base, key, id, fila, cuerpo) {
   // Streaming, por lo mismo que en api/ppto-crear.js: mirar seis fotos una a
   // una se pasa de los 25 segundos que la función puede tardar en arrancar.
   return flujo(async (manda) => {
-    const puestas = [];
-    const descartadas = [];
+    // Primero se bajan todas, y DESPUÉS se miran de una tacada. Antes se
+    // preguntaba por cada foto por separado: diez preguntas al modelo cada vez
+    // que se pulsaba el botón, que es lo que de verdad se comía la cuota diaria
+    // — mucho más que leer los presupuestos. Ahora es una sola pregunta.
+    const bajadas = [];
     let n = 0;
-
     for (const src of candidatas.slice(0, MAX_GALERIA + 4)) {
-      if (puestas.length >= MAX_GALERIA) break;
+      if (bajadas.length >= MAX_GALERIA + 2) break;
       n++;
-      manda({ paso: `Mirando la foto ${n}…` });
-
+      manda({ paso: `Trayendo la foto ${n}…` });
       // El mínimo de tamaño se sube: en la ficha del proveedor conviven la foto
       // buena y su miniatura de 205 píxeles, y la miniatura no sirve de nada en
       // una galería de 260 de alto.
       const descarga = await descargarImagen(src, MAX_TRAMO, 25_000);
-      if (!descarga) continue;
+      if (descarga) bajadas.push(descarga);
+    }
 
-      const marca = await llevaMarca(apiKey, descarga);
-      if (marca.hayMarca) {
-        descartadas.push(marca.texto || 'lleva la marca del proveedor');
-        continue;
-      }
+    if (!bajadas.length) {
+      return manda({ ok: false, error: 'He visto las fotos pero no he podido traerme ninguna con calidad suficiente.' });
+    }
 
-      const nombre = `${id}/aloj-${indice}-${sufijo()}.${descarga.ext}`;
-      const publica = await subir(base, key, nombre, descarga);
+    manda({ paso: `Comprobando que ninguna de las ${bajadas.length} lleve la marca del proveedor…` });
+    const veredictos = await llevanMarca(apiKey, bajadas);
+
+    const puestas = [];
+    const descartadas = [];
+    for (let i = 0; i < bajadas.length; i++) {
+      if (puestas.length >= MAX_GALERIA) break;
+      const v = veredictos[i] || { hayMarca: true, texto: 'no he podido comprobarla' };
+      if (v.hayMarca) { descartadas.push(v.texto || 'lleva la marca del proveedor'); continue; }
+      const nombre = `${id}/aloj-${indice}-${sufijo()}.${bajadas[i].ext}`;
+      const publica = await subir(base, key, nombre, bajadas[i]);
       if (publica) puestas.push(publica);
     }
 
@@ -581,14 +590,21 @@ async function accionGaleria(base, key, id, fila, cuerpo) {
 // pequeña: en la miniatura del panel no se ve, y en la propuesta abierta en un
 // portátil sí. Un cliente que lee «leboat.com» en el barco busca el precio en
 // Google y la propuesta se convierte en una comparación de precios.
-async function llevaMarca(apiKey, descarga) {
-  if (!apiKey) return { hayMarca: false, texto: '' };
+async function llevanMarca(apiKey, descargas) {
+  if (!apiKey) return descargas.map(() => ({ hayMarca: false, texto: '' }));
 
-  const PREGUNTA = 'Mira esta foto de un alojamiento o de un medio de transporte de un viaje. ' +
-    '¿Se lee o se ve alguna MARCA COMERCIAL: un nombre de empresa, un logotipo, una dirección web, ' +
-    'un rótulo de compañía, una matrícula con marca, una pegatina? Fíjate en cascos, fachadas, ' +
-    'toldos, uniformes y letreros, incluso si el texto es pequeño. ' +
-    'Responde solo con este JSON: {"marca": true|false, "texto": "qué se lee, o cadena vacía"}';
+  const PREGUNTA = `Estas son ${descargas.length} fotos de un alojamiento o de un medio de transporte de un viaje, en orden.
+
+Para CADA UNA, di si se lee o se ve alguna MARCA COMERCIAL: un nombre de empresa, un logotipo, una
+dirección web, un rótulo de compañía, una matrícula con marca, una pegatina. Fíjate en cascos,
+fachadas, toldos, uniformes y letreros, aunque el texto sea pequeño.
+
+Responde solo con este JSON, una entrada por foto y en el mismo orden:
+{"fotos": [{"i": 0, "marca": true, "texto": "qué se lee"}, {"i": 1, "marca": false, "texto": ""}]}`;
+
+  const partes = [{ text: PREGUNTA }].concat(
+    descargas.map(d => ({ inline_data: { mime_type: d.tipo, data: aBase64(d.datos) } }))
+  );
 
   try {
     const r = await fetch(
@@ -597,33 +613,34 @@ async function llevaMarca(apiKey, descarga) {
         method: 'POST',
         headers: { 'content-type': 'application/json', 'x-goog-api-key': apiKey },
         body: JSON.stringify({
-          contents: [{
-            role: 'user',
-            parts: [
-              { text: PREGUNTA },
-              { inline_data: { mime_type: descarga.tipo, data: aBase64(descarga.datos) } },
-            ],
-          }],
-          generationConfig: { temperature: 0, maxOutputTokens: 200, responseMimeType: 'application/json' },
+          contents: [{ role: 'user', parts: partes }],
+          generationConfig: { temperature: 0, maxOutputTokens: 900, responseMimeType: 'application/json' },
         }),
-        signal: AbortSignal.timeout(15_000),
+        signal: AbortSignal.timeout(45_000),
       }
     );
     if (!r.ok) {
-      console.warn('[ppto-medios] Vision respondió', r.status);
-      return { hayMarca: false, texto: '' };
+      console.warn('[ppto-medios] Visión respondió', r.status);
+      return descargas.map(() => ({ hayMarca: true, texto: 'no he podido comprobarla' }));
     }
     const data = await r.json();
-    const partes = (((data.candidates || [])[0] || {}).content || {}).parts || [];
-    const salida = partes.map(p => p.text || '').join('').trim();
+    const trozos = (((data.candidates || [])[0] || {}).content || {}).parts || [];
+    const salida = trozos.map(p => p.text || '').join('').trim();
     const o = JSON.parse(salida.replace(/^```(?:json)?\s*|\s*```$/g, ''));
-    return { hayMarca: !!o.marca, texto: String(o.texto || '').slice(0, 120) };
+    const lista = Array.isArray(o && o.fotos) ? o.fotos : [];
+
+    return descargas.map((_, i) => {
+      const v = lista.find(x => x && Number(x.i) === i) || lista[i];
+      // Sin veredicto para esa foto, no pasa. Ver el comentario de abajo.
+      if (!v) return { hayMarca: true, texto: 'no he podido comprobarla' };
+      return { hayMarca: !!v.marca, texto: String(v.texto || '').slice(0, 120) };
+    });
   } catch (e) {
-    // Si la comprobación falla, la foto NO pasa. Es la única postura sensata:
-    // el coste de descartar una foto buena es que Victor busque otra; el de
-    // publicar una mala es enseñarle el proveedor al cliente.
-    console.warn('[ppto-medios] No se ha podido comprobar la marca:', e && e.message);
-    return { hayMarca: true, texto: 'no he podido comprobar si lleva marca' };
+    // Si la comprobación falla, NINGUNA foto pasa. Es la única postura sensata:
+    // el coste de descartar fotos buenas es que Victor lo intente otra vez; el
+    // de publicar una mala es enseñarle el proveedor al cliente.
+    console.warn('[ppto-medios] No se ha podido comprobar las marcas:', e && e.message);
+    return descargas.map(() => ({ hayMarca: true, texto: 'no he podido comprobarla' }));
   }
 }
 
