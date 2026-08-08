@@ -167,7 +167,7 @@ footer.pie { text-align: center; color: var(--text-muted); font-size: 0.78rem; m
       <div class="campo">
         <label for="archivo">…o súbelo como PDF o foto</label>
         <input type="file" id="archivo" accept="application/pdf,image/jpeg,image/png,image/webp">
-        <p class="pista">Máximo 3 MB. Si el PDF pesa más o va lento, copia el texto y pégalo arriba: es bastante más rápido.</p>
+        <p class="pista">Hasta 12 MB, con fotos dentro si las trae. El archivo se borra de nuestro servidor en cuanto se ha leído. Si va lento, copia el texto y pégalo arriba: es bastante más rápido.</p>
       </div>
       <div class="campo">
         <label for="rehacer">¿Es la corrección de una propuesta que ya existe? (opcional)</label>
@@ -328,22 +328,35 @@ footer.pie { text-align: center; color: var(--text-muted); font-size: 0.78rem; m
 
   /* ── crear la propuesta ── */
 
-  function leerArchivo(input) {
-    return new Promise(function (resolver) {
-      var f = input.files && input.files[0];
-      if (!f) return resolver(null);
-      if (f.size > 3 * 1024 * 1024) {
-        return resolver({ error: 'El archivo pesa ' + Math.round(f.size / 1024 / 1024 * 10) / 10 + ' MB y el máximo son 3 MB. Copia el texto y pégalo.' });
-      }
-      var lector = new FileReader();
-      lector.onload = function () {
-        var s = String(lector.result || '');
-        var coma = s.indexOf(',');
-        resolver({ mime: f.type, datos: coma === -1 ? s : s.slice(coma + 1) });
-      };
-      lector.onerror = function () { resolver({ error: 'No he podido leer el archivo.' }); };
-      lector.readAsDataURL(f);
-    });
+  var TOPE_ARCHIVO = 12 * 1024 * 1024;
+
+  // El archivo NO viaja dentro de la petición de alta: el navegador lo sube
+  // directamente al almacén con un permiso de un solo uso, y la función lo
+  // recoge de allí y lo borra. Metiéndolo en la petición, el techo era el
+  // cuerpo de 4,5 MB de Vercel, que en base64 se queda en 3 MB de archivo.
+  function subirArchivo(input, alPaso) {
+    var f = input.files && input.files[0];
+    if (!f) return Promise.resolve(null);
+    if (f.size > TOPE_ARCHIVO) {
+      return Promise.resolve({ error: 'El archivo pesa ' + (Math.round(f.size / 1024 / 1024 * 10) / 10) +
+        ' MB y el máximo son 12 MB. Si es un PDF con muchas fotos, copia el texto y pégalo.' });
+    }
+
+    alPaso('Subiendo ' + f.name + '…');
+
+    return llamar('/api/ppto-medios', { accion: 'subida', mime: f.type, tamano: f.size })
+      .then(function (permiso) {
+        if (!permiso.ok) return { error: permiso.error || 'No he podido preparar la subida.' };
+        return fetch(permiso.url, {
+          method: 'PUT',
+          headers: { 'content-type': f.type },
+          body: f
+        }).then(function (r) {
+          if (!r.ok) return { error: 'La subida del archivo ha fallado (' + r.status + ').' };
+          return { ruta: permiso.ruta, mime: f.type };
+        });
+      })
+      .catch(function () { return { error: 'No he podido subir el archivo. Mira la conexión.' }; });
   }
 
   $('btnCrear').addEventListener('click', function () {
@@ -365,12 +378,27 @@ footer.pie { text-align: center; color: var(--text-muted); font-size: 0.78rem; m
 
     limpiar($('errorCrear'));
 
-    leerArchivo($('archivo')).then(function (archivo) {
-      if (archivo && archivo.error) { aviso($('errorCrear'), 'mal', archivo.error); return; }
-      if (!texto && !archivo) { aviso($('errorCrear'), 'mal', 'Pégame el texto del presupuesto o sube el PDF.'); return; }
+    ocupado(boton, true, 'Preparando…');
+    $('progresoCrear').classList.remove('oculto');
+    $('progresoCrear').textContent = 'Preparando…';
+
+    subirArchivo($('archivo'), function (paso) {
+      $('progresoCrear').textContent = paso;
+    }).then(function (archivo) {
+      if (archivo && archivo.error) {
+        ocupado(boton, false);
+        $('progresoCrear').classList.add('oculto');
+        aviso($('errorCrear'), 'mal', archivo.error);
+        return;
+      }
+      if (!texto && !archivo) {
+        ocupado(boton, false);
+        $('progresoCrear').classList.add('oculto');
+        aviso($('errorCrear'), 'mal', 'Pégame el texto del presupuesto o sube el PDF.');
+        return;
+      }
 
       ocupado(boton, true, 'Leyendo el presupuesto…');
-      $('progresoCrear').classList.remove('oculto');
 
       return llamarPorPasos('/api/ppto-crear', {
         cliente: cliente,

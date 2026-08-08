@@ -28,6 +28,16 @@
 export const config = { runtime: 'edge' };
 
 const BUCKET = 'ppto-fotos';
+// Buzón privado de entrada: los PDF y las fotos que se suben desde el panel
+// pasan por aquí y se borran en cuanto se han leído.
+const BUCKET_ENTRADA = 'ppto-entrada';
+const MAX_ENTRADA = 12 * 1024 * 1024;
+const MIMES_ENTRADA = ['application/pdf', 'image/jpeg', 'image/png', 'image/webp', 'image/heic'];
+const EXT_ENTRADA = {
+  'application/pdf': 'pdf', 'image/jpeg': 'jpg', 'image/png': 'png',
+  'image/webp': 'webp', 'image/heic': 'heic',
+};
+
 const ID_RE = /^HE-[23456789ABCDEFGHJKLMNPQRSTUVWXYZ]{8}$/;
 
 // Modelo con visión para el portero de marcas de la galería. Va aparte del que
@@ -83,17 +93,28 @@ export default async function handler(req) {
   try { cuerpo = await req.json(); }
   catch (_) { return json({ ok: false, error: 'bad_request' }, 400); }
 
-  const id = String((cuerpo && cuerpo.id) || '').trim().toUpperCase();
-  if (!ID_RE.test(id)) return json({ ok: false, error: 'Ese identificador no existe.' }, 422);
-
   const base = getEnv('SUPABASE_URL');
   const key = getEnv('SUPABASE_SERVICE_ROLE_KEY');
   if (!base || !key) return json({ ok: false, error: 'Falta la conexión con la base de datos.' }, 503);
 
+  const accion = String((cuerpo && cuerpo.accion) || '').trim();
+
+  // `subida` es la única acción que no va sobre un presupuesto que ya existe:
+  // pasa ANTES de exigir el identificador, porque justamente sirve para subir
+  // el archivo del que todavía no ha salido ninguno.
+  if (accion === 'subida') {
+    try { return await accionSubida(base, key, cuerpo); }
+    catch (e) {
+      console.error('[ppto-medios] subida', e && e.message);
+      return json({ ok: false, error: 'No he podido preparar la subida. Vuelve a intentarlo.' }, 502);
+    }
+  }
+
+  const id = String((cuerpo && cuerpo.id) || '').trim().toUpperCase();
+  if (!ID_RE.test(id)) return json({ ok: false, error: 'Ese identificador no existe.' }, 422);
+
   const fila = await leer(base, key, id);
   if (!fila) return json({ ok: false, error: 'No encuentro ese presupuesto.' }, 404);
-
-  const accion = String((cuerpo && cuerpo.accion) || '').trim();
 
   try {
     if (accion === 'foto') return await accionFoto(base, key, id, fila, cuerpo);
@@ -109,6 +130,87 @@ export default async function handler(req) {
   }
 
   return json({ ok: false, error: 'Acción desconocida.' }, 422);
+}
+
+/* ═══════════════════════ el buzón de archivos ═══════════════════════ */
+//
+// El PDF no puede viajar dentro de la petición: el cuerpo de una función de
+// Vercel tope a 4,5 MB y en base64 un archivo engorda un tercio, así que el
+// techo real eran 3 MB escasos — poco para un presupuesto con fotos dentro.
+//
+// Así que el navegador lo sube DIRECTAMENTE al almacén con un permiso de un
+// solo uso, y la función de alta lo recoge de allí. El bucket `ppto-entrada`
+// es PRIVADO (un presupuesto lleva datos del cliente y del proveedor) y es un
+// buzón, no un archivo: el archivo se borra en cuanto se ha leído.
+
+async function accionSubida(base, key, cuerpo) {
+  const mime = String((cuerpo && cuerpo.mime) || '').trim().toLowerCase();
+  const tam = parseInt((cuerpo && cuerpo.tamano) || 0, 10) || 0;
+
+  if (MIMES_ENTRADA.indexOf(mime) === -1) {
+    return json({ ok: false, error: 'Solo acepto PDF o una foto (JPG, PNG, WEBP).' }, 422);
+  }
+  if (tam > MAX_ENTRADA) {
+    return json({ ok: false, error: `El archivo pesa demasiado. El máximo son ${Math.floor(MAX_ENTRADA / 1024 / 1024)} MB.` }, 413);
+  }
+
+  // Barrido de lo que se quedó por el camino: si una subida no llega a leerse
+  // (se cierra la pestaña, falla el alta), el archivo se quedaría ahí para
+  // siempre. Se limpia lo de hace más de una hora, sin cron ni mantenimiento.
+  await barrerEntrada(base, key);
+
+  const ruta = `${sufijo()}${sufijo()}.${EXT_ENTRADA[mime] || 'bin'}`;
+  const r = await fetch(`${base}/storage/v1/object/upload/sign/${BUCKET_ENTRADA}/${ruta}`, {
+    method: 'POST',
+    headers: { apikey: key, authorization: `Bearer ${key}`, 'content-type': 'application/json' },
+    body: JSON.stringify({ expiresIn: 900 }),
+    signal: AbortSignal.timeout(10_000),
+  });
+  if (!r.ok) {
+    console.error('[ppto-medios] Firma de subida:', r.status, (await r.text().catch(() => '')).slice(0, 200));
+    return json({ ok: false, error: 'No he podido preparar la subida.' }, 502);
+  }
+  const datos = await r.json();
+  const relativa = String((datos && datos.url) || '');
+  if (!relativa) return json({ ok: false, error: 'No he podido preparar la subida.' }, 502);
+
+  // Se devuelve la URL entera para que el panel no tenga que conocer la
+  // dirección de la base de datos: el repo es público.
+  return json({ ok: true, ruta, url: `${base}/storage/v1${relativa}` }, 200);
+}
+
+async function barrerEntrada(base, key) {
+  try {
+    const r = await fetch(`${base}/storage/v1/object/list/${BUCKET_ENTRADA}`, {
+      method: 'POST',
+      headers: { apikey: key, authorization: `Bearer ${key}`, 'content-type': 'application/json' },
+      body: JSON.stringify({ prefix: '', limit: 200 }),
+      signal: AbortSignal.timeout(10_000),
+    });
+    if (!r.ok) return;
+    const objetos = await r.json();
+    const limite = Date.now() - 3_600_000;
+    const viejos = (Array.isArray(objetos) ? objetos : [])
+      .filter(o => o && o.name && Date.parse(o.created_at || o.updated_at || '') < limite)
+      .map(o => o.name);
+    if (viejos.length) {
+      await borrarEntrada(base, key, viejos);
+      console.warn('[ppto-medios] Buzón: barridos', viejos.length, 'archivos huérfanos.');
+    }
+  } catch (e) {
+    console.warn('[ppto-medios] Barrido del buzón:', e && e.message);
+  }
+}
+
+async function borrarEntrada(base, key, rutas) {
+  try {
+    await fetch(`${base}/storage/v1/object/${BUCKET_ENTRADA}`, {
+      method: 'DELETE',
+      headers: { apikey: key, authorization: `Bearer ${key}`, 'content-type': 'application/json' },
+      body: JSON.stringify({ prefixes: rutas }),
+      signal: AbortSignal.timeout(12_000),
+    });
+  } catch (_) { /* el barrido de la próxima subida lo recogerá */ }
 }
 
 /* ═══════════════════════ foto de stock ═══════════════════════ */

@@ -31,7 +31,6 @@ const ALFABETO = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
 const ID_RE = /^HE-[23456789ABCDEFGHJKLMNPQRSTUVWXYZ]{8}$/;
 
 const MIMES_OK = ['application/pdf', 'image/jpeg', 'image/png', 'image/webp', 'image/heic'];
-const MAX_ARCHIVO_B64 = 4_000_000;  // ~3 MB de archivo; el límite de cuerpo de Vercel son 4,5 MB
 const MAX_TEXTO = 60_000;
 
 const REGIONES = ['Europa', 'Asia', 'África', 'América', 'Paraísos'];
@@ -211,20 +210,21 @@ export default async function handler(req) {
   }
   if (!cliente) return json({ ok: false, error: 'Falta el nombre del cliente.' }, 422);
 
-  let parteArchivo = null;
-  if (archivo && archivo.datos) {
-    const mime = texto(archivo.mime, 60).toLowerCase();
-    if (MIMES_OK.indexOf(mime) === -1) {
+  // El archivo no viaja dentro de esta petición: el navegador lo ha subido al
+  // buzón `ppto-entrada` y aquí solo llega su nombre. Así el techo deja de ser
+  // el cuerpo de 4,5 MB de Vercel. Ver api/ppto-medios.js, acción `subida`.
+  const rutaArchivo = texto(archivo && archivo.ruta, 80);
+  const mimeArchivo = texto(archivo && archivo.mime, 60).toLowerCase();
+  if (rutaArchivo) {
+    if (!/^[A-Za-z0-9]{8,32}\.[a-z0-9]{2,5}$/.test(rutaArchivo)) {
+      return json({ ok: false, error: 'Ese archivo no me cuadra. Vuelve a subirlo.' }, 422);
+    }
+    if (MIMES_OK.indexOf(mimeArchivo) === -1) {
       return json({ ok: false, error: 'Solo acepto PDF o una foto (JPG, PNG, WEBP).' }, 422);
     }
-    const datos = String(archivo.datos || '');
-    if (datos.length > MAX_ARCHIVO_B64) {
-      return json({ ok: false, error: 'El archivo pesa demasiado (máximo 3 MB). Pégame el texto y listo.' }, 413);
-    }
-    parteArchivo = { inline_data: { mime_type: mime, data: datos } };
   }
 
-  if (!original && !parteArchivo) {
+  if (!original && !rutaArchivo) {
     return json({ ok: false, error: 'Pégame el texto del presupuesto o sube el PDF.' }, 422);
   }
 
@@ -253,10 +253,23 @@ export default async function handler(req) {
   partes.push({ text: `El presupuesto va para: ${cliente}.` });
   if (indicaciones) partes.push({ text: `Indicaciones de Victor, mandan sobre el resto: ${indicaciones}` });
   if (original) partes.push({ text: `\n--- PRESUPUESTO RECIBIDO ---\n${original}` });
-  if (parteArchivo) partes.push(parteArchivo);
 
   return flujo(async (manda) => {
-    manda({ paso: parteArchivo ? 'Leyendo el archivo…' : 'Leyendo el presupuesto…' });
+    /* ── 0. Recoger el archivo del buzón, si lo hay ── */
+
+    if (rutaArchivo) {
+      manda({ paso: 'Abriendo el archivo…' });
+      const bytes = await recogerDelBuzon(base, key, rutaArchivo);
+      // Se borra en cuanto se ha leído, salga bien o mal lo que viene después.
+      // El buzón es un buzón: nada se queda a vivir ahí.
+      await tirarDelBuzon(base, key, rutaArchivo);
+      if (!bytes) {
+        return manda({ ok: false, error: 'No he podido abrir el archivo que has subido. Vuelve a intentarlo.' });
+      }
+      partes.push({ inline_data: { mime_type: mimeArchivo, data: aBase64(bytes) } });
+    }
+
+    manda({ paso: rutaArchivo ? 'Leyendo el archivo…' : 'Leyendo el presupuesto…' });
 
     /* ── 1. El modelo lee el presupuesto ── */
 
@@ -398,6 +411,54 @@ function flujo(trabajo) {
       'x-accel-buffering': 'no',
     },
   });
+}
+
+/* ═══════════════════════ el buzón de entrada ═══════════════════════ */
+
+const BUCKET_ENTRADA = 'ppto-entrada';
+
+async function recogerDelBuzon(base, key, ruta) {
+  try {
+    const r = await fetch(`${base}/storage/v1/object/${BUCKET_ENTRADA}/${encodeURIComponent(ruta)}`, {
+      headers: { apikey: key, authorization: `Bearer ${key}` },
+      signal: AbortSignal.timeout(30_000),
+    });
+    if (!r.ok) {
+      console.error('[ppto-crear] Buzón devolvió', r.status);
+      return null;
+    }
+    const datos = await r.arrayBuffer();
+    return datos.byteLength ? datos : null;
+  } catch (e) {
+    console.error('[ppto-crear] Recogiendo del buzón:', e && e.message);
+    return null;
+  }
+}
+
+async function tirarDelBuzon(base, key, ruta) {
+  try {
+    await fetch(`${base}/storage/v1/object/${BUCKET_ENTRADA}`, {
+      method: 'DELETE',
+      headers: { apikey: key, authorization: `Bearer ${key}`, 'content-type': 'application/json' },
+      body: JSON.stringify({ prefixes: [ruta] }),
+      signal: AbortSignal.timeout(12_000),
+    });
+  } catch (e) {
+    // Si falla, el barrido de la siguiente subida lo recoge. No se corta el
+    // alta por no haber podido tirar un archivo temporal.
+    console.warn('[ppto-crear] No se ha podido vaciar el buzón:', e && e.message);
+  }
+}
+
+// btoa necesita una cadena binaria, y pasarle doce millones de bytes de golpe
+// con String.fromCharCode(...bytes) revienta la pila. De ahí los trozos.
+function aBase64(buffer) {
+  const bytes = new Uint8Array(buffer);
+  let binario = '';
+  for (let i = 0; i < bytes.length; i += 8192) {
+    binario += String.fromCharCode.apply(null, bytes.subarray(i, i + 8192));
+  }
+  return btoa(binario);
 }
 
 /* ═══════════════════════ Gemini ═══════════════════════ */
