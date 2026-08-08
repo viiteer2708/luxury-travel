@@ -65,7 +65,11 @@ La contraseña es la env var `PPTO_PANEL_CLAVE` y viaja en la cabecera `x-ppto-c
 no guarda ningún secreto: quien decide es la función Edge.
 
 - **`api/ppto-crear.js`** — Gemini lee el presupuesto (texto o PDF, con `inline_data`) y lo reescribe
-  con la voz de la casa. **La limpieza no se le confía al modelo**: se comprueba después, con las
+  con la voz de la casa. Con el campo `rehacer: "HE-XXXXXXXX"` en el cuerpo, en vez de dar de alta
+  una fila nueva **rehace la que ya existe sobre el mismo ID**: es lo que hace falta cuando el
+  cliente ya tiene el enlace. Conserva `creado_at`, el estado (salvo que la limpieza encuentre
+  algo), el correo y el móvil del cliente si vienen vacíos, y la galería del alojamiento si sigue
+  llamándose igual. **La limpieza no se le confía al modelo**: se comprueba después, con las
   mismas expresiones que `verificar_limpieza.py`, más el nombre del proveedor que el propio modelo
   declara. Si algo se cuela, el presupuesto queda en `borrador` y el panel dice qué y dónde.
 - **`api/ppto-medios.js`** — acciones `foto`, `galeria`, `quitar_foto`, `enlace`, `publicar`,
