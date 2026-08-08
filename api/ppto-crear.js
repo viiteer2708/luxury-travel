@@ -193,8 +193,16 @@ export default async function handler(req) {
   const clienteTelefono = texto(cuerpo && cuerpo.cliente_telefono, 40);
   // Aquí NO se colapsan los espacios: la estructura en líneas y columnas del
   // presupuesto es justo lo que hace que se entienda qué número es cada cosa.
-  const original = textoLargo(cuerpo && cuerpo.texto, MAX_TEXTO);
-  const indicaciones = textoLargo(cuerpo && cuerpo.indicaciones, 2000);
+  const originalCrudo = textoLargo(cuerpo && cuerpo.texto, MAX_TEXTO);
+  // Se lee con holgura y se recorta DESPUÉS de apartar los enlaces largos: un
+  // enlace de seguimiento puede ocupar él solo casi todo el espacio.
+  const indicacionesCrudas = textoLargo(cuerpo && cuerpo.indicaciones, 8000);
+
+  const a = apartarEnlacesLargos(originalCrudo);
+  const b = apartarEnlacesLargos(indicacionesCrudas);
+  const original = a.texto;
+  const indicaciones = b.texto.slice(0, 2000);
+  const enlacesApartados = a.enlaces.concat(b.enlaces).filter((v, i, l) => l.indexOf(v) === i);
   const archivo = cuerpo && cuerpo.archivo;
   const rehacerId = texto(cuerpo && cuerpo.rehacer, 12).toUpperCase();
 
@@ -280,7 +288,7 @@ export default async function handler(req) {
 
     manda({ paso: 'Comprobando que no se cuela nada del proveedor…' });
 
-    const { fila, consultas } = normalizar(datos, { cliente, clienteEmail, clienteTelefono, original, indicaciones });
+    const { fila, consultas } = normalizar(datos, { cliente, clienteEmail, clienteTelefono, original, indicaciones, enlacesApartados });
     if (!fila.destino || !fila.titulo) {
       return manda({ ok: false, error: 'No he encontrado el viaje en lo que me has pasado. ¿Seguro que es el presupuesto?' });
     }
@@ -346,7 +354,7 @@ export default async function handler(req) {
         precio_por_persona: fila.precio_por_persona == null ? null : Number(fila.precio_por_persona),
         moneda: fila.moneda,
         valido_hasta: fila.valido_hasta,
-        enlace_alojamiento: fila.alojamientos.map(a => a.enlace).filter(Boolean)[0] || null,
+        enlace_alojamiento: fila.alojamientos.map(a => a.enlace).filter(Boolean)[0] || enlacesApartados[0] || null,
       },
       fotos: consultas,
       mensajes: mensajes({ cliente, url, fila, rehecho: !!rehacerId }),
@@ -526,7 +534,11 @@ function normalizar(d, ctx) {
         // hay una discusión sobre qué prometió el proveedor, está guardado.
         texto_original: String(ctx.original || '').slice(0, 20000) || null,
         indicaciones_victor: ctx.indicaciones || null,
-      }
+      },
+      // Los enlaces largos que se apartaron del texto entran aquí, que es de
+      // donde el panel saca el botón de «traer las fotos del alojamiento».
+      (ctx.enlacesApartados && ctx.enlacesApartados.length
+        ? { enlaces_alojamiento: ctx.enlacesApartados } : {})
     ),
   };
 
@@ -543,6 +555,27 @@ function texto(v, max) {
   if (v == null) return '';
   const s = String(v).replace(/\s+/g, ' ').trim();
   return s.slice(0, max || 200);
+}
+
+// Un enlace normal se queda donde está: el modelo lo necesita para saber a qué
+// alojamiento pertenece. Los kilométricos, no. El del barco del Canal du Midi
+// medía 1.393 caracteres —era un rastreador de clics, no la ficha— y hacía dos
+// destrozos a la vez: se comía casi entero el recuadro de indicaciones (que se
+// recorta a 2.000) y acaparaba tanto la atención del modelo que el itinerario
+// salía con un solo tramo en vez de tres. Se aparta, y se guarda para que el
+// botón de «traer las fotos del alojamiento» pueda usarlo igual.
+const ENLACE_RE = /\b(?:https?:\/\/\S+|www\.\S+|(?:[a-z0-9-]+\.)+[a-z]{2,}\/\S*)/gi;
+const ENLACE_LARGO = 120;
+
+function apartarEnlacesLargos(texto) {
+  const enlaces = [];
+  const limpio = String(texto || '').replace(ENLACE_RE, (u) => {
+    if (u.length <= ENLACE_LARGO) return u;
+    const normalizado = /^https?:\/\//i.test(u) ? u.replace(/^http:/i, 'https:') : `https://${u}`;
+    if (enlaces.indexOf(normalizado) === -1) enlaces.push(normalizado);
+    return '(un enlace, guardado aparte)';
+  });
+  return { texto: limpio, enlaces: enlaces.slice(0, 5) };
 }
 
 // Igual que texto() pero conservando los saltos de línea.
@@ -717,7 +750,10 @@ function paraGuardar(fila, previa) {
   const internoPrevio = (previa && previa.interno && typeof previa.interno === 'object') ? previa.interno : {};
   const interno = Object.assign({}, internoPrevio, fila.interno);
   const enlacesAntes = Array.isArray(internoPrevio.enlaces_alojamiento) ? internoPrevio.enlaces_alojamiento : [];
-  const todos = enlaces.concat(enlacesAntes).filter((v, i, a) => v && a.indexOf(v) === i);
+  const enlacesApartados = Array.isArray(fila.interno && fila.interno.enlaces_alojamiento)
+    ? fila.interno.enlaces_alojamiento : [];
+  const todos = enlaces.concat(enlacesApartados, enlacesAntes)
+    .filter((v, i, a) => v && a.indexOf(v) === i);
   if (todos.length) interno.enlaces_alojamiento = todos;
 
   return Object.assign({}, fila, { alojamientos, interno });
