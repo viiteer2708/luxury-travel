@@ -637,9 +637,16 @@ footer.pie { text-align: center; color: var(--text-muted); font-size: 0.78rem; m
     caja.appendChild(crear('code', null, enlace));
     sec.appendChild(caja);
 
-    var advertencia = crear('div', 'nota ojo');
-    advertencia.appendChild(crear('strong', null, 'El enlace lleva a la web de quien nos vende el viaje. '));
-    advertencia.appendChild(crear('span', null, 'Si se lo pones al cliente, verá la marca del proveedor y su precio público a un clic. Por eso lo mejor es traerse las fotos y enseñarlas aquí dentro: el cliente ve el barco y no sale de tu propuesta.'));
+    var yaVisible = !!(r.resumen && r.resumen.enlace_visible);
+
+    var advertencia = crear('div', yaVisible ? 'nota bien' : 'nota ojo');
+    if (yaVisible) {
+      advertencia.appendChild(crear('strong', null, 'El enlace ya sale en la propuesta, '));
+      advertencia.appendChild(crear('span', null, 'porque lo has pedido en las indicaciones. El cliente verá la web de quien nos vende el viaje, con su marca y su precio público. Si prefieres quitarlo, el botón de abajo lo hace.'));
+    } else {
+      advertencia.appendChild(crear('strong', null, 'El enlace lleva a la web de quien nos vende el viaje. '));
+      advertencia.appendChild(crear('span', null, 'Si se lo pones al cliente, verá la marca del proveedor y su precio público a un clic. Por eso lo mejor suele ser traerse las fotos y enseñarlas aquí dentro: el cliente ve el barco y no sale de tu propuesta.'));
+    }
     sec.appendChild(advertencia);
 
     var resultadoAloj = crear('div');
@@ -673,9 +680,9 @@ footer.pie { text-align: center; color: var(--text-muted); font-size: 0.78rem; m
     });
     botones.appendChild(bFotos);
 
-    var bEnlace = crear('button', 'btn fantasma', 'Enseñarle el enlace al cliente');
+    var mostrando = yaVisible;
+    var bEnlace = crear('button', 'btn fantasma', mostrando ? 'Quitarle el enlace al cliente' : 'Enseñarle el enlace al cliente');
     bEnlace.type = 'button';
-    var mostrando = false;
     bEnlace.addEventListener('click', function () {
       ocupado(bEnlace, true, 'Guardando…');
       llamar('/api/ppto-medios', { id: r.id, accion: 'enlace', indice: 0, mostrar: !mostrando, url: enlace }).then(function (res) {

@@ -127,6 +127,7 @@ Nunca presentes el precio como garantizado: de eso ya se encarga la página.
       "regimen": "Alojamiento y desayuno / Media pensión / Barco completo…",
       "nota": "2 o 3 frases de por qué este alojamiento y no otro. Es la frase que más trabaja de la página",
       "enlace": "https://… si el texto trae un enlace de ESTE alojamiento; si no, null",
+      "mostrar_enlace": false,   // ver abajo: solo true si Victor lo pide expresamente
       "ficha": [{"etiqueta": "Cabinas", "valor": "2"}]   // datos concretos del original; [] si no hay
     }
   ],
@@ -159,6 +160,17 @@ gates", "Canal du Midi plane trees", "Beziers old bridge river".
 
 Sitios reales del viaje, nunca genéricos tipo "beautiful landscape": una foto del sitio equivocado
 se nota y tira por tierra el resto de la propuesta.
+
+## El enlace del alojamiento
+
+Por defecto **"mostrar_enlace" va a false**, aunque hayas encontrado un enlace. El enlace de un hotel
+o de un barco lleva a la web de quien nos vende el viaje, y con ella a su marca y a su precio público:
+enseñárselo al cliente es una decisión comercial, no un detalle de formato, y la toma Victor.
+
+Solo lo pones a **true** cuando Victor lo pida en sus indicaciones con todas las letras: "quiero que
+vean el barco", "añade el enlace para que puedan verlo", "pon el enlace del hotel". Que el enlace
+aparezca en el presupuesto del mayorista NO es pedirlo — ahí está porque el proveedor se lo manda a
+la agencia, no al cliente.
 
 ## Avisos
 
@@ -301,7 +313,7 @@ export default async function handler(req) {
 
     manda({ paso: 'Comprobando que no se cuela nada del proveedor…' });
 
-    const { fila, consultas } = normalizar(datos, { cliente, clienteEmail, clienteTelefono, original, indicaciones, enlacesApartados });
+    const { fila, consultas, mostrarEnlace } = normalizar(datos, { cliente, clienteEmail, clienteTelefono, original, indicaciones, enlacesApartados });
     if (!fila.destino || !fila.titulo) {
       return manda({ ok: false, error: 'No he encontrado el viaje en lo que me has pasado. ¿Seguro que es el presupuesto?' });
     }
@@ -326,7 +338,7 @@ export default async function handler(req) {
       if (!previa) {
         return manda({ ok: false, error: `No encuentro la propuesta ${rehacerId}. Repasa el código.` });
       }
-      const hecho = await rehacer(base, key, rehacerId, fila, estado, previa);
+      const hecho = await rehacer(base, key, rehacerId, fila, estado, previa, mostrarEnlace);
       if (!hecho.ok) {
         console.error('[ppto-crear] Rehacer fallido:', hecho.detalle);
         return manda({ ok: false, error: 'He preparado la propuesta nueva pero no he podido guardarla encima. Vuelve a intentarlo.' });
@@ -336,8 +348,8 @@ export default async function handler(req) {
     } else {
       manda({ paso: 'Guardando la propuesta…' });
       id = generarId();
-      let alta = await insertar(base, key, id, fila, estado);
-      if (alta.conflicto) { id = generarId(); alta = await insertar(base, key, id, fila, estado); }
+      let alta = await insertar(base, key, id, fila, estado, mostrarEnlace);
+      if (alta.conflicto) { id = generarId(); alta = await insertar(base, key, id, fila, estado, mostrarEnlace); }
       if (!alta.ok) {
         console.error('[ppto-crear] Alta fallida:', alta.detalle);
         return manda({ ok: false, error: 'He preparado la propuesta pero no he podido guardarla. Vuelve a intentarlo.' });
@@ -368,6 +380,7 @@ export default async function handler(req) {
         moneda: fila.moneda,
         valido_hasta: fila.valido_hasta,
         enlace_alojamiento: fila.alojamientos.map(a => a.enlace).filter(Boolean)[0] || enlacesApartados[0] || null,
+      enlace_visible: !!mostrarEnlace,
       },
       fotos: consultas,
       mensajes: mensajes({ cliente, url, fila, rehecho: !!rehacerId }),
@@ -605,6 +618,10 @@ function normalizar(d, ctx) {
 
   return {
     fila,
+    // Sale de los alojamientos porque es donde el modelo la anota, pero viaja
+    // aparte: `fila` se vuelca tal cual en la base y una clave de más rompería
+    // el alta.
+    mostrarEnlace: lista(d.alojamientos).some(x => x && x.mostrar_enlace === true),
     consultas: {
       hero: texto(d.foto_hero, 120) || fila.destino,
       tramos,
@@ -788,10 +805,14 @@ function generarId() {
 // Deja la fila lista para guardar: aparta el enlace del alojamiento (que no
 // puede salir a la página sin que Victor lo autorice) y arrastra lo que había
 // antes cuando se está rehaciendo una propuesta que ya existía.
-function paraGuardar(fila, previa) {
+function paraGuardar(fila, previa, mostrarEnlace) {
+  // El enlace se aparta SIEMPRE salvo que Victor lo haya pedido con todas las
+  // letras en sus indicaciones. Por defecto queda guardado en `interno` y el
+  // panel deja un botón: enseñar al cliente la web de quien nos vende el viaje
+  // es una decisión comercial, no un detalle de formato.
   const alojamientos = fila.alojamientos.map(a => {
     const copia = Object.assign({}, a);
-    delete copia.enlace;
+    if (!mostrarEnlace) delete copia.enlace;
     return copia;
   });
 
@@ -820,8 +841,8 @@ function paraGuardar(fila, previa) {
   return Object.assign({}, fila, { alojamientos, interno });
 }
 
-async function insertar(base, key, id, fila, estado) {
-  const payload = Object.assign(paraGuardar(fila, null), { id, estado });
+async function insertar(base, key, id, fila, estado, mostrarEnlace) {
+  const payload = Object.assign(paraGuardar(fila, null, mostrarEnlace), { id, estado });
 
   try {
     const r = await fetch(`${base}/rest/v1/presupuestos`, {
@@ -847,11 +868,11 @@ async function insertar(base, key, id, fila, estado) {
 // el mayorista manda el presupuesto corregido o el cliente pide un cambio: él
 // ya tiene la dirección, puede habérsela reenviado a su pareja, y darle una
 // distinta es pedirle que se organice él.
-async function rehacer(base, key, id, fila, estado, previa) {
+async function rehacer(base, key, id, fila, estado, previa, mostrarEnlace) {
   // `creado_at` no se toca (es la fecha en que se le propuso el viaje) y el
   // estado solo retrocede a borrador si la comprobación de limpieza ha
   // encontrado algo: una propuesta que ya se envió sigue enviada.
-  const payload = Object.assign(paraGuardar(fila, previa), {
+  const payload = Object.assign(paraGuardar(fila, previa, mostrarEnlace), {
     estado: estado === 'borrador' ? 'borrador' : (previa.estado === 'borrador' ? 'enviado' : previa.estado),
     actualizado_at: new Date().toISOString(),
   });
