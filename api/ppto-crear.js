@@ -806,14 +806,28 @@ async function leerPrevia(base, key, id) {
 // después de haberse enamorado del viaje: anunciarlo en el mensaje convierte
 // la propuesta en una factura antes de que la abran.
 
+// Todo el mensaje va en el MISMO tratamiento. Antes se conjugaba frase a frase
+// y salían mezclas como «Échale un vistazo y decidme qué te parece», que es
+// exactamente lo que delata un texto montado por una máquina en algo que se
+// supone escrito a mano para ese cliente. Por defecto, "vosotros": el cliente
+// típico de la casa es una pareja o una familia.
+function trato(fila) {
+  const solo = fila.viajeros && fila.viajeros.adultos === 1 && !fila.viajeros.ninos;
+  return solo
+    ? { tu: 'tu', laVeas: 'la veas', duermes: 'vas a dormir', dime: 'dime',
+        teParece: 'te parece', hayas: 'hayas', puedas: 'puedas', tuViaje: 'tu viaje', soloParaTi: 'solo para ti' }
+    : { tu: 'vuestra', laVeas: 'la veáis', duermes: 'vais a dormir', dime: 'decidme',
+        teParece: 'os parece', hayas: 'hayáis', puedas: 'podáis', tuViaje: 'vuestro viaje', soloParaTi: 'solo para vosotros' };
+}
+
+function mayus(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
 function mensajes({ cliente, url, fila, rehecho }) {
   if (rehecho) return mensajesDeCambio({ cliente, url, fila });
   const saludo = tratamiento(cliente);
-  const destino = fila.destino || 'tu viaje';
+  const destino = fila.destino || 'el viaje';
   const aDestino = conPrep('a', destino);
-  const unaPersona = fila.viajeros && fila.viajeros.adultos === 1 && !fila.viajeros.ninos;
-  const vais = unaPersona ? 'vas a dormir' : 'vais a dormir';
-  const dimelo = unaPersona ? 'dime' : 'decidme';
+  const t = trato(fila);
   const fechas = fila.fecha_salida && fila.fecha_regreso
     ? `, del ${dia(fila.fecha_salida)} al ${dia(fila.fecha_regreso)}`
     : '';
@@ -821,25 +835,25 @@ function mensajes({ cliente, url, fila, rehecho }) {
   const whatsapp =
 `Hola ${saludo}, soy Endeis, de Horizonte Exclusivo.
 
-Ya tengo lista tu propuesta ${aDestino}${fechas}: ${fila.titulo}.
+Ya tengo lista ${t.tu} propuesta ${aDestino}${fechas}: ${fila.titulo}.
 
-Te la he preparado en una página privada para que la veas con calma, con el itinerario día a día y dónde ${vais}:
+La he preparado en una página privada para que ${t.laVeas} con calma, con el itinerario día a día y dónde ${t.duermes}:
 ${url}
 
-${dimelo.charAt(0).toUpperCase() + dimelo.slice(1)} qué os parece y ajustamos lo que haga falta, que para eso está hecha a medida.`;
+${mayus(t.dime)} qué ${t.teParece} y ajustamos lo que haga falta, que para eso está hecha a medida.`;
 
-  const asunto = `Tu propuesta ${aDestino} ya está lista`;
+  const asunto = `${mayus(t.tu)} propuesta ${aDestino} ya está lista`;
 
   const email =
 `Hola ${saludo}:
 
-Ya tengo lista la propuesta de tu viaje ${aDestino}${fechas}. La he preparado en una página privada, solo para ti, para que la puedas leer con calma y enseñársela a quien quieras:
+Ya tengo lista la propuesta de ${t.tuViaje} ${aDestino}${fechas}. La he preparado en una página privada, ${t.soloParaTi}, para que ${t.puedas} leerla con calma y enseñársela a quien ${t.dime === 'dime' ? 'quieras' : 'queráis'}:
 
 ${url}
 
-Dentro está el itinerario día a día, dónde ${vais} y qué incluye exactamente. Si algo no encaja —una noche más, otro ritmo, otro alojamiento—, ${dimelo} y lo ajustamos: para eso está hecho a medida.
+Dentro está el itinerario día a día, dónde ${t.duermes} y qué incluye exactamente. Si algo no encaja —una noche más, otro ritmo, otro alojamiento—, ${t.dime} y lo ajustamos: para eso está hecho a medida.
 
-Cuando lo hayas visto, me cuentas y seguimos.
+Cuando ${t.hayas} podido verla, me ${t.dime === 'dime' ? 'cuentas' : 'contáis'} y seguimos.
 
 Un abrazo,
 
@@ -858,26 +872,30 @@ Más que viajar, vivir el mundo`;
 // error la versión vieja que tiene en el correo de la semana pasada.
 function mensajesDeCambio({ cliente, url, fila }) {
   const saludo = tratamiento(cliente);
-  const aDestino = conPrep('a', fila.destino || 'tu viaje');
-  const unaPersona = fila.viajeros && fila.viajeros.adultos === 1 && !fila.viajeros.ninos;
-  const dimelo = unaPersona ? 'dime' : 'decidme';
+  const aDestino = conPrep('a', fila.destino || 'el viaje');
+  const t = trato(fila);
+  const solo = t.dime === 'dime';
+  const echa = solo ? 'Échale' : 'Echadle';
+  const tienes = solo ? 'tienes' : 'tenéis';
+  const mires = solo ? 'la mires' : 'la miréis';
+  const busques = solo ? 'busques' : 'busquéis';
 
   const whatsapp =
 `Hola ${saludo}, soy Endeis.
 
-He actualizado tu propuesta ${aDestino} con los cambios que hablamos. Está en el mismo enlace de siempre, así que no tienes que buscar nada:
+He actualizado ${t.tu} propuesta ${aDestino} con los cambios que hablamos. Está en el mismo enlace de siempre, así que no ${tienes} que buscar nada:
 ${url}
 
-Échale un vistazo y ${dimelo} qué te parece ahora.`;
+${echa} un vistazo y ${t.dime} qué ${t.teParece} ahora.`;
 
   const email =
 `Hola ${saludo}:
 
-He actualizado la propuesta de tu viaje ${aDestino} con los cambios que comentamos. La tienes en el mismo enlace de siempre, no hace falta que busques el correo anterior:
+He actualizado la propuesta de ${t.tuViaje} ${aDestino} con los cambios que comentamos. La ${tienes} en el mismo enlace de siempre, no hace falta que ${busques} el correo anterior:
 
 ${url}
 
-Cuando la mires, ${dimelo} qué te parece y seguimos ajustando lo que haga falta.
+Cuando ${mires}, ${t.dime} qué ${t.teParece} y seguimos ajustando lo que haga falta.
 
 Un abrazo,
 
@@ -885,7 +903,7 @@ Endeis
 Horizonte Exclusivo
 ${TEL} · ${EMAIL}`;
 
-  return { whatsapp, email_asunto: `He actualizado tu propuesta ${aDestino}`, email_cuerpo: email };
+  return { whatsapp, email_asunto: `He actualizado ${t.tu} propuesta ${aDestino}`, email_cuerpo: email };
 }
 
 // "Familia Ferrer" no se saluda como "Familia": ahí va el nombre entero.
