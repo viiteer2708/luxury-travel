@@ -118,8 +118,15 @@ en letra que no se ve en una miniatura pero sí en la propuesta abierta en un po
 comprobación falla, la foto tampoco pasa.
 
 **El enlace del alojamiento nunca sale solo.** Se guarda apartado en `interno.enlaces_alojamiento` y
-únicamente aparece en la página si Victor lo autoriza desde el panel, con el aviso delante. Lo normal
-es no enseñarlo y traerse las fotos: el cliente ve el barco sin salir de la propuesta.
+solo se publica de dos maneras: pidiéndolo con todas las letras en las indicaciones (el modelo
+devuelve `mostrar_enlace` por alojamiento y solo lo pone a `true` en ese caso) o dándole al botón del
+panel. Que el enlace venga en el presupuesto del mayorista **no** cuenta como pedirlo: el proveedor se
+lo manda a la agencia, no al cliente.
+
+Y antes de publicar uno, **mirar el dominio**. El que se probó el 8-ago no era la ficha del barco sino
+un rastreador de clics de HubSpot (`hs-sales-engage.com`): además de enseñarle el proveedor al
+cliente, le avisa al comercial de cada clic, atribuido a la ficha de Victor. Se descarta también
+porque mide 1.393 caracteres — ver el apartado de enlaces largos en `api/ppto-crear.js`.
 
 ## Stack
 - HTML estático + CSS embebido (variables CSS, sin frameworks)
