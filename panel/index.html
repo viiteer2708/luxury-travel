@@ -120,6 +120,9 @@ table.resumen td.destacado { color: var(--gold); font-size: 1.05rem; font-weight
   cursor: pointer; transition: var(--transition); text-decoration: none;
 }
 .prop .acciones a:hover, .prop .acciones button:hover:not(:disabled) { border-color: var(--gold); color: var(--gold); }
+/* Borrar se separa del resto y va en rojo: no debe pincharse por inercia */
+.prop .acciones button.peligro { margin-left: auto; border-color: rgba(224,119,106,0.3); color: rgba(224,119,106,0.75); }
+.prop .acciones button.peligro:hover:not(:disabled) { border-color: var(--rojo); color: var(--rojo); }
 .prop .acciones button:disabled { opacity: 0.4; cursor: not-allowed; }
 .prop code { font-family: ui-monospace, monospace; font-size: 0.76rem; color: var(--text-muted); }
 /* La chapa dice de un vistazo en qué punto está cada una */
@@ -478,6 +481,41 @@ footer.pie { text-align: center; color: var(--text-muted); font-size: 0.78rem; m
       });
       acciones.appendChild(bCad);
     }
+
+    // Borrar es irreversible: se lleva la ficha, las fotos y el registro de
+    // visitas, y el enlace pasa a dar 404. Por eso el freno no es igual para
+    // todas: si el cliente nunca la ha abierto, es una equivocación y basta con
+    // confirmar; si la ha abierto o ha dicho que sí, hay que teclear el código,
+    // porque ahí se está rompiendo algo que alguien está usando de verdad.
+    var bBorrar = crear('button', 'peligro', 'borrar');
+    bBorrar.type = 'button';
+    bBorrar.addEventListener('click', function () {
+      var quien = p.cliente || p.id;
+      var tocada = p.vistas > 0 || p.aceptada;
+
+      if (tocada) {
+        var motivo = p.aceptada
+          ? 'Esta propuesta la ha ACEPTADO el cliente.'
+          : 'El cliente ya ha abierto esta propuesta ' + p.vistas + (p.vistas === 1 ? ' vez' : ' veces') + '.';
+        var tecleado = prompt(
+          motivo + '\n\n' +
+          'Si la borras, su enlace dejará de funcionar y se pierde el registro de que la vio. ' +
+          'Para propuestas que ya están en la calle suele ser mejor «caducar».\n\n' +
+          'Si aun así quieres borrarla, escribe su código: ' + p.id);
+        if (!tecleado || tecleado.trim().toUpperCase() !== p.id) return;
+      } else if (!confirm(
+          'Vas a borrar la propuesta de ' + quien + ' (' + p.id + ').\n\n' +
+          'Se van la ficha y sus fotos, y el enlace deja de funcionar. No se puede deshacer.')) {
+        return;
+      }
+
+      bBorrar.disabled = true;
+      llamar('/api/ppto-medios', { id: p.id, accion: 'borrar' }).then(function (res) {
+        if (res.ok) cargarLista();
+        else { bBorrar.disabled = false; alert(res.error || 'No he podido borrarla.'); }
+      });
+    });
+    acciones.appendChild(bBorrar);
 
     fila.appendChild(acciones);
     return fila;
