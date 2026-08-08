@@ -13,7 +13,10 @@
 //                 y las REALOJA en nuestro almacén (nunca se enlaza fuera)
 //   quitar_foto — descarta una foto concreta
 //   enlace      — muestra u oculta al cliente el enlace original del alojamiento
+//   listar      — todas las propuestas con sus visitas. No lleva `id`
 //   publicar    — pasa el presupuesto de borrador a enviado
+//   caducar     — la página pasa a un mensaje amable invitando a llamarnos,
+//                 nunca a un 404: un cliente que ve un error cree que hemos cerrado
 //   borrar      — borra la ficha y sus fotos. Para pruebas: a un cliente se le
 //                 CADUCA el presupuesto, no se le deja un 404
 //
@@ -110,6 +113,14 @@ export default async function handler(req) {
     }
   }
 
+  if (accion === 'listar') {
+    try { return await accionListar(base, key); }
+    catch (e) {
+      console.error('[ppto-medios] listar', e && e.message);
+      return json({ ok: false, error: 'No he podido traer la lista.' }, 502);
+    }
+  }
+
   const id = String((cuerpo && cuerpo.id) || '').trim().toUpperCase();
   if (!ID_RE.test(id)) return json({ ok: false, error: 'Ese identificador no existe.' }, 422);
 
@@ -124,12 +135,89 @@ export default async function handler(req) {
     if (accion === 'publicar') return await accionPublicar(base, key, id);
     if (accion === 'borrar') return await accionBorrar(base, key, id);
     if (accion === 'limpiar') return await accionLimpiar(base, key, id, fila);
+    if (accion === 'caducar') return await accionCaducar(base, key, id);
   } catch (e) {
     console.error('[ppto-medios]', accion, e && e.message);
     return json({ ok: false, error: 'Algo ha fallado por el camino. Vuelve a intentarlo.' }, 502);
   }
 
   return json({ ok: false, error: 'Acción desconocida.' }, 422);
+}
+
+/* ═══════════════════════ el listado ═══════════════════════ */
+//
+// Sin esto, el panel crea propuestas pero no deja verlas, y pasa lo que pasó el
+// 8-ago: en hora y media se juntaron once propuestas para tres clientes, porque
+// cada corrección se hacía creando otra en vez de rehacer la que ya había.
+//
+// Ojo con las columnas: aquí también se piden UNA A UNA y `interno` no está.
+// Que esto sea un listado interno no cambia la regla — la fuga de mañana sale
+// del `select=*` que alguien puso hoy "porque total, es para nosotros".
+const COLUMNAS_LISTA = [
+  'id', 'estado', 'cliente_nombre', 'cliente_email', 'destino', 'titulo',
+  'precio_total', 'moneda', 'creado_at', 'actualizado_at',
+  'presupuesto_eventos(tipo,creado_at)',
+].join(',');
+
+async function accionListar(base, key) {
+  const r = await fetch(
+    `${base}/rest/v1/presupuestos?select=${encodeURIComponent(COLUMNAS_LISTA)}&order=creado_at.desc&limit=120`,
+    {
+      headers: { apikey: key, authorization: `Bearer ${key}`, accept: 'application/json' },
+      signal: AbortSignal.timeout(12_000),
+    }
+  );
+  if (!r.ok) {
+    console.error('[ppto-medios] Lista:', r.status, (await r.text().catch(() => '')).slice(0, 200));
+    return json({ ok: false, error: 'No he podido traer la lista.' }, 502);
+  }
+
+  const filas = await r.json();
+  const propuestas = (Array.isArray(filas) ? filas : []).map(p => {
+    const eventos = Array.isArray(p.presupuesto_eventos) ? p.presupuesto_eventos : [];
+    const vistas = eventos.filter(e => e && e.tipo === 'vista');
+    const ultima = vistas.map(e => e.creado_at).sort().pop() || null;
+    return {
+      id: p.id,
+      estado: p.estado,
+      cliente: p.cliente_nombre,
+      email: p.cliente_email || '',
+      destino: p.destino,
+      titulo: p.titulo,
+      precio: p.precio_total == null ? null : Number(p.precio_total),
+      moneda: p.moneda || 'EUR',
+      creado: p.creado_at,
+      actualizado: p.actualizado_at,
+      vistas: vistas.length,
+      ultima_vista: ultima,
+      aceptada: eventos.some(e => e && e.tipo === 'aceptado'),
+    };
+  });
+
+  // Marca los que comparten cliente y destino: son los que suelen ser el mismo
+  // viaje rehecho a mano, y verlos juntos es la mitad de la solución.
+  const cuenta = {};
+  propuestas.forEach(p => {
+    const k = (p.cliente || '').toLowerCase() + '|' + (p.destino || '').toLowerCase();
+    cuenta[k] = (cuenta[k] || 0) + 1;
+  });
+  propuestas.forEach((p, i) => {
+    const k = (p.cliente || '').toLowerCase() + '|' + (p.destino || '').toLowerCase();
+    p.repetida = cuenta[k] > 1;
+    // El primero de cada grupo es el más reciente, porque vienen ordenadas.
+    p.mas_reciente_del_grupo = propuestas.findIndex(
+      q => ((q.cliente || '').toLowerCase() + '|' + (q.destino || '').toLowerCase()) === k
+    ) === i;
+  });
+
+  return json({ ok: true, propuestas }, 200);
+}
+
+async function accionCaducar(base, key, id) {
+  const ok = await guardar(base, key, id, { estado: 'caducado' });
+  return ok
+    ? json({ ok: true, estado: 'caducado' }, 200)
+    : json({ ok: false, error: 'No he podido caducarlo.' }, 502);
 }
 
 /* ═══════════════════════ el buzón de archivos ═══════════════════════ */

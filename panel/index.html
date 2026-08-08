@@ -101,6 +101,37 @@ table.resumen td.destacado { color: var(--gold); font-size: 1.05rem; font-weight
 .mensaje .titulo { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; flex-wrap: wrap; }
 .mensaje .titulo label { margin-bottom: 0; }
 
+/* ── Listado de propuestas ── */
+.lista-cabecera { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 22px; flex-wrap: wrap; }
+.lista-cabecera h2 { margin-bottom: 4px; }
+.prop {
+  display: grid; grid-template-columns: 1fr auto; gap: 6px 18px;
+  padding: 16px 0; border-top: 1px solid rgba(255,255,255,0.07);
+}
+.prop:last-child { padding-bottom: 0; }
+.prop .quien { font-size: 1rem; color: var(--white); font-weight: 500; }
+.prop .que { font-size: 0.85rem; color: var(--text-muted); }
+.prop .cuando { font-size: 0.76rem; color: var(--text-muted); margin-top: 4px; }
+.prop .cifra { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--gold); text-align: right; white-space: nowrap; }
+.prop .acciones { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.prop .acciones a, .prop .acciones button {
+  background: none; border: 1px solid rgba(255,255,255,0.15); color: var(--text-muted);
+  border-radius: 3px; font-family: inherit; font-size: 0.7rem; padding: 5px 10px;
+  cursor: pointer; transition: var(--transition); text-decoration: none;
+}
+.prop .acciones a:hover, .prop .acciones button:hover:not(:disabled) { border-color: var(--gold); color: var(--gold); }
+.prop .acciones button:disabled { opacity: 0.4; cursor: not-allowed; }
+.prop code { font-family: ui-monospace, monospace; font-size: 0.76rem; color: var(--text-muted); }
+/* La chapa dice de un vistazo en qué punto está cada una */
+.chapa { display: inline-block; font-size: 0.62rem; letter-spacing: 1.2px; text-transform: uppercase; padding: 2px 7px; border-radius: 3px; margin-left: 8px; vertical-align: 2px; border: 1px solid; }
+.chapa.borrador { color: var(--ambar); border-color: rgba(217,164,65,0.4); }
+.chapa.enviado  { color: var(--text-muted); border-color: rgba(255,255,255,0.18); }
+.chapa.visto    { color: var(--verde); border-color: rgba(127,176,105,0.45); }
+.chapa.aceptado { color: #0a0a0a; background: var(--verde); border-color: var(--verde); }
+.chapa.caducado { color: var(--rojo); border-color: rgba(224,119,106,0.4); }
+.chapa.repe     { color: var(--rojo); border-color: rgba(224,119,106,0.45); }
+.lista-vacia { color: var(--text-muted); font-size: 0.9rem; }
+
 .oculto { display: none !important; }
 .cargador { display: inline-block; width: 14px; height: 14px; border: 2px solid rgba(10,10,10,0.3); border-top-color: #0a0a0a; border-radius: 50%; animation: girar 0.7s linear infinite; }
 @keyframes girar { to { transform: rotate(360deg); } }
@@ -189,6 +220,18 @@ footer.pie { text-align: center; color: var(--text-muted); font-size: 0.78rem; m
 
   <!-- ── Resultado ── -->
   <section id="cajaResultado" class="oculto"></section>
+
+  <!-- ── Listado ── -->
+  <section class="tarjeta oculto" id="cajaLista">
+    <div class="lista-cabecera">
+      <div>
+        <h2>Tus propuestas</h2>
+        <p class="sub" style="margin-bottom:0">Las que has hecho, si el cliente las ha abierto y cuándo.</p>
+      </div>
+      <button class="btn fantasma chico" id="btnRefrescar" type="button">Actualizar</button>
+    </div>
+    <div id="cuerpoLista"></div>
+  </section>
 
   <footer class="pie">
     <p><a href="/" >&#8592; Volver a la web</a> · <a href="#" id="btnSalir">Cerrar sesión</a></p>
@@ -310,6 +353,7 @@ footer.pie { text-align: center; color: var(--text-muted); font-size: 0.78rem; m
     $('cajaClave').classList.add('oculto');
     $('cajaFormulario').classList.remove('oculto');
     $('cliente').focus();
+    cargarLista();
   }
 
   $('btnEntrar').addEventListener('click', entrar);
@@ -325,6 +369,121 @@ footer.pie { text-align: center; color: var(--text-muted); font-size: 0.78rem; m
     var guardada = localStorage.getItem(LLAVE);
     if (guardada) { $('clave').value = guardada; entrar(); }
   } catch (e) {}
+
+  /* ── el listado ── */
+
+  function fechaCorta(iso) {
+    if (!iso) return '';
+    var d = new Date(iso);
+    if (isNaN(d)) return '';
+    var hoy = new Date();
+    var mismoDia = d.toDateString() === hoy.toDateString();
+    var hora = ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2);
+    if (mismoDia) return 'hoy a las ' + hora;
+    return d.getDate() + '/' + (d.getMonth() + 1) + ' a las ' + hora;
+  }
+
+  function cargarLista() {
+    var caja = $('cuerpoLista');
+    $('cajaLista').classList.remove('oculto');
+    caja.innerHTML = '';
+    caja.appendChild(crear('p', 'lista-vacia', 'Cargando…'));
+
+    llamar('/api/ppto-medios', { accion: 'listar' }).then(function (r) {
+      caja.innerHTML = '';
+      if (!r.ok) { aviso(caja, 'mal', r.error || 'No he podido traer la lista.'); return; }
+      if (!r.propuestas.length) {
+        caja.appendChild(crear('p', 'lista-vacia', 'Todavía no has hecho ninguna.'));
+        return;
+      }
+
+      var repetidas = r.propuestas.filter(function (p) { return p.repetida; }).length;
+      if (repetidas) {
+        var av = crear('div', 'nota ojo');
+        av.appendChild(crear('strong', null, 'Ojo: hay ' + repetidas + ' propuestas del mismo cliente y destino. '));
+        av.appendChild(crear('span', null, 'Si una es la corrección de otra, la próxima vez usa «corregir esta» y te quedas con un solo enlace.'));
+        caja.appendChild(av);
+      }
+
+      r.propuestas.forEach(function (p) { caja.appendChild(pintarPropuesta(p)); });
+    });
+  }
+
+  function pintarPropuesta(p) {
+    var fila = crear('div', 'prop');
+
+    var izq = crear('div');
+    var quien = crear('div', 'quien');
+    quien.appendChild(crear('span', null, p.cliente || '(sin nombre)'));
+
+    // Estado: lo que más informa no es el campo `estado` sino si la han visto
+    var chapa = 'enviado', texto = 'enviado';
+    if (p.aceptada) { chapa = 'aceptado'; texto = 'ha dicho que sí'; }
+    else if (p.estado === 'caducado') { chapa = 'caducado'; texto = 'caducada'; }
+    else if (p.estado === 'borrador') { chapa = 'borrador'; texto = 'borrador'; }
+    else if (p.vistas > 0) { chapa = 'visto'; texto = 'la ha visto'; }
+    quien.appendChild(crear('span', 'chapa ' + chapa, texto));
+    if (p.repetida && !p.mas_reciente_del_grupo) quien.appendChild(crear('span', 'chapa repe', 'repetida'));
+    izq.appendChild(quien);
+
+    izq.appendChild(crear('div', 'que', p.titulo || p.destino || ''));
+
+    var cuando = 'Creada ' + fechaCorta(p.creado);
+    if (p.vistas) cuando += ' · vista ' + p.vistas + (p.vistas === 1 ? ' vez' : ' veces') + ', la última ' + fechaCorta(p.ultima_vista);
+    else cuando += ' · sin abrir todavía';
+    izq.appendChild(crear('div', 'cuando', cuando));
+    fila.appendChild(izq);
+
+    var cifra = crear('div', 'cifra', p.precio == null ? '' : euros(p.precio, p.moneda));
+    fila.appendChild(cifra);
+
+    var url = 'https://www.horizonteexclusivo.es/ppto/' + p.id + '/';
+    var acciones = crear('div', 'acciones');
+
+    var cod = crear('code', null, p.id);
+    cod.style.cssText = 'align-self:center;margin-right:4px';
+    acciones.appendChild(cod);
+
+    var abrir = crear('a', null, 'abrir');
+    abrir.href = url; abrir.target = '_blank'; abrir.rel = 'noopener';
+    acciones.appendChild(abrir);
+
+    var bCop = crear('button', null, 'copiar enlace');
+    bCop.type = 'button';
+    bCop.addEventListener('click', function () { copiar(url, bCop); });
+    acciones.appendChild(bCop);
+
+    // El botón que evita que se acumulen duplicados: deja el código puesto en
+    // el formulario y sube. Es más fácil corregir que volver a empezar.
+    var bCorr = crear('button', null, 'corregir esta');
+    bCorr.type = 'button';
+    bCorr.addEventListener('click', function () {
+      $('rehacer').value = p.id;
+      $('cliente').value = p.cliente || '';
+      $('cliente').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      $('texto').focus();
+    });
+    acciones.appendChild(bCorr);
+
+    if (p.estado !== 'caducado') {
+      var bCad = crear('button', null, 'caducar');
+      bCad.type = 'button';
+      bCad.addEventListener('click', function () {
+        if (!confirm('Vas a caducar la propuesta de ' + (p.cliente || p.id) + '.\n\n' +
+          'El enlace seguirá funcionando, pero en vez del viaje mostrará un mensaje invitando a llamarnos.')) return;
+        bCad.disabled = true;
+        llamar('/api/ppto-medios', { id: p.id, accion: 'caducar' }).then(function (res) {
+          if (res.ok) cargarLista(); else { bCad.disabled = false; }
+        });
+      });
+      acciones.appendChild(bCad);
+    }
+
+    fila.appendChild(acciones);
+    return fila;
+  }
+
+  $('btnRefrescar').addEventListener('click', cargarLista);
 
   /* ── crear la propuesta ── */
 
@@ -418,6 +577,7 @@ footer.pie { text-align: center; color: var(--text-muted); font-size: 0.78rem; m
         pintarResultado(r);
         $('cajaResultado').scrollIntoView({ behavior: 'smooth', block: 'start' });
         buscarFotos(r);
+        cargarLista();
       });
     });
   });
