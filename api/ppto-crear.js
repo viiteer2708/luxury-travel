@@ -28,6 +28,8 @@ const EMAIL = 'viajes@horizonteexclusivo.es';
 // Sin 0, O, 1, I ni L: el ID se dicta por teléfono. 32 símbolos y 8 posiciones.
 const ALFABETO = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
 
+const ID_RE = /^HE-[23456789ABCDEFGHJKLMNPQRSTUVWXYZ]{8}$/;
+
 const MIMES_OK = ['application/pdf', 'image/jpeg', 'image/png', 'image/webp', 'image/heic'];
 const MAX_ARCHIVO_B64 = 4_000_000;  // ~3 MB de archivo; el límite de cuerpo de Vercel son 4,5 MB
 const MAX_TEXTO = 60_000;
@@ -194,7 +196,11 @@ export default async function handler(req) {
   const original = textoLargo(cuerpo && cuerpo.texto, MAX_TEXTO);
   const indicaciones = textoLargo(cuerpo && cuerpo.indicaciones, 2000);
   const archivo = cuerpo && cuerpo.archivo;
+  const rehacerId = texto(cuerpo && cuerpo.rehacer, 12).toUpperCase();
 
+  if (rehacerId && !ID_RE.test(rehacerId)) {
+    return json({ ok: false, error: 'Ese código de propuesta no tiene buena pinta. Son las letras HE- y ocho caracteres.' }, 422);
+  }
   if (!cliente) return json({ ok: false, error: 'Falta el nombre del cliente.' }, 422);
 
   let parteArchivo = null;
@@ -288,16 +294,33 @@ export default async function handler(req) {
     const avisos = listaTextos(datos && datos.avisos, 12, 300);
     const estado = hallazgos.length ? 'borrador' : 'enviado';
 
-    /* ── 4. Alta ── */
+    /* ── 4. Alta, o rehacer la que ya existía ── */
 
-    manda({ paso: 'Guardando la propuesta…' });
+    let id;
+    let estadoFinal = estado;
 
-    let id = generarId();
-    let alta = await insertar(base, key, id, fila, estado);
-    if (alta.conflicto) { id = generarId(); alta = await insertar(base, key, id, fila, estado); }
-    if (!alta.ok) {
-      console.error('[ppto-crear] Alta fallida:', alta.detalle);
-      return manda({ ok: false, error: 'He preparado la propuesta pero no he podido guardarla. Vuelve a intentarlo.' });
+    if (rehacerId) {
+      manda({ paso: `Rehaciendo ${rehacerId} sobre el mismo enlace…` });
+      const previa = await leerPrevia(base, key, rehacerId);
+      if (!previa) {
+        return manda({ ok: false, error: `No encuentro la propuesta ${rehacerId}. Repasa el código.` });
+      }
+      const hecho = await rehacer(base, key, rehacerId, fila, estado, previa);
+      if (!hecho.ok) {
+        console.error('[ppto-crear] Rehacer fallido:', hecho.detalle);
+        return manda({ ok: false, error: 'He preparado la propuesta nueva pero no he podido guardarla encima. Vuelve a intentarlo.' });
+      }
+      id = rehacerId;
+      estadoFinal = estado === 'borrador' ? 'borrador' : (previa.estado === 'borrador' ? 'enviado' : previa.estado);
+    } else {
+      manda({ paso: 'Guardando la propuesta…' });
+      id = generarId();
+      let alta = await insertar(base, key, id, fila, estado);
+      if (alta.conflicto) { id = generarId(); alta = await insertar(base, key, id, fila, estado); }
+      if (!alta.ok) {
+        console.error('[ppto-crear] Alta fallida:', alta.detalle);
+        return manda({ ok: false, error: 'He preparado la propuesta pero no he podido guardarla. Vuelve a intentarlo.' });
+      }
     }
 
     const url = `${WEB}/ppto/${id}/`;
@@ -306,7 +329,8 @@ export default async function handler(req) {
       ok: true,
       id,
       url,
-      estado,
+      rehecho: !!rehacerId,
+      estado: estadoFinal,
       hallazgos,
       avisos,
       resumen: {
@@ -325,7 +349,7 @@ export default async function handler(req) {
         enlace_alojamiento: fila.alojamientos.map(a => a.enlace).filter(Boolean)[0] || null,
       },
       fotos: consultas,
-      mensajes: mensajes({ cliente, url, fila }),
+      mensajes: mensajes({ cliente, url, fila, rehecho: !!rehacerId }),
     });
   });
 }
@@ -667,19 +691,40 @@ function generarId() {
   return 'HE-' + s;
 }
 
-async function insertar(base, key, id, fila, estado) {
-  // El enlace del alojamiento NO se guarda en el campo visible: se aparta a
-  // `interno` hasta que Victor lo autorice a mano desde el panel.
+// Deja la fila lista para guardar: aparta el enlace del alojamiento (que no
+// puede salir a la página sin que Victor lo autorice) y arrastra lo que había
+// antes cuando se está rehaciendo una propuesta que ya existía.
+function paraGuardar(fila, previa) {
   const alojamientos = fila.alojamientos.map(a => {
     const copia = Object.assign({}, a);
     delete copia.enlace;
     return copia;
   });
-  const enlaces = fila.alojamientos.map(a => a.enlace).filter(Boolean);
-  const interno = Object.assign({}, fila.interno);
-  if (enlaces.length) interno.enlaces_alojamiento = enlaces;
 
-  const payload = Object.assign({}, fila, { id, estado, alojamientos, interno });
+  // Rehacer no debería costarle a nadie las fotos del alojamiento: se tardan
+  // cuarenta segundos en traer y comprobar, y el barco es el mismo aunque
+  // cambien las fechas o el precio. Se conservan solo si sigue llamándose
+  // igual — si el alojamiento ha cambiado, sus fotos ya no valen.
+  const antes = (previa && Array.isArray(previa.alojamientos)) ? previa.alojamientos : [];
+  alojamientos.forEach((a, i) => {
+    const viejo = antes[i];
+    if (!viejo || !Array.isArray(viejo.galeria) || !viejo.galeria.length) return;
+    if (sinAcentos(viejo.nombre || '') !== sinAcentos(a.nombre || '')) return;
+    a.galeria = viejo.galeria;
+  });
+
+  const enlaces = fila.alojamientos.map(a => a.enlace).filter(Boolean);
+  const internoPrevio = (previa && previa.interno && typeof previa.interno === 'object') ? previa.interno : {};
+  const interno = Object.assign({}, internoPrevio, fila.interno);
+  const enlacesAntes = Array.isArray(internoPrevio.enlaces_alojamiento) ? internoPrevio.enlaces_alojamiento : [];
+  const todos = enlaces.concat(enlacesAntes).filter((v, i, a) => v && a.indexOf(v) === i);
+  if (todos.length) interno.enlaces_alojamiento = todos;
+
+  return Object.assign({}, fila, { alojamientos, interno });
+}
+
+async function insertar(base, key, id, fila, estado) {
+  const payload = Object.assign(paraGuardar(fila, null), { id, estado });
 
   try {
     const r = await fetch(`${base}/rest/v1/presupuestos`, {
@@ -701,13 +746,68 @@ async function insertar(base, key, id, fila, estado) {
   }
 }
 
+// Rehacer: el MISMO enlace con el contenido nuevo. Es lo que hace falta cuando
+// el mayorista manda el presupuesto corregido o el cliente pide un cambio: él
+// ya tiene la dirección, puede habérsela reenviado a su pareja, y darle una
+// distinta es pedirle que se organice él.
+async function rehacer(base, key, id, fila, estado, previa) {
+  // `creado_at` no se toca (es la fecha en que se le propuso el viaje) y el
+  // estado solo retrocede a borrador si la comprobación de limpieza ha
+  // encontrado algo: una propuesta que ya se envió sigue enviada.
+  const payload = Object.assign(paraGuardar(fila, previa), {
+    estado: estado === 'borrador' ? 'borrador' : (previa.estado === 'borrador' ? 'enviado' : previa.estado),
+    actualizado_at: new Date().toISOString(),
+  });
+
+  // El correo y el móvil del cliente no se pierden por dejarlos en blanco al
+  // rehacer: si el formulario viene vacío, se queda lo que ya había.
+  if (!payload.cliente_email) payload.cliente_email = previa.cliente_email || null;
+  if (!payload.cliente_telefono) payload.cliente_telefono = previa.cliente_telefono || null;
+
+  try {
+    const r = await fetch(`${base}/rest/v1/presupuestos?id=eq.${encodeURIComponent(id)}`, {
+      method: 'PATCH',
+      headers: {
+        apikey: key,
+        authorization: `Bearer ${key}`,
+        'content-type': 'application/json',
+        prefer: 'return=minimal',
+      },
+      body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(10_000),
+    });
+    if (r.ok) return { ok: true };
+    const detalle = await r.text().catch(() => '');
+    return { ok: false, detalle: `${r.status} ${detalle.slice(0, 300)}` };
+  } catch (e) {
+    return { ok: false, detalle: String(e && e.message) };
+  }
+}
+
+async function leerPrevia(base, key, id) {
+  try {
+    const r = await fetch(
+      `${base}/rest/v1/presupuestos?id=eq.${encodeURIComponent(id)}` +
+      `&select=id,estado,cliente_nombre,cliente_email,cliente_telefono,alojamientos,interno&limit=1`,
+      {
+        headers: { apikey: key, authorization: `Bearer ${key}`, accept: 'application/json' },
+        signal: AbortSignal.timeout(10_000),
+      }
+    );
+    if (!r.ok) return null;
+    const filas = await r.json();
+    return Array.isArray(filas) ? filas[0] : null;
+  } catch (_) { return null; }
+}
+
 /* ═══════════════════════ los dos mensajes de envío ═══════════════════════ */
 //
 // Ninguno lleva el precio. El cliente descubre el número dentro de la página,
 // después de haberse enamorado del viaje: anunciarlo en el mensaje convierte
 // la propuesta en una factura antes de que la abran.
 
-function mensajes({ cliente, url, fila }) {
+function mensajes({ cliente, url, fila, rehecho }) {
+  if (rehecho) return mensajesDeCambio({ cliente, url, fila });
   const saludo = tratamiento(cliente);
   const destino = fila.destino || 'tu viaje';
   const aDestino = conPrep('a', destino);
@@ -750,6 +850,42 @@ Carrer Major, 37 · 08750 Molins de Rei (Barcelona)
 Más que viajar, vivir el mundo`;
 
   return { whatsapp, email_asunto: asunto, email_cuerpo: email };
+}
+
+// Cuando se rehace una propuesta, el mensaje no puede decir «ya la tengo lista»:
+// el cliente ya la tenía. Lo que hay que decirle es que la ha cambiado y que
+// mire el mismo enlace de siempre — que además es lo que evita que abra por
+// error la versión vieja que tiene en el correo de la semana pasada.
+function mensajesDeCambio({ cliente, url, fila }) {
+  const saludo = tratamiento(cliente);
+  const aDestino = conPrep('a', fila.destino || 'tu viaje');
+  const unaPersona = fila.viajeros && fila.viajeros.adultos === 1 && !fila.viajeros.ninos;
+  const dimelo = unaPersona ? 'dime' : 'decidme';
+
+  const whatsapp =
+`Hola ${saludo}, soy Endeis.
+
+He actualizado tu propuesta ${aDestino} con los cambios que hablamos. Está en el mismo enlace de siempre, así que no tienes que buscar nada:
+${url}
+
+Échale un vistazo y ${dimelo} qué te parece ahora.`;
+
+  const email =
+`Hola ${saludo}:
+
+He actualizado la propuesta de tu viaje ${aDestino} con los cambios que comentamos. La tienes en el mismo enlace de siempre, no hace falta que busques el correo anterior:
+
+${url}
+
+Cuando la mires, ${dimelo} qué te parece y seguimos ajustando lo que haga falta.
+
+Un abrazo,
+
+Endeis
+Horizonte Exclusivo
+${TEL} · ${EMAIL}`;
+
+  return { whatsapp, email_asunto: `He actualizado tu propuesta ${aDestino}`, email_cuerpo: email };
 }
 
 // "Familia Ferrer" no se saluda como "Familia": ahí va el nombre entero.

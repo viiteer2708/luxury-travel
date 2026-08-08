@@ -170,6 +170,11 @@ footer.pie { text-align: center; color: var(--text-muted); font-size: 0.78rem; m
         <p class="pista">Máximo 3 MB. Si el PDF pesa más o va lento, copia el texto y pégalo arriba: es bastante más rápido.</p>
       </div>
       <div class="campo">
+        <label for="rehacer">¿Es la corrección de una propuesta que ya existe? (opcional)</label>
+        <input type="text" id="rehacer" placeholder="HE-XXXXXXXX" autocomplete="off" spellcheck="false" style="text-transform:uppercase">
+        <p class="pista">Pon aquí su código y se rehace <strong>sobre el mismo enlace</strong>: el cliente que ya lo tenga verá la versión nueva sin que le mandes nada. Déjalo vacío para crear una propuesta nueva con su propio enlace.</p>
+      </div>
+      <div class="campo">
         <label for="indicaciones">¿Algo que deba saber? (opcional)</label>
         <textarea id="indicaciones" rows="3" placeholder="El precio al cliente son 1.419 €. Van 4 personas. Quítale el día libre del final…"></textarea>
         <p class="pista">Lo que escribas aquí manda sobre lo que diga el presupuesto.</p>
@@ -346,6 +351,17 @@ footer.pie { text-align: center; color: var(--text-muted); font-size: 0.78rem; m
     var cliente = $('cliente').value.trim();
     if (!cliente) { aviso($('errorCrear'), 'mal', 'Falta el nombre del cliente.'); $('cliente').focus(); return; }
     var texto = $('texto').value.trim();
+    var rehacer = $('rehacer').value.trim().toUpperCase();
+
+    // Rehacer pisa una propuesta que el cliente puede tener abierta ahora
+    // mismo, así que se pregunta. Crear una nueva no necesita confirmación:
+    // no toca nada de lo que ya hay.
+    if (rehacer && !confirm(
+        'Vas a rehacer la propuesta ' + rehacer + ' sobre su mismo enlace.\n\n' +
+        'Quien ya lo tenga verá la versión nueva. Si lo que quieres es una propuesta aparte, ' +
+        'cancela y deja ese campo vacío.')) {
+      return;
+    }
 
     limpiar($('errorCrear'));
 
@@ -362,6 +378,7 @@ footer.pie { text-align: center; color: var(--text-muted); font-size: 0.78rem; m
         cliente_telefono: $('clienteTel').value.trim(),
         texto: texto,
         indicaciones: $('indicaciones').value.trim(),
+        rehacer: rehacer,
         archivo: archivo
       }, function (paso) {
         $('progresoCrear').textContent = paso;
@@ -387,7 +404,14 @@ footer.pie { text-align: center; color: var(--text-muted); font-size: 0.78rem; m
     /* Estado de la limpieza — lo primero, porque es lo que decide si esto se
        manda o no se manda. */
     var sec = crear('section', 'tarjeta');
-    sec.appendChild(crear('h2', null, 'La propuesta ' + r.id));
+    sec.appendChild(crear('h2', null, (r.rehecho ? 'Rehecha la propuesta ' : 'La propuesta ') + r.id));
+
+    if (r.rehecho) {
+      var reh = crear('div', 'nota bien');
+      reh.appendChild(crear('strong', null, 'Mismo enlace. '));
+      reh.appendChild(crear('span', null, 'Quien ya lo tuviera ve la versión nueva sin que le mandes nada. Los mensajes de abajo son por si quieres avisarle del cambio.'));
+      sec.appendChild(reh);
+    }
 
     if (r.hallazgos && r.hallazgos.length) {
       var caja1 = crear('div', 'nota mal');
