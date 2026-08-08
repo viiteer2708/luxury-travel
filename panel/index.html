@@ -614,7 +614,7 @@ footer.pie { text-align: center; color: var(--text-muted); font-size: 0.78rem; m
         actual = r;
         pintarResultado(r);
         $('cajaResultado').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        buscarFotos(r);
+        buscarFotos();
         cargarLista();
       });
     });
@@ -722,12 +722,14 @@ footer.pie { text-align: center; color: var(--text-muted); font-size: 0.78rem; m
 
   /* ── fotos de stock ── */
 
-  var ranuras = [];   // [{slot, consulta, titulo, nodo}]
+  var ranuras = [];       // una por hueco de foto: portada y cada tramo
+  var cola = [];          // trabajos pendientes de buscar
+  var trabajando = false;
 
   function pintarFotos(r) {
     var sec = crear('section', 'tarjeta');
     sec.appendChild(crear('h2', null, 'Las fotos'));
-    sec.appendChild(crear('p', 'sub', 'Busco fotos libres de los sitios del viaje y las copio a nuestro servidor. Míralas: si alguna no es del sitio que toca, dale a «otra».'));
+    sec.appendChild(crear('p', 'sub', 'Busco fotos libres de los sitios del viaje y las copio a nuestro servidor. Míralas: si alguna no es del sitio que toca, dale a «otra» las veces que haga falta — puedes hacerlo mientras siguen buscándose.'));
     var rejilla = crear('div', 'fotos');
     sec.appendChild(rejilla);
     var prog = crear('p', 'progreso', 'Buscando…');
@@ -736,6 +738,9 @@ footer.pie { text-align: center; color: var(--text-muted); font-size: 0.78rem; m
     $('cajaResultado').appendChild(sec);
 
     ranuras = [];
+    cola = [];
+    trabajando = false;
+
     var f = r.fotos || {};
     if (f.hero) ranuras.push({ slot: 'hero', consulta: f.hero, titulo: 'Portada' });
     (f.tramos || []).forEach(function (t) {
@@ -747,11 +752,15 @@ footer.pie { text-align: center; color: var(--text-muted); font-size: 0.78rem; m
       var marco = crear('div', 'marco');
       marco.appendChild(crear('span', 'cargando', 'en cola'));
       tarjeta.appendChild(marco);
+
       var pie = crear('div', 'pie');
       pie.appendChild(crear('p', null, ranura.titulo));
       var acciones = crear('div', 'acciones');
+      // «otra» nace ACTIVO. Antes nacía apagado y solo se encendía cuando le
+      // llegaba el turno en la búsqueda, así que durante el minuto que tarda la
+      // primera ronda los botones no respondían y parecía que estaban rotos.
       var otra = crear('button', null, 'otra');
-      otra.type = 'button'; otra.disabled = true;
+      otra.type = 'button';
       var quita = crear('button', null, 'quitar');
       quita.type = 'button'; quita.disabled = true;
       acciones.appendChild(otra); acciones.appendChild(quita);
@@ -764,50 +773,78 @@ footer.pie { text-align: center; color: var(--text-muted); font-size: 0.78rem; m
       ranura.quita = quita;
       ranura.salto = 0;
 
-      otra.addEventListener('click', function () { pedirFoto(ranura, ++ranura.salto); });
+      // Pinchar «otra» adelanta ese hueco al principio de la cola: lo que pide
+      // Victor va antes que la ronda automática.
+      otra.addEventListener('click', function () {
+        ranura.salto += 1;
+        encolar(ranura, ranura.salto, true);
+      });
+
       quita.addEventListener('click', function () {
         if (!ranura.url) return;
         quita.disabled = true;
         llamar('/api/ppto-medios', { id: actual.id, accion: 'quitar_foto', url: ranura.url }).then(function (res) {
-          quita.disabled = false;
-          if (res.ok) { ranura.url = null; limpiar(ranura.marco); ranura.marco.appendChild(crear('span', 'cargando', 'sin foto')); }
+          if (res.ok) {
+            ranura.url = null;
+            limpiar(ranura.marco);
+            ranura.marco.appendChild(crear('span', 'cargando', 'sin foto'));
+          } else {
+            quita.disabled = false;
+          }
         });
       });
     });
   }
 
-  // Una foto cada vez, en fila india. En paralelo se dispararían ocho descargas
-  // y ocho subidas a la vez y el free tier de Openverse empieza a devolver 429.
-  function buscarFotos(r) {
-    var i = 0;
-    function siguiente() {
-      if (i >= ranuras.length) {
-        var p = $('progresoFotos');
-        if (p) p.textContent = 'Fotos listas. Abre la propuesta y échales un vistazo.';
-        // Cada «otra foto» deja la anterior en el almacén. Se barren al final,
-        // cuando ya se sabe cuáles han quedado en pie.
-        llamar('/api/ppto-medios', { id: actual.id, accion: 'limpiar' });
-        return;
-      }
-      var ranura = ranuras[i++];
+  // Una foto cada vez, en fila india: en paralelo se dispararían ocho descargas
+  // y ocho subidas a la vez, y el banco de imágenes empieza a devolver errores.
+  // Pero la fila es una COLA de verdad, no un bucle cerrado: se le puede meter
+  // trabajo por delante mientras corre.
+  function encolar(ranura, salto, prioritario) {
+    cola = cola.filter(function (t) { return t.ranura !== ranura; });
+    var tarea = { ranura: ranura, salto: salto };
+    if (prioritario) cola.unshift(tarea); else cola.push(tarea);
+    limpiar(ranura.marco);
+    ranura.marco.appendChild(crear('span', 'cargando', 'en cola'));
+    siguienteDeLaCola();
+  }
+
+  function siguienteDeLaCola() {
+    if (trabajando) return;
+    var tarea = cola.shift();
+    if (!tarea) {
       var p = $('progresoFotos');
-      if (p) p.textContent = 'Buscando foto de ' + ranura.titulo + '… (' + i + ' de ' + ranuras.length + ')';
-      pedirFoto(ranura, 0).then(siguiente);
+      if (p) p.textContent = 'Fotos listas. Abre la propuesta y échales un vistazo.';
+      // Cada «otra» deja la anterior en el almacén. Se barren cuando ya no queda
+      // nada pendiente y se sabe cuáles han quedado en pie.
+      if (actual) llamar('/api/ppto-medios', { id: actual.id, accion: 'limpiar' });
+      return;
     }
-    siguiente();
+    trabajando = true;
+    var p = $('progresoFotos');
+    if (p) {
+      p.textContent = 'Buscando foto de ' + tarea.ranura.titulo + '…' +
+        (cola.length ? ' (' + cola.length + ' por detrás)' : '');
+    }
+    pedirFoto(tarea.ranura, tarea.salto).then(function () {
+      trabajando = false;
+      siguienteDeLaCola();
+    });
+  }
+
+  function buscarFotos() {
+    ranuras.forEach(function (ranura) { encolar(ranura, 0, false); });
   }
 
   function pedirFoto(ranura, salto) {
     limpiar(ranura.marco);
     ranura.marco.appendChild(crear('span', 'cargando', 'buscando…'));
-    ranura.otra.disabled = true;
     ranura.quita.disabled = true;
 
     return llamar('/api/ppto-medios', {
       id: actual.id, accion: 'foto', slot: ranura.slot, consulta: ranura.consulta, salto: salto
     }).then(function (res) {
       limpiar(ranura.marco);
-      ranura.otra.disabled = false;
       if (!res.ok) {
         ranura.marco.appendChild(crear('span', 'cargando', 'sin foto'));
         return;
