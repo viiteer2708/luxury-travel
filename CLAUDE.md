@@ -72,8 +72,10 @@ no guarda ningún secreto: quien decide es la función Edge.
   llamándose igual. **La limpieza no se le confía al modelo**: se comprueba después, con las
   mismas expresiones que `verificar_limpieza.py`, más el nombre del proveedor que el propio modelo
   declara. Si algo se cuela, el presupuesto queda en `borrador` y el panel dice qué y dónde.
-- **`api/ppto-medios.js`** — acciones `foto`, `galeria`, `quitar_foto`, `enlace`, `publicar`,
-  `limpiar` y `borrar`.
+- **`api/ppto-medios.js`** — acciones `listar`, `foto`, `galeria`, `quitar_foto`, `enlace`,
+  `publicar`, `caducar`, `limpiar`, `borrar` y `subida`. `listar` y `subida` no llevan `id`.
+  `listar` pide **columnas explícitas** igual que el render: que sea un listado interno no cambia la
+  regla, porque la fuga de mañana sale del `select=*` que alguien puso hoy "total, es para nosotros".
 - **Ambas responden en NDJSON por streaming** cuando el trabajo es largo. Una función Edge tiene que
   EMPEZAR a responder en 25 s y leer un presupuesto se pasa de ahí. Consecuencia a recordar: desde el
   primer byte la respuesta es un 200 pase lo que pase, así que **los errores viajan en el cuerpo**, no
