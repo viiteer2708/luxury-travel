@@ -1,14 +1,11 @@
-# Inspección 2026-08-07T18:29
+# Inspección 2026-08-09T08:09
 
 - **Total:** 119 URLs
 - **Indexadas:** 70
 - **No indexadas:** 49
 - **Errores:** 0
 
-**Cambio vs snapshot previo (2026-08-05T09:54):** indexadas -1, no indexadas +1.
-
-## ⚠️ Salieron del índice (1)
-- `/checklist-pre-viaje/`
+**Cambio vs snapshot previo (2026-08-07T18:29):** indexadas +0, no indexadas +0.
 
 ## 🎯 Las 4 URLs vigiladas (reescritas el 21 abr 2026)
 
