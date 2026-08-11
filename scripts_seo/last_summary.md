@@ -1,11 +1,11 @@
-# Inspección 2026-08-09T08:09
+# Inspección 2026-08-11T08:26
 
 - **Total:** 119 URLs
 - **Indexadas:** 70
 - **No indexadas:** 49
 - **Errores:** 0
 
-**Cambio vs snapshot previo (2026-08-07T18:29):** indexadas +0, no indexadas +0.
+**Cambio vs snapshot previo (2026-08-09T08:09):** indexadas +0, no indexadas +0.
 
 ## 🎯 Las 4 URLs vigiladas (reescritas el 21 abr 2026)
 
@@ -18,8 +18,7 @@
 
 ## Desglose no indexadas
 - **Crawled - currently not indexed:** 38
-- **Discovered - currently not indexed:** 7
-- **URL is unknown to Google:** 4
+- **Discovered - currently not indexed:** 11
 
 ## 🔴 Crawled - currently not indexed (38)
 - `/antes-de-reservar-viaje-grande/`
