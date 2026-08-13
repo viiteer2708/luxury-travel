@@ -1,5 +1,5 @@
 {
-  "fecha": "2026-08-11T08:26:48.643398",
+  "fecha": "2026-08-13T08:38:37.045284",
   "total": 119,
   "indexadas": 70,
   "no_indexadas": 49,
@@ -132,7 +132,7 @@
     "/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-08-09T11:21:08Z",
+      "crawled": "2026-08-13T00:15:28Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/destinos/": {
@@ -203,7 +203,7 @@
     },
     "/alaska/": {
       "verdict": "NEUTRAL",
-      "coverage": "Discovered - currently not indexed",
+      "coverage": "URL is unknown to Google",
       "crawled": "N/A",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
     },
@@ -239,7 +239,7 @@
     },
     "/bali/": {
       "verdict": "NEUTRAL",
-      "coverage": "Discovered - currently not indexed",
+      "coverage": "URL is unknown to Google",
       "crawled": "N/A",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
     },
@@ -377,7 +377,7 @@
     },
     "/india/": {
       "verdict": "NEUTRAL",
-      "coverage": "Discovered - currently not indexed",
+      "coverage": "URL is unknown to Google",
       "crawled": "N/A",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
     },
@@ -474,7 +474,7 @@
     "/portugal/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-06-23T10:42:58Z",
+      "crawled": "2026-08-12T09:46:47Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/praga-viena-budapest/": {
@@ -515,7 +515,7 @@
     },
     "/tailandia/": {
       "verdict": "NEUTRAL",
-      "coverage": "Discovered - currently not indexed",
+      "coverage": "URL is unknown to Google",
       "crawled": "N/A",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
     },
