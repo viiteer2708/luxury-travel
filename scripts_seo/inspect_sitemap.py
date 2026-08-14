@@ -11,6 +11,7 @@ También funciona localmente si existe ./service-account.json.
 import argparse
 import json
 import os
+import re
 import sys
 import time
 import urllib.parse
@@ -24,7 +25,7 @@ SITE_URL = "sc-domain:horizonteexclusivo.es"
 BASE_URL = "https://www.horizonteexclusivo.es"
 SCOPE_INSPECTION = "https://www.googleapis.com/auth/webmasters"
 
-URLS = [
+URLS_RESPALDO = [
     "/", "/destinos/", "/pro-tips/", "/blog/", "/contacto/", "/quien-hay-detras/",
     "/molins-de-rei/", "/europa/", "/asia/", "/africa/", "/america/", "/paraisos/",
     "/alaska/", "/albania/", "/alemania/", "/argentina/", "/aruba/", "/bahamas/",
@@ -52,6 +53,29 @@ URLS = [
     "/que-reservar-primero-gran-viaje/",
     "/aviso-legal/", "/politica-de-cookies/", "/politica-de-privacidad/",
 ]
+def cargar_urls():
+    """
+    Las URLs a inspeccionar salen del sitemap.xml del propio repo, no de una lista
+    escrita a mano. La lista a mano se quedaba vieja en silencio: el 14-ago-2026
+    había 10 páginas en el sitemap que nadie vigilaba —entre ellas las pilares de
+    agosto (safari, empresa, viajes-a-medida-barcelona)—, así que no sabíamos si
+    estaban indexadas. Si el sitemap no se puede leer, se usa el respaldo.
+    """
+    ruta = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "sitemap.xml")
+    try:
+        with open(ruta, encoding="utf-8") as fh:
+            urls = re.findall(r"<loc>" + re.escape(BASE_URL) + r"([^<]*)</loc>", fh.read())
+    except OSError as e:
+        print(f"No he podido leer {ruta} ({e}); tiro del respaldo.")
+        return URLS_RESPALDO
+    if not urls:
+        print("El sitemap no ha dado ninguna URL; tiro del respaldo.")
+        return URLS_RESPALDO
+    return sorted(set(urls))
+
+
+URLS = cargar_urls()
+
 
 
 def load_service_account():
