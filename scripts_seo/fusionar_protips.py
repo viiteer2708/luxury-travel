@@ -106,6 +106,10 @@ CSS_TIPS = """
     color: var(--white);
 }
 
+#consejos-viaje {
+    scroll-margin-top: 90px;  /* si no, el navbar fijo tapa el título al llegar desde la 301 */
+}
+
 #consejos-viaje > summary {
     cursor: pointer; text-align: center; color: var(--gold); font-family: 'Inter', sans-serif; font-size: 0.95rem; letter-spacing: 0.5px; padding: 8px 0 48px; font-weight: 500; list-style: none;
 }
