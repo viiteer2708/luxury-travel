@@ -4,6 +4,11 @@
 > Análisis que lo motiva: `Por qué Deviatge sigue primero` (14-ago) — su web es peor que la
 > nuestra punto por punto; nos gana **fuera** de la web.
 
+> ⚠️ **REVISADO el 14-ago por la noche con la ficha leída en vivo en Google Maps.** Tres datos de
+> este plan estaban mal y se corrigen abajo: Deviatge no es el primero (es el 3º), tiene 4,3 con 56
+> reseñas (no 4,1 con 48) y nosotros tenemos **3**, no 4. Detalle en
+> `docs/SEO-LOCAL-AUDITORIAS-14AGO.md`.
+
 ## Lo que hay que tener claro antes de empezar
 
 Son **dos ligas distintas** y solo perdemos una:
@@ -11,7 +16,23 @@ Son **dos ligas distintas** y solo perdemos una:
 | | Deviatge | Horizonte | Quién gana |
 |---|---|---|---|
 | Orgánica «agencia de viajes molins de rei» | 1º | pos **2,0** (96 impr) | pegados |
-| Pack de Maps (los 3 del mapa) | dentro | fuera | **ellos, por goleada** |
+| Pack de Maps (los 3 del mapa) | dentro (3º) | **7º** | **ellos, por goleada** |
+
+Y el mapa no es un duelo, son **seis** por delante:
+
+| # | Negocio | Nota | Reseñas |
+|---|---------|------|---------|
+| 1 | Viajes El Corte Inglés Molins de Rei | 4,3 | 62 |
+| 2 | Halcón Viajes | 4,6 | 37 |
+| 3 | deviatge | 4,3 | 56 |
+| 4 | Viatges Llobregat | 4,7 | 37 |
+| 5 | **Setnia** | **5,0** | **17** |
+| 6 | Viajes Omega | 4,2 | 15 |
+| **7** | **HORIZONTE EXCLUSIVO** | **5,0** | **3** |
+
+**Setnia es la referencia que importa:** 5,0 con 17 reseñas y está el quinto. Ese es el umbral de
+entrada real. Llegar a 20 reseñas nos pone en el puesto 5; el trío de cabeza pide acercarse a 37 y
+es objetivo de un año.
 
 El mapa se ordena por **relevancia + proximidad + prominencia**. Proximidad la tenemos (Carrer
 Major, centro del pueblo). Relevancia la tenemos (ficha bien montada, categoría correcta).
@@ -20,11 +41,20 @@ de la web mueve esta aguja: la web ya va ganando.
 
 ---
 
-## P1 · Reseñas: de 4 a 20 (la palanca que decide)
+## P1 · Reseñas: de 3 a 20 (la palanca que decide)
 
-48 reseñas contra 4. No hace falta empatar: con **20 reseñas reales y un 5,0** entramos en la
-conversación, porque la nota y la cercanía juegan a favor. Es lo más lento (2-3 meses), así que
-es lo primero que hay que arrancar.
+No hace falta empatar con nadie: **20 reseñas reales con un 5,0 nos ponen quintos**, por delante de
+Setnia y de Viajes Omega. Es lo más lento (2-3 meses), así que es lo primero que hay que arrancar.
+
+**Y la carrera es más corta de lo que parece:** las 56 reseñas de Deviatge son el poso de veinte
+años. Ordenadas por fecha, en el último año solo han sumado **cuatro o cinco**. No hay que remontar
+dos décadas, hay que ir más rápido que 4-5 al año — que es un listón bajísimo.
+
+**Pide que cuenten el acompañamiento, no solo el destino.** Todas las críticas de Deviatge van del
+mismo sitio: el trato cuando algo se tuerce («nos dejaron tirados en Venecia», «para vender son
+fantásticas pero como tengas un problema…»). Una reseña nuestra que diga *«nos resolvieron un cambio
+de vuelo estando allí»* ocupa exactamente ese hueco. Nunca se menciona a un competidor: se ocupa el
+espacio con hechos propios.
 
 **A quién pedírselas, por orden de probabilidad de respuesta:**
 1. Los que han vuelto de viaje en los últimos 3 meses — el recuerdo está caliente.
@@ -154,10 +184,26 @@ retiren la ficha muerta. Dos negocios distintos en la misma dirección confunden
 
 ---
 
+## P1 bis · Dos arreglos de un minuto en la ficha
+
+Salieron al leerla en vivo el 14-ago. Cuestan nada y afectan a cómo Google identifica la entidad:
+
+1. **El nombre está en mayúsculas: `HORIZONTE EXCLUSIVO`.** Ningún competidor del pack lo hace, y en
+   el schema de la web, en el pie y en las futuras altas de directorio pone `Horizonte Exclusivo`.
+   Escribirlo igual en todas partes es gratis. (Ojo: cambiar solo las mayúsculas, **sin** añadir
+   «viajes de lujo» ni «Molins de Rei» al nombre — eso sí es motivo de suspensión.)
+2. **La web de la ficha pone `horizonteexclusivo.es`** y la dirección buena del sitio es **con
+   `www`**. Igualarla.
+
+Y una comprobación: **la ficha marca 3 reseñas y en julio anotamos 4.** O se cayó una (Google filtra
+sin avisar) o el dato de julio estaba mal. Merece un vistazo.
+
 ## P3 · Posts en la ficha, uno por semana
 
-La ficha con posts recientes se ve más viva y ocupa más sitio en el panel. Deviatge tiene el
-Instagram muerto (2 publicaciones en todo 2026): aquí ganamos sin esfuerzo.
+La ficha con posts recientes se ve más viva y ocupa más sitio en el panel. **Nadie del pack publica**
+y el Instagram de Deviatge está muerto (2 publicaciones en todo 2026): terreno vacío. Aunque hay que
+decirlo: **nuestro último post es del 5 de julio, hace 40 días.** La cadencia semanal se acordó y no
+se está cumpliendo, así que el primer post toca esta semana.
 
 | Semana | Tipo | Tema | CTA | Borrador |
 |---|---|---|---|---|

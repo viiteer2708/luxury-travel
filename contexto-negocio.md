@@ -14,12 +14,24 @@
 - **Razón social / CIF:** PENDIENTE.
 
 ## 2. Ficha de Google Business Profile
-- **URL pública (Google Maps):** PENDIENTE — **BLOQUEANTE** de las auditorías 1-8 y de todo el map pack.
-- **¿La ficha existe y está verificada?** PENDIENTE — sin ficha verificada NO se puede aparecer en el map pack (es el paso cero).
-- **Categoría principal actual:** PENDIENTE (probable: "Agencia de viajes").
-- **Categorías secundarias:** PENDIENTE.
-- **Nº de reseñas / nota media:** PENDIENTE (la home enlaza a reseñas de Google → la ficha existe en alguna forma).
-- **¿Acceso de gestión a la ficha?** PENDIENTE.
+> Leído **en vivo en Google Maps el 14-ago-2026** con Playwright desde el VPS. Se puede repetir:
+> lo que Google bloquea desde este servidor es la SERP, **no Maps** — hay que aceptar el diálogo de
+> consentimiento («Aceptar todo») antes de que cargue la ficha.
+- **URL pública (Google Maps):** buscar `Horizonte Exclusivo Molins de Rei`; CID 18012363284776329308
+  (⚠️ la URL `maps?cid=` **no** resuelve la ficha desde el VPS: cae en el mapa genérico. Usar la búsqueda).
+- **¿Existe y está verificada?** Sí, la gestiona Victor.
+- **Nombre tal como sale:** `HORIZONTE EXCLUSIVO` — **en mayúsculas**, y ningún competidor del pack lo
+  hace. No es penalizable, pero rompe la coherencia con el NAP canónico (`Horizonte Exclusivo`).
+- **Categoría principal:** Agencia de viajes ✔ (igual que los 6 competidores del pack).
+- **Nº de reseñas / nota:** **5,0 con 3 reseñas** (14-ago). ⚠️ El registro del 5-jul decía **4**: o se
+  cayó una (Google filtra sin avisar) o el dato de julio venía de una captura con una reseña sin
+  publicar. Comprobar con Victor.
+- **Atributos activos:** «Se identifica como de propietarias mujeres».
+- **Último post:** 5-jul-2026 (Japón a medida). **40 días sin publicar** — la cadencia semanal
+  acordada en julio no se está cumpliendo.
+- **Web declarada en la ficha:** `horizonteexclusivo.es` (sin `www`); la canónica del sitio es **con
+  `www`**. Incoherencia menor, conviene igualarla.
+- **Acceso de gestión:** Victor.
 
 ## 3. Qué vende y dónde
 - **Servicios principales:** viajes de lujo a medida (sin paquetes prefabricados), lunas de miel a medida,
@@ -44,11 +56,26 @@
 - **Map pack "Barcelona ciudad" (candidatos, a confirmar cuáles rankean de verdad):** Nuba · Premium Traveler
   Barcelona · Tarannà (Viajes de Lujo Tarannà) · PouTravel · Weissnor Travel · Ferrer & Saret. Todas en el
   centro de Barcelona, con décadas de trayectoria y muchas reseñas → proximidad + prominence a su favor.
-- **Map pack local Molins de Rei / Baix Llobregat (donde la proximidad juega A FAVOR de Horizonte):** Viajes
-  Omega, Halcón Viajes, Viajes El Corte Inglés (Molins), agencias de Sant Feliu / Sant Vicenç / Sant Just.
-- **Competidor 1 (pack real):** PENDIENTE confirmar en Google Maps desde ubicación de Barcelona.
-- **Competidor 2 (pack real):** PENDIENTE.
-- **Competidor 3 (pack real):** PENDIENTE.
+- **EL PACK REAL, leído en Maps el 14-ago-2026** para «agencia de viajes molins de rei» (este es el
+  orden que ve Google, no una suposición):
+
+  | # | Negocio | Nota | Reseñas | Dirección |
+  |---|---------|------|---------|-----------|
+  | 1 | **Viajes El Corte Inglés Molins de Rei** | 4,3 | 62 | Carrer Mercat, 2 |
+  | 2 | **Halcón Viajes** | 4,6 | 37 | Pg. de Pi i Margall, 22 |
+  | 3 | **deviatge** | 4,3 | 56 | Carrer Major, 81 |
+  | 4 | Viatges Llobregat | 4,7 | 37 | Rafael de Casanova, 73 |
+  | 5 | Setnia | 5,0 | 17 | Av. de València, 6 |
+  | 6 | Viajes Omega | 4,2 | 15 | Av. de València, 6 |
+  | **7** | **HORIZONTE EXCLUSIVO** | **5,0** | **3** | Carrer Major, 37 |
+
+- **Competidores 1-3 (los del pack):** El Corte Inglés · Halcón · Deviatge.
+- ⚠️ **Corrige una suposición del 14-ago por la mañana:** Deviatge no es «el que sale primero», es el
+  **tercero**; y la carrera no es contra una agencia sino contra **seis**. Su nota tampoco era 4,1/48:
+  es **4,3 con 56**.
+- 📌 **La referencia útil no es Deviatge, es Setnia:** 5,0 con **17 reseñas** y está el 5º. Marca el
+  umbral real de entrada — con ~20 reseñas se adelanta a los puestos 5-6; para el trío de cabeza hace
+  falta acercarse a 37, que es trabajo de un año, no de un trimestre.
 
 ## 6. Keywords objetivo
 - **3 principales:** "agencia de viajes de lujo Barcelona", "viajes de lujo a medida Barcelona",
@@ -59,12 +86,18 @@
   "vivir el mundo".
 
 ## 7. Activos y accesos
-- **Google Search Console:** PENDIENTE (habilita la auditoría 12).
+- **Google Search Console:** ✔ activo, propiedad de DOMINIO. Service account `vigia-seco@horizonte-seo`
+  (secret `GOOGLE_SA_JSON` en GitHub). Alimenta el informe semanal (`rank-weekly.yml`), el vigía de
+  indexación (`indexing-check.yml`), la radiografía de página (`gsc-pagina.yml`) y el análisis de
+  estacionalidad (`gsc-estacionalidad.yml`).
 - **Google Analytics:** GA4 cableado en el código, pendiente de pegar el ID real (ver `docs/SETUP-QUICKWINS.md`).
 - **CMS:** HTML estático (79+ páginas), sin framework, desplegado en Vercel. Control total del código y del
   schema (JSON-LD vía `build-schema.js`).
-- **Directorios ya dados de alta:** PENDIENTE (auditoría 15 · NAP/citaciones).
-- **Redes:** Instagram `@viajeshorizonteexclusivo` (o `@horizonteexclusivo`) — pendiente de crear (QW2).
+- **Directorios ya dados de alta:** **ninguno** (aud. 15, reconfirmado el 14-ago). Los seis donde sí
+  está Deviatge: Páginas Amarillas, QDQ, Guia33, infoisinfo, agenciasdeviajes.com.es, viajeespana.
+  Bing nos tiene con la dirección castellanizada; Apple Maps no conoce el negocio.
+- **Redes:** Instagram `@viajeshorizonteexclusivo` ✔ creado (126 seguidores, ER 8,7% — cinco veces el
+  de Deviatge, que tiene 624 seguidores y **2 publicaciones en todo 2026**).
 
 ## 8. Objetivo y restricciones
 - **Objetivo 90 días:** máxima visibilidad en el map pack local (Molins de Rei + Baix Llobregat) y presencia
@@ -95,3 +128,4 @@
 | 2026-07-12 | P1 · Enlaces internos a las 7 guías comerciales sin indexar | **Hecho y desplegado** (commit `3f8a713f`, live verificado). Enlace contextual en el cuerpo (no footer/menú), texto distinto por página para no crear un bloque plantillado, desde: `viaje-a-medida-vs-por-tu-cuenta`, `luna-de-miel-a-medida`, `errores-comunes-organizar-viaje`, `checklist-pre-viaje`, `itinerario-ritmo-realista`, `jet-lag-cambios-horarios` → hacia las 7 sin indexar (`cuanto-cuesta-viaje-a-medida`, `como-planifico-un-gran-viaje`, `antes-de-reservar-viaje-grande`, `que-reservar-primero-gran-viaje`, `viaje-a-medida-que-es`, `viaje-premium-que-es`, `viajes-pequenos-recuerdos-grandes`). De paso, `build-schema.js` sincronizó el JSON-LD desactualizado de `cuanto-cuesta-viaje-a-medida` y `molins-de-rei` con su title/meta actual. | **Pendientes de P1** (esperando decisión de Victor, no ejecutados): solicitud manual de indexación en GSC UI (9 países crawled-not-indexed + 3 unknown: escocia/singapur/sri-lanka) — requiere el UI, no hay API pública; fusión piloto pro-tips-alaska + pro-tips-dubai-abu-dhabi-maldivas dentro de su país (más invasivo, Victor lo dejó para después). P2 (podar/priorizar el resto del clúster pro-tips) sin empezar. |
 | 2026-07-12 | P1 · Sitemap reenviado a GSC + fusión piloto pro-tips-alaska/pro-tips-dubai-abu-dhabi-maldivas | **Hecho y desplegado** (commit `b7bc4cc4`, live verificado). Sitemap.xml resubmitido vía API oficial de Search Console (204 OK) para acelerar el rastreo de los 12 países bloqueados — **no existe API pública de "solicitar indexación" para páginas normales** (solo UI manual o Indexing API restringida a JobPosting/BroadcastEvent, que no se usó por ir contra los términos de Google). Fusión: contenido de las 2 pro-tips integrado como sección plegable `#consejos-viaje` en su página de país, redirect 301 (verificado 308 en vivo), `build-schema.js` ahora genera FAQPage también para páginas de destino con esa sección (total FAQPage se mantuvo en 59 — antes 2 en pro-tips, ahora 2 en los países), hub `/pro-tips/` y `inspect_sitemap.py` actualizados. **Confirmado visualmente por Victor** ("Está perfecto alaska") — patrón de fusión validado antes de escalarlo. | Pendiente decisión de Victor: iniciar P2 (elegir 10-15 pro-tips supervivientes por señal GSC + enlace editorial + país hermano indexado, `noindex,follow` al resto ~40). Home no toca (24 destinos destacados, ninguno de los 9 "crawled-not-indexed") — pendiente de confirmación de Victor antes de tocarla. |
 | 2026-07-12 | P2 · pro-tips podadas (15 supervivientes / 20 noindex) + Parte 3 · Autoridad (backlinks/citaciones/NAP/mapa de intención) | **P2 hecho y desplegado** (commit `63bf528b`, verificado en vivo): 15 supervivientes elegidas cruzando impresiones/clics GSC 3 meses + país hermano indexado (albania, maldivas, colombia, tanzania, vietnam, brasil, portugal, filipinas, belgica, canada, italia, peru, china, alemania, kenia-zanzibar); `noindex,follow` en las 20 restantes sin señal de demanda (islandia, suiza, madagascar, ecuador, namibia, escocia, hawai, jamaica, malta, marruecos, mauricio, turquia, argentina, bali, florida, malasia, seychelles, tailandia, singapur, sri-lanka — páginas pro-tips, no las de país). Sitemap y `inspect_sitemap.py` actualizados. **Intento de reforzar enlaces desde la home REVERTIDO**: descubierto que la home oculta (`display:none`) todo lo que no sean las 3 primeras tarjetas por región vía tabs JS — habría sido código muerto sin efecto real; se verificó que los 9 países "crawled-not-indexed" ya estaban bien enlazados desde su hub de región/tema correcto (ojo: mauricio y hawai viven en `/paraisos/`, no en `/africa/`/`/america/`). **Parte 3 · Autoridad** (workflow con búsqueda web real, sin browser/GSC UI): **0 backlinks reales de terceros y 0 citaciones NAP activas** en 16 directorios comprobados (solo mención sin href en Espai Empresa del Ayuntamiento) — autoridad de dominio confirmada como baja/naciente, coherente con la dificultad de indexación ya diagnosticada. Alerta: "Viatges Barba SA" registrado en la misma dirección (Carrer Major, 37) en 2 directorios — confirmar planta/puerta antes de más altas. Mapa de intención: 3 temas P1 con demanda real y cero solapamiento con Nuba/Tarannà/PouTravel (travel designer vs agencia, cómo elegir agencia de confianza, ChatGPT vs travel designer). | Pendiente Victor: los 12 clics manuales de "Solicitar indexación" en GSC UI (guía paso a paso dada, no ejecutable por Claude — sin browser ni API pública, y la Indexing API queda descartada por ir contra los términos de Google para contenido no-JobPosting/BroadcastEvent). Plan P1/P2/P3 completo de autoridad (altas de directorio + 8 artículos de blog) en la conversación del 12-jul — sin ejecutar, a la espera de que Victor decida por dónde seguir (¿textos de las fichas? ¿los 3 artículos P1?). |
+| 2026-08-14 | **Rollout completo: aud. 3, 17, 18, 19 y 20** (las 5 que faltaban) — entregado en `docs/SEO-LOCAL-AUDITORIAS-14AGO.md` | Hecho, recon EN VIVO en Google Maps con Playwright | 🔓 Método: **Maps sí es accesible desde el VPS** aceptando el consentimiento (lo bloqueado es la SERP) → las aud. 1-8 ya no dependen de capturas de Victor. Tablero corregido: el pack lo encabeza **El Corte Inglés (62)**, Deviatge es **3º con 4,3 y 56** y Horizonte es **7º con 3 reseñas** (no 4). Umbral de entrada = Setnia, 5º con 17. Aud. 3: sus negativas son TODAS de trato («la jefa es una maleducada», «nos dejaron tirados en Venecia», y una respuesta suya: «agradecemos que dejes de venir por nuestra oficina») y su ritmo es de solo 4-5 reseñas/año → el hueco se cierra en meses. Aud. 17: 121 páginas contra 33; su única ventaja son 101 fichas de producto con precio (terreno vetado por política); gap real = luna de miel por continente. Aud. 18: `sameAs` ya ata web↔ficha; falta igualar el nombre (`HORIZONTE EXCLUSIVO` en mayúsculas) y la web de la ficha (sin `www`). Aud. 19: **nadie del pack publica** — pero nosotros llevamos 40 días sin post. Aud. 20: informe mensual definido; **el KPI del trimestre es el nº de reseñas**, no una posición. |
