@@ -173,6 +173,45 @@ def query_total(token, start, end):
     return {"impr": int(filas[0]["impressions"]), "clicks": int(filas[0]["clicks"])}
 
 
+def query_semanas(token, end, semanas=4):
+    """Impresiones y clics de las últimas semanas, una a una.
+
+    Va aquí porque el TOTAL compara dos ventanas de 28 días y eso solo, sin la curva,
+    engaña: el 14-ago el informe dijo «−572 impresiones» y parecía un desplome cuando lo
+    que pasaba es que la ventana anterior contenía una semana pico (1.164 impr del 1 al 7
+    de julio). Con las semanas a la vista se distingue de un vistazo una caída de verdad
+    (bajan todas) de un salto de ventana (la última semana está bien).
+
+    Desglosar por FECHA sí suma el total real: la anonimización de Search Console es de las
+    consultas, no de los días."""
+    body = json.dumps({
+        "startDate": (end - timedelta(days=semanas * 7 - 1)).isoformat(),
+        "endDate": end.isoformat(),
+        "dimensions": ["date"],
+        "rowLimit": 500,
+        "dataState": "final",
+    }).encode()
+    req = urllib.request.Request(API, data=body)
+    req.add_header("Authorization", f"Bearer {token}")
+    req.add_header("Content-Type", "application/json")
+    with urllib.request.urlopen(req) as r:
+        por_dia = {row["keys"][0]: row for row in json.loads(r.read().decode()).get("rows", [])}
+    fuera = []
+    for s in range(semanas):
+        fin = end - timedelta(days=7 * s)
+        ini = fin - timedelta(days=6)
+        impr = clicks = 0
+        d = ini
+        while d <= fin:
+            row = por_dia.get(d.isoformat())
+            if row:
+                impr += int(row["impressions"])
+                clicks += int(row["clicks"])
+            d += timedelta(days=1)
+        fuera.append({"ini": ini, "impr": impr, "clicks": clicks})
+    return list(reversed(fuera))
+
+
 def fmt_pos(p):
     return f"{p:.1f}".replace(".", ",")
 
@@ -283,6 +322,12 @@ def main():
     lineas.append(
         f"TOTAL web: {tot['impr']} impresiones ({signo}{dif} vs periodo anterior) "
         f"· {fmt_clics(tot['clicks'])}"
+    )
+    semanas = query_semanas(token, end)
+    lineas.append(
+        "Semana a semana: " + " · ".join(
+            f"{s['ini'].strftime('%d/%m')} {s['impr']}" for s in semanas)
+        + f" impr  (clics: {' · '.join(str(s['clicks']) for s in semanas)})"
     )
 
     msg = "\n".join(lineas)
