@@ -67,6 +67,29 @@ def consultas_de(token, pagina, start, end):
                              "clicks": int(row["clicks"])} for row in data.get("rows", [])}
 
 
+def totales_de(token, pagina, start, end):
+    """Total REAL de la página, sin desglosar por consulta. Imprescindible: Search Console
+    anonimiza las consultas poco frecuentes, así que sumar el desglose da muy por debajo.
+    El 14-ago el desglose de /viajes-a-medida-barcelona/ veía 1 impresión en el periodo
+    anterior cuando el total real era otro — y de ahí salió un diagnóstico equivocado."""
+    body = json.dumps({
+        "startDate": start.isoformat(), "endDate": end.isoformat(),
+        "dimensions": [],
+        "dimensionFilterGroups": [{"filters": [
+            {"dimension": "page", "operator": "equals", "expression": BASE + pagina}]}],
+        "dataState": "final",
+    }).encode()
+    req = urllib.request.Request(API, data=body)
+    req.add_header("Authorization", f"Bearer {token}")
+    req.add_header("Content-Type", "application/json")
+    with urllib.request.urlopen(req) as r:
+        filas = json.loads(r.read().decode()).get("rows", [])
+    if not filas:
+        return {"impr": 0, "clicks": 0, "pos": 0.0}
+    f = filas[0]
+    return {"impr": int(f["impressions"]), "clicks": int(f["clicks"]), "pos": f["position"]}
+
+
 def resumen(d):
     if not d:
         return 0, 0, 0.0
@@ -96,11 +119,18 @@ def main():
     ahora = consultas_de(token, args.pagina, start, end)
     antes = consultas_de(token, args.pagina, prev_start, prev_end)
 
+    ta = totales_de(token, args.pagina, start, end)
+    tb = totales_de(token, args.pagina, prev_start, prev_end)
     ia, ca, pa = resumen(ahora)
     ib, cb, pb = resumen(antes)
     print(f"🔎 {args.pagina}")
-    print(f"   ahora  ({start:%d/%m}-{end:%d/%m}): {ia} impr · {ca} clics · pos media {fmt(pa)} · {len(ahora)} consultas")
-    print(f"   antes  ({prev_start:%d/%m}-{prev_end:%d/%m}): {ib} impr · {cb} clics · pos media {fmt(pb)} · {len(antes)} consultas")
+    print(f"   TOTAL REAL ahora ({start:%d/%m}-{end:%d/%m}): {ta['impr']} impr · {ta['clicks']} clics · pos {fmt(ta['pos'])}")
+    print(f"   TOTAL REAL antes ({prev_start:%d/%m}-{prev_end:%d/%m}): {tb['impr']} impr · {tb['clicks']} clics · pos {fmt(tb['pos'])}")
+    oculto_a = ta["impr"] - ia
+    oculto_b = tb["impr"] - ib
+    print(f"   (el desglose por consulta solo ve {ia} y {ib} impr: Search Console oculta "
+          f"{oculto_a} y {oculto_b} de consultas poco frecuentes)")
+    print(f"   consultas visibles: {len(ahora)} ahora · {len(antes)} antes")
     print()
 
     nuevas = [q for q in ahora if q not in antes]
