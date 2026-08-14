@@ -216,6 +216,69 @@ section {
     position: relative;
 }
 
+.faq-list {
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+    cursor: pointer;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.faq-question:hover {
+    color: var(--gold);
+}
+
+.faq-chevron {
+    width: 20px;
+    height: 20px;
+    stroke: var(--gold);
+    stroke-width: 2;
+    fill: none;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    margin-left: 16px;
+}
+
+.faq-item.open .faq-chevron {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.faq-answer p {
+    padding: 0 0 24px;
+    font-size: 0.92rem;
+    color: var(--text);
+    line-height: 1.8;
+    font-weight: 400;
+}
+
+.faq-answer p + p {
+    padding-top: 0;
+}
+
 @media (max-width: 768px) {
     section {
         padding: 80px 0;
@@ -261,6 +324,22 @@ section {
     },
     {
       "@type": "City",
+      "name": "Sant Vicenc dels Horts"
+    },
+    {
+      "@type": "City",
+      "name": "Palleja"
+    },
+    {
+      "@type": "City",
+      "name": "El Papiol"
+    },
+    {
+      "@type": "City",
+      "name": "Sant Just Desvern"
+    },
+    {
+      "@type": "City",
       "name": "Sant Joan Despi"
     },
     {
@@ -274,6 +353,22 @@ section {
     {
       "@type": "City",
       "name": "Sant Boi de Llobregat"
+    },
+    {
+      "@type": "City",
+      "name": "Cervello"
+    },
+    {
+      "@type": "City",
+      "name": "Corbera de Llobregat"
+    },
+    {
+      "@type": "City",
+      "name": "Vallirana"
+    },
+    {
+      "@type": "City",
+      "name": "Torrelles de Llobregat"
     },
     {
       "@type": "City",
@@ -298,6 +393,62 @@ section {
       "position": 2,
       "name": "Molins de Rei",
       "item": "https://www.horizonteexclusivo.es/molins-de-rei/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Dónde estáis exactamente y hay que pedir cita?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Estamos en Carrer Major, 37, 08750 Molins de Rei, en el centro del pueblo. Atendemos de lunes a viernes de 9:30 a 13:30, y por la tarde de 16:00 a 19:00 salvo los martes, que solo abrimos por la mañana. Mejor avisar antes: trabajamos con cita para poder dedicarle a cada viaje la conversación que necesita. Una llamada al 633 07 74 01 o un WhatsApp basta."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo organizar el viaje sin pasar por la oficina?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Hay clientes a los que les hemos diseñado el viaje entero por teléfono, WhatsApp y correo, sin que pisaran Molins de Rei. El proceso es el mismo y el resultado también. Lo único que se pierde es mirar juntos el mapa y las fotos en la misma mesa, que a algunas personas les da la tranquilidad de saber con quién están hablando."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Solo trabajáis con gente de Molins de Rei?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. La oficina está en Molins de Rei, pero diseñamos viajes para clientes de todo el Baix Llobregat —Sant Feliu, Sant Vicenç dels Horts, Pallejà, El Papiol, Sant Just, Sant Joan Despí, Esplugues, Cornellà, Sant Boi, Cervelló, Corbera, Vallirana, Torrelles— y del área metropolitana de Barcelona."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Organizáis también las vacaciones de una familia, no solo viajes de lujo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí, y es buena parte de lo que hacemos: el viaje grande que una familia se plantea una vez, las vacaciones de verano con los niños, el aniversario que se celebra lejos. «Lujo» aquí no significa ostentación, significa que está pensado hasta el último detalle y que no tienes que ocuparte de nada."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué pasa en la primera conversación?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Preguntamos mucho más de lo que contamos. Cuántos días tienes, con quién viajas, qué ritmo aguantas, qué te apetece de verdad y qué no piensas hacer. Sin compromiso y sin prisa. Con eso se construye la propuesta. Si no encaja, se cambia; para eso está hecha a medida."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Por qué acudir a una agencia si puedo reservarlo yo por internet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Porque los errores de un viaje grande no se ven al reservar, se ven allí: dormir en la zona equivocada, encadenar tres traslados absurdos, ir al sitio bueno el día que cierra. Eso es lo que se compra. Lo comparamos con calma en viaje a medida o por tu cuenta."
+      }
     }
   ]
 }
@@ -353,14 +504,14 @@ section {
             <div class="about-content reveal">
                 <p><strong>Horizonte Exclusivo</strong> es una agencia de viajes de lujo con sede en <strong>Molins de Rei</strong>, en la comarca del <strong>Baix Llobregat</strong>, Barcelona. Desde aquí diseñamos <a href="/viajes-a-medida-barcelona/" style="color: var(--gold);">viajes a medida en Barcelona</a> para viajeros exigentes que buscan experiencias únicas en cualquier rincón del mundo.</p>
 
-                <p>Nuestra ubicación en Molins de Rei nos conecta con toda el área metropolitana de Barcelona, ofreciendo un trato cercano y personalizado a quienes valoran tener a su agencia de viajes cerca, con la confianza de poder hablar cara a cara.</p>
+                <p>Nuestra ubicación en Molins de Rei nos conecta con toda el área metropolitana de Barcelona, ofreciendo un trato cercano y personalizado a quienes valoran tener a su agencia de viajes cerca, con la confianza de poder hablar cara a cara. Si lo que buscas es el concepto y no el pueblo, te lo contamos entero en <a href="/viajes-exclusivos-a-medida/" style="color: var(--gold);">viajes exclusivos a medida</a>.</p>
 
                 <div class="about-highlight">
                     <p>Cada viaje que creamos es una obra única, pensada exclusivamente para ti.</p>
                     <p>Sin catálogos, sin plantillas, sin experiencias copiadas.</p>
                 </div>
 
-                <h3 class="about-subtitle">Nuestros servicios desde Molins de Rei</h3>
+                <h2 class="about-subtitle">Nuestros servicios desde Molins de Rei</h2>
                 <p>Desde nuestra sede en Carrer Major 37, Molins de Rei 08750, diseñamos experiencias de viaje que van mucho más allá de reservar vuelos y hoteles. Cada propuesta se construye desde cero, escuchando tus deseos y anticipando cada detalle.</p>
 
                 <div class="services-grid">
@@ -382,13 +533,93 @@ section {
                     </div>
                 </div>
 
-                <h3 class="about-subtitle">Por qué elegirnos en el Baix Llobregat</h3>
+                <h2 class="about-subtitle">Cómo trabajamos desde la oficina de Carrer Major</h2>
+                <p>La primera conversación no es una venta: es una entrevista al revés. Nos sentamos contigo en la oficina de Carrer Major, en pleno centro de Molins de Rei, y hacemos preguntas hasta entender qué viaje quieres de verdad — cuántos días, con quién, qué ritmo aguantas, qué te apetece y qué no piensas hacer ni loco. De ahí sale la propuesta, y no antes.</p>
+
+                <p>Conviene <strong>avisar antes de venir</strong>: trabajamos con cita para poder dedicarte la conversación entera sin interrupciones. Se pide por teléfono, por WhatsApp o por correo, y si te va mejor hacerlo todo a distancia también se puede — hay clientes a los que hemos diseñado el viaje sin que pisaran la oficina. La diferencia de tenerla cerca es poder mirar juntos el mapa y las fotos del hotel en la misma mesa.</p>
+
+                <h2 class="about-subtitle">Vacaciones y viajes para familias de Molins de Rei y alrededores</h2>
+                <p>Buena parte de lo que sale de esta oficina son las vacaciones de familias del pueblo y de la comarca: el viaje grande que se hace una vez, el verano con los niños, el aniversario que se celebra lejos. No trabajamos con paquetes de catálogo, así que unas vacaciones diseñadas aquí se parecen a quien las va a vivir y no al folleto de una mayorista.</p>
+
+                <p>Si estás comparando entre montártelo por tu cuenta o que te lo diseñen, lo explicamos sin adornos en <a href="/viaje-a-medida-vs-por-tu-cuenta/" style="color: var(--gold);">viaje a medida o por tu cuenta</a>, y en <a href="/cuanto-cuesta-viaje-a-medida/" style="color: var(--gold);">de qué depende el precio de un viaje a medida</a> contamos qué mueve de verdad el coste de un viaje.</p>
+
+                <h2 class="about-subtitle">Por qué elegirnos en el Baix Llobregat</h2>
                 <p>En Molins de Rei y en todo el Baix Llobregat hay quien valora tener cerca a alguien de confianza que se ocupe de todo. Horizonte Exclusivo ofrece exactamente eso: un servicio cercano, con criterio y exigencia máxima, donde cada viaje se trata como algo personal.</p>
 
-                <p>Trabajamos con viajeros de Molins de Rei, Sant Feliu de Llobregat, Sant Joan Despí, Esplugues, Cornellà, Sant Boi y toda la comarca del Baix Llobregat, así como del resto del área metropolitana de Barcelona.</p>
+                <p>Trabajamos con viajeros de <strong>Molins de Rei</strong> y de los municipios de alrededor: Sant Feliu de Llobregat, Sant Vicenç dels Horts, Pallejà, El Papiol, Sant Just Desvern, Sant Joan Despí, Esplugues, Cornellà, Sant Boi, Cervelló, Corbera, Vallirana, Torrelles y el resto de la comarca. También atendemos a clientes del área metropolitana que prefieren salir del centro para hablar con calma; si vienes desde la ciudad, la puerta de entrada es <a href="/agencia-viajes-lujo-barcelona/" style="color: var(--gold);">nuestra página de agencia de viajes de lujo en Barcelona</a>, y la comarca entera la contamos en <a href="/baix-llobregat/" style="color: var(--gold);">Baix Llobregat</a>.</p>
 
                 <div class="about-closing">
                     <p>Tu agencia de viajes de lujo en Molins de Rei.<br><strong>Más que viajar, vivir el mundo.</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ LOCAL -->
+    <section class="about-section" style="padding-top: 0;">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Preguntas frecuentes de quien nos busca en Molins de Rei</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="faq-list reveal">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        ¿Dónde estáis exactamente y hay que pedir cita?
+                        <svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Estamos en Carrer Major, 37, 08750 Molins de Rei, en el centro del pueblo. Atendemos de lunes a viernes de 9:30 a 13:30, y por la tarde de 16:00 a 19:00 salvo los martes, que solo abrimos por la mañana.</p>
+                        <p>Mejor avisar antes: trabajamos con cita para poder dedicarle a cada viaje la conversación que necesita. Una llamada al 633 07 74 01 o un WhatsApp basta.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        ¿Puedo organizar el viaje sin pasar por la oficina?
+                        <svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sí. Hay clientes a los que les hemos diseñado el viaje entero por teléfono, WhatsApp y correo, sin que pisaran Molins de Rei. El proceso es el mismo y el resultado también.</p>
+                        <p>Lo único que se pierde es mirar juntos el mapa y las fotos en la misma mesa, que a algunas personas les da la tranquilidad de saber con quién están hablando.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        ¿Solo trabajáis con gente de Molins de Rei?
+                        <svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No. La oficina está en Molins de Rei, pero diseñamos viajes para clientes de todo el Baix Llobregat —Sant Feliu, Sant Vicenç dels Horts, Pallejà, El Papiol, Sant Just, Sant Joan Despí, Esplugues, Cornellà, Sant Boi, Cervelló, Corbera, Vallirana, Torrelles— y del área metropolitana de Barcelona.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        ¿Organizáis también las vacaciones de una familia, no solo viajes de lujo?
+                        <svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sí, y es buena parte de lo que hacemos: el viaje grande que una familia se plantea una vez, las vacaciones de verano con los niños, el aniversario que se celebra lejos. «Lujo» aquí no significa ostentación, significa que está pensado hasta el último detalle y que no tienes que ocuparte de nada.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        ¿Qué pasa en la primera conversación?
+                        <svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Preguntamos mucho más de lo que contamos. Cuántos días tienes, con quién viajas, qué ritmo aguantas, qué te apetece de verdad y qué no piensas hacer. Sin compromiso y sin prisa.</p>
+                        <p>Con eso se construye la propuesta. Si no encaja, se cambia; para eso está hecha a medida.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        ¿Por qué acudir a una agencia si puedo reservarlo yo por internet?
+                        <svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Porque los errores de un viaje grande no se ven al reservar, se ven allí: dormir en la zona equivocada, encadenar tres traslados absurdos, ir al sitio bueno el día que cierra. Eso es lo que se compra.</p>
+                        <p>Lo comparamos con calma en <a href="/viaje-a-medida-vs-por-tu-cuenta/">viaje a medida o por tu cuenta</a>.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -467,6 +698,30 @@ section {
     </footer>
 
     <script src="/scripts.js"></script>
+
+    <script>
+        // FAQ accordion
+        (function() {
+            const items = document.querySelectorAll('.faq-item');
+            items.forEach(item => {
+                const btn = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+                btn.addEventListener('click', function() {
+                    const isOpen = item.classList.contains('open');
+                    items.forEach(other => {
+                        other.classList.remove('open');
+                        other.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                        other.querySelector('.faq-answer').style.maxHeight = null;
+                    });
+                    if (!isOpen) {
+                        item.classList.add('open');
+                        btn.setAttribute('aria-expanded', 'true');
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                    }
+                });
+            });
+        })();
+    </script>
 
     <script>
         // Auto-collapse navbar when items don't fit
