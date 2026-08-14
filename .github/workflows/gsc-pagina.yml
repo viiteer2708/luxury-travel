@@ -1,0 +1,40 @@
+name: Radiografía de una página (Search Console)
+
+# A mano, cuando una página se mueve y hay que saber por qué. No tiene cron:
+# se lanza desde la pestaña Actions indicando la ruta.
+#
+# La «posición media» de una página es la media de TODAS las consultas por las que
+# aparece, así que puede desplomarse sin que la página haya empeorado en nada. Este
+# informe separa las consultas nuevas, las perdidas y las que siguen, que es la única
+# forma de distinguir una caída real de una dilución.
+
+on:
+  workflow_dispatch:
+    inputs:
+      pagina:
+        description: "Ruta con barras, p. ej. /viajes-a-medida-barcelona/"
+        required: true
+        default: "/viajes-a-medida-barcelona/"
+
+jobs:
+  radiografia:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install PyJWT
+        run: python -m pip install --quiet "PyJWT>=2.7,<3" cryptography
+
+      - name: Radiografía
+        env:
+          GOOGLE_SA_JSON: ${{ secrets.GOOGLE_SA_JSON }}
+        run: |
+          if [ -z "$GOOGLE_SA_JSON" ]; then
+            echo "::error::GOOGLE_SA_JSON secret no configurado."
+            exit 1
+          fi
+          python scripts_seo/diagnostico_pagina.py --pagina "${{ inputs.pagina }}"
