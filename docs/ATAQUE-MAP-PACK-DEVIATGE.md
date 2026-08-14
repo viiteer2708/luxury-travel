@@ -161,21 +161,33 @@ Sábado y domingo: cerrado
    Deviatge repartido por los directorios y que a nosotros nos toca no cometer.
 3. La web siempre **con `www`**: es la canónica del sitio.
 
-### Las seis, por orden de valor
+### 🔴 Corregido el 14-ago (noche): son CUATRO, no seis
 
-| # | Directorio | Cómo se hace | Nota |
-|---|---|---|---|
-| 1 | **Páginas Amarillas** (paginasamarillas.es) | Buscar «dar de alta mi empresa» en el pie | El de más autoridad de los seis |
-| 2 | **QDQ** (qdq.com) | Alta gratuita de empresa | Suele pedir verificación por teléfono |
-| 3 | **infoisinfo** (infoisinfo.es) | «Añadir empresa» | El que ya salía en el listado de Molins |
-| 4 | **Guia33** (guia33.com) | Alta por categoría + población | Local, muy indexado en Molins |
-| 5 | **agenciasdeviajes.com.es** | Formulario de alta | Vertical del sector |
-| 6 | **viajeespana** | Formulario de alta | El más flojo; el último |
+Victor se topó con que Páginas Amarillas parecía de pago. Comprobado en vivo, esto es lo que hay:
 
-**Además, dos tier-1 que valen más que los seis juntos y siguen pendientes desde el 6-ago:**
-- **Bing Places** — reclamar la ficha. Ahora mismo Bing nos tiene la dirección castellanizada
-  («Calle Mayor 37», cortesía de TomTom): reclamarla la corrige.
-- **Apple Business Connect** — Apple Maps **no conoce el negocio**. Alta desde cero.
+| Sitio | ¿Gratis? | Dónde se hace |
+|---|---|---|
+| **Páginas Amarillas** | **Sí** | `areanegocios.beedigital.es/auth/new_company` — el enlace «Incluye tu negocio gratis» de la cabecera |
+| **QDQ** | **Sí** | `qdq.com` → «Incluye tu negocio gratis» / «Registra gratis tu empresa» |
+| **Bing Places** | **Sí** | `bingplaces.com` — lo dice en su portada: *«de forma GRATUITA»* |
+| **Apple Business Connect** | **Sí** | `businessconnect.apple.com` (hace falta un Apple ID) |
+| Guia33 | Sin alta localizable | No expone formulario público; autoridad baja |
+| infoisinfo | Sin alta localizable | Igual |
+| agenciasdeviajes.com.es · viajeespana | Sin comprobar | Verticales flojos |
+
+🚨 **La trampa en la que has caído, y es fácil:** en Páginas Amarillas hay **dos** enlaces con la
+palabra «gratis». El de **«Herramientas gratis»** lleva a un *diagnóstico de presencia digital* de
+Beedigital que pide autorización para «contactarte comercialmente por email, teléfono y WhatsApp»:
+eso no es un alta, es un formulario de captación para venderte marketing. El alta de verdad es el
+otro, **«Incluye tu negocio gratis»**, que va a `areanegocios.beedigital.es/auth/new_company`.
+
+**Decisión: haz las cuatro gratuitas y olvida el resto.** El objetivo de una citación es coherencia
+de entidad, no tráfico — y eso se consigue igual con cuatro fuentes buenas que con ocho flojas.
+**Si un directorio pide dinero, no se paga**, ni por este ni por ninguno: no compra posiciones.
+
+Y las dos que más valen de las cuatro son las que menos suenan: **Bing Places** (ahora mismo Bing
+tiene la dirección castellanizada, «Calle Mayor 37», cortesía de TomTom — reclamar la ficha la
+corrige) y **Apple Business Connect** (Apple Maps ni conoce el negocio).
 
 ⚠️ **Antes de dar de alta nada, comprobar esto:** en dos directorios aparece **«Viatges Barba SA»
 registrada en Carrer Major, 37** (detectado el 12-jul). Si es un rastro de la empresa anterior en
