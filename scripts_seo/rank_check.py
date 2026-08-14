@@ -152,6 +152,27 @@ def query_pages(token, start, end, limit=1000):
     return fuera
 
 
+def query_total(token, start, end):
+    """Total del sitio, SIN dimensiones. Hace falta pedirlo aparte porque los totales por
+    dimensión no cuadran: Search Console anonimiza las consultas poco frecuentes, así que
+    sumar por consulta da menos clics de los reales (el 14-ago: 4 sumando consultas cuando
+    solo /molins-de-rei/ ya tenía 5)."""
+    body = json.dumps({
+        "startDate": start.isoformat(),
+        "endDate": end.isoformat(),
+        "dimensions": [],
+        "dataState": "final",
+    }).encode()
+    req = urllib.request.Request(API, data=body)
+    req.add_header("Authorization", f"Bearer {token}")
+    req.add_header("Content-Type", "application/json")
+    with urllib.request.urlopen(req) as r:
+        filas = json.loads(r.read().decode()).get("rows", [])
+    if not filas:
+        return {"impr": 0, "clicks": 0}
+    return {"impr": int(filas[0]["impressions"]), "clicks": int(filas[0]["clicks"])}
+
+
 def fmt_pos(p):
     return f"{p:.1f}".replace(".", ",")
 
@@ -241,14 +262,14 @@ def main():
             f"{d['impr']} impr · {fmt_clics(d['clicks'])} · {ruta}{etiqueta}"
         )
 
-    total_impr = sum(d["impr"] for d in now_rows.values())
-    total_clicks = sum(d["clicks"] for d in now_rows.values())
-    prev_impr = sum(d["impr"] for d in prev_rows.values())
-    dif = total_impr - prev_impr
+    tot = query_total(token, start, end)
+    tot_prev = query_total(token, prev_start, prev_end)
+    dif = tot["impr"] - tot_prev["impr"]
     signo = "+" if dif >= 0 else ""
+    lineas.append("")
     lineas.append(
-        f"TOTAL web: {total_impr} impresiones ({signo}{dif} vs periodo anterior) "
-        f"· {fmt_clics(total_clicks)}"
+        f"TOTAL web: {tot['impr']} impresiones ({signo}{dif} vs periodo anterior) "
+        f"· {fmt_clics(tot['clicks'])}"
     )
 
     msg = "\n".join(lineas)
