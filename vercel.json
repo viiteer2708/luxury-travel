@@ -1,6 +1,26 @@
 {
   "redirects": [
     {
+      "source": "/pro-tips-ecuador/",
+      "destination": "https://www.horizonteexclusivo.es/ecuador/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-hawai/",
+      "destination": "https://www.horizonteexclusivo.es/hawai/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-mauricio/",
+      "destination": "https://www.horizonteexclusivo.es/mauricio/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-suiza/",
+      "destination": "https://www.horizonteexclusivo.es/suiza/#consejos-viaje",
+      "permanent": true
+    },
+    {
       "source": "/viaje-a-medida-que-es/",
       "destination": "https://www.horizonteexclusivo.es/viajes-exclusivos-a-medida/",
       "permanent": true
