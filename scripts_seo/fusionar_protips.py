@@ -119,7 +119,7 @@ CSS_TIPS = """
 }
 
 #consejos-viaje[open] > summary::before {
-    content: '\\2212 ';
+    content: '\\2212\\00a0';  /* el espacio suelto tras un escape hex se lo come el propio escape */
 }
 
 @media (max-width: 768px) {
