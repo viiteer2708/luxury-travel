@@ -144,6 +144,11 @@ function generate(slug, html) {
   const cu = attrVal(html, /<link\s+rel="canonical"\s+href="([^"]*)"/i) || (B.url + '/' + slug + (slug ? '/' : ''));
   const ogimg = attrVal(html, /property="og:image"\s+content="([^"]*)"/i) || B.image;
   const lm = LASTMOD[cu] || '2026-04-13';
+  // dateModified sí se mueve con el lastmod, pero datePublished NO: es la fecha en que se
+  // publicó el articulo y no cambia porque hoy le toquemos una coma. Si el bloque schema-auto
+  // anterior ya traia una, se conserva. (El 14-ago-2026 refrescar el lastmod del sitemap le
+  // puso «publicado hoy» a 22 articulos de abril: una señal falsa que Google no perdona.)
+  const dp = (html.match(/"datePublished":\s*"([^"]+)"/) || [])[1] || lm;
   const out = [];
   const p = slug;
 
@@ -229,13 +234,13 @@ function generate(slug, html) {
   }
   else if (p.indexOf('pro-tips-') === 0) {
     const ps = p.replace('pro-tips-', ''), pn = D[ps] || ps;
-    out.push({ '@context': 'https://schema.org', '@type': 'Article', 'headline': headline(pt), 'description': pd, 'url': cu, 'image': { '@type': 'ImageObject', 'url': ogimg, 'width': 1200, 'height': 630 }, 'datePublished': lm, 'dateModified': lm, 'author': { '@type': 'Person', '@id': B.url + '/#founder', 'name': B.founder }, 'publisher': { '@type': 'Organization', '@id': B.url + '/#organization', 'name': B.name, 'logo': { '@type': 'ImageObject', 'url': B.logo } }, 'mainEntityOfPage': { '@type': 'WebPage', '@id': cu } });
+    out.push({ '@context': 'https://schema.org', '@type': 'Article', 'headline': headline(pt), 'description': pd, 'url': cu, 'image': { '@type': 'ImageObject', 'url': ogimg, 'width': 1200, 'height': 630 }, 'datePublished': dp, 'dateModified': lm, 'author': { '@type': 'Person', '@id': B.url + '/#founder', 'name': B.founder }, 'publisher': { '@type': 'Organization', '@id': B.url + '/#organization', 'name': B.name, 'logo': { '@type': 'ImageObject', 'url': B.logo } }, 'mainEntityOfPage': { '@type': 'WebPage', '@id': cu } });
     const faq = buildFaq(html, pn);
     if (faq) out.push(faq);
     out.push(bc([{ name: 'Inicio', url: B.url + '/' }, { name: 'Destinos', url: B.url + '/destinos/' }, { name: pn, url: B.url + '/' + ps + '/' }, { name: 'Travel Hacks', url: cu }]));
   }
   else if (BLOG_GUIDES.includes(p)) {
-    out.push({ '@context': 'https://schema.org', '@type': 'Article', 'headline': headline(pt), 'description': pd, 'url': cu, 'image': { '@type': 'ImageObject', 'url': ogimg, 'width': 1200, 'height': 630 }, 'datePublished': lm, 'dateModified': lm, 'author': { '@type': 'Person', '@id': B.url + '/#founder', 'name': B.founder }, 'publisher': { '@type': 'Organization', '@id': B.url + '/#organization', 'name': B.name, 'logo': { '@type': 'ImageObject', 'url': B.logo } }, 'mainEntityOfPage': { '@type': 'WebPage', '@id': cu } });
+    out.push({ '@context': 'https://schema.org', '@type': 'Article', 'headline': headline(pt), 'description': pd, 'url': cu, 'image': { '@type': 'ImageObject', 'url': ogimg, 'width': 1200, 'height': 630 }, 'datePublished': dp, 'dateModified': lm, 'author': { '@type': 'Person', '@id': B.url + '/#founder', 'name': B.founder }, 'publisher': { '@type': 'Organization', '@id': B.url + '/#organization', 'name': B.name, 'logo': { '@type': 'ImageObject', 'url': B.logo } }, 'mainEntityOfPage': { '@type': 'WebPage', '@id': cu } });
     out.push(bc([{ name: 'Inicio', url: B.url + '/' }, { name: 'Blog', url: B.url + '/blog/' }, { name: headline(pt), url: cu }]));
   }
   else if (p === 'molins-de-rei') {
