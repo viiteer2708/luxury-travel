@@ -265,9 +265,14 @@ def main():
             lineas.append(f"  —  sin impresiones · {ruta}{etiqueta}")
             continue
         prev = prev_pages.get(ruta)
+        # Las impresiones van con su valor anterior a la vista: una página que amplía
+        # cobertura sale «bajando» de posición media aunque esté yendo a mejor, y sin este
+        # contexto el informe da un susto cada semana (caso /viajes-a-medida-barcelona/,
+        # 14-ago: 17→51 impresiones leídas como un desplome de 26 puestos).
+        impr = f"{prev['impr']}→{d['impr']} impr" if prev else f"{d['impr']} impr"
         lineas.append(
             f"  {fmt_pos(d['pos'])} {arrow(d['pos'], prev['pos'] if prev else None, prev['impr'] if prev else None)} · "
-            f"{d['impr']} impr · {fmt_clics(d['clicks'])} · {ruta}{etiqueta}"
+            f"{impr} · {fmt_clics(d['clicks'])} · {ruta}{etiqueta}"
         )
 
     tot = query_total(token, start, end)
