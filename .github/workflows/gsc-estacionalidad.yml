@@ -1,0 +1,42 @@
+name: ¿Es agosto o somos nosotros? (Search Console)
+
+# A mano, cuando el informe semanal marca una caída y hay que decidir si preocuparse.
+# No tiene cron: mirar esto cada semana llevaría a tocar la web por ruido estacional,
+# que es justo lo contrario de lo que hay que hacer mientras se espera el dato.
+
+on:
+  workflow_dispatch:
+    inputs:
+      pagina:
+        description: "Página a examinar a fondo, p. ej. /molins-de-rei/"
+        required: true
+        default: "/molins-de-rei/"
+      semanas:
+        description: "Semanas de historial en la curva"
+        required: false
+        default: "16"
+
+jobs:
+  estacionalidad:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install PyJWT
+        run: python -m pip install --quiet "PyJWT>=2.7,<3" cryptography
+
+      - name: Estacionalidad
+        env:
+          GOOGLE_SA_JSON: ${{ secrets.GOOGLE_SA_JSON }}
+        run: |
+          if [ -z "$GOOGLE_SA_JSON" ]; then
+            echo "::error::GOOGLE_SA_JSON secret no configurado."
+            exit 1
+          fi
+          python scripts_seo/estacionalidad.py \
+            --pagina "${{ inputs.pagina }}" \
+            --semanas "${{ inputs.semanas }}"
