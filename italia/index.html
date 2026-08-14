@@ -457,7 +457,97 @@ section {
         grid-template-columns: 1fr;
     }
 }
-    </style>
+    
+.tips-section {
+    padding: 80px 0;
+}
+
+.tips-section.alt-bg {
+    background: var(--dark-soft); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.tips-section-header {
+    margin-bottom: 40px;
+}
+
+.tips-section-title {
+    font-size: clamp(1.5rem, 3vw, 2rem); color: var(--white); line-height: 1.2;
+}
+
+.tips-section-subtitle {
+    font-size: 0.9rem; color: var(--gold-light); font-weight: 300; margin-top: 4px;
+}
+
+.tip-item {
+    display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px; font-size: 0.95rem; line-height: 1.7; color: var(--text);
+}
+
+.tip-item:last-child {
+    margin-bottom: 0;
+}
+
+.tip-icon {
+    flex-shrink: 0; font-size: 1.1rem; margin-top: 2px;
+}
+
+.tip-item strong {
+    color: var(--white);
+}
+
+.tips-list {
+    max-width: 780px;
+}
+
+.top5-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 32px; margin-bottom: 40px;
+}
+
+.top5-card {
+    background: var(--dark-card); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius); padding: 24px; display: flex; align-items: flex-start; gap: 14px; transition: var(--transition);
+}
+
+.top5-card:hover {
+    border-color: rgba(201,169,110,0.2); transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.3);
+}
+
+.top5-card .tip-icon {
+    font-size: 1.3rem;
+}
+
+.top5-card p {
+    font-size: 0.9rem; line-height: 1.7; color: var(--text);
+}
+
+.top5-card strong {
+    color: var(--white);
+}
+
+#consejos-viaje > summary {
+    cursor: pointer; text-align: center; color: var(--gold); font-family: 'Inter', sans-serif; font-size: 0.95rem; letter-spacing: 0.5px; padding: 8px 0 48px; font-weight: 500; list-style: none;
+}
+
+#consejos-viaje > summary::-webkit-details-marker {
+    display: none;
+}
+
+#consejos-viaje > summary::before {
+    content: '+ '; color: var(--gold);
+}
+
+#consejos-viaje[open] > summary::before {
+    content: '\2212 ';
+}
+
+@media (max-width: 768px) {
+    .tips-section {
+        padding: 48px 0;
+    }
+
+    .top5-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
 <!-- schema-auto:start (generado, no editar a mano) -->
 <script type="application/ld+json">
 {
@@ -517,6 +607,70 @@ section {
       "position": 4,
       "name": "Italia",
       "item": "https://www.horizonteexclusivo.es/italia/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué necesito saber antes de viajar a Italia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DNI o pasaporte: ciudadanos UE entran con DNI. Revisa validez mínima según tu nacionalidad. Seguro: la Tarjeta Sanitaria Europea cubre urgencias, pero un seguro de viaje cubre cancelaciones y extras. Entradas a museos: Vaticano, Uffizi, Coliseo, Galería Borghese requieren reserva previa obligatoria. Copia digital: DNI + seguro + reservas + entradas en Drive/Correo y copia offline en el móvil."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo funcionan el dinero y los pagos en Italia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Euro (€): tarjetas contactless aceptadas en la mayoría de sitios. Pequeños negocios y mercados pueden preferir efectivo. Coperto: muchos restaurantes cobran \"coperto\" (cubierto) de 1-3€ por persona. Es legal y habitual, no una estafa. Propinas: no obligatorias pero se agradece redondear o dejar 5-10% en restaurantes de servicio de mesa. Efectivo: lleva algo para heladerías artesanales, mercados callejeros y pequeñas iglesias con caja de donaciones."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo moverse por Italia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Trenes: Trenitalia y Italo conectan las grandes ciudades a alta velocidad. Reserva con antelación para mejores tarifas. Ciudades: camina todo lo posible. Roma, Florencia y Venecia se disfrutan a pie (Venecia no tiene coches). ZTL: las Zonas de Tráfico Limitado en centros históricos multan automáticamente. No entres con coche sin permiso. Vaporetto en Venecia: compra pase de 24/48/72h si vas a usarlo varias veces. El trayecto 1 (Gran Canal) es un tour en sí."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Es seguro viajar a Italia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "País seguro: Italia es muy segura para turistas. Precaución habitual con carteristas en zonas muy turísticas. Roma/Milán: cuidado con bolsos y mochilas en metro, Termini y zonas concurridas. Lleva el bolso cruzado delante. Emergencias: 112 (número único europeo) o 113 (policía), 118 (ambulancia). Restaurantes \"trampa\": evita los que tienen fotos del menú en la puerta cerca de monumentos. Aléjate 2 calles para comer bien."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué clima tiene Italia y qué precauciones de salud tomar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Verano (junio-agosto): calor intenso, especialmente en Roma, Florencia y el sur. Hidratación constante y sombrero. Primavera/otoño: la mejor época. Temperaturas suaves, menos turistas y luz perfecta para fotografía. Agosto: muchos italianos están de vacaciones. Algunos restaurantes y tiendas locales cierran (especialmente en ciudades). Farmacias: excelentes y con personal que habla inglés. Busca la cruz verde iluminada — abiertas por turnos 24h."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuáles son las costumbres y normas culturales en Italia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cappuccino: solo por la mañana. Después de las 11:00, los italianos toman espresso. Pedirlo después de comer delata al turista. Vestimenta en iglesias: hombros y rodillas cubiertos para entrar en iglesias y el Vaticano. Lleva un pañuelo ligero. Cena: los italianos cenan a partir de las 20:00-20:30. Llegar a las 18:00 es demasiado temprano. Aperitivo: la tradición del aperitivo (Spritz, Negroni) entre 18:00-20:00 es sagrada. Muchos bares incluyen buffet con la copa."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué comer y qué experiencias hacer en Italia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pizza: en Nápoles (la cuna), pide margherita o marinara. En Roma, prueba la pizza al taglio (al corte). Pasta: cada región tiene su pasta. Carbonara y cacio e pepe en Roma, ragù en Bolonia, pesto en Liguria. Gelato: busca \"produzione propria\" (elaboración propia) y colores naturales. Si el pistacho es verde fosforito, huye. Vino: pide vino de la región donde estés. Chianti en Toscana, Barolo en Piamonte, Nero d'Avola en Sicilia."
+      }
     }
   ]
 }
@@ -767,9 +921,282 @@ section {
             <span class="section-label">Travel Hacks</span>
             <h2>Consejos de experto para <em style="color: var(--gold);">Italia</em></h2>
             <p>Todo lo que necesitas saber antes, durante y después de tu viaje: checklist, dinero, transporte, seguridad, cultura, comida y hacks de experto.</p>
-            <a href="/pro-tips-italia/" class="btn btn-primary">Ver Travel Hacks &#10230;</a>
         </div>
     </section>
+
+    <!-- CONSEJOS DE VIAJE (fusionado desde /pro-tips-italia/) -->
+    <details id="consejos-viaje">
+        <summary>Ver todos los consejos de viaje a Italia</summary>
+
+    <div class="tips-section reveal">
+            <div class="container">
+                <div class="tips-section-header">
+                    <h2 class="tips-section-title">Antes de viajar</h2>
+                        <p class="tips-section-subtitle">Checklist imprescindible</p>
+                </div>
+                <div class="tips-list">
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>DNI o pasaporte:</strong> ciudadanos UE entran con DNI. Revisa validez mínima según tu nacionalidad.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Seguro:</strong> la Tarjeta Sanitaria Europea cubre urgencias, pero un seguro de viaje cubre cancelaciones y extras.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Entradas a museos:</strong> Vaticano, Uffizi, Coliseo, Galería Borghese requieren reserva previa obligatoria.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">💡</span>
+                        <p><strong>Copia digital:</strong> DNI + seguro + reservas + entradas en Drive/Correo y copia offline en el móvil.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="tips-section alt-bg reveal">
+            <div class="container">
+                <div class="tips-section-header">
+                    <h2 class="tips-section-title">Dinero y pagos</h2>
+                        <p class="tips-section-subtitle">Sin sorpresas en la cuenta</p>
+                </div>
+                <div class="tips-list">
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Euro (€):</strong> tarjetas contactless aceptadas en la mayoría de sitios. Pequeños negocios y mercados pueden preferir efectivo.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">⚠️</span>
+                        <p><strong>Coperto:</strong> muchos restaurantes cobran "coperto" (cubierto) de 1-3€ por persona. Es legal y habitual, no una estafa.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Propinas:</strong> no obligatorias pero se agradece redondear o dejar 5-10% en restaurantes de servicio de mesa.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">💡</span>
+                        <p><strong>Efectivo:</strong> lleva algo para heladerías artesanales, mercados callejeros y pequeñas iglesias con caja de donaciones.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="tips-section reveal">
+            <div class="container">
+                <div class="tips-section-header">
+                    <h2 class="tips-section-title">Transporte</h2>
+                        <p class="tips-section-subtitle">Moverse por Italia como un local</p>
+                </div>
+                <div class="tips-list">
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Trenes:</strong> Trenitalia y Italo conectan las grandes ciudades a alta velocidad. Reserva con antelación para mejores tarifas.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Ciudades:</strong> camina todo lo posible. Roma, Florencia y Venecia se disfrutan a pie (Venecia no tiene coches).</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">⚠️</span>
+                        <p><strong>ZTL:</strong> las Zonas de Tráfico Limitado en centros históricos multan automáticamente. No entres con coche sin permiso.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">💡</span>
+                        <p><strong>Vaporetto en Venecia:</strong> compra pase de 24/48/72h si vas a usarlo varias veces. El trayecto 1 (Gran Canal) es un tour en sí.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="tips-section alt-bg reveal">
+            <div class="container">
+                <div class="tips-section-header">
+                    <h2 class="tips-section-title">Zonas y logística</h2>
+                        <p class="tips-section-subtitle">Para tu ruta</p>
+                </div>
+                <div class="tips-list">
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Roma (3-4 días):</strong> Coliseo y Foro temprano, Vaticano a primera hora (miércoles evitar por audiencia papal), Trastevere al atardecer.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Florencia (2-3 días):</strong> Uffizi temprano, cúpula del Duomo con reserva, Piazzale Michelangelo al atardecer.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Costa Amalfitana:</strong> muévete en barco cuando puedas; las carreteras son estrechas y con tráfico intenso en verano.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">💡</span>
+                        <p><strong>Toscana:</strong> alquila coche para pueblos como San Gimignano, Montalcino y Val d'Orcia. El GPS es tu mejor amigo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="tips-section reveal">
+            <div class="container">
+                <div class="tips-section-header">
+                    <h2 class="tips-section-title">Seguridad y estafas</h2>
+                        <p class="tips-section-subtitle">Modo viajero inteligente</p>
+                </div>
+                <div class="tips-list">
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>País seguro:</strong> Italia es muy segura para turistas. Precaución habitual con carteristas en zonas muy turísticas.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">⚠️</span>
+                        <p><strong>Roma/Milán:</strong> cuidado con bolsos y mochilas en metro, Termini y zonas concurridas. Lleva el bolso cruzado delante.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Emergencias:</strong> 112 (número único europeo) o 113 (policía), 118 (ambulancia).</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">💡</span>
+                        <p><strong>Restaurantes "trampa":</strong> evita los que tienen fotos del menú en la puerta cerca de monumentos. Aléjate 2 calles para comer bien.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="tips-section alt-bg reveal">
+            <div class="container">
+                <div class="tips-section-header">
+                    <h2 class="tips-section-title">Salud y clima</h2>
+                        <p class="tips-section-subtitle">Elige bien tu época</p>
+                </div>
+                <div class="tips-list">
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Verano (junio-agosto):</strong> calor intenso, especialmente en Roma, Florencia y el sur. Hidratación constante y sombrero.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Primavera/otoño:</strong> la mejor época. Temperaturas suaves, menos turistas y luz perfecta para fotografía.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">⚠️</span>
+                        <p><strong>Agosto:</strong> muchos italianos están de vacaciones. Algunos restaurantes y tiendas locales cierran (especialmente en ciudades).</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">💡</span>
+                        <p><strong>Farmacias:</strong> excelentes y con personal que habla inglés. Busca la cruz verde iluminada — abiertas por turnos 24h.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="tips-section reveal">
+            <div class="container">
+                <div class="tips-section-header">
+                    <h2 class="tips-section-title">Cultura y etiqueta</h2>
+                        <p class="tips-section-subtitle">La dolce vita tiene sus reglas</p>
+                </div>
+                <div class="tips-list">
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Cappuccino:</strong> solo por la mañana. Después de las 11:00, los italianos toman espresso. Pedirlo después de comer delata al turista.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Vestimenta en iglesias:</strong> hombros y rodillas cubiertos para entrar en iglesias y el Vaticano. Lleva un pañuelo ligero.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">⚠️</span>
+                        <p><strong>Cena:</strong> los italianos cenan a partir de las 20:00-20:30. Llegar a las 18:00 es demasiado temprano.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">💡</span>
+                        <p><strong>Aperitivo:</strong> la tradición del aperitivo (Spritz, Negroni) entre 18:00-20:00 es sagrada. Muchos bares incluyen buffet con la copa.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="tips-section alt-bg reveal">
+            <div class="container">
+                <div class="tips-section-header">
+                    <h2 class="tips-section-title">Comida y experiencias</h2>
+                        <p class="tips-section-subtitle">Aciertos seguros</p>
+                </div>
+                <div class="tips-list">
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Pizza:</strong> en Nápoles (la cuna), pide margherita o marinara. En Roma, prueba la pizza al taglio (al corte).</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Pasta:</strong> cada región tiene su pasta. Carbonara y cacio e pepe en Roma, ragù en Bolonia, pesto en Liguria.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">💡</span>
+                        <p><strong>Gelato:</strong> busca "produzione propria" (elaboración propia) y colores naturales. Si el pistacho es verde fosforito, huye.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Vino:</strong> pide vino de la región donde estés. Chianti en Toscana, Barolo en Piamonte, Nero d'Avola en Sicilia.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="tips-section reveal">
+            <div class="container">
+                <div class="tips-section-header">
+                    <h2 class="tips-section-title">Hacks PRO</h2>
+                        <p class="tips-section-subtitle">Secretos de viajero experto</p>
+                </div>
+                <div class="tips-list">
+                    <div class="tip-item">
+                        <span class="tip-icon">💡</span>
+                        <p><strong>Vaticano:</strong> entra a las 7:30 con primera hora para tener la Capilla Sixtina casi vacía.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">💡</span>
+                        <p><strong>Florencia:</strong> sube a la cúpula de Brunelleschi (reserva obligatoria) para la mejor vista — mejor que el Campanile.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">💡</span>
+                        <p><strong>Cinque Terre:</strong> ve en temporada baja (abril-mayo o septiembre-octubre). En verano es insufriblemente masificado.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">💡</span>
+                        <p><strong>Roma nocturna:</strong> el Coliseo, Fontana di Trevi y el Panteón iluminados de noche son mágicos y sin colas.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">💡</span>
+                        <p><strong>Tren Roma-Florencia:</strong> el Frecciarossa tarda 1h30. Compra con 2-3 semanas de antelación para mejores tarifas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="tips-section alt-bg reveal">
+            <div class="container">
+                <div class="tips-section-header">
+                    <h2 class="tips-section-title">Top 5</h2>
+                        <p class="tips-section-subtitle">Si solo lees 5 cosas, que sean estas</p>
+                </div>
+                <div class="top5-grid">
+                    <div class="top5-card">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Reserva entradas a museos</strong> con semanas de antelación.</p>
+                    </div>
+                    <div class="top5-card">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Cappuccino solo por la mañana,</strong> espresso después.</p>
+                    </div>
+                    <div class="top5-card">
+                        <span class="tip-icon">⚠️</span>
+                        <p><strong>ZTL:</strong> no entres con coche en centros históricos.</p>
+                    </div>
+                    <div class="top5-card">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Cena a partir de las 20:00,</strong> no antes.</p>
+                    </div>
+                    <div class="top5-card">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Emergencias:</strong> 112 / 118.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </details>
 
     <!-- FOOTER -->
     <footer>

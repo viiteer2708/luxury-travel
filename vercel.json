@@ -1,6 +1,126 @@
 {
   "redirects": [
     {
+      "source": "/pro-tips-albania/",
+      "destination": "https://www.horizonteexclusivo.es/albania/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-alemania/",
+      "destination": "https://www.horizonteexclusivo.es/alemania/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-belgica/",
+      "destination": "https://www.horizonteexclusivo.es/belgica/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-botsuana/",
+      "destination": "https://www.horizonteexclusivo.es/botsuana/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-brasil/",
+      "destination": "https://www.horizonteexclusivo.es/brasil/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-canada/",
+      "destination": "https://www.horizonteexclusivo.es/canada/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-china/",
+      "destination": "https://www.horizonteexclusivo.es/china/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-colombia/",
+      "destination": "https://www.horizonteexclusivo.es/colombia/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-costa-oeste-usa/",
+      "destination": "https://www.horizonteexclusivo.es/costa-oeste-usa/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-filipinas/",
+      "destination": "https://www.horizonteexclusivo.es/filipinas/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-francia/",
+      "destination": "https://www.horizonteexclusivo.es/francia/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-grecia/",
+      "destination": "https://www.horizonteexclusivo.es/grecia/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-italia/",
+      "destination": "https://www.horizonteexclusivo.es/italia/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-kenia-zanzibar/",
+      "destination": "https://www.horizonteexclusivo.es/kenia-zanzibar/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-maldivas/",
+      "destination": "https://www.horizonteexclusivo.es/maldivas/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-peru/",
+      "destination": "https://www.horizonteexclusivo.es/peru/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-polinesia-francesa/",
+      "destination": "https://www.horizonteexclusivo.es/polinesia-francesa/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-portugal/",
+      "destination": "https://www.horizonteexclusivo.es/portugal/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-praga-viena-budapest/",
+      "destination": "https://www.horizonteexclusivo.es/praga-viena-budapest/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-sudafrica/",
+      "destination": "https://www.horizonteexclusivo.es/sudafrica/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-tanzania/",
+      "destination": "https://www.horizonteexclusivo.es/tanzania/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-vietnam/",
+      "destination": "https://www.horizonteexclusivo.es/vietnam/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-chicago-nueva-orleans/",
+      "destination": "https://www.horizonteexclusivo.es/chicago-nueva-orleans/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-costa-rica/",
+      "destination": "https://www.horizonteexclusivo.es/costa-rica/#consejos-viaje",
+      "permanent": true
+    },
+    {
       "source": "/pro-tips-alaska/",
       "destination": "https://www.horizonteexclusivo.es/alaska/#consejos-viaje",
       "permanent": true

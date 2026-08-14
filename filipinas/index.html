@@ -506,7 +506,97 @@ section {
         grid-template-columns: 1fr;
     }
 }
-    </style>
+    
+.tips-section {
+    padding: 80px 0;
+}
+
+.tips-section.alt-bg {
+    background: var(--dark-soft); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.tips-section-header {
+    margin-bottom: 40px;
+}
+
+.tips-section-title {
+    font-size: clamp(1.5rem, 3vw, 2rem); color: var(--white); line-height: 1.2;
+}
+
+.tips-section-subtitle {
+    font-size: 0.9rem; color: var(--gold-light); font-weight: 300; margin-top: 4px;
+}
+
+.tip-item {
+    display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px; font-size: 0.95rem; line-height: 1.7; color: var(--text);
+}
+
+.tip-item:last-child {
+    margin-bottom: 0;
+}
+
+.tip-icon {
+    flex-shrink: 0; font-size: 1.1rem; margin-top: 2px;
+}
+
+.tip-item strong {
+    color: var(--white);
+}
+
+.tips-list {
+    max-width: 780px;
+}
+
+.top5-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 32px; margin-bottom: 40px;
+}
+
+.top5-card {
+    background: var(--dark-card); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius); padding: 24px; display: flex; align-items: flex-start; gap: 14px; transition: var(--transition);
+}
+
+.top5-card:hover {
+    border-color: rgba(201,169,110,0.2); transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.3);
+}
+
+.top5-card .tip-icon {
+    font-size: 1.3rem;
+}
+
+.top5-card p {
+    font-size: 0.9rem; line-height: 1.7; color: var(--text);
+}
+
+.top5-card strong {
+    color: var(--white);
+}
+
+#consejos-viaje > summary {
+    cursor: pointer; text-align: center; color: var(--gold); font-family: 'Inter', sans-serif; font-size: 0.95rem; letter-spacing: 0.5px; padding: 8px 0 48px; font-weight: 500; list-style: none;
+}
+
+#consejos-viaje > summary::-webkit-details-marker {
+    display: none;
+}
+
+#consejos-viaje > summary::before {
+    content: '+ '; color: var(--gold);
+}
+
+#consejos-viaje[open] > summary::before {
+    content: '\2212 ';
+}
+
+@media (max-width: 768px) {
+    .tips-section {
+        padding: 48px 0;
+    }
+
+    .top5-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
 <!-- schema-auto:start (generado, no editar a mano) -->
 <script type="application/ld+json">
 {
@@ -566,6 +656,70 @@ section {
       "position": 4,
       "name": "Filipinas",
       "item": "https://www.horizonteexclusivo.es/filipinas/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué necesito saber antes de viajar a Filipinas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Visado: exención de 30 días para ciudadanos UE. Extensible hasta 59 días en oficinas de inmigración. Pasaporte: mínimo 6 meses de validez. Pueden pedir billete de salida del país. Seguro de viaje: imprescindible con cobertura de evacuación médica. Los hospitales de referencia están en Manila o Cebú. Copia digital: pasaporte + seguro + vuelos internos + reservas en Drive/Correo y copia offline."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo funcionan el dinero y los pagos en Filipinas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Peso filipino (PHP): efectivo esencial fuera de Manila y Cebú. Muchas islas no tienen cajeros. Cajeros en islas: escasos o fuera de servicio. Lleva suficiente cash desde Manila o Cebú antes de salir a islas. Cambio: casas de cambio en aeropuertos y ciudades principales. Evita cambiar en islas pequeñas (tipos peores). Tarjetas: aceptadas en resorts y restaurantes de gama alta. En el día a día local, solo cash."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo moverse por Filipinas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Vuelos internos: Cebu Pacific y Philippine Airlines conectan las islas principales. Reserva con antelación en temporada alta. Bancas: las barcas locales para island hopping. Negocia precio antes y verifica chalecos salvavidas. Estado del mar: en temporada de lluvias (junio-noviembre) las rutas marítimas pueden cancelarse. Ten plan B flexible. Tricycles y jeepneys: transporte local icónico. Los tricycles se negocian; los jeepneys tienen tarifas fijas (muy baratos)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Es seguro viajar a Filipinas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "País amable: los filipinos son extraordinariamente hospitalarios. El mayor riesgo son tifones y el mar. Tifones: temporada junio-noviembre. Monitoriza PAGASA (servicio meteorológico). Evita islas remotas en alertas. Emergencias: 911 (número unificado). Agua: no bebas agua del grifo. Botella cerrada siempre. Cuidado con hielo fuera de establecimientos fiables."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué clima tiene Filipinas y qué precauciones de salud tomar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Temporada seca (diciembre-mayo): la mejor época. Menos lluvias, mar en calma, ideal para island hopping. Temporada húmeda (junio-noviembre): lluvias torrenciales, tifones posibles. Algunas rutas marítimas se cancelan. Protección solar: reef-safe sunscreen obligatorio para proteger los arrecifes de coral. Mosquitos: dengue presente. Repelente al atardecer y ropa ligera de manga larga."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuáles son las costumbres y normas culturales en Filipinas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sonrisas: Filipinas es uno de los países más sonrientes del mundo. Responde con amabilidad. \"Po\" y \"Opo\": términos de respeto hacia mayores. Los filipinos aprecian mucho la cortesía. Puntualidad: \"Filipino time\" significa que la puntualidad es flexible. No te estreses si las cosas tardan un poco más. Karaoke: los filipinos adoran el karaoke. Si te invitan a cantar, participa — es una forma de conexión cultural."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué comer y qué experiencias hacer en Filipinas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Adobo: el plato nacional. Pollo o cerdo en vinagre y soja. Cada familia tiene su receta. Lechon: cerdo asado entero, crujiente por fuera y jugoso por dentro. El de Cebú es el más famoso. Halo-halo: el postre filipino por excelencia. Hielo raspado con judías, frutas, ube y leche — refrescante y adictivo. Marisco: langosta, cangrejo y pescado fresco directamente de los pescadores a precios increíbles."
+      }
     }
   ]
 }
@@ -850,9 +1004,282 @@ section {
             <span class="section-label">Travel Hacks</span>
             <h2>Consejos de experto para <em style="color: var(--gold);">Filipinas</em></h2>
             <p>Todo lo que necesitas saber antes, durante y después de tu viaje: checklist, dinero, transporte, seguridad, cultura, comida y hacks de experto.</p>
-            <a href="/pro-tips-filipinas/" class="btn btn-primary">Ver Travel Hacks &#10230;</a>
         </div>
     </section>
+
+    <!-- CONSEJOS DE VIAJE (fusionado desde /pro-tips-filipinas/) -->
+    <details id="consejos-viaje">
+        <summary>Ver todos los consejos de viaje a Filipinas</summary>
+
+    <div class="tips-section reveal">
+            <div class="container">
+                <div class="tips-section-header">
+                    <h2 class="tips-section-title">Antes de viajar</h2>
+                        <p class="tips-section-subtitle">Checklist imprescindible</p>
+                </div>
+                <div class="tips-list">
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Visado:</strong> exención de 30 días para ciudadanos UE. Extensible hasta 59 días en oficinas de inmigración.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Pasaporte:</strong> mínimo 6 meses de validez. Pueden pedir billete de salida del país.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Seguro de viaje:</strong> imprescindible con cobertura de evacuación médica. Los hospitales de referencia están en Manila o Cebú.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">💡</span>
+                        <p><strong>Copia digital:</strong> pasaporte + seguro + vuelos internos + reservas en Drive/Correo y copia offline.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="tips-section alt-bg reveal">
+            <div class="container">
+                <div class="tips-section-header">
+                    <h2 class="tips-section-title">Dinero y pagos</h2>
+                        <p class="tips-section-subtitle">Evita quedarte sin efectivo</p>
+                </div>
+                <div class="tips-list">
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Peso filipino (PHP):</strong> efectivo esencial fuera de Manila y Cebú. Muchas islas no tienen cajeros.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">⚠️</span>
+                        <p><strong>Cajeros en islas:</strong> escasos o fuera de servicio. Lleva suficiente cash desde Manila o Cebú antes de salir a islas.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Cambio:</strong> casas de cambio en aeropuertos y ciudades principales. Evita cambiar en islas pequeñas (tipos peores).</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">💡</span>
+                        <p><strong>Tarjetas:</strong> aceptadas en resorts y restaurantes de gama alta. En el día a día local, solo cash.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="tips-section reveal">
+            <div class="container">
+                <div class="tips-section-header">
+                    <h2 class="tips-section-title">Transporte</h2>
+                        <p class="tips-section-subtitle">Entre islas y por tierra</p>
+                </div>
+                <div class="tips-list">
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Vuelos internos:</strong> Cebu Pacific y Philippine Airlines conectan las islas principales. Reserva con antelación en temporada alta.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Bancas:</strong> las barcas locales para island hopping. Negocia precio antes y verifica chalecos salvavidas.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">⚠️</span>
+                        <p><strong>Estado del mar:</strong> en temporada de lluvias (junio-noviembre) las rutas marítimas pueden cancelarse. Ten plan B flexible.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">💡</span>
+                        <p><strong>Tricycles y jeepneys:</strong> transporte local icónico. Los tricycles se negocian; los jeepneys tienen tarifas fijas (muy baratos).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="tips-section alt-bg reveal">
+            <div class="container">
+                <div class="tips-section-header">
+                    <h2 class="tips-section-title">Zonas y logística</h2>
+                        <p class="tips-section-subtitle">Para tu ruta</p>
+                </div>
+                <div class="tips-list">
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>El Nido (3-4 días):</strong> Big y Small Lagoon, island hopping tours A/B/C/D. La joya de Palawan.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Coron (2-3 días):</strong> lagos interiores, snorkel en pecios de la WWII, Kayangan Lake. Menos masificado que El Nido.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Cebú/Bohol (2-3 días):</strong> whale sharks en Oslob (ético discutible), Chocolate Hills, tarsiers en Bohol.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">💡</span>
+                        <p><strong>Siargao:</strong> la capital del surf en Filipinas. Cloud 9 para surfistas, lagoons y palmeras para el resto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="tips-section reveal">
+            <div class="container">
+                <div class="tips-section-header">
+                    <h2 class="tips-section-title">Seguridad y estafas</h2>
+                        <p class="tips-section-subtitle">Modo viajero inteligente</p>
+                </div>
+                <div class="tips-list">
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>País amable:</strong> los filipinos son extraordinariamente hospitalarios. El mayor riesgo son tifones y el mar.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">⚠️</span>
+                        <p><strong>Tifones:</strong> temporada junio-noviembre. Monitoriza PAGASA (servicio meteorológico). Evita islas remotas en alertas.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Emergencias:</strong> 911 (número unificado).</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">💡</span>
+                        <p><strong>Agua:</strong> no bebas agua del grifo. Botella cerrada siempre. Cuidado con hielo fuera de establecimientos fiables.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="tips-section alt-bg reveal">
+            <div class="container">
+                <div class="tips-section-header">
+                    <h2 class="tips-section-title">Salud y clima</h2>
+                        <p class="tips-section-subtitle">Lo que más fastidia si lo ignoras</p>
+                </div>
+                <div class="tips-list">
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Temporada seca (diciembre-mayo):</strong> la mejor época. Menos lluvias, mar en calma, ideal para island hopping.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">⚠️</span>
+                        <p><strong>Temporada húmeda (junio-noviembre):</strong> lluvias torrenciales, tifones posibles. Algunas rutas marítimas se cancelan.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Protección solar:</strong> reef-safe sunscreen obligatorio para proteger los arrecifes de coral.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">💡</span>
+                        <p><strong>Mosquitos:</strong> dengue presente. Repelente al atardecer y ropa ligera de manga larga.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="tips-section reveal">
+            <div class="container">
+                <div class="tips-section-header">
+                    <h2 class="tips-section-title">Cultura y etiqueta</h2>
+                        <p class="tips-section-subtitle">Te abre puertas</p>
+                </div>
+                <div class="tips-list">
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Sonrisas:</strong> Filipinas es uno de los países más sonrientes del mundo. Responde con amabilidad.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>"Po" y "Opo":</strong> términos de respeto hacia mayores. Los filipinos aprecian mucho la cortesía.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">⚠️</span>
+                        <p><strong>Puntualidad:</strong> "Filipino time" significa que la puntualidad es flexible. No te estreses si las cosas tardan un poco más.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">💡</span>
+                        <p><strong>Karaoke:</strong> los filipinos adoran el karaoke. Si te invitan a cantar, participa — es una forma de conexión cultural.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="tips-section alt-bg reveal">
+            <div class="container">
+                <div class="tips-section-header">
+                    <h2 class="tips-section-title">Comida y experiencias</h2>
+                        <p class="tips-section-subtitle">Aciertos seguros</p>
+                </div>
+                <div class="tips-list">
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Adobo:</strong> el plato nacional. Pollo o cerdo en vinagre y soja. Cada familia tiene su receta.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Lechon:</strong> cerdo asado entero, crujiente por fuera y jugoso por dentro. El de Cebú es el más famoso.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">💡</span>
+                        <p><strong>Halo-halo:</strong> el postre filipino por excelencia. Hielo raspado con judías, frutas, ube y leche — refrescante y adictivo.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Marisco:</strong> langosta, cangrejo y pescado fresco directamente de los pescadores a precios increíbles.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="tips-section reveal">
+            <div class="container">
+                <div class="tips-section-header">
+                    <h2 class="tips-section-title">Hacks PRO</h2>
+                        <p class="tips-section-subtitle">Muy específicos para tu itinerario</p>
+                </div>
+                <div class="tips-list">
+                    <div class="tip-item">
+                        <span class="tip-icon">💡</span>
+                        <p><strong>El Nido:</strong> contrata tour privado para evitar multitudes. Los tours compartidos llevan 20+ personas por banca.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">💡</span>
+                        <p><strong>Kayangan Lake (Coron):</strong> ve a primera hora (7:00) antes de que lleguen los tours grupales.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">💡</span>
+                        <p><strong>Whale sharks (Oslob):</strong> alternativa ética: Donsol — avistamiento en mar abierto, no alimentación artificial.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">💡</span>
+                        <p><strong>Siargao:</strong> la mejor época para surf es septiembre-noviembre. Para no surfistas, las lagunas Sugba son imperdibles.</p>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">💡</span>
+                        <p><strong>Manila:</strong> no la descartes. Intramuros, Binondo (Chinatown más antiguo del mundo) y la gastronomía merecen 1-2 días.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="tips-section alt-bg reveal">
+            <div class="container">
+                <div class="tips-section-header">
+                    <h2 class="tips-section-title">Top 5</h2>
+                        <p class="tips-section-subtitle">Si solo lees 5 cosas, que sean estas</p>
+                </div>
+                <div class="top5-grid">
+                    <div class="top5-card">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Lleva suficiente efectivo</strong> antes de salir a islas.</p>
+                    </div>
+                    <div class="top5-card">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Reef-safe sunscreen</strong> para proteger los corales.</p>
+                    </div>
+                    <div class="top5-card">
+                        <span class="tip-icon">⚠️</span>
+                        <p><strong>Monitoriza tifones</strong> en temporada húmeda (PAGASA).</p>
+                    </div>
+                    <div class="top5-card">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Tour privado en El Nido</strong> para evitar masificación.</p>
+                    </div>
+                    <div class="top5-card">
+                        <span class="tip-icon">✅</span>
+                        <p><strong>Emergencias:</strong> 911.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </details>
 
     <!-- FOOTER -->
     <footer>

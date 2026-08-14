@@ -281,14 +281,6 @@ section {
     .includes-grid {
         grid-template-columns: 1fr;
     }
-
-    .tips-section {
-        padding: 48px 0;
-    }
-
-    .top5-grid {
-        grid-template-columns: 1fr;
-    }
 }
 
 .tips-section {
@@ -370,7 +362,17 @@ section {
 #consejos-viaje[open] > summary::before {
     content: '\2212 ';
 }
-    </style>
+    
+@media (max-width: 768px) {
+    .tips-section {
+        padding: 48px 0;
+    }
+
+    .top5-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
 <!-- schema-auto:start (generado, no editar a mano) -->
 <script type="application/ld+json">
 {
