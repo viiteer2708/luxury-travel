@@ -188,3 +188,15 @@ function rejectCookies() {
     s.defer = true;
     document.body.appendChild(s);
 })();
+
+/* ---------- Consejos de viaje fusionados ---------- */
+/* Las antiguas /pro-tips-[destino]/ redirigen a /[destino]/#consejos-viaje. Quien
+   llega por ahí viene a leer los consejos: si el plegable sigue cerrado, aterriza
+   en una página donde aparentemente no está lo que buscaba. */
+(function () {
+    if (location.hash !== '#consejos-viaje') return;
+    var d = document.getElementById('consejos-viaje');
+    if (!d) return;
+    d.open = true;
+    d.scrollIntoView();
+})();
