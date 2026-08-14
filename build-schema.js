@@ -201,6 +201,12 @@ function generate(slug, html) {
     if (faqSafari) out.push(faqSafari);
     out.push(bc([{ name: 'Inicio', url: B.url + '/' }, { name: 'Safari de Lujo a Medida', url: cu }]));
   }
+  else if (p === 'viajes-exclusivos-a-medida') {
+    out.push({ '@context': 'https://schema.org', '@type': 'Service', 'name': 'Viajes Exclusivos a Medida', 'url': cu, 'description': pd, 'provider': org(), 'areaServed': { '@type': 'Country', 'name': 'Espana' }, 'serviceType': 'Viaje exclusivo a medida' });
+    const faqExcl = buildHomeFaq(html);
+    if (faqExcl) out.push(faqExcl);
+    out.push(bc([{ name: 'Inicio', url: B.url + '/' }, { name: 'Viajes Exclusivos a Medida', url: cu }]));
+  }
   else if (p === 'viajes-de-empresa-a-medida') {
     out.push({ '@context': 'https://schema.org', '@type': 'Service', 'name': 'Viajes de Empresa e Incentivos a Medida', 'url': cu, 'description': pd, 'provider': org(), 'areaServed': { '@type': 'Country', 'name': 'Espana' }, 'serviceType': 'Viaje de empresa a medida' });
     const faqEmpresa = buildHomeFaq(html);

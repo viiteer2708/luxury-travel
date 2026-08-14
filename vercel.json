@@ -1,6 +1,16 @@
 {
   "redirects": [
     {
+      "source": "/viaje-a-medida-que-es/",
+      "destination": "https://www.horizonteexclusivo.es/viajes-exclusivos-a-medida/",
+      "permanent": true
+    },
+    {
+      "source": "/viaje-premium-que-es/",
+      "destination": "https://www.horizonteexclusivo.es/viajes-exclusivos-a-medida/",
+      "permanent": true
+    },
+    {
       "source": "/pro-tips-albania/",
       "destination": "https://www.horizonteexclusivo.es/albania/#consejos-viaje",
       "permanent": true
