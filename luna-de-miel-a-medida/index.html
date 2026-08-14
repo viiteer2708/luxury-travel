@@ -12,7 +12,8 @@
     <link rel="manifest" href="/images/genfavicon-package/site.webmanifest">
     <meta name="description" content="Luna de miel y viaje de novios a medida: Maldivas, Bali, Polinesia, Seychelles y más. Diseñamos cada detalle para que sea el viaje más especial de tu vida.">
     <link rel="canonical" href="https://www.horizonteexclusivo.es/luna-de-miel-a-medida/">
-    <link rel="preload" as="image" href="/images/photos/photo-1519741497674-611481863552-1920.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/images/photos/photo-1519741497674-611481863552-900.webp" fetchpriority="high" media="(max-width: 768px)">
+    <link rel="preload" as="image" href="/images/photos/photo-1519741497674-611481863552-1920.webp" fetchpriority="high" media="(min-width: 769px)">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.horizonteexclusivo.es/luna-de-miel-a-medida/">
@@ -352,7 +353,13 @@
         grid-template-columns: 1fr;
     }
 }
-    </style>
+    
+@media (max-width: 768px) {
+    .dest-hero { /* dest-hero-900 */
+        background-image: url('/images/photos/photo-1519741497674-611481863552-900.webp');
+    }
+}
+</style>
 <!-- schema-auto:start (generado, no editar a mano) -->
 <script type="application/ld+json">
 {

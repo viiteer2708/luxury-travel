@@ -12,7 +12,8 @@
     <link rel="manifest" href="/images/genfavicon-package/site.webmanifest">
     <meta name="description" content="Travel hacks para viajar a Marruecos: regatear en zocos, moverte entre Marrakech y Fez, qué llevar al Sahara y vestir en medinas. Trucos reales.">
     <link rel="canonical" href="https://www.horizonteexclusivo.es/pro-tips-marruecos/">
-    <link rel="preload" as="image" href="/images/photos/photo-1525953244691-aad9974a604f-1920.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/images/photos/photo-1525953244691-aad9974a604f-900.webp" fetchpriority="high" media="(max-width: 768px)">
+    <link rel="preload" as="image" href="/images/photos/photo-1525953244691-aad9974a604f-1920.webp" fetchpriority="high" media="(min-width: 769px)">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
@@ -260,7 +261,13 @@
         grid-template-columns: 1fr;
     }
 }
-    </style>
+    
+@media (max-width: 768px) {
+    .dest-hero { /* dest-hero-900 */
+        background-image: url('/images/photos/photo-1525953244691-aad9974a604f-900.webp');
+    }
+}
+</style>
 
 <!-- schema-auto:start (generado, no editar a mano) -->
 <script type="application/ld+json">

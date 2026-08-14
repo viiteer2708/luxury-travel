@@ -12,7 +12,8 @@
     <link rel="manifest" href="/images/genfavicon-package/site.webmanifest">
     <meta name="description" content="Viaje de lujo a Singapur a medida: Gardens by the Bay, Marina Bay Sands, gastronomía de fusión y compras. La ciudad-estado más fascinante de Asia.">
     <link rel="canonical" href="https://www.horizonteexclusivo.es/singapur/">
-    <link rel="preload" as="image" href="/images/photos/flagged-photo-1562503542-2a1e6f03b16b-1920.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/images/photos/flagged-photo-1562503542-2a1e6f03b16b-900.webp" fetchpriority="high" media="(max-width: 768px)">
+    <link rel="preload" as="image" href="/images/photos/flagged-photo-1562503542-2a1e6f03b16b-1920.webp" fetchpriority="high" media="(min-width: 769px)">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.horizonteexclusivo.es/singapur/">
@@ -452,7 +453,13 @@ section {
         grid-template-columns: 1fr;
     }
 }
-    </style>
+    
+@media (max-width: 768px) {
+    .dest-hero { /* dest-hero-900 */
+        background-image: url('/images/photos/flagged-photo-1562503542-2a1e6f03b16b-900.webp');
+    }
+}
+</style>
 <!-- schema-auto:start (generado, no editar a mano) -->
 <script type="application/ld+json">
 {

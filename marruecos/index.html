@@ -12,7 +12,8 @@
     <link rel="manifest" href="/images/genfavicon-package/site.webmanifest">
     <meta name="description" content="Viaje de lujo a Marruecos: Marrakech, Fez, noche en el Sahara y la costa atlántica. Riads exclusivos y experiencias únicas diseñadas a medida desde Barcelona.">
     <link rel="canonical" href="https://www.horizonteexclusivo.es/marruecos/">
-    <link rel="preload" as="image" href="/images/photos/photo-1525953244691-aad9974a604f-1920.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/images/photos/photo-1525953244691-aad9974a604f-900.webp" fetchpriority="high" media="(max-width: 768px)">
+    <link rel="preload" as="image" href="/images/photos/photo-1525953244691-aad9974a604f-1920.webp" fetchpriority="high" media="(min-width: 769px)">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.horizonteexclusivo.es/marruecos/">
@@ -90,7 +91,13 @@ section { padding: 120px 0; }
 @media (max-width: 1024px) { .includes-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 768px) { section { padding: 80px 0; } .dest-hero { background-attachment: scroll; background-position: center center; background-repeat: no-repeat; } .route-line { display: none; } .itinerary-block { grid-template-columns: 1fr; gap: 28px; } .itinerary-block.reverse .itinerary-carousel, .itinerary-block.reverse .itinerary-content { order: unset; } .itinerary-carousel { height: 280px; } .includes-grid { grid-template-columns: 1fr; } }
 @media (max-width: 480px) { .includes-grid { grid-template-columns: 1fr; } }
-    </style>
+    
+@media (max-width: 768px) {
+    .dest-hero { /* dest-hero-900 */
+        background-image: url('/images/photos/photo-1525953244691-aad9974a604f-900.webp');
+    }
+}
+</style>
 <!-- schema-auto:start (generado, no editar a mano) -->
 <script type="application/ld+json">
 {

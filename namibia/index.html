@@ -12,7 +12,8 @@
     <link rel="manifest" href="/images/genfavicon-package/site.webmanifest">
     <meta name="description" content="Safari de lujo en Namibia: dunas del Namib, Etosha, Sossusvlei y Swakopmund. El destino más fotogénico de África diseñado a medida desde Barcelona.">
     <link rel="canonical" href="https://www.horizonteexclusivo.es/namibia/">
-    <link rel="preload" as="image" href="/images/photos/photo-1488197047962-b48492212cda-1920.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/images/photos/photo-1488197047962-b48492212cda-900.webp" fetchpriority="high" media="(max-width: 768px)">
+    <link rel="preload" as="image" href="/images/photos/photo-1488197047962-b48492212cda-1920.webp" fetchpriority="high" media="(min-width: 769px)">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.horizonteexclusivo.es/namibia/">
@@ -107,7 +108,13 @@ section { padding: 120px 0; }
     .includes-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 480px) { .includes-grid { grid-template-columns: 1fr; } }
-    </style>
+    
+@media (max-width: 768px) {
+    .dest-hero { /* dest-hero-900 */
+        background-image: url('/images/photos/photo-1488197047962-b48492212cda-900.webp');
+    }
+}
+</style>
 <!-- schema-auto:start (generado, no editar a mano) -->
 <script type="application/ld+json">
 {

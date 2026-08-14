@@ -12,7 +12,8 @@
     <link rel="manifest" href="/images/genfavicon-package/site.webmanifest">
     <meta name="description" content="Viaje de lujo a Florida: Miami Beach, los Cayos, Orlando y los Everglades. Sol, cultura y parques temáticos de primer nivel diseñados a medida desde Barcelona.">
     <link rel="canonical" href="https://www.horizonteexclusivo.es/florida/">
-    <link rel="preload" as="image" href="/images/photos/photo-1589083130544-0d6a2926e519-1920.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/images/photos/photo-1589083130544-0d6a2926e519-900.webp" fetchpriority="high" media="(max-width: 768px)">
+    <link rel="preload" as="image" href="/images/photos/photo-1589083130544-0d6a2926e519-1920.webp" fetchpriority="high" media="(min-width: 769px)">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.horizonteexclusivo.es/florida/">
@@ -297,7 +298,13 @@ section {
         grid-template-columns: 1fr;
     }
 }
-    </style>
+    
+@media (max-width: 768px) {
+    .dest-hero { /* dest-hero-900 */
+        background-image: url('/images/photos/photo-1589083130544-0d6a2926e519-900.webp');
+    }
+}
+</style>
 <!-- schema-auto:start (generado, no editar a mano) -->
 <script type="application/ld+json">
 {

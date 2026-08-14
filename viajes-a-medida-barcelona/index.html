@@ -12,7 +12,8 @@
     <link rel="manifest" href="/images/genfavicon-package/site.webmanifest">
     <meta name="description" content="Viajes a medida desde Barcelona: itinerarios 100% personalizados a 59 destinos de lujo. Sin paquetes ni intermediarios. Tu viaje, a tu medida.">
     <link rel="canonical" href="https://www.horizonteexclusivo.es/viajes-a-medida-barcelona/">
-    <link rel="preload" as="image" href="/images/photos/photo-1583422409516-2895a77efded-1920.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/images/photos/photo-1583422409516-2895a77efded-900.webp" fetchpriority="high" media="(max-width: 768px)">
+    <link rel="preload" as="image" href="/images/photos/photo-1583422409516-2895a77efded-1920.webp" fetchpriority="high" media="(min-width: 769px)">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.horizonteexclusivo.es/viajes-a-medida-barcelona/">
@@ -437,7 +438,13 @@
             font-weight: 400;
 }
 
-    </style>
+    
+@media (max-width: 768px) {
+    .dest-hero { /* dest-hero-900 */
+        background-image: url('/images/photos/photo-1583422409516-2895a77efded-900.webp');
+    }
+}
+</style>
 <!-- schema-auto:start (generado, no editar a mano) -->
 <script type="application/ld+json">
 {

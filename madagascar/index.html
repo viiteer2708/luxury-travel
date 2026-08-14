@@ -12,7 +12,8 @@
     <link rel="manifest" href="/images/genfavicon-package/site.webmanifest">
     <meta name="description" content="Viaje de lujo a Madagascar: lémures, baobabs, arrecifes prístinos y ecosistemas únicos en el mundo. La gran isla roja diseñada a medida desde Barcelona.">
     <link rel="canonical" href="https://www.horizonteexclusivo.es/madagascar/">
-    <link rel="preload" as="image" href="/images/photos/photo-1585335740623-f7a1f0c446eb-1920.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/images/photos/photo-1585335740623-f7a1f0c446eb-900.webp" fetchpriority="high" media="(max-width: 768px)">
+    <link rel="preload" as="image" href="/images/photos/photo-1585335740623-f7a1f0c446eb-1920.webp" fetchpriority="high" media="(min-width: 769px)">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.horizonteexclusivo.es/madagascar/">
@@ -112,7 +113,13 @@ section { padding: 120px 0; }
     .includes-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 480px) { .includes-grid { grid-template-columns: 1fr; } }
-    </style>
+    
+@media (max-width: 768px) {
+    .dest-hero { /* dest-hero-900 */
+        background-image: url('/images/photos/photo-1585335740623-f7a1f0c446eb-900.webp');
+    }
+}
+</style>
 <!-- schema-auto:start (generado, no editar a mano) -->
 <script type="application/ld+json">
 {

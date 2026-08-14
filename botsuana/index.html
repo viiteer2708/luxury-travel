@@ -12,7 +12,8 @@
     <link rel="manifest" href="/images/genfavicon-package/site.webmanifest">
     <meta name="description" content="Safari de lujo en Botsuana a medida: Delta del Okavango, Chobe y Kalahari. Elefantes, leones y mokoros en el safari más exclusivo de África, desde Barcelona.">
     <link rel="canonical" href="https://www.horizonteexclusivo.es/botsuana/">
-    <link rel="preload" as="image" href="/images/photos/photo-1659559108001-1ccb7688e45f-1920.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/images/photos/photo-1659559108001-1ccb7688e45f-900.webp" fetchpriority="high" media="(max-width: 768px)">
+    <link rel="preload" as="image" href="/images/photos/photo-1659559108001-1ccb7688e45f-1920.webp" fetchpriority="high" media="(min-width: 769px)">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.horizonteexclusivo.es/botsuana/">
@@ -182,6 +183,12 @@ section { padding: 120px 0; }
 
     .top5-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .dest-hero { /* dest-hero-900 */
+        background-image: url('/images/photos/photo-1659559108001-1ccb7688e45f-900.webp');
     }
 }
 </style>

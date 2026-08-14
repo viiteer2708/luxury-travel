@@ -12,7 +12,8 @@
     <link rel="manifest" href="/images/genfavicon-package/site.webmanifest">
     <meta name="description" content="Guía completa para planificar un gran viaje: cuándo reservar, qué priorizar, cómo gestionar los imprevistos y los errores más comunes que hay que evitar.">
     <link rel="canonical" href="https://www.horizonteexclusivo.es/como-planifico-un-gran-viaje/">
-    <link rel="preload" as="image" href="/images/photos/photo-1488646953014-85cb44e25828-1920.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/images/photos/photo-1488646953014-85cb44e25828-900.webp" fetchpriority="high" media="(max-width: 768px)">
+    <link rel="preload" as="image" href="/images/photos/photo-1488646953014-85cb44e25828-1920.webp" fetchpriority="high" media="(min-width: 769px)">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
     <meta property="article:published_time" content="2026-04-13">
@@ -354,7 +355,13 @@
         grid-template-columns: 1fr;
     }
 }
-    </style>
+    
+@media (max-width: 768px) {
+    .dest-hero { /* dest-hero-900 */
+        background-image: url('/images/photos/photo-1488646953014-85cb44e25828-900.webp');
+    }
+}
+</style>
 <!-- schema-auto:start (generado, no editar a mano) -->
 <script type="application/ld+json">
 {

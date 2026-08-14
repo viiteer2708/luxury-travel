@@ -12,7 +12,8 @@
     <link rel="manifest" href="/images/genfavicon-package/site.webmanifest">
     <meta name="description" content="Guías de viaje, consejos de experto y reflexiones sobre destinos exclusivos. Todo lo que necesitas saber para diseñar el viaje de tu vida desde Barcelona.">
     <link rel="canonical" href="https://www.horizonteexclusivo.es/blog/">
-    <link rel="preload" as="image" href="/images/photos/photo-1576158831003-d41033ec31fd-1920.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/images/photos/photo-1576158831003-d41033ec31fd-900.webp" fetchpriority="high" media="(max-width: 768px)">
+    <link rel="preload" as="image" href="/images/photos/photo-1576158831003-d41033ec31fd-1920.webp" fetchpriority="high" media="(min-width: 769px)">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.horizonteexclusivo.es/blog/">
@@ -157,7 +158,13 @@
                 background-repeat: no-repeat;
     }
 }
-    </style>
+    
+@media (max-width: 768px) {
+    .region-hero { /* region-hero-900 */
+        background-image: url('/images/photos/photo-1576158831003-d41033ec31fd-900.webp');
+    }
+}
+</style>
 <!-- schema-auto:start (generado, no editar a mano) -->
 <script type="application/ld+json">
 {

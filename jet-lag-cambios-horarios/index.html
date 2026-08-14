@@ -12,7 +12,8 @@
     <link rel="manifest" href="/images/genfavicon-package/site.webmanifest">
     <meta name="description" content="Cómo combatir el jet lag: qué es, por qué ocurre y los mejores trucos para adaptarte rápido al nuevo horario y aprovechar cada día de tu viaje.">
     <link rel="canonical" href="https://www.horizonteexclusivo.es/jet-lag-cambios-horarios/">
-    <link rel="preload" as="image" href="/images/photos/photo-1529074963764-98f45c47344b-1920.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/images/photos/photo-1529074963764-98f45c47344b-900.webp" fetchpriority="high" media="(max-width: 768px)">
+    <link rel="preload" as="image" href="/images/photos/photo-1529074963764-98f45c47344b-1920.webp" fetchpriority="high" media="(min-width: 769px)">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
     <meta property="article:published_time" content="2026-04-13">
@@ -354,7 +355,13 @@
         grid-template-columns: 1fr;
     }
 }
-    </style>
+    
+@media (max-width: 768px) {
+    .dest-hero { /* dest-hero-900 */
+        background-image: url('/images/photos/photo-1529074963764-98f45c47344b-900.webp');
+    }
+}
+</style>
 <!-- schema-auto:start (generado, no editar a mano) -->
 <script type="application/ld+json">
 {

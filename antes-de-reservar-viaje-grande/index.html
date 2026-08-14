@@ -12,7 +12,8 @@
     <link rel="manifest" href="/images/genfavicon-package/site.webmanifest">
     <meta name="description" content="Lo que nadie te cuenta antes de reservar un gran viaje: seguros, visados, vacunas, logística y los detalles que marcan la diferencia. Guía de experto.">
     <link rel="canonical" href="https://www.horizonteexclusivo.es/antes-de-reservar-viaje-grande/">
-    <link rel="preload" as="image" href="/images/photos/photo-1464822759023-fed622ff2c3b-1920.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/images/photos/photo-1464822759023-fed622ff2c3b-900.webp" fetchpriority="high" media="(max-width: 768px)">
+    <link rel="preload" as="image" href="/images/photos/photo-1464822759023-fed622ff2c3b-1920.webp" fetchpriority="high" media="(min-width: 769px)">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
     <meta property="article:published_time" content="2026-04-13">
@@ -354,7 +355,13 @@
         grid-template-columns: 1fr;
     }
 }
-    </style>
+    
+@media (max-width: 768px) {
+    .dest-hero { /* dest-hero-900 */
+        background-image: url('/images/photos/photo-1464822759023-fed622ff2c3b-900.webp');
+    }
+}
+</style>
 <!-- schema-auto:start (generado, no editar a mano) -->
 <script type="application/ld+json">
 {

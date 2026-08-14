@@ -12,7 +12,8 @@
     <link rel="manifest" href="/images/genfavicon-package/site.webmanifest">
     <meta name="description" content="Safari de lujo en Sudáfrica: Kruger, Ciudad del Cabo, Ruta Jardín y los Big Five. El destino más completo de África diseñado a medida desde Barcelona.">
     <link rel="canonical" href="https://www.horizonteexclusivo.es/sudafrica/">
-    <link rel="preload" as="image" href="/images/photos/photo-1580060839134-75a5edca2e99-1920.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/images/photos/photo-1580060839134-75a5edca2e99-900.webp" fetchpriority="high" media="(max-width: 768px)">
+    <link rel="preload" as="image" href="/images/photos/photo-1580060839134-75a5edca2e99-1920.webp" fetchpriority="high" media="(min-width: 769px)">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.horizonteexclusivo.es/sudafrica/">
@@ -200,6 +201,12 @@ section { padding: 120px 0; }
 
     .top5-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .dest-hero { /* dest-hero-900 */
+        background-image: url('/images/photos/photo-1580060839134-75a5edca2e99-900.webp');
     }
 }
 </style>

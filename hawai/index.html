@@ -12,7 +12,8 @@
     <link rel="manifest" href="/images/genfavicon-package/site.webmanifest">
     <meta name="description" content="Viaje de lujo a Hawái a medida: Maui, Oahu y Kauai. Islas volcánicas, surf legendario y resorts de ultra lujo en el Pacífico, desde Barcelona.">
     <link rel="canonical" href="https://www.horizonteexclusivo.es/hawai/">
-    <link rel="preload" as="image" href="/images/photos/photo-1633511090164-910b108d3442-1920.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/images/photos/photo-1633511090164-910b108d3442-900.webp" fetchpriority="high" media="(max-width: 768px)">
+    <link rel="preload" as="image" href="/images/photos/photo-1633511090164-910b108d3442-1920.webp" fetchpriority="high" media="(min-width: 769px)">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.horizonteexclusivo.es/hawai/">
@@ -599,6 +600,12 @@ section {
 
     .top5-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .dest-hero { /* dest-hero-900 */
+        background-image: url('/images/photos/photo-1633511090164-910b108d3442-900.webp');
     }
 }
 </style>

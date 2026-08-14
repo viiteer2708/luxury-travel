@@ -12,7 +12,8 @@
     <link rel="manifest" href="/images/genfavicon-package/site.webmanifest">
     <meta name="description" content="Viaje de lujo a Alaska a medida: glaciares, ballenas, osos y auroras boreales. Lodges exclusivos en el último gran territorio salvaje. Diseñado desde Barcelona.">
     <link rel="canonical" href="https://www.horizonteexclusivo.es/alaska/">
-    <link rel="preload" as="image" href="/images/photos/photo-1549517771-aa105e8da34f-1920.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/images/photos/photo-1549517771-aa105e8da34f-900.webp" fetchpriority="high" media="(max-width: 768px)">
+    <link rel="preload" as="image" href="/images/photos/photo-1549517771-aa105e8da34f-1920.webp" fetchpriority="high" media="(min-width: 769px)">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.horizonteexclusivo.es/alaska/">
@@ -359,6 +360,12 @@ section {
 
     .top5-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .dest-hero { /* dest-hero-900 */
+        background-image: url('/images/photos/photo-1549517771-aa105e8da34f-900.webp');
     }
 }
 </style>

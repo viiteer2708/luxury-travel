@@ -12,7 +12,8 @@
     <link rel="manifest" href="/images/genfavicon-package/site.webmanifest">
     <meta name="description" content="Viaje de lujo a Bahamas: islas privadas, aguas cristalinas y resorts de ultra lujo en el Caribe. Una escapada exclusiva diseñada a medida desde Barcelona.">
     <link rel="canonical" href="https://www.horizonteexclusivo.es/bahamas/">
-    <link rel="preload" as="image" href="/images/photos/photo-1728988751323-ac4c53544eda-1920.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/images/photos/photo-1728988751323-ac4c53544eda-900.webp" fetchpriority="high" media="(max-width: 768px)">
+    <link rel="preload" as="image" href="/images/photos/photo-1728988751323-ac4c53544eda-1920.webp" fetchpriority="high" media="(min-width: 769px)">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.horizonteexclusivo.es/bahamas/">
@@ -507,7 +508,13 @@ section {
         grid-template-columns: 1fr;
     }
 }
-    </style>
+    
+@media (max-width: 768px) {
+    .dest-hero { /* dest-hero-900 */
+        background-image: url('/images/photos/photo-1728988751323-ac4c53544eda-900.webp');
+    }
+}
+</style>
 <!-- schema-auto:start (generado, no editar a mano) -->
 <script type="application/ld+json">
 {

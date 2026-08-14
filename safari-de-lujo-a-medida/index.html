@@ -12,7 +12,8 @@
     <link rel="manifest" href="/images/genfavicon-package/site.webmanifest">
     <meta name="description" content="Diseño safaris de lujo a medida: Kenia, Tanzania, Botsuana, Namibia, Sudáfrica y Uganda. Campamentos exclusivos, guías privados, cero estrés. Cuéntame tu safari.">
     <link rel="canonical" href="https://www.horizonteexclusivo.es/safari-de-lujo-a-medida/">
-    <link rel="preload" as="image" href="/images/photos/photo-1575992042651-e35f5a391252-1920.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/images/photos/photo-1575992042651-e35f5a391252-900.webp" fetchpriority="high" media="(max-width: 768px)">
+    <link rel="preload" as="image" href="/images/photos/photo-1575992042651-e35f5a391252-1920.webp" fetchpriority="high" media="(min-width: 769px)">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.horizonteexclusivo.es/safari-de-lujo-a-medida/">
@@ -412,7 +413,13 @@
             font-weight: 400;
 }
 
-    </style>
+    
+@media (max-width: 768px) {
+    .dest-hero { /* dest-hero-900 */
+        background-image: url('/images/photos/photo-1575992042651-e35f5a391252-900.webp');
+    }
+}
+</style>
 <!-- schema-auto:start (generado, no editar a mano) -->
 <script type="application/ld+json">
 {
