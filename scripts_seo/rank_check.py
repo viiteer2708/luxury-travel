@@ -181,10 +181,18 @@ def fmt_clics(n):
     return "1 clic" if n == 1 else f"{n} clics"
 
 
-def arrow(now_pos, prev_pos):
-    """En posiciones, MENOS es mejor: 30 -> 12 es subir."""
+def arrow(now_pos, prev_pos, prev_impr=None):
+    """En posiciones, MENOS es mejor: 30 -> 12 es subir.
+
+    Con `prev_impr` por debajo de 10 no se compara: la posición media pondera por
+    impresiones, así que medirla contra un periodo de 1 o 2 impresiones no dice nada.
+    El 14-ago /viajes-a-medida-barcelona/ salía «bajando 26 puestos» cuando en realidad
+    había pasado de 1 impresión en 1 consulta a 38 en 12 — o sea, había mejorado.
+    """
     if prev_pos is None:
         return "· nueva"
+    if prev_impr is not None and prev_impr < 10:
+        return f"· base {prev_impr} impr, no comparable"
     delta = prev_pos - now_pos
     if abs(delta) < 0.5:
         return "= igual"
@@ -244,7 +252,7 @@ def main():
             prev = prev_rows.get(kw)
             nota = " ⚠️" if d["impr"] < 10 else ""
             lineas.append(
-                f"  {fmt_pos(d['pos'])} {arrow(d['pos'], prev['pos'] if prev else None)} · "
+                f"  {fmt_pos(d['pos'])} {arrow(d['pos'], prev['pos'] if prev else None, prev['impr'] if prev else None)} · "
                 f"{d['impr']} impr · {fmt_clics(d['clicks'])}{nota} · «{kw}»"
             )
 
@@ -258,7 +266,7 @@ def main():
             continue
         prev = prev_pages.get(ruta)
         lineas.append(
-            f"  {fmt_pos(d['pos'])} {arrow(d['pos'], prev['pos'] if prev else None)} · "
+            f"  {fmt_pos(d['pos'])} {arrow(d['pos'], prev['pos'] if prev else None, prev['impr'] if prev else None)} · "
             f"{d['impr']} impr · {fmt_clics(d['clicks'])} · {ruta}{etiqueta}"
         )
 
