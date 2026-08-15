@@ -1,11 +1,26 @@
-# Inspección 2026-08-13T08:38
+# Inspección 2026-08-15T07:47
 
-- **Total:** 119 URLs
-- **Indexadas:** 70
-- **No indexadas:** 49
+- **Total:** 104 URLs
+- **Indexadas:** 77
+- **No indexadas:** 27
 - **Errores:** 0
 
-**Cambio vs snapshot previo (2026-08-11T08:26):** indexadas +0, no indexadas +0.
+**Cambio vs snapshot previo (2026-08-13T08:38):** indexadas +7, no indexadas -22.
+
+## 🆕 Nuevas indexadas (9)
+- `/agencia-viajes-lujo-barcelona/`
+- `/baix-llobregat/`
+- `/chile/`
+- `/nueva-york/`
+- `/pro-tips-chile/`
+- `/pro-tips-nueva-york/`
+- `/safari-de-lujo-a-medida/`
+- `/viajes-a-medida-barcelona/`
+- `/viajes-de-empresa-a-medida/`
+
+## ⚠️ Salieron del índice (2)
+- `/pro-tips-chicago-nueva-orleans/`
+- `/pro-tips-costa-rica/`
 
 ## 🎯 Las 4 URLs vigiladas (reescritas el 21 abr 2026)
 
@@ -13,15 +28,15 @@
 |---|---|---|
 | `/islandia/` | ✅ INDEXADA | ✅ INDEXADA |
 | `/pro-tips-marruecos/` | ? | ? |
-| `/pro-tips-praga-viena-budapest/` | Crawled - currently not indexed | Crawled - currently not indexed |
-| `/pro-tips-tanzania/` | Crawled - currently not indexed | Crawled - currently not indexed |
+| `/pro-tips-praga-viena-budapest/` | **?** (cambió) | Crawled - currently not indexed |
+| `/pro-tips-tanzania/` | **?** (cambió) | Crawled - currently not indexed |
 
 ## Desglose no indexadas
-- **Crawled - currently not indexed:** 38
-- **Discovered - currently not indexed:** 7
-- **URL is unknown to Google:** 4
+- **Crawled - currently not indexed:** 16
+- **Discovered - currently not indexed:** 10
+- **URL is unknown to Google:** 1
 
-## 🔴 Crawled - currently not indexed (38)
+## 🔴 Crawled - currently not indexed (16)
 - `/antes-de-reservar-viaje-grande/`
 - `/checklist-pre-viaje/`
 - `/chicago-nueva-orleans/`
@@ -30,33 +45,11 @@
 - `/cuanto-cuesta-viaje-a-medida/`
 - `/ecuador/`
 - `/hawai/`
+- `/luna-de-miel-barcelona/`
 - `/mauricio/`
-- `/pro-tips-albania/`
-- `/pro-tips-alemania/`
-- `/pro-tips-belgica/`
-- `/pro-tips-botsuana/`
-- `/pro-tips-brasil/`
 - `/pro-tips-camboya/`
-- `/pro-tips-canada/`
-- `/pro-tips-colombia/`
-- `/pro-tips-costa-oeste-usa/`
-- `/pro-tips-filipinas/`
-- `/pro-tips-francia/`
-- `/pro-tips-grecia/`
 - `/pro-tips-india/`
-- `/pro-tips-italia/`
-- `/pro-tips-kenia-zanzibar/`
-- `/pro-tips-maldivas/`
-- `/pro-tips-peru/`
-- `/pro-tips-polinesia-francesa/`
-- `/pro-tips-portugal/`
-- `/pro-tips-praga-viena-budapest/`
-- `/pro-tips-sudafrica/`
-- `/pro-tips-tanzania/`
 - `/pro-tips-uganda/`
-- `/pro-tips-vietnam/`
 - `/que-reservar-primero-gran-viaje/`
 - `/suiza/`
-- `/viaje-a-medida-que-es/`
-- `/viaje-premium-que-es/`
 - `/viajes-pequenos-recuerdos-grandes/`
