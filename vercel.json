@@ -1,6 +1,86 @@
 {
   "redirects": [
     {
+      "source": "/pro-tips-argentina/",
+      "destination": "https://www.horizonteexclusivo.es/argentina/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-bali/",
+      "destination": "https://www.horizonteexclusivo.es/bali/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-escocia/",
+      "destination": "https://www.horizonteexclusivo.es/escocia/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-florida/",
+      "destination": "https://www.horizonteexclusivo.es/florida/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-islandia/",
+      "destination": "https://www.horizonteexclusivo.es/islandia/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-jamaica/",
+      "destination": "https://www.horizonteexclusivo.es/jamaica/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-madagascar/",
+      "destination": "https://www.horizonteexclusivo.es/madagascar/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-malasia/",
+      "destination": "https://www.horizonteexclusivo.es/malasia/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-malta/",
+      "destination": "https://www.horizonteexclusivo.es/malta/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-marruecos/",
+      "destination": "https://www.horizonteexclusivo.es/marruecos/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-namibia/",
+      "destination": "https://www.horizonteexclusivo.es/namibia/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-seychelles/",
+      "destination": "https://www.horizonteexclusivo.es/seychelles/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-singapur/",
+      "destination": "https://www.horizonteexclusivo.es/singapur/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-sri-lanka/",
+      "destination": "https://www.horizonteexclusivo.es/sri-lanka/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-tailandia/",
+      "destination": "https://www.horizonteexclusivo.es/tailandia/#consejos-viaje",
+      "permanent": true
+    },
+    {
+      "source": "/pro-tips-turquia/",
+      "destination": "https://www.horizonteexclusivo.es/turquia/#consejos-viaje",
+      "permanent": true
+    },
+    {
       "source": "/luna-de-miel-barcelona/",
       "destination": "https://www.horizonteexclusivo.es/luna-de-miel-a-medida/",
       "permanent": true
