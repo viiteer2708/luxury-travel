@@ -1,8 +1,8 @@
 {
-  "fecha": "2026-08-17T08:09:42.982584",
-  "total": 104,
+  "fecha": "2026-08-17T10:56:52.473220",
+  "total": 103,
   "indexadas": 78,
-  "no_indexadas": 26,
+  "no_indexadas": 25,
   "errores": 0,
   "detalle_indexadas": [
     "/",
@@ -99,7 +99,6 @@
     "/hawai/",
     "/india/",
     "/jamaica/",
-    "/luna-de-miel-barcelona/",
     "/malasia/",
     "/mauricio/",
     "/politica-de-privacidad/",
@@ -164,7 +163,7 @@
     },
     "/argentina/": {
       "verdict": "NEUTRAL",
-      "coverage": "Discovered - currently not indexed",
+      "coverage": "URL is unknown to Google",
       "crawled": "N/A",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
     },
@@ -392,7 +391,7 @@
     },
     "/india/": {
       "verdict": "NEUTRAL",
-      "coverage": "URL is unknown to Google",
+      "coverage": "Discovered - currently not indexed",
       "crawled": "N/A",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
     },
@@ -442,12 +441,6 @@
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
       "crawled": "2026-06-03T21:42:46Z",
-      "indexing_state": "INDEXING_ALLOWED"
-    },
-    "/luna-de-miel-barcelona/": {
-      "verdict": "NEUTRAL",
-      "coverage": "Crawled - currently not indexed",
-      "crawled": "2026-05-04T00:30:59Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/madagascar/": {
