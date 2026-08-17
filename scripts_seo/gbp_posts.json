@@ -1,0 +1,111 @@
+{
+  "lote": "lote1",
+  "aprobado": false,
+  "_nota": "Cola de publicaciones de la ficha de Google. «aprobado» lo pone a true Claude cuando Victor da el visto bueno; hasta entonces gbp_post.py no publica nada. Fechas AAAA-MM-DD (lunes).",
+  "posts": [
+    {
+      "id": "2026-08-24-luna-de-miel",
+      "semana": "2026-08-24",
+      "tema": "Luna de miel a medida para bodas de otoño",
+      "texto": "Si te casas este otoño, la luna de miel es lo último que te apetece organizar. Lo entiendo: después de meses con la boda, sentarse a comparar paquetes en internet da una pereza enorme.\n\nSoy Endeis y diseño lunas de miel a medida desde Molins de Rei. No trabajo con itinerarios prefabricados: partimos de una conversación real sobre vuestras fechas, vuestro ritmo y lo que os hace ilusión de verdad. Y habláis siempre conmigo, desde la primera llamada hasta que aterrizáis de vuelta.\n\nUna luna de miel bien diseñada no va de meter mil cosas. Va de colocar las correctas: tres o cuatro momentos que emocionen, y el resto con margen para desayunar sin mirar el reloj.\n\nContadme vuestras fechas cuando queráis, aunque la boda os tenga secuestrados. De eso me encargo yo.",
+      "boton": {
+        "tipo": "LEARN_MORE",
+        "url": "https://www.horizonteexclusivo.es/luna-de-miel-a-medida/?utm_source=google&utm_medium=gbp_post&utm_campaign=lote1"
+      },
+      "foto": "/images/photos/photo-1519741497674-611481863552-900.webp",
+      "pagina": "/luna-de-miel-a-medida/",
+      "publicado": null
+    },
+    {
+      "id": "2026-08-31-safari",
+      "semana": "2026-08-31",
+      "tema": "Safari de lujo: temporada seca y gran migración",
+      "texto": "Un safari puede ser el mejor viaje de tu vida o una semana de madrugones y horas de coche para ver animales de lejos. La diferencia casi nunca está en el país: está en el diseño.\n\nQué parque, en qué época exacta, en qué campamento, cuántas noches en cada base, si te mueves en avioneta o por carretera. Cada una de esas decisiones cambia el viaje entero. Un buen diseño te pone delante de la gran migración; uno malo te deja a una hora del río justo la semana equivocada.\n\nLos meses secos son los de mayor concentración de fauna, y los campamentos que de verdad merecen la pena cierran su disponibilidad con muchísima antelación. Si África os ronda para el año que viene, empecemos por la conversación: primero las fechas y el tipo de viaje que buscáis, y a partir de ahí lo demás se ordena solo.",
+      "boton": {
+        "tipo": "LEARN_MORE",
+        "url": "https://www.horizonteexclusivo.es/safari-de-lujo-a-medida/?utm_source=google&utm_medium=gbp_post&utm_campaign=lote1"
+      },
+      "foto": "/images/photos/photo-1689479665582-51d0c25215b7-1200.webp",
+      "pagina": "/safari-de-lujo-a-medida/",
+      "publicado": null
+    },
+    {
+      "id": "2026-09-07-japon",
+      "semana": "2026-09-07",
+      "tema": "Japón en otoño y reservas para 2027",
+      "texto": "Japón en otoño es de esas cosas que hay que ver una vez: los arces encendidos sobre los templos de Kioto y la ciudad entera respirando otra luz.\n\nEl problema es que ese otoño dura tres semanas escasas y se reserva con mucho adelanto. Para las fechas de este año los ryokanes buenos y los hoteles bien situados están prácticamente colocados, así que lo que se está cerrando hoy es el otoño del año que viene. Con los cerezos de primavera pasa exactamente lo mismo.\n\nTrabajo Japón sin catálogo: tus fechas, tu ritmo y una lógica real de trenes y distancias, porque allí moverse mal te come el viaje. Templos silenciosos por la mañana, barrios imposibles por la noche y tiempo para comer bien sin prisas.",
+      "boton": {
+        "tipo": "LEARN_MORE",
+        "url": "https://www.horizonteexclusivo.es/japon/?utm_source=google&utm_medium=gbp_post&utm_campaign=lote1"
+      },
+      "foto": "/images/photos/photo-1617870314635-fc819547ec11-1200.webp",
+      "pagina": "/japon/",
+      "publicado": null
+    },
+    {
+      "id": "2026-09-14-empresa",
+      "semana": "2026-09-14",
+      "tema": "Viajes de empresa e incentivos de cierre de año",
+      "texto": "Un bono se agradece y se olvida. Un viaje bien diseñado se cuenta durante años: en la comida de Navidad, en la entrevista al nuevo fichaje, en el grupo del equipo.\n\nEstamos en la época en la que las empresas cierran el año y deciden cómo premiar: el incentivo comercial, el retiro de dirección, la celebración de un hito o el detalle con un cliente clave. Cada uno pide un diseño distinto, y ninguno debería oler a paquete.\n\nTrabajas conmigo directamente y me ocupo de todo: destino, ritmo, vuelos, traslados, experiencias privadas y las preferencias de cada viajero. Nadie del equipo organizador tiene que ponerse a trabajar durante el viaje.\n\nSi tienes que premiar a alguien antes de que acabe el año, cuéntame a quién y por qué. El destino viene después.",
+      "boton": {
+        "tipo": "LEARN_MORE",
+        "url": "https://www.horizonteexclusivo.es/viajes-de-empresa-a-medida/?utm_source=google&utm_medium=gbp_post&utm_campaign=lote1"
+      },
+      "foto": "/images/dubai1.webp",
+      "pagina": "/viajes-de-empresa-a-medida/",
+      "publicado": null
+    },
+    {
+      "id": "2026-09-21-molins-de-rei",
+      "semana": "2026-09-21",
+      "tema": "La oficina de Molins de Rei y la cita previa",
+      "texto": "Hay clientes a los que he diseñado el viaje entero sin que pisaran la oficina. Y aun así, la mayoría prefiere venir: mirar juntos el mapa y las fotos del hotel en la misma mesa cambia la conversación.\n\nEstamos en Carrer Major, en pleno centro de Molins de Rei, a veinte minutos de Barcelona. La primera conversación no es una venta, es más bien una entrevista al revés: pregunto hasta entender qué viaje quieres de verdad, cuántos días tienes, con quién viajas, qué ritmo aguantas y qué no piensas hacer ni loco. De ahí sale la propuesta, y no antes.\n\nConviene avisar antes de venir, porque trabajamos con cita para dedicarte la conversación entera. Abrimos de lunes a viernes por la mañana, y también por la tarde salvo los martes.",
+      "boton": {
+        "tipo": "LEARN_MORE",
+        "url": "https://www.horizonteexclusivo.es/molins-de-rei/?utm_source=google&utm_medium=gbp_post&utm_campaign=lote1"
+      },
+      "foto": "/images/photos/photo-1523531294919-4bcd7c65e216-900.webp",
+      "pagina": "/molins-de-rei/",
+      "publicado": null
+    },
+    {
+      "id": "2026-09-28-islandia",
+      "semana": "2026-09-28",
+      "tema": "Islandia en temporada de auroras",
+      "texto": "Las auroras no se ven todo el año: la temporada acaba de arrancar y aguanta hasta marzo, cuando las noches son largas de verdad.\n\nIslandia en esos meses es otro país. Cascadas medio heladas, playas de arena negra, cuevas de hielo que solo existen en invierno y esa espera con el cuello hacia arriba que no se parece a nada. También es un destino donde el diseño manda: hay pocas horas de luz, el tiempo cambia sin avisar y los alojamientos con buen cielo son contados.\n\nMonto las rutas con margen real, no con un calendario apretado que te obligue a conducir de noche, y con los planes alternativos pensados antes de salir. Allí hacen falta.\n\nSi las auroras llevan tiempo en tu lista, hablamos y miramos qué semana te encaja mejor.",
+      "boton": {
+        "tipo": "LEARN_MORE",
+        "url": "https://www.horizonteexclusivo.es/islandia/?utm_source=google&utm_medium=gbp_post&utm_campaign=lote1"
+      },
+      "foto": "/images/photos/photo-1628033892645-25983849cdaa-1200.webp",
+      "pagina": "/islandia/",
+      "publicado": null
+    },
+    {
+      "id": "2026-10-05-maldivas",
+      "semana": "2026-10-05",
+      "tema": "Maldivas en su mejor época y reservas de invierno",
+      "texto": "Maldivas enseña su mejor cara justo cuando aquí peor se está: de noviembre a abril, con el mar en calma y días largos de sol.\n\nTambién es cuando se llena. Las villas sobre el agua de los resorts que merecen la pena se reservan con mucha antelación, y en Navidad y Año Nuevo todavía más.\n\nNo todas las islas valen para lo mismo: hay resorts pensados para parejas y otros para familias, unos con el arrecife a diez metros de la habitación y otros donde hay que salir en barco a buscarlo. Elegir bien la isla es casi todo el viaje, y por eso pregunto tanto antes de proponer nada.\n\nCuéntame con quién viajas y qué esperas de esos días, y te digo qué islas tienen sentido y cuáles no.",
+      "boton": {
+        "tipo": "LEARN_MORE",
+        "url": "https://www.horizonteexclusivo.es/maldivas/?utm_source=google&utm_medium=gbp_post&utm_campaign=lote1"
+      },
+      "foto": "/images/photos/photo-1573843981267-be1999ff37cd-1200.webp",
+      "pagina": "/maldivas/",
+      "publicado": null
+    },
+    {
+      "id": "2026-10-12-viaje-exclusivo",
+      "semana": "2026-10-12",
+      "tema": "Qué es de verdad un viaje exclusivo a medida",
+      "texto": "«Quiero algo exclusivo.» Me lo dicen muchísimo, y casi nunca significa «quiero lo más caro».\n\nCuando rascas un poco significa otra cosa: quiero que este viaje sea mío, que no se lo hayan vendido igual a otras doscientas personas, y que todo funcione sin tener que estar yo pendiente.\n\nUn viaje exclusivo de verdad se define por una sola cosa: existe una única vez, y existe para ti. No sale de un catálogo con varias salidas al mes ni de una plantilla a la que se le cambia el nombre del cliente. La diferencia entre un viaje correcto y uno inolvidable no está en hacer más cosas, sino en hacer las correctas, en el orden correcto y con el ritmo correcto.\n\nLo demás es lo invisible: ubicación inteligente, traslados cómodos y experiencias con intención.",
+      "boton": {
+        "tipo": "LEARN_MORE",
+        "url": "https://www.horizonteexclusivo.es/viajes-exclusivos-a-medida/?utm_source=google&utm_medium=gbp_post&utm_campaign=lote1"
+      },
+      "foto": "/images/photos/photo-1575992042651-e35f5a391252-900.webp",
+      "pagina": "/viajes-exclusivos-a-medida/",
+      "publicado": null
+    }
+  ]
+}

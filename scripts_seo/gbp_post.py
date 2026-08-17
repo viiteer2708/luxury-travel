@@ -187,6 +187,9 @@ def validar(post):
 
 def publicar(env, args):
     cola = cargar_cola()
+    if not cola.get("aprobado"):
+        print("La cola no está aprobada por Victor (\"aprobado\": false): no publico nada.")
+        return 0
     post = elegir(cola, args.id)
     if not post:
         print("Nada que publicar hoy: ningún post pendiente ha llegado a su semana.")
