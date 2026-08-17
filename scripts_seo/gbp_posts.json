@@ -1,7 +1,7 @@
 {
   "lote": "lote1",
-  "aprobado": false,
-  "_nota": "Cola de publicaciones de la ficha de Google. «aprobado» lo pone a true Claude cuando Victor da el visto bueno; hasta entonces gbp_post.py no publica nada. Fechas AAAA-MM-DD (lunes).",
+  "aprobado": true,
+  "_nota": "Cola de publicaciones de la ficha de Google. «aprobado» lo pone a true Claude cuando Victor da el visto bueno; hasta entonces gbp_post.py no publica nada. Fechas AAAA-MM-DD (lunes). Lote 1 aprobado por Victor el 17-ago-2026.",
   "posts": [
     {
       "id": "2026-08-24-luna-de-miel",
