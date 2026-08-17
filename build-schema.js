@@ -197,7 +197,11 @@ function generate(slug, html) {
     out.push(bc([{ name: 'Inicio', url: B.url + '/' }, { name: 'Travel Hacks', url: cu }]));
   }
   else if (p === 'luna-de-miel-a-medida') {
-    out.push({ '@context': 'https://schema.org', '@type': 'Service', 'name': 'Lunas de Miel a Medida', 'url': cu, 'description': pd, 'provider': org(), 'areaServed': { '@type': 'Country', 'name': 'Espana' }, 'serviceType': 'Luna de miel a medida' });
+    // 17-ago-2026: absorbe a /luna-de-miel-barcelona/ (301), que era huérfana y Google no indexaba.
+    // Hereda su areaServed local y gana la FAQ (FAQPage) que antes no tenía ninguna de las dos.
+    out.push({ '@context': 'https://schema.org', '@type': 'Service', 'name': 'Lunas de Miel y Viajes de Novios a Medida', 'url': cu, 'description': pd, 'provider': org(), 'areaServed': [{ '@type': 'Country', 'name': 'Espana' }, { '@type': 'City', 'name': 'Barcelona' }, { '@type': 'AdministrativeArea', 'name': 'Baix Llobregat' }, { '@type': 'City', 'name': 'Molins de Rei' }], 'serviceType': 'Luna de miel a medida' });
+    const faqLuna = buildHomeFaq(html);
+    if (faqLuna) out.push(faqLuna);
     out.push(bc([{ name: 'Inicio', url: B.url + '/' }, { name: 'Luna de Miel a Medida', url: cu }]));
   }
   else if (p === 'safari-de-lujo-a-medida') {
@@ -227,10 +231,6 @@ function generate(slug, html) {
   else if (p === 'agencia-viajes-lujo-barcelona') {
     out.push({ '@context': 'https://schema.org', '@type': 'TravelAgency', 'name': 'Horizonte Exclusivo - Agencia de Viajes de Lujo en Barcelona', 'url': cu, 'description': pd, 'telephone': B.telephone, 'email': B.email, 'address': { '@type': 'PostalAddress', 'streetAddress': B.street, 'addressLocality': B.city, 'addressRegion': B.region, 'postalCode': B.zip, 'addressCountry': B.country }, 'geo': { '@type': 'GeoCoordinates', 'latitude': B.lat, 'longitude': B.lng }, 'areaServed': [{ '@type': 'City', 'name': 'Barcelona' }, { '@type': 'AdministrativeArea', 'name': 'Baix Llobregat' }, { '@type': 'AdministrativeArea', 'name': 'Cataluna' }] });
     out.push(bc([{ name: 'Inicio', url: B.url + '/' }, { name: 'Agencia Viajes Lujo Barcelona', url: cu }]));
-  }
-  else if (p === 'luna-de-miel-barcelona') {
-    out.push({ '@context': 'https://schema.org', '@type': 'Service', 'name': 'Luna de Miel desde Barcelona', 'url': cu, 'description': pd, 'provider': org(), 'areaServed': [{ '@type': 'City', 'name': 'Barcelona' }, { '@type': 'AdministrativeArea', 'name': 'Baix Llobregat' }, { '@type': 'City', 'name': 'Molins de Rei' }], 'serviceType': 'Luna de miel a medida' });
-    out.push(bc([{ name: 'Inicio', url: B.url + '/' }, { name: 'Luna de Miel Barcelona', url: cu }]));
   }
   else if (p.indexOf('pro-tips-') === 0) {
     const ps = p.replace('pro-tips-', ''), pn = D[ps] || ps;

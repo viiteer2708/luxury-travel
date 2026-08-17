@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+      "source": "/luna-de-miel-barcelona/",
+      "destination": "https://www.horizonteexclusivo.es/luna-de-miel-a-medida/",
+      "permanent": true
+    },
+    {
       "source": "/pro-tips-ecuador/",
       "destination": "https://www.horizonteexclusivo.es/ecuador/#consejos-viaje",
       "permanent": true
