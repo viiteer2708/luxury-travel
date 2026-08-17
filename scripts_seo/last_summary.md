@@ -1,26 +1,14 @@
-# Inspección 2026-08-15T07:47
+# Inspección 2026-08-17T08:09
 
 - **Total:** 104 URLs
-- **Indexadas:** 77
-- **No indexadas:** 27
+- **Indexadas:** 78
+- **No indexadas:** 26
 - **Errores:** 0
 
-**Cambio vs snapshot previo (2026-08-13T08:38):** indexadas +7, no indexadas -22.
+**Cambio vs snapshot previo (2026-08-15T07:47):** indexadas +1, no indexadas -1.
 
-## 🆕 Nuevas indexadas (9)
-- `/agencia-viajes-lujo-barcelona/`
-- `/baix-llobregat/`
-- `/chile/`
-- `/nueva-york/`
-- `/pro-tips-chile/`
-- `/pro-tips-nueva-york/`
-- `/safari-de-lujo-a-medida/`
-- `/viajes-a-medida-barcelona/`
-- `/viajes-de-empresa-a-medida/`
-
-## ⚠️ Salieron del índice (2)
-- `/pro-tips-chicago-nueva-orleans/`
-- `/pro-tips-costa-rica/`
+## 🆕 Nuevas indexadas (1)
+- `/viajes-exclusivos-a-medida/`
 
 ## 🎯 Las 4 URLs vigiladas (reescritas el 21 abr 2026)
 
@@ -28,13 +16,13 @@
 |---|---|---|
 | `/islandia/` | ✅ INDEXADA | ✅ INDEXADA |
 | `/pro-tips-marruecos/` | ? | ? |
-| `/pro-tips-praga-viena-budapest/` | **?** (cambió) | Crawled - currently not indexed |
-| `/pro-tips-tanzania/` | **?** (cambió) | Crawled - currently not indexed |
+| `/pro-tips-praga-viena-budapest/` | ? | ? |
+| `/pro-tips-tanzania/` | ? | ? |
 
 ## Desglose no indexadas
 - **Crawled - currently not indexed:** 16
-- **Discovered - currently not indexed:** 10
-- **URL is unknown to Google:** 1
+- **Discovered - currently not indexed:** 8
+- **URL is unknown to Google:** 2
 
 ## 🔴 Crawled - currently not indexed (16)
 - `/antes-de-reservar-viaje-grande/`
