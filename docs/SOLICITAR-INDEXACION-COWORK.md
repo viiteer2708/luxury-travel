@@ -1,0 +1,84 @@
+# Solicitar indexación en Search Console con Cowork
+
+Google no ofrece ninguna API legítima para «solicitar indexación» (la URL Inspection API es solo
+lectura; la Indexing API es solo para ofertas de empleo y directos). Queda el botón manual de Search
+Console, con un tope de unas 10-12 peticiones al día por propiedad. Este documento es el encargo
+para que **Cowork, desde el PC de Victor y con su sesión de Google**, pulse ese botón por él.
+
+## Antes de empezar (una vez)
+
+1. Chrome abierto **con la cuenta de Google que gestiona Search Console** (la misma con la que Victor
+   entra en https://search.google.com/search-console).
+2. La extensión **Claude en Chrome** instalada y conectada a Cowork (Cowork la usa para navegar).
+3. La propiedad es la de **dominio**: `horizonteexclusivo.es` (no la de URL con `www`).
+
+## El encargo (copiar y pegar en Cowork tal cual)
+
+```
+Entra en Google Search Console (https://search.google.com/search-console) y selecciona la propiedad
+de dominio «horizonteexclusivo.es». Para CADA una de las URLs de la lista de abajo, en este orden:
+
+1. Pégala en la barra superior «Inspecciona cualquier URL de horizonteexclusivo.es» y pulsa Intro.
+2. Espera a que cargue el resultado (dirá «La URL está en Google» o «La URL no está en Google»).
+   Apunta cuál de las dos dice.
+3. Pulsa el botón «SOLICITAR INDEXACIÓN» y espera a que aparezca el aviso «Se ha solicitado la
+   indexación». Ciérralo y pasa a la siguiente.
+4. Si en algún momento Google dice «Se ha superado la cuota» (o algo parecido a que no admite más
+   solicitudes hoy), PARA y no insistas: apunta hasta cuál has llegado.
+5. No pulses «Probar URL publicada» ni ningún otro botón: solo inspeccionar y solicitar.
+
+Cuando termines, dame una tabla con tres columnas: URL · qué decía Google (está / no está) ·
+solicitada (sí / no / cuota agotada). Sin resúmenes largos, solo la tabla.
+
+URLs (día 1):
+https://www.horizonteexclusivo.es/luna-de-miel-a-medida/
+https://www.horizonteexclusivo.es/cuanto-cuesta-viaje-a-medida/
+https://www.horizonteexclusivo.es/suiza/
+https://www.horizonteexclusivo.es/costa-rica/
+https://www.horizonteexclusivo.es/chicago-nueva-orleans/
+https://www.horizonteexclusivo.es/ecuador/
+https://www.horizonteexclusivo.es/hawai/
+https://www.horizonteexclusivo.es/mauricio/
+https://www.horizonteexclusivo.es/agencia-viajes-lujo-barcelona/
+https://www.horizonteexclusivo.es/viajes-a-medida-barcelona/
+```
+
+## Día 2 (mismo encargo, cambiando solo la lista)
+
+Las que Google no ha rastreado nunca:
+
+```
+https://www.horizonteexclusivo.es/argentina/
+https://www.horizonteexclusivo.es/bali/
+https://www.horizonteexclusivo.es/jamaica/
+https://www.horizonteexclusivo.es/malasia/
+https://www.horizonteexclusivo.es/tailandia/
+https://www.horizonteexclusivo.es/alaska/
+https://www.horizonteexclusivo.es/camboya/
+https://www.horizonteexclusivo.es/uganda/
+https://www.horizonteexclusivo.es/india/
+```
+
+## Día 3 (opcional, refresco de las que ya están dentro pero cambiaron el 14-ago)
+
+```
+https://www.horizonteexclusivo.es/molins-de-rei/
+https://www.horizonteexclusivo.es/baix-llobregat/
+https://www.horizonteexclusivo.es/viajes-de-empresa-a-medida/
+https://www.horizonteexclusivo.es/safari-de-lujo-a-medida/
+https://www.horizonteexclusivo.es/viajes-exclusivos-a-medida/
+```
+
+## Qué hacer con la tabla que devuelva Cowork
+
+Pegársela a Claude en el VPS: la contrasta con el vigía y deja constancia en la memoria de qué se
+pidió y cuándo, para leer bien el siguiente indexing-check (días impares, 09:00). Solicitar
+indexación no garantiza nada: solo pone la URL en la cola de rastreo. El veredicto lo dará el vigía
+cuando marque «Google volvió» en esas URLs.
+
+## Si Cowork se atasca
+
+- Google puede pedir verificación (captcha o «confirma que eres tú»): la resuelve Victor a mano y
+  Cowork sigue.
+- Si el botón no aparece, la URL suele estar aún cargando: esperar 10-20 s.
+- Nunca más de una tanda al día: la cuota se agota y Google la libera al día siguiente.
