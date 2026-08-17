@@ -47,18 +47,27 @@ jobs:
 
       - name: Compare vs previous snapshot
         id: compare
-        continue-on-error: true
+        # Sin continue-on-error: si el script REVIENTA (rc>=2) el job debe caer, para que no se
+        # promocione el snapshot nuevo pisando el anterior y para que llegue el aviso de fallo.
+        # rc=1 significa «hay cambios que avisar» y es un resultado normal, no un error.
         run: |
           old=scripts_seo/latest_inspection.json
           if [ ! -f "$old" ]; then
             old=scripts_seo/baselines/inspeccion_20260421.json
           fi
+          set +e
           python scripts_seo/compare_and_alert.py \
             --new scripts_seo/new_inspection.json \
             --old "$old" \
             --summary-out scripts_seo/last_summary.md \
             --telegram-out scripts_seo/last_telegram.md
-          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+          rc=$?
+          set -e
+          echo "exit_code=$rc" >> "$GITHUB_OUTPUT"
+          if [ "$rc" -gt 1 ]; then
+            echo "::error::compare_and_alert.py ha reventado (rc=$rc); no se promociona el snapshot"
+            exit "$rc"
+          fi
 
       - name: Check alert flag
         id: alert
@@ -89,23 +98,6 @@ jobs:
             git push
           fi
 
-      - name: Notify Telegram (cambios)
-        if: steps.alert.outputs.changed == 'true'
-        env:
-          TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: |
-          if [ -z "$TG_TOKEN" ] || [ -z "$TG_CHAT" ]; then echo "Telegram sin configurar; me salto el aviso"; exit 0; fi
-          # Versión corta (la escribe compare_and_alert.py); si no existiera, recorte del informe.
-          if [ -f scripts_seo/last_telegram.md ]; then CUERPO="$(cat scripts_seo/last_telegram.md)"; else CUERPO="$(head -c 3000 scripts_seo/last_summary.md)"; fi
-          TEXTO="🔎 Vigía SEO Horizonte — cambios de indexación:
-          ${CUERPO}
-
-          Informe completo: ${{ github.server_url }}/${{ github.repository }}/blob/master/scripts_seo/last_summary.md"
-          curl -s -X POST "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" \
-            --data-urlencode chat_id="$TG_CHAT" \
-            --data-urlencode text="$TEXTO" > /dev/null && echo "Aviso de cambios enviado a Telegram"
-
       - name: Open issue if changes detected
         if: steps.alert.outputs.changed == 'true'
         uses: actions/github-script@v7
@@ -122,6 +114,26 @@ jobs:
               labels: ['seo', 'indexing']
             });
 
+      - name: Notify Telegram (cambios)
+        if: steps.alert.outputs.changed == 'true'
+        env:
+          TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          if [ -z "$TG_TOKEN" ] || [ -z "$TG_CHAT" ]; then echo "Telegram sin configurar; me salto el aviso"; exit 0; fi
+          # Versión corta (la escribe compare_and_alert.py); si no existiera, recorte del informe.
+          # (recorte por CARACTERES: head -c corta bytes y puede partir un emoji → UTF-8 inválido → Telegram 400)
+          if [ -f scripts_seo/last_telegram.md ]; then CUERPO="$(cat scripts_seo/last_telegram.md)"; else CUERPO="$(python3 -c "print(open('scripts_seo/last_summary.md',encoding='utf-8').read()[:3000])")"; fi
+          TEXTO="🔎 Vigía SEO Horizonte — cambios de indexación:
+          ${CUERPO}
+
+          Informe completo: ${{ github.server_url }}/${{ github.repository }}/blob/master/scripts_seo/last_summary.md"
+          RESP="$(curl -s -X POST "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" \
+            --data-urlencode chat_id="$TG_CHAT" \
+            --data-urlencode text="$TEXTO")"
+          # curl devuelve 0 aunque la API conteste 400/403: hay que mirar el "ok" del JSON
+          if echo "$RESP" | grep -q '"ok":true'; then echo "Aviso de cambios enviado a Telegram"; else echo "::error::Telegram no aceptó el aviso: $(echo "$RESP" | head -c 300)"; exit 1; fi
+
       - name: Notify Telegram (fallo del vigía)
         if: failure()
         env:
@@ -129,6 +141,7 @@ jobs:
           TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           if [ -z "$TG_TOKEN" ] || [ -z "$TG_CHAT" ]; then echo "Telegram sin configurar"; exit 0; fi
-          curl -s -X POST "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" \
+          RESP="$(curl -s -X POST "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" \
             --data-urlencode chat_id="$TG_CHAT" \
-            --data-urlencode text="🔴 El vigía SEO de Horizonte ha FALLADO. Revisar: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" > /dev/null
+            --data-urlencode text="🔴 El vigía SEO de Horizonte ha FALLADO. Revisar: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}")"
+          echo "$RESP" | grep -q '"ok":true' || echo "::warning::Telegram no aceptó el aviso de fallo: $(echo "$RESP" | head -c 300)"

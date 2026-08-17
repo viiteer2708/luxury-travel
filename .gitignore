@@ -5,3 +5,8 @@
 node_modules
 .DS_Store
 .env*
+
+# salida efímera del vigía (la manda Telegram; el informe completo sí se commitea)
+scripts_seo/last_telegram.md
+scripts_seo/.alert
+__pycache__/

@@ -56,6 +56,14 @@ URLS_CLAVE = [
 SIN_RASTREAR = {"Discovered - currently not indexed", "URL is unknown to Google"}
 
 
+def lista_corta(items, n):
+    """Para Telegram: como mucho n elementos y «(+k más)»; el informe completo lleva todos."""
+    items = list(items)
+    if len(items) <= n:
+        return ", ".join(items)
+    return ", ".join(items[:n]) + f" (+{len(items) - n} más)"
+
+
 def load(path):
     if not Path(path).exists():
         return None
@@ -71,8 +79,14 @@ def cargar_lastmod():
     except OSError:
         return {}
     out = {}
-    for loc, lm in re.findall(r"<loc>([^<]+)</loc>\s*<lastmod>([^<]+)</lastmod>", txt):
-        out[loc.replace(BASE_URL, "") or "/"] = lm.strip()[:10]
+    # Bloque a bloque: <lastmod> no tiene por qué ir pegado a <loc> (un <changefreq> en medio
+    # es XML válido) y un regex que lo exija devuelve el diccionario vacío en silencio.
+    for bloque in re.findall(r"<url>(.*?)</url>", txt, re.S):
+        m_loc = re.search(r"<loc>([^<]+)</loc>", bloque)
+        m_lm = re.search(r"<lastmod>([^<]+)</lastmod>", bloque)
+        if not (m_loc and m_lm):
+            continue
+        out[m_loc.group(1).strip().replace(BASE_URL, "") or "/"] = m_lm.group(1).strip()[:10]
     return out
 
 
@@ -104,6 +118,10 @@ def visto_el_cambio(r, lastmod):
     c = fecha((r or {}).get("crawled"))
     if not c:
         return "⏳ nunca rastreada", None
+    if lastmod and c == lastmod:
+        # Google suele pasar de madrugada y nosotros publicamos a mediodía: con resolución de
+        # día no se puede saber cuál de las dos versiones vio.
+        return f"🤔 rastreada el {c}, el mismo día del cambio: no concluyente", None
     if lastmod and c < lastmod:
         return f"⏳ vio la versión anterior ({c}); el cambio del {lastmod} sigue sin rastrear", False
     return f"👁 vista el {c}", True
@@ -136,6 +154,11 @@ def main():
     lines += [cab, "", f"- **Total:** {new['total']} URLs", f"- **Indexadas:** {new['indexadas']}",
               f"- **No indexadas:** {new['no_indexadas']}", f"- **Errores:** {new['errores']}"]
     tg += [f"Inspección {new['fecha'][:10]} · {new['indexadas']} indexadas / {new['no_indexadas']} fuera de {new['total']}"]
+    if not old:
+        lines += ["", "_Sin snapshot previo: primera inspección, no hay nada con lo que comparar._"]
+        tg.append("(primera inspección, sin comparación)")
+    if not lastmod:
+        lines += ["", "_⚠️ No he podido leer los lastmod del sitemap: la columna «¿ha visto el último cambio?» no es fiable en este informe._"]
 
     # ------------------------------------------------------------------ 1. totales y entradas/salidas
     if old:
@@ -148,17 +171,24 @@ def main():
             motivos.append("cambio en totales")
 
         new_set, old_set = set(new["detalle_indexadas"]), set(old["detalle_indexadas"])
-        nuevas, caidas = sorted(new_set - old_set), sorted(old_set - new_set)
+        nuevas = sorted(new_set - old_set)
+        salen = old_set - new_set
+        # Una URL que ya no se inspecciona (p.ej. fusionada con 301 y retirada del sitemap) no
+        # «ha salido del índice»: simplemente ha dejado de mirarse. Sin alerta.
+        caidas = sorted(u for u in salen if u in res_new)
+        ya_no_se_miran = sorted(u for u in salen if u not in res_new)
         if nuevas:
             alert = True
             motivos.append("nuevas indexadas")
             lines += ["", f"## 🆕 Nuevas indexadas ({len(nuevas)})"] + [f"- `{u}`" for u in nuevas]
-            tg += ["", f"🆕 Entran ({len(nuevas)}): " + ", ".join(nuevas)]
+            tg += ["", f"🆕 Entran ({len(nuevas)}): " + lista_corta(nuevas, 12)]
         if caidas:
             alert = True
             motivos.append("salidas del índice")
             lines += ["", f"## ⚠️ Salieron del índice ({len(caidas)})"] + [f"- `{u}`" for u in caidas]
-            tg += ["", f"⚠️ Salen ({len(caidas)}): " + ", ".join(caidas)]
+            tg += ["", f"⚠️ Salen ({len(caidas)}): " + lista_corta(caidas, 12)]
+        if ya_no_se_miran:
+            lines += ["", f"_{len(ya_no_se_miran)} URL(s) indexadas antes ya no están en el sitemap (retiradas o redirigidas a propósito): {', '.join(f'`{u}`' for u in ya_no_se_miran)}._"]
 
     # ------------------------------------------------------------------ 2. Google ha vuelto a pasar
     # Solo se puede saber comparando con el snapshot anterior. Se separa en:
@@ -168,7 +198,10 @@ def main():
     if old:
         vuelve_fuera, vuelve_clave, vuelve_resto = [], [], []
         for u, r in res_new.items():
-            c_new, c_old = fecha(r.get("crawled")), fecha(res_old.get(u, {}).get("crawled"))
+            r_old = res_old.get(u)
+            if r_old is None:  # URL nueva en el snapshot: no hay «vuelta» que medir
+                continue
+            c_new, c_old = fecha(r.get("crawled")), fecha(r_old.get("crawled"))
             if not c_new or c_new == c_old:
                 continue
             if r.get("verdict") != "PASS":
@@ -184,14 +217,24 @@ def main():
             motivos.append("re-rastreo de páginas fuera del índice")
             lines += ["", f"### 🔴 Volvió y SIGUEN FUERA ({len(vuelve_fuera)}) — veredicto sobre lo que vio"]
             tg += ["", f"🔴 Google volvió y siguen fuera ({len(vuelve_fuera)}):"]
-            for u, c, cov in vuelve_fuera:
+            for i, (u, c, cov) in enumerate(vuelve_fuera):
                 lm = lastmod.get(u)
-                nota = f"vio la versión del {lm}" if lm and c >= lm else (f"⚠️ pero vio una versión ANTERIOR al cambio del {lm}" if lm else "")
+                if lm and c == lm:
+                    nota = f"🤔 rastreada el mismo día del cambio ({lm}): no concluyente"
+                elif lm and c > lm:
+                    nota = f"vio la versión del {lm}"
+                elif lm:
+                    nota = f"⚠️ pero vio una versión ANTERIOR al cambio del {lm}"
+                else:
+                    nota = ""
                 lines.append(f"- `{u}` rastreada el {c} → {cov}. {nota}")
-                tg.append(f"  · {u} ({c}) {('— ' + nota) if nota else ''}")
+                if i < 10:
+                    tg.append(f"  · {u} ({c}) {('— ' + nota) if nota else ''}")
+            if len(vuelve_fuera) > 10:
+                tg.append(f"  · … y {len(vuelve_fuera) - 10} más (ver informe completo)")
         if vuelve_clave:
             lines += ["", f"### 👁 URLs clave que ha vuelto a leer ({len(vuelve_clave)})"] + [f"- `{u}` el {c}" for u, c in vuelve_clave]
-            tg += ["", "👁 Releídas (clave): " + ", ".join(f"{u} ({c[5:]})" for u, c in vuelve_clave)]
+            tg += ["", "👁 Releídas (clave): " + lista_corta([f"{u} ({c[5:]})" for u, c in vuelve_clave], 10)]
         if vuelve_resto:
             lines += ["", f"_Además ha vuelto a leer {len(vuelve_resto)} páginas indexadas más._"]
 
@@ -221,13 +264,13 @@ def main():
     if tg_clave_cambios:
         tg += ["", "🎯 Cambios en URLs clave: " + " · ".join(tg_clave_cambios)]
     if tg_clave_pendientes:
-        tg += ["", f"⏳ Fuera del índice y Google aún no ha visto la versión nueva ({len(tg_clave_pendientes)}): " + ", ".join(tg_clave_pendientes)]
+        tg += ["", f"⏳ Fuera del índice y Google aún no ha visto la versión nueva ({len(tg_clave_pendientes)}): " + lista_corta(tg_clave_pendientes, 12)]
 
     # ------------------------------------------------------------------ 4. desglose de no indexadas
     estados = Counter()
     for u, r in res_new.items():
-        if r["verdict"] != "PASS":
-            estados[r["coverage"]] += 1
+        if r.get("verdict") != "PASS":
+            estados[r.get("coverage", "UNKNOWN")] += 1
     if estados:
         sin_rastrear = sum(v for k, v in estados.items() if k in SIN_RASTREAR)
         lines += ["", "## Desglose no indexadas"]
@@ -264,16 +307,21 @@ def main():
     texto_tg = "\n".join(tg)
     if len(texto_tg) > 3000:
         texto_tg = texto_tg[:2990] + "\n…"
+    Path(args.telegram_out).parent.mkdir(parents=True, exist_ok=True)
     Path(args.telegram_out).write_text(texto_tg, encoding="utf-8")
     print(summary)
 
     # Exit code: 0 si no hay cambios (silent), 1 si hay cambios (avisar). 2 en errores.
     if alert:
         # Flag file para que el workflow lo detecte sin parsear exit codes.
-        Path("scripts_seo/.alert").write_text("1", encoding="utf-8")
+        (RAIZ / "scripts_seo" / ".alert").write_text("1", encoding="utf-8")
         return 1
     return 0
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    try:
+        sys.exit(main())
+    except Exception as e:  # noqa: BLE001 — cualquier reventón debe verse, no tragarse
+        print(f"ERROR: {type(e).__name__}: {e}", file=sys.stderr)
+        sys.exit(2)
