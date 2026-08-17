@@ -1,12 +1,14 @@
 name: Indexing check (Horizonte Exclusivo)
 
-# Inspección automática de las 141 URLs del sitemap cada 48 horas.
+# Inspección automática de todas las URLs del sitemap.xml cada 48 horas.
 # - Corre inspect_sitemap.py con service account desde el secret GOOGLE_SA_JSON.
 # - Compara vs el último snapshot committeado en scripts_seo/latest_inspection.json.
-# - Si hay cambios (total, nuevas indexadas, caídas, cambio en las 4 vigiladas):
+# - Si hay cambios (totales, nuevas indexadas, caídas, cambio de estado en una URL
+#   clave, o Google ha vuelto a rastrear una página que sigue fuera del índice):
 #     · Committea el nuevo snapshot.
-#     · Abre un issue con el resumen en markdown.
-# - Si no hay cambios, solo actualiza el snapshot silenciosamente (sin issue).
+#     · Avisa por Telegram con la versión corta (last_telegram.md) y abre un issue
+#       con el informe completo (last_summary.md).
+# - Si no hay cambios, solo actualiza el snapshot silenciosamente (sin aviso).
 #
 # Primer disparo tras configurar el secret: manual via "Run workflow".
 
@@ -54,7 +56,8 @@ jobs:
           python scripts_seo/compare_and_alert.py \
             --new scripts_seo/new_inspection.json \
             --old "$old" \
-            --summary-out scripts_seo/last_summary.md
+            --summary-out scripts_seo/last_summary.md \
+            --telegram-out scripts_seo/last_telegram.md
           echo "exit_code=$?" >> "$GITHUB_OUTPUT"
 
       - name: Check alert flag
@@ -93,8 +96,12 @@ jobs:
           TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           if [ -z "$TG_TOKEN" ] || [ -z "$TG_CHAT" ]; then echo "Telegram sin configurar; me salto el aviso"; exit 0; fi
-          TEXTO="🔎 Vigía SEO Horizonte — cambios de indexación detectados:
-          $(head -c 3000 scripts_seo/last_summary.md)"
+          # Versión corta (la escribe compare_and_alert.py); si no existiera, recorte del informe.
+          if [ -f scripts_seo/last_telegram.md ]; then CUERPO="$(cat scripts_seo/last_telegram.md)"; else CUERPO="$(head -c 3000 scripts_seo/last_summary.md)"; fi
+          TEXTO="🔎 Vigía SEO Horizonte — cambios de indexación:
+          ${CUERPO}
+
+          Informe completo: ${{ github.server_url }}/${{ github.repository }}/blob/master/scripts_seo/last_summary.md"
           curl -s -X POST "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" \
             --data-urlencode chat_id="$TG_CHAT" \
             --data-urlencode text="$TEXTO" > /dev/null && echo "Aviso de cambios enviado a Telegram"
