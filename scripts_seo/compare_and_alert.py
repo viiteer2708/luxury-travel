@@ -90,6 +90,16 @@ def cargar_lastmod():
     return out
 
 
+def cargar_solicitudes():
+    """{ruta: 'AAAA-MM-DD'} de scripts_seo/solicitudes_indexacion.json (opcional)."""
+    ruta = RAIZ / "scripts_seo" / "solicitudes_indexacion.json"
+    try:
+        datos = json.loads(ruta.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+    return {k: str(v)[:10] for k, v in datos.items() if isinstance(k, str) and k.startswith("/")}
+
+
 def fecha(s):
     """'2026-08-17T00:19:36Z' -> '2026-08-17'; 'N/A' -> None."""
     if not s or s == "N/A":
@@ -142,6 +152,7 @@ def main():
         return 2
 
     lastmod = cargar_lastmod()
+    solicitudes = cargar_solicitudes()
     res_new = new["resultados_completos"]
     res_old = (old or {}).get("resultados_completos", {})
 
@@ -180,7 +191,8 @@ def main():
         if nuevas:
             alert = True
             motivos.append("nuevas indexadas")
-            lines += ["", f"## 🆕 Nuevas indexadas ({len(nuevas)})"] + [f"- `{u}`" for u in nuevas]
+            lines += ["", f"## 🆕 Nuevas indexadas ({len(nuevas)})"] + [
+                f"- `{u}`" + (f" — 📨 solicitada el {solicitudes[u]}" if u in solicitudes else "") for u in nuevas]
             tg += ["", f"🆕 Entran ({len(nuevas)}): " + lista_corta(nuevas, 12)]
         if caidas:
             alert = True
@@ -227,6 +239,8 @@ def main():
                     nota = f"⚠️ pero vio una versión ANTERIOR al cambio del {lm}"
                 else:
                     nota = ""
+                if u in solicitudes and c >= solicitudes[u]:
+                    nota = (nota + " · " if nota else "") + f"📨 se había solicitado indexación el {solicitudes[u]}: Google la ha releído y SIGUE FUERA"
                 lines.append(f"- `{u}` rastreada el {c} → {cov}. {nota}")
                 if i < 10:
                     tg.append(f"  · {u} ({c}) {('— ' + nota) if nota else ''}")
@@ -240,13 +254,13 @@ def main():
 
     # ------------------------------------------------------------------ 3. URLs clave
     lines += ["", "## 🎯 URLs clave (money pages y rescates del 14-ago)", "",
-              "| URL | Estado | ¿Ha visto el último cambio? | Estado previo |", "|---|---|---|---|"]
+              "| URL | Estado | ¿Ha visto el último cambio? | Estado previo | Solicitada |", "|---|---|---|---|---|"]
     tg_clave_cambios = []
     tg_clave_pendientes = []
     for u in URLS_CLAVE:
         r = res_new.get(u)
         if r is None:
-            lines.append(f"| `{u}` | — (fuera del sitemap) | — | — |")
+            lines.append(f"| `{u}` | — (fuera del sitemap) | — | — | — |")
             continue
         est = estado_corto(r)
         visto, ha_visto = visto_el_cambio(r, lastmod.get(u))
@@ -258,11 +272,21 @@ def main():
             motivos.append(f"cambio de estado en {u}")
             marca = " **(cambió)**"
             tg_clave_cambios.append(f"{u}: {prev} → {est}")
-        lines.append(f"| `{u}` | {est}{marca} | {visto} | {prev} |")
+        sol = "—"
+        if u in solicitudes:
+            c_ = fecha(r.get("crawled"))
+            sol = f"📨 {solicitudes[u]}" + (" · releída después" if c_ and c_ > solicitudes[u] else " · aún sin releer")
+        lines.append(f"| `{u}` | {est}{marca} | {visto} | {prev} | {sol} |")
         if ha_visto is False and r.get("verdict") != "PASS":
             tg_clave_pendientes.append(u)
     if tg_clave_cambios:
         tg += ["", "🎯 Cambios en URLs clave: " + " · ".join(tg_clave_cambios)]
+    if solicitudes:
+        sin_releer = [u for u, f in solicitudes.items() if u in res_new and not ((fecha(res_new[u].get("crawled")) or "") > f)]
+        if sin_releer:
+            tg += ["", f"📨 Solicitadas en GSC y aún sin releer por Google ({len(sin_releer)}/{len(solicitudes)}): " + lista_corta(sin_releer, 10)]
+        else:
+            tg += ["", f"📨 Google ya ha releído todas las URLs solicitadas ({len(solicitudes)})"]
     if tg_clave_pendientes:
         tg += ["", f"⏳ Fuera del índice y Google aún no ha visto la versión nueva ({len(tg_clave_pendientes)}): " + lista_corta(tg_clave_pendientes, 12)]
 

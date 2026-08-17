@@ -71,8 +71,11 @@ https://www.horizonteexclusivo.es/viajes-exclusivos-a-medida/
 
 ## Qué hacer con la tabla que devuelva Cowork
 
-Pegársela a Claude en el VPS: la contrasta con el vigía y deja constancia en la memoria de qué se
-pidió y cuándo, para leer bien el siguiente indexing-check (días impares, 09:00). Solicitar
+Pegársela a Claude en el VPS: la contrasta con el vigía y **apunta cada URL solicitada con su fecha
+en `scripts_seo/solicitudes_indexacion.json`**. Con eso el vigía marca esas URLs con 📨 en el
+informe y en Telegram («solicitada el X · aún sin releer» / «Google la ha releído y SIGUE FUERA» /
+«🆕 entra — solicitada el X»), que es la forma de leer si la petición sirvió.
+Día 1 (17-ago-2026): las 10 URLs solicitadas por Cowork sin aviso de cuota; ya registradas. Solicitar
 indexación no garantiza nada: solo pone la URL en la cola de rastreo. El veredicto lo dará el vigía
 cuando marque «Google volvió» en esas URLs.
 
