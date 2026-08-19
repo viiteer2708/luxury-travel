@@ -275,14 +275,14 @@ def main():
         sol = "—"
         if u in solicitudes:
             c_ = fecha(r.get("crawled"))
-            sol = f"📨 {solicitudes[u]}" + (" · releída después" if c_ and c_ > solicitudes[u] else " · aún sin releer")
+            sol = f"📨 {solicitudes[u]}" + (" · releída después" if c_ and c_ >= solicitudes[u] else " · aún sin releer")
         lines.append(f"| `{u}` | {est}{marca} | {visto} | {prev} | {sol} |")
         if ha_visto is False and r.get("verdict") != "PASS":
             tg_clave_pendientes.append(u)
     if tg_clave_cambios:
         tg += ["", "🎯 Cambios en URLs clave: " + " · ".join(tg_clave_cambios)]
     if solicitudes:
-        sin_releer = [u for u, f in solicitudes.items() if u in res_new and not ((fecha(res_new[u].get("crawled")) or "") > f)]
+        sin_releer = [u for u, f in solicitudes.items() if u in res_new and not ((fecha(res_new[u].get("crawled")) or "") >= f)]
         if sin_releer:
             tg += ["", f"📨 Solicitadas en GSC y aún sin releer por Google ({len(sin_releer)}/{len(solicitudes)}): " + lista_corta(sin_releer, 10)]
         else:
