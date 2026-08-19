@@ -1,36 +1,44 @@
 {
-  "fecha": "2026-08-17T10:56:52.473220",
+  "fecha": "2026-08-19T07:55:15.081135",
   "total": 103,
-  "indexadas": 78,
-  "no_indexadas": 25,
+  "indexadas": 94,
+  "no_indexadas": 9,
   "errores": 0,
   "detalle_indexadas": [
     "/",
     "/africa/",
     "/agencia-viajes-lujo-barcelona/",
+    "/alaska/",
     "/albania/",
     "/alemania/",
     "/america/",
+    "/argentina/",
     "/aruba/",
     "/asia/",
     "/aviso-legal/",
     "/bahamas/",
     "/baix-llobregat/",
+    "/bali/",
     "/belgica/",
     "/blog/",
     "/botsuana/",
     "/brasil/",
+    "/camboya/",
     "/canada/",
+    "/chicago-nueva-orleans/",
     "/chile/",
     "/china/",
     "/colombia/",
     "/contacto/",
     "/costa-oeste-usa/",
+    "/costa-rica/",
     "/croacia/",
+    "/cuanto-cuesta-viaje-a-medida/",
     "/cuba/",
     "/destinos/",
     "/disneyland-paris/",
     "/dubai-abu-dhabi-maldivas/",
+    "/ecuador/",
     "/egipto/",
     "/errores-comunes-organizar-viaje/",
     "/escocia/",
@@ -39,17 +47,22 @@
     "/florida/",
     "/francia/",
     "/grecia/",
+    "/hawai/",
+    "/india/",
     "/islandia/",
     "/italia/",
     "/itinerario-ritmo-realista/",
+    "/jamaica/",
     "/japon/",
     "/jet-lag-cambios-horarios/",
     "/kenia-zanzibar/",
     "/luna-de-miel-a-medida/",
     "/madagascar/",
+    "/malasia/",
     "/maldivas/",
     "/malta/",
     "/marruecos/",
+    "/mauricio/",
     "/molins-de-rei/",
     "/namibia/",
     "/noruega/",
@@ -76,8 +89,11 @@
     "/singapur/",
     "/sri-lanka/",
     "/sudafrica/",
+    "/suiza/",
+    "/tailandia/",
     "/tanzania/",
     "/turquia/",
+    "/uganda/",
     "/viaje-a-medida-vs-por-tu-cuenta/",
     "/viajes-a-medida-barcelona/",
     "/viajes-de-empresa-a-medida/",
@@ -85,30 +101,14 @@
     "/vietnam/"
   ],
   "detalle_no_indexadas": [
-    "/alaska/",
     "/antes-de-reservar-viaje-grande/",
-    "/argentina/",
-    "/bali/",
-    "/camboya/",
     "/checklist-pre-viaje/",
-    "/chicago-nueva-orleans/",
     "/como-planifico-un-gran-viaje/",
-    "/costa-rica/",
-    "/cuanto-cuesta-viaje-a-medida/",
-    "/ecuador/",
-    "/hawai/",
-    "/india/",
-    "/jamaica/",
-    "/malasia/",
-    "/mauricio/",
     "/politica-de-privacidad/",
     "/pro-tips-camboya/",
     "/pro-tips-india/",
     "/pro-tips-uganda/",
     "/que-reservar-primero-gran-viaje/",
-    "/suiza/",
-    "/tailandia/",
-    "/uganda/",
     "/viajes-pequenos-recuerdos-grandes/"
   ],
   "detalle_errores": [],
@@ -116,7 +116,7 @@
     "/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-08-17T00:19:36Z",
+      "crawled": "2026-08-17T16:43:04Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/africa/": {
@@ -128,14 +128,14 @@
     "/agencia-viajes-lujo-barcelona/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-06-27T11:37:29Z",
+      "crawled": "2026-08-17T11:20:16Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/alaska/": {
-      "verdict": "NEUTRAL",
-      "coverage": "Discovered - currently not indexed",
-      "crawled": "N/A",
-      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-08-18T20:44:39Z",
+      "indexing_state": "INDEXING_ALLOWED"
     },
     "/albania/": {
       "verdict": "PASS",
@@ -162,10 +162,10 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/argentina/": {
-      "verdict": "NEUTRAL",
-      "coverage": "URL is unknown to Google",
-      "crawled": "N/A",
-      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-08-18T20:44:37Z",
+      "indexing_state": "INDEXING_ALLOWED"
     },
     "/aruba/": {
       "verdict": "PASS",
@@ -198,10 +198,10 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/bali/": {
-      "verdict": "NEUTRAL",
-      "coverage": "Discovered - currently not indexed",
-      "crawled": "N/A",
-      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-08-18T20:44:40Z",
+      "indexing_state": "INDEXING_ALLOWED"
     },
     "/belgica/": {
       "verdict": "PASS",
@@ -228,10 +228,10 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/camboya/": {
-      "verdict": "NEUTRAL",
-      "coverage": "Discovered - currently not indexed",
-      "crawled": "N/A",
-      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-08-18T20:44:38Z",
+      "indexing_state": "INDEXING_ALLOWED"
     },
     "/canada/": {
       "verdict": "PASS",
@@ -246,9 +246,9 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/chicago-nueva-orleans/": {
-      "verdict": "NEUTRAL",
-      "coverage": "Crawled - currently not indexed",
-      "crawled": "2026-04-12T23:46:02Z",
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-08-17T11:17:13Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/chile/": {
@@ -288,9 +288,9 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/costa-rica/": {
-      "verdict": "NEUTRAL",
-      "coverage": "Crawled - currently not indexed",
-      "crawled": "2026-06-03T17:06:14Z",
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-08-17T11:17:13Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/croacia/": {
@@ -300,9 +300,9 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/cuanto-cuesta-viaje-a-medida/": {
-      "verdict": "NEUTRAL",
-      "coverage": "Crawled - currently not indexed",
-      "crawled": "2026-04-03T22:10:21Z",
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-08-17T11:17:13Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/cuba/": {
@@ -330,9 +330,9 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/ecuador/": {
-      "verdict": "NEUTRAL",
-      "coverage": "Crawled - currently not indexed",
-      "crawled": "2026-04-27T19:53:10Z",
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-08-17T11:20:17Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/egipto/": {
@@ -384,16 +384,16 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/hawai/": {
-      "verdict": "NEUTRAL",
-      "coverage": "Crawled - currently not indexed",
-      "crawled": "2026-03-14T23:55:51Z",
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-08-17T11:20:17Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/india/": {
-      "verdict": "NEUTRAL",
-      "coverage": "Discovered - currently not indexed",
-      "crawled": "N/A",
-      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-08-18T20:48:16Z",
+      "indexing_state": "INDEXING_ALLOWED"
     },
     "/islandia/": {
       "verdict": "PASS",
@@ -414,10 +414,10 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/jamaica/": {
-      "verdict": "NEUTRAL",
-      "coverage": "URL is unknown to Google",
-      "crawled": "N/A",
-      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-08-18T20:44:41Z",
+      "indexing_state": "INDEXING_ALLOWED"
     },
     "/japon/": {
       "verdict": "PASS",
@@ -440,7 +440,7 @@
     "/luna-de-miel-a-medida/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-06-03T21:42:46Z",
+      "crawled": "2026-08-17T11:12:52Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/madagascar/": {
@@ -450,10 +450,10 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/malasia/": {
-      "verdict": "NEUTRAL",
-      "coverage": "Discovered - currently not indexed",
-      "crawled": "N/A",
-      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-08-18T20:44:40Z",
+      "indexing_state": "INDEXING_ALLOWED"
     },
     "/maldivas/": {
       "verdict": "PASS",
@@ -474,9 +474,9 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/mauricio/": {
-      "verdict": "NEUTRAL",
-      "coverage": "Crawled - currently not indexed",
-      "crawled": "2026-05-19T09:05:03Z",
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-08-17T11:20:17Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/molins-de-rei/": {
@@ -666,16 +666,16 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/suiza/": {
-      "verdict": "NEUTRAL",
-      "coverage": "Crawled - currently not indexed",
-      "crawled": "2026-07-24T20:53:42Z",
-      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-08-17T11:17:13Z",
+      "indexing_state": "INDEXING_ALLOWED"
     },
     "/tailandia/": {
-      "verdict": "NEUTRAL",
-      "coverage": "Discovered - currently not indexed",
-      "crawled": "N/A",
-      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-08-18T20:44:37Z",
+      "indexing_state": "INDEXING_ALLOWED"
     },
     "/tanzania/": {
       "verdict": "PASS",
@@ -690,10 +690,10 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/uganda/": {
-      "verdict": "NEUTRAL",
-      "coverage": "Discovered - currently not indexed",
-      "crawled": "N/A",
-      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-08-18T20:44:39Z",
+      "indexing_state": "INDEXING_ALLOWED"
     },
     "/viaje-a-medida-vs-por-tu-cuenta/": {
       "verdict": "PASS",
@@ -704,7 +704,7 @@
     "/viajes-a-medida-barcelona/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-08-07T18:58:42Z",
+      "crawled": "2026-08-17T11:20:16Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/viajes-de-empresa-a-medida/": {
