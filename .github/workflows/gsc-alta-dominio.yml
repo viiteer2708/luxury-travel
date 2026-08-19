@@ -1,0 +1,37 @@
+name: Alta de dominio en Search Console
+
+# A mano. Fase "token": pide el TXT de verificación; fase "verificar": tras publicar el TXT en DNS,
+# verifica, añade al propietario humano, crea la propiedad sc-domain y envía el sitemap.
+on:
+  workflow_dispatch:
+    inputs:
+      dominio:
+        description: "Dominio (sin www), p. ej. victormarron.es"
+        required: true
+      fase:
+        description: "token | verificar"
+        required: true
+        default: "token"
+      propietario:
+        description: "Email del propietario humano a añadir (fase verificar)"
+        required: false
+        default: "victor.molins.10@gmail.com"
+      sitemap:
+        description: "URL del sitemap (fase verificar)"
+        required: false
+        default: ""
+
+jobs:
+  alta:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install --quiet "PyJWT>=2.7,<3" cryptography
+      - name: Alta
+        env:
+          GOOGLE_SA_JSON: ${{ secrets.GOOGLE_SA_JSON }}
+        run: |
+          python scripts_seo/gsc_alta_dominio.py --dominio "${{ inputs.dominio }}" --fase "${{ inputs.fase }}" --propietario "${{ inputs.propietario }}" --sitemap "${{ inputs.sitemap }}"
