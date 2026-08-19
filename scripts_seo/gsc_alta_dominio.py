@@ -53,11 +53,22 @@ def main():
     st, r = call(tok, "POST", "https://www.googleapis.com/siteVerification/v1/webResource?verificationMethod=DNS_TXT", {"site": site})
     print("verify HTTP", st, json.dumps(r, ensure_ascii=False))
     if st != 200: sys.exit(1)
-    rid = r["id"]
+    rid = urllib.parse.unquote(r["id"])  # la API devuelve el id ya codificado (dns%3A%2F%2F…); lo normalizamos
     if a.propietario:
         owners = sorted(set(r.get("owners", []) + [a.propietario]))
-        st2, r2 = call(tok, "PUT", f"https://www.googleapis.com/siteVerification/v1/webResource/{urllib.parse.quote(rid, safe='')}", {"id": rid, "site": site, "owners": owners})
-        print("owners HTTP", st2, json.dumps(r2, ensure_ascii=False))
+        for intento in ("dec", "enc"):
+            body = {"id": rid if intento == "dec" else r["id"], "site": site, "owners": owners}
+            st2, r2 = call(tok, "PUT", f"https://www.googleapis.com/siteVerification/v1/webResource/{urllib.parse.quote(rid, safe='')}", body)
+            print("owners HTTP", intento, st2, json.dumps(r2, ensure_ascii=False))
+            if st2 == 200: break
+        if st2 != 200:
+            # alternativa: obtener el recurso y reenviarlo tal cual con el owner añadido
+            st3, r3 = call(tok, "GET", f"https://www.googleapis.com/siteVerification/v1/webResource/{urllib.parse.quote(rid, safe='')}")
+            print("get HTTP", st3, json.dumps(r3, ensure_ascii=False))
+            if st3 == 200:
+                r3["owners"] = owners
+                st4, r4 = call(tok, "PUT", f"https://www.googleapis.com/siteVerification/v1/webResource/{urllib.parse.quote(rid, safe='')}", r3)
+                print("owners HTTP (get+put)", st4, json.dumps(r4, ensure_ascii=False))
     prop = "sc-domain:" + a.dominio
     st3, r3 = call(tok, "PUT", "https://www.googleapis.com/webmasters/v3/sites/" + urllib.parse.quote(prop, safe=""))
     print("sites.add HTTP", st3, r3)
