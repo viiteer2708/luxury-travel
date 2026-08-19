@@ -9,7 +9,7 @@ on:
         description: "Dominio (sin www), p. ej. victormarron.es"
         required: true
       fase:
-        description: "token | verificar"
+        description: "token | verificar | listar"
         required: true
         default: "token"
       propietario:
@@ -34,4 +34,5 @@ jobs:
         env:
           GOOGLE_SA_JSON: ${{ secrets.GOOGLE_SA_JSON }}
         run: |
-          python scripts_seo/gsc_alta_dominio.py --dominio "${{ inputs.dominio }}" --fase "${{ inputs.fase }}" --propietario "${{ inputs.propietario }}" --sitemap "${{ inputs.sitemap }}"
+          if [ "${{ inputs.fase }}" = "listar" ]; then python scripts_seo/gsc_list_webresources.py; else
+          python scripts_seo/gsc_alta_dominio.py --dominio "${{ inputs.dominio }}" --fase "${{ inputs.fase }}" --propietario "${{ inputs.propietario }}" --sitemap "${{ inputs.sitemap }}"; fi
