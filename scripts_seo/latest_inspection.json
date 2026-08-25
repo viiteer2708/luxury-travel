@@ -1,8 +1,8 @@
 {
-  "fecha": "2026-08-23T07:49:44.182426",
+  "fecha": "2026-08-25T08:01:16.340944",
   "total": 103,
-  "indexadas": 88,
-  "no_indexadas": 15,
+  "indexadas": 87,
+  "no_indexadas": 16,
   "errores": 0,
   "detalle_indexadas": [
     "/",
@@ -39,7 +39,6 @@
     "/dubai-abu-dhabi-maldivas/",
     "/ecuador/",
     "/egipto/",
-    "/errores-comunes-organizar-viaje/",
     "/escocia/",
     "/europa/",
     "/filipinas/",
@@ -99,6 +98,7 @@
     "/aruba/",
     "/checklist-pre-viaje/",
     "/como-planifico-un-gran-viaje/",
+    "/errores-comunes-organizar-viaje/",
     "/jet-lag-cambios-horarios/",
     "/madagascar/",
     "/politica-de-privacidad/",
@@ -116,7 +116,7 @@
     "/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-08-17T16:43:04Z",
+      "crawled": "2026-08-25T07:43:57Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/africa/": {
@@ -342,8 +342,8 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/errores-comunes-organizar-viaje/": {
-      "verdict": "PASS",
-      "coverage": "Submitted and indexed",
+      "verdict": "NEUTRAL",
+      "coverage": "Crawled - currently not indexed",
       "crawled": "2026-05-09T17:24:12Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
@@ -620,7 +620,7 @@
     "/pro-tips/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-05-24T23:33:09Z",
+      "crawled": "2026-08-23T20:52:24Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/que-reservar-primero-gran-viaje/": {
