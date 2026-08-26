@@ -69,6 +69,42 @@ https://www.horizonteexclusivo.es/safari-de-lujo-a-medida/
 https://www.horizonteexclusivo.es/viajes-exclusivos-a-medida/
 ```
 
+## Tanda 4 (26-ago-2026) — las que se han caído del índice
+
+Entre el 19 y el 25 de agosto el vigía vio salir 7 URLs (madagascar, aruba, jet-lag, pro-tips de
+egipto, japón y nueva york, errores-comunes). **Seis de ellas salieron sin que Google volviera a
+pasar**: siguen viendo versiones de abril-julio, o sea que el trabajo del 14-ago (fusiones y
+enlazado) todavía no lo ha leído nadie. Pedir indexación aquí no es insistir: es la única forma de
+forzar el re-rastreo y saber si el cambio vale.
+
+Mismo encargo de arriba, cambiando solo la lista:
+
+```
+https://www.horizonteexclusivo.es/aruba/
+https://www.horizonteexclusivo.es/pro-tips-japon/
+https://www.horizonteexclusivo.es/pro-tips-nueva-york/
+https://www.horizonteexclusivo.es/pro-tips-egipto/
+https://www.horizonteexclusivo.es/pro-tips-india/
+https://www.horizonteexclusivo.es/pro-tips-camboya/
+https://www.horizonteexclusivo.es/pro-tips-uganda/
+https://www.horizonteexclusivo.es/jet-lag-cambios-horarios/
+https://www.horizonteexclusivo.es/como-planifico-un-gran-viaje/
+https://www.horizonteexclusivo.es/viajes-pequenos-recuerdos-grandes/
+```
+
+**Van en ese orden a propósito**: si la cuota se agota a mitad, lo que se queda sin pedir es lo que
+menos vende.
+
+Fuera de la lista, y por qué:
+- `/madagascar/` — Google SÍ volvió el 19-ago, leyó la versión nueva y la descartó igual. Eso ya es
+  un veredicto: repetir la petición gasta cuota y no cambia nada.
+- `/antes-de-reservar-viaje-grande/` y `/que-reservar-primero-gran-viaje/` — son las dos que la
+  propuesta del 17-ago funde en `/como-planifico-un-gran-viaje/`. No se pide indexación de URLs que
+  a lo mejor desaparecen.
+- `/checklist-pre-viaje/` y `/errores-comunes-organizar-viaje/` — clúster de planificación: las seis
+  guías juntas suman 25 impresiones en 12 meses. Si sobra cuota, van al final de todo.
+- `/politica-de-privacidad/` — que esté fuera del índice no molesta a nadie.
+
 ## Qué hacer con la tabla que devuelva Cowork
 
 Pegársela a Claude en el VPS: la contrasta con el vigía y **apunta cada URL solicitada con su fecha
