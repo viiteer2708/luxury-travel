@@ -101,7 +101,7 @@ if(faqItems.length>0){inj({"@context":"https://schema.org","@type":"FAQPage","ma
 inj(bc([{name:"Inicio",url:B.url+"/"},{name:"Destinos",url:B.url+"/destinos/"},{name:pn,url:B.url+"/"+ps+"/"},{name:"Travel Hacks",url:cu}]));}
 
 // EDUCATIVAS
-else if(["antes-de-reservar-viaje-grande","como-planifico-un-gran-viaje","viaje-a-medida-que-es"].indexOf(p)>=0){
+else if(["como-planifico-un-gran-viaje","viaje-a-medida-que-es"].indexOf(p)>=0){
 inj({"@context":"https://schema.org","@type":"Article","headline":pt.split("|")[0].trim(),"description":pd,"url":cu,"author":{"@type":"Person","@id":B.url+"/#founder","name":B.founder},"publisher":{"@type":"Organization","@id":B.url+"/#organization","name":B.name,"logo":{"@type":"ImageObject","url":B.logo}}});
 inj(bc([{name:"Inicio",url:B.url+"/"},{name:pt.split("|")[0].trim(),url:cu}]));}
 

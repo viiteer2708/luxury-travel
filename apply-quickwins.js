@@ -16,9 +16,9 @@ const SKIP = new Set(['node_modules', '.git', '.claude', '.github', '.vercel', '
 // Páginas donde insertar la captación de email (alta intención / audiencia que "sueña").
 const CAPTURE_SLUGS = new Set([
   '', // home
-  'antes-de-reservar-viaje-grande', 'como-planifico-un-gran-viaje', 'viaje-a-medida-que-es',
+  'como-planifico-un-gran-viaje', 'viaje-a-medida-que-es',
   'checklist-pre-viaje', 'cuanto-cuesta-viaje-a-medida', 'errores-comunes-organizar-viaje',
-  'itinerario-ritmo-realista', 'jet-lag-cambios-horarios', 'que-reservar-primero-gran-viaje',
+  'itinerario-ritmo-realista', 'jet-lag-cambios-horarios',
   'viaje-a-medida-vs-por-tu-cuenta', 'viaje-premium-que-es', 'viajes-pequenos-recuerdos-grandes',
 ]);
 

@@ -116,6 +116,16 @@
       "permanent": true
     },
     {
+      "source": "/antes-de-reservar-viaje-grande/",
+      "destination": "https://www.horizonteexclusivo.es/como-planifico-un-gran-viaje/",
+      "permanent": true
+    },
+    {
+      "source": "/que-reservar-primero-gran-viaje/",
+      "destination": "https://www.horizonteexclusivo.es/como-planifico-un-gran-viaje/",
+      "permanent": true
+    },
+    {
       "source": "/pro-tips-albania/",
       "destination": "https://www.horizonteexclusivo.es/albania/#consejos-viaje",
       "permanent": true
