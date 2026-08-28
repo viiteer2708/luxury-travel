@@ -105,6 +105,25 @@ Fuera de la lista, y por qué:
   guías juntas suman 25 impresiones en 12 meses. Si sobra cuota, van al final de todo.
 - `/politica-de-privacidad/` — que esté fuera del índice no molesta a nadie.
 
+## Tanda 5 (28-ago-2026) — las dos que quedan con cambios sin ver
+
+La tanda 4 entró ENTERA: las 10 URLs pedidas el 26-ago estaban indexadas en el informe del 27 (96 de
+101). Quedan cuatro fuera y solo dos merecen petición: `/checklist-pre-viaje/` y
+`/errores-comunes-organizar-viaje/`, que cambiaron el 26-ago con la fusión del clúster de
+planificación (enlaces reapuntados) y Google sigue viendo versiones de mayo.
+
+```
+https://www.horizonteexclusivo.es/checklist-pre-viaje/
+https://www.horizonteexclusivo.es/errores-comunes-organizar-viaje/
+```
+
+**`/madagascar/` y `/sudafrica/` NO se piden.** Google las releyó (el 19 y el 26) con la versión nueva
+delante y las dejó fuera igualmente: eso es un veredicto, y volver a pedirlas sin cambiar la página no
+lo mueve. Y no hay nada que cambiarles — Madagascar tiene 1.207 palabras y 4 enlaces entrantes,
+Sudáfrica 1.132 y 4, mientras sus gemelas indexadas Seychelles (1.250 y 5) y Namibia (1.161 y 4) son
+idénticas en perfil. Es presupuesto de rastreo, o sea autoridad, no contenido.
+`/politica-de-privacidad/` sigue fuera y da igual.
+
 ## Qué hacer con la tabla que devuelva Cowork
 
 Pegársela a Claude en el VPS: la contrasta con el vigía y **apunta cada URL solicitada con su fecha
