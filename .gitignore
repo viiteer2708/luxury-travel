@@ -10,3 +10,4 @@ node_modules
 scripts_seo/last_telegram.md
 scripts_seo/.alert
 __pycache__/
+.claude/skills/ui-ux-pro-max/
