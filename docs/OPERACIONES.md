@@ -336,3 +336,23 @@ window.addEventListener('resize', checkNavOverflow);
 - Itinerario: Unsplash `?w=800&q=80`
 - Tarjetas región: Unsplash `?w=600&q=80`
 - **Las imágenes locales (no Unsplash) SIEMPRE van en `images/`** — referenciar como `/images/nombre.ext` (ruta absoluta), hacer `git add` antes de commit
+
+## Los dos vigías y su red de seguridad en el VPS
+
+Dos workflows vigilan el SEO solos y avisan por Telegram:
+
+| Workflow | Cuándo | Qué hace |
+|---|---|---|
+| `indexing-check.yml` | días impares, 07:00 UTC | inspecciona las URLs del `sitemap.xml` en Search Console y escribe `scripts_seo/last_summary.md` |
+| `rank-weekly.yml` | viernes, 07:00 UTC | posiciones de las consultas vigiladas y de 8 páginas clave |
+
+**GitHub Actions se salta los cron programados cuando va cargado.** No es una avería: es el
+comportamiento documentado de los `schedule`. Pasó el 28-ago-2026 (el informe semanal no llegó a
+dispararse) y el 27 (el vigía corrió a las 18:24 en vez de a las 09:00).
+
+Por eso el VPS lleva una red de seguridad: **`/root/avisos/horizonte-actions.sh`**, cron diario a las
+10:30 (log en `/root/avisos/horizonte-actions.log`). Mira si el workflow que tocaba hoy ya ha corrido
+y, solo si no, lo lanza con `gh workflow run`. El `schedule` de GitHub se queda puesto: si dispara a
+su hora, el script no hace nada. Opción `--probar` para ver qué haría sin lanzar nada.
+
+Ojo: el script vive en el VPS, no en este repo, y depende de que `gh` siga autenticado ahí.
