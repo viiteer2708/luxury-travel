@@ -1,22 +1,11 @@
-# Inspección 2026-08-29T08:42
+# Inspección 2026-08-29T13:17
 
 - **Total:** 101 URLs
 - **Indexadas:** 98
 - **No indexadas:** 3
 - **Errores:** 0
 
-**Cambio vs snapshot previo (2026-08-27T18:24):** indexadas +2, no indexadas -2.
-
-## 🆕 Nuevas indexadas (2)
-- `/checklist-pre-viaje/` — 📨 solicitada el 2026-08-28
-- `/errores-comunes-organizar-viaje/` — 📨 solicitada el 2026-08-28
-
-## 🔁 Google ha vuelto a pasar desde el snapshot anterior
-
-### 👁 URLs clave que ha vuelto a leer (1)
-- `/` el 2026-08-28
-
-_Además ha vuelto a leer 6 páginas indexadas más._
+**Cambio vs snapshot previo (2026-08-29T08:42):** indexadas +0, no indexadas +0.
 
 ## 🎯 URLs clave (money pages y rescates del 14-ago)
 
@@ -47,5 +36,3 @@ _Además ha vuelto a leer 6 páginas indexadas más._
 ## 🔴 Crawled - currently not indexed (2)
 - `/madagascar/` — 👁 vista el 2026-08-19
 - `/sudafrica/` — 👁 vista el 2026-08-26
-
-_Aviso disparado por: cambio en totales; nuevas indexadas._
