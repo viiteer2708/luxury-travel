@@ -1,8 +1,8 @@
 {
-  "fecha": "2026-08-27T18:24:25.818757",
+  "fecha": "2026-08-29T08:42:25.130832",
   "total": 101,
-  "indexadas": 96,
-  "no_indexadas": 5,
+  "indexadas": 98,
+  "no_indexadas": 3,
   "errores": 0,
   "detalle_indexadas": [
     "/",
@@ -25,6 +25,7 @@
     "/brasil/",
     "/camboya/",
     "/canada/",
+    "/checklist-pre-viaje/",
     "/chicago-nueva-orleans/",
     "/chile/",
     "/china/",
@@ -41,6 +42,7 @@
     "/dubai-abu-dhabi-maldivas/",
     "/ecuador/",
     "/egipto/",
+    "/errores-comunes-organizar-viaje/",
     "/escocia/",
     "/europa/",
     "/filipinas/",
@@ -103,8 +105,6 @@
     "/vietnam/"
   ],
   "detalle_no_indexadas": [
-    "/checklist-pre-viaje/",
-    "/errores-comunes-organizar-viaje/",
     "/madagascar/",
     "/politica-de-privacidad/",
     "/sudafrica/"
@@ -114,7 +114,7 @@
     "/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-08-25T07:43:57Z",
+      "crawled": "2026-08-28T18:02:06Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/africa/": {
@@ -138,7 +138,7 @@
     "/albania/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-06-24T11:04:26Z",
+      "crawled": "2026-08-29T05:55:49Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/alemania/": {
@@ -168,7 +168,7 @@
     "/asia/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-07-04T13:51:29Z",
+      "crawled": "2026-08-29T02:31:21Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/aviso-legal/": {
@@ -228,13 +228,13 @@
     "/canada/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-06-23T09:37:30Z",
+      "crawled": "2026-08-29T05:26:39Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/checklist-pre-viaje/": {
-      "verdict": "NEUTRAL",
-      "coverage": "Crawled - currently not indexed",
-      "crawled": "2026-05-29T00:46:24Z",
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-08-28T14:20:31Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/chicago-nueva-orleans/": {
@@ -334,9 +334,9 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/errores-comunes-organizar-viaje/": {
-      "verdict": "NEUTRAL",
-      "coverage": "Crawled - currently not indexed",
-      "crawled": "2026-05-09T17:24:12Z",
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-08-28T14:26:55Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/escocia/": {
@@ -714,7 +714,7 @@
     "/vietnam/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-07-23T13:05:59Z",
+      "crawled": "2026-08-28T03:42:50Z",
       "indexing_state": "INDEXING_ALLOWED"
     }
   }
