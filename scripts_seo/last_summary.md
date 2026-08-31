@@ -1,11 +1,18 @@
-# Inspección 2026-08-29T13:17
+# Inspección 2026-08-31T08:42
 
 - **Total:** 101 URLs
-- **Indexadas:** 98
-- **No indexadas:** 3
+- **Indexadas:** 97
+- **No indexadas:** 4
 - **Errores:** 0
 
-**Cambio vs snapshot previo (2026-08-29T08:42):** indexadas +0, no indexadas +0.
+**Cambio vs snapshot previo (2026-08-29T13:17):** indexadas -1, no indexadas +1.
+
+## ⚠️ Salieron del índice (1)
+- `/itinerario-ritmo-realista/`
+
+## 🔁 Google ha vuelto a pasar desde el snapshot anterior
+
+_Además ha vuelto a leer 4 páginas indexadas más._
 
 ## 🎯 URLs clave (money pages y rescates del 14-ago)
 
@@ -30,9 +37,14 @@
 | `/suiza/` | ✅ indexada | 👁 vista el 2026-08-17 | ✅ indexada | 📨 2026-08-17 · releída después |
 
 ## Desglose no indexadas
-- **Crawled - currently not indexed:** 2
+- **Crawled - currently not indexed:** 3
 - **Sin rastrear todavía:** 1 (Discovered 1; la API alterna entre ambos, es el mismo cajón)
 
-## 🔴 Crawled - currently not indexed (2)
+## 🔴 Crawled - currently not indexed (3)
+- `/itinerario-ritmo-realista/` — ⏳ vio la versión anterior (2026-05-20); el cambio del 2026-08-14 sigue sin rastrear
 - `/madagascar/` — 👁 vista el 2026-08-19
 - `/sudafrica/` — 👁 vista el 2026-08-26
+
+_1 de 3 han cambiado después del último rastreo de Google: su veredicto está pendiente, no dado._
+
+_Aviso disparado por: cambio en totales; salidas del índice._

@@ -1,8 +1,8 @@
 {
-  "fecha": "2026-08-29T13:17:33.496608",
+  "fecha": "2026-08-31T08:42:30.987117",
   "total": 101,
-  "indexadas": 98,
-  "no_indexadas": 3,
+  "indexadas": 97,
+  "no_indexadas": 4,
   "errores": 0,
   "detalle_indexadas": [
     "/",
@@ -53,7 +53,6 @@
     "/india/",
     "/islandia/",
     "/italia/",
-    "/itinerario-ritmo-realista/",
     "/jamaica/",
     "/japon/",
     "/jet-lag-cambios-horarios/",
@@ -105,6 +104,7 @@
     "/vietnam/"
   ],
   "detalle_no_indexadas": [
+    "/itinerario-ritmo-realista/",
     "/madagascar/",
     "/politica-de-privacidad/",
     "/sudafrica/"
@@ -174,7 +174,7 @@
     "/aviso-legal/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-07-17T08:46:12Z",
+      "crawled": "2026-08-31T07:51:21Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/bahamas/": {
@@ -354,7 +354,7 @@
     "/filipinas/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-06-24T22:19:30Z",
+      "crawled": "2026-08-29T21:02:22Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/florida/": {
@@ -400,8 +400,8 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/itinerario-ritmo-realista/": {
-      "verdict": "PASS",
-      "coverage": "Submitted and indexed",
+      "verdict": "NEUTRAL",
+      "coverage": "Crawled - currently not indexed",
       "crawled": "2026-05-20T13:19:29Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
@@ -486,7 +486,7 @@
     "/noruega/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-05-23T00:26:24Z",
+      "crawled": "2026-08-31T00:13:15Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/nueva-york/": {
@@ -540,7 +540,7 @@
     "/pro-tips-aruba/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-05-22T18:28:36Z",
+      "crawled": "2026-08-30T22:10:04Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/pro-tips-bahamas/": {
