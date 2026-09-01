@@ -1,8 +1,8 @@
 {
-  "fecha": "2026-09-01T08:42:26.291943",
+  "fecha": "2026-09-01T12:40:22.188954",
   "total": 101,
-  "indexadas": 93,
-  "no_indexadas": 8,
+  "indexadas": 94,
+  "no_indexadas": 7,
   "errores": 0,
   "detalle_indexadas": [
     "/",
@@ -88,6 +88,7 @@
     "/seychelles/",
     "/singapur/",
     "/sri-lanka/",
+    "/suiza/",
     "/tailandia/",
     "/tanzania/",
     "/turquia/",
@@ -106,8 +107,7 @@
     "/madagascar/",
     "/mauricio/",
     "/politica-de-privacidad/",
-    "/sudafrica/",
-    "/suiza/"
+    "/sudafrica/"
   ],
   "detalle_errores": [],
   "resultados_completos": {
@@ -652,8 +652,8 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/suiza/": {
-      "verdict": "NEUTRAL",
-      "coverage": "Crawled - currently not indexed",
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
       "crawled": "2026-08-17T11:17:13Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
