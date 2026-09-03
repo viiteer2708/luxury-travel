@@ -1,14 +1,13 @@
 {
-  "fecha": "2026-09-01T12:40:22.188954",
+  "fecha": "2026-09-03T08:42:46.089990",
   "total": 101,
-  "indexadas": 94,
-  "no_indexadas": 7,
-  "errores": 0,
+  "indexadas": 90,
+  "no_indexadas": 10,
+  "errores": 1,
   "detalle_indexadas": [
     "/",
     "/africa/",
     "/agencia-viajes-lujo-barcelona/",
-    "/alaska/",
     "/albania/",
     "/alemania/",
     "/america/",
@@ -23,8 +22,6 @@
     "/blog/",
     "/botsuana/",
     "/brasil/",
-    "/camboya/",
-    "/canada/",
     "/checklist-pre-viaje/",
     "/chile/",
     "/china/",
@@ -71,7 +68,6 @@
     "/portugal/",
     "/praga-viena-budapest/",
     "/pro-tips-aruba/",
-    "/pro-tips-bahamas/",
     "/pro-tips-camboya/",
     "/pro-tips-chile/",
     "/pro-tips-croacia/",
@@ -101,20 +97,31 @@
     "/vietnam/"
   ],
   "detalle_no_indexadas": [
+    "/alaska/",
+    "/camboya/",
     "/chicago-nueva-orleans/",
     "/hawai/",
     "/itinerario-ritmo-realista/",
     "/madagascar/",
     "/mauricio/",
     "/politica-de-privacidad/",
+    "/pro-tips-bahamas/",
     "/sudafrica/"
   ],
-  "detalle_errores": [],
+  "detalle_errores": [
+    {
+      "url": "/canada/",
+      "error": {
+        "code": 500,
+        "message": "{\n  \"error\": {\n    \"code\": 500,\n    \"message\": \"Internal error encountered.\",\n    \"status\": \"INTERNAL\"\n  }\n}\n"
+      }
+    }
+  ],
   "resultados_completos": {
     "/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-08-28T18:02:06Z",
+      "crawled": "2026-09-02T17:45:04Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/africa/": {
@@ -130,8 +137,8 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/alaska/": {
-      "verdict": "PASS",
-      "coverage": "Submitted and indexed",
+      "verdict": "NEUTRAL",
+      "coverage": "Crawled - currently not indexed",
       "crawled": "2026-08-18T20:44:39Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
@@ -220,15 +227,9 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/camboya/": {
-      "verdict": "PASS",
-      "coverage": "Submitted and indexed",
+      "verdict": "NEUTRAL",
+      "coverage": "Crawled - currently not indexed",
       "crawled": "2026-08-18T20:44:38Z",
-      "indexing_state": "INDEXING_ALLOWED"
-    },
-    "/canada/": {
-      "verdict": "PASS",
-      "coverage": "Submitted and indexed",
-      "crawled": "2026-08-29T05:26:39Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/checklist-pre-viaje/": {
@@ -240,7 +241,7 @@
     "/chicago-nueva-orleans/": {
       "verdict": "NEUTRAL",
       "coverage": "Crawled - currently not indexed",
-      "crawled": "2026-08-17T11:17:13Z",
+      "crawled": "2026-09-03T04:13:39Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/chile/": {
@@ -378,7 +379,7 @@
     "/hawai/": {
       "verdict": "NEUTRAL",
       "coverage": "Crawled - currently not indexed",
-      "crawled": "2026-08-17T11:20:17Z",
+      "crawled": "2026-09-01T16:42:21Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/india/": {
@@ -468,7 +469,7 @@
     "/mauricio/": {
       "verdict": "NEUTRAL",
       "coverage": "Crawled - currently not indexed",
-      "crawled": "2026-08-17T11:20:17Z",
+      "crawled": "2026-09-02T07:06:06Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/molins-de-rei/": {
@@ -544,8 +545,8 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/pro-tips-bahamas/": {
-      "verdict": "PASS",
-      "coverage": "Submitted and indexed",
+      "verdict": "NEUTRAL",
+      "coverage": "Crawled - currently not indexed",
       "crawled": "2026-07-08T06:35:29Z",
       "indexing_state": "INDEXING_ALLOWED"
     },

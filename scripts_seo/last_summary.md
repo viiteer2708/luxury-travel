@@ -1,20 +1,34 @@
-# Inspección 2026-09-01T12:40
+# Inspección 2026-09-03T08:42
 
 - **Total:** 101 URLs
-- **Indexadas:** 94
-- **No indexadas:** 7
-- **Errores:** 0
+- **Indexadas:** 90
+- **No indexadas:** 10
+- **Errores:** 1
 
-**Cambio vs snapshot previo (2026-09-01T08:42):** indexadas +1, no indexadas -1.
+**Cambio vs snapshot previo (2026-09-01T12:40):** indexadas -4, no indexadas +3.
 
-## 🆕 Nuevas indexadas (1)
-- `/suiza/` — 📨 solicitada el 2026-08-17
+## ⚠️ Salieron del índice (3)
+- `/alaska/`
+- `/camboya/`
+- `/pro-tips-bahamas/`
+
+_1 URL(s) indexadas antes ya no están en el sitemap (retiradas o redirigidas a propósito): `/canada/`._
+
+## 🔁 Google ha vuelto a pasar desde el snapshot anterior
+
+### 🔴 Volvió y SIGUEN FUERA (3) — veredicto sobre lo que vio
+- `/chicago-nueva-orleans/` rastreada el 2026-09-03 → Crawled - currently not indexed. vio la versión del 2026-08-14 · 📨 se había solicitado indexación el 2026-08-17: Google la ha releído y SIGUE FUERA
+- `/hawai/` rastreada el 2026-09-01 → Crawled - currently not indexed. vio la versión del 2026-08-14 · 📨 se había solicitado indexación el 2026-08-17: Google la ha releído y SIGUE FUERA
+- `/mauricio/` rastreada el 2026-09-02 → Crawled - currently not indexed. vio la versión del 2026-08-14 · 📨 se había solicitado indexación el 2026-08-17: Google la ha releído y SIGUE FUERA
+
+### 👁 URLs clave que ha vuelto a leer (1)
+- `/` el 2026-09-02
 
 ## 🎯 URLs clave (money pages y rescates del 14-ago)
 
 | URL | Estado | ¿Ha visto el último cambio? | Estado previo | Solicitada |
 |---|---|---|---|---|
-| `/` | ✅ indexada | 👁 vista el 2026-08-28 | ✅ indexada | — |
+| `/` | ✅ indexada | 👁 vista el 2026-09-02 | ✅ indexada | — |
 | `/molins-de-rei/` | ✅ indexada | 👁 vista el 2026-08-19 | ✅ indexada | 📨 2026-08-19 · releída después |
 | `/baix-llobregat/` | ✅ indexada | ⏳ vio la versión anterior (2026-07-11); el cambio del 2026-08-14 sigue sin rastrear | ✅ indexada | — |
 | `/agencia-viajes-lujo-barcelona/` | ✅ indexada | 🤔 rastreada el 2026-08-17, el mismo día del cambio: no concluyente | ✅ indexada | 📨 2026-08-17 · releída después |
@@ -25,25 +39,28 @@
 | `/safari-de-lujo-a-medida/` | ✅ indexada | ⏳ vio la versión anterior (2026-08-07); el cambio del 2026-08-14 sigue sin rastrear | ✅ indexada | — |
 | `/cuanto-cuesta-viaje-a-medida/` | ✅ indexada | 👁 vista el 2026-08-17 | ✅ indexada | 📨 2026-08-17 · releída después |
 | `/destinos/` | ✅ indexada | 👁 vista el 2026-08-17 | ✅ indexada | — |
-| `/chicago-nueva-orleans/` | 🔴 rastreada, fuera | 👁 vista el 2026-08-17 | 🔴 rastreada, fuera | 📨 2026-08-17 · releída después |
+| `/chicago-nueva-orleans/` | 🔴 rastreada, fuera | 👁 vista el 2026-09-03 | 🔴 rastreada, fuera | 📨 2026-08-17 · releída después |
 | `/costa-rica/` | ✅ indexada | 👁 vista el 2026-08-17 | ✅ indexada | 📨 2026-08-17 · releída después |
 | `/ecuador/` | ✅ indexada | 👁 vista el 2026-08-17 | ✅ indexada | 📨 2026-08-17 · releída después |
-| `/hawai/` | 🔴 rastreada, fuera | 👁 vista el 2026-08-17 | 🔴 rastreada, fuera | 📨 2026-08-17 · releída después |
-| `/mauricio/` | 🔴 rastreada, fuera | 👁 vista el 2026-08-17 | 🔴 rastreada, fuera | 📨 2026-08-17 · releída después |
-| `/suiza/` | ✅ indexada **(cambió)** | 👁 vista el 2026-08-17 | 🔴 rastreada, fuera | 📨 2026-08-17 · releída después |
+| `/hawai/` | 🔴 rastreada, fuera | 👁 vista el 2026-09-01 | 🔴 rastreada, fuera | 📨 2026-08-17 · releída después |
+| `/mauricio/` | 🔴 rastreada, fuera | 👁 vista el 2026-09-02 | 🔴 rastreada, fuera | 📨 2026-08-17 · releída después |
+| `/suiza/` | ✅ indexada | 👁 vista el 2026-08-17 | ✅ indexada | 📨 2026-08-17 · releída después |
 
 ## Desglose no indexadas
-- **Crawled - currently not indexed:** 6
+- **Crawled - currently not indexed:** 9
 - **Sin rastrear todavía:** 1 (Discovered 1; la API alterna entre ambos, es el mismo cajón)
 
-## 🔴 Crawled - currently not indexed (6)
-- `/chicago-nueva-orleans/` — 👁 vista el 2026-08-17
-- `/hawai/` — 👁 vista el 2026-08-17
+## 🔴 Crawled - currently not indexed (9)
+- `/alaska/` — 👁 vista el 2026-08-18
+- `/camboya/` — 👁 vista el 2026-08-18
+- `/chicago-nueva-orleans/` — 👁 vista el 2026-09-03
+- `/hawai/` — 👁 vista el 2026-09-01
 - `/itinerario-ritmo-realista/` — ⏳ vio la versión anterior (2026-05-20); el cambio del 2026-08-14 sigue sin rastrear
 - `/madagascar/` — 👁 vista el 2026-08-19
-- `/mauricio/` — 👁 vista el 2026-08-17
+- `/mauricio/` — 👁 vista el 2026-09-02
+- `/pro-tips-bahamas/` — ⏳ vio la versión anterior (2026-07-08); el cambio del 2026-08-14 sigue sin rastrear
 - `/sudafrica/` — 👁 vista el 2026-08-26
 
-_1 de 6 han cambiado después del último rastreo de Google: su veredicto está pendiente, no dado._
+_2 de 9 han cambiado después del último rastreo de Google: su veredicto está pendiente, no dado._
 
-_Aviso disparado por: cambio en totales; nuevas indexadas; cambio de estado en /suiza/._
+_Aviso disparado por: cambio en totales; salidas del índice; re-rastreo de páginas fuera del índice._
