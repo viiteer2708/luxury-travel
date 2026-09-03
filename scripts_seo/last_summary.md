@@ -1,28 +1,14 @@
-# Inspección 2026-09-03T08:42
+# Inspección 2026-09-03T12:13
 
 - **Total:** 101 URLs
-- **Indexadas:** 90
+- **Indexadas:** 91
 - **No indexadas:** 10
-- **Errores:** 1
+- **Errores:** 0
 
-**Cambio vs snapshot previo (2026-09-01T12:40):** indexadas -4, no indexadas +3.
+**Cambio vs snapshot previo (2026-09-03T08:42):** indexadas +1, no indexadas +0.
 
-## ⚠️ Salieron del índice (3)
-- `/alaska/`
-- `/camboya/`
-- `/pro-tips-bahamas/`
-
-_1 URL(s) indexadas antes ya no están en el sitemap (retiradas o redirigidas a propósito): `/canada/`._
-
-## 🔁 Google ha vuelto a pasar desde el snapshot anterior
-
-### 🔴 Volvió y SIGUEN FUERA (3) — veredicto sobre lo que vio
-- `/chicago-nueva-orleans/` rastreada el 2026-09-03 → Crawled - currently not indexed. vio la versión del 2026-08-14 · 📨 se había solicitado indexación el 2026-08-17: Google la ha releído y SIGUE FUERA
-- `/hawai/` rastreada el 2026-09-01 → Crawled - currently not indexed. vio la versión del 2026-08-14 · 📨 se había solicitado indexación el 2026-08-17: Google la ha releído y SIGUE FUERA
-- `/mauricio/` rastreada el 2026-09-02 → Crawled - currently not indexed. vio la versión del 2026-08-14 · 📨 se había solicitado indexación el 2026-08-17: Google la ha releído y SIGUE FUERA
-
-### 👁 URLs clave que ha vuelto a leer (1)
-- `/` el 2026-09-02
+## 🆕 Nuevas indexadas (1)
+- `/canada/`
 
 ## 🎯 URLs clave (money pages y rescates del 14-ago)
 
@@ -48,7 +34,7 @@ _1 URL(s) indexadas antes ya no están en el sitemap (retiradas o redirigidas a 
 
 ## Desglose no indexadas
 - **Crawled - currently not indexed:** 9
-- **Sin rastrear todavía:** 1 (Discovered 1; la API alterna entre ambos, es el mismo cajón)
+- **Sin rastrear todavía:** 1 (URL is unknown to Google 1; la API alterna entre ambos, es el mismo cajón)
 
 ## 🔴 Crawled - currently not indexed (9)
 - `/alaska/` — 👁 vista el 2026-08-18
@@ -63,4 +49,4 @@ _1 URL(s) indexadas antes ya no están en el sitemap (retiradas o redirigidas a 
 
 _2 de 9 han cambiado después del último rastreo de Google: su veredicto está pendiente, no dado._
 
-_Aviso disparado por: cambio en totales; salidas del índice; re-rastreo de páginas fuera del índice._
+_Aviso disparado por: cambio en totales; nuevas indexadas._
