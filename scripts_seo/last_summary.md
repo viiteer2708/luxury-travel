@@ -1,27 +1,11 @@
-# Inspección 2026-09-05T08:42
+# Inspección 2026-09-05T11:24
 
 - **Total:** 101 URLs
 - **Indexadas:** 90
 - **No indexadas:** 11
 - **Errores:** 0
 
-**Cambio vs snapshot previo (2026-09-03T12:13):** indexadas -1, no indexadas +1.
-
-## 🆕 Nuevas indexadas (1)
-- `/camboya/` — 📨 solicitada el 2026-08-18
-
-## ⚠️ Salieron del índice (2)
-- `/malta/`
-- `/pro-tips-noruega/`
-
-## 🔁 Google ha vuelto a pasar desde el snapshot anterior
-
-### 🔴 Volvió y SIGUEN FUERA (3) — veredicto sobre lo que vio
-- `/alaska/` rastreada el 2026-09-04 → Crawled - currently not indexed. vio la versión del 2026-08-14 · 📨 se había solicitado indexación el 2026-08-18: Google la ha releído y SIGUE FUERA
-- `/hawai/` rastreada el 2026-09-03 → Crawled - currently not indexed. vio la versión del 2026-08-14 · 📨 se había solicitado indexación el 2026-08-17: Google la ha releído y SIGUE FUERA
-- `/mauricio/` rastreada el 2026-09-05 → Crawled - currently not indexed. vio la versión del 2026-08-14 · 📨 se había solicitado indexación el 2026-08-17: Google la ha releído y SIGUE FUERA
-
-_Además ha vuelto a leer 2 páginas indexadas más._
+**Cambio vs snapshot previo (2026-09-05T08:42):** indexadas +0, no indexadas +0.
 
 ## 🎯 URLs clave (money pages y rescates del 14-ago)
 
@@ -62,5 +46,3 @@ _Además ha vuelto a leer 2 páginas indexadas más._
 - `/sudafrica/` — 👁 vista el 2026-08-26
 
 _4 de 10 han cambiado después del último rastreo de Google: su veredicto está pendiente, no dado._
-
-_Aviso disparado por: cambio en totales; nuevas indexadas; salidas del índice; re-rastreo de páginas fuera del índice._
