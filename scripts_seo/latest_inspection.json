@@ -1,8 +1,8 @@
 {
-  "fecha": "2026-09-03T12:13:15.878702",
+  "fecha": "2026-09-05T08:42:50.667860",
   "total": 101,
-  "indexadas": 91,
-  "no_indexadas": 10,
+  "indexadas": 90,
+  "no_indexadas": 11,
   "errores": 0,
   "detalle_indexadas": [
     "/",
@@ -22,6 +22,7 @@
     "/blog/",
     "/botsuana/",
     "/brasil/",
+    "/camboya/",
     "/canada/",
     "/checklist-pre-viaje/",
     "/chile/",
@@ -56,7 +57,6 @@
     "/luna-de-miel-a-medida/",
     "/malasia/",
     "/maldivas/",
-    "/malta/",
     "/marruecos/",
     "/molins-de-rei/",
     "/namibia/",
@@ -76,7 +76,6 @@
     "/pro-tips-egipto/",
     "/pro-tips-india/",
     "/pro-tips-japon/",
-    "/pro-tips-noruega/",
     "/pro-tips-nueva-york/",
     "/pro-tips-uganda/",
     "/pro-tips/",
@@ -99,14 +98,15 @@
   ],
   "detalle_no_indexadas": [
     "/alaska/",
-    "/camboya/",
     "/chicago-nueva-orleans/",
     "/hawai/",
     "/itinerario-ritmo-realista/",
     "/madagascar/",
+    "/malta/",
     "/mauricio/",
     "/politica-de-privacidad/",
     "/pro-tips-bahamas/",
+    "/pro-tips-noruega/",
     "/sudafrica/"
   ],
   "detalle_errores": [],
@@ -132,7 +132,7 @@
     "/alaska/": {
       "verdict": "NEUTRAL",
       "coverage": "Crawled - currently not indexed",
-      "crawled": "2026-08-18T20:44:39Z",
+      "crawled": "2026-09-04T01:12:44Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/albania/": {
@@ -220,9 +220,9 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/camboya/": {
-      "verdict": "NEUTRAL",
-      "coverage": "Crawled - currently not indexed",
-      "crawled": "2026-08-18T20:44:38Z",
+      "verdict": "PASS",
+      "coverage": "Submitted and indexed",
+      "crawled": "2026-09-04T19:42:36Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/canada/": {
@@ -378,7 +378,7 @@
     "/hawai/": {
       "verdict": "NEUTRAL",
       "coverage": "Crawled - currently not indexed",
-      "crawled": "2026-09-01T16:42:21Z",
+      "crawled": "2026-09-03T16:42:20Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/india/": {
@@ -450,12 +450,12 @@
     "/maldivas/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-06-24T12:14:16Z",
+      "crawled": "2026-09-04T07:23:53Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/malta/": {
-      "verdict": "PASS",
-      "coverage": "Submitted and indexed",
+      "verdict": "NEUTRAL",
+      "coverage": "Crawled - currently not indexed",
       "crawled": "2026-07-19T05:03:40Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
@@ -468,7 +468,7 @@
     "/mauricio/": {
       "verdict": "NEUTRAL",
       "coverage": "Crawled - currently not indexed",
-      "crawled": "2026-09-02T07:06:06Z",
+      "crawled": "2026-09-05T00:33:54Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/molins-de-rei/": {
@@ -521,7 +521,7 @@
     },
     "/politica-de-privacidad/": {
       "verdict": "NEUTRAL",
-      "coverage": "URL is unknown to Google",
+      "coverage": "Discovered - currently not indexed",
       "crawled": "N/A",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
     },
@@ -592,8 +592,8 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/pro-tips-noruega/": {
-      "verdict": "PASS",
-      "coverage": "Submitted and indexed",
+      "verdict": "NEUTRAL",
+      "coverage": "Crawled - currently not indexed",
       "crawled": "2026-07-09T05:12:19Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
