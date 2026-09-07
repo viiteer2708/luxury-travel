@@ -1,5 +1,5 @@
 {
-  "fecha": "2026-09-05T11:24:28.374754",
+  "fecha": "2026-09-07T08:42:41.431328",
   "total": 101,
   "indexadas": 90,
   "no_indexadas": 11,
@@ -132,7 +132,7 @@
     "/alaska/": {
       "verdict": "NEUTRAL",
       "coverage": "Crawled - currently not indexed",
-      "crawled": "2026-09-04T01:12:44Z",
+      "crawled": "2026-09-05T12:25:39Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/albania/": {
