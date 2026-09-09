@@ -1,5 +1,5 @@
 {
-  "fecha": "2026-09-09T08:43:04.285583",
+  "fecha": "2026-09-09T12:27:16.249651",
   "total": 101,
   "indexadas": 90,
   "no_indexadas": 11,
@@ -132,7 +132,7 @@
     "/alaska/": {
       "verdict": "NEUTRAL",
       "coverage": "Crawled - currently not indexed",
-      "crawled": "2026-09-05T12:25:39Z",
+      "crawled": "2026-09-09T09:09:41Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/albania/": {
@@ -378,7 +378,7 @@
     "/hawai/": {
       "verdict": "NEUTRAL",
       "coverage": "Crawled - currently not indexed",
-      "crawled": "2026-09-03T16:42:20Z",
+      "crawled": "2026-09-09T09:38:28Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/india/": {
