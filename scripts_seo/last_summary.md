@@ -1,11 +1,15 @@
-# Inspección 2026-09-07T13:36
+# Inspección 2026-09-09T08:43
 
 - **Total:** 101 URLs
 - **Indexadas:** 90
 - **No indexadas:** 11
 - **Errores:** 0
 
-**Cambio vs snapshot previo (2026-09-07T08:42):** indexadas +0, no indexadas +0.
+**Cambio vs snapshot previo (2026-09-07T13:36):** indexadas +0, no indexadas +0.
+
+## 🔁 Google ha vuelto a pasar desde el snapshot anterior
+
+_Además ha vuelto a leer 1 páginas indexadas más._
 
 ## 🎯 URLs clave (money pages y rescates del 14-ago)
 
