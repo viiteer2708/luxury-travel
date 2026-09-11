@@ -1,8 +1,8 @@
 {
-  "fecha": "2026-09-09T12:27:16.249651",
+  "fecha": "2026-09-11T08:42:42.832544",
   "total": 101,
-  "indexadas": 90,
-  "no_indexadas": 11,
+  "indexadas": 86,
+  "no_indexadas": 15,
   "errores": 0,
   "detalle_indexadas": [
     "/",
@@ -73,11 +73,8 @@
     "/pro-tips-chile/",
     "/pro-tips-croacia/",
     "/pro-tips-cuba/",
-    "/pro-tips-egipto/",
-    "/pro-tips-india/",
     "/pro-tips-japon/",
     "/pro-tips-nueva-york/",
-    "/pro-tips-uganda/",
     "/pro-tips/",
     "/quien-hay-detras/",
     "/safari-de-lujo-a-medida/",
@@ -93,7 +90,6 @@
     "/viajes-a-medida-barcelona/",
     "/viajes-de-empresa-a-medida/",
     "/viajes-exclusivos-a-medida/",
-    "/viajes-pequenos-recuerdos-grandes/",
     "/vietnam/"
   ],
   "detalle_no_indexadas": [
@@ -106,8 +102,12 @@
     "/mauricio/",
     "/politica-de-privacidad/",
     "/pro-tips-bahamas/",
+    "/pro-tips-egipto/",
+    "/pro-tips-india/",
     "/pro-tips-noruega/",
-    "/sudafrica/"
+    "/pro-tips-uganda/",
+    "/sudafrica/",
+    "/viajes-pequenos-recuerdos-grandes/"
   ],
   "detalle_errores": [],
   "resultados_completos": {
@@ -426,7 +426,7 @@
     "/kenia-zanzibar/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-07-07T03:44:36Z",
+      "crawled": "2026-09-10T02:32:57Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/luna-de-miel-a-medida/": {
@@ -474,7 +474,7 @@
     "/molins-de-rei/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-08-19T07:55:39Z",
+      "crawled": "2026-09-10T20:15:07Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/namibia/": {
@@ -516,12 +516,12 @@
     "/politica-de-cookies/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-06-26T20:39:22Z",
+      "crawled": "2026-09-10T02:43:12Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/politica-de-privacidad/": {
       "verdict": "NEUTRAL",
-      "coverage": "Discovered - currently not indexed",
+      "coverage": "URL is unknown to Google",
       "crawled": "N/A",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
     },
@@ -574,14 +574,14 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/pro-tips-egipto/": {
-      "verdict": "PASS",
-      "coverage": "Submitted and indexed",
-      "crawled": "2026-08-26T15:42:19Z",
+      "verdict": "NEUTRAL",
+      "coverage": "Crawled - currently not indexed",
+      "crawled": "2026-09-10T23:55:13Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/pro-tips-india/": {
-      "verdict": "PASS",
-      "coverage": "Submitted and indexed",
+      "verdict": "NEUTRAL",
+      "coverage": "Crawled - currently not indexed",
       "crawled": "2026-08-26T15:42:19Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
@@ -604,9 +604,9 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/pro-tips-uganda/": {
-      "verdict": "PASS",
-      "coverage": "Submitted and indexed",
-      "crawled": "2026-08-26T15:44:06Z",
+      "verdict": "NEUTRAL",
+      "coverage": "Crawled - currently not indexed",
+      "crawled": "2026-09-11T04:26:33Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/pro-tips/": {
@@ -702,13 +702,13 @@
     "/viajes-exclusivos-a-medida/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-08-17T04:02:47Z",
+      "crawled": "2026-09-09T20:09:43Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/viajes-pequenos-recuerdos-grandes/": {
-      "verdict": "PASS",
-      "coverage": "Submitted and indexed",
-      "crawled": "2026-08-26T15:48:21Z",
+      "verdict": "NEUTRAL",
+      "coverage": "Crawled - currently not indexed",
+      "crawled": "2026-09-10T22:49:22Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/vietnam/": {

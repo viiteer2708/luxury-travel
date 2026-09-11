@@ -1,28 +1,41 @@
-# Inspección 2026-09-09T12:27
+# Inspección 2026-09-11T08:42
 
 - **Total:** 101 URLs
-- **Indexadas:** 90
-- **No indexadas:** 11
+- **Indexadas:** 86
+- **No indexadas:** 15
 - **Errores:** 0
 
-**Cambio vs snapshot previo (2026-09-09T08:43):** indexadas +0, no indexadas +0.
+**Cambio vs snapshot previo (2026-09-09T12:27):** indexadas -4, no indexadas +4.
+
+## ⚠️ Salieron del índice (4)
+- `/pro-tips-egipto/`
+- `/pro-tips-india/`
+- `/pro-tips-uganda/`
+- `/viajes-pequenos-recuerdos-grandes/`
 
 ## 🔁 Google ha vuelto a pasar desde el snapshot anterior
 
-### 🔴 Volvió y SIGUEN FUERA (2) — veredicto sobre lo que vio
-- `/alaska/` rastreada el 2026-09-09 → Crawled - currently not indexed. vio la versión del 2026-08-14 · 📨 se había solicitado indexación el 2026-08-18: Google la ha releído y SIGUE FUERA
-- `/hawai/` rastreada el 2026-09-09 → Crawled - currently not indexed. vio la versión del 2026-08-14 · 📨 se había solicitado indexación el 2026-08-17: Google la ha releído y SIGUE FUERA
+### 🔴 Volvió y SIGUEN FUERA (3) — veredicto sobre lo que vio
+- `/pro-tips-egipto/` rastreada el 2026-09-10 → Crawled - currently not indexed. vio la versión del 2026-08-14 · 📨 se había solicitado indexación el 2026-08-26: Google la ha releído y SIGUE FUERA
+- `/pro-tips-uganda/` rastreada el 2026-09-11 → Crawled - currently not indexed. vio la versión del 2026-08-14 · 📨 se había solicitado indexación el 2026-08-26: Google la ha releído y SIGUE FUERA
+- `/viajes-pequenos-recuerdos-grandes/` rastreada el 2026-09-10 → Crawled - currently not indexed. vio la versión del 2026-08-14 · 📨 se había solicitado indexación el 2026-08-26: Google la ha releído y SIGUE FUERA
+
+### 👁 URLs clave que ha vuelto a leer (2)
+- `/molins-de-rei/` el 2026-09-10
+- `/viajes-exclusivos-a-medida/` el 2026-09-09
+
+_Además ha vuelto a leer 2 páginas indexadas más._
 
 ## 🎯 URLs clave (money pages y rescates del 14-ago)
 
 | URL | Estado | ¿Ha visto el último cambio? | Estado previo | Solicitada |
 |---|---|---|---|---|
 | `/` | ✅ indexada | 👁 vista el 2026-09-02 | ✅ indexada | — |
-| `/molins-de-rei/` | ✅ indexada | 👁 vista el 2026-08-19 | ✅ indexada | 📨 2026-08-19 · releída después |
+| `/molins-de-rei/` | ✅ indexada | 👁 vista el 2026-09-10 | ✅ indexada | 📨 2026-08-19 · releída después |
 | `/baix-llobregat/` | ✅ indexada | ⏳ vio la versión anterior (2026-07-11); el cambio del 2026-08-14 sigue sin rastrear | ✅ indexada | — |
 | `/agencia-viajes-lujo-barcelona/` | ✅ indexada | 🤔 rastreada el 2026-08-17, el mismo día del cambio: no concluyente | ✅ indexada | 📨 2026-08-17 · releída después |
 | `/viajes-a-medida-barcelona/` | ✅ indexada | 👁 vista el 2026-08-17 | ✅ indexada | 📨 2026-08-17 · releída después |
-| `/viajes-exclusivos-a-medida/` | ✅ indexada | 👁 vista el 2026-08-17 | ✅ indexada | — |
+| `/viajes-exclusivos-a-medida/` | ✅ indexada | 👁 vista el 2026-09-09 | ✅ indexada | — |
 | `/luna-de-miel-a-medida/` | ✅ indexada | 🤔 rastreada el 2026-08-17, el mismo día del cambio: no concluyente | ✅ indexada | 📨 2026-08-17 · releída después |
 | `/viajes-de-empresa-a-medida/` | ✅ indexada | ⏳ vio la versión anterior (2026-08-09); el cambio del 2026-08-14 sigue sin rastrear | ✅ indexada | — |
 | `/safari-de-lujo-a-medida/` | ✅ indexada | ⏳ vio la versión anterior (2026-08-07); el cambio del 2026-08-14 sigue sin rastrear | ✅ indexada | — |
@@ -36,10 +49,10 @@
 | `/suiza/` | ✅ indexada | 👁 vista el 2026-08-17 | ✅ indexada | 📨 2026-08-17 · releída después |
 
 ## Desglose no indexadas
-- **Crawled - currently not indexed:** 10
-- **Sin rastrear todavía:** 1 (Discovered 1; la API alterna entre ambos, es el mismo cajón)
+- **Crawled - currently not indexed:** 14
+- **Sin rastrear todavía:** 1 (URL is unknown to Google 1; la API alterna entre ambos, es el mismo cajón)
 
-## 🔴 Crawled - currently not indexed (10)
+## 🔴 Crawled - currently not indexed (14)
 - `/alaska/` — 👁 vista el 2026-09-09
 - `/chicago-nueva-orleans/` — 👁 vista el 2026-09-03
 - `/hawai/` — 👁 vista el 2026-09-09
@@ -48,9 +61,13 @@
 - `/malta/` — ⏳ vio la versión anterior (2026-07-19); el cambio del 2026-08-17 sigue sin rastrear
 - `/mauricio/` — 👁 vista el 2026-09-05
 - `/pro-tips-bahamas/` — ⏳ vio la versión anterior (2026-07-08); el cambio del 2026-08-14 sigue sin rastrear
+- `/pro-tips-egipto/` — 👁 vista el 2026-09-10
+- `/pro-tips-india/` — 👁 vista el 2026-08-26
 - `/pro-tips-noruega/` — ⏳ vio la versión anterior (2026-07-09); el cambio del 2026-08-14 sigue sin rastrear
+- `/pro-tips-uganda/` — 👁 vista el 2026-09-11
 - `/sudafrica/` — 👁 vista el 2026-08-26
+- `/viajes-pequenos-recuerdos-grandes/` — 👁 vista el 2026-09-10
 
-_4 de 10 han cambiado después del último rastreo de Google: su veredicto está pendiente, no dado._
+_4 de 14 han cambiado después del último rastreo de Google: su veredicto está pendiente, no dado._
 
-_Aviso disparado por: re-rastreo de páginas fuera del índice._
+_Aviso disparado por: cambio en totales; salidas del índice; re-rastreo de páginas fuera del índice._
