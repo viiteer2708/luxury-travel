@@ -1,30 +1,11 @@
-# Inspección 2026-09-11T08:42
+# Inspección 2026-09-11T12:22
 
 - **Total:** 101 URLs
 - **Indexadas:** 86
 - **No indexadas:** 15
 - **Errores:** 0
 
-**Cambio vs snapshot previo (2026-09-09T12:27):** indexadas -4, no indexadas +4.
-
-## ⚠️ Salieron del índice (4)
-- `/pro-tips-egipto/`
-- `/pro-tips-india/`
-- `/pro-tips-uganda/`
-- `/viajes-pequenos-recuerdos-grandes/`
-
-## 🔁 Google ha vuelto a pasar desde el snapshot anterior
-
-### 🔴 Volvió y SIGUEN FUERA (3) — veredicto sobre lo que vio
-- `/pro-tips-egipto/` rastreada el 2026-09-10 → Crawled - currently not indexed. vio la versión del 2026-08-14 · 📨 se había solicitado indexación el 2026-08-26: Google la ha releído y SIGUE FUERA
-- `/pro-tips-uganda/` rastreada el 2026-09-11 → Crawled - currently not indexed. vio la versión del 2026-08-14 · 📨 se había solicitado indexación el 2026-08-26: Google la ha releído y SIGUE FUERA
-- `/viajes-pequenos-recuerdos-grandes/` rastreada el 2026-09-10 → Crawled - currently not indexed. vio la versión del 2026-08-14 · 📨 se había solicitado indexación el 2026-08-26: Google la ha releído y SIGUE FUERA
-
-### 👁 URLs clave que ha vuelto a leer (2)
-- `/molins-de-rei/` el 2026-09-10
-- `/viajes-exclusivos-a-medida/` el 2026-09-09
-
-_Además ha vuelto a leer 2 páginas indexadas más._
+**Cambio vs snapshot previo (2026-09-11T08:42):** indexadas +0, no indexadas +0.
 
 ## 🎯 URLs clave (money pages y rescates del 14-ago)
 
@@ -69,5 +50,3 @@ _Además ha vuelto a leer 2 páginas indexadas más._
 - `/viajes-pequenos-recuerdos-grandes/` — 👁 vista el 2026-09-10
 
 _4 de 14 han cambiado después del último rastreo de Google: su veredicto está pendiente, no dado._
-
-_Aviso disparado por: cambio en totales; salidas del índice; re-rastreo de páginas fuera del índice._
