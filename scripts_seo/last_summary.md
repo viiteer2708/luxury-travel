@@ -1,23 +1,11 @@
-# Inspección 2026-09-13T08:42
+# Inspección 2026-09-13T12:50
 
 - **Total:** 101 URLs
 - **Indexadas:** 84
 - **No indexadas:** 17
 - **Errores:** 0
 
-**Cambio vs snapshot previo (2026-09-11T12:22):** indexadas -2, no indexadas +2.
-
-## ⚠️ Salieron del índice (2)
-- `/namibia/`
-- `/pro-tips-croacia/`
-
-## 🔁 Google ha vuelto a pasar desde el snapshot anterior
-
-### 🔴 Volvió y SIGUEN FUERA (2) — veredicto sobre lo que vio
-- `/namibia/` rastreada el 2026-09-12 → Crawled - currently not indexed. vio la versión del 2026-08-17
-- `/pro-tips-india/` rastreada el 2026-09-11 → Crawled - currently not indexed. vio la versión del 2026-08-14 · 📨 se había solicitado indexación el 2026-08-26: Google la ha releído y SIGUE FUERA
-
-_Además ha vuelto a leer 1 páginas indexadas más._
+**Cambio vs snapshot previo (2026-09-13T08:42):** indexadas +0, no indexadas +0.
 
 ## 🎯 URLs clave (money pages y rescates del 14-ago)
 
@@ -64,5 +52,3 @@ _Además ha vuelto a leer 1 páginas indexadas más._
 - `/viajes-pequenos-recuerdos-grandes/` — 👁 vista el 2026-09-10
 
 _5 de 16 han cambiado después del último rastreo de Google: su veredicto está pendiente, no dado._
-
-_Aviso disparado por: cambio en totales; salidas del índice; re-rastreo de páginas fuera del índice._
