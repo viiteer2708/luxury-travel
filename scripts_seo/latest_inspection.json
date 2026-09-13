@@ -1,8 +1,8 @@
 {
-  "fecha": "2026-09-11T12:22:49.827839",
+  "fecha": "2026-09-13T08:42:38.407600",
   "total": 101,
-  "indexadas": 86,
-  "no_indexadas": 15,
+  "indexadas": 84,
+  "no_indexadas": 17,
   "errores": 0,
   "detalle_indexadas": [
     "/",
@@ -59,7 +59,6 @@
     "/maldivas/",
     "/marruecos/",
     "/molins-de-rei/",
-    "/namibia/",
     "/noruega/",
     "/nueva-york/",
     "/paraisos/",
@@ -71,7 +70,6 @@
     "/pro-tips-aruba/",
     "/pro-tips-camboya/",
     "/pro-tips-chile/",
-    "/pro-tips-croacia/",
     "/pro-tips-cuba/",
     "/pro-tips-japon/",
     "/pro-tips-nueva-york/",
@@ -100,8 +98,10 @@
     "/madagascar/",
     "/malta/",
     "/mauricio/",
+    "/namibia/",
     "/politica-de-privacidad/",
     "/pro-tips-bahamas/",
+    "/pro-tips-croacia/",
     "/pro-tips-egipto/",
     "/pro-tips-india/",
     "/pro-tips-noruega/",
@@ -216,7 +216,7 @@
     "/brasil/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-06-24T23:05:39Z",
+      "crawled": "2026-09-11T13:38:38Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/camboya/": {
@@ -478,9 +478,9 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/namibia/": {
-      "verdict": "PASS",
-      "coverage": "Submitted and indexed",
-      "crawled": "2026-06-04T14:46:49Z",
+      "verdict": "NEUTRAL",
+      "coverage": "Crawled - currently not indexed",
+      "crawled": "2026-09-12T19:29:36Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/noruega/": {
@@ -562,8 +562,8 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/pro-tips-croacia/": {
-      "verdict": "PASS",
-      "coverage": "Submitted and indexed",
+      "verdict": "NEUTRAL",
+      "coverage": "Crawled - currently not indexed",
       "crawled": "2026-08-05T02:03:28Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
@@ -582,7 +582,7 @@
     "/pro-tips-india/": {
       "verdict": "NEUTRAL",
       "coverage": "Crawled - currently not indexed",
-      "crawled": "2026-08-26T15:42:19Z",
+      "crawled": "2026-09-11T12:48:06Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/pro-tips-japon/": {
