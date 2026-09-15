@@ -1,17 +1,31 @@
-# Inspección 2026-09-13T12:50
+# Inspección 2026-09-15T08:42
 
 - **Total:** 101 URLs
 - **Indexadas:** 84
 - **No indexadas:** 17
 - **Errores:** 0
 
-**Cambio vs snapshot previo (2026-09-13T08:42):** indexadas +0, no indexadas +0.
+**Cambio vs snapshot previo (2026-09-13T12:50):** indexadas +0, no indexadas +0.
+
+## 🆕 Nuevas indexadas (1)
+- `/mauricio/` — 📨 solicitada el 2026-08-17
+
+## ⚠️ Salieron del índice (1)
+- `/pro-tips-chile/`
+
+## 🔁 Google ha vuelto a pasar desde el snapshot anterior
+
+### 👁 URLs clave que ha vuelto a leer (2)
+- `/` el 2026-09-10
+- `/mauricio/` el 2026-09-13
+
+_Además ha vuelto a leer 1 páginas indexadas más._
 
 ## 🎯 URLs clave (money pages y rescates del 14-ago)
 
 | URL | Estado | ¿Ha visto el último cambio? | Estado previo | Solicitada |
 |---|---|---|---|---|
-| `/` | ✅ indexada | 👁 vista el 2026-09-02 | ✅ indexada | — |
+| `/` | ✅ indexada | 👁 vista el 2026-09-10 | ✅ indexada | — |
 | `/molins-de-rei/` | ✅ indexada | 👁 vista el 2026-09-10 | ✅ indexada | 📨 2026-08-19 · releída después |
 | `/baix-llobregat/` | ✅ indexada | ⏳ vio la versión anterior (2026-07-11); el cambio del 2026-08-14 sigue sin rastrear | ✅ indexada | — |
 | `/agencia-viajes-lujo-barcelona/` | ✅ indexada | 🤔 rastreada el 2026-08-17, el mismo día del cambio: no concluyente | ✅ indexada | 📨 2026-08-17 · releída después |
@@ -26,12 +40,12 @@
 | `/costa-rica/` | ✅ indexada | 👁 vista el 2026-08-17 | ✅ indexada | 📨 2026-08-17 · releída después |
 | `/ecuador/` | ✅ indexada | 👁 vista el 2026-08-17 | ✅ indexada | 📨 2026-08-17 · releída después |
 | `/hawai/` | 🔴 rastreada, fuera | 👁 vista el 2026-09-09 | 🔴 rastreada, fuera | 📨 2026-08-17 · releída después |
-| `/mauricio/` | 🔴 rastreada, fuera | 👁 vista el 2026-09-05 | 🔴 rastreada, fuera | 📨 2026-08-17 · releída después |
+| `/mauricio/` | ✅ indexada **(cambió)** | 👁 vista el 2026-09-13 | 🔴 rastreada, fuera | 📨 2026-08-17 · releída después |
 | `/suiza/` | ✅ indexada | 👁 vista el 2026-08-17 | ✅ indexada | 📨 2026-08-17 · releída después |
 
 ## Desglose no indexadas
 - **Crawled - currently not indexed:** 16
-- **Sin rastrear todavía:** 1 (URL is unknown to Google 1; la API alterna entre ambos, es el mismo cajón)
+- **Sin rastrear todavía:** 1 (Discovered 1; la API alterna entre ambos, es el mismo cajón)
 
 ## 🔴 Crawled - currently not indexed (16)
 - `/alaska/` — 👁 vista el 2026-09-09
@@ -40,9 +54,9 @@
 - `/itinerario-ritmo-realista/` — ⏳ vio la versión anterior (2026-05-20); el cambio del 2026-08-14 sigue sin rastrear
 - `/madagascar/` — 👁 vista el 2026-08-19
 - `/malta/` — ⏳ vio la versión anterior (2026-07-19); el cambio del 2026-08-17 sigue sin rastrear
-- `/mauricio/` — 👁 vista el 2026-09-05
 - `/namibia/` — 👁 vista el 2026-09-12
 - `/pro-tips-bahamas/` — ⏳ vio la versión anterior (2026-07-08); el cambio del 2026-08-14 sigue sin rastrear
+- `/pro-tips-chile/` — ⏳ vio la versión anterior (2026-07-11); el cambio del 2026-08-14 sigue sin rastrear
 - `/pro-tips-croacia/` — ⏳ vio la versión anterior (2026-08-05); el cambio del 2026-08-14 sigue sin rastrear
 - `/pro-tips-egipto/` — 👁 vista el 2026-09-10
 - `/pro-tips-india/` — 👁 vista el 2026-09-11
@@ -51,4 +65,6 @@
 - `/sudafrica/` — 👁 vista el 2026-08-26
 - `/viajes-pequenos-recuerdos-grandes/` — 👁 vista el 2026-09-10
 
-_5 de 16 han cambiado después del último rastreo de Google: su veredicto está pendiente, no dado._
+_6 de 16 han cambiado después del último rastreo de Google: su veredicto está pendiente, no dado._
+
+_Aviso disparado por: nuevas indexadas; salidas del índice; cambio de estado en /mauricio/._
