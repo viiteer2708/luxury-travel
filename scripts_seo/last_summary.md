@@ -1,25 +1,11 @@
-# Inspección 2026-09-15T08:42
+# Inspección 2026-09-15T12:46
 
 - **Total:** 101 URLs
 - **Indexadas:** 84
 - **No indexadas:** 17
 - **Errores:** 0
 
-**Cambio vs snapshot previo (2026-09-13T12:50):** indexadas +0, no indexadas +0.
-
-## 🆕 Nuevas indexadas (1)
-- `/mauricio/` — 📨 solicitada el 2026-08-17
-
-## ⚠️ Salieron del índice (1)
-- `/pro-tips-chile/`
-
-## 🔁 Google ha vuelto a pasar desde el snapshot anterior
-
-### 👁 URLs clave que ha vuelto a leer (2)
-- `/` el 2026-09-10
-- `/mauricio/` el 2026-09-13
-
-_Además ha vuelto a leer 1 páginas indexadas más._
+**Cambio vs snapshot previo (2026-09-15T08:42):** indexadas +0, no indexadas +0.
 
 ## 🎯 URLs clave (money pages y rescates del 14-ago)
 
@@ -40,7 +26,7 @@ _Además ha vuelto a leer 1 páginas indexadas más._
 | `/costa-rica/` | ✅ indexada | 👁 vista el 2026-08-17 | ✅ indexada | 📨 2026-08-17 · releída después |
 | `/ecuador/` | ✅ indexada | 👁 vista el 2026-08-17 | ✅ indexada | 📨 2026-08-17 · releída después |
 | `/hawai/` | 🔴 rastreada, fuera | 👁 vista el 2026-09-09 | 🔴 rastreada, fuera | 📨 2026-08-17 · releída después |
-| `/mauricio/` | ✅ indexada **(cambió)** | 👁 vista el 2026-09-13 | 🔴 rastreada, fuera | 📨 2026-08-17 · releída después |
+| `/mauricio/` | ✅ indexada | 👁 vista el 2026-09-13 | ✅ indexada | 📨 2026-08-17 · releída después |
 | `/suiza/` | ✅ indexada | 👁 vista el 2026-08-17 | ✅ indexada | 📨 2026-08-17 · releída después |
 
 ## Desglose no indexadas
@@ -66,5 +52,3 @@ _Además ha vuelto a leer 1 páginas indexadas más._
 - `/viajes-pequenos-recuerdos-grandes/` — 👁 vista el 2026-09-10
 
 _6 de 16 han cambiado después del último rastreo de Google: su veredicto está pendiente, no dado._
-
-_Aviso disparado por: nuevas indexadas; salidas del índice; cambio de estado en /mauricio/._
