@@ -1,15 +1,14 @@
 {
-  "fecha": "2026-09-15T12:46:08.943638",
+  "fecha": "2026-09-17T08:42:27.426762",
   "total": 101,
-  "indexadas": 84,
-  "no_indexadas": 17,
+  "indexadas": 81,
+  "no_indexadas": 20,
   "errores": 0,
   "detalle_indexadas": [
     "/",
     "/africa/",
     "/agencia-viajes-lujo-barcelona/",
     "/albania/",
-    "/alemania/",
     "/america/",
     "/argentina/",
     "/aruba/",
@@ -37,7 +36,6 @@
     "/cuba/",
     "/destinos/",
     "/disneyland-paris/",
-    "/dubai-abu-dhabi-maldivas/",
     "/ecuador/",
     "/egipto/",
     "/errores-comunes-organizar-viaje/",
@@ -45,7 +43,6 @@
     "/europa/",
     "/filipinas/",
     "/florida/",
-    "/francia/",
     "/grecia/",
     "/india/",
     "/islandia/",
@@ -92,7 +89,10 @@
   ],
   "detalle_no_indexadas": [
     "/alaska/",
+    "/alemania/",
     "/chicago-nueva-orleans/",
+    "/dubai-abu-dhabi-maldivas/",
+    "/francia/",
     "/hawai/",
     "/itinerario-ritmo-realista/",
     "/madagascar/",
@@ -142,10 +142,10 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/alemania/": {
-      "verdict": "PASS",
-      "coverage": "Submitted and indexed",
+      "verdict": "NEUTRAL",
+      "coverage": "Crawled - currently not indexed",
       "crawled": "2026-05-09T20:02:37Z",
-      "indexing_state": "INDEXING_ALLOWED"
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED"
     },
     "/america/": {
       "verdict": "PASS",
@@ -316,8 +316,8 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/dubai-abu-dhabi-maldivas/": {
-      "verdict": "PASS",
-      "coverage": "Submitted and indexed",
+      "verdict": "NEUTRAL",
+      "coverage": "Crawled - currently not indexed",
       "crawled": "2026-07-12T22:04:19Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
@@ -364,8 +364,8 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/francia/": {
-      "verdict": "PASS",
-      "coverage": "Submitted and indexed",
+      "verdict": "NEUTRAL",
+      "coverage": "Crawled - currently not indexed",
       "crawled": "2026-05-10T07:12:16Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
@@ -504,7 +504,7 @@
     "/peru/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-06-24T22:37:15Z",
+      "crawled": "2026-09-17T07:10:57Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/polinesia-francesa/": {
@@ -582,7 +582,7 @@
     "/pro-tips-india/": {
       "verdict": "NEUTRAL",
       "coverage": "Crawled - currently not indexed",
-      "crawled": "2026-09-11T12:48:06Z",
+      "crawled": "2026-09-16T03:47:51Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/pro-tips-japon/": {
