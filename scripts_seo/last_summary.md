@@ -1,17 +1,22 @@
-# Inspección 2026-09-17T12:42
+# Inspección 2026-09-19T08:42
 
 - **Total:** 101 URLs
 - **Indexadas:** 81
 - **No indexadas:** 20
 - **Errores:** 0
 
-**Cambio vs snapshot previo (2026-09-17T08:42):** indexadas +0, no indexadas +0.
+**Cambio vs snapshot previo (2026-09-17T12:42):** indexadas +0, no indexadas +0.
+
+## 🔁 Google ha vuelto a pasar desde el snapshot anterior
+
+### 👁 URLs clave que ha vuelto a leer (1)
+- `/` el 2026-09-18
 
 ## 🎯 URLs clave (money pages y rescates del 14-ago)
 
 | URL | Estado | ¿Ha visto el último cambio? | Estado previo | Solicitada |
 |---|---|---|---|---|
-| `/` | ✅ indexada | 👁 vista el 2026-09-10 | ✅ indexada | — |
+| `/` | ✅ indexada | 👁 vista el 2026-09-18 | ✅ indexada | — |
 | `/molins-de-rei/` | ✅ indexada | 👁 vista el 2026-09-10 | ✅ indexada | 📨 2026-08-19 · releída después |
 | `/baix-llobregat/` | ✅ indexada | ⏳ vio la versión anterior (2026-07-11); el cambio del 2026-08-14 sigue sin rastrear | ✅ indexada | — |
 | `/agencia-viajes-lujo-barcelona/` | ✅ indexada | 🤔 rastreada el 2026-08-17, el mismo día del cambio: no concluyente | ✅ indexada | 📨 2026-08-17 · releída después |
@@ -31,7 +36,7 @@
 
 ## Desglose no indexadas
 - **Crawled - currently not indexed:** 19
-- **Sin rastrear todavía:** 1 (Discovered 1; la API alterna entre ambos, es el mismo cajón)
+- **Sin rastrear todavía:** 1 (URL is unknown to Google 1; la API alterna entre ambos, es el mismo cajón)
 
 ## 🔴 Crawled - currently not indexed (19)
 - `/alaska/` — 👁 vista el 2026-09-09

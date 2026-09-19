@@ -1,5 +1,5 @@
 {
-  "fecha": "2026-09-17T12:42:41.050412",
+  "fecha": "2026-09-19T08:42:46.675292",
   "total": 101,
   "indexadas": 81,
   "no_indexadas": 20,
@@ -114,7 +114,7 @@
     "/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-09-10T23:40:10Z",
+      "crawled": "2026-09-18T01:19:55Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/africa/": {
@@ -521,7 +521,7 @@
     },
     "/politica-de-privacidad/": {
       "verdict": "NEUTRAL",
-      "coverage": "Discovered - currently not indexed",
+      "coverage": "URL is unknown to Google",
       "crawled": "N/A",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
     },
