@@ -1,16 +1,11 @@
-# Inspección 2026-09-19T08:42
+# Inspección 2026-09-19T12:03
 
 - **Total:** 101 URLs
 - **Indexadas:** 81
 - **No indexadas:** 20
 - **Errores:** 0
 
-**Cambio vs snapshot previo (2026-09-17T12:42):** indexadas +0, no indexadas +0.
-
-## 🔁 Google ha vuelto a pasar desde el snapshot anterior
-
-### 👁 URLs clave que ha vuelto a leer (1)
-- `/` el 2026-09-18
+**Cambio vs snapshot previo (2026-09-19T08:42):** indexadas +0, no indexadas +0.
 
 ## 🎯 URLs clave (money pages y rescates del 14-ago)
 
@@ -36,7 +31,7 @@
 
 ## Desglose no indexadas
 - **Crawled - currently not indexed:** 19
-- **Sin rastrear todavía:** 1 (URL is unknown to Google 1; la API alterna entre ambos, es el mismo cajón)
+- **Sin rastrear todavía:** 1 (Discovered 1; la API alterna entre ambos, es el mismo cajón)
 
 ## 🔴 Crawled - currently not indexed (19)
 - `/alaska/` — 👁 vista el 2026-09-09

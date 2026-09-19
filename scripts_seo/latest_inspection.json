@@ -1,5 +1,5 @@
 {
-  "fecha": "2026-09-19T08:42:46.675292",
+  "fecha": "2026-09-19T12:03:54.305032",
   "total": 101,
   "indexadas": 81,
   "no_indexadas": 20,
@@ -521,7 +521,7 @@
     },
     "/politica-de-privacidad/": {
       "verdict": "NEUTRAL",
-      "coverage": "URL is unknown to Google",
+      "coverage": "Discovered - currently not indexed",
       "crawled": "N/A",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
     },
