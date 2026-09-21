@@ -1,5 +1,5 @@
 {
-  "fecha": "2026-09-19T12:03:54.305032",
+  "fecha": "2026-09-21T08:42:22.458872",
   "total": 101,
   "indexadas": 81,
   "no_indexadas": 20,
@@ -378,7 +378,7 @@
     "/hawai/": {
       "verdict": "NEUTRAL",
       "coverage": "Crawled - currently not indexed",
-      "crawled": "2026-09-09T09:38:28Z",
+      "crawled": "2026-09-20T10:44:18Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/india/": {
@@ -420,7 +420,7 @@
     "/jet-lag-cambios-horarios/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-08-26T15:48:21Z",
+      "crawled": "2026-09-20T18:43:09Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/kenia-zanzibar/": {
