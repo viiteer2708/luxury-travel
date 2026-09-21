@@ -1,18 +1,11 @@
-# Inspección 2026-09-21T08:42
+# Inspección 2026-09-21T14:00
 
 - **Total:** 101 URLs
 - **Indexadas:** 81
 - **No indexadas:** 20
 - **Errores:** 0
 
-**Cambio vs snapshot previo (2026-09-19T12:03):** indexadas +0, no indexadas +0.
-
-## 🔁 Google ha vuelto a pasar desde el snapshot anterior
-
-### 🔴 Volvió y SIGUEN FUERA (1) — veredicto sobre lo que vio
-- `/hawai/` rastreada el 2026-09-20 → Crawled - currently not indexed. vio la versión del 2026-08-14 · 📨 se había solicitado indexación el 2026-08-17: Google la ha releído y SIGUE FUERA
-
-_Además ha vuelto a leer 1 páginas indexadas más._
+**Cambio vs snapshot previo (2026-09-21T08:42):** indexadas +0, no indexadas +0.
 
 ## 🎯 URLs clave (money pages y rescates del 14-ago)
 
@@ -62,5 +55,3 @@ _Además ha vuelto a leer 1 páginas indexadas más._
 - `/viajes-pequenos-recuerdos-grandes/` — 👁 vista el 2026-09-10
 
 _9 de 19 han cambiado después del último rastreo de Google: su veredicto está pendiente, no dado._
-
-_Aviso disparado por: re-rastreo de páginas fuera del índice._
