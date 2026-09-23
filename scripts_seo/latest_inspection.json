@@ -1,8 +1,8 @@
 {
-  "fecha": "2026-09-23T08:42:30.698173",
+  "fecha": "2026-09-23T12:52:30.903667",
   "total": 101,
-  "indexadas": 79,
-  "no_indexadas": 22,
+  "indexadas": 78,
+  "no_indexadas": 23,
   "errores": 0,
   "detalle_indexadas": [
     "/",
@@ -72,7 +72,6 @@
     "/quien-hay-detras/",
     "/safari-de-lujo-a-medida/",
     "/seychelles/",
-    "/singapur/",
     "/sri-lanka/",
     "/suiza/",
     "/tailandia/",
@@ -106,6 +105,7 @@
     "/pro-tips-india/",
     "/pro-tips-noruega/",
     "/pro-tips-uganda/",
+    "/singapur/",
     "/sudafrica/",
     "/viajes-pequenos-recuerdos-grandes/"
   ],
@@ -521,7 +521,7 @@
     },
     "/politica-de-privacidad/": {
       "verdict": "NEUTRAL",
-      "coverage": "URL is unknown to Google",
+      "coverage": "Discovered - currently not indexed",
       "crawled": "N/A",
       "indexing_state": "INDEXING_STATE_UNSPECIFIED"
     },
@@ -634,8 +634,8 @@
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/singapur/": {
-      "verdict": "PASS",
-      "coverage": "Submitted and indexed",
+      "verdict": "NEUTRAL",
+      "coverage": "Crawled - currently not indexed",
       "crawled": "2026-07-12T21:38:11Z",
       "indexing_state": "INDEXING_ALLOWED"
     },

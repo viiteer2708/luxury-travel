@@ -1,22 +1,14 @@
-# Inspección 2026-09-23T08:42
+# Inspección 2026-09-23T12:52
 
 - **Total:** 101 URLs
-- **Indexadas:** 79
-- **No indexadas:** 22
+- **Indexadas:** 78
+- **No indexadas:** 23
 - **Errores:** 0
 
-**Cambio vs snapshot previo (2026-09-21T14:00):** indexadas -2, no indexadas +2.
+**Cambio vs snapshot previo (2026-09-23T08:42):** indexadas -1, no indexadas +1.
 
-## ⚠️ Salieron del índice (2)
-- `/florida/`
-- `/praga-viena-budapest/`
-
-## 🔁 Google ha vuelto a pasar desde el snapshot anterior
-
-### 👁 URLs clave que ha vuelto a leer (1)
-- `/` el 2026-09-22
-
-_Además ha vuelto a leer 3 páginas indexadas más._
+## ⚠️ Salieron del índice (1)
+- `/singapur/`
 
 ## 🎯 URLs clave (money pages y rescates del 14-ago)
 
@@ -41,10 +33,10 @@ _Además ha vuelto a leer 3 páginas indexadas más._
 | `/suiza/` | ✅ indexada | 👁 vista el 2026-08-17 | ✅ indexada | 📨 2026-08-17 · releída después |
 
 ## Desglose no indexadas
-- **Crawled - currently not indexed:** 21
-- **Sin rastrear todavía:** 1 (URL is unknown to Google 1; la API alterna entre ambos, es el mismo cajón)
+- **Crawled - currently not indexed:** 22
+- **Sin rastrear todavía:** 1 (Discovered 1; la API alterna entre ambos, es el mismo cajón)
 
-## 🔴 Crawled - currently not indexed (21)
+## 🔴 Crawled - currently not indexed (22)
 - `/alaska/` — 👁 vista el 2026-09-09
 - `/alemania/` — ⏳ vio la versión anterior (2026-05-09); el cambio del 2026-08-14 sigue sin rastrear
 - `/chicago-nueva-orleans/` — 👁 vista el 2026-09-03
@@ -64,9 +56,10 @@ _Además ha vuelto a leer 3 páginas indexadas más._
 - `/pro-tips-india/` — 👁 vista el 2026-09-16
 - `/pro-tips-noruega/` — ⏳ vio la versión anterior (2026-07-09); el cambio del 2026-08-14 sigue sin rastrear
 - `/pro-tips-uganda/` — 👁 vista el 2026-09-11
+- `/singapur/` — ⏳ vio la versión anterior (2026-07-12); el cambio del 2026-08-17 sigue sin rastrear
 - `/sudafrica/` — 👁 vista el 2026-08-26
 - `/viajes-pequenos-recuerdos-grandes/` — 👁 vista el 2026-09-10
 
-_11 de 21 han cambiado después del último rastreo de Google: su veredicto está pendiente, no dado._
+_12 de 22 han cambiado después del último rastreo de Google: su veredicto está pendiente, no dado._
 
 _Aviso disparado por: cambio en totales; salidas del índice._
