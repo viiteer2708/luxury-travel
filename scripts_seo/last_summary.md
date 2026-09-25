@@ -1,14 +1,21 @@
-# Inspección 2026-09-23T12:52
+# Inspección 2026-09-25T08:42
 
 - **Total:** 101 URLs
 - **Indexadas:** 78
 - **No indexadas:** 23
 - **Errores:** 0
 
-**Cambio vs snapshot previo (2026-09-23T08:42):** indexadas -1, no indexadas +1.
+**Cambio vs snapshot previo (2026-09-23T12:52):** indexadas +0, no indexadas +0.
+
+## 🆕 Nuevas indexadas (1)
+- `/pro-tips-croacia/`
 
 ## ⚠️ Salieron del índice (1)
-- `/singapur/`
+- `/marruecos/`
+
+## 🔁 Google ha vuelto a pasar desde el snapshot anterior
+
+_Además ha vuelto a leer 1 páginas indexadas más._
 
 ## 🎯 URLs clave (money pages y rescates del 14-ago)
 
@@ -47,11 +54,11 @@
 - `/itinerario-ritmo-realista/` — ⏳ vio la versión anterior (2026-05-20); el cambio del 2026-08-14 sigue sin rastrear
 - `/madagascar/` — 👁 vista el 2026-08-19
 - `/malta/` — ⏳ vio la versión anterior (2026-07-19); el cambio del 2026-08-17 sigue sin rastrear
+- `/marruecos/` — ⏳ vio la versión anterior (2026-07-12); el cambio del 2026-08-17 sigue sin rastrear
 - `/namibia/` — 👁 vista el 2026-09-12
 - `/praga-viena-budapest/` — ⏳ vio la versión anterior (2026-07-12); el cambio del 2026-08-14 sigue sin rastrear
 - `/pro-tips-bahamas/` — ⏳ vio la versión anterior (2026-07-08); el cambio del 2026-08-14 sigue sin rastrear
 - `/pro-tips-chile/` — ⏳ vio la versión anterior (2026-07-11); el cambio del 2026-08-14 sigue sin rastrear
-- `/pro-tips-croacia/` — ⏳ vio la versión anterior (2026-08-05); el cambio del 2026-08-14 sigue sin rastrear
 - `/pro-tips-egipto/` — 👁 vista el 2026-09-10
 - `/pro-tips-india/` — 👁 vista el 2026-09-16
 - `/pro-tips-noruega/` — ⏳ vio la versión anterior (2026-07-09); el cambio del 2026-08-14 sigue sin rastrear
@@ -62,4 +69,4 @@
 
 _12 de 22 han cambiado después del último rastreo de Google: su veredicto está pendiente, no dado._
 
-_Aviso disparado por: cambio en totales; salidas del índice._
+_Aviso disparado por: nuevas indexadas; salidas del índice._
