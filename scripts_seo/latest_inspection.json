@@ -1,5 +1,5 @@
 {
-  "fecha": "2026-09-25T08:42:54.354708",
+  "fecha": "2026-09-25T12:52:11.439336",
   "total": 101,
   "indexadas": 78,
   "no_indexadas": 23,
@@ -114,7 +114,7 @@
     "/": {
       "verdict": "PASS",
       "coverage": "Submitted and indexed",
-      "crawled": "2026-09-22T03:07:49Z",
+      "crawled": "2026-09-25T10:58:28Z",
       "indexing_state": "INDEXING_ALLOWED"
     },
     "/africa/": {

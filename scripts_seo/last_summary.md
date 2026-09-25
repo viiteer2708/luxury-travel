@@ -1,27 +1,22 @@
-# Inspección 2026-09-25T08:42
+# Inspección 2026-09-25T12:52
 
 - **Total:** 101 URLs
 - **Indexadas:** 78
 - **No indexadas:** 23
 - **Errores:** 0
 
-**Cambio vs snapshot previo (2026-09-23T12:52):** indexadas +0, no indexadas +0.
-
-## 🆕 Nuevas indexadas (1)
-- `/pro-tips-croacia/`
-
-## ⚠️ Salieron del índice (1)
-- `/marruecos/`
+**Cambio vs snapshot previo (2026-09-25T08:42):** indexadas +0, no indexadas +0.
 
 ## 🔁 Google ha vuelto a pasar desde el snapshot anterior
 
-_Además ha vuelto a leer 1 páginas indexadas más._
+### 👁 URLs clave que ha vuelto a leer (1)
+- `/` el 2026-09-25
 
 ## 🎯 URLs clave (money pages y rescates del 14-ago)
 
 | URL | Estado | ¿Ha visto el último cambio? | Estado previo | Solicitada |
 |---|---|---|---|---|
-| `/` | ✅ indexada | 👁 vista el 2026-09-22 | ✅ indexada | — |
+| `/` | ✅ indexada | 👁 vista el 2026-09-25 | ✅ indexada | — |
 | `/molins-de-rei/` | ✅ indexada | 👁 vista el 2026-09-10 | ✅ indexada | 📨 2026-08-19 · releída después |
 | `/baix-llobregat/` | ✅ indexada | ⏳ vio la versión anterior (2026-07-11); el cambio del 2026-08-14 sigue sin rastrear | ✅ indexada | — |
 | `/agencia-viajes-lujo-barcelona/` | ✅ indexada | 🤔 rastreada el 2026-08-17, el mismo día del cambio: no concluyente | ✅ indexada | 📨 2026-08-17 · releída después |
@@ -68,5 +63,3 @@ _Además ha vuelto a leer 1 páginas indexadas más._
 - `/viajes-pequenos-recuerdos-grandes/` — 👁 vista el 2026-09-10
 
 _12 de 22 han cambiado después del último rastreo de Google: su veredicto está pendiente, no dado._
-
-_Aviso disparado por: nuevas indexadas; salidas del índice._
