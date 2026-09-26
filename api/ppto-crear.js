@@ -287,20 +287,24 @@ export default async function handler(req) {
 
     let crudo;
     try {
-      crudo = await pedirAGemini(apiKey, partes);
+      crudo = await pedirAGemini(apiKey, partes, (paso) => manda({ paso }));
     } catch (e) {
       const motivo = String((e && e.message) || '');
       console.error('[ppto-crear] Gemini:', motivo);
 
-      // Los tres fallos que de verdad ocurren, y cada uno con lo que hay que
-      // hacer. El de la cuota merece mensaje propio: decir "revisa el texto"
-      // cuando el texto está perfecto manda a Victor a reescribir un presupuesto
-      // que no tiene nada malo, y a repetirlo cinco veces.
+      // Los fallos que de verdad ocurren, y cada uno con lo que hay que hacer.
+      // Decir "revisa el texto" cuando el texto está perfecto manda a quien
+      // prepara el presupuesto a reescribir algo que no tiene nada malo, y a
+      // repetirlo cinco veces. Por eso cuota y saturación tienen mensaje propio.
       let error = 'No he podido leer el presupuesto. Revisa que el texto se entienda y prueba otra vez.';
       if (/timeout|abort/i.test(motivo)) {
         error = 'El presupuesto ha tardado demasiado en leerse. Si has subido un PDF, prueba a pegar el texto: va mucho más rápido.';
       } else if (/\b429\b|quota|rate.?limit/i.test(motivo)) {
         error = 'Se ha agotado la cuota diaria de lectura de presupuestos. No es culpa del texto: hoy ya no quedan. Se renueva sola mañana; si necesitas seguir hoy, avisa a Victor para que amplíe el plan.';
+      } else if (/\b50[0234]\b|UNAVAILABLE|high demand|overloaded/i.test(motivo)) {
+        error = 'El servicio de Google que lee los presupuestos está saturado ahora mismo. No es culpa del archivo: espera un par de minutos y vuelve a darle al botón.';
+      } else if (/cortada|vac[ií]a|MAX_TOKENS/i.test(motivo)) {
+        error = 'El presupuesto es tan largo que la lectura se ha quedado a medias. Prueba a pegar solo el itinerario y el precio en lugar del archivo entero.';
       }
       return manda({ ok: false, error });
     }
@@ -308,8 +312,11 @@ export default async function handler(req) {
     let datos;
     try { datos = JSON.parse(limpiarVallas(crudo)); }
     catch (_) {
-      console.error('[ppto-crear] JSON ilegible del modelo:', String(crudo).slice(0, 400));
-      return manda({ ok: false, error: 'He leído el presupuesto pero me ha salido mal estructurado. Vuelve a darle al botón.' });
+      try { datos = JSON.parse(repararJson(limpiarVallas(crudo))); }
+      catch (_) {
+        console.error('[ppto-crear] JSON ilegible del modelo:', String(crudo).slice(0, 400));
+        return manda({ ok: false, error: 'He leído el presupuesto pero me ha salido mal estructurado. Vuelve a darle al botón.' });
+      }
     }
     if (!datos || typeof datos !== 'object') {
       return manda({ ok: false, error: 'El presupuesto ha vuelto vacío. Revisa que el texto tenga el viaje.' });
@@ -482,49 +489,98 @@ function aBase64(buffer) {
 
 /* ═══════════════════════ Gemini ═══════════════════════ */
 
-async function pedirAGemini(apiKey, partes) {
-  const modelos = [getEnv('PPTO_GEMINI_MODEL') || MODELO_DEFECTO, MODELO_RESERVA];
+// Fallos de Google que se pasan solos: el modelo está saturado ("high demand")
+// o se le ha roto algo por dentro. Desde septiembre de 2026 gemini-3.5-flash
+// devuelve 503 en una de cada dos o tres llamadas, y como antes solo se
+// cambiaba de modelo ante un 404, cada 503 acababa en "No he podido leer el
+// presupuesto": Endeis subía un PDF impecable y el panel le echaba la culpa.
+const FALLOS_PASAJEROS = [500, 502, 503, 504];
+
+// Tope para toda la lectura, reintentos incluidos. La función puede seguir
+// emitiendo hasta 300 s; detrás de Gemini aún quedan guardar y avisar.
+const TOPE_LECTURA_MS = 180_000;
+
+async function pedirAGemini(apiKey, partes, aviso) {
+  const modelos = [...new Set([getEnv('PPTO_GEMINI_MODEL') || MODELO_DEFECTO, MODELO_RESERVA])];
+  const limite = Date.now() + TOPE_LECTURA_MS;
   let ultimo = '';
 
   for (let i = 0; i < modelos.length; i++) {
-    const r = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${modelos[i]}:generateContent`,
-      {
-        method: 'POST',
-        headers: { 'content-type': 'application/json', 'x-goog-api-key': apiKey },
-        body: JSON.stringify({
-          system_instruction: { parts: [{ text: INSTRUCCIONES }] },
-          contents: [{ role: 'user', parts: partes }],
-          generationConfig: {
-            temperature: 0.4,
-            maxOutputTokens: 8192,
-            responseMimeType: 'application/json',
-          },
-        }),
-        // Holgado a propósito: la respuesta ya va en streaming, así que aquí no
-        // manda el límite de los 25 segundos de la función sino la paciencia
-        // de Victor mirando la barra de avance.
-        signal: AbortSignal.timeout(70_000),
+    if (i > 0 && aviso) aviso('El lector principal no está disponible ahora mismo; pruebo con el de reserva…');
+
+    for (let intento = 0; intento < 2; intento++) {
+      const queda = limite - Date.now();
+      if (queda < 10_000) break;
+
+      let r;
+      try {
+        r = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models/${modelos[i]}:generateContent`,
+          {
+            method: 'POST',
+            headers: { 'content-type': 'application/json', 'x-goog-api-key': apiKey },
+            body: JSON.stringify({
+              system_instruction: { parts: [{ text: INSTRUCCIONES }] },
+              contents: [{ role: 'user', parts: partes }],
+              generationConfig: {
+                temperature: 0.4,
+                // El tope cuenta también lo que el modelo "piensa" antes de
+                // escribir. Con 8.192 y el pensamiento por defecto, un PDF de
+                // viaje largo se comía casi 4.000 en pensar y el JSON salía
+                // cortado. Pensar poco basta para leer y reescribir, y es
+                // tres veces más rápido.
+                maxOutputTokens: 16384,
+                ...(/^gemini-3/.test(modelos[i]) ? { thinkingConfig: { thinkingLevel: 'low' } } : {}),
+                responseMimeType: 'application/json',
+              },
+            }),
+            // Holgado a propósito: la respuesta ya va en streaming, así que aquí no
+            // manda el límite de los 25 segundos de la función sino la paciencia
+            // de Victor mirando la barra de avance.
+            signal: AbortSignal.timeout(Math.min(70_000, queda)),
+          }
+        );
+      } catch (e) {
+        // Tiempo agotado o red caída: se pasa al siguiente modelo en vez de
+        // repetir una espera de setenta segundos con el mismo.
+        ultimo = String((e && e.message) || e);
+        console.warn('[ppto-crear] Sin respuesta de', modelos[i] + ':', ultimo);
+        break;
       }
-    );
 
-    if (r.ok) {
-      const data = await r.json();
-      const cand = data && data.candidates && data.candidates[0];
-      const trozos = (cand && cand.content && cand.content.parts) || [];
-      const salida = trozos.map(p => p.text || '').join('').trim();
-      if (salida) return salida;
-      throw new Error('respuesta vacía (' + ((cand && cand.finishReason) || 'sin motivo') + ')');
+      if (r.ok) {
+        const data = await r.json();
+        const cand = data && data.candidates && data.candidates[0];
+        const trozos = (cand && cand.content && cand.content.parts) || [];
+        const salida = trozos.map(p => p.text || '').join('').trim();
+        const motivo = (cand && cand.finishReason) || 'sin motivo';
+        // Un JSON cortado a medias no sirve de nada: mejor probar con el otro
+        // modelo que devolver algo que luego no se puede leer.
+        if (salida && motivo !== 'MAX_TOKENS') return salida;
+        ultimo = `respuesta ${salida ? 'cortada' : 'vacía'} (${motivo})`;
+        console.warn('[ppto-crear]', modelos[i], ultimo);
+        break;
+      }
+
+      const cuerpo = await r.text().catch(() => '');
+      ultimo = `Gemini ${r.status}: ${cuerpo.slice(0, 200)}`;
+      console.warn('[ppto-crear]', modelos[i], ultimo);
+
+      // Saturado: una segunda oportunidad al mismo modelo tras una pausa corta
+      // (el 503 llega en un segundo, así que cuesta poco), y si repite, al otro.
+      if (FALLOS_PASAJEROS.includes(r.status) && intento === 0) {
+        await new Promise(res => setTimeout(res, 2000));
+        continue;
+      }
+      // 404 = ese modelo no existe en esta clave; 429 = cuota agotada, que en
+      // la capa gratuita va por modelo. En los dos casos, el siguiente.
+      if (FALLOS_PASAJEROS.includes(r.status) || r.status === 404 || r.status === 429) break;
+      // 400, 401, 403: reintentar no lo arreglaría.
+      throw new Error(ultimo);
     }
-
-    ultimo = await r.text().catch(() => '');
-    // Un 404 es "ese modelo no existe en esta clave": se prueba el siguiente.
-    // Cualquier otro error se propaga tal cual; reintentar no lo arreglaría.
-    if (r.status !== 404) throw new Error(`Gemini ${r.status}: ${ultimo.slice(0, 200)}`);
-    console.warn('[ppto-crear] Modelo no disponible:', modelos[i]);
   }
 
-  throw new Error(`ningún modelo disponible: ${ultimo.slice(0, 200)}`);
+  throw new Error(ultimo || 'ningún modelo disponible');
 }
 
 // Por si el modelo devuelve el JSON envuelto en ```json pese a pedirle que no.
@@ -532,6 +588,38 @@ function limpiarVallas(s) {
   const t = String(s || '').trim();
   const m = /^```(?:json)?\s*([\s\S]*?)\s*```$/i.exec(t);
   return m ? m[1] : t;
+}
+
+// El modelo de reserva cuela de vez en cuando un tabulador o un salto de línea
+// crudo dentro de una cadena (visto en sep-2026: `"texto⇥": ...`, con el
+// tabulador de verdad en el nombre del campo), y JSON.parse rechaza la
+// respuesta entera por un carácter. Dentro de los valores se escapan; en las
+// claves se quitan, porque "texto\t" no es "texto" y el día se quedaría mudo.
+function repararJson(s) {
+  let out = '';
+  let buf = null; // contenido de la cadena abierta, o null si no hay ninguna
+  let escape = false;
+  for (let i = 0; i < s.length; i++) {
+    const c = s[i];
+    if (buf === null) {
+      if (c === '"') buf = '';
+      else out += c;
+      continue;
+    }
+    if (escape) { buf += c; escape = false; continue; }
+    if (c === '\\') { buf += c; escape = true; continue; }
+    if (c !== '"') { buf += c; continue; }
+    // Se cierra la cadena. Es una clave si lo siguiente que no es espacio son dos puntos.
+    let j = i + 1;
+    while (j < s.length && /\s/.test(s[j])) j++;
+    const esClave = s[j] === ':';
+    const limpio = esClave
+      ? buf.replace(/[\u0000-\u001f]/g, '').trim()
+      : buf.replace(/[\u0000-\u001f]/g, ch => (ch === '\n' ? '\\n' : ch === '\t' ? '\\t' : ''));
+    out += '"' + limpio + '"';
+    buf = null;
+  }
+  return buf === null ? out : out + '"' + buf;
 }
 
 /* ═══════════════════════ normalización ═══════════════════════ */
